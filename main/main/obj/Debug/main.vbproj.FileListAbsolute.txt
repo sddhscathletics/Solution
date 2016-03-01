@@ -25,18 +25,33 @@ C:\Users\reika\Documents\GitHub\Solution\main\main\bin\Debug\main.exe.config
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (1)\Solution-master\main\main\obj\Debug\main.Resources.resources
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (1)\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (1)\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.exe.config
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.exe
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.xml
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.pdb
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.exe
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.pdb
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.xml
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.vbprojResolveAssemblyReference.cache
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.calendar.resources
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.createEvent.resources
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.eventTimes.resources
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.home.resources
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.Resources.resources
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
+L:\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\main.exe.config
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.exe
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.xml
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.pdb
+L:\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\main.exe
+L:\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\main.pdb
+L:\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\main.xml
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.vbprojResolveAssemblyReference.cache
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.calendar.resources
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.createEvent.resources
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.eventTimes.resources
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.home.resources
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.Resources.resources
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
+L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\main.exe.config
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.exe
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.xml
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.pdb
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\main.exe
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\main.pdb
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\main.xml
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.vbprojResolveAssemblyReference.cache
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.calendar.resources
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.createEvent.resources
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.eventTimes.resources
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.home.resources
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.Resources.resources
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
+\\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache

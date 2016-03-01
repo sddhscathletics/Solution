@@ -1,12 +1,12 @@
 ﻿Public Class calendar
     Dim firstSelection As DateTime
     Dim selectionCount As Integer = 0
-    Private Sub MonthCalendar1_DateSelected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles MonthCalendar1.DateSelected
+    Private Sub mnCalendar_DateSelected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles mnCalendar.DateSelected
         If selectionCount = 0 Then
-            firstSelection = MonthCalendar1.SelectionStart
+            firstSelection = mnCalendar.SelectionStart
             selectionCount += 1
         Else
-            If firstSelection = MonthCalendar1.SelectionStart Then
+            If firstSelection = mnCalendar.SelectionStart Then
                 createEvent.Show()
             End If
             selectionCount = 0

@@ -34,7 +34,7 @@ Partial Class eventTimes
         Me.lbl200 = New System.Windows.Forms.Label()
         Me.lbl100 = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.pb800 = New System.Windows.Forms.PictureBox()
         Me.pb400 = New System.Windows.Forms.PictureBox()
         Me.pb200 = New System.Windows.Forms.PictureBox()
         Me.pb100 = New System.Windows.Forms.PictureBox()
@@ -42,7 +42,7 @@ Partial Class eventTimes
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pb800, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pb400, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pb200, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pb100, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,14 +167,14 @@ Partial Class eventTimes
         Me.PictureBox5.TabIndex = 22
         Me.PictureBox5.TabStop = False
         '
-        'PictureBox4
+        'pb800
         '
-        Me.PictureBox4.BackColor = System.Drawing.SystemColors.Control
-        Me.PictureBox4.Location = New System.Drawing.Point(-2, 95)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(79, 33)
-        Me.PictureBox4.TabIndex = 21
-        Me.PictureBox4.TabStop = False
+        Me.pb800.BackColor = System.Drawing.SystemColors.Control
+        Me.pb800.Location = New System.Drawing.Point(-2, 95)
+        Me.pb800.Name = "pb800"
+        Me.pb800.Size = New System.Drawing.Size(79, 33)
+        Me.pb800.TabIndex = 21
+        Me.pb800.TabStop = False
         '
         'pb400
         '
@@ -221,7 +221,7 @@ Partial Class eventTimes
         Me.Controls.Add(Me.lbl200)
         Me.Controls.Add(Me.lbl100)
         Me.Controls.Add(Me.PictureBox5)
-        Me.Controls.Add(Me.PictureBox4)
+        Me.Controls.Add(Me.pb800)
         Me.Controls.Add(Me.pb400)
         Me.Controls.Add(Me.pb200)
         Me.Controls.Add(Me.pb100)
@@ -231,7 +231,7 @@ Partial Class eventTimes
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pb800, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pb400, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pb200, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pb100, System.ComponentModel.ISupportInitialize).EndInit()
@@ -252,7 +252,7 @@ Partial Class eventTimes
     Friend WithEvents lbl200 As Label
     Friend WithEvents lbl100 As Label
     Friend WithEvents PictureBox5 As PictureBox
-    Friend WithEvents PictureBox4 As PictureBox
+    Friend WithEvents pb800 As PictureBox
     Friend WithEvents pb400 As PictureBox
     Friend WithEvents pb200 As PictureBox
     Friend WithEvents pb100 As PictureBox

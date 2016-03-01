@@ -22,26 +22,26 @@ Partial Class calendar
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
+        Me.mnCalendar = New System.Windows.Forms.MonthCalendar()
         Me.SuspendLayout()
         '
-        'MonthCalendar1
+        'mnCalendar
         '
-        Me.MonthCalendar1.Location = New System.Drawing.Point(28, 48)
-        Me.MonthCalendar1.Name = "MonthCalendar1"
-        Me.MonthCalendar1.TabIndex = 0
+        Me.mnCalendar.Location = New System.Drawing.Point(28, 48)
+        Me.mnCalendar.Name = "mnCalendar"
+        Me.mnCalendar.TabIndex = 0
         '
-        'Form1
+        'calendar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 262)
-        Me.Controls.Add(Me.MonthCalendar1)
-        Me.Name = "Form1"
+        Me.Controls.Add(Me.mnCalendar)
+        Me.Name = "calendar"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents MonthCalendar1 As MonthCalendar
+    Friend WithEvents mnCalendar As MonthCalendar
 End Class

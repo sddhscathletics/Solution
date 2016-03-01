@@ -7,7 +7,7 @@
         pb100.BackColor = Color.Transparent
         lbl100.BackColor = Color.Transparent
         For Each pb In Me.Controls
-            If pb Is pb200 OrElse pb Is pb400 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is PictureBox4 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl200 OrElse pb Is lbl400 Then
+            If pb Is pb200 OrElse pb Is pb400 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is pb800 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl200 OrElse pb Is lbl400 Then
                 pb.BackColor = SystemColors.Control
             End If
             'If pb isNot lbl100 andalso pb isnot lbl200 andalso pb isnot lbl400 
@@ -47,7 +47,7 @@
         pb200.BackColor = Color.Transparent
         lbl200.BackColor = Color.Transparent
         For Each pb In Me.Controls
-            If pb Is pb100 OrElse pb Is pb400 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is PictureBox4 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl100 OrElse pb Is lbl400 Then
+            If pb Is pb100 OrElse pb Is pb400 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is pb800 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl100 OrElse pb Is lbl400 Then
                 pb.BackColor = SystemColors.Control
             End If
         Next
@@ -61,7 +61,7 @@
         pb400.BackColor = Color.Transparent
         lbl400.BackColor = Color.Transparent
         For Each pb In Me.Controls
-            If pb Is pb100 OrElse pb Is pb200 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is PictureBox4 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl200 OrElse pb Is lbl100 Then
+            If pb Is pb100 OrElse pb Is pb200 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is pb800 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl200 OrElse pb Is lbl100 Then
                 pb.BackColor = SystemColors.Control
             End If
         Next

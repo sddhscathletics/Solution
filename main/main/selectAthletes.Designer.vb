@@ -22,59 +22,59 @@ Partial Class selectAthletes
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.clbAthletes = New System.Windows.Forms.CheckedListBox()
+        Me.chbAll = New System.Windows.Forms.CheckBox()
+        Me.cmbGroup = New System.Windows.Forms.ComboBox()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnSelect = New System.Windows.Forms.Button()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
-        'CheckedListBox1
+        'clbAthletes
         '
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Items.AddRange(New Object() {"bob", "mike", "jay", "lenny"})
-        Me.CheckedListBox1.Location = New System.Drawing.Point(23, 71)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(261, 94)
-        Me.CheckedListBox1.TabIndex = 8
+        Me.clbAthletes.FormattingEnabled = True
+        Me.clbAthletes.Items.AddRange(New Object() {"bob", "mike", "jay", "lenny"})
+        Me.clbAthletes.Location = New System.Drawing.Point(23, 71)
+        Me.clbAthletes.Name = "clbAthletes"
+        Me.clbAthletes.Size = New System.Drawing.Size(261, 94)
+        Me.clbAthletes.TabIndex = 8
         '
-        'CheckBox1
+        'chbAll
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(31, 48)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(70, 17)
-        Me.CheckBox1.TabIndex = 9
-        Me.CheckBox1.Text = "Select All"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chbAll.AutoSize = True
+        Me.chbAll.Location = New System.Drawing.Point(31, 48)
+        Me.chbAll.Name = "chbAll"
+        Me.chbAll.Size = New System.Drawing.Size(70, 17)
+        Me.chbAll.TabIndex = 9
+        Me.chbAll.Text = "Select All"
+        Me.chbAll.UseVisualStyleBackColor = True
         '
-        'ComboBox1
+        'cmbGroup
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"13's", "14's", "15's", "16's", "17's", "Opens"})
-        Me.ComboBox1.Location = New System.Drawing.Point(12, 12)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(136, 21)
-        Me.ComboBox1.TabIndex = 7
+        Me.cmbGroup.FormattingEnabled = True
+        Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
+        Me.cmbGroup.Location = New System.Drawing.Point(12, 12)
+        Me.cmbGroup.Name = "cmbGroup"
+        Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
+        Me.cmbGroup.TabIndex = 7
         '
-        'Button2
+        'btnCancel
         '
-        Me.Button2.Location = New System.Drawing.Point(209, 237)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 6
-        Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnCancel.Location = New System.Drawing.Point(209, 237)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancel.TabIndex = 6
+        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btnSelect
         '
-        Me.Button1.Location = New System.Drawing.Point(23, 237)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "Select"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnSelect.Location = New System.Drawing.Point(23, 237)
+        Me.btnSelect.Name = "btnSelect"
+        Me.btnSelect.Size = New System.Drawing.Size(75, 23)
+        Me.btnSelect.TabIndex = 5
+        Me.btnSelect.Text = "Select"
+        Me.btnSelect.UseVisualStyleBackColor = True
         '
         'CheckBox2
         '
@@ -91,11 +91,11 @@ Partial Class selectAthletes
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(347, 316)
-        Me.Controls.Add(Me.CheckedListBox1)
-        Me.Controls.Add(Me.CheckBox1)
-        Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.clbAthletes)
+        Me.Controls.Add(Me.chbAll)
+        Me.Controls.Add(Me.cmbGroup)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnSelect)
         Me.Controls.Add(Me.CheckBox2)
         Me.Name = "selectAthletes"
         Me.Text = "Form1"
@@ -104,10 +104,10 @@ Partial Class selectAthletes
 
     End Sub
 
-    Friend WithEvents CheckedListBox1 As CheckedListBox
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents clbAthletes As CheckedListBox
+    Friend WithEvents chbAll As CheckBox
+    Friend WithEvents cmbGroup As ComboBox
+    Friend WithEvents btnCancel As Button
+    Friend WithEvents btnSelect As Button
     Friend WithEvents CheckBox2 As CheckBox
 End Class

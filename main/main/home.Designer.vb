@@ -24,12 +24,12 @@ Partial Class home
     Private Sub InitializeComponent()
         Me.SuspendLayout()
         '
-        'Form1
+        'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(616, 359)
-        Me.Name = "Form1"
+        Me.Name = "home"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
 

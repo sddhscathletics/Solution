@@ -22,137 +22,137 @@ Partial Class createEvent
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnSelect = New System.Windows.Forms.Button()
+        Me.lblEvents = New System.Windows.Forms.Label()
+        Me.dtpStart = New System.Windows.Forms.DateTimePicker()
+        Me.dtpDate = New System.Windows.Forms.DateTimePicker()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnOkay = New System.Windows.Forms.Button()
+        Me.btnBrowse = New System.Windows.Forms.Button()
+        Me.lblPeople = New System.Windows.Forms.Label()
+        Me.lblStart = New System.Windows.Forms.Label()
+        Me.lblDate = New System.Windows.Forms.Label()
+        Me.lblTitle = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'Button4
+        'btnSelect
         '
-        Me.Button4.Location = New System.Drawing.Point(128, 190)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(144, 19)
-        Me.Button4.TabIndex = 25
-        Me.Button4.Text = "Select..."
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.btnSelect.Location = New System.Drawing.Point(128, 190)
+        Me.btnSelect.Name = "btnSelect"
+        Me.btnSelect.Size = New System.Drawing.Size(144, 19)
+        Me.btnSelect.TabIndex = 25
+        Me.btnSelect.Text = "Select..."
+        Me.btnSelect.UseVisualStyleBackColor = True
         '
-        'Label5
+        'lblEvents
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(10, 237)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(66, 24)
-        Me.Label5.TabIndex = 24
-        Me.Label5.Text = "Events"
+        Me.lblEvents.AutoSize = True
+        Me.lblEvents.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEvents.Location = New System.Drawing.Point(10, 237)
+        Me.lblEvents.Name = "lblEvents"
+        Me.lblEvents.Size = New System.Drawing.Size(66, 24)
+        Me.lblEvents.TabIndex = 24
+        Me.lblEvents.Text = "Events"
         '
-        'DateTimePicker2
+        'dtpStart
         '
-        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker2.Location = New System.Drawing.Point(123, 141)
-        Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.ShowUpDown = True
-        Me.DateTimePicker2.Size = New System.Drawing.Size(176, 20)
-        Me.DateTimePicker2.TabIndex = 23
+        Me.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpStart.Location = New System.Drawing.Point(123, 141)
+        Me.dtpStart.Name = "dtpStart"
+        Me.dtpStart.ShowUpDown = True
+        Me.dtpStart.Size = New System.Drawing.Size(176, 20)
+        Me.dtpStart.TabIndex = 23
         '
-        'DateTimePicker1
+        'dtpDate
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(128, 79)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(176, 20)
-        Me.DateTimePicker1.TabIndex = 22
+        Me.dtpDate.Location = New System.Drawing.Point(128, 79)
+        Me.dtpDate.Name = "dtpDate"
+        Me.dtpDate.Size = New System.Drawing.Size(176, 20)
+        Me.dtpDate.TabIndex = 22
         '
-        'Button3
+        'btnCancel
         '
-        Me.Button3.Location = New System.Drawing.Point(231, 288)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(86, 34)
-        Me.Button3.TabIndex = 21
-        Me.Button3.Text = "Cancel"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.btnCancel.Location = New System.Drawing.Point(231, 288)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(86, 34)
+        Me.btnCancel.TabIndex = 21
+        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnOkay
         '
-        Me.Button2.Location = New System.Drawing.Point(42, 288)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(86, 34)
-        Me.Button2.TabIndex = 20
-        Me.Button2.Text = "Okay"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnOkay.Location = New System.Drawing.Point(42, 288)
+        Me.btnOkay.Name = "btnOkay"
+        Me.btnOkay.Size = New System.Drawing.Size(86, 34)
+        Me.btnOkay.TabIndex = 20
+        Me.btnOkay.Text = "Okay"
+        Me.btnOkay.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btnBrowse
         '
-        Me.Button1.Location = New System.Drawing.Point(128, 237)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(144, 19)
-        Me.Button1.TabIndex = 19
-        Me.Button1.Text = "Browse..."
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnBrowse.Location = New System.Drawing.Point(128, 237)
+        Me.btnBrowse.Name = "btnBrowse"
+        Me.btnBrowse.Size = New System.Drawing.Size(144, 19)
+        Me.btnBrowse.TabIndex = 19
+        Me.btnBrowse.Text = "Browse..."
+        Me.btnBrowse.UseVisualStyleBackColor = True
         '
-        'Label4
+        'lblPeople
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(13, 190)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(66, 24)
-        Me.Label4.TabIndex = 18
-        Me.Label4.Text = "People"
+        Me.lblPeople.AutoSize = True
+        Me.lblPeople.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPeople.Location = New System.Drawing.Point(13, 190)
+        Me.lblPeople.Name = "lblPeople"
+        Me.lblPeople.Size = New System.Drawing.Size(66, 24)
+        Me.lblPeople.TabIndex = 18
+        Me.lblPeople.Text = "People"
         '
-        'Label3
+        'lblStart
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(13, 141)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(51, 24)
-        Me.Label3.TabIndex = 17
-        Me.Label3.Text = "Start"
+        Me.lblStart.AutoSize = True
+        Me.lblStart.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStart.Location = New System.Drawing.Point(13, 141)
+        Me.lblStart.Name = "lblStart"
+        Me.lblStart.Size = New System.Drawing.Size(51, 24)
+        Me.lblStart.TabIndex = 17
+        Me.lblStart.Text = "Start"
         '
-        'Label2
+        'lblDate
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(10, 77)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(49, 24)
-        Me.Label2.TabIndex = 16
-        Me.Label2.Text = "Date"
+        Me.lblDate.AutoSize = True
+        Me.lblDate.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDate.Location = New System.Drawing.Point(10, 77)
+        Me.lblDate.Name = "lblDate"
+        Me.lblDate.Size = New System.Drawing.Size(49, 24)
+        Me.lblDate.TabIndex = 16
+        Me.lblDate.Text = "Date"
         '
-        'Label1
+        'lblTitle
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Modern No. 20", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(123, 15)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(66, 29)
-        Me.Label1.TabIndex = 15
-        Me.Label1.Text = "Meet"
+        Me.lblTitle.AutoSize = True
+        Me.lblTitle.Font = New System.Drawing.Font("Modern No. 20", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitle.Location = New System.Drawing.Point(123, 15)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(66, 29)
+        Me.lblTitle.TabIndex = 15
+        Me.lblTitle.Text = "Meet"
         '
         'createEvent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(359, 351)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.DateTimePicker2)
-        Me.Controls.Add(Me.DateTimePicker1)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.btnSelect)
+        Me.Controls.Add(Me.lblEvents)
+        Me.Controls.Add(Me.dtpStart)
+        Me.Controls.Add(Me.dtpDate)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnOkay)
+        Me.Controls.Add(Me.btnBrowse)
+        Me.Controls.Add(Me.lblPeople)
+        Me.Controls.Add(Me.lblStart)
+        Me.Controls.Add(Me.lblDate)
+        Me.Controls.Add(Me.lblTitle)
         Me.Name = "createEvent"
         Me.Text = "createEvent"
         Me.ResumeLayout(False)
@@ -160,15 +160,15 @@ Partial Class createEvent
 
     End Sub
 
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents DateTimePicker2 As DateTimePicker
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Button4 As Button
+    Friend WithEvents lblTitle As Label
+    Friend WithEvents lblDate As Label
+    Friend WithEvents lblStart As Label
+    Friend WithEvents lblPeople As Label
+    Friend WithEvents btnBrowse As Button
+    Friend WithEvents btnOkay As Button
+    Friend WithEvents btnCancel As Button
+    Friend WithEvents dtpDate As DateTimePicker
+    Friend WithEvents dtpStart As DateTimePicker
+    Friend WithEvents lblEvents As Label
+    Friend WithEvents btnSelect As Button
 End Class
