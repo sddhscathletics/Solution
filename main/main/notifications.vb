@@ -21,4 +21,12 @@ Module notifications
             End Using
         End Using
     End Sub 'Connects to edit database and reads fresh edits
+
+    Public Sub populateNotifs()
+
+    End Sub 'Populates notification list with unread edits
+
+    Public Sub backLog()
+
+    End Sub 'Populates notification list with all edits
 End Module
