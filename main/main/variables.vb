@@ -1,4 +1,7 @@
 ﻿Module variables
-    Dim name, change As String
-    Dim access As Integer = 0
+    Public name, change As String
+    Public access As Integer = 0
+
+    'eddie
+    Public changeDropDownSelection As Boolean = True
 End Module

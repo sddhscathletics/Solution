@@ -90,7 +90,12 @@
     <Compile Include="eventTimes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="notifications.vb" />
+    <Compile Include="confirmAddition.Designer.vb">
+      <DependentUpon>confirmAddition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="confirmAddition.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="selectAthletes.Designer.vb">
       <DependentUpon>selectAthletes.vb</DependentUpon>
     </Compile>
@@ -139,6 +144,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="confirmAddition.resx">
+      <DependentUpon>confirmAddition.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="selectAthletes.resx">
       <DependentUpon>selectAthletes.vb</DependentUpon>
