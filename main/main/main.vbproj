@@ -103,7 +103,7 @@
     <Compile Include="selectAthletes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="variables.vb" />
+    <Compile Include="global.vb" />
     <Compile Include="home.vb">
       <SubType>Form</SubType>
     </Compile>
