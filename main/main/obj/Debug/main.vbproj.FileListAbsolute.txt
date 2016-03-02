@@ -55,3 +55,18 @@ L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.vbproj
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.Resources.resources
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.exe.config
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.exe
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.xml
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.pdb
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.exe
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.pdb
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.xml
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.vbprojResolveAssemblyReference.cache
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.calendar.resources
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.createEvent.resources
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.eventTimes.resources
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.home.resources
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.Resources.resources
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
+C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
