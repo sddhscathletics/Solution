@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 Public Class selectAthletes
-    Private Sub chbAll_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbAll.CheckedChanged
+    Private Sub chbAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbAll.Click
         If chbAll.Checked = True Then
             For i As Integer = 0 To clbAthletes.Items.Count - 1
                 clbAthletes.SetItemChecked(i, True)
@@ -14,16 +14,10 @@ Public Class selectAthletes
     Dim changesSaved As Boolean = False
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
         If clbAthletes.CheckedItems.Count() > 0 Then
-            For Each i In clbAthletes.CheckedItems
-                Dim idNumber As String = ""
-                If createEvent.attendees.Contains(i) = False Then
-                    For Each letter In i
-                        If IsNumeric(letter) Then
-                            idNumber += letter
-                        End If
-                    Next
-                    MessageBox.Show(idNumber)
-                    createEvent.attendees.Add(idNumber)
+            For person As Integer = 0 To clbAthletes.CheckedItems.Count - 1
+                If createEvent.attendees.Contains(clbAthletes.Items.Item(person)) = False Then
+                    MessageBox.Show(clbAthletes.Items.Item(person).Split(":")(0))
+                    createEvent.attendees.Add(clbAthletes.Items.Item(person).Split(":")(0))
                 End If
             Next
         Else
@@ -47,6 +41,7 @@ Public Class selectAthletes
                     End If
                 End Using
             End Using
+            conn.Close()
         End Using
         Return fullName
     End Function
@@ -65,6 +60,7 @@ Public Class selectAthletes
                     End If
                 End Using
             End Using
+            conn.Close()
         End Using
         Return ageGroup
     End Function
@@ -83,6 +79,7 @@ Public Class selectAthletes
                     End If
                 End Using
             End Using
+            conn.Close()
         End Using
         Return ageAthletes.ToArray()
     End Function
@@ -121,15 +118,13 @@ Public Class selectAthletes
         End If
     End Sub
     Private Sub cmbGroup_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbGroup.SelectionChangeCommitted
-        For Each person In clbAthletes.CheckedItems
-            Dim idNumber As String = ""
-            For Each letter In person
-                If IsNumeric(letter) Then
-                    idNumber += letter
-                End If
-            Next
-            If createEvent.attendees.Contains(idNumber) = False Then
-                peopleNotAdded.Add(person)
+        For person As Integer = 0 To clbAthletes.Items.Count - 1
+            If createEvent.attendees.Contains(clbAthletes.Items.Item(person).Split(":")(0)) = False And clbAthletes.GetItemCheckState(person) = CheckState.Checked Then
+                Dim message As String = clbAthletes.Items.Item(person) + " Currently not saved as attending"
+                peopleNotAdded.Add(message)
+            ElseIf createEvent.attendees.Contains(clbAthletes.Items.Item(person).Split(":")(0)) = True And clbAthletes.GetItemCheckState(person) = CheckState.Unchecked Then
+                Dim message As String = clbAthletes.Items.Item(person) + " Currently incorrectly saved as attending"
+                peopleNotAdded.Add(message)
             End If
         Next
         If peopleNotAdded.Count > 0 Then
@@ -155,6 +150,11 @@ Public Class selectAthletes
         cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
     End Sub
     Private Sub clbAthletes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles clbAthletes.SelectedIndexChanged
-        clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
+        If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
+            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
+        Else
+            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
+        End If
+        checkAllChecked()
     End Sub
 End Class

@@ -24,10 +24,10 @@ Partial Class confirmAddition
     Private Sub InitializeComponent()
         Me.btnYes = New System.Windows.Forms.Button()
         Me.btnNo = New System.Windows.Forms.Button()
-        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnOkay = New System.Windows.Forms.Button()
         Me.rchText = New System.Windows.Forms.RichTextBox()
-        Me.lblPeople = New System.Windows.Forms.Label()
-        Me.lblQuestion = New System.Windows.Forms.Label()
+        Me.lblTop = New System.Windows.Forms.Label()
+        Me.lblBottom = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnYes
@@ -48,14 +48,15 @@ Partial Class confirmAddition
         Me.btnNo.Text = "No"
         Me.btnNo.UseVisualStyleBackColor = True
         '
-        'btnCancel
+        'btnOkay
         '
-        Me.btnCancel.Location = New System.Drawing.Point(386, 318)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(101, 44)
-        Me.btnCancel.TabIndex = 3
-        Me.btnCancel.Text = "Cancel"
-        Me.btnCancel.UseVisualStyleBackColor = True
+        Me.btnOkay.Location = New System.Drawing.Point(264, 318)
+        Me.btnOkay.Name = "btnOkay"
+        Me.btnOkay.Size = New System.Drawing.Size(101, 44)
+        Me.btnOkay.TabIndex = 3
+        Me.btnOkay.Text = "OK"
+        Me.btnOkay.UseVisualStyleBackColor = True
+        Me.btnOkay.Visible = False
         '
         'rchText
         '
@@ -66,35 +67,35 @@ Partial Class confirmAddition
         Me.rchText.TabIndex = 4
         Me.rchText.Text = ""
         '
-        'lblPeople
+        'lblTop
         '
-        Me.lblPeople.AutoSize = True
-        Me.lblPeople.Location = New System.Drawing.Point(19, 16)
-        Me.lblPeople.Name = "lblPeople"
-        Me.lblPeople.Size = New System.Drawing.Size(39, 13)
-        Me.lblPeople.TabIndex = 0
-        Me.lblPeople.Text = "Label1"
+        Me.lblTop.AutoSize = True
+        Me.lblTop.Location = New System.Drawing.Point(19, 16)
+        Me.lblTop.Name = "lblTop"
+        Me.lblTop.Size = New System.Drawing.Size(36, 13)
+        Me.lblTop.TabIndex = 0
+        Me.lblTop.Text = "lblTop"
         '
-        'lblQuestion
+        'lblBottom
         '
-        Me.lblQuestion.AutoSize = True
-        Me.lblQuestion.Location = New System.Drawing.Point(19, 267)
-        Me.lblQuestion.Name = "lblQuestion"
-        Me.lblQuestion.Size = New System.Drawing.Size(59, 13)
-        Me.lblQuestion.TabIndex = 5
-        Me.lblQuestion.Text = "lblQuestion"
+        Me.lblBottom.AutoSize = True
+        Me.lblBottom.Location = New System.Drawing.Point(19, 267)
+        Me.lblBottom.Name = "lblBottom"
+        Me.lblBottom.Size = New System.Drawing.Size(59, 13)
+        Me.lblBottom.TabIndex = 5
+        Me.lblBottom.Text = "lblQuestion"
         '
         'confirmAddition
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(575, 403)
-        Me.Controls.Add(Me.lblQuestion)
+        Me.Controls.Add(Me.lblBottom)
         Me.Controls.Add(Me.rchText)
-        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnOkay)
         Me.Controls.Add(Me.btnNo)
         Me.Controls.Add(Me.btnYes)
-        Me.Controls.Add(Me.lblPeople)
+        Me.Controls.Add(Me.lblTop)
         Me.Name = "confirmAddition"
         Me.Text = "Confirm Additions"
         Me.ResumeLayout(False)
@@ -103,8 +104,8 @@ Partial Class confirmAddition
     End Sub
     Friend WithEvents btnYes As Button
     Friend WithEvents btnNo As Button
-    Friend WithEvents btnCancel As Button
+    Friend WithEvents btnOkay As Button
     Friend WithEvents rchText As RichTextBox
-    Friend WithEvents lblPeople As Label
-    Friend WithEvents lblQuestion As Label
+    Friend WithEvents lblTop As Label
+    Friend WithEvents lblBottom As Label
 End Class
