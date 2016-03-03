@@ -71,7 +71,3 @@ L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.vbproj
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Desktop\Software Design\Athletics Program\main\main\obj\Debug\main.selectAthletes.resources
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Desktop\Software Design\Athletics Program\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Desktop\Software Design\Athletics Program\main\main\obj\Debug\main.confirmAddition.resources
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\bin\Debug\main.exe.config
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.exe
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.xml
-C:\Users\reika\Downloads\Solution-master\Solution-master\main\main\obj\Debug\main.pdb

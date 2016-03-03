@@ -96,14 +96,13 @@
     <Compile Include="confirmAddition.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="notifications.vb" />
     <Compile Include="selectAthletes.Designer.vb">
       <DependentUpon>selectAthletes.vb</DependentUpon>
     </Compile>
     <Compile Include="selectAthletes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="global.vb" />
+    <Compile Include="variables.vb" />
     <Compile Include="home.vb">
       <SubType>Form</SubType>
     </Compile>

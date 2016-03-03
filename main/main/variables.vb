@@ -3,5 +3,5 @@
     Public access As Integer = 0
 
     'eddie
-    Public changeDropDownSelection As Boolean = True
+    Public shownNotAdded As Boolean = False
 End Module

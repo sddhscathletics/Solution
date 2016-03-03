@@ -88,8 +88,37 @@ Public Class selectAthletes
     End Function
     Dim savedU13 As String() = New String() {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"}
     Public Shared peopleNotAdded As New List(Of String)
-    Private Sub setDropDownAgeGroup(ByVal idNum As Integer)
-
+    Public Shared Sub stopDropDownChange(ByVal idNum As Integer)
+        Select Case findSingleAgeGroup(idNum)
+            Case "U13" : selectAthletes.cmbGroup.SelectedItem = "U13"
+            Case "U14" : selectAthletes.cmbGroup.SelectedItem = "U14"
+            Case "U15" : selectAthletes.cmbGroup.SelectedItem = "U15"
+            Case "U16" : selectAthletes.cmbGroup.SelectedItem = "U16"
+            Case "U17" : selectAthletes.cmbGroup.SelectedItem = "U17"
+            Case "Opens" : selectAthletes.cmbGroup.SelectedItem = "Opens"
+        End Select
+        selectAthletes.cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
+    End Sub
+    Public Shared Sub tickAthletes(ByVal idNum)
+        For person As Integer = 0 To selectAthletes.clbAthletes.Items.Count - 1
+            If selectAthletes.clbAthletes.Items.Item(person).Contains(idNum) Then
+                selectAthletes.clbAthletes.SetItemChecked(person, True)
+            End If
+        Next
+        selectAthletes.checkShownNotAdded()
+        selectAthletes.checkAllChecked()
+    End Sub
+    Public Shared Sub checkShownNotAdded()
+        If shownNotAdded = True Then
+            peopleNotAdded.Clear()
+        End If
+    End Sub
+    Public Shared Sub checkAllChecked()
+        If selectAthletes.clbAthletes.CheckedItems.Count() <> selectAthletes.clbAthletes.Items.Count() Then
+            selectAthletes.chbAll.Checked = False
+        Else
+            selectAthletes.chbAll.Checked = True
+        End If
     End Sub
     Private Sub cmbGroup_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbGroup.SelectionChangeCommitted
         For Each person In clbAthletes.CheckedItems
@@ -100,22 +129,12 @@ Public Class selectAthletes
                 End If
             Next
             If createEvent.attendees.Contains(idNumber) = False Then
-                peopleNotAdded.Add(getName(Int(idNumber)))
+                peopleNotAdded.Add(person)
             End If
         Next
         If peopleNotAdded.Count > 0 Then
+            shownNotAdded = False
             confirmAddition.Show()
-        End If
-        If changeDropDownSelection = False Then
-            Dim substring As String() = clbAthletes.Items(0).Split(":")
-            Select Case findSingleAgeGroup(substring(0))
-                Case "U13" : cmbGroup.SelectedItem = "U13"
-                Case "U14" : cmbGroup.SelectedItem = "U14"
-                Case "U15" : cmbGroup.SelectedItem = "U15"
-                Case "U16" : cmbGroup.SelectedItem = "U16"
-                Case "U17" : cmbGroup.SelectedItem = "U17"
-                Case "Opens" : cmbGroup.SelectedItem = "Opens"
-            End Select
         End If
         clbAthletes.Items.Clear()
         Select Case cmbGroup.SelectedItem
@@ -127,21 +146,13 @@ Public Class selectAthletes
             Case "Opens" : clbAthletes.Items.AddRange(getWholeAgeGroup("Opens"))
         End Select
         For Each athleteID In createEvent.attendees
-            For person As Integer = 0 To clbAthletes.Items.Count - 1
-                If clbAthletes.Items.Item(person).Contains(athleteID) Then
-                    clbAthletes.SetItemChecked(person, True)
-                End If
-            Next
+            tickAthletes(athleteID)
         Next
-        If clbAthletes.CheckedItems.Count() <> clbAthletes.Items.Count() Then
-            chbAll.Checked = False
-        Else
-            chbAll.Checked = True
-        End If
+        checkAllChecked()
     End Sub
     Private Sub selectAthletes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cmbGroup.SelectedIndex = 0
-        cmbGroup_SelectionChangeCommitted(0, e)
+        cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
     End Sub
     Private Sub clbAthletes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles clbAthletes.SelectedIndexChanged
         clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
