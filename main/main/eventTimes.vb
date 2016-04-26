@@ -3,96 +3,76 @@
     'possibly dynamic tabs with vertical tab group
     Dim created200 As Boolean = False
     Dim selected As String = "100"
-    Private Sub pb100_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pb100.Click
-        pb100.BackColor = Color.Transparent
-        lbl100.BackColor = Color.Transparent
-        For Each pb In Me.Controls
-            If pb Is pb200 OrElse pb Is pb400 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is pb800 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl200 OrElse pb Is lbl400 Then
-                pb.BackColor = SystemColors.Control
+    Public Shared timesNotAdded As New List(Of String)
+    Private Sub cmbEvent_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbEvent.SelectionChangeCommitted
+        If createEvent.times.Count > 0 Then
+            For Each dtp As DateTimePicker In Me.Controls.OfType(Of DateTimePicker)()
+                Dim hasMatch As Boolean = False
+                Dim eventTime As String = previousDropSelection & " " & dtp.Tag & " " & dtp.Text
+                For Each ageGroup In createEvent.times
+                    Dim substring() = ageGroup.Split(" ")
+                    substring(2) = substring(2) & " " & substring(3)
+                    If substring(0) = previousDropSelection And substring(1) = dtp.Tag Then
+                        'check if not match FOR ALL AGEGROUP
+                        If substring(2) = dtp.Text Then
+                            hasMatch = True
+                        End If
+                    End If
+                Next
+                If hasMatch = False Then
+                    Dim message As String = dtp.Text + " not saved for " + dtp.Tag + " " + previousDropSelection
+                    timesNotAdded.Add(message)
+                End If
+                'If createEvent.times.Contains(eventTime) = False Then
+            Next
+            If timesNotAdded.Count > 0 Then
+                confirmAddition.Tag = "times"
+                confirmAddition.Show()
+            Else
+                previousDropSelection = cmbEvent.SelectedItem
             End If
-            'If pb isNot lbl100 andalso pb isnot lbl200 andalso pb isnot lbl400 
-        Next
-    End Sub
-    Private Sub pb200_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pb200.Click
-        If created200 = False Then
-            Dim dt20013 As New DateTimePicker
-            With dt20013
-                .Size = New Size(176, 28)
-                .Location = New Point(192, 12)
-                .Format = DateTimePickerFormat.Time
-                .ShowUpDown = True
-                .Font = New Font("Modern No. 20", 14)
-            End With
-            Me.Controls.Add(dt20013)
-            Dim dt20014 As New DateTimePicker
-            With dt20014
-                .Size = New Size(176, 28)
-                .Location = New Point(192, 66)
-                .Format = DateTimePickerFormat.Time
-                .ShowUpDown = True
-                .Font = New Font("Modern No. 20", 14)
-            End With
-            Me.Controls.Add(dt20014)
-            Dim dt20015 As New DateTimePicker
-            With dt20015
-                .Size = New Size(176, 28)
-                .Location = New Point(192, 120)
-                .Format = DateTimePickerFormat.Time
-                .ShowUpDown = True
-                .Font = New Font("Modern No. 20", 14)
-            End With
-            Me.Controls.Add(dt20015)
-            created200 = True
+        Else
+            previousDropSelection = cmbEvent.SelectedItem
         End If
-        pb200.BackColor = Color.Transparent
-        lbl200.BackColor = Color.Transparent
-        For Each pb In Me.Controls
-            If pb Is pb100 OrElse pb Is pb400 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is pb800 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl100 OrElse pb Is lbl400 Then
-                pb.BackColor = SystemColors.Control
-            End If
-        Next
-        Select Case selected
-            'hiding the dtps of other events
-            'declaration protection level???
-            'Case "100" : dt10013.visible = False
-        End Select
-    End Sub
-    Private Sub pb400_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pb400.Click
-        pb400.BackColor = Color.Transparent
-        lbl400.BackColor = Color.Transparent
-        For Each pb In Me.Controls
-            If pb Is pb100 OrElse pb Is pb200 OrElse pb Is PictureBox1 OrElse pb Is PictureBox2 OrElse pb Is pb800 OrElse pb Is PictureBox5 OrElse pb Is PictureBox6 OrElse pb Is lbl200 OrElse pb Is lbl100 Then
-                pb.BackColor = SystemColors.Control
+        For Each ageGroup In createEvent.times
+            Dim substring() = ageGroup.Split(" ")
+            If substring(0) = cmbEvent.SelectedItem Then
+                substring(2) = substring(2) & " " & substring(3)
+                For Each dtp As DateTimePicker In Me.Controls.OfType(Of DateTimePicker)()
+                    If substring(1) = dtp.Tag Then
+                        dtp.Text = substring(2)
+                        Exit For
+                    End If
+                Next
             End If
         Next
     End Sub
-    Public Sub Form4_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim dt10013 As New DateTimePicker
-        With dt10013
-            .Size = New Size(176, 28)
-            .Location = New Point(192, 12)
-            .Format = DateTimePickerFormat.Time
-            .ShowUpDown = True
-            .Font = New Font("Modern No. 20", 14)
-        End With
-        Me.Controls.Add(dt10013)
-        Dim dt10014 As New DateTimePicker
-        With dt10014
-            .Size = New Size(176, 28)
-            .Location = New Point(192, 66)
-            .Format = DateTimePickerFormat.Time
-            .ShowUpDown = True
-            .Font = New Font("Modern No. 20", 14)
-        End With
-        Me.Controls.Add(dt10014)
-        Dim dt10015 As New DateTimePicker
-        With dt10015
-            .Size = New Size(176, 28)
-            .Location = New Point(192, 120)
-            .Format = DateTimePickerFormat.Time
-            .ShowUpDown = True
-            .Font = New Font("Modern No. 20", 14)
-        End With
-        Me.Controls.Add(dt10015)
+    Public Shared previousDropSelection As String
+    Private Sub eventTimes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        cmbEvent.SelectedIndex = 0
+        previousDropSelection = cmbEvent.SelectedItem
+    End Sub
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        For Each dtp As DateTimePicker In Me.Controls.OfType(Of DateTimePicker)()
+            Dim hasEntry As Boolean = False
+            Dim eventTime As String = cmbEvent.SelectedItem & " " & dtp.Tag & " " & dtp.Text
+            If createEvent.times.Count > 0 Then
+                For ageGroup As Integer = 0 To createEvent.times.Count - 1
+                    Dim substring() = createEvent.times(ageGroup).Split(" ")
+                    substring(2) = substring(2) & " " & substring(3)
+                    If substring(0) = cmbEvent.SelectedItem And substring(1) = dtp.Tag Then
+                        hasEntry = True
+                        If substring(2) <> dtp.Text Then
+                            createEvent.times(ageGroup) = eventTime
+                        End If
+                    End If
+                Next
+                If hasEntry = False Then
+                    createEvent.times.Add(eventTime)
+                End If
+            Else
+                createEvent.times.Add(eventTime)
+            End If
+        Next
     End Sub
 End Class

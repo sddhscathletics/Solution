@@ -22,5 +22,20 @@ main
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:main.My.Resources.Resources.excel">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:main.My.Resources.Resources.transparent_plus">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:main.My.Resources.Resources.word">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

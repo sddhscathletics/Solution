@@ -22,238 +22,217 @@ Partial Class eventTimes
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.dt15 = New System.Windows.Forms.DateTimePicker()
-        Me.dt14 = New System.Windows.Forms.DateTimePicker()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.lbl400 = New System.Windows.Forms.Label()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.lbl200 = New System.Windows.Forms.Label()
-        Me.lbl100 = New System.Windows.Forms.Label()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.pb800 = New System.Windows.Forms.PictureBox()
-        Me.pb400 = New System.Windows.Forms.PictureBox()
-        Me.pb200 = New System.Windows.Forms.PictureBox()
-        Me.pb100 = New System.Windows.Forms.PictureBox()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pb800, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pb400, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pb200, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pb100, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.dtp15s = New System.Windows.Forms.DateTimePicker()
+        Me.dtp14s = New System.Windows.Forms.DateTimePicker()
+        Me.lbl15s = New System.Windows.Forms.Label()
+        Me.lbl14s = New System.Windows.Forms.Label()
+        Me.lbl13s = New System.Windows.Forms.Label()
+        Me.dtp17s = New System.Windows.Forms.DateTimePicker()
+        Me.dtp16s = New System.Windows.Forms.DateTimePicker()
+        Me.lbl17s = New System.Windows.Forms.Label()
+        Me.lbl16s = New System.Windows.Forms.Label()
+        Me.dtpOpens = New System.Windows.Forms.DateTimePicker()
+        Me.lblOpens = New System.Windows.Forms.Label()
+        Me.dtp13s = New System.Windows.Forms.DateTimePicker()
+        Me.cmbEvent = New System.Windows.Forms.ComboBox()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'dt15
+        'dtp15s
         '
-        Me.dt15.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dt15.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dt15.Location = New System.Drawing.Point(190, 116)
-        Me.dt15.Name = "dt15"
-        Me.dt15.ShowUpDown = True
-        Me.dt15.Size = New System.Drawing.Size(176, 28)
-        Me.dt15.TabIndex = 33
+        Me.dtp15s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp15s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp15s.Location = New System.Drawing.Point(188, 167)
+        Me.dtp15s.Name = "dtp15s"
+        Me.dtp15s.ShowUpDown = True
+        Me.dtp15s.Size = New System.Drawing.Size(176, 28)
+        Me.dtp15s.TabIndex = 33
+        Me.dtp15s.Tag = "U15"
         '
-        'dt14
+        'dtp14s
         '
-        Me.dt14.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dt14.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dt14.Location = New System.Drawing.Point(190, 62)
-        Me.dt14.Name = "dt14"
-        Me.dt14.ShowUpDown = True
-        Me.dt14.Size = New System.Drawing.Size(176, 28)
-        Me.dt14.TabIndex = 32
+        Me.dtp14s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp14s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp14s.Location = New System.Drawing.Point(188, 113)
+        Me.dtp14s.Name = "dtp14s"
+        Me.dtp14s.ShowUpDown = True
+        Me.dtp14s.Size = New System.Drawing.Size(176, 28)
+        Me.dtp14s.TabIndex = 32
+        Me.dtp14s.Tag = "U14"
         '
-        'Label3
+        'lbl15s
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(96, 116)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(47, 24)
-        Me.Label3.TabIndex = 31
-        Me.Label3.Text = "15's:"
+        Me.lbl15s.AutoSize = True
+        Me.lbl15s.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl15s.Location = New System.Drawing.Point(94, 167)
+        Me.lbl15s.Name = "lbl15s"
+        Me.lbl15s.Size = New System.Drawing.Size(47, 24)
+        Me.lbl15s.TabIndex = 31
+        Me.lbl15s.Text = "15's:"
         '
-        'Label2
+        'lbl14s
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(96, 64)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(47, 24)
-        Me.Label2.TabIndex = 30
-        Me.Label2.Text = "14's:"
+        Me.lbl14s.AutoSize = True
+        Me.lbl14s.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl14s.Location = New System.Drawing.Point(94, 115)
+        Me.lbl14s.Name = "lbl14s"
+        Me.lbl14s.Size = New System.Drawing.Size(47, 24)
+        Me.lbl14s.TabIndex = 30
+        Me.lbl14s.Text = "14's:"
         '
-        'Label1
+        'lbl13s
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(96, 13)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(47, 24)
-        Me.Label1.TabIndex = 29
-        Me.Label1.Text = "13's:"
+        Me.lbl13s.AutoSize = True
+        Me.lbl13s.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl13s.Location = New System.Drawing.Point(94, 64)
+        Me.lbl13s.Name = "lbl13s"
+        Me.lbl13s.Size = New System.Drawing.Size(47, 24)
+        Me.lbl13s.TabIndex = 29
+        Me.lbl13s.Text = "13's:"
         '
-        'lbl400
+        'dtp17s
         '
-        Me.lbl400.AutoSize = True
-        Me.lbl400.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl400.Enabled = False
-        Me.lbl400.Location = New System.Drawing.Point(10, 72)
-        Me.lbl400.Name = "lbl400"
-        Me.lbl400.Size = New System.Drawing.Size(33, 13)
-        Me.lbl400.TabIndex = 28
-        Me.lbl400.Text = "400m"
+        Me.dtp17s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp17s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp17s.Location = New System.Drawing.Point(188, 275)
+        Me.dtp17s.Name = "dtp17s"
+        Me.dtp17s.ShowUpDown = True
+        Me.dtp17s.Size = New System.Drawing.Size(176, 28)
+        Me.dtp17s.TabIndex = 37
+        Me.dtp17s.Tag = "U17"
         '
-        'PictureBox6
+        'dtp16s
         '
-        Me.PictureBox6.BackColor = System.Drawing.SystemColors.Control
-        Me.PictureBox6.Location = New System.Drawing.Point(-2, 227)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(79, 33)
-        Me.PictureBox6.TabIndex = 27
-        Me.PictureBox6.TabStop = False
+        Me.dtp16s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp16s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp16s.Location = New System.Drawing.Point(188, 221)
+        Me.dtp16s.Name = "dtp16s"
+        Me.dtp16s.ShowUpDown = True
+        Me.dtp16s.Size = New System.Drawing.Size(176, 28)
+        Me.dtp16s.TabIndex = 36
+        Me.dtp16s.Tag = "U16"
         '
-        'PictureBox2
+        'lbl17s
         '
-        Me.PictureBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.PictureBox2.Location = New System.Drawing.Point(-2, 194)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(79, 33)
-        Me.PictureBox2.TabIndex = 26
-        Me.PictureBox2.TabStop = False
+        Me.lbl17s.AutoSize = True
+        Me.lbl17s.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl17s.Location = New System.Drawing.Point(94, 275)
+        Me.lbl17s.Name = "lbl17s"
+        Me.lbl17s.Size = New System.Drawing.Size(47, 24)
+        Me.lbl17s.TabIndex = 35
+        Me.lbl17s.Text = "17's:"
         '
-        'PictureBox1
+        'lbl16s
         '
-        Me.PictureBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.PictureBox1.Location = New System.Drawing.Point(-2, 161)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(79, 33)
-        Me.PictureBox1.TabIndex = 25
-        Me.PictureBox1.TabStop = False
+        Me.lbl16s.AutoSize = True
+        Me.lbl16s.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl16s.Location = New System.Drawing.Point(94, 223)
+        Me.lbl16s.Name = "lbl16s"
+        Me.lbl16s.Size = New System.Drawing.Size(47, 24)
+        Me.lbl16s.TabIndex = 34
+        Me.lbl16s.Text = "16's:"
         '
-        'lbl200
+        'dtpOpens
         '
-        Me.lbl200.AutoSize = True
-        Me.lbl200.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl200.Enabled = False
-        Me.lbl200.Location = New System.Drawing.Point(10, 38)
-        Me.lbl200.Name = "lbl200"
-        Me.lbl200.Size = New System.Drawing.Size(33, 13)
-        Me.lbl200.TabIndex = 24
-        Me.lbl200.Text = "200m"
+        Me.dtpOpens.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpOpens.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpOpens.Location = New System.Drawing.Point(188, 324)
+        Me.dtpOpens.Name = "dtpOpens"
+        Me.dtpOpens.ShowUpDown = True
+        Me.dtpOpens.Size = New System.Drawing.Size(176, 28)
+        Me.dtpOpens.TabIndex = 39
+        Me.dtpOpens.Tag = "Opens"
         '
-        'lbl100
+        'lblOpens
         '
-        Me.lbl100.AutoSize = True
-        Me.lbl100.BackColor = System.Drawing.Color.Lime
-        Me.lbl100.Enabled = False
-        Me.lbl100.Location = New System.Drawing.Point(10, 5)
-        Me.lbl100.Name = "lbl100"
-        Me.lbl100.Size = New System.Drawing.Size(33, 13)
-        Me.lbl100.TabIndex = 23
-        Me.lbl100.Text = "100m"
+        Me.lblOpens.AutoSize = True
+        Me.lblOpens.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOpens.Location = New System.Drawing.Point(94, 324)
+        Me.lblOpens.Name = "lblOpens"
+        Me.lblOpens.Size = New System.Drawing.Size(64, 24)
+        Me.lblOpens.TabIndex = 38
+        Me.lblOpens.Text = "Opens:"
         '
-        'PictureBox5
+        'dtp13s
         '
-        Me.PictureBox5.BackColor = System.Drawing.SystemColors.Control
-        Me.PictureBox5.Location = New System.Drawing.Point(-2, 128)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(79, 33)
-        Me.PictureBox5.TabIndex = 22
-        Me.PictureBox5.TabStop = False
+        Me.dtp13s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp13s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp13s.Location = New System.Drawing.Point(188, 60)
+        Me.dtp13s.Name = "dtp13s"
+        Me.dtp13s.ShowUpDown = True
+        Me.dtp13s.Size = New System.Drawing.Size(176, 28)
+        Me.dtp13s.TabIndex = 40
+        Me.dtp13s.Tag = "U13"
         '
-        'pb800
+        'cmbEvent
         '
-        Me.pb800.BackColor = System.Drawing.SystemColors.Control
-        Me.pb800.Location = New System.Drawing.Point(-2, 95)
-        Me.pb800.Name = "pb800"
-        Me.pb800.Size = New System.Drawing.Size(79, 33)
-        Me.pb800.TabIndex = 21
-        Me.pb800.TabStop = False
+        Me.cmbEvent.FormattingEnabled = True
+        Me.cmbEvent.Items.AddRange(New Object() {"100m", "200m", "400m", "800m", "1.5k", "3k", "Hurdles", "High Jump", "Long Jump", "Shotput"})
+        Me.cmbEvent.Location = New System.Drawing.Point(44, 12)
+        Me.cmbEvent.Name = "cmbEvent"
+        Me.cmbEvent.Size = New System.Drawing.Size(136, 21)
+        Me.cmbEvent.TabIndex = 43
         '
-        'pb400
+        'btnCancel
         '
-        Me.pb400.BackColor = System.Drawing.SystemColors.Control
-        Me.pb400.Location = New System.Drawing.Point(-2, 62)
-        Me.pb400.Name = "pb400"
-        Me.pb400.Size = New System.Drawing.Size(79, 33)
-        Me.pb400.TabIndex = 20
-        Me.pb400.TabStop = False
+        Me.btnCancel.Location = New System.Drawing.Point(289, 373)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancel.TabIndex = 42
+        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'pb200
+        'btnSave
         '
-        Me.pb200.BackColor = System.Drawing.SystemColors.Control
-        Me.pb200.Location = New System.Drawing.Point(-2, 29)
-        Me.pb200.Name = "pb200"
-        Me.pb200.Size = New System.Drawing.Size(79, 33)
-        Me.pb200.TabIndex = 19
-        Me.pb200.TabStop = False
-        '
-        'pb100
-        '
-        Me.pb100.BackColor = System.Drawing.Color.Lime
-        Me.pb100.Location = New System.Drawing.Point(-2, -4)
-        Me.pb100.Name = "pb100"
-        Me.pb100.Size = New System.Drawing.Size(79, 33)
-        Me.pb100.TabIndex = 18
-        Me.pb100.TabStop = False
+        Me.btnSave.Location = New System.Drawing.Point(78, 373)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnSave.TabIndex = 41
+        Me.btnSave.Text = "Save"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
         'eventTimes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.Lime
-        Me.ClientSize = New System.Drawing.Size(488, 260)
-        Me.Controls.Add(Me.dt15)
-        Me.Controls.Add(Me.dt14)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.lbl400)
-        Me.Controls.Add(Me.PictureBox6)
-        Me.Controls.Add(Me.PictureBox2)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.lbl200)
-        Me.Controls.Add(Me.lbl100)
-        Me.Controls.Add(Me.PictureBox5)
-        Me.Controls.Add(Me.pb800)
-        Me.Controls.Add(Me.pb400)
-        Me.Controls.Add(Me.pb200)
-        Me.Controls.Add(Me.pb100)
+        Me.BackColor = System.Drawing.SystemColors.Control
+        Me.ClientSize = New System.Drawing.Size(474, 425)
+        Me.Controls.Add(Me.cmbEvent)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.dtp13s)
+        Me.Controls.Add(Me.dtpOpens)
+        Me.Controls.Add(Me.lblOpens)
+        Me.Controls.Add(Me.dtp17s)
+        Me.Controls.Add(Me.dtp16s)
+        Me.Controls.Add(Me.lbl17s)
+        Me.Controls.Add(Me.lbl16s)
+        Me.Controls.Add(Me.dtp15s)
+        Me.Controls.Add(Me.dtp14s)
+        Me.Controls.Add(Me.lbl15s)
+        Me.Controls.Add(Me.lbl14s)
+        Me.Controls.Add(Me.lbl13s)
         Me.Name = "eventTimes"
         Me.Text = "eventTimes"
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pb800, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pb400, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pb200, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pb100, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents dt15 As DateTimePicker
-    Friend WithEvents dt14 As DateTimePicker
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents lbl400 As Label
-    Friend WithEvents PictureBox6 As PictureBox
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents lbl200 As Label
-    Friend WithEvents lbl100 As Label
-    Friend WithEvents PictureBox5 As PictureBox
-    Friend WithEvents pb800 As PictureBox
-    Friend WithEvents pb400 As PictureBox
-    Friend WithEvents pb200 As PictureBox
-    Friend WithEvents pb100 As PictureBox
+    Friend WithEvents dtp15s As DateTimePicker
+    Friend WithEvents dtp14s As DateTimePicker
+    Friend WithEvents lbl15s As Label
+    Friend WithEvents lbl14s As Label
+    Friend WithEvents lbl13s As Label
+    Friend WithEvents dtp17s As DateTimePicker
+    Friend WithEvents dtp16s As DateTimePicker
+    Friend WithEvents lbl17s As Label
+    Friend WithEvents lbl16s As Label
+    Friend WithEvents dtpOpens As DateTimePicker
+    Friend WithEvents lblOpens As Label
+    Friend WithEvents dtp13s As DateTimePicker
+    Friend WithEvents cmbEvent As ComboBox
+    Friend WithEvents btnCancel As Button
+    Friend WithEvents btnSave As Button
 End Class

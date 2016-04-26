@@ -14,10 +14,9 @@ Public Class selectAthletes
     Dim changesSaved As Boolean = False
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
         If clbAthletes.CheckedItems.Count() > 0 Then
-            For person As Integer = 0 To clbAthletes.CheckedItems.Count - 1
-                If createEvent.attendees.Contains(clbAthletes.Items.Item(person)) = False Then
-                    MessageBox.Show(clbAthletes.Items.Item(person).Split(":")(0))
-                    createEvent.attendees.Add(clbAthletes.Items.Item(person).Split(":")(0))
+            For Each person In clbAthletes.CheckedItems
+                If createEvent.attendees.Contains(person.Split(":")(0)) = False Then
+                    createEvent.attendees.Add(person.Split(":")(0))
                 End If
             Next
         Else
@@ -101,14 +100,21 @@ Public Class selectAthletes
             If selectAthletes.clbAthletes.Items.Item(person).Contains(idNum) Then
                 selectAthletes.clbAthletes.SetItemChecked(person, True)
             End If
+            If person = selectAthletes.clbAthletes.Items.Count - 1 Then
+                selectAthletes.checkShownNotAdded()
+                selectAthletes.checkAllChecked()
+            End If
         Next
-        selectAthletes.checkShownNotAdded()
-        selectAthletes.checkAllChecked()
     End Sub
     Public Shared Sub checkShownNotAdded()
         If shownNotAdded = True Then
-            peopleNotAdded.Clear()
-        End If
+            If confirmAddition.Tag = "people" Then
+                peopleNotAdded.Clear()
+            Else
+                eventTimes.previousDropSelection = eventTimes.cmbEvent.SelectedItem
+                eventTimes.timesNotAdded.Clear()
+                End If
+            End If
     End Sub
     Public Shared Sub checkAllChecked()
         If selectAthletes.clbAthletes.CheckedItems.Count() <> selectAthletes.clbAthletes.Items.Count() Then
@@ -129,6 +135,7 @@ Public Class selectAthletes
         Next
         If peopleNotAdded.Count > 0 Then
             shownNotAdded = False
+            confirmAddition.Tag = "people"
             confirmAddition.Show()
         End If
         clbAthletes.Items.Clear()
@@ -148,13 +155,25 @@ Public Class selectAthletes
     Private Sub selectAthletes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cmbGroup.SelectedIndex = 0
         cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
+        Me.Tag = "First"
     End Sub
+    Dim prevIndex As Integer = 0
     Private Sub clbAthletes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles clbAthletes.SelectedIndexChanged
-        If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
-            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
-        Else
-            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
+        If prevIndex <> clbAthletes.SelectedIndex And Me.Tag <> "First" Then
+            If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
+                clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
+            Else
+                clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
+            End If
+        ElseIf Me.Tag = "First" Then
+            Me.Tag = ""
+            If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
+                clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
+            Else
+                clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
+            End If
         End If
+        prevIndex = clbAthletes.SelectedIndex
         checkAllChecked()
     End Sub
 End Class
