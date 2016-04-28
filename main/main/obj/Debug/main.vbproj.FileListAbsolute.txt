@@ -134,3 +134,4 @@ L:\Downloads\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Ca
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master\main\main\obj\Debug\main.confirmAddition.resources
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
 \\SR8137CF01-FS02\StudentUsers\2016\431146070\Downloads\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
+C:\Users\eddie.belokopytov\Downloads\Solution-master\main\main\obj\Debug\main.saveOrOpen.resources

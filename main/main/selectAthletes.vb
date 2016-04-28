@@ -136,7 +136,7 @@ Public Class selectAthletes
         If peopleNotAdded.Count > 0 Then
             shownNotAdded = False
             confirmAddition.Tag = "people"
-            confirmAddition.Show()
+            confirmAddition.ShowDialog()
         End If
         clbAthletes.Items.Clear()
         Select Case cmbGroup.SelectedItem

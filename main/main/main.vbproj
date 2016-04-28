@@ -106,6 +106,12 @@
     <Compile Include="confirmAddition.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="saveOrOpen.Designer.vb">
+      <DependentUpon>saveOrOpen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="saveOrOpen.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="selectAthletes.Designer.vb">
       <DependentUpon>selectAthletes.vb</DependentUpon>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="confirmAddition.resx">
       <DependentUpon>confirmAddition.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="saveOrOpen.resx">
+      <DependentUpon>saveOrOpen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="selectAthletes.resx">
       <DependentUpon>selectAthletes.vb</DependentUpon>

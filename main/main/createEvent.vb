@@ -381,28 +381,63 @@ Public Class createEvent
                             Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
                             Using ms As New System.IO.MemoryStream(fileInfo)
                                 'tempPath = System.IO.Path.GetTempFileName()
-                                sfdSave.FileName = fileName
-                                If fileName.EndsWith("docx") Then
-                                    sfdSave.Filter = "(*.docx)"
-                                Else
-
+                                Dim officeType As Type
+                                saveOrOpen.ShowDialog()
+                                If saveOrOpen.result = "save" Then
+                                    sfdSave.FileName = fileName
+                                    If fileName.EndsWith("docx") Then
+                                        officeType = Type.GetTypeFromProgID("Word.Application")
+                                        sfdSave.Filter = "(*.docx)|*.docx"
+                                    Else
+                                        officeType = Type.GetTypeFromProgID("Excel.Application")
+                                        sfdSave.Filter = "(*.xlsx)|*.xlsx"
+                                    End If
+                                    If sfdSave.ShowDialog() <> DialogResult.Cancel And sfdSave.FileName <> "" And officeType <> Nothing Then
+                                        Cursor = Cursors.AppStarting
+                                        Dim fs As New System.IO.FileStream(sfdSave.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write)
+                                        fs.Write(fileInfo, 0, ms.Length)
+                                        fs.Dispose()
+                                        'check what type of file it is
+                                        openWordFile(fileName)
+                                    ElseIf officeType = Nothing Then
+                                        If fileName.EndsWith("docx") Then
+                                            MessageBox.Show("You do not have Word installed.")
+                                        Else
+                                            MessageBox.Show("You do not have Excel installed.")
+                                        End If
+                                    ElseIf sfdSave.FileName = "" Then
+                                        MessageBox.Show("Please enter a valid file name.")
+                                    End If
+                                ElseIf saveOrOpen.result = "open" Then
+                                    Dim fileValid As Boolean = False
+                                    While fileValid = False
+                                        ofdOpen.FileName = ""
+                                        If fileName.EndsWith("docx") Then
+                                            officeType = Type.GetTypeFromProgID("Word.Application")
+                                            ofdOpen.Filter = "(*.docx)|*.docx"
+                                        Else
+                                            officeType = Type.GetTypeFromProgID("Excel.Application")
+                                            ofdOpen.Filter = "(*.xlsx)|*.xlsx"
+                                        End If
+                                        If ofdOpen.ShowDialog() <> DialogResult.Cancel And System.IO.Path.GetFileName(ofdOpen.FileName) = fileName And officeType <> Nothing Then
+                                            openWordFile(fileName)
+                                            fileValid = True
+                                        ElseIf officeType = Nothing Then
+                                            If fileName.EndsWith("docx") Then
+                                                MessageBox.Show("You do not have Word installed.")
+                                            Else
+                                                MessageBox.Show("You do not have Excel installed.")
+                                            End If
+                                            fileValid = True
+                                        ElseIf System.IO.Path.GetFileName(ofdOpen.FileName) <> fileName Then
+                                            If MessageBox.Show("You have not selected the attachment file." + vbNewLine + "Please select the file again.", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
+                                                fileValid = True
+                                            Else
+                                                fileValid = False
+                                            End If
+                                        End If
+                                    End While
                                 End If
-                                sfdSave.ShowDialog()
-                                Dim fs As New System.IO.FileStream(sfdSave.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write)
-                                fs.Write(fileInfo, 0, ms.Length)
-                                fs.Dispose()
-                                'browseAttach.docBrowser.Navigate(path)
-                                'browseAttach.Show()
-                                app = New Word.Application
-                                app.Visible = True
-                                'fix "being used by another user thingo
-                                app.Documents.Open(sfdSave.FileName, Nothing, [ReadOnly]:=True)
-                                'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
-
-                                'doc = app.Documents(1)
-                                doc.Activate()
-                                'Dim p() As System.Diagnostics.Process = System.Diagnostics.Process.GetProcessesByName("WINWORD")
-                                'p.Last.Kill()
                             End Using
                         Loop
                     Else
@@ -413,9 +448,25 @@ Public Class createEvent
             conn.Close()
         End Using
     End Sub
+    Private Sub openWordFile(ByVal path As String)
+        Cursor = Cursors.AppStarting
+        'browseAttach.docBrowser.Navigate(path)
+        'browseAttach.Show()
+        app = New Word.Application
+        app.Visible = True
+        'fix "being used by another user thingo
+        app.Documents.Open(path)
+        'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
+
+        'doc = app.Documents(1)
+        doc.Activate()
+        Cursor = Cursors.Default
+        'Dim p() As System.Diagnostics.Process = System.Diagnostics.Process.GetProcessesByName("WINWORD")
+        'p.Last.Kill()
+    End Sub
     Public WithEvents app As New Word.Application
     Dim doc As New Word.Document
-    Public Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles app.DocumentBeforeClose
+    Private Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles app.DocumentBeforeClose
         app.NormalTemplate.Saved = True
         doc.Saved = True
         doc.Close(SaveChanges:=False)
