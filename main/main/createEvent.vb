@@ -279,30 +279,32 @@ Public Class createEvent
         ptLowerLeft = sender.PointToScreen(ptLowerLeft)
         'cmsTemplate.Show(ptLowerLeft)
     End Sub
+    Dim templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016"}
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim savedEvents As New Dictionary(Of Date, String)
-        Dim dates As New List(Of Date)
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
-            conn.Open()
-            Using cmd As New OleDbCommand("SELECT EventName, EventDate FROM Events", conn) '*takes the column with correct rows
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        Do While dr.Read()
-                            Dim savedEvent As String = dr("EventDate") & " " & dr("EventName")
-                            savedEvents.Add(dr("EventDate"), dr("EventName"))
-                            dates.Add(dr("EventDate"))
-                        Loop
-                    End If
-                End Using
-            End Using
-            conn.Close()
-        End Using
-        dates.Sort()
-        Dim finalList As New List(Of String)
-        For Each entry In dates
-            finalList.Add(entry.ToShortDateString() & " " & savedEvents(entry))
-        Next
-        cmbTemplate.Items.AddRange(finalList.ToArray())
+        'Dim savedEvents As New Dictionary(Of Date, String)
+        'Dim dates As New List(Of Date)
+        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+        '    conn.Open()
+        '    Using cmd As New OleDbCommand("SELECT EventName, EventDate FROM Events", conn) '*takes the column with correct rows
+        '        Using dr = cmd.ExecuteReader()
+        '            If dr.HasRows Then
+        '                Do While dr.Read()
+        '                    Dim savedEvent As String = dr("EventDate") & " " & dr("EventName")
+        '                    savedEvents.Add(dr("EventDate"), dr("EventName"))
+        '                    dates.Add(dr("EventDate"))
+        '                Loop
+        '            End If
+        '        End Using
+        '    End Using
+        '    conn.Close()
+        'End Using
+        'dates.Sort()
+        'Dim finalList As New List(Of String)
+        'For Each entry In dates
+        '    finalList.Add(entry.ToShortDateString() & " " & savedEvents(entry))
+        'Next
+        'cmbTemplate.Items.AddRange(finalList.ToArray())
+        cmbTemplate.Items.AddRange(templateEvents.ToArray())
     End Sub
     Private Sub chbNone_CheckedChanged(sender As Object, e As EventArgs) Handles chbNone.CheckedChanged
         If chbNone.Checked = False Then
@@ -378,8 +380,15 @@ Public Class createEvent
                         Do While dr.Read()
                             Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
                             Using ms As New System.IO.MemoryStream(fileInfo)
-                                tempPath = System.IO.Path.GetTempFileName()
-                                Dim fs As New System.IO.FileStream(tempPath, System.IO.FileMode.Create, System.IO.FileAccess.Write)
+                                'tempPath = System.IO.Path.GetTempFileName()
+                                sfdSave.FileName = fileName
+                                If fileName.EndsWith("docx") Then
+                                    sfdSave.Filter = "(*.docx)"
+                                Else
+
+                                End If
+                                sfdSave.ShowDialog()
+                                Dim fs As New System.IO.FileStream(sfdSave.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write)
                                 fs.Write(fileInfo, 0, ms.Length)
                                 fs.Dispose()
                                 'browseAttach.docBrowser.Navigate(path)
@@ -387,7 +396,7 @@ Public Class createEvent
                                 app = New Word.Application
                                 app.Visible = True
                                 'fix "being used by another user thingo
-                                app.Documents.Open(tempPath, Nothing, [ReadOnly]:=True)
+                                app.Documents.Open(sfdSave.FileName, Nothing, [ReadOnly]:=True)
                                 'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
 
                                 'doc = app.Documents(1)
@@ -406,7 +415,6 @@ Public Class createEvent
     End Sub
     Public WithEvents app As New Word.Application
     Dim doc As New Word.Document
-    Dim tempPath As String = ""
     Public Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles app.DocumentBeforeClose
         app.NormalTemplate.Saved = True
         doc.Saved = True

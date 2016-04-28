@@ -49,6 +49,7 @@ Partial Class createEvent
         Me.cmbTemplate = New System.Windows.Forms.ComboBox()
         Me.chbNone = New System.Windows.Forms.CheckBox()
         Me.pbAttach = New System.Windows.Forms.PictureBox()
+        Me.sfdSave = New System.Windows.Forms.SaveFileDialog()
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -377,4 +378,5 @@ Partial Class createEvent
     Friend WithEvents cmbTemplate As ComboBox
     Friend WithEvents pbAttach As PictureBox
     Friend WithEvents chbNone As CheckBox
+    Friend WithEvents sfdSave As SaveFileDialog
 End Class
