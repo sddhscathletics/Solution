@@ -398,7 +398,7 @@ Public Class createEvent
                                         fs.Write(fileInfo, 0, ms.Length)
                                         fs.Dispose()
                                         'check what type of file it is
-                                        openWordFile(fileName)
+                                        openWordFile(sfdSave.FileName)
                                     ElseIf officeType = Nothing Then
                                         If fileName.EndsWith("docx") Then
                                             MessageBox.Show("You do not have Word installed.")
@@ -420,7 +420,7 @@ Public Class createEvent
                                             ofdOpen.Filter = "(*.xlsx)|*.xlsx"
                                         End If
                                         If ofdOpen.ShowDialog() <> DialogResult.Cancel And System.IO.Path.GetFileName(ofdOpen.FileName) = fileName And officeType <> Nothing Then
-                                            openWordFile(fileName)
+                                            openWordFile(ofdOpen.FileName)
                                             fileValid = True
                                         ElseIf officeType = Nothing Then
                                             If fileName.EndsWith("docx") Then
@@ -449,38 +449,53 @@ Public Class createEvent
         End Using
     End Sub
     Private Sub openWordFile(ByVal path As String)
-        Cursor = Cursors.AppStarting
-        'browseAttach.docBrowser.Navigate(path)
-        'browseAttach.Show()
-        app = New Word.Application
-        app.Visible = True
-        'fix "being used by another user thingo
-        app.Documents.Open(path)
-        'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
+        Try
+            Cursor = Cursors.AppStarting
+            'browseAttach.docBrowser.Navigate(path)
+            'browseAttach.Show()
+            app = New Word.Application
+            'app.Visible = True
+            'app.DisplayAlerts = False
+            'fix "being used by another user thingo
+            app.Documents.Open(path)
+            'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
 
-        'doc = app.Documents(1)
-        doc.Activate()
-        Cursor = Cursors.Default
-        'Dim p() As System.Diagnostics.Process = System.Diagnostics.Process.GetProcessesByName("WINWORD")
-        'p.Last.Kill()
+            'doc = app.Documents(1)
+            doc = New Word.Document
+            doc.Activate()
+            Cursor = Cursors.Default
+        Catch e As Exception
+            If MessageBox.Show("The file was unable to be opened. Please make sure the file is not already open.", "Unable To Open File", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
+                word_Quit(doc, Nothing)
+            Else
+                openWordFile(path)
+            End If
+            'Dim p() As System.Diagnostics.Process = System.Diagnostics.Process.GetProcessesByName("WINWORD")
+            'p.Last.Kill()
+        End Try
     End Sub
     Public WithEvents app As New Word.Application
     Dim doc As New Word.Document
     Private Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles app.DocumentBeforeClose
-        app.NormalTemplate.Saved = True
-        doc.Saved = True
-        doc.Close(SaveChanges:=False)
-        app.DisplayAlerts = False
-        app.Quit(Word.WdSaveOptions.wdDoNotSaveChanges)
-        System.Runtime.InteropServices.Marshal.ReleaseComObject(doc)
-        System.Runtime.InteropServices.Marshal.ReleaseComObject(app)
-        'My.Computer.FileSystem.DeleteFile(path)
-        'Dim p As System.Diagnostics.Process
-        'For Each p In System.Diagnostics.Process.GetProcesses()
-        '    If p.ProcessName = "WINWORD" Then
-        '        p.Kill()
-        '    End If
-        'Next
+        Try
+            app.NormalTemplate.Saved = True
+            'doc.Saved = True
+            'doc.Close(SaveChanges:=False)
+            'app.DisplayAlerts = False
+            'app.Quit(Word.WdSaveOptions.wdDoNotSaveChanges)
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(doc)
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(app)
+            'My.Computer.FileSystem.DeleteFile(path)
+            'Dim p As System.Diagnostics.Process
+            'For Each p In System.Diagnostics.Process.GetProcesses()
+            '    If p.ProcessName = "WINWORD" Then
+            '        p.Kill()
+            '    End If
+            'Next
+            Need to kill the process after it closes (use a boolean?)
+        Catch e As Exception
+            MessageBox.Show(e.ToString())
+        End Try
     End Sub
     Private Sub rdbTraining_CheckedChanged(sender As Object, e As EventArgs) Handles rdbTraining.CheckedChanged
         If rdbTraining.Checked = True Then
