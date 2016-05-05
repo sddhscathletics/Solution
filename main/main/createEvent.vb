@@ -188,7 +188,7 @@ Public Class createEvent
                 createPictureBox(sender)
             End If
         ElseIf sender.Tag.Contains("docx") Then
-            openFile(sender.Tag)
+            checkFileBeforeOpen(sender.Tag)
         End If
     End Sub
     Private Sub createPictureBox(sender As Object)
@@ -370,7 +370,7 @@ Public Class createEvent
             conn.Close()
         End Using
     End Sub
-    Sub openFile(ByVal fileName As String)
+    Sub checkFileBeforeOpen(ByVal fileName As String)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT FileInfo FROM Attachments WHERE FileName = @fileName", conn)
@@ -397,8 +397,11 @@ Public Class createEvent
                                         Dim fs As New System.IO.FileStream(sfdSave.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write)
                                         fs.Write(fileInfo, 0, ms.Length)
                                         fs.Dispose()
-                                        'check what type of file it is
-                                        openWordFile(sfdSave.FileName)
+                                        If fileName.EndsWith("docx") Then
+                                            openWordFile(sfdSave.FileName)
+                                        Else
+                                            openExcelFile(sfdSave.FileName)
+                                        End If
                                     ElseIf officeType = Nothing Then
                                         If fileName.EndsWith("docx") Then
                                             MessageBox.Show("You do not have Word installed.")
@@ -420,7 +423,11 @@ Public Class createEvent
                                             ofdOpen.Filter = "(*.xlsx)|*.xlsx"
                                         End If
                                         If ofdOpen.ShowDialog() <> DialogResult.Cancel And System.IO.Path.GetFileName(ofdOpen.FileName) = fileName And officeType <> Nothing Then
-                                            openWordFile(ofdOpen.FileName)
+                                            If fileName.EndsWith("docx") Then
+                                                openWordFile(ofdOpen.FileName)
+                                            Else
+                                                openExcelFile(ofdOpen.FileName)
+                                            End If
                                             fileValid = True
                                         ElseIf officeType = Nothing Then
                                             If fileName.EndsWith("docx") Then
@@ -454,15 +461,14 @@ Public Class createEvent
             'browseAttach.docBrowser.Navigate(path)
             'browseAttach.Show()
             app = New Word.Application
-            'app.Visible = True
+            app.Visible = True
             'app.DisplayAlerts = False
             'fix "being used by another user thingo
             app.Documents.Open(path)
             'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
 
             'doc = app.Documents(1)
-            doc = New Word.Document
-            doc.Activate()
+
             Cursor = Cursors.Default
         Catch e As Exception
             If MessageBox.Show("The file was unable to be opened. Please make sure the file is not already open.", "Unable To Open File", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
@@ -474,17 +480,19 @@ Public Class createEvent
             'p.Last.Kill()
         End Try
     End Sub
-    Public WithEvents app As New Word.Application
-    Dim doc As New Word.Document
+    Public WithEvents app As Word.Application
+    Dim doc As Word.Document
     Private Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles app.DocumentBeforeClose
         Try
             app.NormalTemplate.Saved = True
             'doc.Saved = True
             'doc.Close(SaveChanges:=False)
+            'System.Runtime.InteropServices.Marshal.ReleaseComObject(doc)
+            doc = Nothing
             'app.DisplayAlerts = False
-            'app.Quit(Word.WdSaveOptions.wdDoNotSaveChanges)
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(doc)
+            app.Quit()
             System.Runtime.InteropServices.Marshal.ReleaseComObject(app)
+            app = Nothing
             'My.Computer.FileSystem.DeleteFile(path)
             'Dim p As System.Diagnostics.Process
             'For Each p In System.Diagnostics.Process.GetProcesses()
@@ -492,7 +500,7 @@ Public Class createEvent
             '        p.Kill()
             '    End If
             'Next
-            Need to kill the process after it closes (use a boolean?)
+            'Need to kill the process after it closes (use a boolean?)
         Catch e As Exception
             MessageBox.Show(e.ToString())
         End Try
