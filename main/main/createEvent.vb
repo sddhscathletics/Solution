@@ -147,6 +147,7 @@ Public Class createEvent
         '    End Using
         '    conn.Close()
         'End Using
+        Me.Close()
     End Sub
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
         selectAthletes.Show()
@@ -187,7 +188,7 @@ Public Class createEvent
                 lbl.BringToFront()
                 createPictureBox(sender)
             End If
-        ElseIf sender.Tag.Contains("docx") Then
+        ElseIf sender.Tag.Contains("docx") Or sender.Tag.Contains("xlsx") Then
             checkFileBeforeOpen(sender.Tag)
         End If
     End Sub
@@ -460,39 +461,91 @@ Public Class createEvent
             Cursor = Cursors.AppStarting
             'browseAttach.docBrowser.Navigate(path)
             'browseAttach.Show()
-            app = New Word.Application
-            app.Visible = True
+            wordApp = New Word.Application
+            wordApp.Visible = True
             'app.DisplayAlerts = False
             'fix "being used by another user thingo
-            app.Documents.Open(path)
+            wordApp.Documents.Open(path)
             'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
 
-            'doc = app.Documents(1)
+            'doc =wordApp.Documents(1)
 
             Cursor = Cursors.Default
         Catch e As Exception
             If MessageBox.Show("The file was unable to be opened. Please make sure the file is not already open.", "Unable To Open File", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
                 word_Quit(doc, Nothing)
             Else
+                word_Quit(doc, Nothing)
                 openWordFile(path)
             End If
             'Dim p() As System.Diagnostics.Process = System.Diagnostics.Process.GetProcessesByName("WINWORD")
             'p.Last.Kill()
         End Try
     End Sub
-    Public WithEvents app As Word.Application
+    Private WithEvents wordApp As Word.Application
+    Private WithEvents excelApp As Excel.Application
     Dim doc As Word.Document
-    Private Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles app.DocumentBeforeClose
+    Dim workbook As Excel.Workbook
+    Private Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles wordApp.DocumentBeforeClose
         Try
-            app.NormalTemplate.Saved = True
+            wordApp.NormalTemplate.Saved = True
             'doc.Saved = True
             'doc.Close(SaveChanges:=False)
             'System.Runtime.InteropServices.Marshal.ReleaseComObject(doc)
             doc = Nothing
             'app.DisplayAlerts = False
-            app.Quit()
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(app)
-            app = Nothing
+            wordApp.Quit()
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp)
+            wordApp = Nothing
+            'My.Computer.FileSystem.DeleteFile(path)
+            'Dim p As System.Diagnostics.Process
+            'For Each p In System.Diagnostics.Process.GetProcesses()
+            '    If p.ProcessName = "WINWORD" Then
+            '        p.Kill()
+            '    End If
+            'Next
+            'Need to kill the process after it closes (use a boolean?)
+        Catch e As Exception
+            MessageBox.Show(e.ToString())
+        End Try
+    End Sub
+    Private Sub openExcelFile(ByVal path As String)
+        Try
+            Cursor = Cursors.AppStarting
+            excelApp = New Excel.Application
+            excelApp.Visible = True
+            'app.DisplayAlerts = False
+            'fix "being used by another user thingo
+            workbook = excelApp.Workbooks.Open(path)
+            'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
+
+            'doc =wordApp.Documents(1)
+
+            Cursor = Cursors.Default
+        Catch e As Exception
+            If MessageBox.Show("The file was unable to be opened. Please make sure the file is not already open.", "Unable To Open File", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
+                excel_Quit(workbook, Nothing)
+            Else
+                excel_Quit(workbook, Nothing)
+                openExcelFile(path)
+            End If
+            'Dim p() As System.Diagnostics.Process = System.Diagnostics.Process.GetProcessesByName("WINWORD")
+            'p.Last.Kill()
+        End Try
+    End Sub
+    Private Sub excel_Quit(ByVal tempBook As Excel.Workbook, ByRef cancel As Boolean) Handles excelApp.WorkbookBeforeClose
+        Try
+            'excelApp.NormalTemplate.Saved = True
+            'doc.Saved = True
+            'doc.Close(SaveChanges:=False)
+            'System.Runtime.InteropServices.Marshal.ReleaseComObject(doc)
+            workbook.Close(SaveChanges:=False)
+            'app.DisplayAlerts = False
+            excelApp.Quit()
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook)
+            workbook = Nothing
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp)
+            excelApp = Nothing
             'My.Computer.FileSystem.DeleteFile(path)
             'Dim p As System.Diagnostics.Process
             'For Each p In System.Diagnostics.Process.GetProcesses()
