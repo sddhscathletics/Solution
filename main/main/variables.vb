@@ -1,5 +1,6 @@
 ﻿Module variables
-    Public name, change As String
+    Public name = "Student"
+    Public change As String = ""
     Public access As Integer = 0
 
     'eddie
