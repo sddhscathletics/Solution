@@ -82,6 +82,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="alert.vb" />
     <Compile Include="calendar.Designer.vb">
       <DependentUpon>calendar.vb</DependentUpon>
     </Compile>
