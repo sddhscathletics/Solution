@@ -22,49 +22,17 @@ Partial Class home
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 1
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.GroupBox1.Location = New System.Drawing.Point(-200, 27)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(200, 705)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(199, 27)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(72, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "scrollbarbutton"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1350, 730)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.ClientSize = New System.Drawing.Size(616, 359)
         Me.Name = "home"
-        Me.Text = "Main"
+        Me.Text = "Form1"
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents Timer1 As Timer
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Button1 As Button
 End Class
