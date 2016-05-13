@@ -182,3 +182,10 @@ C:\Users\reika\Downloads\Solution-master\main\main\obj\Debug\main.vbproj.Generat
 \\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.saveOrOpen.resources
 \\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
 \\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\bin\Debug\main.exe.config
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\Interop.SHDocVw.dll
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\AxInterop.SHDocVw.dll
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\main.vbproj.ResolveComReference.cache
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\main.exe
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\main.xml
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\main.pdb
