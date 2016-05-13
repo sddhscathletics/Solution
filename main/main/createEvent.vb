@@ -164,6 +164,7 @@ Public Class createEvent
     Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
         If sender.Tag = "add" Then
             ofdOpen.FileName = ""
+            ofdOpen.Filter = "All Files(*.*)|*.*"
             ofdOpen.ShowDialog()
             If ofdOpen.FileName <> "" Then
                 Dim text As String = InputBox("What name would you like for this file?")
@@ -378,76 +379,75 @@ Public Class createEvent
                 cmd.Parameters.AddWithValue("@fileName", fileName)
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
-                        Do While dr.Read()
-                            Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
-                            Using ms As New System.IO.MemoryStream(fileInfo)
-                                'tempPath = System.IO.Path.GetTempFileName()
-                                Dim officeType As Type
-                                saveOrOpen.ShowDialog()
-                                If saveOrOpen.result = "save" Then
-                                    sfdSave.FileName = fileName
+                        dr.Read()
+                        Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
+                        Using ms As New System.IO.MemoryStream(fileInfo)
+                            'tempPath = System.IO.Path.GetTempFileName()
+                            Dim officeType As Type
+                            saveOrOpen.ShowDialog()
+                            If saveOrOpen.result = "save" Then
+                                sfdSave.FileName = fileName
+                                If fileName.EndsWith("docx") Then
+                                    officeType = Type.GetTypeFromProgID("Word.Application")
+                                    sfdSave.Filter = "(*.docx)|*.docx"
+                                Else
+                                    officeType = Type.GetTypeFromProgID("Excel.Application")
+                                    sfdSave.Filter = "(*.xlsx)|*.xlsx"
+                                End If
+                                If sfdSave.ShowDialog() <> DialogResult.Cancel And sfdSave.FileName <> "" And officeType <> Nothing Then
+                                    Cursor = Cursors.AppStarting
+                                    Dim fs As New System.IO.FileStream(sfdSave.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write)
+                                    fs.Write(fileInfo, 0, ms.Length)
+                                    fs.Dispose()
+                                    If fileName.EndsWith("docx") Then
+                                        openWordFile(sfdSave.FileName)
+                                    Else
+                                        openExcelFile(sfdSave.FileName)
+                                    End If
+                                ElseIf officeType = Nothing Then
+                                    If fileName.EndsWith("docx") Then
+                                        MessageBox.Show("You do not have Word installed.")
+                                    Else
+                                        MessageBox.Show("You do not have Excel installed.")
+                                    End If
+                                ElseIf sfdSave.FileName = "" Then
+                                    MessageBox.Show("Please enter a valid file name.")
+                                End If
+                            ElseIf saveOrOpen.result = "open" Then
+                                Dim fileValid As Boolean = False
+                                While fileValid = False
+                                    ofdOpen.FileName = ""
                                     If fileName.EndsWith("docx") Then
                                         officeType = Type.GetTypeFromProgID("Word.Application")
-                                        sfdSave.Filter = "(*.docx)|*.docx"
+                                        ofdOpen.Filter = "(*.docx)|*.docx"
                                     Else
                                         officeType = Type.GetTypeFromProgID("Excel.Application")
-                                        sfdSave.Filter = "(*.xlsx)|*.xlsx"
+                                        ofdOpen.Filter = "(*.xlsx)|*.xlsx"
                                     End If
-                                    If sfdSave.ShowDialog() <> DialogResult.Cancel And sfdSave.FileName <> "" And officeType <> Nothing Then
-                                        Cursor = Cursors.AppStarting
-                                        Dim fs As New System.IO.FileStream(sfdSave.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write)
-                                        fs.Write(fileInfo, 0, ms.Length)
-                                        fs.Dispose()
+                                    If ofdOpen.ShowDialog() <> DialogResult.Cancel And System.IO.Path.GetFileName(ofdOpen.FileName) = fileName And officeType <> Nothing Then
                                         If fileName.EndsWith("docx") Then
-                                            openWordFile(sfdSave.FileName)
+                                            openWordFile(ofdOpen.FileName)
                                         Else
-                                            openExcelFile(sfdSave.FileName)
+                                            openExcelFile(ofdOpen.FileName)
                                         End If
+                                        fileValid = True
                                     ElseIf officeType = Nothing Then
                                         If fileName.EndsWith("docx") Then
                                             MessageBox.Show("You do not have Word installed.")
                                         Else
                                             MessageBox.Show("You do not have Excel installed.")
                                         End If
-                                    ElseIf sfdSave.FileName = "" Then
-                                        MessageBox.Show("Please enter a valid file name.")
-                                    End If
-                                ElseIf saveOrOpen.result = "open" Then
-                                    Dim fileValid As Boolean = False
-                                    While fileValid = False
-                                        ofdOpen.FileName = ""
-                                        If fileName.EndsWith("docx") Then
-                                            officeType = Type.GetTypeFromProgID("Word.Application")
-                                            ofdOpen.Filter = "(*.docx)|*.docx"
+                                        fileValid = True
+                                    ElseIf System.IO.Path.GetFileName(ofdOpen.FileName) <> fileName Then
+                                        If MessageBox.Show("You have not selected the attachment file." + vbNewLine + "Please select the file again.", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
+                                            fileValid = True
                                         Else
-                                            officeType = Type.GetTypeFromProgID("Excel.Application")
-                                            ofdOpen.Filter = "(*.xlsx)|*.xlsx"
+                                            fileValid = False
                                         End If
-                                        If ofdOpen.ShowDialog() <> DialogResult.Cancel And System.IO.Path.GetFileName(ofdOpen.FileName) = fileName And officeType <> Nothing Then
-                                            If fileName.EndsWith("docx") Then
-                                                openWordFile(ofdOpen.FileName)
-                                            Else
-                                                openExcelFile(ofdOpen.FileName)
-                                            End If
-                                            fileValid = True
-                                        ElseIf officeType = Nothing Then
-                                            If fileName.EndsWith("docx") Then
-                                                MessageBox.Show("You do not have Word installed.")
-                                            Else
-                                                MessageBox.Show("You do not have Excel installed.")
-                                            End If
-                                            fileValid = True
-                                        ElseIf System.IO.Path.GetFileName(ofdOpen.FileName) <> fileName Then
-                                            If MessageBox.Show("You have not selected the attachment file." + vbNewLine + "Please select the file again.", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
-                                                fileValid = True
-                                            Else
-                                                fileValid = False
-                                            End If
-                                        End If
-                                    End While
-                                End If
-                            End Using
-                        Loop
+                                    End If
+                                End While
+                            End If
+                        End Using
                     Else
                         MessageBox.Show("Please upload the file first before opening.")
                     End If
@@ -539,7 +539,7 @@ Public Class createEvent
             'doc.Saved = True
             'doc.Close(SaveChanges:=False)
             'System.Runtime.InteropServices.Marshal.ReleaseComObject(doc)
-            workbook.Close(SaveChanges:=False)
+            workbook.Saved = True
             'app.DisplayAlerts = False
             excelApp.Quit()
             System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook)

@@ -4,6 +4,7 @@ Module alert
 
     Public Sub newEdit(name, changeType, changeMade) 'Appends the edit log with a new edit
         Dim edit As String = name + " has "
+        'Open edit database here
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb") 'add your access file to bin\debug and then repalce \athelte with \(name of your file)
             conn.Open() 'open the connection to the database
             Using cmd As New OleDbCommand("SELECT *the columns you need* FROM *the table name* WHERE *field* = *variable*", conn) '*takes the column with correct rows
@@ -42,17 +43,16 @@ Module alert
         'End If
     End Sub
 
-    Public Sub checkAlert() 'Creates a new alert from the recent edit made
-        Dim alertList As New List(Of String)
+    Public Sub checkAlert(name, change, time, editDate) 'Creates a new alert from the recent edit made
         'Open edit database here
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb") 'add your access file to bin\debug and then repalce \athelte with \(name of your file)
             conn.Open() 'open the connection to the database
-            Using cmd As New OleDbCommand("SELECT date, time, edit, user FROM edits WHERE read = @bool", conn) '*takes the column with correct rows
-                cmd.Parameters.Add(New OleDbParameter("@bool", 0)) 'maps your variable to that string
+            Using cmd As New OleDbCommand("SELECT edit, user, date, time FROM edits WHERE read = FALSE", conn) '*takes the column with correct rows
+                'cmd.Parameters.Add(New OleDbParameter("madeupVariable", variableYouNeedToFind)) 'maps your variable to that string
                 Using dr = cmd.ExecuteReader() 'reads the database
                     If dr.HasRows Then 'checks if there are records that fulfill your criteria
                         Do While dr.Read() 'while loop that goes to eof
-                            alertList.Add(dr(0) + " " + dr(1) + ": " + dr(2) + " by " + dr(3))
+                            '*your function to perform*
                             '(access columns with dr(*index*) Or dr(*fieldName*))
                             alertCount += 1
                         Loop
@@ -60,5 +60,8 @@ Module alert
                 End Using
             End Using
         End Using
+        'Determine which alerts have been read
+        'Get name, change made, time and date of change
+        'Display in one line
     End Sub
 End Module
