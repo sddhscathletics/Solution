@@ -160,28 +160,6 @@ C:\Users\reika\Downloads\Solution-master\main\main\obj\Debug\main.confirmAdditio
 C:\Users\reika\Downloads\Solution-master\main\main\obj\Debug\main.saveOrOpen.resources
 C:\Users\reika\Downloads\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
 C:\Users\reika\Downloads\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\bin\Debug\main.exe.config
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\Interop.SHDocVw.dll
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\AxInterop.SHDocVw.dll
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.vbproj.ResolveComReference.cache
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.exe
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.xml
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.pdb
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\bin\Debug\main.exe
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\bin\Debug\main.pdb
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\bin\Debug\main.xml
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\bin\Debug\Interop.SHDocVw.dll
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\bin\Debug\AxInterop.SHDocVw.dll
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.vbprojResolveAssemblyReference.cache
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.calendar.resources
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.createEvent.resources
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.eventTimes.resources
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.home.resources
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.Resources.resources
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.confirmAddition.resources
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.saveOrOpen.resources
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.selectAthletes.resources
-\\SR8137CF01-FS02\StudentUsers\2016\433037880\Desktop\Solution-master\main\main\obj\Debug\main.vbproj.GenerateResource.Cache
 \\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\bin\Debug\main.exe.config
 \\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\Interop.SHDocVw.dll
 \\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\AxInterop.SHDocVw.dll
@@ -189,3 +167,10 @@ C:\Users\reika\Downloads\Solution-master\main\main\obj\Debug\main.vbproj.Generat
 \\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\main.exe
 \\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\main.xml
 \\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master\main\main\obj\Debug\main.pdb
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master (7)\Solution-master\main\main\bin\Debug\main.exe.config
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master (7)\Solution-master\main\main\obj\Debug\Interop.SHDocVw.dll
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master (7)\Solution-master\main\main\obj\Debug\AxInterop.SHDocVw.dll
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master (7)\Solution-master\main\main\obj\Debug\main.vbproj.ResolveComReference.cache
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master (7)\Solution-master\main\main\obj\Debug\main.exe
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master (7)\Solution-master\main\main\obj\Debug\main.xml
+\\SR8137CF01-FS02\StudentUsers\2016\439815400\Desktop\COPOL\Solution-master (7)\Solution-master\main\main\obj\Debug\main.pdb
