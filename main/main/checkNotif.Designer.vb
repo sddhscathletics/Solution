@@ -22,46 +22,45 @@ Partial Class checkNotif
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtListNotifs = New System.Windows.Forms.TextBox()
-        Me.lblAlertCount = New System.Windows.Forms.Label()
-        Me.btnGo = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'txtListNotifs
+        'TextBox1
         '
-        Me.txtListNotifs.Location = New System.Drawing.Point(12, 12)
-        Me.txtListNotifs.Multiline = True
-        Me.txtListNotifs.Name = "txtListNotifs"
-        Me.txtListNotifs.Size = New System.Drawing.Size(413, 372)
-        Me.txtListNotifs.TabIndex = 0
+        Me.TextBox1.Location = New System.Drawing.Point(363, 232)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.TabIndex = 0
         '
-        'lblAlertCount
+        'TextBox2
         '
-        Me.lblAlertCount.AutoSize = True
-        Me.lblAlertCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAlertCount.Location = New System.Drawing.Point(431, 12)
-        Me.lblAlertCount.Name = "lblAlertCount"
-        Me.lblAlertCount.Size = New System.Drawing.Size(17, 18)
-        Me.lblAlertCount.TabIndex = 1
-        Me.lblAlertCount.Text = "0"
+        Me.TextBox2.Location = New System.Drawing.Point(12, 12)
+        Me.TextBox2.Multiline = True
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.TabIndex = 1
+        Me.TextBox2.TabStop = False
         '
-        'btnGo
+        'Button1
         '
-        Me.btnGo.Location = New System.Drawing.Point(431, 356)
-        Me.btnGo.Name = "btnGo"
-        Me.btnGo.Size = New System.Drawing.Size(23, 23)
-        Me.btnGo.TabIndex = 2
-        Me.btnGo.Text = "!"
-        Me.btnGo.UseVisualStyleBackColor = True
+        Me.Button1.Location = New System.Drawing.Point(440, 68)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'checkNotif
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(458, 391)
-        Me.Controls.Add(Me.btnGo)
-        Me.Controls.Add(Me.lblAlertCount)
-        Me.Controls.Add(Me.txtListNotifs)
+        Me.ClientSize = New System.Drawing.Size(556, 409)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.TextBox1)
         Me.Name = "checkNotif"
         Me.Text = "checkNotif"
         Me.ResumeLayout(False)
@@ -69,7 +68,7 @@ Partial Class checkNotif
 
     End Sub
 
-    Friend WithEvents txtListNotifs As TextBox
-    Friend WithEvents lblAlertCount As Label
-    Friend WithEvents btnGo As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Button1 As Button
 End Class

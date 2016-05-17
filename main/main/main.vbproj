@@ -89,6 +89,12 @@
     <Compile Include="calendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="checkNotif.Designer.vb">
+      <DependentUpon>checkNotif.vb</DependentUpon>
+    </Compile>
+    <Compile Include="checkNotif.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="createEvent.Designer.vb">
       <DependentUpon>createEvent.vb</DependentUpon>
     </Compile>
@@ -147,6 +153,9 @@
     <EmbeddedResource Include="calendar.resx">
       <DependentUpon>calendar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="checkNotif.resx">
+      <DependentUpon>checkNotif.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="createEvent.resx">
       <DependentUpon>createEvent.vb</DependentUpon>
     </EmbeddedResource>
@@ -201,15 +210,6 @@
       <Lcid>0</Lcid>
       <WrapperTool>aximp</WrapperTool>
       <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>5</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="Microsoft.Office.Interop.Excel1">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
