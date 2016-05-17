@@ -560,7 +560,7 @@ Public Class createEvent
             MessageBox.Show(e.ToString())
         Finally
             System.Runtime.InteropServices.Marshal.ReleaseComObject(sheets)
-            sheets = nothing
+            sheets = Nothing
             System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook)
             workbook = Nothing
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp)
