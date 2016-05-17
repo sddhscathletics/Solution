@@ -167,3 +167,10 @@ L:\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\Interop.SHD
 L:\Downloads\Solution-master (2)\Solution-master\main\main\bin\Debug\AxInterop.SHDocVw.dll
 L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.confirmAddition.resources
 L:\Downloads\Solution-master (2)\Solution-master\main\main\obj\Debug\main.saveOrOpen.resources
+\\sr8137cf01-fs02\StudentUsers\2016\433037880\Desktop\GitHub\Solution\main\main\bin\Debug\main.exe.config
+\\sr8137cf01-fs02\StudentUsers\2016\433037880\Desktop\GitHub\Solution\main\main\obj\Debug\Interop.SHDocVw.dll
+\\sr8137cf01-fs02\StudentUsers\2016\433037880\Desktop\GitHub\Solution\main\main\obj\Debug\AxInterop.SHDocVw.dll
+\\sr8137cf01-fs02\StudentUsers\2016\433037880\Desktop\GitHub\Solution\main\main\obj\Debug\main.vbproj.ResolveComReference.cache
+\\sr8137cf01-fs02\StudentUsers\2016\433037880\Desktop\GitHub\Solution\main\main\obj\Debug\main.exe
+\\sr8137cf01-fs02\StudentUsers\2016\433037880\Desktop\GitHub\Solution\main\main\obj\Debug\main.xml
+\\sr8137cf01-fs02\StudentUsers\2016\433037880\Desktop\GitHub\Solution\main\main\obj\Debug\main.pdb
