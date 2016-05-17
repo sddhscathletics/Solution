@@ -26,11 +26,14 @@ Partial Class home
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(516, 66)
+        Me.Button1.Location = New System.Drawing.Point(723, 69)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(88, 23)
         Me.Button1.TabIndex = 3
@@ -39,8 +42,10 @@ Partial Class home
         '
         'GroupBox1
         '
-        Me.GroupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.GroupBox1.Location = New System.Drawing.Point(-200, 0)
+        Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.GroupBox1.Controls.Add(Me.Button3)
+        Me.GroupBox1.Controls.Add(Me.Button2)
+        Me.GroupBox1.Location = New System.Drawing.Point(7, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(200, 705)
         Me.GroupBox1.TabIndex = 2
@@ -51,6 +56,26 @@ Partial Class home
         '
         Me.Timer1.Interval = 1
         '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button2.Location = New System.Drawing.Point(0, 33)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(200, 32)
+        Me.Button2.TabIndex = 0
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button3.Location = New System.Drawing.Point(0, 61)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(200, 32)
+        Me.Button3.TabIndex = 0
+        Me.Button3.Text = "Button2"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -60,6 +85,7 @@ Partial Class home
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "home"
         Me.Text = "Form1"
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -67,4 +93,6 @@ Partial Class home
     Friend WithEvents Button1 As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class
