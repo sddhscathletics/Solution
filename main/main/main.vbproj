@@ -183,6 +183,12 @@
     <EmbeddedResource Include="confirmAddition.resx">
       <DependentUpon>confirmAddition.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Results.resx">
+      <DependentUpon>Results.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultSearch.resx">
+      <DependentUpon>ResultSearch.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="saveOrOpen.resx">
       <DependentUpon>saveOrOpen.vb</DependentUpon>
     </EmbeddedResource>
@@ -200,7 +206,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\transparent plus.png" />
