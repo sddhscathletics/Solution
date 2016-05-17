@@ -486,17 +486,17 @@ Public Class createEvent
     Private WithEvents excelApp As Excel.Application
     Dim doc As Word.Document
     Dim workbook As Excel.Workbook
+    Dim sheets As Excel.Workbooks
     Private Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles wordApp.DocumentBeforeClose
         Try
             wordApp.NormalTemplate.Saved = True
             'doc.Saved = True
             'doc.Close(SaveChanges:=False)
             'System.Runtime.InteropServices.Marshal.ReleaseComObject(doc)
-            doc = Nothing
+
             'app.DisplayAlerts = False
             wordApp.Quit()
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp)
-            wordApp = Nothing
+
             'My.Computer.FileSystem.DeleteFile(path)
             'Dim p As System.Diagnostics.Process
             'For Each p In System.Diagnostics.Process.GetProcesses()
@@ -507,6 +507,10 @@ Public Class createEvent
             'Need to kill the process after it closes (use a boolean?)
         Catch e As Exception
             MessageBox.Show(e.ToString())
+        Finally
+            doc = Nothing
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp)
+            wordApp = Nothing
         End Try
     End Sub
     Private Sub openExcelFile(ByVal path As String)
@@ -514,9 +518,10 @@ Public Class createEvent
             Cursor = Cursors.AppStarting
             excelApp = New Excel.Application
             excelApp.Visible = True
+            sheets = excelApp.Workbooks
             'app.DisplayAlerts = False
             'fix "being used by another user thingo
-            workbook = excelApp.Workbooks.Open(path)
+            workbook = sheets.Open(path)
             'doc.Protect(Word.WdProtectionType.wdAllowOnlyReading)
 
             'doc =wordApp.Documents(1)
@@ -542,10 +547,7 @@ Public Class createEvent
             workbook.Saved = True
             'app.DisplayAlerts = False
             excelApp.Quit()
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook)
-            workbook = Nothing
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp)
-            excelApp = Nothing
+
             'My.Computer.FileSystem.DeleteFile(path)
             'Dim p As System.Diagnostics.Process
             'For Each p In System.Diagnostics.Process.GetProcesses()
@@ -556,6 +558,13 @@ Public Class createEvent
             'Need to kill the process after it closes (use a boolean?)
         Catch e As Exception
             MessageBox.Show(e.ToString())
+        Finally
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(sheets)
+            sheets = nothing
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook)
+            workbook = Nothing
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp)
+            excelApp = Nothing
         End Try
     End Sub
     Private Sub rdbTraining_CheckedChanged(sender As Object, e As EventArgs) Handles rdbTraining.CheckedChanged
