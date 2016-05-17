@@ -107,6 +107,24 @@
     <Compile Include="confirmAddition.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Printing.Designer.vb">
+      <DependentUpon>Printing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Printing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Results.Designer.vb">
+      <DependentUpon>Results.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Results.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultSearch.Designer.vb">
+      <DependentUpon>ResultSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ResultSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="saveOrOpen.Designer.vb">
       <DependentUpon>saveOrOpen.vb</DependentUpon>
     </Compile>
