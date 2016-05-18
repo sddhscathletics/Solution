@@ -36,6 +36,9 @@ Partial Class home
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -171,6 +174,9 @@ Partial Class home
         'bigbtngroup
         '
         Me.bigbtngroup.Controls.Add(Me.Button7)
+        Me.bigbtngroup.Controls.Add(Me.Button10)
+        Me.bigbtngroup.Controls.Add(Me.Button9)
+        Me.bigbtngroup.Controls.Add(Me.Button8)
         Me.bigbtngroup.Controls.Add(Me.Button6)
         Me.bigbtngroup.Location = New System.Drawing.Point(0, 0)
         Me.bigbtngroup.Name = "bigbtngroup"
@@ -181,23 +187,58 @@ Partial Class home
         '
         'Button6
         '
+        Me.Button6.BackColor = System.Drawing.Color.Gray
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Location = New System.Drawing.Point(26, 39)
+        Me.Button6.Location = New System.Drawing.Point(41, 57)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(529, 287)
+        Me.Button6.Size = New System.Drawing.Size(529, 300)
         Me.Button6.TabIndex = 0
         Me.Button6.Text = "Button6"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.UseVisualStyleBackColor = False
         '
         'Button7
         '
+        Me.Button7.BackColor = System.Drawing.Color.Gray
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Location = New System.Drawing.Point(24, 375)
+        Me.Button7.Location = New System.Drawing.Point(41, 380)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(529, 287)
+        Me.Button7.Size = New System.Drawing.Size(529, 300)
         Me.Button7.TabIndex = 0
         Me.Button7.Text = "Button6"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.Button7.UseVisualStyleBackColor = False
+        '
+        'Button8
+        '
+        Me.Button8.BackColor = System.Drawing.Color.Gray
+        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button8.Location = New System.Drawing.Point(595, 57)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(529, 193)
+        Me.Button8.TabIndex = 0
+        Me.Button8.Text = "Button6"
+        Me.Button8.UseVisualStyleBackColor = False
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.Gray
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Location = New System.Drawing.Point(595, 487)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(529, 193)
+        Me.Button9.TabIndex = 0
+        Me.Button9.Text = "Button6"
+        Me.Button9.UseVisualStyleBackColor = False
+        '
+        'Button10
+        '
+        Me.Button10.BackColor = System.Drawing.Color.Gray
+        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button10.Location = New System.Drawing.Point(595, 271)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(529, 193)
+        Me.Button10.TabIndex = 0
+        Me.Button10.Text = "Button6"
+        Me.Button10.UseVisualStyleBackColor = False
         '
         'home
         '
@@ -229,6 +270,9 @@ Partial Class home
     Friend WithEvents backBtn As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents bigbtngroup As GroupBox
-    Friend WithEvents Button7 As Button
     Friend WithEvents Button6 As Button
+    Friend WithEvents Button10 As Button
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Button7 As Button
 End Class
