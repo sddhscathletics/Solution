@@ -192,6 +192,9 @@
     <EmbeddedResource Include="confirmAddition.resx">
       <DependentUpon>confirmAddition.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Printing.resx">
+      <DependentUpon>Printing.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Results.resx">
       <DependentUpon>Results.vb</DependentUpon>
     </EmbeddedResource>
