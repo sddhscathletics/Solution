@@ -7,6 +7,7 @@ Public Class home
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If out = False Then
+            bigbtngroup.Left = bigbtngroup.Left + 20
             Sidebar.Left = Sidebar.Left + 20
             If Sidebar.Left = 0 Then
                 out = True
@@ -14,6 +15,7 @@ Public Class home
             End If
         ElseIf out = True Then
             Sidebar.Left = Sidebar.Left - 20
+            bigbtngroup.Left = bigbtngroup.Left - 20
             If Sidebar.Left = -200 Then
                 out = False
                 Timer1.Enabled = False
