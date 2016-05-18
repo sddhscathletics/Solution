@@ -2,6 +2,7 @@
 Public Class home
     Dim out As Boolean = False
     Dim cDrop As Boolean = False
+    Dim jun As Integer = 0
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
         Timer1.Enabled = True
     End Sub
@@ -53,6 +54,9 @@ Public Class home
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
         If cDrop = True Then
             sideresultsBtn.Top += 10
+            sideAthletesBtn.Top += 10
+            sideadminBtn.Top += 10
+            resdr
         End If
     End Sub
 End Class
