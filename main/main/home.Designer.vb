@@ -44,9 +44,11 @@ Partial Class home
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.Button14 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'scrollBtn
@@ -185,6 +187,7 @@ Partial Class home
         '
         'bigbtngroup
         '
+        Me.bigbtngroup.Controls.Add(Me.PictureBox1)
         Me.bigbtngroup.Controls.Add(Me.Button7)
         Me.bigbtngroup.Controls.Add(Me.Button10)
         Me.bigbtngroup.Controls.Add(Me.Button9)
@@ -192,7 +195,7 @@ Partial Class home
         Me.bigbtngroup.Controls.Add(Me.Button6)
         Me.bigbtngroup.Location = New System.Drawing.Point(0, 0)
         Me.bigbtngroup.Name = "bigbtngroup"
-        Me.bigbtngroup.Size = New System.Drawing.Size(1359, 731)
+        Me.bigbtngroup.Size = New System.Drawing.Size(1411, 731)
         Me.bigbtngroup.TabIndex = 5
         Me.bigbtngroup.TabStop = False
         Me.bigbtngroup.Text = "GroupBox1"
@@ -201,7 +204,7 @@ Partial Class home
         '
         Me.Button7.BackColor = System.Drawing.Color.Gray
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Location = New System.Drawing.Point(41, 380)
+        Me.Button7.Location = New System.Drawing.Point(45, 409)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(529, 300)
         Me.Button7.TabIndex = 0
@@ -212,7 +215,7 @@ Partial Class home
         '
         Me.Button10.BackColor = System.Drawing.Color.Gray
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Location = New System.Drawing.Point(595, 271)
+        Me.Button10.Location = New System.Drawing.Point(599, 300)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(529, 193)
         Me.Button10.TabIndex = 0
@@ -223,7 +226,7 @@ Partial Class home
         '
         Me.Button9.BackColor = System.Drawing.Color.Gray
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(595, 487)
+        Me.Button9.Location = New System.Drawing.Point(599, 516)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(529, 193)
         Me.Button9.TabIndex = 0
@@ -234,7 +237,7 @@ Partial Class home
         '
         Me.Button8.BackColor = System.Drawing.Color.Gray
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Location = New System.Drawing.Point(595, 57)
+        Me.Button8.Location = New System.Drawing.Point(599, 86)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(529, 193)
         Me.Button8.TabIndex = 0
@@ -245,7 +248,7 @@ Partial Class home
         '
         Me.Button6.BackColor = System.Drawing.Color.Gray
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Location = New System.Drawing.Point(41, 57)
+        Me.Button6.Location = New System.Drawing.Point(45, 86)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(529, 300)
         Me.Button6.TabIndex = 0
@@ -312,6 +315,15 @@ Partial Class home
         Me.Button14.Text = "search"
         Me.Button14.UseVisualStyleBackColor = False
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = Global.main.My.Resources.Resources.excel
+        Me.PictureBox1.Location = New System.Drawing.Point(1162, 86)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(188, 623)
+        Me.PictureBox1.TabIndex = 1
+        Me.PictureBox1.TabStop = False
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -328,6 +340,7 @@ Partial Class home
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.bigbtngroup.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -353,4 +366,5 @@ Partial Class home
     Friend WithEvents Button12 As Button
     Friend WithEvents Button11 As Button
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
