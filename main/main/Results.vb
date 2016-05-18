@@ -9,8 +9,8 @@ Public Class Results
                 Using dr = cmd.ExecuteReader() 'reads the database
                     If dr.HasRows Then 'checks if there are records that fulfill your criteria
                         Do While dr.Read() 'while loop that goes to eof
-                           *your function to perform*
-			   (access columns with dr(*index*) Or dr(*fieldName*))
+                            '*your function to perform*
+                            '(access columns with dr(*index*) Or dr(*fieldName*))
                         Loop
                     End If
                 End Using
