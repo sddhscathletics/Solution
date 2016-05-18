@@ -193,11 +193,14 @@ Public Class createEvent
             checkFileBeforeOpen(sender.Tag, sender)
         End If
     End Sub
+    Dim pbCount = 1
     Private Sub createPictureBox(sender As Object)
+        pbCount += 1
         If sender.Tag = "add" Then
             Dim pb As New PictureBox
             pb.Image = My.Resources.transparent_plus
             pb.Tag = "add"
+            pb.Name = "pb" & pbCount
             pb.SizeMode = PictureBoxSizeMode.StretchImage
             pb.Width = sender.width
             pb.Height = sender.height
@@ -224,6 +227,7 @@ Public Class createEvent
             Dim pb As New PictureBox
             pb.Image = My.Resources.transparent_plus
             pb.Tag = "add"
+            pb.Name = "pb" & pbCount
             pb.SizeMode = PictureBoxSizeMode.StretchImage
             pb.Width = sender.width
             pb.Height = sender.height
@@ -251,6 +255,7 @@ Public Class createEvent
                 Dim pb As New PictureBox
                 pb.Image = My.Resources.transparent_plus
                 pb.Tag = "add"
+                pb.Name = "pb" & pbCount
                 pb.SizeMode = PictureBoxSizeMode.StretchImage
                 pb.Width = sender.width
                 pb.Height = sender.height
@@ -463,8 +468,19 @@ Public Class createEvent
         End Using
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
-        If sender.location.x Then
-
+        If sender.location.x > pbAttach.Location.X + sender.width + 5 Then
+            Dim tmpName As String = ""
+            For letterIndex As Integer = 0 To sender.name.ToArray().Count - 1
+                If letterIndex = sender.name.ToArray().Count - 1 Then
+                    tmpName += CStr(Int(sender.name.ToArray()(letterIndex)) + 1)
+                Else
+                    tmpName += sender.name.ToArray()(letterIndex)
+                End If
+            Next
+            Dim tmpBox = sender
+            tmpBox.Name = tmpName
+            tmpBox.Image = My.Resources.transparent_plus
+            Me.Controls.Remove(tmpBox)
         End If
     End Sub
     Private Sub openWordFile(ByVal path As String)

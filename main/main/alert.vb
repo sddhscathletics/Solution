@@ -1,59 +1,38 @@
 ﻿Imports System.Data.OleDb
 Module alert
-    Public alertCount As Integer = 0
-
     Public Sub newEdit(name, changeType, changeMade) 'Appends the edit log with a new edit
-        Dim edit As String = name + " has "
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb") 'add your access file to bin\debug and then repalce \athelte with \(name of your file)
-            conn.Open() 'open the connection to the database
-            Using cmd As New OleDbCommand("SELECT *the columns you need* FROM *the table name* WHERE *field* = *variable*", conn) '*takes the column with correct rows
-                'cmd.Parameters.Add(New OleDbParameter("madeupVariable", variableYouNeedToFind)) 'maps your variable to that string
-                Using dr = cmd.ExecuteReader() 'reads the database
-                    If dr.HasRows Then 'checks if there are records that fulfill your criteria
-                        Do While dr.Read() 'while loop that goes to eof
-                            '*your function to perform*
-                            '(access columns with dr(*index*) Or dr(*fieldName*))
-                        Loop
-                    End If
-                End Using
-            End Using
-        End Using
+        Dim edit As String = " has "
         Select Case changeType
             Case "evAdd"
-                edit += ("added" + changeMade)
+                edit += ("added " + changeMade)
             Case "evEdit"
-                edit += ("edited" + changeMade)
+                edit += ("edited " + changeMade)
             Case "evDelete"
-                edit += ("deleted" + changeMade)
+                edit += ("deleted " + changeMade)
             Case "acAdd"
-                edit += ("added account" + changeMade)
+                edit += ("added account " + changeMade)
             Case "acEdit"
-                edit += ("edited account" + changeMade)
+                edit += ("edited account " + changeMade)
             Case "acDelete"
-                edit += ("deleted account" + changeMade)
+                edit += ("deleted account " + changeMade)
         End Select
-        'Write to edit database using given data
-        'If name = "" Then
-        'Write editDb from Date, time, enteredUsername, Message, event
-        '	'example: 12/1/16 12:01PM, Kurt Rich, “has added”, 14/5/16 Carnival
-        'Else
-        'Write editDb from Date, time, enteredUsername, Message, change, name
-        '       'example: 12/1/16 12:01PM, “Kurt Rich”, “has added account” Jun Lin
-        'End If
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("INSERT INTO edits VALUES (edit, name, DATE, TIME)", conn)
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
     End Sub
 
     Public Sub checkAlert() 'Creates a new alert from the recent edit made
-        Dim alertList As New List(Of String)
-        'Open edit database here
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb") 'add your access file to bin\debug and then repalce \athelte with \(name of your file)
-            conn.Open() 'open the connection to the database
-            Using cmd As New OleDbCommand("SELECT date, time, edit, user FROM edits WHERE read = @bool", conn) '*takes the column with correct rows
-                cmd.Parameters.Add(New OleDbParameter("@bool", 0)) 'maps your variable to that string
-                Using dr = cmd.ExecuteReader() 'reads the database
-                    If dr.HasRows Then 'checks if there are records that fulfill your criteria
-                        Do While dr.Read() 'while loop that goes to eof
-                            alertList.Add(dr(0) + " " + dr(1) + ": " + dr(2) + " by " + dr(3))
-                            '(access columns with dr(*index*) Or dr(*fieldName*))
+        alertCount = 0
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT DATE, TIME, edit, USER FROM edits WHERE [read] = 0", conn) 'Selects unread edits
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            alertList.Add(dr("DATE") + " " + dr("TIME") + ": " + dr("USER") + dr("edit"))
                             alertCount += 1
                         Loop
                     End If
