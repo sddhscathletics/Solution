@@ -1,6 +1,7 @@
 ﻿
 Public Class home
     Dim out As Boolean = False
+    Dim cDrop As Boolean = False
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
         Timer1.Enabled = True
     End Sub
@@ -27,7 +28,7 @@ Public Class home
 
     End Sub
 
-    Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
+    Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click, sidecalendarBtn.Click
         calendar.Show()
         Me.Hide()
     End Sub
@@ -36,8 +37,22 @@ Public Class home
         Close()
     End Sub
 
-    Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles resultBtn.Click
+    Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles resultBtn.Click, sideresultsBtn.Click
         Results.Show()
         Me.Hide()
+    End Sub
+
+    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles calDrop.Click
+        If cDrop = False Then
+            cDrop = True
+            sidebartime.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
+        If cDrop = True Then
+            sideresultsBtn.Top += 10
+        End If
     End Sub
 End Class

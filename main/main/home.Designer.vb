@@ -25,11 +25,17 @@ Partial Class home
         Me.components = New System.ComponentModel.Container()
         Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.sidemainBtn = New System.Windows.Forms.Button()
+        Me.calDrop = New System.Windows.Forms.Button()
+        Me.sidecalendarBtn = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.sideresultsBtn = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.sideAthletesBtn = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.sideadminBtn = New System.Windows.Forms.Button()
+        Me.sideCalSub2 = New System.Windows.Forms.Button()
+        Me.sideCalSub1 = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button14 = New System.Windows.Forms.Button()
@@ -44,6 +50,7 @@ Partial Class home
         Me.adminBtn = New System.Windows.Forms.Button()
         Me.athletesBtn = New System.Windows.Forms.Button()
         Me.calendarBtn = New System.Windows.Forms.Button()
+        Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -64,91 +71,185 @@ Partial Class home
         'Sidebar
         '
         Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.Sidebar.Controls.Add(Me.Button1)
-        Me.Sidebar.Controls.Add(Me.Button5)
-        Me.Sidebar.Controls.Add(Me.Button4)
-        Me.Sidebar.Controls.Add(Me.Button2)
+        Me.Sidebar.Controls.Add(Me.sidemainBtn)
+        Me.Sidebar.Controls.Add(Me.calDrop)
+        Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.Button3)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
+        Me.Sidebar.Controls.Add(Me.sideresultsBtn)
+        Me.Sidebar.Controls.Add(Me.Button4)
+        Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
+        Me.Sidebar.Controls.Add(Me.Button5)
+        Me.Sidebar.Controls.Add(Me.sideadminBtn)
+        Me.Sidebar.Controls.Add(Me.sideCalSub2)
+        Me.Sidebar.Controls.Add(Me.sideCalSub1)
+        Me.Sidebar.Location = New System.Drawing.Point(0, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 2
         Me.Sidebar.TabStop = False
         '
-        'Button1
+        'sidemainBtn
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button1.Location = New System.Drawing.Point(2, 33)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(196, 50)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "   MAIN"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.sidemainBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidemainBtn.FlatAppearance.BorderSize = 0
+        Me.sidemainBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sidemainBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sidemainBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sidemainBtn.Location = New System.Drawing.Point(2, 33)
+        Me.sidemainBtn.Name = "sidemainBtn"
+        Me.sidemainBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sidemainBtn.TabIndex = 0
+        Me.sidemainBtn.Text = "   MAIN"
+        Me.sidemainBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sidemainBtn.UseVisualStyleBackColor = False
         '
-        'Button5
+        'calDrop
         '
-        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button5.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button5.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button5.Location = New System.Drawing.Point(2, 186)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(196, 50)
-        Me.Button5.TabIndex = 0
-        Me.Button5.Text = "   ATHLETES"
-        Me.Button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button5.UseVisualStyleBackColor = False
+        Me.calDrop.BackColor = System.Drawing.Color.Gray
+        Me.calDrop.FlatAppearance.BorderSize = 0
+        Me.calDrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.calDrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.calDrop.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.calDrop.Location = New System.Drawing.Point(166, 84)
+        Me.calDrop.Name = "calDrop"
+        Me.calDrop.Size = New System.Drawing.Size(32, 50)
+        Me.calDrop.TabIndex = 0
+        Me.calDrop.Text = "▼"
+        Me.calDrop.UseVisualStyleBackColor = False
         '
-        'Button4
+        'sidecalendarBtn
         '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button4.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button4.Location = New System.Drawing.Point(2, 135)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(196, 50)
-        Me.Button4.TabIndex = 0
-        Me.Button4.Text = "   RESULTS"
-        Me.Button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button2.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button2.Location = New System.Drawing.Point(2, 237)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(196, 50)
-        Me.Button2.TabIndex = 0
-        Me.Button2.Text = "   ADMIN SETTINGS"
-        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
+        Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sidecalendarBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sidecalendarBtn.Location = New System.Drawing.Point(2, 84)
+        Me.sidecalendarBtn.Name = "sidecalendarBtn"
+        Me.sidecalendarBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sidecalendarBtn.TabIndex = 0
+        Me.sidecalendarBtn.Text = "   CALENDAR"
+        Me.sidecalendarBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sidecalendarBtn.UseVisualStyleBackColor = False
         '
         'Button3
         '
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button3.BackColor = System.Drawing.Color.Gray
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button3.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
         Me.Button3.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button3.Location = New System.Drawing.Point(2, 84)
+        Me.Button3.Location = New System.Drawing.Point(166, 135)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(196, 50)
+        Me.Button3.Size = New System.Drawing.Size(32, 50)
         Me.Button3.TabIndex = 0
-        Me.Button3.Text = "   CALENDAR"
-        Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button3.Text = "▼"
         Me.Button3.UseVisualStyleBackColor = False
+        '
+        'sideresultsBtn
+        '
+        Me.sideresultsBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideresultsBtn.FlatAppearance.BorderSize = 0
+        Me.sideresultsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideresultsBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sideresultsBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideresultsBtn.Location = New System.Drawing.Point(2, 135)
+        Me.sideresultsBtn.Name = "sideresultsBtn"
+        Me.sideresultsBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideresultsBtn.TabIndex = 0
+        Me.sideresultsBtn.Text = "   RESULTS"
+        Me.sideresultsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideresultsBtn.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.Gray
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.Button4.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button4.Location = New System.Drawing.Point(166, 186)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(32, 50)
+        Me.Button4.TabIndex = 0
+        Me.Button4.Text = "▼"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'sideAthletesBtn
+        '
+        Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
+        Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sideAthletesBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideAthletesBtn.Location = New System.Drawing.Point(2, 186)
+        Me.sideAthletesBtn.Name = "sideAthletesBtn"
+        Me.sideAthletesBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideAthletesBtn.TabIndex = 0
+        Me.sideAthletesBtn.Text = "   ATHLETES"
+        Me.sideAthletesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideAthletesBtn.UseVisualStyleBackColor = False
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.Gray
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button5.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.Button5.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button5.Location = New System.Drawing.Point(166, 237)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(32, 50)
+        Me.Button5.TabIndex = 0
+        Me.Button5.Text = "▼"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'sideadminBtn
+        '
+        Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideadminBtn.FlatAppearance.BorderSize = 0
+        Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sideadminBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideadminBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideadminBtn.Name = "sideadminBtn"
+        Me.sideadminBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideadminBtn.TabIndex = 0
+        Me.sideadminBtn.Text = "   ADMIN SETTINGS"
+        Me.sideadminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideadminBtn.UseVisualStyleBackColor = False
+        '
+        'sideCalSub2
+        '
+        Me.sideCalSub2.BackColor = System.Drawing.Color.Gray
+        Me.sideCalSub2.FlatAppearance.BorderSize = 0
+        Me.sideCalSub2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideCalSub2.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sideCalSub2.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideCalSub2.Location = New System.Drawing.Point(2, 94)
+        Me.sideCalSub2.Name = "sideCalSub2"
+        Me.sideCalSub2.Size = New System.Drawing.Size(196, 40)
+        Me.sideCalSub2.TabIndex = 0
+        Me.sideCalSub2.Text = "   EDIT TIMES"
+        Me.sideCalSub2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideCalSub2.UseVisualStyleBackColor = False
+        Me.sideCalSub2.Visible = False
+        '
+        'sideCalSub1
+        '
+        Me.sideCalSub1.BackColor = System.Drawing.Color.Gray
+        Me.sideCalSub1.FlatAppearance.BorderSize = 0
+        Me.sideCalSub1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideCalSub1.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sideCalSub1.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideCalSub1.Location = New System.Drawing.Point(2, 55)
+        Me.sideCalSub1.Name = "sideCalSub1"
+        Me.sideCalSub1.Size = New System.Drawing.Size(196, 40)
+        Me.sideCalSub1.TabIndex = 0
+        Me.sideCalSub1.Text = "   CREATE EVENT"
+        Me.sideCalSub1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideCalSub1.UseVisualStyleBackColor = False
+        Me.sideCalSub1.Visible = False
         '
         'Timer1
         '
@@ -311,6 +412,10 @@ Partial Class home
         Me.calendarBtn.Text = "Calendar"
         Me.calendarBtn.UseVisualStyleBackColor = False
         '
+        'sidebartime
+        '
+        Me.sidebartime.Interval = 1
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -335,13 +440,13 @@ Partial Class home
     Friend WithEvents scrollBtn As Button
     Friend WithEvents Sidebar As GroupBox
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents sidecalendarBtn As Button
+    Friend WithEvents sideAthletesBtn As Button
+    Friend WithEvents sideresultsBtn As Button
+    Friend WithEvents sideadminBtn As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents backBtn As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents sidemainBtn As Button
     Friend WithEvents bigbtngroup As GroupBox
     Friend WithEvents calendarBtn As Button
     Friend WithEvents adminBtn As Button
@@ -353,4 +458,11 @@ Partial Class home
     Friend WithEvents Button11 As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents sideCalSub1 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents calDrop As Button
+    Friend WithEvents sideCalSub2 As Button
+    Friend WithEvents sidebartime As Timer
 End Class
