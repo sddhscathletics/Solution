@@ -25,6 +25,9 @@ Partial Class checkNotif
         Me.txtAlertCount = New System.Windows.Forms.TextBox()
         Me.txtOutput = New System.Windows.Forms.TextBox()
         Me.btnLoad = New System.Windows.Forms.Button()
+        Me.txtChangeType = New System.Windows.Forms.TextBox()
+        Me.txtEdit = New System.Windows.Forms.TextBox()
+        Me.btnCommit = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtAlertCount
@@ -54,11 +57,37 @@ Partial Class checkNotif
         Me.btnLoad.Text = "Load"
         Me.btnLoad.UseVisualStyleBackColor = True
         '
+        'txtChangeType
+        '
+        Me.txtChangeType.Location = New System.Drawing.Point(363, 84)
+        Me.txtChangeType.Name = "txtChangeType"
+        Me.txtChangeType.Size = New System.Drawing.Size(100, 20)
+        Me.txtChangeType.TabIndex = 3
+        '
+        'txtEdit
+        '
+        Me.txtEdit.Location = New System.Drawing.Point(363, 110)
+        Me.txtEdit.Name = "txtEdit"
+        Me.txtEdit.Size = New System.Drawing.Size(100, 20)
+        Me.txtEdit.TabIndex = 5
+        '
+        'btnCommit
+        '
+        Me.btnCommit.Location = New System.Drawing.Point(363, 136)
+        Me.btnCommit.Name = "btnCommit"
+        Me.btnCommit.Size = New System.Drawing.Size(75, 23)
+        Me.btnCommit.TabIndex = 6
+        Me.btnCommit.Text = "Commit"
+        Me.btnCommit.UseVisualStyleBackColor = True
+        '
         'checkNotif
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(556, 409)
+        Me.ClientSize = New System.Drawing.Size(477, 409)
+        Me.Controls.Add(Me.btnCommit)
+        Me.Controls.Add(Me.txtEdit)
+        Me.Controls.Add(Me.txtChangeType)
         Me.Controls.Add(Me.btnLoad)
         Me.Controls.Add(Me.txtOutput)
         Me.Controls.Add(Me.txtAlertCount)
@@ -72,4 +101,7 @@ Partial Class checkNotif
     Friend WithEvents txtAlertCount As TextBox
     Friend WithEvents txtOutput As TextBox
     Friend WithEvents btnLoad As Button
+    Friend WithEvents txtChangeType As TextBox
+    Friend WithEvents txtEdit As TextBox
+    Friend WithEvents btnCommit As Button
 End Class

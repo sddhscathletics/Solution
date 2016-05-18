@@ -1,5 +1,5 @@
 ﻿Module variables
-    Public name = "Student"
+    Public username = "Student"
     Public change As String = ""
     Public access As Integer = 0
     Public alertCount As Integer = 0

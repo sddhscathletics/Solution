@@ -23,125 +23,172 @@ Partial Class home
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.scrollBtn = New System.Windows.Forms.Button()
+        Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.backBtn = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Sidebar.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
+        'scrollBtn
         '
-        Me.Button1.Location = New System.Drawing.Point(723, 69)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(88, 23)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "scrollbarbutton"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.scrollBtn.Location = New System.Drawing.Point(6, 4)
+        Me.scrollBtn.Name = "scrollBtn"
+        Me.scrollBtn.Size = New System.Drawing.Size(39, 23)
+        Me.scrollBtn.TabIndex = 3
+        Me.scrollBtn.Text = "scrollbarbutton"
+        Me.scrollBtn.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'Sidebar
         '
-        Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.GroupBox1.Controls.Add(Me.Button6)
-        Me.GroupBox1.Controls.Add(Me.Button5)
-        Me.GroupBox1.Controls.Add(Me.Button4)
-        Me.GroupBox1.Controls.Add(Me.Button2)
-        Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(200, 705)
-        Me.GroupBox1.TabIndex = 2
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 1
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(0, 84)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(200, 50)
-        Me.Button3.TabIndex = 0
-        Me.Button3.Text = "Button2"
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(0, 135)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(200, 50)
-        Me.Button4.TabIndex = 0
-        Me.Button4.Text = "Button2"
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.Sidebar.Controls.Add(Me.Button1)
+        Me.Sidebar.Controls.Add(Me.Button5)
+        Me.Sidebar.Controls.Add(Me.Button4)
+        Me.Sidebar.Controls.Add(Me.Button2)
+        Me.Sidebar.Controls.Add(Me.Button3)
+        Me.Sidebar.Location = New System.Drawing.Point(0, 0)
+        Me.Sidebar.Name = "Sidebar"
+        Me.Sidebar.Size = New System.Drawing.Size(200, 731)
+        Me.Sidebar.TabIndex = 2
+        Me.Sidebar.TabStop = False
         '
         'Button5
         '
         Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button5.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.Button5.ForeColor = System.Drawing.SystemColors.ControlLight
         Me.Button5.Location = New System.Drawing.Point(0, 186)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(200, 50)
         Me.Button5.TabIndex = 0
-        Me.Button5.Text = "Button2"
+        Me.Button5.Text = "   ATHLETES"
+        Me.Button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button5.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.Button4.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button4.Location = New System.Drawing.Point(0, 135)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(200, 50)
+        Me.Button4.TabIndex = 0
+        Me.Button4.Text = "   RESULTS"
+        Me.Button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button4.UseVisualStyleBackColor = False
         '
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(0, 33)
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button2.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button2.Location = New System.Drawing.Point(0, 237)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(200, 50)
         Me.Button2.TabIndex = 0
-        Me.Button2.Text = "Button2"
+        Me.Button2.Text = "   ADMIN SETTINGS"
+        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button2.UseVisualStyleBackColor = False
         '
-        'Button6
+        'Button3
         '
-        Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Location = New System.Drawing.Point(0, 237)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(200, 50)
-        Me.Button6.TabIndex = 0
-        Me.Button6.Text = "Button2"
-        Me.Button6.UseVisualStyleBackColor = False
+        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button3.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.Button3.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button3.Location = New System.Drawing.Point(0, 84)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(200, 50)
+        Me.Button3.TabIndex = 0
+        Me.Button3.Text = "   CALENDAR"
+        Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
+        Me.GroupBox2.Controls.Add(Me.backBtn)
+        Me.GroupBox2.Controls.Add(Me.scrollBtn)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(1348, 33)
+        Me.GroupBox2.TabIndex = 4
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "GroupBox2"
+        '
+        'backBtn
+        '
+        Me.backBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.backBtn.FlatAppearance.BorderSize = 0
+        Me.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.backBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.backBtn.Location = New System.Drawing.Point(51, 5)
+        Me.backBtn.Name = "backBtn"
+        Me.backBtn.Size = New System.Drawing.Size(37, 22)
+        Me.backBtn.TabIndex = 4
+        Me.backBtn.Text = "Back"
+        Me.backBtn.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button1.Location = New System.Drawing.Point(0, 33)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(200, 50)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "   MAIN"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1350, 730)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.Sidebar)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "home"
         Me.Text = "Form1"
-        Me.GroupBox1.ResumeLayout(False)
+        Me.Sidebar.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents Button1 As Button
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents scrollBtn As Button
+    Friend WithEvents Sidebar As GroupBox
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Button3 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Button4 As Button
-    Friend WithEvents Button6 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents backBtn As Button
+    Friend WithEvents Button1 As Button
 End Class
