@@ -26,17 +26,18 @@ Partial Class saveOrOpen
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnOpen = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Modern No. 20", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(53, 69)
+        Me.Label1.Location = New System.Drawing.Point(41, 79)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(263, 44)
+        Me.Label1.Size = New System.Drawing.Size(394, 22)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Would you like to save this file " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "or do you already have it saved?"
+        Me.Label1.Text = "What would you like to do with the attachment?"
         '
         'btnSave
         '
@@ -58,18 +59,28 @@ Partial Class saveOrOpen
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(242, 156)
+        Me.btnCancel.Location = New System.Drawing.Point(350, 156)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(98, 40)
         Me.btnCancel.TabIndex = 3
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
+        'btnDelete
+        '
+        Me.btnDelete.Location = New System.Drawing.Point(241, 156)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(98, 40)
+        Me.btnDelete.TabIndex = 4
+        Me.btnDelete.Text = "Delete"
+        Me.btnDelete.UseVisualStyleBackColor = True
+        '
         'saveOrOpen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(361, 224)
+        Me.ClientSize = New System.Drawing.Size(471, 224)
+        Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnOpen)
         Me.Controls.Add(Me.btnSave)
@@ -85,4 +96,5 @@ Partial Class saveOrOpen
     Friend WithEvents btnSave As Button
     Friend WithEvents btnOpen As Button
     Friend WithEvents btnCancel As Button
+    Friend WithEvents btnDelete As Button
 End Class

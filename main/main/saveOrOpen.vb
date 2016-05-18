@@ -14,4 +14,9 @@
         result = "cancel"
         Me.Close()
     End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        result = "delete"
+        Me.Close()
+    End Sub
 End Class

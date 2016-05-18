@@ -164,7 +164,7 @@ Public Class createEvent
     Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
         If sender.Tag = "add" Then
             ofdOpen.FileName = ""
-            ofdOpen.Filter = "All Files(*.*)|*.*"
+            ofdOpen.Filter = "Word and Excel (*.docx, *.xlsx)|*.docx; *.xlsx"
             ofdOpen.ShowDialog()
             If ofdOpen.FileName <> "" Then
                 Dim text As String = InputBox("What name would you like for this file?")
@@ -190,7 +190,7 @@ Public Class createEvent
                 createPictureBox(sender)
             End If
         ElseIf sender.Tag.Contains("docx") Or sender.Tag.Contains("xlsx") Then
-            checkFileBeforeOpen(sender.Tag)
+            checkFileBeforeOpen(sender.Tag, sender)
         End If
     End Sub
     Private Sub createPictureBox(sender As Object)
@@ -372,7 +372,7 @@ Public Class createEvent
             conn.Close()
         End Using
     End Sub
-    Sub checkFileBeforeOpen(ByVal fileName As String)
+    Sub checkFileBeforeOpen(ByVal fileName As String, ByVal sender As Object)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT FileInfo FROM Attachments WHERE FileName = @fileName", conn)
@@ -383,7 +383,7 @@ Public Class createEvent
                         Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
                         Using ms As New System.IO.MemoryStream(fileInfo)
                             'tempPath = System.IO.Path.GetTempFileName()
-                            If excelApp = Nothing And wordApp = Nothing Then
+                            If fileName.EndsWith("xlsx") AndAlso excelApp Is Nothing OrElse fileName.EndsWith("docx") AndAlso wordApp Is Nothing Then
                                 Dim officeType As Type
                                 saveOrOpen.ShowDialog()
                                 If saveOrOpen.result = "save" Then
@@ -447,10 +447,12 @@ Public Class createEvent
                                             End If
                                         End If
                                     End While
+                                ElseIf saveOrOpen.result = "delete" Then
+                                    deleteAttachment(sender)
                                 End If
                             Else
-                                If MessageBox.Show("You already have the attachment open.", "Attachment Open", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
-                                End If
+                                MessageBox.Show("You already have the attachment open.", "Attachment Open", MessageBoxButtons.OK)
+                            End If
                         End Using
                     Else
                         MessageBox.Show("Please upload the file first before opening.")
@@ -459,6 +461,11 @@ Public Class createEvent
             End Using
             conn.Close()
         End Using
+    End Sub
+    Private Sub deleteAttachment(ByVal sender As Object)
+        If sender.location.x Then
+
+        End If
     End Sub
     Private Sub openWordFile(ByVal path As String)
         Try
