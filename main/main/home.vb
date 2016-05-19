@@ -26,4 +26,8 @@ Public Class home
     Private Sub Button4_Click(sender As Object, e As EventArgs)
 
     End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        calendar.Show()
+    End Sub
 End Class
