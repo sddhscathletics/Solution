@@ -27,7 +27,7 @@ Public Class home
 
     End Sub
 
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        calendar.Show()
+    Private Sub bigbtngroup_Enter(sender As Object, e As EventArgs) Handles bigbtngroup.Enter
+
     End Sub
 End Class
