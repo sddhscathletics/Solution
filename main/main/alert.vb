@@ -16,12 +16,13 @@ Module alert
             Case "acDelete"
                 edit += ("deleted account " + changeMade)
         End Select
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\edits.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("INSERT INTO edits (edit, username, timestamp) VALUES (@edit, @username, @timestamp)", conn)
-                cmd.Parameters.AddWithValue("@edit", edit) 'maps your variable to that string
+            Using cmd As New OleDbCommand("INSERT INTO edits (username, edit, lDate, lTime) VALUES (@edit, @username, @lDate, @lTime)", conn)
                 cmd.Parameters.AddWithValue("@username", username)
-                cmd.Parameters.AddWithValue("@timestamp", Now)
+                cmd.Parameters.AddWithValue("@edit", edit) 'maps your variable to that string
+                cmd.Parameters.AddWithValue("@lDate", DateTime.Now.ToString("dd/MM/yy"))
+                cmd.Parameters.AddWithValue("@lTime", DateTime.Now.ToString("HH:mm"))
                 cmd.ExecuteNonQuery()
             End Using
         End Using
@@ -29,13 +30,13 @@ Module alert
 
     Public Sub checkAlert() 'Creates a new alert from the recent edit made
         alertCount = 0
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\edits.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT logDate, logTime, edit, username FROM edits WHERE [read] = 0", conn) 'Selects unread edits
+            Using cmd As New OleDbCommand("SELECT lDate, lTime, edit, username FROM edits WHERE [read] = 0", conn) 'Selects unread edits
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
-                            alertList.Add(dr("logDate") + " " + dr("logTime") + ": " + dr("username") + dr("edit"))
+                            alertList.Add(dr("lDate") + " " + dr("lTime") + ": " + dr("username") + dr("edit"))
                             alertCount += 1
                         Loop
                     End If

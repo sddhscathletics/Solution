@@ -30,4 +30,8 @@ Public Class home
     Private Sub bigbtngroup_Enter(sender As Object, e As EventArgs) Handles bigbtngroup.Enter
 
     End Sub
+
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+        checkNotif.Show()
+    End Sub
 End Class
