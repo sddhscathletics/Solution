@@ -2,6 +2,11 @@
 Public Class home
     Dim out As Boolean = False
     Dim cDrop As Boolean = False
+    Dim cDown As Boolean = False
+    Dim atDrop As Boolean = False
+    Dim atDown As Boolean = False
+    Dim adDrop As Boolean = False
+    Dim adDown As Boolean = False
     Dim jun As Integer = 0
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
         Timer1.Enabled = True
@@ -44,8 +49,16 @@ Public Class home
     End Sub
 
     Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles calDrop.Click
+        ' DO SQL STUFF
         If cDrop = False Then
             cDrop = True
+            If cDown = False Then
+                cDown = True
+            Else
+                If cDown = True Then
+                    cDown = False
+                End If
+            End If
             sidebartime.Enabled = True
         End If
 
@@ -53,10 +66,32 @@ Public Class home
 
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
         If cDrop = True Then
-            sideresultsBtn.Top += 10
-            sideAthletesBtn.Top += 10
-            sideadminBtn.Top += 10
-            resdr
+            If cDown = True Then
+                sideresultsBtn.Top += 10
+                sideAthletesBtn.Top += 10
+                sideadminBtn.Top += 10
+                resDrop.Top += 10
+                athDrop.Top += 10
+                admDrop.Top += 10
+                sideCalSub1.Top += 10
+                sideCalSub2.Top += 10
+            End If
+            If cDown = False Then
+                sideresultsBtn.Top -= 10
+                sideAthletesBtn.Top -= 10
+                sideadminBtn.Top -= 10
+                resDrop.Top -= 10
+                athDrop.Top -= 10
+                admDrop.Top -= 10
+                sideCalSub1.Top -= 10
+                sideCalSub2.Top -= 10
+            End If
+            jun += 1
+            If jun = 8 Then
+                jun = 0
+                cDrop = False
+                sidebartime.Enabled = False
+            End If
         End If
     End Sub
 End Class

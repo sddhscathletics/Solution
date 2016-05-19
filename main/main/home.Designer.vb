@@ -28,11 +28,11 @@ Partial Class home
         Me.sidemainBtn = New System.Windows.Forms.Button()
         Me.calDrop = New System.Windows.Forms.Button()
         Me.sidecalendarBtn = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.resDrop = New System.Windows.Forms.Button()
         Me.sideresultsBtn = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.athDrop = New System.Windows.Forms.Button()
         Me.sideAthletesBtn = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.admDrop = New System.Windows.Forms.Button()
         Me.sideadminBtn = New System.Windows.Forms.Button()
         Me.sideCalSub2 = New System.Windows.Forms.Button()
         Me.sideCalSub1 = New System.Windows.Forms.Button()
@@ -73,15 +73,15 @@ Partial Class home
         Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.Sidebar.Controls.Add(Me.sidemainBtn)
         Me.Sidebar.Controls.Add(Me.calDrop)
-        Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
-        Me.Sidebar.Controls.Add(Me.Button3)
+        Me.Sidebar.Controls.Add(Me.resDrop)
         Me.Sidebar.Controls.Add(Me.sideresultsBtn)
-        Me.Sidebar.Controls.Add(Me.Button4)
+        Me.Sidebar.Controls.Add(Me.athDrop)
         Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
-        Me.Sidebar.Controls.Add(Me.Button5)
+        Me.Sidebar.Controls.Add(Me.admDrop)
         Me.Sidebar.Controls.Add(Me.sideadminBtn)
-        Me.Sidebar.Controls.Add(Me.sideCalSub2)
+        Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.sideCalSub1)
+        Me.Sidebar.Controls.Add(Me.sideCalSub2)
         Me.Sidebar.Location = New System.Drawing.Point(0, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
@@ -132,19 +132,19 @@ Partial Class home
         Me.sidecalendarBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sidecalendarBtn.UseVisualStyleBackColor = False
         '
-        'Button3
+        'resDrop
         '
-        Me.Button3.BackColor = System.Drawing.Color.Gray
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button3.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button3.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button3.Location = New System.Drawing.Point(166, 135)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(32, 50)
-        Me.Button3.TabIndex = 0
-        Me.Button3.Text = "▼"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.resDrop.BackColor = System.Drawing.Color.Gray
+        Me.resDrop.FlatAppearance.BorderSize = 0
+        Me.resDrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.resDrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.resDrop.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.resDrop.Location = New System.Drawing.Point(166, 135)
+        Me.resDrop.Name = "resDrop"
+        Me.resDrop.Size = New System.Drawing.Size(32, 50)
+        Me.resDrop.TabIndex = 0
+        Me.resDrop.Text = "▼"
+        Me.resDrop.UseVisualStyleBackColor = False
         '
         'sideresultsBtn
         '
@@ -161,19 +161,19 @@ Partial Class home
         Me.sideresultsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideresultsBtn.UseVisualStyleBackColor = False
         '
-        'Button4
+        'athDrop
         '
-        Me.Button4.BackColor = System.Drawing.Color.Gray
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button4.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button4.Location = New System.Drawing.Point(166, 186)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(32, 50)
-        Me.Button4.TabIndex = 0
-        Me.Button4.Text = "▼"
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.athDrop.BackColor = System.Drawing.Color.Gray
+        Me.athDrop.FlatAppearance.BorderSize = 0
+        Me.athDrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.athDrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.athDrop.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.athDrop.Location = New System.Drawing.Point(166, 186)
+        Me.athDrop.Name = "athDrop"
+        Me.athDrop.Size = New System.Drawing.Size(32, 50)
+        Me.athDrop.TabIndex = 0
+        Me.athDrop.Text = "▼"
+        Me.athDrop.UseVisualStyleBackColor = False
         '
         'sideAthletesBtn
         '
@@ -190,19 +190,19 @@ Partial Class home
         Me.sideAthletesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideAthletesBtn.UseVisualStyleBackColor = False
         '
-        'Button5
+        'admDrop
         '
-        Me.Button5.BackColor = System.Drawing.Color.Gray
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button5.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button5.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button5.Location = New System.Drawing.Point(166, 237)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(32, 50)
-        Me.Button5.TabIndex = 0
-        Me.Button5.Text = "▼"
-        Me.Button5.UseVisualStyleBackColor = False
+        Me.admDrop.BackColor = System.Drawing.Color.Gray
+        Me.admDrop.FlatAppearance.BorderSize = 0
+        Me.admDrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.admDrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.admDrop.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.admDrop.Location = New System.Drawing.Point(166, 237)
+        Me.admDrop.Name = "admDrop"
+        Me.admDrop.Size = New System.Drawing.Size(32, 50)
+        Me.admDrop.TabIndex = 0
+        Me.admDrop.Text = "▼"
+        Me.admDrop.UseVisualStyleBackColor = False
         '
         'sideadminBtn
         '
@@ -230,10 +230,9 @@ Partial Class home
         Me.sideCalSub2.Name = "sideCalSub2"
         Me.sideCalSub2.Size = New System.Drawing.Size(196, 40)
         Me.sideCalSub2.TabIndex = 0
-        Me.sideCalSub2.Text = "   EDIT TIMES"
+        Me.sideCalSub2.Text = "   EVENT TIMES"
         Me.sideCalSub2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideCalSub2.UseVisualStyleBackColor = False
-        Me.sideCalSub2.Visible = False
         '
         'sideCalSub1
         '
@@ -249,7 +248,6 @@ Partial Class home
         Me.sideCalSub1.Text = "   CREATE EVENT"
         Me.sideCalSub1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideCalSub1.UseVisualStyleBackColor = False
-        Me.sideCalSub1.Visible = False
         '
         'Timer1
         '
@@ -459,9 +457,9 @@ Partial Class home
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents sideCalSub1 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents admDrop As Button
+    Friend WithEvents athDrop As Button
+    Friend WithEvents resDrop As Button
     Friend WithEvents calDrop As Button
     Friend WithEvents sideCalSub2 As Button
     Friend WithEvents sidebartime As Timer
