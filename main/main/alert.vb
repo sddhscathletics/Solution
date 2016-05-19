@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 Module alert
-    Public Sub newEdit(name, changeType, changeMade) 'Appends the edit log with a new edit
+    Public Sub newEdit(changeType, changeMade) 'Appends the edit log with a new edit
         Dim edit As String = " has "
         Select Case changeType
             Case "evAdd"
@@ -18,7 +18,10 @@ Module alert
         End Select
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("INSERT INTO edits VALUES (edit, name, DATE, TIME)", conn)
+            Using cmd As New OleDbCommand("INSERT INTO edits (edit, username, timestamp) VALUES (@edit, @username, @timestamp)", conn)
+                cmd.Parameters.AddWithValue("@edit", edit) 'maps your variable to that string
+                cmd.Parameters.AddWithValue("@username", username)
+                cmd.Parameters.AddWithValue("@timestamp", Now)
                 cmd.ExecuteNonQuery()
             End Using
         End Using
@@ -28,11 +31,11 @@ Module alert
         alertCount = 0
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\edit.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT DATE, TIME, edit, USER FROM edits WHERE [read] = 0", conn) 'Selects unread edits
+            Using cmd As New OleDbCommand("SELECT logDate, logTime, edit, username FROM edits WHERE [read] = 0", conn) 'Selects unread edits
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
-                            alertList.Add(dr("DATE") + " " + dr("TIME") + ": " + dr("USER") + dr("edit"))
+                            alertList.Add(dr("logDate") + " " + dr("logTime") + ": " + dr("username") + dr("edit"))
                             alertCount += 1
                         Loop
                     End If

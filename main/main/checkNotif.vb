@@ -1,5 +1,6 @@
 ﻿Public Class checkNotif
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
+        txtOutput.Text = ""
         checkAlert()
         txtAlertCount.Text = alertCount
         For Each alert In alertList
@@ -8,6 +9,6 @@
     End Sub
 
     Private Sub btnCommit_Click(sender As Object, e As EventArgs) Handles btnCommit.Click
-        newEdit(username, txtChangeType.Text, txtEdit.Text)
+        newEdit(txtChangeType.Text, txtEdit.Text)
     End Sub
 End Class
