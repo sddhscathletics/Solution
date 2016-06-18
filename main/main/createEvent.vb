@@ -12,7 +12,7 @@ Public Class createEvent
     End Sub
     Private Sub btnOkay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOkay.Click
         If filePaths.Count > 0 And attendees.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) Then
-            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                 conn.Open()
                 Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @fileNames, @comment)", conn)
                     cmd.Parameters.AddWithValue("@name", txtName.Text)
@@ -69,7 +69,7 @@ Public Class createEvent
                 Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
                     Dim myData(fs.Length) As Byte
                     fs.Read(myData, 0, fs.Length)
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                         conn.Open()
                         Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn)
                             Dim splitPath = filePath.Split("\")
@@ -85,7 +85,7 @@ Public Class createEvent
         ElseIf (times.Count <= 0 AndAlso chbNA.Checked = False) Then
             MessageBox.Show("You must either set event times or tick N/A", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         Else
-            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                 conn.Open()
                 Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @comment)", conn)
                     cmd.Parameters.AddWithValue("@name", txtName.Text)
@@ -129,7 +129,7 @@ Public Class createEvent
         End If
 
         'retrieving and displaying images (change SQL query as needed)
-        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
         '    conn.Open()
         '    Using cmd As New OleDbCommand("SELECT Attachments FROM Events WHERE ID = 3", conn) '*takes the column with correct rows
         '        'cmd.Parameters.Add(New OleDbParameter("@age", ageGroup))
@@ -290,7 +290,7 @@ Public Class createEvent
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Dim savedEvents As New Dictionary(Of Date, String)
         'Dim dates As New List(Of Date)
-        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
         '    conn.Open()
         '    Using cmd As New OleDbCommand("SELECT EventName, EventDate FROM Events", conn) '*takes the column with correct rows
         '        Using dr = cmd.ExecuteReader()
@@ -322,7 +322,7 @@ Public Class createEvent
     End Sub
     Private Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT * FROM Events WHERE EventDate = @date AND EventName = @name", conn) '*takes the column with correct rows
                 cmd.Parameters.AddWithValue("@date", cmbTemplate.SelectedItem.Split(" ")(0))
@@ -378,7 +378,7 @@ Public Class createEvent
         End Using
     End Sub
     Sub checkFileBeforeOpen(ByVal fileName As String, ByVal sender As Object)
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT FileInfo FROM Attachments WHERE FileName = @fileName", conn)
                 cmd.Parameters.AddWithValue("@fileName", fileName)

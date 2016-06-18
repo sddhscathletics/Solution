@@ -34,4 +34,12 @@ Public Class home
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         checkNotif.Show()
     End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        calendar.Show()
+    End Sub
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        Me.Close()
+    End Sub
 End Class
