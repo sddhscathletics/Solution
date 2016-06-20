@@ -34,6 +34,7 @@ Public Class home
 
     End Sub
 
+<<<<<<< HEAD
     Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click, sidecalendarBtn.Click
         calendar.Show()
         Me.Hide()
@@ -93,5 +94,9 @@ Public Class home
                 sidebartime.Enabled = False
             End If
         End If
+=======
+    Private Sub bigbtngroup_Enter(sender As Object, e As EventArgs) Handles bigbtngroup.Enter
+
+>>>>>>> origin/master
     End Sub
 End Class
