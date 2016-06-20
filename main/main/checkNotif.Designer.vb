@@ -28,14 +28,14 @@ Partial Class checkNotif
         Me.txtEdit = New System.Windows.Forms.TextBox()
         Me.btnCommit = New System.Windows.Forms.Button()
         Me.dgdNotifs = New System.Windows.Forms.DataGridView()
-        Me.btnMarkRead = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.username = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.edit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnMarkRead = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.dgdNotifs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -89,35 +89,9 @@ Partial Class checkNotif
         Me.dgdNotifs.Location = New System.Drawing.Point(12, 9)
         Me.dgdNotifs.MultiSelect = False
         Me.dgdNotifs.Name = "dgdNotifs"
+        Me.dgdNotifs.ReadOnly = True
         Me.dgdNotifs.Size = New System.Drawing.Size(445, 300)
         Me.dgdNotifs.TabIndex = 7
-        '
-        'btnMarkRead
-        '
-        Me.btnMarkRead.Location = New System.Drawing.Point(463, 175)
-        Me.btnMarkRead.Name = "btnMarkRead"
-        Me.btnMarkRead.Size = New System.Drawing.Size(75, 23)
-        Me.btnMarkRead.TabIndex = 8
-        Me.btnMarkRead.Text = "Mark Read"
-        Me.btnMarkRead.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(463, 65)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(52, 13)
-        Me.Label1.TabIndex = 9
-        Me.Label1.Text = "Edit Type"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(460, 104)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(55, 13)
-        Me.Label2.TabIndex = 10
-        Me.Label2.Text = "Edit Made"
         '
         'ID
         '
@@ -149,6 +123,33 @@ Partial Class checkNotif
         Me.edit.HeaderText = "Edit"
         Me.edit.Name = "edit"
         Me.edit.ReadOnly = True
+        '
+        'btnMarkRead
+        '
+        Me.btnMarkRead.Location = New System.Drawing.Point(463, 175)
+        Me.btnMarkRead.Name = "btnMarkRead"
+        Me.btnMarkRead.Size = New System.Drawing.Size(75, 23)
+        Me.btnMarkRead.TabIndex = 8
+        Me.btnMarkRead.Text = "Mark Read"
+        Me.btnMarkRead.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(463, 65)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(52, 13)
+        Me.Label1.TabIndex = 9
+        Me.Label1.Text = "Edit Type"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(460, 104)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(55, 13)
+        Me.Label2.TabIndex = 10
+        Me.Label2.Text = "Edit Made"
         '
         'checkNotif
         '
