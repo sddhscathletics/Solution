@@ -113,6 +113,7 @@
     <Compile Include="confirmAddition.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="notif.vb" />
     <Compile Include="Printing.Designer.vb">
       <DependentUpon>Printing.vb</DependentUpon>
     </Compile>
