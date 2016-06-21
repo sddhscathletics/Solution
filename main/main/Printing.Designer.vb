@@ -28,7 +28,8 @@ Partial Class Printing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(419, 377)
+        Me.BackColor = System.Drawing.Color.White
+        Me.ClientSize = New System.Drawing.Size(424, 385)
         Me.Name = "Printing"
         Me.Text = "Printing"
         Me.ResumeLayout(False)
