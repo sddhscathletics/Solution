@@ -34,22 +34,21 @@ Public Class home
 
     End Sub
 
-<<<<<<< HEAD
     Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click, sidecalendarBtn.Click
         calendar.Show()
         Me.Hide()
     End Sub
 
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
         Close()
     End Sub
 
-    Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles resultBtn.Click, sideresultsBtn.Click
+    Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles resultBtn.Click, sideresultBtn.Click
         Results.Show()
         Me.Hide()
     End Sub
 
-    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles calDrop.Click
+    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles caldrop.Click
         ' DO SQL STUFF
         If cDrop = False Then
             cDrop = True
@@ -68,47 +67,43 @@ Public Class home
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
         If cDrop = True Then
             If cDown = True Then
-                sideresultsBtn.Top += 10
+                sideresultBtn.Top += 10
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
-                resDrop.Top += 10
-                athDrop.Top += 10
+                resdrop.Top += 10
+                athdrop.Top += 10
                 admDrop.Top += 10
                 sideCalSub1.Top += 10
                 sideCalSub2.Top += 10
             End If
             If cDown = False Then
-                sideresultsBtn.Top -= 10
+                sideresultBtn.Top -= 10
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
-                resDrop.Top -= 10
-                athDrop.Top -= 10
+                resdrop.Top -= 10
+                athdrop.Top -= 10
                 admDrop.Top -= 10
                 sideCalSub1.Top -= 10
                 sideCalSub2.Top -= 10
             End If
             jun += 1
-            If jun = 8 Then
+            If jun = 6 Then
                 jun = 0
                 cDrop = False
                 sidebartime.Enabled = False
             End If
         End If
-=======
-    Private Sub bigbtngroup_Enter(sender As Object, e As EventArgs) Handles bigbtngroup.Enter
-
->>>>>>> origin/master
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         checkNotif.Show()
     End Sub
 
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
         calendar.Show()
     End Sub
 
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
         Me.Close()
     End Sub
 End Class
