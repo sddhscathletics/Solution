@@ -80,6 +80,7 @@ Public Class home
     End Sub
 
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
+        'calendar drop
         If cDrop = True Then
             If cDown = True Then
                 sideresultBtn.Top += 10
