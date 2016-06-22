@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO.FileStream
+Imports System.Threading
 Imports Microsoft.Office.Interop
 Public Class createEvent
     Public Shared attendees As New List(Of String) 'list of id's with which you look back at the database to find agegroup to display tick or not
@@ -12,7 +13,7 @@ Public Class createEvent
     End Sub
     Private Sub btnOkay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOkay.Click
         If filePaths.Count > 0 And attendees.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) Then
-            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                 conn.Open()
                 Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @fileNames, @comment)", conn)
                     cmd.Parameters.AddWithValue("@name", txtName.Text)
@@ -69,7 +70,7 @@ Public Class createEvent
                 Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
                     Dim myData(fs.Length) As Byte
                     fs.Read(myData, 0, fs.Length)
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                         conn.Open()
                         Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn)
                             Dim splitPath = filePath.Split("\")
@@ -85,7 +86,7 @@ Public Class createEvent
         ElseIf (times.Count <= 0 AndAlso chbNA.Checked = False) Then
             MessageBox.Show("You must either set event times or tick N/A", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         Else
-            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                 conn.Open()
                 Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @comment)", conn)
                     cmd.Parameters.AddWithValue("@name", txtName.Text)
@@ -129,7 +130,7 @@ Public Class createEvent
         End If
 
         'retrieving and displaying images (change SQL query as needed)
-        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
         '    conn.Open()
         '    Using cmd As New OleDbCommand("SELECT Attachments FROM Events WHERE ID = 3", conn) '*takes the column with correct rows
         '        'cmd.Parameters.Add(New OleDbParameter("@age", ageGroup))
@@ -211,11 +212,12 @@ Public Class createEvent
                         control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
                     End If
                 Next
-                For Each control In Me.Controls.OfType(Of PictureBox)()
-                    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-                        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-                    End If
-                Next
+                pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
+                'For Each control In Me.Controls.OfType(Of PictureBox)()
+                '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
+                '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
+                '    End If
+                'Next
                 Me.Height += pbAttach.Height + 5
             Else
                 pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
@@ -239,11 +241,12 @@ Public Class createEvent
                         control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
                     End If
                 Next
-                For Each control In Me.Controls.OfType(Of PictureBox)()
-                    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-                        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-                    End If
-                Next
+                pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
+                'For Each control In Me.Controls.OfType(Of PictureBox)()
+                '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
+                '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
+                '    End If
+                'Next
                 Me.Height += pbAttach.Height + 5
             Else
                 pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
@@ -268,11 +271,12 @@ Public Class createEvent
                             control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
                         End If
                     Next
-                    For Each control In Me.Controls.OfType(Of PictureBox)()
-                        If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-                            pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-                        End If
-                    Next
+                    pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
+                    'For Each control In Me.Controls.OfType(Of PictureBox)()
+                    '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
+                    '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
+                    '    End If
+                    'Next
                     Me.Height += pbAttach.Height + 5
                 Else
                     pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
@@ -294,7 +298,7 @@ Public Class createEvent
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Dim savedEvents As New Dictionary(Of Date, String)
         'Dim dates As New List(Of Date)
-        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
         '    conn.Open()
         '    Using cmd As New OleDbCommand("SELECT EventName, EventDate FROM Events", conn) '*takes the column with correct rows
         '        Using dr = cmd.ExecuteReader()
@@ -326,7 +330,7 @@ Public Class createEvent
     End Sub
     Private Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT * FROM Events WHERE EventDate = @date AND EventName = @name", conn) '*takes the column with correct rows
                 Dim eventSplit As String() = cmbTemplate.SelectedItem.Split(" ")
@@ -382,31 +386,30 @@ Public Class createEvent
             conn.Close()
         End Using
     End Sub
+    Dim tempFilePath As String = ""
     Sub checkFileBeforeOpen(ByVal fileName As String, ByVal sender As Object)
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Calendar.accdb")
-            conn.Open()
-            Using cmd As New OleDbCommand("SELECT FileInfo FROM Attachments WHERE FileName = @fileName", conn)
-                cmd.Parameters.AddWithValue("@fileName", fileName)
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        dr.Read()
-                        Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
-                        Using ms As New System.IO.MemoryStream(fileInfo)
-                            'tempPath = System.IO.Path.GetTempFileName()
-                            If fileName.EndsWith("xlsx") AndAlso excelApp Is Nothing OrElse fileName.EndsWith("docx") AndAlso wordApp Is Nothing Then
-                                Dim officeType As Type
-                                saveOrOpen.ShowDialog()
-                                If saveOrOpen.result = "save" Then
-                                    sfdSave.FileName = fileName
-                                    If fileName.EndsWith("docx") Then
-                                        officeType = Type.GetTypeFromProgID("Word.Application")
-                                        sfdSave.Filter = "(*.docx)|*.docx"
-                                    Else
-                                        officeType = Type.GetTypeFromProgID("Excel.Application")
-                                        sfdSave.Filter = "(*.xlsx)|*.xlsx"
-                                    End If
-                                    If sfdSave.ShowDialog() <> DialogResult.Cancel And sfdSave.FileName <> "" And officeType <> Nothing Then
-                                        Cursor = Cursors.AppStarting
+        If fileName.EndsWith("xlsx") AndAlso excelApp Is Nothing OrElse fileName.EndsWith("docx") AndAlso wordApp Is Nothing Then
+            Dim officeType As Type
+            saveOrOpen.ShowDialog()
+            If saveOrOpen.result = "save" Then
+                sfdSave.FileName = fileName
+                If fileName.EndsWith("docx") Then
+                    officeType = Type.GetTypeFromProgID("Word.Application")
+                    sfdSave.Filter = "(*.docx)|*.docx"
+                Else
+                    officeType = Type.GetTypeFromProgID("Excel.Application")
+                    sfdSave.Filter = "(*.xlsx)|*.xlsx"
+                End If
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("SELECT FileInfo FROM Attachments WHERE FileName = @fileName", conn)
+                        cmd.Parameters.AddWithValue("@fileName", fileName)
+                        Using dr = cmd.ExecuteReader()
+                            If dr.HasRows Then
+                                If sfdSave.ShowDialog() <> DialogResult.Cancel And sfdSave.FileName <> "" And officeType <> Nothing Then
+                                    dr.Read()
+                                    Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
+                                    Using ms As New System.IO.MemoryStream(fileInfo)
                                         Dim fs As New System.IO.FileStream(sfdSave.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write)
                                         fs.Write(fileInfo, 0, ms.Length)
                                         fs.Dispose()
@@ -415,16 +418,46 @@ Public Class createEvent
                                         Else
                                             openExcelFile(sfdSave.FileName)
                                         End If
-                                    ElseIf officeType = Nothing Then
-                                        If fileName.EndsWith("docx") Then
-                                            MessageBox.Show("You do not have Word installed.")
-                                        Else
-                                            MessageBox.Show("You do not have Excel installed.")
-                                        End If
-                                    ElseIf sfdSave.FileName = "" Then
-                                        MessageBox.Show("Please enter a valid file name.")
+                                    End Using
+                                ElseIf officeType = Nothing Then
+                                    If fileName.EndsWith("docx") Then
+                                        MessageBox.Show("You do not have Word installed.")
+                                    Else
+                                        MessageBox.Show("You do not have Excel installed.")
                                     End If
-                                ElseIf saveOrOpen.result = "open" Then
+                                ElseIf sfdSave.FileName = "" Then
+                                    MessageBox.Show("Please enter a valid file name.")
+                                End If
+                            Else
+                                MessageBox.Show("Please upload the file first before trying to save.")
+                            End If
+                        End Using
+                    End Using
+                    conn.Close()
+                End Using
+            ElseIf saveOrOpen.result = "open" Then
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("SELECT FileInfo FROM Attachments WHERE FileName = @fileName", conn)
+                        cmd.Parameters.AddWithValue("@fileName", fileName)
+                        Using dr = cmd.ExecuteReader()
+                            If dr.HasRows Then
+                                dr.Read()
+                                Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
+                                Using ms As New System.IO.MemoryStream(fileInfo)
+                                    tempFilePath = System.IO.Path.GetTempFileName
+                                    deleteFileThread = New Thread(Sub() deleteTempFile(tempFilePath))
+                                    Dim fs As New System.IO.FileStream(tempFilePath, System.IO.FileMode.Create, System.IO.FileAccess.Write)
+                                    fs.Write(fileInfo, 0, ms.Length)
+                                    fs.Dispose()
+                                    If fileName.EndsWith("docx") Then
+                                        openWordFile(tempFilePath)
+                                    Else
+                                        openExcelFile(tempFilePath)
+                                    End If
+                                End Using
+                            Else
+                                If MessageBox.Show("The file has not been uploaded yet." + vbNewLine + "Would you like to open the file from your computer?", "File not uploaded", MessageBoxButtons.OKCancel) = DialogResult.OK Then
                                     Dim fileValid As Boolean = False
                                     While fileValid = False
                                         ofdOpen.FileName = ""
@@ -450,30 +483,29 @@ Public Class createEvent
                                             End If
                                             fileValid = True
                                         ElseIf System.IO.Path.GetFileName(ofdOpen.FileName) <> fileName Then
-                                            If MessageBox.Show("You have not selected the attachment file." + vbNewLine + "Please select the file again.", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
+                                            If MessageBox.Show("You have not selected the attachment file." + vbNewLine + "Would you like to select the file again?", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
                                                 fileValid = True
                                             Else
                                                 fileValid = False
                                             End If
                                         End If
                                     End While
-                                ElseIf saveOrOpen.result = "delete" Then
-                                    deleteAttachment(sender)
                                 End If
-                            Else
-                                MessageBox.Show("You already have the attachment open.", "Attachment Open", MessageBoxButtons.OK)
                             End If
                         End Using
-                    Else
-                        MessageBox.Show("Please upload the file first before opening.")
-                    End If
+                    End Using
+                    conn.Close()
                 End Using
-            End Using
-            conn.Close()
-        End Using
+            ElseIf saveOrOpen.result = "delete" Then
+                deleteAttachment(sender)
+            End If
+        Else
+            MessageBox.Show("You already have the attachment open." + vbNewLine + "Please finish operations with the open attachment before trying to interact with this one.", "Attachment Open", MessageBoxButtons.OK)
+        End If
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
         Dim tmpName As String = ""
+<<<<<<< HEAD
         If sender.name <> "pbAttach" Then
             For letterIndex As Integer = 0 To sender.name.ToCharArray().Length - 1
                 MessageBox.Show(sender.name.ToCharArray()(letterIndex))
@@ -504,7 +536,35 @@ Public Class createEvent
                     control.Location = New Point(control.location.x, control.location.y - pbAttach.Height - 5)
                 End If
             Next
+=======
+        If sender.name <> pbAttach.Name Then
+            For letterIndex As Integer = 0 To sender.name.ToCharArray().Length - 1
+                If letterIndex = sender.name.ToCharArray().Length - 1 Then
+                    tmpName += CStr(Int(CStr(sender.name.ToCharArray()(letterIndex))) + 1)
+                Else
+                    tmpName += sender.name.ToCharArray()(letterIndex)
+                End If
+            Next
+        Else
+            tmpName = "pb2"
+>>>>>>> origin/master
         End If
+        For Each pb In Me.Controls.OfType(Of PictureBox)()
+            If pb.Name = tmpName Then
+                Me.Controls.Remove(pb)
+            End If
+        Next
+        If sender.location.x > pbAttach.Location.X + sender.width + 5 Then 'if it's in the third column
+            For Each control In Me.Controls
+                If control.Location.Y > sender.location.Y + 20 Then
+                    control.Location = New Point(control.location.x, control.location.y - pbAttach.Height - 5)
+                End If
+            Next
+            Me.Height -= (pbAttach.Height + 5)
+        End If
+        sender.Image = My.Resources.transparent_plus
+        newAttachBoxLocation = sender.location
+        sender.Tag = "add"
     End Sub
     Private Sub openWordFile(ByVal path As String)
         Try
@@ -561,8 +621,10 @@ Public Class createEvent
             doc = Nothing
             System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp)
             wordApp = Nothing
+            deleteFileThread.Start()
         End Try
     End Sub
+    Dim deleteFileThread As Thread = Nothing
     Private Sub openExcelFile(ByVal path As String)
         Try
             Cursor = Cursors.AppStarting
@@ -615,7 +677,17 @@ Public Class createEvent
             workbook = Nothing
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp)
             excelApp = Nothing
+            deleteFileThread.Start()
         End Try
+    End Sub
+    Private Sub deleteTempFile(path As String)
+        While My.Computer.FileSystem.FileExists(path)
+            Try
+                System.IO.File.Delete(path)
+            Catch ex As Exception
+                Thread.Sleep(1000)
+            End Try
+        End While
     End Sub
     Private Sub rdbTraining_CheckedChanged(sender As Object, e As EventArgs) Handles rdbTraining.CheckedChanged
         If rdbTraining.Checked = True Then

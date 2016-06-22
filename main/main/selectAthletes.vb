@@ -28,7 +28,7 @@ Public Class selectAthletes
     End Sub
     Public Shared Function getName(ByVal idNum As Integer)
         Dim fullName As String = ""
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Athlete.accdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT FirstName, LastName FROM athleteDb WHERE ID = @idNumber", conn) '*takes the column with correct rows
                 cmd.Parameters.Add(New OleDbParameter("@idNumber", idNum))
@@ -46,7 +46,7 @@ Public Class selectAthletes
     End Function
     Public Shared Function findSingleAgeGroup(ByVal idNum As Integer)
         Dim ageGroup As String = ""
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Athlete.accdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT AgeGroup FROM athleteDb WHERE ID = @idNumber", conn) '*takes the column with correct rows
                 cmd.Parameters.Add(New OleDbParameter("@idNumber", idNum))
@@ -65,7 +65,7 @@ Public Class selectAthletes
     End Function
     Public Shared Function getWholeAgeGroup(ByVal ageGroup As String)
         Dim ageAthletes As New List(Of String)
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Athlete.accdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT ID, FirstName, LastName FROM athleteDb WHERE AgeGroup = @age", conn) '*takes the column with correct rows
                 cmd.Parameters.Add(New OleDbParameter("@age", ageGroup))

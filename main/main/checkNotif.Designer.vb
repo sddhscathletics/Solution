@@ -44,7 +44,7 @@ Partial Class checkNotif
         Me.txtOutput.Multiline = True
         Me.txtOutput.Name = "txtOutput"
         Me.txtOutput.ReadOnly = True
-        Me.txtOutput.Size = New System.Drawing.Size(345, 385)
+        Me.txtOutput.Size = New System.Drawing.Size(345, 297)
         Me.txtOutput.TabIndex = 1
         Me.txtOutput.TabStop = False
         '
@@ -85,11 +85,11 @@ Partial Class checkNotif
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(477, 409)
+        Me.Controls.Add(Me.txtOutput)
         Me.Controls.Add(Me.btnCommit)
         Me.Controls.Add(Me.txtEdit)
         Me.Controls.Add(Me.txtChangeType)
         Me.Controls.Add(Me.btnLoad)
-        Me.Controls.Add(Me.txtOutput)
         Me.Controls.Add(Me.txtAlertCount)
         Me.Name = "checkNotif"
         Me.Text = "checkNotif"
