@@ -45,13 +45,15 @@ Partial Class home
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.backBtn = New System.Windows.Forms.Button()
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.resultBtn = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.calendarBtn = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.sideResSub2 = New System.Windows.Forms.Button()
+        Me.sideResSub1 = New System.Windows.Forms.Button()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -76,14 +78,16 @@ Partial Class home
         Me.Sidebar.Controls.Add(Me.admDrop)
         Me.Sidebar.Controls.Add(Me.athdrop)
         Me.Sidebar.Controls.Add(Me.resdrop)
-        Me.Sidebar.Controls.Add(Me.sideresultBtn)
         Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
         Me.Sidebar.Controls.Add(Me.sideadminBtn)
         Me.Sidebar.Controls.Add(Me.caldrop)
+        Me.Sidebar.Controls.Add(Me.sideResSub1)
+        Me.Sidebar.Controls.Add(Me.sideResSub2)
+        Me.Sidebar.Controls.Add(Me.sideresultBtn)
         Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.sideCalSub1)
         Me.Sidebar.Controls.Add(Me.sideCalSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(-10, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 2
@@ -359,15 +363,6 @@ Partial Class home
         Me.bigbtngroup.TabStop = False
         Me.bigbtngroup.Text = "GroupBox1"
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackgroundImage = Global.main.My.Resources.Resources.excel
-        Me.PictureBox1.Location = New System.Drawing.Point(1162, 86)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(188, 623)
-        Me.PictureBox1.TabIndex = 1
-        Me.PictureBox1.TabStop = False
-        '
         'resultBtn
         '
         Me.resultBtn.BackColor = System.Drawing.Color.Gray
@@ -427,6 +422,45 @@ Partial Class home
         '
         Me.Timer1.Interval = 1
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = Global.main.My.Resources.Resources.excel
+        Me.PictureBox1.Location = New System.Drawing.Point(1162, 86)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(188, 623)
+        Me.PictureBox1.TabIndex = 1
+        Me.PictureBox1.TabStop = False
+        '
+        'sideResSub2
+        '
+        Me.sideResSub2.BackColor = System.Drawing.Color.Gray
+        Me.sideResSub2.FlatAppearance.BorderSize = 0
+        Me.sideResSub2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sideResSub2.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sideResSub2.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideResSub2.Location = New System.Drawing.Point(2, 156)
+        Me.sideResSub2.Name = "sideResSub2"
+        Me.sideResSub2.Size = New System.Drawing.Size(196, 29)
+        Me.sideResSub2.TabIndex = 2
+        Me.sideResSub2.Text = "   RESULTS SUB 1"
+        Me.sideResSub2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideResSub2.UseVisualStyleBackColor = False
+        '
+        'sideResSub1
+        '
+        Me.sideResSub1.BackColor = System.Drawing.Color.Gray
+        Me.sideResSub1.FlatAppearance.BorderSize = 0
+        Me.sideResSub1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sideResSub1.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sideResSub1.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideResSub1.Location = New System.Drawing.Point(2, 126)
+        Me.sideResSub1.Name = "sideResSub1"
+        Me.sideResSub1.Size = New System.Drawing.Size(196, 29)
+        Me.sideResSub1.TabIndex = 2
+        Me.sideResSub1.Text = "   RESULTS SUB 1"
+        Me.sideResSub1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideResSub1.UseVisualStyleBackColor = False
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -477,4 +511,6 @@ Partial Class home
     Friend WithEvents sideCalSub2 As Button
     Friend WithEvents sideCalSub1 As Button
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents sideResSub1 As Button
+    Friend WithEvents sideResSub2 As Button
 End Class

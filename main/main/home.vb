@@ -2,7 +2,9 @@
 Public Class home
     Dim out As Boolean = False
     Dim cDrop As Boolean = False
+    Dim rDrop As Boolean = False
     Dim cDown As Boolean = False
+    Dim rDown As Boolean = False
     Dim atDrop As Boolean = False
     Dim atDown As Boolean = False
     Dim adDrop As Boolean = False
@@ -61,7 +63,20 @@ Public Class home
             End If
             sidebartime.Enabled = True
         End If
+    End Sub
 
+    Private Sub resdrop_Click(sender As Object, e As EventArgs) Handles resdrop.Click
+        If rDrop = False Then
+            rDrop = True
+            If rDown = False Then
+                rDown = True
+            Else
+                If rDown = True Then
+                    rDown = False
+                End If
+            End If
+            sidebartime.Enabled = True
+        End If
     End Sub
 
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
@@ -75,6 +90,9 @@ Public Class home
                 admDrop.Top += 10
                 sideCalSub1.Top += 10
                 sideCalSub2.Top += 10
+
+                sideResSub1.Top += 10
+                sideResSub2.Top += 10
             End If
             If cDown = False Then
                 sideresultBtn.Top -= 10
@@ -85,11 +103,47 @@ Public Class home
                 admDrop.Top -= 10
                 sideCalSub1.Top -= 10
                 sideCalSub2.Top -= 10
+
+                sideResSub1.Top -= 10
+                sideResSub2.Top -= 10
             End If
             jun += 1
             If jun = 6 Then
                 jun = 0
                 cDrop = False
+                sidebartime.Enabled = False
+            End If
+        End If
+        ' results drop
+        If rDrop = True Then
+            If rDown = True Then
+                sideresultBtn.Top += 10
+                sideAthletesBtn.Top += 10
+                sideadminBtn.Top += 10
+                resdrop.Top += 10
+                athdrop.Top += 10
+                admDrop.Top += 10
+                sideCalSub1.Top += 10
+                sideCalSub2.Top += 10
+                sideResSub1.Top += 10
+                sideResSub2.Top += 10
+            End If
+            If rDown = False Then
+                sideresultBtn.Top -= 10
+                sideAthletesBtn.Top -= 10
+                sideadminBtn.Top -= 10
+                resdrop.Top -= 10
+                athdrop.Top -= 10
+                admDrop.Top -= 10
+                sideCalSub1.Top -= 10
+                sideCalSub2.Top -= 10
+                sideResSub1.Top -= 10
+                sideResSub2.Top -= 10
+            End If
+            jun += 1
+            If jun = 6 Then
+                jun = 0
+                rDrop = False
                 sidebartime.Enabled = False
             End If
         End If
@@ -106,4 +160,5 @@ Public Class home
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
         Me.Close()
     End Sub
+
 End Class
