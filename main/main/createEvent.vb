@@ -195,6 +195,7 @@ Public Class createEvent
         End If
     End Sub
     Dim pbCount = 1
+    Dim pbList As New List(Of PictureBox)
     Private Sub createPictureBox(sender As Object)
         pbCount += 1
         If sender.Tag = "add" Then
@@ -225,6 +226,7 @@ Public Class createEvent
             pb.Cursor = Cursors.Hand
             AddHandler pb.Click, AddressOf pbAttach_Click
             Me.Controls.Add(pb)
+            pbList.Add(pb)
         ElseIf sender.Tag.Contains(".docx") Then
             Dim pb As New PictureBox
             pb.Image = My.Resources.transparent_plus
@@ -253,6 +255,7 @@ Public Class createEvent
             pb.Cursor = Cursors.Hand
             AddHandler pb.Click, AddressOf pbAttach_Click
             Me.Controls.Add(pb)
+            pbList.Add(pb)
         Else
             If sender.Tag.Contains(".xlsx") Then
                 Dim pb As New PictureBox
@@ -282,6 +285,7 @@ Public Class createEvent
                 pb.Cursor = Cursors.Hand
                 AddHandler pb.Click, AddressOf pbAttach_Click
                 Me.Controls.Add(pb)
+                pbList.Add(pb)
             End If
         End If
     End Sub
@@ -329,13 +333,14 @@ Public Class createEvent
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT * FROM Events WHERE EventDate = @date AND EventName = @name", conn) '*takes the column with correct rows
-                cmd.Parameters.AddWithValue("@date", cmbTemplate.SelectedItem.Split(" ")(0))
+                Dim eventSplit As String() = cmbTemplate.SelectedItem.Split(" ")
+                cmd.Parameters.AddWithValue("@date", eventSplit(eventSplit.Length - 1))
                 Dim name As String = ""
-                For Each part In cmbTemplate.SelectedItem.Split(" ")
-                    If part <> cmbTemplate.SelectedItem.Split(" ")(0) Then
-                        If part = cmbTemplate.SelectedItem.split(" ")(1) Then
+                For Each part In eventSplit
+                    If part <> eventSplit(eventSplit.Length - 1) Then 'if it's not the last element (the date)
+                        If part = eventSplit(0) Then                  'if it's the first part of the name
                             name += part
-                        Else
+                        Else                                          'if it's any other part of the anme
                             name += " " & part
                         End If
                     End If
@@ -358,8 +363,8 @@ Public Class createEvent
                             Dim fileNames() As String = dr("AttachNames").Split(";")
                             If fileNames.Count > 0 Then
                                 For Each fileName In fileNames
-                                    If fileName <> fileNames(0) Then
-                                        Dim tempPb As New PictureBox
+                                    If fileName <> fileNames(0) Then    'checks if it's the first file
+                                        Dim tempPb As New PictureBox    'creates new picturebox with the filename
                                         With tempPb
                                             .Width = pbAttach.Width
                                             .Height = pbAttach.Height
@@ -367,7 +372,7 @@ Public Class createEvent
                                             .Tag = fileName
                                         End With
                                         createPictureBox(tempPb)
-                                    Else
+                                    Else                                'sets the filename to the existing picturebox
                                         pbAttach.Tag = fileName
                                         pbAttach.Image = My.Resources.word
                                     End If
@@ -500,6 +505,38 @@ Public Class createEvent
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
         Dim tmpName As String = ""
+<<<<<<< HEAD
+        If sender.name <> "pbAttach" Then
+            For letterIndex As Integer = 0 To sender.name.ToCharArray().Length - 1
+                MessageBox.Show(sender.name.ToCharArray()(letterIndex))
+                If letterIndex = sender.name.ToCharArray().Length - 1 Then
+                    tmpName += CStr(CInt(sender.name.ToCharArray()(letterIndex).ToString()) + 1)
+                Else
+                    tmpName += sender.name.ToCharArray()(letterIndex)
+                End If
+            Next
+        Else
+            tmpName = "pb2"
+        End If
+        Dim indexToRemove As Integer = 0
+        For Each pictureBox In pbList
+            If pictureBox.Name = tmpName Then
+                Me.Controls.Remove(pictureBox)
+                indexToRemove = pbList.IndexOf(pictureBox)
+            End If
+        Next
+        pbList.RemoveAt(indexToRemove)
+        sender.Tag = "add"
+        sender.Image = My.Resources.transparent_plus
+        newAttachBoxLocation = sender.location
+        pbCount -= 1
+        If sender.location.x > pbAttach.Location.X + sender.width + 5 Then
+            For Each control In Me.Controls
+                If control.Location.Y > sender.location.Y + 20 Then
+                    control.Location = New Point(control.location.x, control.location.y - pbAttach.Height - 5)
+                End If
+            Next
+=======
         If sender.name <> pbAttach.Name Then
             For letterIndex As Integer = 0 To sender.name.ToCharArray().Length - 1
                 If letterIndex = sender.name.ToCharArray().Length - 1 Then
@@ -510,6 +547,7 @@ Public Class createEvent
             Next
         Else
             tmpName = "pb2"
+>>>>>>> origin/master
         End If
         For Each pb In Me.Controls.OfType(Of PictureBox)()
             If pb.Name = tmpName Then
