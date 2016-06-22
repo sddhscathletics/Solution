@@ -317,6 +317,8 @@ Partial Class createEvent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(359, 533)
         Me.Controls.Add(Me.chbNone)
         Me.Controls.Add(Me.pbAttach)
@@ -344,6 +346,7 @@ Partial Class createEvent
         Me.Controls.Add(Me.lblStart)
         Me.Controls.Add(Me.lblDate)
         Me.Controls.Add(Me.lblTitle)
+        Me.MaximizeBox = False
         Me.Name = "createEvent"
         Me.Text = "createEvent"
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
