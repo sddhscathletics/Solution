@@ -23,11 +23,11 @@ Partial Class Results
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.EventView = New System.Windows.Forms.DataGridView()
+        Me.MeetRev = New System.Windows.Forms.Button()
+        Me.SeasonRev = New System.Windows.Forms.Button()
+        Me.PrintEve = New System.Windows.Forms.Button()
+        CType(Me.EventView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -39,62 +39,62 @@ Partial Class Results
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Label1"
         '
-        'DataGridView1
+        'EventView
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(69, 62)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(415, 275)
-        Me.DataGridView1.TabIndex = 1
+        Me.EventView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.EventView.Location = New System.Drawing.Point(69, 62)
+        Me.EventView.Name = "EventView"
+        Me.EventView.Size = New System.Drawing.Size(415, 275)
+        Me.EventView.TabIndex = 1
         '
-        'Button1
+        'MeetRev
         '
-        Me.Button1.Location = New System.Drawing.Point(398, 370)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(86, 45)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Generate Meet Review"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.MeetRev.Location = New System.Drawing.Point(398, 370)
+        Me.MeetRev.Name = "MeetRev"
+        Me.MeetRev.Size = New System.Drawing.Size(86, 45)
+        Me.MeetRev.TabIndex = 2
+        Me.MeetRev.Text = "Generate Meet Review"
+        Me.MeetRev.UseVisualStyleBackColor = True
         '
-        'Button2
+        'SeasonRev
         '
-        Me.Button2.Location = New System.Drawing.Point(69, 370)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(86, 55)
-        Me.Button2.TabIndex = 3
-        Me.Button2.Text = "Generate Season Review"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.SeasonRev.Location = New System.Drawing.Point(69, 370)
+        Me.SeasonRev.Name = "SeasonRev"
+        Me.SeasonRev.Size = New System.Drawing.Size(86, 55)
+        Me.SeasonRev.TabIndex = 3
+        Me.SeasonRev.Text = "Generate Season Review"
+        Me.SeasonRev.UseVisualStyleBackColor = True
         '
-        'Button3
+        'PrintEve
         '
-        Me.Button3.Location = New System.Drawing.Point(259, 370)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(86, 45)
-        Me.Button3.TabIndex = 4
-        Me.Button3.Text = "Print"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.PrintEve.Location = New System.Drawing.Point(259, 370)
+        Me.PrintEve.Name = "PrintEve"
+        Me.PrintEve.Size = New System.Drawing.Size(86, 45)
+        Me.PrintEve.TabIndex = 4
+        Me.PrintEve.Text = "Print"
+        Me.PrintEve.UseVisualStyleBackColor = True
         '
         'Results
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(608, 482)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.PrintEve)
+        Me.Controls.Add(Me.SeasonRev)
+        Me.Controls.Add(Me.MeetRev)
+        Me.Controls.Add(Me.EventView)
         Me.Controls.Add(Me.Label1)
         Me.Name = "Results"
         Me.Text = "Results"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EventView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents EventView As DataGridView
+    Friend WithEvents MeetRev As Button
+    Friend WithEvents SeasonRev As Button
+    Friend WithEvents PrintEve As Button
 End Class
