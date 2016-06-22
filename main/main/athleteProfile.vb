@@ -4,7 +4,7 @@
 
     End Sub
 
-    Private Sub parseNo(address)
+    Private Sub parseNo(address As String)
         '5/26 Monmouth St, Randwick 2032
         Dim i As Integer = 1
         While address(i) <> " "
