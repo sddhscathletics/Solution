@@ -177,13 +177,10 @@ Public Class createEvent
                         sender.Tag = backSplit(backSplit.Count - 1)
                 End Select
                 filePaths.Add(ofdOpen.FileName)
-                Dim text As String = sender.Tag
                 Dim lbl As New Label
                 lbl.Width = sender.width
                 lbl.Font = New Drawing.Font("Arial", 9)
-                'Dim backSplit = ofdOpen.FileName.Split("\")
-                'lbl.Text = backSplit(backSplit.Count - 1).Split(".")(0)
-                lbl.Text = Text
+                lbl.Text = sender.Tag
                 Me.Controls.Add(lbl)
                 lbl.Parent = sender
                 lbl.BackColor = Color.Transparent
@@ -197,103 +194,104 @@ Public Class createEvent
     Dim pbCount = 1
     Private Sub createPictureBox(sender As Object)
         pbCount += 1
-        'If sender.Tag = "add" Then
         Dim pb As New PictureBox
+        pb.Name = "pb" & pbCount
+        pb.SizeMode = sender.sizeMode
+        pb.Width = sender.width
+        pb.Height = sender.height
+        If sender.Tag = "add" Then
             pb.Image = My.Resources.transparent_plus
             pb.Tag = "add"
-            pb.Name = "pb" & pbCount
-            pb.SizeMode = sender.sizeMode
-            pb.Width = sender.width
-            pb.Height = sender.height
-        'If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
-        '    For Each control In Me.Controls
-        '        If control.Location.Y > sender.location.Y + 20 Then
-        '            control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
-        '        End If
-        '    Next
-        '    pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
-        '    'For Each control In Me.Controls.OfType(Of PictureBox)()
-        '    '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-        '    '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-        '    '    End If
-        '    'Next
-        '    Me.Height += pbAttach.Height + 5
-        'Else
-        '    pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
-        'End If
-        'newAttachBoxLocation = pb.Location
-        pb.Cursor = Cursors.Hand
-
-        AddHandler pb.Click, AddressOf pbAttach_Click
-        flpAttach.Controls.Add(pb)
-        pb.Location = New Point(sender.location.x, sender.location.y + sender.height)
-        MessageBox.Show(pb.Location.ToString)
-        'ElseIf sender.Tag.Contains(".docx") Then
-        '    Dim pb As New PictureBox
-        '    pb.Image = My.Resources.transparent_plus
-        '    pb.Tag = "add"
-        '    pb.Name = "pb" & pbCount
-        '    pb.SizeMode = sender.SizeMode
-        '    pb.Width = sender.width
-        '    pb.Height = sender.height
-        '    If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
-        '        For Each control In Me.Controls
-        '            If control.Location.Y > sender.location.Y + 20 Then
-        '                control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
-        '            End If
-        '        Next
-        '        pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
-        '        'For Each control In Me.Controls.OfType(Of PictureBox)()
-        '        '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-        '        '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-        '        '    End If
-        '        'Next
-        '        Me.Height += pbAttach.Height + 5
-        '    Else
-        '        pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
-        '    End If
-        '    newAttachBoxLocation = pb.Location
-        '    pb.Cursor = Cursors.Hand
-        '    AddHandler pb.Click, AddressOf pbAttach_Click
-        '    Me.Controls.Add(pb)
-        'Else
-        '    If sender.Tag.Contains(".xlsx") Then
-        '        Dim pb As New PictureBox
-        '        pb.Image = My.Resources.transparent_plus
-        '        pb.Tag = "add"
-        '        pb.Name = "pb" & pbCount
-        '        pb.SizeMode = sender.sizemode
-        '        pb.Width = sender.width
-        '        pb.Height = sender.height
-        '        If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
-        '            For Each control In Me.Controls
-        '                If control.Location.Y > sender.location.Y + 20 Then
-        '                    control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
-        '                End If
-        '            Next
-        '            pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
-        '            'For Each control In Me.Controls.OfType(Of PictureBox)()
-        '            '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-        '            '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-        '            '    End If
-        '            'Next
-        '            Me.Height += pbAttach.Height + 5
-        '        Else
-        '            pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
-        '        End If
-        '        newAttachBoxLocation = pb.Location
-        '        pb.Cursor = Cursors.Hand
-        '        AddHandler pb.Click, AddressOf pbAttach_Click
-        '        Me.Controls.Add(pb)
-        'End If
-        ' End If
+            'need to put call to this function after pbattach, check set the previous pb to file??
+            'If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
+            '    For Each control In Me.Controls
+            '        If control.Location.Y > sender.location.Y + 20 Then
+            '            control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
+            '        End If
+            '    Next
+            '    pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
+            '    'For Each control In Me.Controls.OfType(Of PictureBox)()
+            '    '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
+            '    '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
+            '    '    End If
+            '    'Next
+            '    Me.Height += pbAttach.Height + 5
+            'Else
+            '    pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
+            'End If
+            'newAttachBoxLocation = pb.Location
+        ElseIf sender.Tag.Contains(".docx") Then
+            pb.Cursor = Cursors.Hand
+            AddHandler pb.Click, AddressOf pbAttach_Click
+            flpAttach.Controls.Add(pb)
+            pb.Location = New Point(sender.location.x, sender.location.y + sender.height)
+            MessageBox.Show(pb.Location.ToString)
+            'ElseIf sender.Tag.Contains(".docx") Then
+            '    Dim pb As New PictureBox
+            '    pb.Image = My.Resources.transparent_plus
+            '    pb.Tag = "add"
+            '    pb.Name = "pb" & pbCount
+            '    pb.SizeMode = sender.SizeMode
+            '    pb.Width = sender.width
+            '    pb.Height = sender.height
+            '    If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
+            '        For Each control In Me.Controls
+            '            If control.Location.Y > sender.location.Y + 20 Then
+            '                control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
+            '            End If
+            '        Next
+            '        pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
+            '        'For Each control In Me.Controls.OfType(Of PictureBox)()
+            '        '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
+            '        '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
+            '        '    End If
+            '        'Next
+            '        Me.Height += pbAttach.Height + 5
+            '    Else
+            '        pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
+            '    End If
+            '    newAttachBoxLocation = pb.Location
+            '    pb.Cursor = Cursors.Hand
+            '    AddHandler pb.Click, AddressOf pbAttach_Click
+            '    Me.Controls.Add(pb)
+            'Else
+            '    If sender.Tag.Contains(".xlsx") Then
+            '        Dim pb As New PictureBox
+            '        pb.Image = My.Resources.transparent_plus
+            '        pb.Tag = "add"
+            '        pb.Name = "pb" & pbCount
+            '        pb.SizeMode = sender.sizemode
+            '        pb.Width = sender.width
+            '        pb.Height = sender.height
+            '        If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
+            '            For Each control In Me.Controls
+            '                If control.Location.Y > sender.location.Y + 20 Then
+            '                    control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
+            '                End If
+            '            Next
+            '            pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
+            '            'For Each control In Me.Controls.OfType(Of PictureBox)()
+            '            '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
+            '            '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
+            '            '    End If
+            '            'Next
+            '            Me.Height += pbAttach.Height + 5
+            '        Else
+            '            pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
+            '        End If
+            '        newAttachBoxLocation = pb.Location
+            '        pb.Cursor = Cursors.Hand
+            '        AddHandler pb.Click, AddressOf pbAttach_Click
+            '        Me.Controls.Add(pb)
+            'End If
+        End If
     End Sub
     Private Sub lblTitle_Click(sender As Object, e As EventArgs) Handles lblTitle.Click
         Dim ptLowerLeft = New Point(0, sender.Height)
         ptLowerLeft = sender.PointToScreen(ptLowerLeft)
         'cmsTemplate.Show(ptLowerLeft)
     End Sub
-    Dim templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016"}
+    Dim templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016", "Test Record Layout 23/06/2016"}
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Dim savedEvents As New Dictionary(Of Date, String)
         'Dim dates As New List(Of Date)
@@ -332,7 +330,7 @@ Public Class createEvent
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT * FROM Events WHERE EventDate = @date AND EventName = @name", conn) '*takes the column with correct rows
+            Using cmd As New OleDbCommand("SELECT * FROM Events WHERE EventDate = @date And EventName = @name", conn) '*takes the column with correct rows
                 Dim eventSplit As String() = cmbTemplate.SelectedItem.Split(" ")
                 cmd.Parameters.AddWithValue("@date", eventSplit(eventSplit.Length - 1))
                 Dim name As String = ""
@@ -370,11 +368,20 @@ Public Class createEvent
                                             .Height = pbAttach.Height
                                             .Location = newAttachBoxLocation
                                             .Tag = fileName
+                                            .SizeMode = PictureBoxSizeMode.Zoom
                                         End With
                                         createPictureBox(tempPb)
                                     Else                                'sets the filename to the existing picturebox
                                         pbAttach.Tag = fileName
                                         pbAttach.Image = My.Resources.word
+                                        Dim lbl As New Label
+                                        lbl.Width = sender.width
+                                        lbl.Font = New Drawing.Font("Arial", 9)
+                                        lbl.Text = fileName
+                                        Me.Controls.Add(lbl)
+                                        lbl.Parent = sender
+                                        lbl.BackColor = Color.Transparent
+                                        lbl.BringToFront()
                                     End If
                                 Next
                             End If
@@ -421,9 +428,9 @@ Public Class createEvent
                                     End Using
                                 ElseIf officeType = Nothing Then
                                     If fileName.EndsWith("docx") Then
-                                        MessageBox.Show("You do not have Word installed.")
+                                        MessageBox.Show("You do Not have Word installed.")
                                     Else
-                                        MessageBox.Show("You do not have Excel installed.")
+                                        MessageBox.Show("You do Not have Excel installed.")
                                     End If
                                 ElseIf sfdSave.FileName = "" Then
                                     MessageBox.Show("Please enter a valid file name.")
@@ -457,7 +464,7 @@ Public Class createEvent
                                     End If
                                 End Using
                             Else
-                                If MessageBox.Show("The file has not been uploaded yet." + vbNewLine + "Would you like to open the file from your computer?", "File not uploaded", MessageBoxButtons.OKCancel) = DialogResult.OK Then
+                                If MessageBox.Show("The file has Not been uploaded yet." + vbNewLine + "Would you Like to open the file from your computer?", "File Not uploaded", MessageBoxButtons.OKCancel) = DialogResult.OK Then
                                     Dim fileValid As Boolean = False
                                     While fileValid = False
                                         ofdOpen.FileName = ""
@@ -477,13 +484,13 @@ Public Class createEvent
                                             fileValid = True
                                         ElseIf officeType = Nothing Then
                                             If fileName.EndsWith("docx") Then
-                                                MessageBox.Show("You do not have Word installed.")
+                                                MessageBox.Show("You do Not have Word installed.")
                                             Else
-                                                MessageBox.Show("You do not have Excel installed.")
+                                                MessageBox.Show("You do Not have Excel installed.")
                                             End If
                                             fileValid = True
                                         ElseIf System.IO.Path.GetFileName(ofdOpen.FileName) <> fileName Then
-                                            If MessageBox.Show("You have not selected the attachment file." + vbNewLine + "Would you like to select the file again?", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
+                                            If MessageBox.Show("You have Not selected the attachment file." + vbNewLine + "Would you Like to select the file again?", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
                                                 fileValid = True
                                             Else
                                                 fileValid = False
