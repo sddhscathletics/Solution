@@ -343,6 +343,7 @@ Partial Class createEvent
         '
         'flpAttach
         '
+        Me.flpAttach.AutoScroll = True
         Me.flpAttach.BackColor = System.Drawing.SystemColors.ControlDark
         Me.flpAttach.Controls.Add(Me.pbAttach)
         Me.flpAttach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
@@ -350,6 +351,7 @@ Partial Class createEvent
         Me.flpAttach.Name = "flpAttach"
         Me.flpAttach.Size = New System.Drawing.Size(358, 159)
         Me.flpAttach.TabIndex = 45
+        Me.flpAttach.WrapContents = False
         '
         'createEvent
         '
