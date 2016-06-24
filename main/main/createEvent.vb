@@ -81,6 +81,7 @@ Public Class createEvent
                     End Using
                 End Using
             Next
+            Me.Close()
         ElseIf attendees.Count <= 0 Then
             MessageBox.Show("You must select athletes for the event.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         ElseIf (times.Count <= 0 AndAlso chbNA.Checked = False) Then
@@ -127,6 +128,7 @@ Public Class createEvent
                 End Using
                 conn.Close()
             End Using
+            Me.Close()
         End If
 
         'retrieving and displaying images (change SQL query as needed)
@@ -148,7 +150,6 @@ Public Class createEvent
         '    End Using
         '    conn.Close()
         'End Using
-        Me.Close()
     End Sub
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
         selectAthletes.Show()
@@ -220,7 +221,7 @@ Public Class createEvent
             '    pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
             'End If
             'newAttachBoxLocation = pb.Location
-        ElseIf sender.Tag.Contains(".docx") Then
+            'ElseIf sender.Tag.Contains(".docx") Then
             pb.Cursor = Cursors.Hand
             AddHandler pb.Click, AddressOf pbAttach_Click
             flpAttach.Controls.Add(pb)
@@ -360,28 +361,51 @@ Public Class createEvent
                             times.AddRange(dr("Events").Split(";"))
                             Dim fileNames() As String = dr("AttachNames").Split(";")
                             If fileNames.Count > 0 Then
+                                Dim tempPb As New PictureBox    'creates new picturebox with the filename
+                                With tempPb
+                                    .Width = pbAttach.Width
+                                    .Height = pbAttach.Height
+                                    .Tag = "add"
+                                    .SizeMode = PictureBoxSizeMode.Zoom
+                                End With
                                 For Each fileName In fileNames
                                     If fileName <> fileNames(0) Then    'checks if it's the first file
-                                        Dim tempPb As New PictureBox    'creates new picturebox with the filename
-                                        With tempPb
-                                            .Width = pbAttach.Width
-                                            .Height = pbAttach.Height
-                                            .Location = newAttachBoxLocation
-                                            .Tag = fileName
-                                            .SizeMode = PictureBoxSizeMode.Zoom
-                                        End With
+                                        For Each pb In Me.Controls.OfType(Of PictureBox)()
+                                            If pb.Name = pbCount Then
+                                                pb.Tag = fileName
+                                                If fileName.EndsWith(".docx") Then
+                                                    pbAttach.Image = My.Resources.word
+                                                Else
+                                                    pbAttach.Image = My.Resources.excel
+                                                End If
+                                                Dim lbl As New Label
+                                                lbl.Width = pbAttach.Width
+                                                lbl.Font = New Drawing.Font("Arial", 9)
+                                                lbl.Text = fileName
+                                                Me.Controls.Add(lbl)
+                                                lbl.Parent = pb
+                                                lbl.BackColor = Color.Transparent
+                                                lbl.BringToFront()
+                                                Exit For
+                                            End If
+                                        Next
                                         createPictureBox(tempPb)
                                     Else                                'sets the filename to the existing picturebox
                                         pbAttach.Tag = fileName
-                                        pbAttach.Image = My.Resources.word
+                                        If fileName.EndsWith(".docx") Then
+                                            pbAttach.Image = My.Resources.word
+                                        Else
+                                            pbAttach.Image = My.Resources.excel
+                                        End If
                                         Dim lbl As New Label
-                                        lbl.Width = sender.width
+                                        lbl.Width = pbAttach.Width
                                         lbl.Font = New Drawing.Font("Arial", 9)
                                         lbl.Text = fileName
                                         Me.Controls.Add(lbl)
-                                        lbl.Parent = sender
+                                        lbl.Parent = pbAttach
                                         lbl.BackColor = Color.Transparent
                                         lbl.BringToFront()
+                                        createPictureBox(tempPb)
                                     End If
                                 Next
                             End If
@@ -526,6 +550,7 @@ Public Class createEvent
         For Each pb In Me.Controls.OfType(Of PictureBox)()
             If pb.Name = tmpName Then
                 Me.Controls.Remove(pb)
+                Exit For
             End If
         Next
         If sender.location.x > pbAttach.Location.X + sender.width + 5 Then 'if it's in the third column
