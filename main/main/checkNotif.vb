@@ -1,4 +1,5 @@
 ﻿Public Class checkNotif
+    'Let's make this panels!
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         loadAlerts()
     End Sub
@@ -22,12 +23,16 @@
         For Each notif As notif In alertList
             Me.dgdNotifs.Rows.Add(notif.ID, notif.ltime, notif.ldate, notif.username, notif.edit)
         Next
-        dgdNotifs.CurrentRow.Selected = True
+        If dgdNotifs.RowCount > 0 Then
+            dgdNotifs.CurrentRow.Selected = True
+        End If
     End Sub
 
     Private Sub btnMarkRead_Click(sender As Object, e As EventArgs) Handles btnMarkRead.Click
-        Dim ID As String = dgdNotifs.SelectedRows(0).Cells(0).Value.ToString
-        markRead(ID)
-        loadAlerts()
+        If dgdNotifs.RowCount > 0 Then
+            Dim ID As String = dgdNotifs.SelectedRows(0).Cells(0).Value.ToString
+            markRead(ID)
+            loadAlerts()
+        End If
     End Sub
 End Class
