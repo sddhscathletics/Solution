@@ -15,7 +15,7 @@ Public Class athleteProfile
 
     'Removed athlete class
     Dim adNo, adSt, adSb, adPo As String
-    Dim ID As Integer = 436448244
+    Dim ID As String = "436448244"
 
     Private Sub athleteProfile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
