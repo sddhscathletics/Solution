@@ -47,7 +47,7 @@ Partial Class Logon
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Proxy 1", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(332, 172)
+        Me.Label1.Location = New System.Drawing.Point(407, 182)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(556, 78)
         Me.Label1.TabIndex = 6
@@ -55,7 +55,7 @@ Partial Class Logon
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(424, 304)
+        Me.TextBox1.Location = New System.Drawing.Point(499, 314)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(338, 32)
@@ -63,7 +63,7 @@ Partial Class Logon
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(424, 393)
+        Me.TextBox2.Location = New System.Drawing.Point(499, 403)
         Me.TextBox2.Multiline = True
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(338, 32)
@@ -73,7 +73,7 @@ Partial Class Logon
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Proxy 1", 15.0!)
-        Me.Label2.Location = New System.Drawing.Point(382, 304)
+        Me.Label2.Location = New System.Drawing.Point(457, 314)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(36, 25)
         Me.Label2.TabIndex = 6
@@ -83,7 +83,7 @@ Partial Class Logon
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Proxy 1", 15.0!)
-        Me.Label3.Location = New System.Drawing.Point(373, 393)
+        Me.Label3.Location = New System.Drawing.Point(448, 403)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(45, 25)
         Me.Label3.TabIndex = 6
@@ -96,7 +96,7 @@ Partial Class Logon
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(529, 463)
+        Me.Button1.Location = New System.Drawing.Point(604, 473)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 8
@@ -108,7 +108,7 @@ Partial Class Logon
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1334, 692)
+        Me.ClientSize = New System.Drawing.Size(1350, 730)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.TextBox1)
