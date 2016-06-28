@@ -42,6 +42,7 @@ Partial Class Results
         'EventView
         '
         Me.EventView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.EventView.GridColor = System.Drawing.SystemColors.Control
         Me.EventView.Location = New System.Drawing.Point(69, 62)
         Me.EventView.Name = "EventView"
         Me.EventView.Size = New System.Drawing.Size(415, 275)
