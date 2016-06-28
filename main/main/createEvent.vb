@@ -195,7 +195,6 @@ Public Class createEvent
         End If
     End Sub
     Dim pbCount = 1
-    Dim pbList As New List(Of PictureBox)
     Private Sub createPictureBox(sender As Object)
         pbCount += 1
         If sender.Tag = "add" Then
@@ -226,7 +225,6 @@ Public Class createEvent
             pb.Cursor = Cursors.Hand
             AddHandler pb.Click, AddressOf pbAttach_Click
             Me.Controls.Add(pb)
-            pbList.Add(pb)
         ElseIf sender.Tag.Contains(".docx") Then
             Dim pb As New PictureBox
             pb.Image = My.Resources.transparent_plus
@@ -255,7 +253,6 @@ Public Class createEvent
             pb.Cursor = Cursors.Hand
             AddHandler pb.Click, AddressOf pbAttach_Click
             Me.Controls.Add(pb)
-            pbList.Add(pb)
         Else
             If sender.Tag.Contains(".xlsx") Then
                 Dim pb As New PictureBox
@@ -285,7 +282,6 @@ Public Class createEvent
                 pb.Cursor = Cursors.Hand
                 AddHandler pb.Click, AddressOf pbAttach_Click
                 Me.Controls.Add(pb)
-                pbList.Add(pb)
             End If
         End If
     End Sub
@@ -505,38 +501,6 @@ Public Class createEvent
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
         Dim tmpName As String = ""
-<<<<<<< HEAD
-        If sender.name <> "pbAttach" Then
-            For letterIndex As Integer = 0 To sender.name.ToCharArray().Length - 1
-                MessageBox.Show(sender.name.ToCharArray()(letterIndex))
-                If letterIndex = sender.name.ToCharArray().Length - 1 Then
-                    tmpName += CStr(CInt(sender.name.ToCharArray()(letterIndex).ToString()) + 1)
-                Else
-                    tmpName += sender.name.ToCharArray()(letterIndex)
-                End If
-            Next
-        Else
-            tmpName = "pb2"
-        End If
-        Dim indexToRemove As Integer = 0
-        For Each pictureBox In pbList
-            If pictureBox.Name = tmpName Then
-                Me.Controls.Remove(pictureBox)
-                indexToRemove = pbList.IndexOf(pictureBox)
-            End If
-        Next
-        pbList.RemoveAt(indexToRemove)
-        sender.Tag = "add"
-        sender.Image = My.Resources.transparent_plus
-        newAttachBoxLocation = sender.location
-        pbCount -= 1
-        If sender.location.x > pbAttach.Location.X + sender.width + 5 Then
-            For Each control In Me.Controls
-                If control.Location.Y > sender.location.Y + 20 Then
-                    control.Location = New Point(control.location.x, control.location.y - pbAttach.Height - 5)
-                End If
-            Next
-=======
         If sender.name <> pbAttach.Name Then
             For letterIndex As Integer = 0 To sender.name.ToCharArray().Length - 1
                 If letterIndex = sender.name.ToCharArray().Length - 1 Then
@@ -547,7 +511,6 @@ Public Class createEvent
             Next
         Else
             tmpName = "pb2"
->>>>>>> origin/master
         End If
         For Each pb In Me.Controls.OfType(Of PictureBox)()
             If pb.Name = tmpName Then
@@ -565,6 +528,7 @@ Public Class createEvent
         sender.Image = My.Resources.transparent_plus
         newAttachBoxLocation = sender.location
         sender.Tag = "add"
+        pbCount -= 1
     End Sub
     Private Sub openWordFile(ByVal path As String)
         Try

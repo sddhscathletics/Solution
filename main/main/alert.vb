@@ -54,7 +54,7 @@ Module alert
     Public Sub markRead(ID)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\edits.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("UPDATE edits SET [read] = 1 WHERE ID = " + ID, conn) 'Selects unread edits
+            Using cmd As New OleDbCommand("UPDATE edits SET [read] = 1 WHERE ID = " + ID, conn) 'Marks edits as read using the given ID
                 cmd.ExecuteNonQuery()
             End Using
         End Using
