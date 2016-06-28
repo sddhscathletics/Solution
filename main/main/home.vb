@@ -80,6 +80,7 @@ Public Class home
     End Sub
 
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
+        'calendar drop
         If cDrop = True Then
             If cDown = True Then
                 sideresultBtn.Top += 10
@@ -117,26 +118,18 @@ Public Class home
         ' results drop
         If rDrop = True Then
             If rDown = True Then
-                sideresultBtn.Top += 10
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
-                resdrop.Top += 10
                 athdrop.Top += 10
                 admDrop.Top += 10
-                sideCalSub1.Top += 10
-                sideCalSub2.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
             If rDown = False Then
-                sideresultBtn.Top -= 10
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
-                resdrop.Top -= 10
                 athdrop.Top -= 10
                 admDrop.Top -= 10
-                sideCalSub1.Top -= 10
-                sideCalSub2.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
