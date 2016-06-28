@@ -52,9 +52,11 @@ Partial Class createEvent
         Me.sfdSave = New System.Windows.Forms.SaveFileDialog()
         Me.gbDetails = New System.Windows.Forms.GroupBox()
         Me.flpAttach = New System.Windows.Forms.FlowLayoutPanel()
+        Me.pnlAttach = New System.Windows.Forms.Panel()
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
+        Me.pnlAttach.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnSelect
@@ -309,10 +311,10 @@ Partial Class createEvent
         '
         Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(3, 3)
+        Me.pbAttach.Location = New System.Drawing.Point(0, 0)
         Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(352, 56)
-        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
+        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbAttach.TabIndex = 42
         Me.pbAttach.TabStop = False
         Me.pbAttach.Tag = "add"
@@ -344,14 +346,23 @@ Partial Class createEvent
         'flpAttach
         '
         Me.flpAttach.AutoScroll = True
-        Me.flpAttach.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.flpAttach.Controls.Add(Me.pbAttach)
+        Me.flpAttach.BackColor = System.Drawing.SystemColors.Control
+        Me.flpAttach.Controls.Add(Me.pnlAttach)
         Me.flpAttach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpAttach.Location = New System.Drawing.Point(16, 339)
         Me.flpAttach.Name = "flpAttach"
         Me.flpAttach.Size = New System.Drawing.Size(358, 159)
         Me.flpAttach.TabIndex = 45
         Me.flpAttach.WrapContents = False
+        '
+        'pnlAttach
+        '
+        Me.pnlAttach.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.pnlAttach.Controls.Add(Me.pbAttach)
+        Me.pnlAttach.Location = New System.Drawing.Point(3, 3)
+        Me.pnlAttach.Name = "pnlAttach"
+        Me.pnlAttach.Size = New System.Drawing.Size(347, 56)
+        Me.pnlAttach.TabIndex = 43
         '
         'createEvent
         '
@@ -378,6 +389,7 @@ Partial Class createEvent
         Me.gbDetails.ResumeLayout(False)
         Me.gbDetails.PerformLayout()
         Me.flpAttach.ResumeLayout(False)
+        Me.pnlAttach.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -412,4 +424,5 @@ Partial Class createEvent
     Friend WithEvents sfdSave As SaveFileDialog
     Friend WithEvents gbDetails As GroupBox
     Friend WithEvents flpAttach As FlowLayoutPanel
+    Friend WithEvents pnlAttach As Panel
 End Class
