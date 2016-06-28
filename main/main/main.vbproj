@@ -288,11 +288,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\edits.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Calendar.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

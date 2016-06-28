@@ -1,19 +1,10 @@
 ﻿Imports System.Data.OleDb
-Public Class athleteProfile
-    'ID
-    'Rollclass
-    'First Name
-    'Last Name
-    'Age Group
-    'Address (Parsed)
-    'Medical Info (Check address)
-    'Best Event
-    'Email
-    'Phone Number
-    'Teams
-    'Attachment
 
-    'Removed athlete class
+Public Class athleteProfile
+    'Add the ability to copy?
+    'ID Photo (2:3)
+    'Medical Info (Check address)
+
     Dim adNo, adSt, adSb, adPo As String
     Dim ID As String = "436448244"
 
@@ -24,27 +15,25 @@ Public Class athleteProfile
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
-                            'newAthlete.ID = dr("ID")
-                            'newAthlete.roll = dr("RollClass")
-                            'newAthlete.fName = dr("FirstName")
-                            'newAthlete.lName = dr("LastName")
-                            'newAthlete.ageGroup = dr("AgeGroup")
-                            'newAthlete.address = dr("Address")
-                            'newAthlete.medical = dr("MedicalInfo")
-                            'newAthlete.bestEvent = dr("BestEvent")
-                            'newAthlete.email = dr("Email")
-                            'newAthlete.phone = dr("PhoneNumber")
-                            'newAthlete.teams = dr("Teams")
+                            'pbPhoto.Image = dr("Photo")
+                            If access = 2 Then
+                                parseNo(dr("Address"))
+                                lblPhone.Text = "Phone Number: " + dr("PhoneNumber")
+                                lblEmail.Text = "Email Address: " + dr("Email")
+                                lblMedical.Text = dr("MedicalInfo")
+                            End If
+                            lblID.Text = dr("ID")
+                            lblRoll.Text = "Roll Class: " + dr("RollClass")
+                            lblFName.Text = dr("FirstName")
+                            lblLName.Text = dr("LastName")
+                            lblTeams.Text = "Teams: " + dr("Teams")
+                            lblAgeGroup.Text = "Age Group: " + dr("AgeGroup")
+                            lblBestEvent.Text = "Best Event: " + dr("BestEvent")
                         Loop
                     End If
                 End Using
             End Using
         End Using
-    End Sub
-
-
-    Private Sub btnParse_Click(sender As Object, e As EventArgs)
-        'parseNo(newAthlete.address)
     End Sub
 
     Private Sub parseNo(address As String) 'Parse address number
@@ -53,7 +42,7 @@ Public Class athleteProfile
             adNo += address(i)
             i += 1
         End While
-        ' txtNo.Text = adNo
+        lblStNo.Text = adNo
         parseSt(i, address)
     End Sub
 
@@ -64,7 +53,7 @@ Public Class athleteProfile
             adSt += address(i)
             i += 1
         End While
-        '  txtSt.Text = adSt
+        lblSt.Text = adSt
         parseSb(i, address)
     End Sub
 
@@ -74,7 +63,7 @@ Public Class athleteProfile
             adSb += address(i)
             i += 1
         End While
-        ' txtSb.Text = adSb
+        lblSb.Text = adSb
         parsePo(i, address)
     End Sub
 
@@ -83,6 +72,6 @@ Public Class athleteProfile
         For i = i To Len(address) - 1
             adPo += address(i)
         Next
-        ' txtPo.Text = adPo
+        lblPo.Text = adPo
     End Sub
 End Class
