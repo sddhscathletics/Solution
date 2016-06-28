@@ -1,5 +1,7 @@
 ﻿
 Public Class home
+
+#Region "Dim Variables"
     Dim out As Boolean = False
     Dim cDrop As Boolean = False
     Dim rDrop As Boolean = False
@@ -10,16 +12,15 @@ Public Class home
     Dim adDrop As Boolean = False
     Dim adDown As Boolean = False
     Dim jun As Integer = 0
+#End Region
 
 #Region " Move Form "
-
-    ' [ Move Form ]
 
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
     Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseDown ' Add more handles here (Example: PictureBox1.MouseDown)
+    GroupBox2.MouseDown
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -30,7 +31,7 @@ Public Class home
     End Sub
 
     Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseMove ' Add more handles here (Example: PictureBox1.MouseMove)
+    GroupBox2.MouseMove
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -39,7 +40,7 @@ Public Class home
     End Sub
 
     Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseUp ' Add more handles here (Example: PictureBox1.MouseUp)
+    GroupBox2.MouseUp
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -50,10 +51,10 @@ Public Class home
 
 #End Region
 
+#Region "Sidebar"
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
         Timer1.Enabled = True
     End Sub
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If out = False Then
             bigbtngroup.Left = bigbtngroup.Left + 20
@@ -71,54 +72,6 @@ Public Class home
             End If
         End If
     End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click, sidecalendarBtn.Click
-        calendar.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        Close()
-    End Sub
-
-    Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles resultBtn.Click, sideresultBtn.Click
-        Results.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles caldrop.Click
-        ' DO SQL STUFF
-        If cDrop = False Then
-            cDrop = True
-            If cDown = False Then
-                cDown = True
-            Else
-                If cDown = True Then
-                    cDown = False
-                End If
-            End If
-            sidebartime.Enabled = True
-        End If
-    End Sub
-
-    Private Sub resdrop_Click(sender As Object, e As EventArgs) Handles resdrop.Click
-        If rDrop = False Then
-            rDrop = True
-            If rDown = False Then
-                rDown = True
-            Else
-                If rDown = True Then
-                    rDown = False
-                End If
-            End If
-            sidebartime.Enabled = True
-        End If
-    End Sub
-
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
         'calendar drop
         If cDrop = True Then
@@ -181,13 +134,50 @@ Public Class home
             End If
         End If
     End Sub
+    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles caldrop.Click
+        If cDrop = False Then
+            cDrop = True
+            If cDown = False Then
+                cDown = True
+            Else
+                If cDown = True Then
+                    cDown = False
+                End If
+            End If
+            sidebartime.Enabled = True
+        End If
+    End Sub
+    Private Sub resdrop_Click(sender As Object, e As EventArgs) Handles resdrop.Click
+        If rDrop = False Then
+            rDrop = True
+            If rDown = False Then
+                rDown = True
+            Else
+                If rDown = True Then
+                    rDown = False
+                End If
+            End If
+            sidebartime.Enabled = True
+        End If
+    End Sub
+
+    Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles sidecalendarBtn.Click
+        calendar.Show()
+        Me.Hide()
+    End Sub
+    Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles sideresultBtn.Click
+        Results.Show()
+        Me.Hide()
+    End Sub
+#End Region
+
+#Region "Buttons"
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+        Close()
+    End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         checkNotif.Show()
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
-        calendar.Show()
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
@@ -197,4 +187,14 @@ Public Class home
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Logon.Show()
     End Sub
+
+    Private Sub resultBtn_Click_1(sender As Object, e As EventArgs) Handles resultBtn.Click
+        Results.Show()
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
+        calendar.Show()
+    End Sub
+#End Region
+
 End Class

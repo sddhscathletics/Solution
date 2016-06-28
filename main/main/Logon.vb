@@ -1,5 +1,7 @@
 ﻿Imports System.Data.OleDb
 Public Class Logon
+
+#Region "Dim Variables"
     Dim adpCustomer As OleDbDataAdapter
     Dim conCreditUnion As OleDbConnection
     Dim datCustomer As New DataSet()
@@ -10,10 +12,9 @@ Public Class Logon
     Dim rowCurrent As DataRow
     Dim Key(0) As DataColumn
     Public attempts As Integer = 3
+#End Region
 
 #Region " Move Form "
-
-    ' [ Move Form ]
 
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
@@ -50,6 +51,7 @@ Public Class Logon
 
 #End Region
 
+#Region "Login Feedback"
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text = "" Or TextBox2.Text = "" Then
             MsgBox("u missin somefin")
@@ -79,7 +81,9 @@ Public Class Logon
             End If
         End If
     End Sub
+#End Region
 
+#Region "Match User/Pass"
     Public Shared Function findUserPass(ByVal username As String, pass As String)
         Dim enteredStuff As New List(Of String)
         Dim Found As Boolean
@@ -112,6 +116,6 @@ Public Class Logon
             .ExecuteNonQuery()
         End With
     End Sub
-
+#End Region
 
 End Class

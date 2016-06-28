@@ -88,7 +88,7 @@ Partial Class home
         Me.Sidebar.Controls.Add(Me.sideCalSub2)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
         Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(-10, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 2
