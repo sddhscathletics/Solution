@@ -69,7 +69,7 @@ Public Class Logon
                 TextBox1.Focus()
                 If attempts = 0 Then ' 3 Tries used up, locked out
                     Button1.Enabled = False
-                    MsgBox("you audi")
+                    MsgBox("Email Kurt at: kurtscoolemail@wow.com for your password")
                     TextBox1.ReadOnly = True
                     TextBox2.ReadOnly = True
                 End If

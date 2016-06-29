@@ -46,10 +46,10 @@ Partial Class Logon
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Proxy 1", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Swis721 LtEx BT", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(407, 182)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(556, 78)
+        Me.Label1.Size = New System.Drawing.Size(561, 76)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "LOGIN SCREEN"
         '
@@ -108,7 +108,7 @@ Partial Class Logon
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1350, 730)
+        Me.ClientSize = New System.Drawing.Size(1280, 720)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.TextBox1)

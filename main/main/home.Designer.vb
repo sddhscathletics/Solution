@@ -88,7 +88,7 @@ Partial Class home
         Me.Sidebar.Controls.Add(Me.sideCalSub2)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
         Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-10, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 2
@@ -325,7 +325,7 @@ Partial Class home
         Me.Button13.FlatAppearance.BorderSize = 0
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1228, 12)
+        Me.Button13.Location = New System.Drawing.Point(1157, 11)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(44, 44)
         Me.Button13.TabIndex = 6
@@ -338,7 +338,7 @@ Partial Class home
         Me.Button12.FlatAppearance.BorderSize = 0
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button12.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button12.Location = New System.Drawing.Point(1272, 12)
+        Me.Button12.Location = New System.Drawing.Point(1201, 11)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(44, 44)
         Me.Button12.TabIndex = 6
@@ -351,7 +351,7 @@ Partial Class home
         Me.exitBtn.FlatAppearance.BorderSize = 0
         Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.exitBtn.Location = New System.Drawing.Point(1316, 12)
+        Me.exitBtn.Location = New System.Drawing.Point(1245, 11)
         Me.exitBtn.Name = "exitBtn"
         Me.exitBtn.Size = New System.Drawing.Size(44, 44)
         Me.exitBtn.TabIndex = 6
@@ -390,7 +390,7 @@ Partial Class home
         Me.bigbtngroup.Controls.Add(Me.calendarBtn)
         Me.bigbtngroup.Location = New System.Drawing.Point(0, 0)
         Me.bigbtngroup.Name = "bigbtngroup"
-        Me.bigbtngroup.Size = New System.Drawing.Size(1411, 718)
+        Me.bigbtngroup.Size = New System.Drawing.Size(1411, 728)
         Me.bigbtngroup.TabIndex = 5
         Me.bigbtngroup.TabStop = False
         Me.bigbtngroup.Text = "GroupBox1"
@@ -479,7 +479,7 @@ Partial Class home
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1350, 730)
+        Me.ClientSize = New System.Drawing.Size(1280, 720)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.Sidebar)
         Me.Controls.Add(Me.bigbtngroup)

@@ -82,6 +82,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEdit User.Designer.vb">
+      <DependentUpon>AddEdit User.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddEdit User.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="alert.vb" />
     <Compile Include="athleteProfile.Designer.vb">
       <DependentUpon>athleteProfile.vb</DependentUpon>
@@ -192,6 +198,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddEdit User.resx">
+      <DependentUpon>AddEdit User.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="athleteProfile.resx">
       <DependentUpon>athleteProfile.vb</DependentUpon>
     </EmbeddedResource>

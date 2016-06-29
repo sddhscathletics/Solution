@@ -186,6 +186,7 @@ Public Class home
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Logon.Show()
+        Me.Hide()
     End Sub
 
     Private Sub resultBtn_Click_1(sender As Object, e As EventArgs) Handles resultBtn.Click
@@ -194,6 +195,10 @@ Public Class home
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
         calendar.Show()
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        AddEdit_User.Show()
     End Sub
 #End Region
 
