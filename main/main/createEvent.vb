@@ -179,12 +179,11 @@ Public Class createEvent
                 End Select
                 filePaths.Add(ofdOpen.FileName)
                 Dim lbl As New Label
-                lbl.Width = 500
                 lbl.Font = New Drawing.Font("Arial", 9)
                 lbl.Text = sender.Tag
                 Me.Controls.Add(lbl)
                 lbl.Parent = sender.Parent
-                lbl.Location = New Point(70, 0)
+                lbl.Location = New Point(75, 0)
                 lbl.BackColor = Color.Transparent
                 lbl.BringToFront()
                 createPictureBox(sender)
@@ -192,6 +191,16 @@ Public Class createEvent
         ElseIf sender.Tag.Contains("docx") Or sender.Tag.Contains("xlsx") Then
             checkFileBeforeOpen(sender.Tag, sender)
         End If
+    End Sub
+    Private Sub pnlAttach_Click(sender As Object, e As EventArgs) Handles pnlAttach.Click
+        Dim tmpPbName As String = "pb"
+        tmpPbName += CStr(Int(sender.name.split("pnl")(1)) + 1)
+        For Each pb In sender.controls.oftype(Of PictureBox)()
+            If pb.name = tmpPbName Then
+                pbAttach_Click(pb, e)
+                Exit For
+            End If
+        Next
     End Sub
     Dim pbCount = 1
     Private Sub createPictureBox(sender As Object)
@@ -202,7 +211,10 @@ Public Class createEvent
             pnl.Name = "pnl" & pbCount
             pnl.Width = pnlAttach.Width
             pnl.Height = pnlAttach.Height
+            pnl.BorderStyle = pnlAttach.BorderStyle
+            pnl.Cursor = Cursors.Hand
         End With
+        AddHandler pnl.Click, AddressOf pnlAttach_Click
         flpAttach.Controls.Add(pnl)
         Dim pb As New PictureBox
         pb.Name = "pb" & pbCount
@@ -377,22 +389,26 @@ Public Class createEvent
                                 End With
                                 For Each fileName In fileNames
                                     If fileName <> fileNames(0) Then    'checks if it's the first file
-                                        For Each pb In flpAttach.Controls.OfType(Of PictureBox)()
-                                            If pb.Name = "pb" & pbCount.ToString() Then
-                                                pb.Tag = fileName
-                                                If fileName.EndsWith(".docx") Then
-                                                    pb.Image = My.Resources.word
-                                                Else
-                                                    pb.Image = My.Resources.excel
-                                                End If
-                                                Dim lbl As New Label
-                                                lbl.Width = pbAttach.Width
-                                                lbl.Font = New Drawing.Font("Arial", 9)
-                                                lbl.Text = fileName
-                                                Me.Controls.Add(lbl)
-                                                lbl.Parent = pb
-                                                lbl.BackColor = Color.Transparent
-                                                lbl.BringToFront()
+                                        For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                            If pnl.Name = "pnl" & pbCount.ToString() Then
+                                                For Each pb In pnl.Controls.OfType(Of PictureBox)()
+                                                    pb.Tag = fileName
+                                                    If fileName.EndsWith(".docx") Then
+                                                        pb.Image = My.Resources.word
+                                                    Else
+                                                        pb.Image = My.Resources.excel
+                                                    End If
+                                                    Dim lbl As New Label
+                                                    lbl.Width = 500
+                                                    lbl.Font = New Drawing.Font("Arial", 9)
+                                                    lbl.Text = fileName
+                                                    Me.Controls.Add(lbl)
+                                                    lbl.Parent = pnl
+                                                    lbl.Location = New Point(75, 0)
+                                                    lbl.BackColor = Color.Transparent
+                                                    lbl.BringToFront()
+                                                    Exit For
+                                                Next
                                                 Exit For
                                             End If
                                         Next
@@ -405,11 +421,12 @@ Public Class createEvent
                                             pbAttach.Image = My.Resources.excel
                                         End If
                                         Dim lbl As New Label
-                                        lbl.Width = pbAttach.Width
+                                        lbl.Width = 500
                                         lbl.Font = New Drawing.Font("Arial", 9)
                                         lbl.Text = fileName
                                         Me.Controls.Add(lbl)
-                                        lbl.Parent = pbAttach
+                                        lbl.Parent = pbAttach.Parent
+                                        lbl.Location = New Point(75, 0)
                                         lbl.BackColor = Color.Transparent
                                         lbl.BringToFront()
                                         createPictureBox(tempPb)
@@ -542,35 +559,55 @@ Public Class createEvent
         End If
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
-        Dim tmpName As String = ""
-        If sender.name <> pbAttach.Name Then
-            For letterIndex As Integer = 0 To sender.name.ToCharArray().Length - 1
-                If letterIndex = sender.name.ToCharArray().Length - 1 Then
-                    tmpName += CStr(Int(CStr(sender.name.ToCharArray()(letterIndex))) + 1)
-                Else
-                    tmpName += sender.name.ToCharArray()(letterIndex)
-                End If
-            Next
+        Dim tmpPnlName As String = "pnl"
+        If sender.name.startswith("pb") Then
+            If sender.name <> pbAttach.Name Then
+                tmpPnlName += CStr(Int(sender.name.split("pb")(1)) + 1)
+                'For letterIndex As Integer = 2 To sender.name.ToCharArray().Length - 1
+                '    If letterIndex = sender.name.ToCharArray().Length - 1 Then
+                '        tmpName += CStr(Int(CStr(sender.name.ToCharArray()(letterIndex))) + 1)
+                '    Else
+                '        tmpName += sender.name.ToCharArray()(letterIndex)
+                '    End If
+                'Next
+            Else
+                tmpPnlName = "pnl2"
+            End If
         Else
-            tmpName = "pb2"
+            If sender.name <> pnlAttach.Name Then
+                tmpPnlName += CStr(Int(sender.name.split("pnl")(1)) + 1)
+            End If
         End If
-        For Each pb In Me.Controls.OfType(Of PictureBox)()
-            If pb.Name = tmpName Then
-                Me.Controls.Remove(pb)
+        For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+            If pnl.Name = tmpPnlName Then
+                flpAttach.Controls.Remove(pnl)
                 Exit For
             End If
         Next
-        If sender.location.x > pbAttach.Location.X + sender.width + 5 Then 'if it's in the third column
-            For Each control In Me.Controls
-                If control.Location.Y > sender.location.Y + 20 Then
-                    control.Location = New Point(control.location.x, control.location.y - pbAttach.Height - 5)
+        'If sender.location.x > pbAttach.Location.X + sender.width + 5 Then 'if it's in the third column
+        '    For Each control In Me.Controls
+        '        If control.Location.Y > sender.location.Y + 20 Then
+        '            control.Location = New Point(control.location.x, control.location.y - pbAttach.Height - 5)
+        '        End If
+        '    Next
+        '    Me.Height -= (pbAttach.Height + 5)
+        'End If
+        If sender.name.startswith("pb") Then
+            sender.Image = My.Resources.transparent_plus
+        newAttachBoxLocation = sender.location
+            sender.Tag = "add"
+        Else
+            For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                If pnl.Name = tmpPnlName Then
+                    For Each pb In pnl.Controls.OfType(Of PictureBox)()
+                        pb.Image = My.Resources.transparent_plus
+                        pb.Tag = "add"
+                        Exit For
+                    Next
+                    Exit For
                 End If
             Next
-            Me.Height -= (pbAttach.Height + 5)
         End If
-        sender.Image = My.Resources.transparent_plus
-        newAttachBoxLocation = sender.location
-        sender.Tag = "add"
         pbCount -= 1
     End Sub
     Private Sub openWordFile(ByVal path As String)

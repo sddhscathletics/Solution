@@ -358,7 +358,9 @@ Partial Class createEvent
         'pnlAttach
         '
         Me.pnlAttach.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.pnlAttach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlAttach.Controls.Add(Me.pbAttach)
+        Me.pnlAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlAttach.Location = New System.Drawing.Point(3, 3)
         Me.pnlAttach.Name = "pnlAttach"
         Me.pnlAttach.Size = New System.Drawing.Size(347, 56)
