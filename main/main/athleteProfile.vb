@@ -3,7 +3,8 @@
 Public Class athleteProfile
     'Add the ability to copy?
     'ID Photo (2:3)
-    'Medical Info (Check address)
+    'Draw best event based on participation
+    'Get teams
 
     Dim adNo, adSt, adSb, adPo As String
     Dim ID As String = "436448244"
@@ -45,7 +46,6 @@ Public Class athleteProfile
         lblStNo.Text = adNo
         parseSt(i, address)
     End Sub
-
 
     Private Sub parseSt(i As Integer, address As String) 'Parse address street
         i += 1
