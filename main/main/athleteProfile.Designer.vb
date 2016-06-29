@@ -22,66 +22,211 @@ Partial Class athleteProfile
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblID = New System.Windows.Forms.Label()
+        Me.lblLName = New System.Windows.Forms.Label()
+        Me.lblFName = New System.Windows.Forms.Label()
+        Me.lblRoll = New System.Windows.Forms.Label()
+        Me.pbPhoto = New System.Windows.Forms.PictureBox()
+        Me.lblTeams = New System.Windows.Forms.Label()
+        Me.lblPo = New System.Windows.Forms.Label()
+        Me.lblSb = New System.Windows.Forms.Label()
+        Me.lblSt = New System.Windows.Forms.Label()
+        Me.lblStNo = New System.Windows.Forms.Label()
+        Me.lblAgeGroup = New System.Windows.Forms.Label()
+        Me.lblBestEvent = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.lblPhone = New System.Windows.Forms.Label()
+        Me.lblMedicalHeader = New System.Windows.Forms.Label()
+        Me.lblMedical = New System.Windows.Forms.Label()
+        CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label1
+        'lblID
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(63, 46)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Label1"
+        Me.lblID.AutoSize = True
+        Me.lblID.Location = New System.Drawing.Point(215, 11)
+        Me.lblID.Name = "lblID"
+        Me.lblID.Size = New System.Drawing.Size(58, 13)
+        Me.lblID.TabIndex = 0
+        Me.lblID.Text = "Student ID"
         '
-        'Label2
+        'lblLName
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(63, 85)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(39, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Label2"
+        Me.lblLName.AutoSize = True
+        Me.lblLName.Location = New System.Drawing.Point(215, 61)
+        Me.lblLName.Name = "lblLName"
+        Me.lblLName.Size = New System.Drawing.Size(58, 13)
+        Me.lblLName.TabIndex = 1
+        Me.lblLName.Text = "Last Name"
         '
-        'Label3
+        'lblFName
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(63, 72)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(39, 13)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Label3"
+        Me.lblFName.AutoSize = True
+        Me.lblFName.Location = New System.Drawing.Point(215, 48)
+        Me.lblFName.Name = "lblFName"
+        Me.lblFName.Size = New System.Drawing.Size(57, 13)
+        Me.lblFName.TabIndex = 2
+        Me.lblFName.Text = "First Name"
         '
-        'Label4
+        'lblRoll
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(63, 59)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(39, 13)
-        Me.Label4.TabIndex = 3
-        Me.Label4.Text = "Label4"
+        Me.lblRoll.AutoSize = True
+        Me.lblRoll.Location = New System.Drawing.Point(215, 24)
+        Me.lblRoll.Name = "lblRoll"
+        Me.lblRoll.Size = New System.Drawing.Size(53, 13)
+        Me.lblRoll.TabIndex = 3
+        Me.lblRoll.Text = "Roll Class"
+        '
+        'pbPhoto
+        '
+        Me.pbPhoto.Location = New System.Drawing.Point(12, 12)
+        Me.pbPhoto.Name = "pbPhoto"
+        Me.pbPhoto.Size = New System.Drawing.Size(200, 300)
+        Me.pbPhoto.TabIndex = 4
+        Me.pbPhoto.TabStop = False
+        '
+        'lblTeams
+        '
+        Me.lblTeams.AutoSize = True
+        Me.lblTeams.Location = New System.Drawing.Point(633, 133)
+        Me.lblTeams.Name = "lblTeams"
+        Me.lblTeams.Size = New System.Drawing.Size(39, 13)
+        Me.lblTeams.TabIndex = 5
+        Me.lblTeams.Text = "Teams"
+        '
+        'lblPo
+        '
+        Me.lblPo.AutoSize = True
+        Me.lblPo.Location = New System.Drawing.Point(214, 120)
+        Me.lblPo.Name = "lblPo"
+        Me.lblPo.Size = New System.Drawing.Size(52, 13)
+        Me.lblPo.TabIndex = 6
+        Me.lblPo.Text = "Postcode"
+        '
+        'lblSb
+        '
+        Me.lblSb.AutoSize = True
+        Me.lblSb.Location = New System.Drawing.Point(214, 107)
+        Me.lblSb.Name = "lblSb"
+        Me.lblSb.Size = New System.Drawing.Size(41, 13)
+        Me.lblSb.TabIndex = 7
+        Me.lblSb.Text = "Suburb"
+        '
+        'lblSt
+        '
+        Me.lblSt.AutoSize = True
+        Me.lblSt.Location = New System.Drawing.Point(214, 94)
+        Me.lblSt.Name = "lblSt"
+        Me.lblSt.Size = New System.Drawing.Size(35, 13)
+        Me.lblSt.TabIndex = 8
+        Me.lblSt.Text = "Street"
+        '
+        'lblStNo
+        '
+        Me.lblStNo.AutoSize = True
+        Me.lblStNo.Location = New System.Drawing.Point(214, 81)
+        Me.lblStNo.Name = "lblStNo"
+        Me.lblStNo.Size = New System.Drawing.Size(75, 13)
+        Me.lblStNo.TabIndex = 9
+        Me.lblStNo.Text = "Street Number"
+        '
+        'lblAgeGroup
+        '
+        Me.lblAgeGroup.AutoSize = True
+        Me.lblAgeGroup.Location = New System.Drawing.Point(633, 120)
+        Me.lblAgeGroup.Name = "lblAgeGroup"
+        Me.lblAgeGroup.Size = New System.Drawing.Size(58, 13)
+        Me.lblAgeGroup.TabIndex = 10
+        Me.lblAgeGroup.Text = "Age Group"
+        '
+        'lblBestEvent
+        '
+        Me.lblBestEvent.AutoSize = True
+        Me.lblBestEvent.Location = New System.Drawing.Point(633, 146)
+        Me.lblBestEvent.Name = "lblBestEvent"
+        Me.lblBestEvent.Size = New System.Drawing.Size(59, 13)
+        Me.lblBestEvent.TabIndex = 11
+        Me.lblBestEvent.Text = "Best Event"
+        '
+        'lblEmail
+        '
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.Location = New System.Drawing.Point(215, 217)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(73, 13)
+        Me.lblEmail.TabIndex = 12
+        Me.lblEmail.Text = "Email Address"
+        '
+        'lblPhone
+        '
+        Me.lblPhone.AutoSize = True
+        Me.lblPhone.Location = New System.Drawing.Point(214, 204)
+        Me.lblPhone.Name = "lblPhone"
+        Me.lblPhone.Size = New System.Drawing.Size(78, 13)
+        Me.lblPhone.TabIndex = 13
+        Me.lblPhone.Text = "Phone Number"
+        '
+        'lblMedicalHeader
+        '
+        Me.lblMedicalHeader.AutoSize = True
+        Me.lblMedicalHeader.Location = New System.Drawing.Point(215, 232)
+        Me.lblMedicalHeader.Name = "lblMedicalHeader"
+        Me.lblMedicalHeader.Size = New System.Drawing.Size(79, 13)
+        Me.lblMedicalHeader.TabIndex = 14
+        Me.lblMedicalHeader.Text = "Medical Details"
+        '
+        'lblMedical
+        '
+        Me.lblMedical.AutoSize = True
+        Me.lblMedical.Location = New System.Drawing.Point(215, 245)
+        Me.lblMedical.Name = "lblMedical"
+        Me.lblMedical.Size = New System.Drawing.Size(99, 13)
+        Me.lblMedical.TabIndex = 15
+        Me.lblMedical.Text = "Medical Information"
         '
         'athleteProfile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1012, 542)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblMedical)
+        Me.Controls.Add(Me.lblMedicalHeader)
+        Me.Controls.Add(Me.lblPhone)
+        Me.Controls.Add(Me.lblEmail)
+        Me.Controls.Add(Me.lblBestEvent)
+        Me.Controls.Add(Me.lblAgeGroup)
+        Me.Controls.Add(Me.lblStNo)
+        Me.Controls.Add(Me.lblSt)
+        Me.Controls.Add(Me.lblSb)
+        Me.Controls.Add(Me.lblPo)
+        Me.Controls.Add(Me.lblTeams)
+        Me.Controls.Add(Me.pbPhoto)
+        Me.Controls.Add(Me.lblRoll)
+        Me.Controls.Add(Me.lblFName)
+        Me.Controls.Add(Me.lblLName)
+        Me.Controls.Add(Me.lblID)
         Me.Name = "athleteProfile"
         Me.Text = "athleteProfile"
+        CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents lblID As Label
+    Friend WithEvents lblLName As Label
+    Friend WithEvents lblFName As Label
+    Friend WithEvents lblRoll As Label
+    Friend WithEvents pbPhoto As PictureBox
+    Friend WithEvents lblTeams As Label
+    Friend WithEvents lblPo As Label
+    Friend WithEvents lblSb As Label
+    Friend WithEvents lblSt As Label
+    Friend WithEvents lblStNo As Label
+    Friend WithEvents lblAgeGroup As Label
+    Friend WithEvents lblBestEvent As Label
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblPhone As Label
+    Friend WithEvents lblMedicalHeader As Label
+    Friend WithEvents lblMedical As Label
 End Class
