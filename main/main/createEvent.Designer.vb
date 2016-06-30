@@ -363,7 +363,7 @@ Partial Class createEvent
         Me.pnlAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlAttach.Location = New System.Drawing.Point(3, 3)
         Me.pnlAttach.Name = "pnlAttach"
-        Me.pnlAttach.Size = New System.Drawing.Size(347, 56)
+        Me.pnlAttach.Size = New System.Drawing.Size(335, 56)
         Me.pnlAttach.TabIndex = 43
         '
         'createEvent

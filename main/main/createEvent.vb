@@ -169,6 +169,7 @@ Public Class createEvent
             ofdOpen.Filter = "Word and Excel (*.docx, *.xlsx)|*.docx; *.xlsx"
             ofdOpen.ShowDialog()
             If ofdOpen.FileName <> "" Then
+                sender.location = New Point(0, -1)
                 Dim dotSplit = ofdOpen.FileName.Split(".")
                 Dim backSplit = ofdOpen.FileName.Split("\")
                 Select Case dotSplit(dotSplit.Count - 1)
@@ -184,6 +185,7 @@ Public Class createEvent
                 Me.Controls.Add(lbl)
                 lbl.Parent = sender.Parent
                 lbl.Location = New Point(75, 0)
+                lbl.Width = 500
                 lbl.BackColor = Color.Transparent
                 lbl.BringToFront()
                 createPictureBox(sender)
@@ -194,9 +196,13 @@ Public Class createEvent
     End Sub
     Private Sub pnlAttach_Click(sender As Object, e As EventArgs) Handles pnlAttach.Click
         Dim tmpPbName As String = "pb"
-        tmpPbName += CStr(Int(sender.name.split("pnl")(1)) + 1)
-        For Each pb In sender.controls.oftype(Of PictureBox)()
-            If pb.name = tmpPbName Then
+        If sender.name <> pnlAttach.Name Then
+            tmpPbName += CStr(Int(sender.name.Split("pnl".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)(0).ToString())) 'splits the string on "pnl" and gets the number after
+        Else
+            tmpPbName = "pbAttach"
+        End If
+        For Each pb In sender.Controls
+            If pb.Name = tmpPbName Then
                 pbAttach_Click(pb, e)
                 Exit For
             End If
@@ -245,7 +251,7 @@ Public Class createEvent
             pb.Cursor = Cursors.Hand
             AddHandler pb.Click, AddressOf pbAttach_Click
         pnl.Controls.Add(pb)
-        pb.Location = New Point(0, 0)
+        pb.Location = New Point((pnlAttach.Width / 2 - pb.Width / 2), -1)
         MessageBox.Show(pb.Location.ToString)
         'ElseIf sender.Tag.Contains(".docx") Then
         '    Dim pb As New PictureBox
@@ -337,7 +343,7 @@ Public Class createEvent
         'Next
         'cmbTemplate.Items.AddRange(finalList.ToArray())
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
-        pbAttach.Location = New Point(0, 0)
+        pbAttach.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
     End Sub
     Private Sub chbNone_CheckedChanged(sender As Object, e As EventArgs) Handles chbNone.CheckedChanged
         If chbNone.Checked = False Then
@@ -559,27 +565,23 @@ Public Class createEvent
         End If
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
-        Dim tmpPnlName As String = "pnl"
-        If sender.name.startswith("pb") Then
-            If sender.name <> pbAttach.Name Then
-                tmpPnlName += CStr(Int(sender.name.split("pb")(1)) + 1)
-                'For letterIndex As Integer = 2 To sender.name.ToCharArray().Length - 1
-                '    If letterIndex = sender.name.ToCharArray().Length - 1 Then
-                '        tmpName += CStr(Int(CStr(sender.name.ToCharArray()(letterIndex))) + 1)
-                '    Else
-                '        tmpName += sender.name.ToCharArray()(letterIndex)
-                '    End If
-                'Next
-            Else
-                tmpPnlName = "pnl2"
-            End If
+        Dim pnlToDelete As String = "pnl", currentPnl As String = "pnl"
+        If sender.name <> pbAttach.Name Then
+            currentPnl += CStr(Int(sender.name.split("pb".ToCharArray, StringSplitOptions.RemoveEmptyEntries)(0).ToString())) 'splits on "pb" and gets the number after
+            pnlToDelete += CStr(Int(sender.name.split("pb".ToCharArray, StringSplitOptions.RemoveEmptyEntries)(0).ToString()) + 1) 'splits on "pb" and increments the number after
+            'For letterIndex As Integer = 2 To sender.name.ToCharArray().Length - 1
+            '    If letterIndex = sender.name.ToCharArray().Length - 1 Then
+            '        tmpName += CStr(Int(CStr(sender.name.ToCharArray()(letterIndex))) + 1)
+            '    Else
+            '        tmpName += sender.name.ToCharArray()(letterIndex)
+            '    End If
+            'Next
         Else
-            If sender.name <> pnlAttach.Name Then
-                tmpPnlName += CStr(Int(sender.name.split("pnl")(1)) + 1)
-            End If
+            pnlToDelete = "pnl2"
+            currentPnl = "pnlAttach"
         End If
         For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-            If pnl.Name = tmpPnlName Then
+            If pnl.Name = pnlToDelete Then
                 flpAttach.Controls.Remove(pnl)
                 Exit For
             End If
@@ -592,22 +594,16 @@ Public Class createEvent
         '    Next
         '    Me.Height -= (pbAttach.Height + 5)
         'End If
-        If sender.name.startswith("pb") Then
-            sender.Image = My.Resources.transparent_plus
-        newAttachBoxLocation = sender.location
+        sender.Image = My.Resources.transparent_plus
             sender.Tag = "add"
-        Else
-            For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                If pnl.Name = tmpPnlName Then
-                    For Each pb In pnl.Controls.OfType(Of PictureBox)()
-                        pb.Image = My.Resources.transparent_plus
-                        pb.Tag = "add"
-                        Exit For
-                    Next
-                    Exit For
-                End If
-            Next
-        End If
+        For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+            If pnl.Name = currentPnl Then
+                For Each lbl In pnl.Controls.OfType(Of Label)()
+                    pnl.Controls.Remove(lbl)
+                Next
+                Exit For
+            End If
+        Next
         pbCount -= 1
     End Sub
     Private Sub openWordFile(ByVal path As String)
