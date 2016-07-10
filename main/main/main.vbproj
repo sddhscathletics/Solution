@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="alert.vb" />
+    <Compile Include="athlete.vb" />
     <Compile Include="athleteProfile.Designer.vb">
       <DependentUpon>athleteProfile.vb</DependentUpon>
     </Compile>
@@ -148,6 +149,12 @@
       <DependentUpon>saveOrOpen.vb</DependentUpon>
     </Compile>
     <Compile Include="saveOrOpen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="selectAthlete.Designer.vb">
+      <DependentUpon>selectAthlete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="selectAthlete.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="selectAthletes.Designer.vb">
@@ -222,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="saveOrOpen.resx">
       <DependentUpon>saveOrOpen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="selectAthlete.resx">
+      <DependentUpon>selectAthlete.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="selectAthletes.resx">
       <DependentUpon>selectAthletes.vb</DependentUpon>
