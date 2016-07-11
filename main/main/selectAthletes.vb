@@ -113,8 +113,8 @@ Public Class selectAthletes
             Else
                 eventTimes.previousDropSelection = eventTimes.cmbEvent.SelectedItem
                 eventTimes.timesNotAdded.Clear()
-                End If
             End If
+        End If
     End Sub
     Public Shared Sub checkAllChecked()
         If selectAthletes.clbAthletes.CheckedItems.Count() <> selectAthletes.clbAthletes.Items.Count() Then

@@ -1,15 +1,18 @@
 ﻿Public Class confirmAddition
     Private Sub confirmAddition_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'doesnt execute twice????
-        lblTop.Text = "The following people have attendance discrepancies that need to be resolved:" + vbNewLine + vbNewLine
+        rchText.Text = ""
         Select Case Me.Tag
-            Case "people" : For Each person In selectAthletes.peopleNotAdded
+            Case "people"
+                lblTop.Text = "The following people have attendance discrepancies that need to be resolved:" + vbNewLine + vbNewLine
+                For Each person In selectAthletes.peopleNotAdded
                     rchText.Text += CStr(person) + vbNewLine
                 Next
-            Case "times" : For Each person In eventTimes.timesNotAdded
+            Case "times"
+                lblTop.Text = "The following events have time discrepancies that need to be resolved:" + vbNewLine + vbNewLine
+                For Each person In eventTimes.timesNotAdded
                     rchText.Text += CStr(person) + vbNewLine
                 Next
         End Select
-
         lblBottom.Text = "Would you like to fix the discrepancies?"
     End Sub
     Private Sub btnNo_Click(sender As Object, e As EventArgs) Handles btnNo.Click

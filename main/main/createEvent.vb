@@ -228,89 +228,11 @@ Public Class createEvent
         pb.Width = sender.width
         pb.Height = sender.height
         pb.Image = My.Resources.transparent_plus
-            pb.Tag = "add"
-            'need to put call to this function after pbattach, check set the previous pb to file??
-            'If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
-            '    For Each control In Me.Controls
-            '        If control.Location.Y > sender.location.Y + 20 Then
-            '            control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
-            '        End If
-            '    Next
-            '    pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
-            '    'For Each control In Me.Controls.OfType(Of PictureBox)()
-            '    '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-            '    '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-            '    '    End If
-            '    'Next
-            '    Me.Height += pbAttach.Height + 5
-            'Else
-            '    pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
-            'End If
-            'newAttachBoxLocation = pb.Location
-            'ElseIf sender.Tag.Contains(".docx") Then
-            pb.Cursor = Cursors.Hand
+        pb.Tag = "add"
+        pb.Cursor = Cursors.Hand
             AddHandler pb.Click, AddressOf pbAttach_Click
         pnl.Controls.Add(pb)
         pb.Location = New Point((pnlAttach.Width / 2 - pb.Width / 2), -1)
-        MessageBox.Show(pb.Location.ToString)
-        'ElseIf sender.Tag.Contains(".docx") Then
-        '    Dim pb As New PictureBox
-        '    pb.Image = My.Resources.transparent_plus
-        '    pb.Tag = "add"
-        '    pb.Name = "pb" & pbCount
-        '    pb.SizeMode = sender.SizeMode
-        '    pb.Width = sender.width
-        '    pb.Height = sender.height
-        '    If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
-        '        For Each control In Me.Controls
-        '            If control.Location.Y > sender.location.Y + 20 Then
-        '                control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
-        '            End If
-        '        Next
-        '        pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
-        '        'For Each control In Me.Controls.OfType(Of PictureBox)()
-        '        '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-        '        '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-        '        '    End If
-        '        'Next
-        '        Me.Height += pbAttach.Height + 5
-        '    Else
-        '        pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
-        '    End If
-        '    newAttachBoxLocation = pb.Location
-        '    pb.Cursor = Cursors.Hand
-        '    AddHandler pb.Click, AddressOf pbAttach_Click
-        '    Me.Controls.Add(pb)
-        'Else
-        '    If sender.Tag.Contains(".xlsx") Then
-        '        Dim pb As New PictureBox
-        '        pb.Image = My.Resources.transparent_plus
-        '        pb.Tag = "add"
-        '        pb.Name = "pb" & pbCount
-        '        pb.SizeMode = sender.sizemode
-        '        pb.Width = sender.width
-        '        pb.Height = sender.height
-        '        If sender.location.x + 2 * sender.width + 5 > Me.Width - 15 Then
-        '            For Each control In Me.Controls
-        '                If control.Location.Y > sender.location.Y + 20 Then
-        '                    control.Location = New Point(control.location.x, control.location.y + pbAttach.Height + 5)
-        '                End If
-        '            Next
-        '            pb.Location = New Point(pbAttach.Location.X, sender.location.Y + pbAttach.Height + 5)
-        '            'For Each control In Me.Controls.OfType(Of PictureBox)()
-        '            '    If control.Location.X = pbAttach.Location.X And control.Location.Y = sender.location.Y Then
-        '            '        pb.Location = New Point(pbAttach.Location.X, control.Location.Y + pbAttach.Height + 5)
-        '            '    End If
-        '            'Next
-        '            Me.Height += pbAttach.Height + 5
-        '        Else
-        '            pb.Location = New Point(sender.location.x + sender.width + 5, sender.location.y)
-        '        End If
-        '        newAttachBoxLocation = pb.Location
-        '        pb.Cursor = Cursors.Hand
-        '        AddHandler pb.Click, AddressOf pbAttach_Click
-        '        Me.Controls.Add(pb)
-        'End If
     End Sub
     Private Sub lblTitle_Click(sender As Object, e As EventArgs) Handles lblTitle.Click
         Dim ptLowerLeft = New Point(0, sender.Height)
@@ -395,15 +317,95 @@ Public Class createEvent
                                 End With
                                 For Each fileName In fileNames
                                     If fileName <> fileNames(0) Then    'checks if it's the first file
-                                        For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                                            If pnl.Name = "pnl" & pbCount.ToString() Then
-                                                For Each pb In pnl.Controls.OfType(Of PictureBox)()
-                                                    pb.Tag = fileName
-                                                    If fileName.EndsWith(".docx") Then
+                                        Dim currentNum As Integer = 2, numPanels As Integer = pbCount
+                                        While currentNum <= fileNames.Count 'add the files
+                                            For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                    For Each pb In pnl.Controls.OfType(Of PictureBox)()
+                                                        pb.Tag = fileName
+                                                        If fileName.EndsWith(".docx") Then
+                                                            pb.Image = My.Resources.word
+                                                        Else
+                                                            pb.Image = My.Resources.excel
+                                                        End If
+                                                        pb.Location = New Point(0, -1)
+                                                        Dim lbl As New Label
+                                                        lbl.Width = 500
+                                                        lbl.Font = New Drawing.Font("Arial", 9)
+                                                        lbl.Text = fileName
+                                                        Me.Controls.Add(lbl)
+                                                        lbl.Parent = pnl
+                                                        lbl.Location = New Point(75, 0)
+                                                        lbl.BackColor = Color.Transparent
+                                                        lbl.BringToFront()
+                                                        Exit For 'since there is only one picturebox in a panel
+                                                    Next
+                                                    Exit For
+                                                End If
+                                            Next
+                                            currentNum += 1
+                                        End While
+                                        If fileNames.Count = pbCount Then 'if the number of files matches the number of panels
+                                            createPictureBox(tempPb)
+                                        ElseIf fileNames.Count < pbCount Then
+                                            While currentNum <= numPanels
+                                                If currentNum = fileNames.Count + 1 Then
+                                                    For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                        If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                            For Each control In pnl.Controls()
+                                                                If control.GetType() Is GetType(PictureBox) Then
+                                                                    control.Tag = "add"
+                                                                    control.image = My.Resources.transparent_plus
+                                                                    control.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
+                                                                ElseIf control.GetType() Is GetType(Label) Then
+                                                                    pnl.Controls.Remove(control)
+                                                                End If
+                                                            Next
+                                                            Exit For
+                                                        End If
+                                                    Next
+                                                Else
+                                                    For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                        If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                            flpAttach.Controls.Remove(pnl)
+                                                            Exit For
+                                                        End If
+                                                    Next
+                                                End If
+                                                currentNum += 1
+                                            End While
+                                        Else
+                                            While currentNum <= fileNames.Count
+                                                If currentNum = fileNames.Count Then
+                                                    createPictureBox(tempPb)
+                                                Else
+                                                    pbCount += 1
+                                                    Dim pnl As New Panel
+                                                    With pnl
+                                                        pnl.BackColor = pnlAttach.BackColor
+                                                        pnl.Name = "pnl" & pbCount
+                                                        pnl.Width = pnlAttach.Width
+                                                        pnl.Height = pnlAttach.Height
+                                                        pnl.BorderStyle = pnlAttach.BorderStyle
+                                                        pnl.Cursor = Cursors.Hand
+                                                    End With
+                                                    AddHandler pnl.Click, AddressOf pnlAttach_Click
+                                                    flpAttach.Controls.Add(pnl)
+                                                    Dim pb As New PictureBox
+                                                    pb.Name = "pb" & pbCount
+                                                    pb.SizeMode = sender.sizeMode
+                                                    pb.Width = sender.width
+                                                    pb.Height = sender.height
+                                                    If fileName.Contains(".doc") Then
                                                         pb.Image = My.Resources.word
                                                     Else
                                                         pb.Image = My.Resources.excel
                                                     End If
+                                                    pb.Tag = fileName
+                                                    pb.Cursor = Cursors.Hand
+                                                    AddHandler pb.Click, AddressOf pbAttach_Click
+                                                    pnl.Controls.Add(pb)
+                                                    pb.Location = New Point(0, -1)
                                                     Dim lbl As New Label
                                                     lbl.Width = 500
                                                     lbl.Font = New Drawing.Font("Arial", 9)
@@ -413,12 +415,10 @@ Public Class createEvent
                                                     lbl.Location = New Point(75, 0)
                                                     lbl.BackColor = Color.Transparent
                                                     lbl.BringToFront()
-                                                    Exit For
-                                                Next
-                                                Exit For
-                                            End If
-                                        Next
-                                        createPictureBox(tempPb)
+                                                End If
+                                                currentNum += 1
+                                            End While
+                                        End If
                                     Else                                'sets the filename to the existing picturebox
                                         pbAttach.Tag = fileName
                                         If fileName.EndsWith(".docx") Then
@@ -426,6 +426,7 @@ Public Class createEvent
                                         Else
                                             pbAttach.Image = My.Resources.excel
                                         End If
+                                        pbAttach.Location = New Point(0, -1)
                                         Dim lbl As New Label
                                         lbl.Width = 500
                                         lbl.Font = New Drawing.Font("Arial", 9)
@@ -507,7 +508,11 @@ Public Class createEvent
                                 Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
                                 Using ms As New System.IO.MemoryStream(fileInfo)
                                     tempFilePath = System.IO.Path.GetTempFileName
-                                    deleteFileThread = New Thread(Sub() deleteTempFile(tempFilePath))
+                                    If fileName.Contains(".docx") Then
+                                        deleteWordFileThread = New Thread(Sub() deleteTempFile(tempFilePath))
+                                    Else
+                                        deleteExcelFileThread = New Thread(Sub() deleteTempFile(tempFilePath))
+                                    End If
                                     Dim fs As New System.IO.FileStream(tempFilePath, System.IO.FileMode.Create, System.IO.FileAccess.Write)
                                     fs.Write(fileInfo, 0, ms.Length)
                                     fs.Dispose()
@@ -518,7 +523,7 @@ Public Class createEvent
                                     End If
                                 End Using
                             Else
-                                If MessageBox.Show("The file has Not been uploaded yet." + vbNewLine + "Would you Like to open the file from your computer?", "File Not uploaded", MessageBoxButtons.OKCancel) = DialogResult.OK Then
+                                If MessageBox.Show("The file has not been uploaded yet." + vbNewLine + "Would you like to open the file from your computer?", "File Not uploaded", MessageBoxButtons.OKCancel) = DialogResult.OK Then
                                     Dim fileValid As Boolean = False
                                     While fileValid = False
                                         ofdOpen.FileName = ""
@@ -544,7 +549,7 @@ Public Class createEvent
                                             End If
                                             fileValid = True
                                         ElseIf System.IO.Path.GetFileName(ofdOpen.FileName) <> fileName Then
-                                            If MessageBox.Show("You have Not selected the attachment file." + vbNewLine + "Would you Like to select the file again?", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
+                                            If MessageBox.Show("You have not selected the attachment file." + vbNewLine + "Would you like to select the file again?", "Wrong File Selected", MessageBoxButtons.RetryCancel) = DialogResult.Cancel Then
                                                 fileValid = True
                                             Else
                                                 fileValid = False
@@ -565,43 +570,52 @@ Public Class createEvent
         End If
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
-        Dim pnlToDelete As String = "pnl", currentPnl As String = "pnl"
+        Dim pnlToDelete As String = "pnl", numIndicator As Integer = 0
         If sender.name <> pbAttach.Name Then
-            currentPnl += CStr(Int(sender.name.split("pb".ToCharArray, StringSplitOptions.RemoveEmptyEntries)(0).ToString())) 'splits on "pb" and gets the number after
-            pnlToDelete += CStr(Int(sender.name.split("pb".ToCharArray, StringSplitOptions.RemoveEmptyEntries)(0).ToString()) + 1) 'splits on "pb" and increments the number after
-            'For letterIndex As Integer = 2 To sender.name.ToCharArray().Length - 1
-            '    If letterIndex = sender.name.ToCharArray().Length - 1 Then
-            '        tmpName += CStr(Int(CStr(sender.name.ToCharArray()(letterIndex))) + 1)
-            '    Else
-            '        tmpName += sender.name.ToCharArray()(letterIndex)
-            '    End If
-            'Next
+            numIndicator = Int(sender.name.split("pb".ToCharArray, StringSplitOptions.RemoveEmptyEntries)(0).ToString()) 'splits on "pb" and gets the number after
+            pnlToDelete += CStr(numIndicator + 1)
         Else
             pnlToDelete = "pnl2"
-            currentPnl = "pnlAttach"
+            numIndicator = 1
         End If
-        For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-            If pnl.Name = pnlToDelete Then
-                flpAttach.Controls.Remove(pnl)
+        'place the contents of the panel below the sender into the sender and then delete the one below
+        For Each pnlForDelete In flpAttach.Controls.OfType(Of Panel)() 'find the panel to delete
+            If pnlForDelete.Name = pnlToDelete Then
+                For Each pbForDelete In pnlForDelete.Controls.OfType(Of PictureBox)() 'find the picturebox in the panel
+                    sender.image = pbForDelete.Image
+                    sender.tag = pbForDelete.Tag
+                    sender.location = pbForDelete.Location
+                    Exit For 'since there is only one picturebox in each panel
+                Next
+                For Each lbl In sender.parent.controls 'find the label in the panel to overwrite
+                    If lbl.GetType() Is GetType(Label) Then
+                        If pnlForDelete.Controls.OfType(Of Label)().Count > 0 Then 'if the panel to delete has a label
+                            For Each lblForDelete In pnlForDelete.Controls.OfType(Of Label)() 'find the label in the panel to delete
+                                lbl.text = lblForDelete.Text
+                                Exit For
+                            Next
+                        Else
+                            sender.parent.controls.remove(lbl)
+                        End If
+                        Exit For 'since there is only one label in each panel
+                    End If
+                Next
+                flpAttach.Controls.Remove(pnlForDelete)
                 Exit For
             End If
         Next
-        'If sender.location.x > pbAttach.Location.X + sender.width + 5 Then 'if it's in the third column
-        '    For Each control In Me.Controls
-        '        If control.Location.Y > sender.location.Y + 20 Then
-        '            control.Location = New Point(control.location.x, control.location.y - pbAttach.Height - 5)
-        '        End If
-        '    Next
-        '    Me.Height -= (pbAttach.Height + 5)
-        'End If
-        sender.Image = My.Resources.transparent_plus
-            sender.Tag = "add"
-        For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-            If pnl.Name = currentPnl Then
-                For Each lbl In pnl.Controls.OfType(Of Label)()
-                    pnl.Controls.Remove(lbl)
-                Next
-                Exit For
+        'this "copy and delete" results in panels below the sender being one number to high
+        'we now need to decrement these and their elements
+        For Each pnlForDecrement In flpAttach.Controls.OfType(Of Panel)() 'find the panels to decrement
+            If pnlForDecrement.Name <> pnlAttach.Name Then 'since the first panel will always have the correct name
+                Dim currentNum = Int(pnlForDecrement.Name.Split("pnl".ToCharArray, StringSplitOptions.RemoveEmptyEntries)(0).ToString())
+                If currentNum > numIndicator Then
+                    For Each pb In pnlForDecrement.Controls.OfType(Of PictureBox)()
+                        pnlForDecrement.Name = "pnl" & CStr(currentNum - 1)
+                        pb.Name = "pb" & CStr(currentNum - 1)
+                        Exit For
+                    Next
+                End If
             End If
         Next
         pbCount -= 1
@@ -661,10 +675,11 @@ Public Class createEvent
             doc = Nothing
             System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp)
             wordApp = Nothing
-            deleteFileThread.Start()
+            deleteWordFileThread.Start()
         End Try
     End Sub
-    Dim deleteFileThread As Thread = Nothing
+    Dim deleteWordFileThread As Thread = Nothing
+    Dim deleteExcelFileThread As Thread = Nothing
     Private Sub openExcelFile(ByVal path As String)
         Try
             Cursor = Cursors.AppStarting
@@ -717,7 +732,7 @@ Public Class createEvent
             workbook = Nothing
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp)
             excelApp = Nothing
-            deleteFileThread.Start()
+            deleteExcelFileThread.Start()
         End Try
     End Sub
     Private Sub deleteTempFile(path As String)

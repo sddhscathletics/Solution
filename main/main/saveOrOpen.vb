@@ -19,4 +19,7 @@
         result = "delete"
         Me.Close()
     End Sub
+    Private Sub saveOrOpen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        result = "cancel"
+    End Sub
 End Class
