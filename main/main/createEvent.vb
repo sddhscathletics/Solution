@@ -166,10 +166,10 @@ Public Class createEvent
     Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
         If sender.Tag = "add" Then
             ofdOpen.FileName = ""
-            ofdOpen.Filter = "Word and Excel (*.docx, *.xlsx)|*.docx; *.xlsx"
+            ofdOpen.Filter = "Word and Excel (*.docx, *.doc, *.xls *.xlsx)|*.docx; *.doc; *xls; *.xlsx"
             ofdOpen.ShowDialog()
             If ofdOpen.FileName <> "" Then
-                sender.location = New Point(0, -1)
+                sender.location = New Point(-1, -1)
                 Dim dotSplit = ofdOpen.FileName.Split(".")
                 Dim backSplit = ofdOpen.FileName.Split("\")
                 Select Case dotSplit(dotSplit.Count - 1)
@@ -308,7 +308,7 @@ Public Class createEvent
                             times.AddRange(dr("Events").Split(";"))
                             Dim fileNames() As String = dr("AttachNames").Split(";")
                             If fileNames.Count > 0 Then
-                                Dim tempPb As New PictureBox    'creates new picturebox with the filename
+                                Dim tempPb As New PictureBox    'creates a temporary picturebox to be used as a sender
                                 With tempPb
                                     .Width = pbAttach.Width
                                     .Height = pbAttach.Height
@@ -317,50 +317,92 @@ Public Class createEvent
                                 End With
                                 For Each fileName In fileNames
                                     If fileName <> fileNames(0) Then    'checks if it's the first file
-                                        Dim currentNum As Integer = 2, numPanels As Integer = pbCount
-                                        While currentNum <= fileNames.Count 'add the files
-                                            For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                                                If pnl.Name = "pnl" & currentNum.ToString() Then
-                                                    For Each pb In pnl.Controls.OfType(Of PictureBox)()
-                                                        pb.Tag = fileName
-                                                        If fileName.EndsWith(".docx") Then
-                                                            pb.Image = My.Resources.word
-                                                        Else
-                                                            pb.Image = My.Resources.excel
-                                                        End If
-                                                        pb.Location = New Point(0, -1)
-                                                        Dim lbl As New Label
-                                                        lbl.Width = 500
-                                                        lbl.Font = New Drawing.Font("Arial", 9)
-                                                        lbl.Text = fileName
-                                                        Me.Controls.Add(lbl)
-                                                        lbl.Parent = pnl
-                                                        lbl.Location = New Point(75, 0)
-                                                        lbl.BackColor = Color.Transparent
-                                                        lbl.BringToFront()
-                                                        Exit For 'since there is only one picturebox in a panel
-                                                    Next
-                                                    Exit For
-                                                End If
-                                            Next
-                                            currentNum += 1
-                                        End While
                                         If fileNames.Count = pbCount Then 'if the number of files matches the number of panels
+                                            Dim currentNum As Integer = 2, numPanels As Integer = pbCount
+                                            While currentNum <= fileNames.Count 'add the files
+                                                For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                    If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                        For Each control In pnl.Controls
+                                                            If currentNum = fileNames.Count Then
+                                                                If control.GetType() Is GetType(PictureBox) Then
+                                                                    control.Tag = fileName
+                                                                    If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
+                                                                        control.Image = My.Resources.word
+                                                                    Else
+                                                                        control.Image = My.Resources.excel
+                                                                    End If
+                                                                    control.Location = New Point(-1, -1)
+                                                                End If
+                                                                Dim lbl As New Label
+                                                                lbl.Width = 500
+                                                                lbl.Font = New Drawing.Font("Arial", 9)
+                                                                lbl.Text = fileName
+                                                                Me.Controls.Add(lbl)
+                                                                lbl.Parent = pnl
+                                                                lbl.Location = New Point(75, 0)
+                                                                lbl.BackColor = Color.Transparent
+                                                                lbl.BringToFront()
+                                                            Else
+                                                                If control.GetType() Is GetType(PictureBox) Then
+                                                                    control.Tag = fileName
+                                                                    If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
+                                                                        control.Image = My.Resources.word
+                                                                    Else
+                                                                        control.Image = My.Resources.excel
+                                                                    End If
+                                                                    control.Location = New Point(-1, -1)
+                                                                ElseIf control.GetType() Is GetType(Label) Then
+                                                                    control.text = fileName
+                                                                End If
+                                                            End If
+                                                        Next
+                                                        Exit For
+                                                    End If
+                                                Next
+                                                currentNum += 1
+                                            End While
                                             createPictureBox(tempPb)
                                         ElseIf fileNames.Count < pbCount Then
+                                            Dim currentNum As Integer = 2, numPanels As Integer = pbCount
+                                            While currentNum <= fileNames.Count 'add the files
+                                                For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                    If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                        For Each control In pnl.Controls
+                                                            If control.GetType() Is GetType(PictureBox) Then
+                                                                control.Tag = fileName
+                                                                If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
+                                                                    control.Image = My.Resources.word
+                                                                Else
+                                                                    control.Image = My.Resources.excel
+                                                                End If
+                                                                control.Location = New Point(-1, -1)
+                                                            ElseIf control.GetType() Is GetType(Label) Then
+                                                                control.text = fileName
+                                                            End If
+                                                        Next
+                                                        Exit For
+                                                    End If
+                                                Next
+                                                currentNum += 1
+                                            End While
                                             While currentNum <= numPanels
                                                 If currentNum = fileNames.Count + 1 Then
                                                     For Each pnl In flpAttach.Controls.OfType(Of Panel)()
                                                         If pnl.Name = "pnl" & currentNum.ToString() Then
-                                                            For Each control In pnl.Controls()
-                                                                If control.GetType() Is GetType(PictureBox) Then
-                                                                    control.Tag = "add"
-                                                                    control.image = My.Resources.transparent_plus
-                                                                    control.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
-                                                                ElseIf control.GetType() Is GetType(Label) Then
-                                                                    pnl.Controls.Remove(control)
-                                                                End If
-                                                            Next
+                                                            pnl.Controls.Clear()
+                                                            Dim pb As New PictureBox
+                                                            With pb
+                                                                .Tag = "add"
+                                                                .Name = "pb" & currentNum.ToString()
+                                                                .Image = My.Resources.transparent_plus
+                                                                .SizeMode = pbAttach.SizeMode
+                                                                .Width = pbAttach.Width
+                                                                .Height = pbAttach.Height
+                                                                .Cursor = Cursors.Hand
+                                                            End With
+                                                            AddHandler pb.Click, AddressOf pbAttach_Click
+                                                            pnl.Controls.Add(pb)
+                                                            pb.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
                                                             Exit For
                                                         End If
                                                     Next
@@ -368,6 +410,7 @@ Public Class createEvent
                                                     For Each pnl In flpAttach.Controls.OfType(Of Panel)()
                                                         If pnl.Name = "pnl" & currentNum.ToString() Then
                                                             flpAttach.Controls.Remove(pnl)
+                                                            pbCount -= 1
                                                             Exit For
                                                         End If
                                                     Next
@@ -375,68 +418,102 @@ Public Class createEvent
                                                 currentNum += 1
                                             End While
                                         Else
+                                            Dim currentNum As Integer = 2, numPanels As Integer = pbCount
+                                            While currentNum <= numPanels 'add the files
+                                                For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                    If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                        For Each control In pnl.Controls
+                                                            If control.GetType() Is GetType(PictureBox) Then
+                                                                control.Tag = fileName
+                                                                If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
+                                                                    control.Image = My.Resources.word
+                                                                Else
+                                                                    control.Image = My.Resources.excel
+                                                                End If
+                                                                control.Location = New Point(-1, -1)
+                                                            ElseIf control.GetType() Is GetType(Label) Then
+                                                                control.text = fileName
+                                                            End If
+                                                        Next
+                                                        Exit For
+                                                    End If
+                                                Next
+                                                currentNum += 1
+                                            End While
                                             While currentNum <= fileNames.Count
+                                                pbCount += 1
+                                                Dim pnl As New Panel
+                                                With pnl
+                                                    pnl.BackColor = pnlAttach.BackColor
+                                                    pnl.Name = "pnl" & pbCount
+                                                    pnl.Width = pnlAttach.Width
+                                                    pnl.Height = pnlAttach.Height
+                                                    pnl.BorderStyle = pnlAttach.BorderStyle
+                                                    pnl.Cursor = Cursors.Hand
+                                                End With
+                                                AddHandler pnl.Click, AddressOf pnlAttach_Click
+                                                flpAttach.Controls.Add(pnl)
+                                                Dim pb As New PictureBox
+                                                pb.Name = "pb" & pbCount
+                                                pb.SizeMode = pbAttach.SizeMode
+                                                pb.Width = pbAttach.Width
+                                                pb.Height = pbAttach.Height
+                                                If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
+                                                    pb.Image = My.Resources.word
+                                                Else
+                                                    pb.Image = My.Resources.excel
+                                                End If
+                                                pb.Tag = fileName
+                                                pb.Cursor = Cursors.Hand
+                                                AddHandler pb.Click, AddressOf pbAttach_Click
+                                                pnl.Controls.Add(pb)
+                                                pb.Location = New Point(-1, -1)
+                                                Dim lbl As New Label
+                                                lbl.Width = 500
+                                                lbl.Font = New Drawing.Font("Arial", 9)
+                                                lbl.Text = fileName
+                                                Me.Controls.Add(lbl)
+                                                lbl.Parent = pnl
+                                                lbl.Location = New Point(75, 0)
+                                                lbl.BackColor = Color.Transparent
+                                                lbl.BringToFront()
                                                 If currentNum = fileNames.Count Then
                                                     createPictureBox(tempPb)
-                                                Else
-                                                    pbCount += 1
-                                                    Dim pnl As New Panel
-                                                    With pnl
-                                                        pnl.BackColor = pnlAttach.BackColor
-                                                        pnl.Name = "pnl" & pbCount
-                                                        pnl.Width = pnlAttach.Width
-                                                        pnl.Height = pnlAttach.Height
-                                                        pnl.BorderStyle = pnlAttach.BorderStyle
-                                                        pnl.Cursor = Cursors.Hand
-                                                    End With
-                                                    AddHandler pnl.Click, AddressOf pnlAttach_Click
-                                                    flpAttach.Controls.Add(pnl)
-                                                    Dim pb As New PictureBox
-                                                    pb.Name = "pb" & pbCount
-                                                    pb.SizeMode = sender.sizeMode
-                                                    pb.Width = sender.width
-                                                    pb.Height = sender.height
-                                                    If fileName.Contains(".doc") Then
-                                                        pb.Image = My.Resources.word
-                                                    Else
-                                                        pb.Image = My.Resources.excel
-                                                    End If
-                                                    pb.Tag = fileName
-                                                    pb.Cursor = Cursors.Hand
-                                                    AddHandler pb.Click, AddressOf pbAttach_Click
-                                                    pnl.Controls.Add(pb)
-                                                    pb.Location = New Point(0, -1)
-                                                    Dim lbl As New Label
-                                                    lbl.Width = 500
-                                                    lbl.Font = New Drawing.Font("Arial", 9)
-                                                    lbl.Text = fileName
-                                                    Me.Controls.Add(lbl)
-                                                    lbl.Parent = pnl
-                                                    lbl.Location = New Point(75, 0)
-                                                    lbl.BackColor = Color.Transparent
-                                                    lbl.BringToFront()
                                                 End If
                                                 currentNum += 1
                                             End While
                                         End If
                                     Else                                'sets the filename to the existing picturebox
                                         pbAttach.Tag = fileName
-                                        If fileName.EndsWith(".docx") Then
+                                        If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                                             pbAttach.Image = My.Resources.word
                                         Else
                                             pbAttach.Image = My.Resources.excel
                                         End If
-                                        pbAttach.Location = New Point(0, -1)
-                                        Dim lbl As New Label
-                                        lbl.Width = 500
-                                        lbl.Font = New Drawing.Font("Arial", 9)
-                                        lbl.Text = fileName
-                                        Me.Controls.Add(lbl)
-                                        lbl.Parent = pbAttach.Parent
-                                        lbl.Location = New Point(75, 0)
-                                        lbl.BackColor = Color.Transparent
-                                        lbl.BringToFront()
-                                        createPictureBox(tempPb)
+                                        pbAttach.Location = New Point(-1, -1)
+                                        If pnlAttach.Controls.Count = 2 Then
+                                            For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                If pnl.Name = pnlAttach.Name Then
+                                                    For Each lbl In pnl.Controls.OfType(Of Label)()
+                                                        lbl.Text = fileName
+                                                    Next
+                                                    Exit For
+                                                End If
+                                            Next
+                                        ElseIf pnlAttach.Controls.Count = 1 Then
+                                            Dim lbl As New Label
+                                            lbl.Width = 500
+                                            lbl.Font = New Drawing.Font("Arial", 9)
+                                            lbl.Text = fileName
+                                            Me.Controls.Add(lbl)
+                                            lbl.Parent = pbAttach.Parent
+                                            lbl.Location = New Point(75, 0)
+                                            lbl.BackColor = Color.Transparent
+                                            lbl.BringToFront()
+                                        End If
+                                        If fileNames.Count = 1 Then
+                                            createPictureBox(tempPb)
+                                        End If
                                     End If
                                 Next
                             End If
@@ -450,17 +527,17 @@ Public Class createEvent
     End Sub
     Dim tempFilePath As String = ""
     Sub checkFileBeforeOpen(ByVal fileName As String, ByVal sender As Object)
-        If fileName.EndsWith("xlsx") AndAlso excelApp Is Nothing OrElse fileName.EndsWith("docx") AndAlso wordApp Is Nothing Then
+        If (fileName.EndsWith("xlsx") Or fileName.EndsWith("xls")) AndAlso excelApp Is Nothing OrElse (fileName.EndsWith("doc") Or fileName.EndsWith("docx")) AndAlso wordApp Is Nothing Then
             Dim officeType As Type
             saveOrOpen.ShowDialog()
             If saveOrOpen.result = "save" Then
                 sfdSave.FileName = fileName
-                If fileName.EndsWith("docx") Then
+                If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                     officeType = Type.GetTypeFromProgID("Word.Application")
-                    sfdSave.Filter = "(*.docx)|*.docx"
+                    sfdSave.Filter = "(*.docx, *.doc)|*.docx; *.doc"
                 Else
                     officeType = Type.GetTypeFromProgID("Excel.Application")
-                    sfdSave.Filter = "(*.xlsx)|*.xlsx"
+                    sfdSave.Filter = "(*.xlsx, *.xls)|*.xlsx; *.xls"
                 End If
                 Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                     conn.Open()
@@ -475,14 +552,14 @@ Public Class createEvent
                                         Dim fs As New System.IO.FileStream(sfdSave.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write)
                                         fs.Write(fileInfo, 0, ms.Length)
                                         fs.Dispose()
-                                        If fileName.EndsWith("docx") Then
+                                        If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                                             openWordFile(sfdSave.FileName)
                                         Else
                                             openExcelFile(sfdSave.FileName)
                                         End If
                                     End Using
                                 ElseIf officeType = Nothing Then
-                                    If fileName.EndsWith("docx") Then
+                                    If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                                         MessageBox.Show("You do Not have Word installed.")
                                     Else
                                         MessageBox.Show("You do Not have Excel installed.")
@@ -508,7 +585,7 @@ Public Class createEvent
                                 Dim fileInfo As Byte() = CType(dr("FileInfo"), Byte())
                                 Using ms As New System.IO.MemoryStream(fileInfo)
                                     tempFilePath = System.IO.Path.GetTempFileName
-                                    If fileName.Contains(".docx") Then
+                                    If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                                         deleteWordFileThread = New Thread(Sub() deleteTempFile(tempFilePath))
                                     Else
                                         deleteExcelFileThread = New Thread(Sub() deleteTempFile(tempFilePath))
@@ -516,7 +593,7 @@ Public Class createEvent
                                     Dim fs As New System.IO.FileStream(tempFilePath, System.IO.FileMode.Create, System.IO.FileAccess.Write)
                                     fs.Write(fileInfo, 0, ms.Length)
                                     fs.Dispose()
-                                    If fileName.EndsWith("docx") Then
+                                    If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                                         openWordFile(tempFilePath)
                                     Else
                                         openExcelFile(tempFilePath)
@@ -527,22 +604,22 @@ Public Class createEvent
                                     Dim fileValid As Boolean = False
                                     While fileValid = False
                                         ofdOpen.FileName = ""
-                                        If fileName.EndsWith("docx") Then
+                                        If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                                             officeType = Type.GetTypeFromProgID("Word.Application")
-                                            ofdOpen.Filter = "(*.docx)|*.docx"
+                                            ofdOpen.Filter = "(*.docx, *.doc)|*.docx; *.doc"
                                         Else
                                             officeType = Type.GetTypeFromProgID("Excel.Application")
-                                            ofdOpen.Filter = "(*.xlsx)|*.xlsx"
+                                            ofdOpen.Filter = "(*.xlsx, *.xsl)|*.xlsx; *.xls"
                                         End If
                                         If ofdOpen.ShowDialog() <> DialogResult.Cancel And System.IO.Path.GetFileName(ofdOpen.FileName) = fileName And officeType <> Nothing Then
-                                            If fileName.EndsWith("docx") Then
+                                            If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                                                 openWordFile(ofdOpen.FileName)
                                             Else
                                                 openExcelFile(ofdOpen.FileName)
                                             End If
                                             fileValid = True
                                         ElseIf officeType = Nothing Then
-                                            If fileName.EndsWith("docx") Then
+                                            If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
                                                 MessageBox.Show("You do Not have Word installed.")
                                             Else
                                                 MessageBox.Show("You do Not have Excel installed.")
