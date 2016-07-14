@@ -35,6 +35,8 @@ Partial Class ResultSearch
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.ComboBox4 = New System.Windows.Forms.ComboBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
         '
         'Label1
@@ -148,11 +150,28 @@ Partial Class ResultSearch
         Me.ComboBox4.Size = New System.Drawing.Size(59, 21)
         Me.ComboBox4.TabIndex = 13
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(144, 315)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(299, 95)
+        Me.ListBox1.TabIndex = 14
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(473, 310)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(200, 100)
+        Me.FlowLayoutPanel1.TabIndex = 15
+        '
         'ResultSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(708, 469)
+        Me.Controls.Add(Me.FlowLayoutPanel1)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.ComboBox4)
         Me.Controls.Add(Me.ComboBox3)
         Me.Controls.Add(Me.ComboBox2)
@@ -186,4 +205,6 @@ Partial Class ResultSearch
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class
