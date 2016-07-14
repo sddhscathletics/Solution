@@ -2,6 +2,8 @@
 Imports System.IO.FileStream
 Imports System.Threading
 Imports Microsoft.Office.Interop
+Imports GMap.NET
+Imports GMap.NET.WindowsForms
 Public Class createEvent
     Public Shared attendees As New List(Of String) 'list of id's with which you look back at the database to find agegroup to display tick or not
     Public Shared times As New List(Of String) 'list of "event: time"
@@ -266,6 +268,18 @@ Public Class createEvent
         'cmbTemplate.Items.AddRange(finalList.ToArray())
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
         pbAttach.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
+        map.MapProvider = MapProviders.GoogleMapProvider.Instance
+        map.Manager.Mode = AccessMode.ServerAndCache
+        map.SetPositionByKeywords("Sydney, Australia")
+        map.DragButton = MouseButtons.Left
+        map.ShowCenter = False
+        pbPlus.Parent = map
+        pbPlus.BackColor = Color.Transparent
+        pbPlus.Location = New Point((map.Width - pbPlus.Width - 5), Int(map.Height / 2 - (pbPlus.Height / 2) - 5))
+        pbMinus.Parent = map
+        pbMinus.Location = New Point((map.Width - pbMinus.Width - 5), Int(map.Height / 2 + (pbMinus.Height / 2) + 5))
+        pbMinus.BackColor = Color.Transparent
+        mainThreadID = Thread.CurrentThread.ManagedThreadId
     End Sub
     Private Sub chbNone_CheckedChanged(sender As Object, e As EventArgs) Handles chbNone.CheckedChanged
         If chbNone.Checked = False Then
@@ -826,6 +840,214 @@ Public Class createEvent
             rdbMeet.Checked = False
         Else
             rdbMeet.Checked = True
+        End If
+    End Sub
+    Private Sub map_DoubleClick(sender As Object, e As MouseEventArgs) Handles map.MouseDoubleClick
+        Dim lat = map.FromLocalToLatLng(e.X, e.Y).Lat
+        Dim lng = map.FromLocalToLatLng(e.X, e.Y).Lng
+        If map.Overlays.Count = 0 Then
+            placeMarker(lat, lng, "click")
+        Else
+            If MessageBox.Show("You already have a marker placed." + vbNewLine + "You can only have one location for your event." + vbNewLine + "Would you like to change the location to your new selection?", "Single Location Only", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                placeMarker(lat, lng, "click")
+            End If
+        End If
+    End Sub
+    Dim hasRunClickEvent As Boolean = False
+    Dim tooManySelected As Boolean = False
+    Private Sub map_OnMarkerClick(sender As Object, e As MouseEventArgs) Handles map.OnMarkerClick
+        If hasRunClickEvent = False Then
+            hasRunClickEvent = True
+            If tooManySelected = False Then
+                If map.Overlays.Count > 1 Then
+                    If MessageBox.Show("Are you sure you want to select " + sender.tooltiptext + "?", "Marker Selection", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                        Dim lat = sender.position.lat
+                        Dim lng = sender.position.lng
+                        Dim places As List(Of Placemark) = Nothing
+                        Dim status = MapProviders.GoogleMapProvider.Instance.GetPlacemarks(New PointLatLng(lat, lng), places)
+                        If status = GeoCoderStatusCode.G_GEO_SUCCESS And places IsNot Nothing Then
+                            Dim address = places(0).Address.Split(",")
+                            For i As Integer = 0 To address.Count - 2 'to skip "Australia"
+                                If i = address.Count - 2 Then 'the part with SUBURB STATE POSTCODE
+                                    Dim details = LTrim(address(i)).Split(" ")
+                                    txtSuburb.Text = ""
+                                    For j As Integer = 0 To details.Count - 2 'to skip the postcode
+                                        If j <> details.Count - 2 Then
+                                            txtSuburb.Text += details(j) + " "
+                                        Else
+                                            cmbState.SelectedItem = details(j)
+                                        End If
+                                    Next
+                                    txtSuburb.Text = RTrim(txtSuburb.Text)
+                                Else
+                                    txtStreet.Text = address(i)
+                                End If
+                            Next
+                        End If
+                        map.ZoomAndCenterMarkers(sender.overlay.id)
+                        map.Zoom += 4
+                        waitThread = New Thread(Sub() waitForSubEnd(lat, lng, "click"))
+                        waitThread.Start()
+                    End If
+                End If
+            Else
+                MessageBox.Show("You have selected more than one marker." + vbNewLine + "Try zooming in closer and select only one marker.")
+                tooManySelected = False
+            End If
+        Else
+            hasRunClickEvent = False
+        End If
+    End Sub
+    Private Sub map_Click(sender As Object, e As MouseEventArgs) Handles map.Click
+        Dim hoverCount As Integer = 0
+        For Each layer In map.Overlays
+            For Each marker In layer.Markers
+                If marker.IsMouseOver Then
+                    hoverCount += 1
+                End If
+            Next
+        Next
+        If hoverCount > 1 Then
+            tooManySelected = True
+        End If
+    End Sub
+    Dim waitThread As Thread = Nothing
+    Dim mainThreadID As Integer = 0
+    Private Sub waitForSubEnd(lat, lng, type)
+        Thread.Sleep(500)
+        placeMarker(lat, lng, type)
+    End Sub
+    Private Sub checkConnection()
+        Dim places As List(Of Placemark) = Nothing
+        Dim status = MapProviders.GoogleMapProvider.Instance.GetPlacemarks(New PointLatLng(-33, 150), places)
+        If status = GeoCoderStatusCode.G_GEO_SUCCESS And places IsNot Nothing Then
+            connectionPresent = True
+        Else
+            connectionPresent = False
+        End If
+    End Sub
+    Dim overlayCount As Integer = 0
+    Private Sub placeMarker(lat As Double, lng As Double, type As String)
+        If type = "click" Then
+            map.Overlays.Clear()
+            overlayCount = 0
+        End If
+        overlayCount += 1
+        Dim overlayId As String = "overlay" & CStr(overlayCount)
+        Dim overlay As New GMapOverlay(overlayId)
+        Dim marker As Markers.GMarkerGoogle = New Markers.GMarkerGoogle(New GMap.NET.PointLatLng(lat, lng), Markers.GMarkerGoogleType.green)
+        map.Overlays.Add(overlay)
+        overlay.Markers.Add(marker)
+        Dim places As List(Of Placemark) = Nothing
+        Dim status = MapProviders.GoogleMapProvider.Instance.GetPlacemarks(New PointLatLng(lat, lng), places)
+        If status = GeoCoderStatusCode.G_GEO_SUCCESS And places IsNot Nothing Then
+            Dim placeInfo As String = places(0).Address.ToString()
+            marker.ToolTip = New GMapToolTip(marker)
+            marker.ToolTipText = placeInfo
+            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver
+            If Thread.CurrentThread.ManagedThreadId = mainThreadID Then
+                If map.Overlays.Count <= 1 Then
+                    Dim address = places(0).Address.Split(",")
+                    For i As Integer = 0 To address.Count - 2 'to skip "Australia"
+                        If i = address.Count - 2 Then 'the part with SUBURB STATE POSTCODE
+                            Dim details = LTrim(address(i)).Split(" ")
+                            txtSuburb.Text = ""
+                            For j As Integer = 0 To details.Count - 2 'to skip the postcode
+                                If j <> details.Count - 2 Then
+                                    txtSuburb.Text += details(j) + " "
+                                Else
+                                    cmbState.SelectedItem = details(j)
+                                End If
+                            Next
+                            txtSuburb.Text = RTrim(txtSuburb.Text)
+                        Else
+                            txtStreet.Text = address(i)
+                        End If
+                    Next
+                    map.ZoomAndCenterMarkers(Nothing)
+                    map.Zoom += 4
+                End If
+            End If
+        ElseIf places Is Nothing Then
+            connectionPresent = False
+            MessageBox.Show("There is no server access to Google currently." + vbNewLine + "Please input the location in the textboxes provided.")
+            overlay.Markers.Clear()
+            overlayCount = 0
+        End If
+    End Sub
+    Dim connectionPresent As Boolean = True
+    Dim multipleResults As Boolean = False
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        checkConnection()
+        Dim searchLocation As String = "", incorrectAddress As Boolean = False
+        If txtStreet.Text <> "" Then
+            searchLocation += txtStreet.Text
+        End If
+        If txtSuburb.Text <> "" Then
+            searchLocation += ", " + txtSuburb.Text
+        Else
+            incorrectAddress = True
+        End If
+        searchLocation += ", " + cmbState.SelectedItem + ", Australia"
+        Dim noResult As Boolean = False
+        If connectionPresent And incorrectAddress = False Then
+            Cursor.Current = Cursors.AppStarting
+            Dim url As String = "http://maps.google.com/maps/api/geocode/xml?address=" + searchLocation + "&sensor=false"
+            Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+            Using response As Net.WebResponse = DirectCast(request.GetResponse(), Net.HttpWebResponse)
+                Using reader As New IO.StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8)
+                    Dim dsResult As New DataSet()
+                    dsResult.ReadXml(reader)
+                    Dim dtCoordinates As New DataTable()
+                    dtCoordinates.Columns.AddRange(New DataColumn(3) {New DataColumn("Id", GetType(Integer)), New DataColumn("Address", GetType(String)), New DataColumn("Latitude", GetType(String)), New DataColumn("Longitude", GetType(String))})
+                    If dsResult.Tables("result") IsNot Nothing Then
+                        For Each row As DataRow In dsResult.Tables("result").Rows
+                            Dim geometry_id As String = dsResult.Tables("geometry").[Select]("result_id = " + row("result_id").ToString())(0)("geometry_id").ToString()
+                            Dim location As DataRow = dsResult.Tables("location").[Select](Convert.ToString("geometry_id = ") & geometry_id)(0)
+                            dtCoordinates.Rows.Add(row("result_id"), row("formatted_address"), location("lat"), location("lng"))
+                        Next
+                        DataGridView1.DataSource = dtCoordinates
+                        DataGridView1.Refresh()
+                    Else
+                        noResult = True
+                    End If
+                End Using
+            End Using
+            If noResult = False Then
+                map.Overlays.Clear()
+                overlayCount = 0
+                For Each row As DataGridViewRow In DataGridView1.Rows()
+                    If row.Index <> DataGridView1.Rows().Count - 1 Then
+                        placeMarker(CType(row.Cells(2).Value, Double), CType(row.Cells(3).Value, Double), "search")
+                    End If
+                Next
+                If map.Overlays.Count > 1 Then
+                    multipleResults = True
+                    MessageBox.Show("Multiple results found." + vbNewLine + "Please select one of the markers as your location.")
+                End If
+                map.ZoomAndCenterMarkers(Nothing)
+                Cursor.Current = Cursors.Default
+            Else
+                MessageBox.Show("Google could not find the address you are looking for." + vbNewLine + "Please recheck your location and try again.")
+            End If
+        ElseIf incorrectAddress = True Then
+            MessageBox.Show("You must enter a suburb.")
+        Else
+            MessageBox.Show("There is no server access to Google currently so your address cannot currently be displayed on the map.")
+        End If
+    End Sub
+    Private Sub pbPlus_Click(sender As Object, e As EventArgs) Handles pbPlus.Click
+        If map.Zoom = map.MaxZoom Then
+            MessageBox.Show("You have reached maximum zoom.")
+        Else
+            map.Zoom += 1
+        End If
+    End Sub
+    Private Sub pbMinus_Click(sender As Object, e As EventArgs) Handles pbMinus.Click
+        If map.Zoom = map.MinZoom Then
+            MessageBox.Show("You have reached minimum zoom.")
+        Else
+            map.Zoom -= 1
         End If
     End Sub
 End Class

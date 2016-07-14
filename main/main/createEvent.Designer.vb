@@ -48,21 +48,37 @@ Partial Class createEvent
         Me.lblTemplate = New System.Windows.Forms.Label()
         Me.cmbTemplate = New System.Windows.Forms.ComboBox()
         Me.chbNone = New System.Windows.Forms.CheckBox()
-        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.sfdSave = New System.Windows.Forms.SaveFileDialog()
         Me.gbDetails = New System.Windows.Forms.GroupBox()
         Me.flpAttach = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlAttach = New System.Windows.Forms.Panel()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.map = New GMap.NET.WindowsForms.GMapControl()
+        Me.txtStreet = New System.Windows.Forms.TextBox()
+        Me.lblStreet = New System.Windows.Forms.Label()
+        Me.lblSuburb = New System.Windows.Forms.Label()
+        Me.txtSuburb = New System.Windows.Forms.TextBox()
+        Me.lblState = New System.Windows.Forms.Label()
+        Me.gbLocation = New System.Windows.Forms.GroupBox()
+        Me.cmbState = New System.Windows.Forms.ComboBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.pbMinus = New System.Windows.Forms.PictureBox()
+        Me.pbAttach = New System.Windows.Forms.PictureBox()
+        Me.pbPlus = New System.Windows.Forms.PictureBox()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
+        Me.gbLocation.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnSelect
         '
         Me.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSelect.Location = New System.Drawing.Point(630, 164)
+        Me.btnSelect.Location = New System.Drawing.Point(538, 333)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(144, 19)
         Me.btnSelect.TabIndex = 25
@@ -73,7 +89,7 @@ Partial Class createEvent
         '
         Me.lblEvents.AutoSize = True
         Me.lblEvents.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEvents.Location = New System.Drawing.Point(515, 211)
+        Me.lblEvents.Location = New System.Drawing.Point(423, 380)
         Me.lblEvents.Name = "lblEvents"
         Me.lblEvents.Size = New System.Drawing.Size(66, 24)
         Me.lblEvents.TabIndex = 24
@@ -97,7 +113,7 @@ Partial Class createEvent
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(644, 486)
+        Me.btnCancel.Location = New System.Drawing.Point(642, 554)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(86, 34)
         Me.btnCancel.TabIndex = 21
@@ -106,7 +122,7 @@ Partial Class createEvent
         '
         'btnOkay
         '
-        Me.btnOkay.Location = New System.Drawing.Point(451, 486)
+        Me.btnOkay.Location = New System.Drawing.Point(415, 554)
         Me.btnOkay.Name = "btnOkay"
         Me.btnOkay.Size = New System.Drawing.Size(86, 34)
         Me.btnOkay.TabIndex = 20
@@ -116,7 +132,7 @@ Partial Class createEvent
         'btnBrowse
         '
         Me.btnBrowse.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBrowse.Location = New System.Drawing.Point(630, 211)
+        Me.btnBrowse.Location = New System.Drawing.Point(538, 380)
         Me.btnBrowse.Name = "btnBrowse"
         Me.btnBrowse.Size = New System.Drawing.Size(144, 19)
         Me.btnBrowse.TabIndex = 19
@@ -127,7 +143,7 @@ Partial Class createEvent
         '
         Me.lblAthletes.AutoSize = True
         Me.lblAthletes.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAthletes.Location = New System.Drawing.Point(515, 164)
+        Me.lblAthletes.Location = New System.Drawing.Point(423, 333)
         Me.lblAthletes.Name = "lblAthletes"
         Me.lblAthletes.Size = New System.Drawing.Size(78, 24)
         Me.lblAthletes.TabIndex = 18
@@ -227,7 +243,7 @@ Partial Class createEvent
         'chbNA
         '
         Me.chbNA.AutoSize = True
-        Me.chbNA.Location = New System.Drawing.Point(803, 213)
+        Me.chbNA.Location = New System.Drawing.Point(511, 405)
         Me.chbNA.Name = "chbNA"
         Me.chbNA.Size = New System.Drawing.Size(46, 17)
         Me.chbNA.TabIndex = 33
@@ -251,7 +267,7 @@ Partial Class createEvent
         '
         Me.lblTitle.AutoSize = True
         Me.lblTitle.Font = New System.Drawing.Font("Modern No. 20", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.Location = New System.Drawing.Point(391, -1)
+        Me.lblTitle.Location = New System.Drawing.Point(384, 2)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(167, 29)
         Me.lblTitle.TabIndex = 15
@@ -307,18 +323,6 @@ Partial Class createEvent
         Me.chbNone.Text = "None"
         Me.chbNone.UseVisualStyleBackColor = True
         '
-        'pbAttach
-        '
-        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(0, 0)
-        Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
-        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbAttach.TabIndex = 42
-        Me.pbAttach.TabStop = False
-        Me.pbAttach.Tag = "add"
-        '
         'gbDetails
         '
         Me.gbDetails.Controls.Add(Me.chbNone)
@@ -351,7 +355,7 @@ Partial Class createEvent
         Me.flpAttach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpAttach.Location = New System.Drawing.Point(16, 339)
         Me.flpAttach.Name = "flpAttach"
-        Me.flpAttach.Size = New System.Drawing.Size(358, 159)
+        Me.flpAttach.Size = New System.Drawing.Size(358, 235)
         Me.flpAttach.TabIndex = 45
         Me.flpAttach.WrapContents = False
         '
@@ -363,8 +367,159 @@ Partial Class createEvent
         Me.pnlAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlAttach.Location = New System.Drawing.Point(3, 3)
         Me.pnlAttach.Name = "pnlAttach"
-        Me.pnlAttach.Size = New System.Drawing.Size(335, 56)
+        Me.pnlAttach.Size = New System.Drawing.Size(335, 66)
         Me.pnlAttach.TabIndex = 43
+        '
+        'map
+        '
+        Me.map.Bearing = 0!
+        Me.map.CanDragMap = True
+        Me.map.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.map.EmptyTileColor = System.Drawing.Color.Navy
+        Me.map.GrayScaleMode = False
+        Me.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow
+        Me.map.LevelsKeepInMemmory = 5
+        Me.map.Location = New System.Drawing.Point(561, 8)
+        Me.map.MarkersEnabled = True
+        Me.map.MaxZoom = 18
+        Me.map.MinZoom = 2
+        Me.map.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter
+        Me.map.Name = "map"
+        Me.map.NegativeMode = False
+        Me.map.PolygonsEnabled = True
+        Me.map.RetryLoadTile = 0
+        Me.map.RoutesEnabled = True
+        Me.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.[Integer]
+        Me.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(225, Byte), Integer))
+        Me.map.ShowTileGridLines = False
+        Me.map.Size = New System.Drawing.Size(424, 290)
+        Me.map.TabIndex = 46
+        Me.map.Zoom = 10.0R
+        '
+        'txtStreet
+        '
+        Me.txtStreet.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtStreet.Location = New System.Drawing.Point(9, 73)
+        Me.txtStreet.Multiline = True
+        Me.txtStreet.Name = "txtStreet"
+        Me.txtStreet.Size = New System.Drawing.Size(162, 35)
+        Me.txtStreet.TabIndex = 47
+        '
+        'lblStreet
+        '
+        Me.lblStreet.AutoSize = True
+        Me.lblStreet.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStreet.Location = New System.Drawing.Point(5, 37)
+        Me.lblStreet.Name = "lblStreet"
+        Me.lblStreet.Size = New System.Drawing.Size(108, 24)
+        Me.lblStreet.TabIndex = 44
+        Me.lblStreet.Text = "Street/Place"
+        '
+        'lblSuburb
+        '
+        Me.lblSuburb.AutoSize = True
+        Me.lblSuburb.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSuburb.Location = New System.Drawing.Point(4, 127)
+        Me.lblSuburb.Name = "lblSuburb"
+        Me.lblSuburb.Size = New System.Drawing.Size(71, 24)
+        Me.lblSuburb.TabIndex = 48
+        Me.lblSuburb.Text = "Suburb"
+        '
+        'txtSuburb
+        '
+        Me.txtSuburb.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSuburb.Location = New System.Drawing.Point(78, 131)
+        Me.txtSuburb.Name = "txtSuburb"
+        Me.txtSuburb.Size = New System.Drawing.Size(100, 20)
+        Me.txtSuburb.TabIndex = 49
+        '
+        'lblState
+        '
+        Me.lblState.AutoSize = True
+        Me.lblState.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblState.Location = New System.Drawing.Point(4, 173)
+        Me.lblState.Name = "lblState"
+        Me.lblState.Size = New System.Drawing.Size(51, 24)
+        Me.lblState.TabIndex = 50
+        Me.lblState.Text = "State"
+        '
+        'gbLocation
+        '
+        Me.gbLocation.Controls.Add(Me.cmbState)
+        Me.gbLocation.Controls.Add(Me.btnSearch)
+        Me.gbLocation.Controls.Add(Me.lblState)
+        Me.gbLocation.Controls.Add(Me.lblSuburb)
+        Me.gbLocation.Controls.Add(Me.txtSuburb)
+        Me.gbLocation.Controls.Add(Me.lblStreet)
+        Me.gbLocation.Controls.Add(Me.txtStreet)
+        Me.gbLocation.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbLocation.Location = New System.Drawing.Point(375, 35)
+        Me.gbLocation.Name = "gbLocation"
+        Me.gbLocation.Size = New System.Drawing.Size(182, 254)
+        Me.gbLocation.TabIndex = 54
+        Me.gbLocation.TabStop = False
+        Me.gbLocation.Text = "Location"
+        '
+        'cmbState
+        '
+        Me.cmbState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbState.FormattingEnabled = True
+        Me.cmbState.Items.AddRange(New Object() {"NSW", "ACT", "WA", "NT", "TAS", "SA", "QLD", "VIC"})
+        Me.cmbState.Location = New System.Drawing.Point(78, 176)
+        Me.cmbState.Name = "cmbState"
+        Me.cmbState.Size = New System.Drawing.Size(100, 21)
+        Me.cmbState.TabIndex = 55
+        Me.cmbState.Text = "NSW"
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearch.Location = New System.Drawing.Point(56, 209)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(75, 32)
+        Me.btnSearch.TabIndex = 54
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(688, 312)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(274, 149)
+        Me.DataGridView1.TabIndex = 55
+        '
+        'pbMinus
+        '
+        Me.pbMinus.Image = Global.main.My.Resources.Resources.transparent_minus
+        Me.pbMinus.Location = New System.Drawing.Point(960, 159)
+        Me.pbMinus.Name = "pbMinus"
+        Me.pbMinus.Size = New System.Drawing.Size(25, 25)
+        Me.pbMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbMinus.TabIndex = 56
+        Me.pbMinus.TabStop = False
+        '
+        'pbAttach
+        '
+        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbAttach.Location = New System.Drawing.Point(0, 0)
+        Me.pbAttach.Name = "pbAttach"
+        Me.pbAttach.Size = New System.Drawing.Size(74, 66)
+        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbAttach.TabIndex = 42
+        Me.pbAttach.TabStop = False
+        Me.pbAttach.Tag = "add"
+        '
+        'pbPlus
+        '
+        Me.pbPlus.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbPlus.Location = New System.Drawing.Point(960, 122)
+        Me.pbPlus.Name = "pbPlus"
+        Me.pbPlus.Size = New System.Drawing.Size(25, 25)
+        Me.pbPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbPlus.TabIndex = 57
+        Me.pbPlus.TabStop = False
         '
         'createEvent
         '
@@ -372,7 +527,12 @@ Partial Class createEvent
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(992, 533)
+        Me.ClientSize = New System.Drawing.Size(992, 586)
+        Me.Controls.Add(Me.pbPlus)
+        Me.Controls.Add(Me.pbMinus)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.gbLocation)
+        Me.Controls.Add(Me.map)
         Me.Controls.Add(Me.flpAttach)
         Me.Controls.Add(Me.gbDetails)
         Me.Controls.Add(Me.chbNA)
@@ -387,11 +547,16 @@ Partial Class createEvent
         Me.MaximizeBox = False
         Me.Name = "createEvent"
         Me.Text = "createEvent"
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbDetails.ResumeLayout(False)
         Me.gbDetails.PerformLayout()
         Me.flpAttach.ResumeLayout(False)
         Me.pnlAttach.ResumeLayout(False)
+        Me.gbLocation.ResumeLayout(False)
+        Me.gbLocation.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -427,4 +592,16 @@ Partial Class createEvent
     Friend WithEvents gbDetails As GroupBox
     Friend WithEvents flpAttach As FlowLayoutPanel
     Friend WithEvents pnlAttach As Panel
+    Friend WithEvents map As GMap.NET.WindowsForms.GMapControl
+    Friend WithEvents txtStreet As TextBox
+    Friend WithEvents lblStreet As Label
+    Friend WithEvents lblSuburb As Label
+    Friend WithEvents txtSuburb As TextBox
+    Friend WithEvents lblState As Label
+    Friend WithEvents gbLocation As GroupBox
+    Friend WithEvents btnSearch As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents cmbState As ComboBox
+    Friend WithEvents pbMinus As PictureBox
+    Friend WithEvents pbPlus As PictureBox
 End Class
