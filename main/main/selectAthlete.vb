@@ -32,11 +32,11 @@ Public Class selectAthlete
                                 }
                             athleteList.Add(newAthlete)
 
-                            Dim panel As New Panel With
+                            Dim newpanel As New Panel With
                                 {
                                 .Height = 55,
                                 .Width = 140,
-                                .BackColor = Color.CadetBlue, 'Change this later based on colour palette
+                                .BackColor = Color.CadetBlue,
                                 .Name = newAthlete.ID,
                                 .Tag = dr("ID")
                                 }
@@ -77,12 +77,12 @@ Public Class selectAthlete
                                 .Name = newAthlete.ID + ".fName"
                                 }
 
-                            panel.Controls.Add(ID)
-                            panel.Controls.Add(roll)
-                            panel.Controls.Add(fName)
-                            panel.Controls.Add(lName)
-                            flpAthletes.Controls.Add(panel)
-                            AddHandler panel.MouseClick, AddressOf panelClicked
+                            newpanel.Controls.Add(ID)
+                            newpanel.Controls.Add(roll)
+                            newpanel.Controls.Add(fName)
+                            newpanel.Controls.Add(lName)
+                            flpAthletes.Controls.Add(newpanel)
+                            AddHandler newpanel.MouseClick, AddressOf panelClicked
                             AddHandler ID.MouseClick, AddressOf labelClicked
                             AddHandler roll.MouseClick, AddressOf labelClicked
                             AddHandler fName.MouseClick, AddressOf labelClicked
