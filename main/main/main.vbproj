@@ -132,7 +132,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="login.vb" />
     <Compile Include="Logon.Designer.vb">
       <DependentUpon>Logon.vb</DependentUpon>
     </Compile>
@@ -180,6 +179,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="variables.vb" />
     <Compile Include="home.vb">
@@ -292,6 +296,17 @@
     </None>
     <None Include="UserDataSet.xss">
       <DependentUpon>UserDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserDataSet1.xsc">
+      <DependentUpon>UserDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="UserDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserDataSet1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UserDataSet1.xss">
+      <DependentUpon>UserDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

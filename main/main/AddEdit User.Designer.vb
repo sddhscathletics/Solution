@@ -23,6 +23,8 @@ Partial Class AddEdit_User
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.UserDataSet = New main.UserDataSet()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -40,6 +42,20 @@ Partial Class AddEdit_User
         Me.sideResSub2 = New System.Windows.Forms.Button()
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PassDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AccessLevelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UserDbBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.UserDataSet1 = New main.UserDataSet1()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button14 = New System.Windows.Forms.Button()
@@ -49,9 +65,18 @@ Partial Class AddEdit_User
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.backBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
+        Me.Login = New main.Login()
+        Me.LoginBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.UserDbTableAdapter = New main.UserDataSet1TableAdapters.UserDbTableAdapter()
         CType(Me.UserDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Sidebar.SuspendLayout()
+        Me.bigbtngroup.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.UserDbBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.UserDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.Login, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LoginBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'UserDataSet
@@ -279,6 +304,15 @@ Partial Class AddEdit_User
         'bigbtngroup
         '
         Me.bigbtngroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.bigbtngroup.Controls.Add(Me.RadioButton3)
+        Me.bigbtngroup.Controls.Add(Me.RadioButton2)
+        Me.bigbtngroup.Controls.Add(Me.RadioButton1)
+        Me.bigbtngroup.Controls.Add(Me.Label3)
+        Me.bigbtngroup.Controls.Add(Me.Label2)
+        Me.bigbtngroup.Controls.Add(Me.TextBox3)
+        Me.bigbtngroup.Controls.Add(Me.Label1)
+        Me.bigbtngroup.Controls.Add(Me.TextBox2)
+        Me.bigbtngroup.Controls.Add(Me.DataGridView1)
         Me.bigbtngroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bigbtngroup.Location = New System.Drawing.Point(0, 30)
         Me.bigbtngroup.Name = "bigbtngroup"
@@ -286,6 +320,149 @@ Partial Class AddEdit_User
         Me.bigbtngroup.TabIndex = 6
         Me.bigbtngroup.TabStop = False
         Me.bigbtngroup.Text = "GroupBox1"
+        '
+        'RadioButton3
+        '
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Location = New System.Drawing.Point(1172, 333)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(31, 17)
+        Me.RadioButton3.TabIndex = 3
+        Me.RadioButton3.TabStop = True
+        Me.RadioButton3.Text = "3"
+        Me.RadioButton3.UseVisualStyleBackColor = True
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(1104, 333)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(31, 17)
+        Me.RadioButton2.TabIndex = 3
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "2"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Location = New System.Drawing.Point(1038, 333)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(31, 17)
+        Me.RadioButton1.TabIndex = 3
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "1"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(1035, 300)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(71, 13)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Access Level"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(1035, 200)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(30, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Pass"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(1035, 227)
+        Me.TextBox3.Multiline = True
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(200, 29)
+        Me.TextBox3.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(1035, 73)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(18, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "ID"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(1035, 100)
+        Me.TextBox2.Multiline = True
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(200, 29)
+        Me.TextBox2.TabIndex = 1
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToOrderColumns = True
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
+        Me.DataGridView1.AutoGenerateColumns = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridView1.ColumnHeadersHeight = 30
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.PassDataGridViewTextBoxColumn, Me.AccessLevelDataGridViewTextBoxColumn})
+        Me.DataGridView1.DataSource = Me.UserDbBindingSource
+        Me.DataGridView1.Location = New System.Drawing.Point(64, 49)
+        Me.DataGridView1.MultiSelect = False
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.DataGridView1.RowHeadersVisible = False
+        Me.DataGridView1.RowHeadersWidth = 150
+        Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe MDL2 Assets", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridView1.Size = New System.Drawing.Size(905, 600)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'IDDataGridViewTextBoxColumn
+        '
+        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
+        Me.IDDataGridViewTextBoxColumn.ReadOnly = True
+        Me.IDDataGridViewTextBoxColumn.Width = 300
+        '
+        'PassDataGridViewTextBoxColumn
+        '
+        Me.PassDataGridViewTextBoxColumn.DataPropertyName = "Pass"
+        Me.PassDataGridViewTextBoxColumn.HeaderText = "Pass"
+        Me.PassDataGridViewTextBoxColumn.Name = "PassDataGridViewTextBoxColumn"
+        Me.PassDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PassDataGridViewTextBoxColumn.Width = 300
+        '
+        'AccessLevelDataGridViewTextBoxColumn
+        '
+        Me.AccessLevelDataGridViewTextBoxColumn.DataPropertyName = "Access Level"
+        Me.AccessLevelDataGridViewTextBoxColumn.HeaderText = "Access Level"
+        Me.AccessLevelDataGridViewTextBoxColumn.Name = "AccessLevelDataGridViewTextBoxColumn"
+        Me.AccessLevelDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AccessLevelDataGridViewTextBoxColumn.Width = 300
+        '
+        'UserDbBindingSource
+        '
+        Me.UserDbBindingSource.DataMember = "UserDb"
+        Me.UserDbBindingSource.DataSource = Me.UserDataSet1
+        '
+        'UserDataSet1
+        '
+        Me.UserDataSet1.DataSetName = "UserDataSet1"
+        Me.UserDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Timer1
         '
@@ -392,6 +569,20 @@ Partial Class AddEdit_User
         Me.scrollBtn.Text = "scrollbarbutton"
         Me.scrollBtn.UseVisualStyleBackColor = False
         '
+        'Login
+        '
+        Me.Login.DataSetName = "Login"
+        Me.Login.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'LoginBindingSource
+        '
+        Me.LoginBindingSource.DataSource = Me.Login
+        Me.LoginBindingSource.Position = 0
+        '
+        'UserDbTableAdapter
+        '
+        Me.UserDbTableAdapter.ClearBeforeFill = True
+        '
         'AddEdit_User
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -407,8 +598,15 @@ Partial Class AddEdit_User
         Me.Text = "name yo form fool"
         CType(Me.UserDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Sidebar.ResumeLayout(False)
+        Me.bigbtngroup.ResumeLayout(False)
+        Me.bigbtngroup.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.UserDbBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.UserDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.Login, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LoginBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -439,4 +637,21 @@ Partial Class AddEdit_User
     Friend WithEvents Button13 As Button
     Friend WithEvents Button14 As Button
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents LoginBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents Login As main.Login
+    Friend WithEvents UserDataSet1 As main.UserDataSet1
+    Friend WithEvents UserDbBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents UserDbTableAdapter As main.UserDataSet1TableAdapters.UserDbTableAdapter
+    Friend WithEvents IDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PassDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AccessLevelDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
 End Class

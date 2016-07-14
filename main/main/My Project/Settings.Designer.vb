@@ -63,6 +63,17 @@ Namespace My
                 Return CType(Me("UserConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\User.accd"& _ 
+            "b;Persist Security Info=True")>  _
+        Public ReadOnly Property UserConnectionString1() As String
+            Get
+                Return CType(Me("UserConnectionString1"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

@@ -2,7 +2,7 @@
 Public Class Logon
 
 #Region "Dim Variables"
-    Dim adpCustomer As OleDbDataAdapter
+    Dim adpCustomer As New OleDbDataAdapter
     Dim conCreditUnion As OleDbConnection
     Dim datCustomer As New DataSet()
     Dim User As String
@@ -106,16 +106,6 @@ Public Class Logon
         End Using
         Return Found
     End Function
-
-    Private Sub Logon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        adpCustomer.SelectCommand = New OleDbCommand()
-        With adpCustomer.SelectCommand
-            .Connection = conCreditUnion
-            .CommandText = "SELECT * FROM UserDb"
-            .CommandType = CommandType.Text
-            .ExecuteNonQuery()
-        End With
-    End Sub
 #End Region
 
 End Class

@@ -18,7 +18,8 @@
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
+    GroupBox2.MouseDown
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -28,7 +29,8 @@
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles _
+    GroupBox2.MouseMove
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -36,7 +38,8 @@
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles _
+    GroupBox2.MouseUp
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -172,5 +175,11 @@
     End Sub
 #End Region
 
+
+    Private Sub AddEdit_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'UserDataSet1.UserDb' table. You can move, or remove it, as needed.
+        Me.UserDbTableAdapter.Fill(Me.UserDataSet1.UserDb)
+
+    End Sub
 
 End Class
