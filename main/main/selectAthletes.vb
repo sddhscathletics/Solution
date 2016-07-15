@@ -111,8 +111,8 @@ Public Class selectAthletes
             If confirmAddition.Tag = "people" Then
                 peopleNotAdded.Clear()
             Else
-                eventTimes.previousDropSelection = eventTimes.cmbEvent.SelectedItem
-                eventTimes.timesNotAdded.Clear()
+                createEvent.previousDropSelection = createEvent.cmbEvent.SelectedItem
+                createEvent.timesNotAdded.Clear()
             End If
         End If
     End Sub

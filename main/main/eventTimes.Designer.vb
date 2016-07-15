@@ -36,7 +36,7 @@ Partial Class eventTimes
         Me.dtp13s = New System.Windows.Forms.DateTimePicker()
         Me.cmbEvent = New System.Windows.Forms.ComboBox()
         Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnSaveTimes = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'dtp15s
@@ -183,14 +183,14 @@ Partial Class eventTimes
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'btnSave
+        'btnSaveTimes
         '
-        Me.btnSave.Location = New System.Drawing.Point(78, 373)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnSave.TabIndex = 41
-        Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnSaveTimes.Location = New System.Drawing.Point(78, 373)
+        Me.btnSaveTimes.Name = "btnSaveTimes"
+        Me.btnSaveTimes.Size = New System.Drawing.Size(75, 23)
+        Me.btnSaveTimes.TabIndex = 41
+        Me.btnSaveTimes.Text = "Save"
+        Me.btnSaveTimes.UseVisualStyleBackColor = True
         '
         'eventTimes
         '
@@ -200,7 +200,7 @@ Partial Class eventTimes
         Me.ClientSize = New System.Drawing.Size(474, 425)
         Me.Controls.Add(Me.cmbEvent)
         Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.btnSaveTimes)
         Me.Controls.Add(Me.dtp13s)
         Me.Controls.Add(Me.dtpOpens)
         Me.Controls.Add(Me.lblOpens)
@@ -234,5 +234,5 @@ Partial Class eventTimes
     Friend WithEvents dtp13s As DateTimePicker
     Friend WithEvents cmbEvent As ComboBox
     Friend WithEvents btnCancel As Button
-    Friend WithEvents btnSave As Button
+    Friend WithEvents btnSaveTimes As Button
 End Class

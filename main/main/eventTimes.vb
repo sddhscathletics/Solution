@@ -4,6 +4,14 @@
     Dim created200 As Boolean = False
     Dim selected As String = "100"
     Public Shared timesNotAdded As New List(Of String)
+    Public Shared previousDropSelection As String
+    Private Sub eventTimes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        cmbEvent.SelectedIndex = 0
+        previousDropSelection = cmbEvent.SelectedItem
+        Dim tmpBox As New PictureBox
+        tmpBox.Tag = "firstOpen"
+        cmbEvent_SelectionChangeCommitted(tmpBox, Nothing)
+    End Sub
     Private Sub cmbEvent_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbEvent.SelectionChangeCommitted
         If createEvent.times.Count > 0 And sender.Tag <> "firstOpen" Then
             For Each dtp As DateTimePicker In Me.Controls.OfType(Of DateTimePicker)()
@@ -50,15 +58,7 @@
             End If
         Next
     End Sub
-    Public Shared previousDropSelection As String
-    Private Sub eventTimes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cmbEvent.SelectedIndex = 0
-        previousDropSelection = cmbEvent.SelectedItem
-        Dim tmpBox As New PictureBox
-        tmpBox.Tag = "firstOpen"
-        cmbEvent_SelectionChangeCommitted(tmpBox, Nothing)
-    End Sub
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+    Private Sub btnSaveTimes_Click(sender As Object, e As EventArgs) Handles btnSaveTimes.Click
         For Each dtp As DateTimePicker In Me.Controls.OfType(Of DateTimePicker)()
             Dim hasEntry As Boolean = False
             Dim eventTime As String = cmbEvent.SelectedItem & " " & dtp.Tag & " " & dtp.Text

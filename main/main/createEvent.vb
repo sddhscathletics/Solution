@@ -1,23 +1,54 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO.FileStream
+#Region "Imports"
 Imports System.Threading
 Imports Microsoft.Office.Interop
 Imports GMap.NET
 Imports GMap.NET.WindowsForms
+#End Region
 Public Class createEvent
+#Region "Declarations"
     Public Shared attendees As New List(Of String) 'list of id's with which you look back at the database to find agegroup to display tick or not
     Public Shared times As New List(Of String) 'list of "event: time"
+    'Attachments
+    Dim filePaths As New List(Of String)
+    Dim newAttachBoxLocation As Point = New Point(135, 377)
+    Dim pbCount = 1
+    Dim templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016", "Test Record Layout 23/06/2016"}
+    Dim tempFilePath As String = ""
+    'Office
+    Private WithEvents wordApp As Word.Application
+    Private WithEvents excelApp As Excel.Application
+    Dim doc As Word.Document
+    Dim workbook As Excel.Workbook
+    Dim sheets As Excel.Workbooks
+    Dim deleteWordFileThread As Thread = Nothing
+    Dim deleteExcelFileThread As Thread = Nothing
+    'Map
+    Dim hasRunClickEvent As Boolean = False
+    Dim tooManySelected As Boolean = False
+    Dim waitThread As Thread = Nothing
+    Dim mainThreadID As Integer = 0
+    Dim overlayCount As Integer = 0
+    Dim connectionPresent As Boolean = True
+    'Events
+    Dim created200 As Boolean = False
+    Dim selected As String = "100"
+    Public Shared timesNotAdded As New List(Of String)
+    Public Shared previousDropSelection As String
+#End Region
+#Region "Form Operations"
     Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
         eventTimes.Show()
     End Sub
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         Me.Hide()
     End Sub
-    Private Sub btnOkay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOkay.Click
-        If filePaths.Count > 0 And attendees.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) Then
+    Private Sub btnSaveEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveEvent.Click
+        If filePaths.Count > 0 And attendees.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                 conn.Open()
-                Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @fileNames, @comment)", conn)
+                Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Location, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @location, @fileNames, @comment)", conn)
                     cmd.Parameters.AddWithValue("@name", txtName.Text)
                     dtpDate.Format = DateTimePickerFormat.Short
                     cmd.Parameters.AddWithValue("@date", dtpDate.Text)
@@ -51,6 +82,15 @@ Public Class createEvent
                     Else
                         cmd.Parameters.AddWithValue("@times", "N/A")
                     End If
+                    Dim location As String = ""
+                    For Each overlay In map.Overlays
+                        For Each marker In overlay.Markers
+                            location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
+                            Exit For 'since there is only one marker
+                        Next
+                        Exit For
+                    Next
+                    cmd.Parameters.AddWithValue("@location", location)
                     Dim fileNames As String = ""
                     For Each filePath In filePaths
                         If filePath = filePaths(0) Then
@@ -84,14 +124,20 @@ Public Class createEvent
                 End Using
             Next
             Me.Close()
-        ElseIf attendees.Count <= 0 Then
+        ElseIf attendees.Count = 0 Then
             MessageBox.Show("You must select athletes for the event.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-        ElseIf (times.Count <= 0 AndAlso chbNA.Checked = False) Then
+        ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
             MessageBox.Show("You must either set event times or tick N/A", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        ElseIf map.Overlays.Count <> 1 Then
+            If map.Overlays.Count < 1 Then
+                MessageBox.Show("You must select a location.", "No location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Else
+                MessageBox.Show("Please select only one location.", "Multpiple locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End If
         Else
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                 conn.Open()
-                Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @comment)", conn)
+                Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Location, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @location, @fileNames, @comment)", conn)
                     cmd.Parameters.AddWithValue("@name", txtName.Text)
                     dtpDate.Format = DateTimePickerFormat.Short
                     cmd.Parameters.AddWithValue("@date", dtpDate.Text)
@@ -125,6 +171,15 @@ Public Class createEvent
                     Else
                         cmd.Parameters.AddWithValue("@times", "None")
                     End If
+                    Dim location As String = ""
+                    For Each overlay In map.Overlays
+                        For Each marker In overlay.Markers
+                            location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
+                            Exit For 'since there is only one marker
+                        Next
+                        Exit For
+                    Next
+                    cmd.Parameters.AddWithValue("@location", location)
                     cmd.Parameters.AddWithValue("@comment", txtComment.Text)
                     cmd.ExecuteNonQuery()
                 End Using
@@ -158,90 +213,24 @@ Public Class createEvent
     End Sub
     Private Sub chbNA_CheckedChanged(sender As Object, e As EventArgs) Handles chbNA.CheckedChanged
         If chbNA.CheckState = CheckState.Checked Then
-            btnBrowse.Enabled = False
+            For Each control In gbEvents.Controls()
+                If control IsNot chbNA Then
+                    control.enabled = False
+                End If
+            Next
         Else
-            btnBrowse.Enabled = True
+            For Each control In gbEvents.Controls()
+                If control IsNot chbNA Then
+                    control.enabled = True
+                End If
+            Next
         End If
-    End Sub
-    Dim filePaths As New List(Of String)
-    Dim newAttachBoxLocation As Point = New Point(135, 377)
-    Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
-        If sender.Tag = "add" Then
-            ofdOpen.FileName = ""
-            ofdOpen.Filter = "Word and Excel (*.docx, *.doc, *.xls *.xlsx)|*.docx; *.doc; *xls; *.xlsx"
-            ofdOpen.ShowDialog()
-            If ofdOpen.FileName <> "" Then
-                sender.location = New Point(-1, -1)
-                Dim dotSplit = ofdOpen.FileName.Split(".")
-                Dim backSplit = ofdOpen.FileName.Split("\")
-                Select Case dotSplit(dotSplit.Count - 1)
-                    Case "docx" : sender.Image = My.Resources.word
-                        sender.Tag = backSplit(backSplit.Count - 1)
-                    Case "xlsx" : sender.Image = My.Resources.excel
-                        sender.Tag = backSplit(backSplit.Count - 1)
-                End Select
-                filePaths.Add(ofdOpen.FileName)
-                Dim lbl As New Label
-                lbl.Font = New Drawing.Font("Arial", 9)
-                lbl.Text = sender.Tag
-                Me.Controls.Add(lbl)
-                lbl.Parent = sender.Parent
-                lbl.Location = New Point(75, 0)
-                lbl.Width = 500
-                lbl.BackColor = Color.Transparent
-                lbl.BringToFront()
-                createPictureBox(sender)
-            End If
-        ElseIf sender.Tag.Contains("docx") Or sender.Tag.Contains("xlsx") Then
-            checkFileBeforeOpen(sender.Tag, sender)
-        End If
-    End Sub
-    Private Sub pnlAttach_Click(sender As Object, e As EventArgs) Handles pnlAttach.Click
-        Dim tmpPbName As String = "pb"
-        If sender.name <> pnlAttach.Name Then
-            tmpPbName += CStr(Int(sender.name.Split("pnl".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)(0).ToString())) 'splits the string on "pnl" and gets the number after
-        Else
-            tmpPbName = "pbAttach"
-        End If
-        For Each pb In sender.Controls
-            If pb.Name = tmpPbName Then
-                pbAttach_Click(pb, e)
-                Exit For
-            End If
-        Next
-    End Sub
-    Dim pbCount = 1
-    Private Sub createPictureBox(sender As Object)
-        pbCount += 1
-        Dim pnl As New Panel
-        With pnl
-            pnl.BackColor = pnlAttach.BackColor
-            pnl.Name = "pnl" & pbCount
-            pnl.Width = pnlAttach.Width
-            pnl.Height = pnlAttach.Height
-            pnl.BorderStyle = pnlAttach.BorderStyle
-            pnl.Cursor = Cursors.Hand
-        End With
-        AddHandler pnl.Click, AddressOf pnlAttach_Click
-        flpAttach.Controls.Add(pnl)
-        Dim pb As New PictureBox
-        pb.Name = "pb" & pbCount
-        pb.SizeMode = sender.sizeMode
-        pb.Width = sender.width
-        pb.Height = sender.height
-        pb.Image = My.Resources.transparent_plus
-        pb.Tag = "add"
-        pb.Cursor = Cursors.Hand
-            AddHandler pb.Click, AddressOf pbAttach_Click
-        pnl.Controls.Add(pb)
-        pb.Location = New Point((pnlAttach.Width / 2 - pb.Width / 2), -1)
     End Sub
     Private Sub lblTitle_Click(sender As Object, e As EventArgs) Handles lblTitle.Click
         Dim ptLowerLeft = New Point(0, sender.Height)
         ptLowerLeft = sender.PointToScreen(ptLowerLeft)
         'cmsTemplate.Show(ptLowerLeft)
     End Sub
-    Dim templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016", "Test Record Layout 23/06/2016"}
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Dim savedEvents As New Dictionary(Of Date, String)
         'Dim dates As New List(Of Date)
@@ -268,6 +257,7 @@ Public Class createEvent
         'cmbTemplate.Items.AddRange(finalList.ToArray())
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
         pbAttach.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
+        'Maps
         map.MapProvider = MapProviders.GoogleMapProvider.Instance
         map.Manager.Mode = AccessMode.ServerAndCache
         map.SetPositionByKeywords("Sydney, Australia")
@@ -280,12 +270,25 @@ Public Class createEvent
         pbMinus.Location = New Point((map.Width - pbMinus.Width - 5), Int(map.Height / 2 + (pbMinus.Height / 2) + 5))
         pbMinus.BackColor = Color.Transparent
         mainThreadID = Thread.CurrentThread.ManagedThreadId
+        'Events
+        cmbEvent.SelectedIndex = 0
+        previousDropSelection = cmbEvent.SelectedItem
+        Dim tmpBox As New PictureBox
+        tmpBox.Tag = "firstOpen"
+        cmbEvent_SelectionChangeCommitted(tmpBox, Nothing)
     End Sub
     Private Sub chbNone_CheckedChanged(sender As Object, e As EventArgs) Handles chbNone.CheckedChanged
         If chbNone.Checked = False Then
             cmbTemplate.Enabled = True
         Else
             cmbTemplate.Enabled = False
+        End If
+    End Sub
+    Private Sub rdbTraining_CheckedChanged(sender As Object, e As EventArgs) Handles rdbTraining.CheckedChanged
+        If rdbTraining.Checked = True Then
+            rdbMeet.Checked = False
+        Else
+            rdbMeet.Checked = True
         End If
     End Sub
     Private Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
@@ -531,6 +534,7 @@ Public Class createEvent
                                     End If
                                 Next
                             End If
+                            placeMarker(CType(dr("Location").split(";")(0), Double), CType(dr("Location").split(";")(1), Double), "click")
                             txtComment.Text = dr("Comment")
                         Loop
                     End If
@@ -539,7 +543,78 @@ Public Class createEvent
             conn.Close()
         End Using
     End Sub
-    Dim tempFilePath As String = ""
+#End Region
+#Region "Attachment Operations"
+    Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
+        If sender.Tag = "add" Then
+            ofdOpen.FileName = ""
+            ofdOpen.Filter = "Word and Excel (*.docx, *.doc, *.xls *.xlsx)|*.docx; *.doc; *xls; *.xlsx"
+            ofdOpen.ShowDialog()
+            If ofdOpen.FileName <> "" Then
+                sender.location = New Point(-1, -1)
+                Dim dotSplit = ofdOpen.FileName.Split(".")
+                Dim backSplit = ofdOpen.FileName.Split("\")
+                Select Case dotSplit(dotSplit.Count - 1)
+                    Case "docx" : sender.Image = My.Resources.word
+                        sender.Tag = backSplit(backSplit.Count - 1)
+                    Case "xlsx" : sender.Image = My.Resources.excel
+                        sender.Tag = backSplit(backSplit.Count - 1)
+                End Select
+                filePaths.Add(ofdOpen.FileName)
+                Dim lbl As New Label
+                lbl.Font = New Drawing.Font("Arial", 9)
+                lbl.Text = sender.Tag
+                Me.Controls.Add(lbl)
+                lbl.Parent = sender.Parent
+                lbl.Location = New Point(75, 0)
+                lbl.Width = 500
+                lbl.BackColor = Color.Transparent
+                lbl.BringToFront()
+                createPictureBox(sender)
+            End If
+        ElseIf sender.Tag.Contains("docx") Or sender.Tag.Contains("xlsx") Then
+            checkFileBeforeOpen(sender.Tag, sender)
+        End If
+    End Sub
+    Private Sub pnlAttach_Click(sender As Object, e As EventArgs) Handles pnlAttach.Click
+        Dim tmpPbName As String = "pb"
+        If sender.name <> pnlAttach.Name Then
+            tmpPbName += CStr(Int(sender.name.Split("pnl".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)(0).ToString())) 'splits the string on "pnl" and gets the number after
+        Else
+            tmpPbName = "pbAttach"
+        End If
+        For Each pb In sender.Controls
+            If pb.Name = tmpPbName Then
+                pbAttach_Click(pb, e)
+                Exit For
+            End If
+        Next
+    End Sub
+    Private Sub createPictureBox(sender As Object)
+        pbCount += 1
+        Dim pnl As New Panel
+        With pnl
+            pnl.BackColor = pnlAttach.BackColor
+            pnl.Name = "pnl" & pbCount
+            pnl.Width = pnlAttach.Width
+            pnl.Height = pnlAttach.Height
+            pnl.BorderStyle = pnlAttach.BorderStyle
+            pnl.Cursor = Cursors.Hand
+        End With
+        AddHandler pnl.Click, AddressOf pnlAttach_Click
+        flpAttach.Controls.Add(pnl)
+        Dim pb As New PictureBox
+        pb.Name = "pb" & pbCount
+        pb.SizeMode = sender.sizeMode
+        pb.Width = sender.width
+        pb.Height = sender.height
+        pb.Image = My.Resources.transparent_plus
+        pb.Tag = "add"
+        pb.Cursor = Cursors.Hand
+        AddHandler pb.Click, AddressOf pbAttach_Click
+        pnl.Controls.Add(pb)
+        pb.Location = New Point((pnlAttach.Width / 2 - pb.Width / 2), -1)
+    End Sub
     Sub checkFileBeforeOpen(ByVal fileName As String, ByVal sender As Object)
         If (fileName.EndsWith("xlsx") Or fileName.EndsWith("xls")) AndAlso excelApp Is Nothing OrElse (fileName.EndsWith("doc") Or fileName.EndsWith("docx")) AndAlso wordApp Is Nothing Then
             Dim officeType As Type
@@ -711,6 +786,8 @@ Public Class createEvent
         Next
         pbCount -= 1
     End Sub
+#End Region
+#Region "Microsoft Office Interactions"
     Private Sub openWordFile(ByVal path As String)
         Try
             Cursor = Cursors.AppStarting
@@ -737,11 +814,6 @@ Public Class createEvent
             'p.Last.Kill()
         End Try
     End Sub
-    Private WithEvents wordApp As Word.Application
-    Private WithEvents excelApp As Excel.Application
-    Dim doc As Word.Document
-    Dim workbook As Excel.Workbook
-    Dim sheets As Excel.Workbooks
     Private Sub word_Quit(ByVal tempDoc As Word.Document, ByRef cancel As Boolean) Handles wordApp.DocumentBeforeClose
         Try
             wordApp.NormalTemplate.Saved = True
@@ -769,8 +841,6 @@ Public Class createEvent
             deleteWordFileThread.Start()
         End Try
     End Sub
-    Dim deleteWordFileThread As Thread = Nothing
-    Dim deleteExcelFileThread As Thread = Nothing
     Private Sub openExcelFile(ByVal path As String)
         Try
             Cursor = Cursors.AppStarting
@@ -835,13 +905,8 @@ Public Class createEvent
             End Try
         End While
     End Sub
-    Private Sub rdbTraining_CheckedChanged(sender As Object, e As EventArgs) Handles rdbTraining.CheckedChanged
-        If rdbTraining.Checked = True Then
-            rdbMeet.Checked = False
-        Else
-            rdbMeet.Checked = True
-        End If
-    End Sub
+#End Region
+#Region "Map Operations"
     Private Sub map_DoubleClick(sender As Object, e As MouseEventArgs) Handles map.MouseDoubleClick
         Dim lat = map.FromLocalToLatLng(e.X, e.Y).Lat
         Dim lng = map.FromLocalToLatLng(e.X, e.Y).Lng
@@ -853,12 +918,10 @@ Public Class createEvent
             End If
         End If
     End Sub
-    Dim hasRunClickEvent As Boolean = False
-    Dim tooManySelected As Boolean = False
     Private Sub map_OnMarkerClick(sender As Object, e As MouseEventArgs) Handles map.OnMarkerClick
         If hasRunClickEvent = False Then
             hasRunClickEvent = True
-            If tooManySelected = False Or (Math.Round(sender.location.lat, 0) = -33 AndAlso Math.Round(sender.location.lng, 0) = 151) Then
+            If tooManySelected = False Or (Math.Round(sender.position.lat, 0) = -34 AndAlso Math.Round(sender.position.lng, 0) = 151) Then
                 If map.Overlays.Count > 1 Then
                     If MessageBox.Show("Are you sure you want to select " + sender.tooltiptext + "?", "Marker Selection", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                         Dim lat = sender.position.lat
@@ -911,8 +974,6 @@ Public Class createEvent
             tooManySelected = True
         End If
     End Sub
-    Dim waitThread As Thread = Nothing
-    Dim mainThreadID As Integer = 0
     Private Sub waitForSubEnd(lat, lng, type)
         Thread.Sleep(500)
         placeMarker(lat, lng, type)
@@ -926,7 +987,6 @@ Public Class createEvent
             connectionPresent = False
         End If
     End Sub
-    Dim overlayCount As Integer = 0
     Private Sub placeMarker(lat As Double, lng As Double, type As String)
         If type = "click" Then
             map.Overlays.Clear()
@@ -975,21 +1035,26 @@ Public Class createEvent
             overlayCount = 0
         End If
     End Sub
-    Dim connectionPresent As Boolean = True
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         checkConnection()
-        Dim searchLocation As String = "", incorrectAddress As Boolean = False
+        Dim searchLocation As String = "", incorrectAddress As String = ""
         If txtStreet.Text <> "" Then
             searchLocation += txtStreet.Text
+        Else
+            incorrectAddress = "street/place"
         End If
         If txtSuburb.Text <> "" Then
             searchLocation += ", " + txtSuburb.Text
         Else
-            incorrectAddress = True
+            If incorrectAddress <> "" Then
+                incorrectAddress += " and suburb"
+            Else
+                incorrectAddress = "suburb"
+            End If
         End If
         searchLocation += ", " + cmbState.SelectedItem + ", Australia"
         Dim noResult As Boolean = False
-        If connectionPresent And incorrectAddress = False Then
+        If connectionPresent And incorrectAddress = "" Then
             Cursor.Current = Cursors.AppStarting
             Dim url As String = "http://maps.google.com/maps/api/geocode/xml?address=" + searchLocation + "&sensor=false"
             Dim request As Net.WebRequest = Net.WebRequest.Create(url)
@@ -1031,8 +1096,8 @@ Public Class createEvent
             Else
                 MessageBox.Show("Google could not find the address you are looking for." + vbNewLine + "Please recheck your location and try again.")
             End If
-        ElseIf incorrectAddress = True Then
-            MessageBox.Show("You must enter a suburb.")
+        ElseIf incorrectAddress <> "" Then
+            MessageBox.Show("You must enter a " + incorrectAddress + ".")
         Else
             MessageBox.Show("There is no server access to Google currently so your address cannot currently be displayed on the map.")
         End If
@@ -1051,4 +1116,78 @@ Public Class createEvent
             map.Zoom -= 1
         End If
     End Sub
+#End Region
+#Region "Event Operations"
+    Private Sub cmbEvent_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbEvent.SelectionChangeCommitted
+        If createEvent.times.Count > 0 And sender.Tag <> "firstOpen" Then
+            For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
+                Dim hasMatch As Boolean = False
+                Dim eventTime As String = previousDropSelection & " " & dtp.Tag & " " & dtp.Text 'string in the form: event age time
+                For Each ageGroup In createEvent.times
+                    Dim substring() = ageGroup.Split(" ")
+                    substring(2) = substring(2) & " " & substring(3) 'adds the PM to the time element
+                    If substring(0) = previousDropSelection And substring(1) = dtp.Tag Then 'checks if event and age match
+                        'check if not match FOR ALL AGEGROUP
+                        If substring(2) = dtp.Text Then 'checks if time is the same
+                            hasMatch = True             'if they are the same, then the entry is already saved
+                            Exit For
+                        End If
+                    End If
+                Next
+                If hasMatch = False Then 'an entry for a certain agegroup has not been saved
+                    Dim message As String = dtp.Text + " not saved for " + dtp.Tag + " " + previousDropSelection
+                    timesNotAdded.Add(message)
+                End If
+                'If createEvent.times.Contains(eventTime) = False Then
+            Next
+            If timesNotAdded.Count > 0 Then
+                confirmAddition.Tag = "times"
+                confirmAddition.ShowDialog()
+            Else
+                previousDropSelection = cmbEvent.SelectedItem
+            End If
+        Else
+            previousDropSelection = cmbEvent.SelectedItem
+        End If
+        For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
+            dtp.Text = "12:00:00 AM" 'sets all times to 12:00:00 AM, since the ones that have entries will be updated below
+        Next
+        For Each ageGroup In createEvent.times 'setting all event times to the relevant saved times
+            Dim substring() = ageGroup.Split(" ")
+            If substring(0) = cmbEvent.SelectedItem Then
+                substring(2) = substring(2) & " " & substring(3)
+                For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
+                    If substring(1) = dtp.Tag Then
+                        dtp.Text = substring(2)
+                        Exit For
+                    End If
+                Next
+            End If
+        Next
+    End Sub
+    Private Sub btnSaveTimes_Click(sender As Object, e As EventArgs) Handles btnSaveTimes.Click
+        For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
+            Dim hasEntry As Boolean = False
+            Dim eventTime As String = cmbEvent.SelectedItem & " " & dtp.Tag & " " & dtp.Text
+            If createEvent.times.Count > 0 Then
+                For ageGroup As Integer = 0 To createEvent.times.Count - 1
+                    Dim substring() = createEvent.times(ageGroup).Split(" ")
+                    substring(2) = substring(2) & " " & substring(3)
+                    If substring(0) = cmbEvent.SelectedItem And substring(1) = dtp.Tag Then
+                        hasEntry = True
+                        If substring(2) <> dtp.Text Then
+                            createEvent.times(ageGroup) = eventTime
+                            Exit For
+                        End If
+                    End If
+                Next
+                If hasEntry = False Then
+                    createEvent.times.Add(eventTime)
+                End If
+            Else
+                createEvent.times.Add(eventTime)
+            End If
+        Next
+    End Sub
+#End Region
 End Class

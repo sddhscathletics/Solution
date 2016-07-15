@@ -9,7 +9,7 @@
                 Next
             Case "times"
                 lblTop.Text = "The following events have time discrepancies that need to be resolved:" + vbNewLine + vbNewLine
-                For Each person In eventTimes.timesNotAdded
+                For Each person In createEvent.timesNotAdded
                     rchText.Text += CStr(person) + vbNewLine
                 Next
         End Select
@@ -46,8 +46,8 @@
                 End If
             Next
         Else
-            For time As Integer = 0 To eventTimes.timesNotAdded.Count - 1
-                Dim substring As String() = eventTimes.timesNotAdded(time).Split(" ")
+            For time As Integer = 0 To createEvent.timesNotAdded.Count - 1
+                Dim substring As String() = createEvent.timesNotAdded(time).Split(" ")
                 Dim eventTime As String = substring(6) & " " & substring(5) & " " & substring(0) 'event age time
                 createEvent.times.Add(eventTime)
                 added.Add(eventTime)
