@@ -22,14 +22,12 @@ Partial Class createEvent
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnSelect = New System.Windows.Forms.Button()
-        Me.lblEvents = New System.Windows.Forms.Label()
+        Me.btnSelectA = New System.Windows.Forms.Button()
         Me.dtpStart = New System.Windows.Forms.DateTimePicker()
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSaveEvent = New System.Windows.Forms.Button()
         Me.btnBrowse = New System.Windows.Forms.Button()
-        Me.lblAthletes = New System.Windows.Forms.Label()
         Me.lblStart = New System.Windows.Forms.Label()
         Me.lblDate = New System.Windows.Forms.Label()
         Me.dtpEnd = New System.Windows.Forms.DateTimePicker()
@@ -42,7 +40,7 @@ Partial Class createEvent
         Me.ofdOpen = New System.Windows.Forms.OpenFileDialog()
         Me.txtComment = New System.Windows.Forms.TextBox()
         Me.lblTitle = New System.Windows.Forms.Label()
-        Me.lblName = New System.Windows.Forms.Label()
+        Me.lblEventName = New System.Windows.Forms.Label()
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.lblTemplate = New System.Windows.Forms.Label()
         Me.cmbTemplate = New System.Windows.Forms.ComboBox()
@@ -62,8 +60,6 @@ Partial Class createEvent
         Me.gbLocation = New System.Windows.Forms.GroupBox()
         Me.cmbState = New System.Windows.Forms.ComboBox()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.pbMinus = New System.Windows.Forms.PictureBox()
-        Me.pbPlus = New System.Windows.Forms.PictureBox()
         Me.gbEvents = New System.Windows.Forms.GroupBox()
         Me.btnSaveTimes = New System.Windows.Forms.Button()
         Me.cmbEvent = New System.Windows.Forms.ComboBox()
@@ -80,37 +76,46 @@ Partial Class createEvent
         Me.lbl14s = New System.Windows.Forms.Label()
         Me.lblOpens = New System.Windows.Forms.Label()
         Me.gbAttachments = New System.Windows.Forms.GroupBox()
+        Me.pbPlus = New System.Windows.Forms.PictureBox()
+        Me.pbMinus = New System.Windows.Forms.PictureBox()
+        Me.gbAthletes = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.chbAll = New System.Windows.Forms.CheckBox()
+        Me.cmbGroup = New System.Windows.Forms.ComboBox()
+        Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
+        Me.pnlAthlete = New System.Windows.Forms.Panel()
+        Me.lblRollClass = New System.Windows.Forms.Label()
+        Me.lblRecents = New System.Windows.Forms.Label()
+        Me.lblUnexplained = New System.Windows.Forms.Label()
+        Me.lblId = New System.Windows.Forms.Label()
+        Me.lblAverages = New System.Windows.Forms.Label()
+        Me.lblName = New System.Windows.Forms.Label()
+        Me.chbAthlete = New System.Windows.Forms.CheckBox()
+        Me.pbAthlete = New System.Windows.Forms.PictureBox()
         Me.gbDetails.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbLocation.SuspendLayout()
-        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbEvents.SuspendLayout()
         Me.gbAttachments.SuspendLayout()
+        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbAthletes.SuspendLayout()
+        Me.pnlAthlete.SuspendLayout()
+        CType(Me.pbAthlete, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'btnSelect
+        'btnSelectA
         '
-        Me.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSelect.Location = New System.Drawing.Point(538, 333)
-        Me.btnSelect.Name = "btnSelect"
-        Me.btnSelect.Size = New System.Drawing.Size(144, 19)
-        Me.btnSelect.TabIndex = 25
-        Me.btnSelect.Text = "Select..."
-        Me.btnSelect.UseVisualStyleBackColor = True
-        '
-        'lblEvents
-        '
-        Me.lblEvents.AutoSize = True
-        Me.lblEvents.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEvents.Location = New System.Drawing.Point(423, 380)
-        Me.lblEvents.Name = "lblEvents"
-        Me.lblEvents.Size = New System.Drawing.Size(66, 24)
-        Me.lblEvents.TabIndex = 24
-        Me.lblEvents.Text = "Events"
+        Me.btnSelectA.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSelectA.Location = New System.Drawing.Point(389, 295)
+        Me.btnSelectA.Name = "btnSelectA"
+        Me.btnSelectA.Size = New System.Drawing.Size(144, 19)
+        Me.btnSelectA.TabIndex = 25
+        Me.btnSelectA.Text = "Select..."
+        Me.btnSelectA.UseVisualStyleBackColor = True
         '
         'dtpStart
         '
@@ -151,22 +156,12 @@ Partial Class createEvent
         'btnBrowse
         '
         Me.btnBrowse.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBrowse.Location = New System.Drawing.Point(538, 380)
+        Me.btnBrowse.Location = New System.Drawing.Point(230, -1)
         Me.btnBrowse.Name = "btnBrowse"
         Me.btnBrowse.Size = New System.Drawing.Size(144, 19)
         Me.btnBrowse.TabIndex = 19
         Me.btnBrowse.Text = "Browse..."
         Me.btnBrowse.UseVisualStyleBackColor = True
-        '
-        'lblAthletes
-        '
-        Me.lblAthletes.AutoSize = True
-        Me.lblAthletes.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAthletes.Location = New System.Drawing.Point(423, 333)
-        Me.lblAthletes.Name = "lblAthletes"
-        Me.lblAthletes.Size = New System.Drawing.Size(78, 24)
-        Me.lblAthletes.TabIndex = 18
-        Me.lblAthletes.Text = "Athletes"
         '
         'lblStart
         '
@@ -256,7 +251,7 @@ Partial Class createEvent
         '
         Me.chbNA.AutoSize = True
         Me.chbNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbNA.Location = New System.Drawing.Point(12, 31)
+        Me.chbNA.Location = New System.Drawing.Point(11, 31)
         Me.chbNA.Name = "chbNA"
         Me.chbNA.Size = New System.Drawing.Size(46, 17)
         Me.chbNA.TabIndex = 33
@@ -287,15 +282,15 @@ Partial Class createEvent
         Me.lblTitle.TabIndex = 15
         Me.lblTitle.Text = "Event Creator"
         '
-        'lblName
+        'lblEventName
         '
-        Me.lblName.AutoSize = True
-        Me.lblName.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblName.Location = New System.Drawing.Point(8, 63)
-        Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(59, 24)
-        Me.lblName.TabIndex = 37
-        Me.lblName.Text = "Name"
+        Me.lblEventName.AutoSize = True
+        Me.lblEventName.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEventName.Location = New System.Drawing.Point(8, 63)
+        Me.lblEventName.Name = "lblEventName"
+        Me.lblEventName.Size = New System.Drawing.Size(59, 24)
+        Me.lblEventName.TabIndex = 37
+        Me.lblEventName.Text = "Name"
         '
         'txtName
         '
@@ -344,9 +339,10 @@ Partial Class createEvent
         '
         Me.gbDetails.Controls.Add(Me.chbNone)
         Me.gbDetails.Controls.Add(Me.cmbTemplate)
+        Me.gbDetails.Controls.Add(Me.DataGridView1)
         Me.gbDetails.Controls.Add(Me.lblTemplate)
         Me.gbDetails.Controls.Add(Me.txtName)
-        Me.gbDetails.Controls.Add(Me.lblName)
+        Me.gbDetails.Controls.Add(Me.lblEventName)
         Me.gbDetails.Controls.Add(Me.txtComment)
         Me.gbDetails.Controls.Add(Me.rdbMeet)
         Me.gbDetails.Controls.Add(Me.rdbTraining)
@@ -369,9 +365,9 @@ Partial Class createEvent
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 37)
+        Me.DataGridView1.Location = New System.Drawing.Point(151, 161)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(274, 149)
+        Me.DataGridView1.Size = New System.Drawing.Size(236, 37)
         Me.DataGridView1.TabIndex = 55
         '
         'flpAttach
@@ -379,10 +375,11 @@ Partial Class createEvent
         Me.flpAttach.AutoScroll = True
         Me.flpAttach.BackColor = System.Drawing.SystemColors.Control
         Me.flpAttach.Controls.Add(Me.pnlAttach)
+        Me.flpAttach.Controls.Add(Me.pnlAthlete)
         Me.flpAttach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpAttach.Location = New System.Drawing.Point(0, 24)
         Me.flpAttach.Name = "flpAttach"
-        Me.flpAttach.Size = New System.Drawing.Size(358, 235)
+        Me.flpAttach.Size = New System.Drawing.Size(328, 235)
         Me.flpAttach.TabIndex = 45
         Me.flpAttach.WrapContents = False
         '
@@ -394,7 +391,7 @@ Partial Class createEvent
         Me.pnlAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlAttach.Location = New System.Drawing.Point(3, 3)
         Me.pnlAttach.Name = "pnlAttach"
-        Me.pnlAttach.Size = New System.Drawing.Size(335, 66)
+        Me.pnlAttach.Size = New System.Drawing.Size(305, 56)
         Me.pnlAttach.TabIndex = 43
         '
         'pbAttach
@@ -403,7 +400,7 @@ Partial Class createEvent
         Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
         Me.pbAttach.Location = New System.Drawing.Point(0, 0)
         Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(74, 66)
+        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
         Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbAttach.TabIndex = 42
         Me.pbAttach.TabStop = False
@@ -486,7 +483,6 @@ Partial Class createEvent
         '
         Me.gbLocation.Controls.Add(Me.cmbState)
         Me.gbLocation.Controls.Add(Me.btnSearch)
-        Me.gbLocation.Controls.Add(Me.DataGridView1)
         Me.gbLocation.Controls.Add(Me.lblState)
         Me.gbLocation.Controls.Add(Me.lblSuburb)
         Me.gbLocation.Controls.Add(Me.txtSuburb)
@@ -521,26 +517,6 @@ Partial Class createEvent
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
-        'pbMinus
-        '
-        Me.pbMinus.Image = Global.main.My.Resources.Resources.transparent_minus
-        Me.pbMinus.Location = New System.Drawing.Point(960, 159)
-        Me.pbMinus.Name = "pbMinus"
-        Me.pbMinus.Size = New System.Drawing.Size(25, 25)
-        Me.pbMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbMinus.TabIndex = 56
-        Me.pbMinus.TabStop = False
-        '
-        'pbPlus
-        '
-        Me.pbPlus.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbPlus.Location = New System.Drawing.Point(960, 122)
-        Me.pbPlus.Name = "pbPlus"
-        Me.pbPlus.Size = New System.Drawing.Size(25, 25)
-        Me.pbPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbPlus.TabIndex = 57
-        Me.pbPlus.TabStop = False
-        '
         'gbEvents
         '
         Me.gbEvents.Controls.Add(Me.btnSaveTimes)
@@ -559,9 +535,9 @@ Partial Class createEvent
         Me.gbEvents.Controls.Add(Me.lbl14s)
         Me.gbEvents.Controls.Add(Me.lblOpens)
         Me.gbEvents.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbEvents.Location = New System.Drawing.Point(687, 304)
+        Me.gbEvents.Location = New System.Drawing.Point(722, 304)
         Me.gbEvents.Name = "gbEvents"
-        Me.gbEvents.Size = New System.Drawing.Size(295, 277)
+        Me.gbEvents.Size = New System.Drawing.Size(257, 277)
         Me.gbEvents.TabIndex = 58
         Me.gbEvents.TabStop = False
         Me.gbEvents.Text = "Events"
@@ -569,9 +545,9 @@ Partial Class createEvent
         'btnSaveTimes
         '
         Me.btnSaveTimes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSaveTimes.Location = New System.Drawing.Point(209, 29)
+        Me.btnSaveTimes.Location = New System.Drawing.Point(201, 29)
         Me.btnSaveTimes.Name = "btnSaveTimes"
-        Me.btnSaveTimes.Size = New System.Drawing.Size(75, 23)
+        Me.btnSaveTimes.Size = New System.Drawing.Size(51, 23)
         Me.btnSaveTimes.TabIndex = 45
         Me.btnSaveTimes.Text = "Save"
         Me.btnSaveTimes.UseVisualStyleBackColor = True
@@ -581,7 +557,7 @@ Partial Class createEvent
         Me.cmbEvent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbEvent.FormattingEnabled = True
         Me.cmbEvent.Items.AddRange(New Object() {"100m", "200m", "400m", "800m", "1.5k", "3k", "Hurdles", "High Jump", "Long Jump", "Shotput"})
-        Me.cmbEvent.Location = New System.Drawing.Point(64, 29)
+        Me.cmbEvent.Location = New System.Drawing.Point(59, 29)
         Me.cmbEvent.Name = "cmbEvent"
         Me.cmbEvent.Size = New System.Drawing.Size(136, 21)
         Me.cmbEvent.TabIndex = 44
@@ -590,7 +566,7 @@ Partial Class createEvent
         '
         Me.dtp13s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp13s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp13s.Location = New System.Drawing.Point(100, 64)
+        Me.dtp13s.Location = New System.Drawing.Point(76, 64)
         Me.dtp13s.Name = "dtp13s"
         Me.dtp13s.ShowUpDown = True
         Me.dtp13s.Size = New System.Drawing.Size(176, 26)
@@ -601,7 +577,7 @@ Partial Class createEvent
         '
         Me.dtpOpens.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpOpens.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpOpens.Location = New System.Drawing.Point(100, 246)
+        Me.dtpOpens.Location = New System.Drawing.Point(76, 246)
         Me.dtpOpens.Name = "dtpOpens"
         Me.dtpOpens.ShowUpDown = True
         Me.dtpOpens.Size = New System.Drawing.Size(176, 26)
@@ -612,7 +588,7 @@ Partial Class createEvent
         '
         Me.lbl16s.AutoSize = True
         Me.lbl16s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl16s.Location = New System.Drawing.Point(30, 176)
+        Me.lbl16s.Location = New System.Drawing.Point(6, 176)
         Me.lbl16s.Name = "lbl16s"
         Me.lbl16s.Size = New System.Drawing.Size(43, 21)
         Me.lbl16s.TabIndex = 65
@@ -622,7 +598,7 @@ Partial Class createEvent
         '
         Me.dtp16s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp16s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp16s.Location = New System.Drawing.Point(100, 174)
+        Me.dtp16s.Location = New System.Drawing.Point(76, 174)
         Me.dtp16s.Name = "dtp16s"
         Me.dtp16s.ShowUpDown = True
         Me.dtp16s.Size = New System.Drawing.Size(176, 26)
@@ -633,7 +609,7 @@ Partial Class createEvent
         '
         Me.dtp15s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp15s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp15s.Location = New System.Drawing.Point(100, 138)
+        Me.dtp15s.Location = New System.Drawing.Point(76, 138)
         Me.dtp15s.Name = "dtp15s"
         Me.dtp15s.ShowUpDown = True
         Me.dtp15s.Size = New System.Drawing.Size(176, 26)
@@ -644,7 +620,7 @@ Partial Class createEvent
         '
         Me.lbl17s.AutoSize = True
         Me.lbl17s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl17s.Location = New System.Drawing.Point(30, 210)
+        Me.lbl17s.Location = New System.Drawing.Point(6, 210)
         Me.lbl17s.Name = "lbl17s"
         Me.lbl17s.Size = New System.Drawing.Size(43, 21)
         Me.lbl17s.TabIndex = 66
@@ -654,7 +630,7 @@ Partial Class createEvent
         '
         Me.dtp14s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp14s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp14s.Location = New System.Drawing.Point(100, 102)
+        Me.dtp14s.Location = New System.Drawing.Point(76, 102)
         Me.dtp14s.Name = "dtp14s"
         Me.dtp14s.ShowUpDown = True
         Me.dtp14s.Size = New System.Drawing.Size(176, 26)
@@ -665,7 +641,7 @@ Partial Class createEvent
         '
         Me.lbl15s.AutoSize = True
         Me.lbl15s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl15s.Location = New System.Drawing.Point(30, 138)
+        Me.lbl15s.Location = New System.Drawing.Point(6, 138)
         Me.lbl15s.Name = "lbl15s"
         Me.lbl15s.Size = New System.Drawing.Size(43, 21)
         Me.lbl15s.TabIndex = 62
@@ -675,7 +651,7 @@ Partial Class createEvent
         '
         Me.lbl13s.AutoSize = True
         Me.lbl13s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl13s.Location = New System.Drawing.Point(30, 65)
+        Me.lbl13s.Location = New System.Drawing.Point(6, 65)
         Me.lbl13s.Name = "lbl13s"
         Me.lbl13s.Size = New System.Drawing.Size(43, 21)
         Me.lbl13s.TabIndex = 60
@@ -685,7 +661,7 @@ Partial Class createEvent
         '
         Me.dtp17s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp17s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp17s.Location = New System.Drawing.Point(100, 210)
+        Me.dtp17s.Location = New System.Drawing.Point(76, 210)
         Me.dtp17s.Name = "dtp17s"
         Me.dtp17s.ShowUpDown = True
         Me.dtp17s.Size = New System.Drawing.Size(176, 26)
@@ -696,7 +672,7 @@ Partial Class createEvent
         '
         Me.lbl14s.AutoSize = True
         Me.lbl14s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl14s.Location = New System.Drawing.Point(30, 101)
+        Me.lbl14s.Location = New System.Drawing.Point(6, 101)
         Me.lbl14s.Name = "lbl14s"
         Me.lbl14s.Size = New System.Drawing.Size(43, 21)
         Me.lbl14s.TabIndex = 61
@@ -706,7 +682,7 @@ Partial Class createEvent
         '
         Me.lblOpens.AutoSize = True
         Me.lblOpens.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOpens.Location = New System.Drawing.Point(30, 246)
+        Me.lblOpens.Location = New System.Drawing.Point(6, 246)
         Me.lblOpens.Name = "lblOpens"
         Me.lblOpens.Size = New System.Drawing.Size(60, 21)
         Me.lblOpens.TabIndex = 69
@@ -715,13 +691,189 @@ Partial Class createEvent
         'gbAttachments
         '
         Me.gbAttachments.Controls.Add(Me.flpAttach)
+        Me.gbAttachments.Controls.Add(Me.btnBrowse)
         Me.gbAttachments.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAttachments.Location = New System.Drawing.Point(12, 315)
         Me.gbAttachments.Name = "gbAttachments"
-        Me.gbAttachments.Size = New System.Drawing.Size(362, 273)
+        Me.gbAttachments.Size = New System.Drawing.Size(332, 273)
         Me.gbAttachments.TabIndex = 59
         Me.gbAttachments.TabStop = False
         Me.gbAttachments.Text = "Attachments"
+        '
+        'pbPlus
+        '
+        Me.pbPlus.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbPlus.Location = New System.Drawing.Point(960, 122)
+        Me.pbPlus.Name = "pbPlus"
+        Me.pbPlus.Size = New System.Drawing.Size(25, 25)
+        Me.pbPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbPlus.TabIndex = 57
+        Me.pbPlus.TabStop = False
+        '
+        'pbMinus
+        '
+        Me.pbMinus.Image = Global.main.My.Resources.Resources.transparent_minus
+        Me.pbMinus.Location = New System.Drawing.Point(960, 159)
+        Me.pbMinus.Name = "pbMinus"
+        Me.pbMinus.Size = New System.Drawing.Size(25, 25)
+        Me.pbMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbMinus.TabIndex = 56
+        Me.pbMinus.TabStop = False
+        '
+        'gbAthletes
+        '
+        Me.gbAthletes.Controls.Add(Me.Button1)
+        Me.gbAthletes.Controls.Add(Me.chbAll)
+        Me.gbAthletes.Controls.Add(Me.cmbGroup)
+        Me.gbAthletes.Controls.Add(Me.flpAthletes)
+        Me.gbAthletes.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbAthletes.Location = New System.Drawing.Point(345, 317)
+        Me.gbAthletes.Name = "gbAthletes"
+        Me.gbAthletes.Size = New System.Drawing.Size(371, 273)
+        Me.gbAthletes.TabIndex = 60
+        Me.gbAthletes.TabStop = False
+        Me.gbAthletes.Text = "Athletes"
+        '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(238, 21)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 61
+        Me.Button1.Text = "Select"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'chbAll
+        '
+        Me.chbAll.AutoSize = True
+        Me.chbAll.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAll.Location = New System.Drawing.Point(11, 25)
+        Me.chbAll.Name = "chbAll"
+        Me.chbAll.Size = New System.Drawing.Size(70, 17)
+        Me.chbAll.TabIndex = 48
+        Me.chbAll.Text = "Select All"
+        Me.chbAll.UseVisualStyleBackColor = True
+        '
+        'cmbGroup
+        '
+        Me.cmbGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbGroup.FormattingEnabled = True
+        Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
+        Me.cmbGroup.Location = New System.Drawing.Point(88, 23)
+        Me.cmbGroup.Name = "cmbGroup"
+        Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
+        Me.cmbGroup.TabIndex = 46
+        '
+        'flpAthletes
+        '
+        Me.flpAthletes.AutoScroll = True
+        Me.flpAthletes.BackColor = System.Drawing.SystemColors.Control
+        Me.flpAthletes.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.flpAthletes.Location = New System.Drawing.Point(0, 48)
+        Me.flpAthletes.Name = "flpAthletes"
+        Me.flpAthletes.Size = New System.Drawing.Size(371, 211)
+        Me.flpAthletes.TabIndex = 45
+        Me.flpAthletes.WrapContents = False
+        '
+        'pnlAthlete
+        '
+        Me.pnlAthlete.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.pnlAthlete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlAthlete.Controls.Add(Me.lblRollClass)
+        Me.pnlAthlete.Controls.Add(Me.lblRecents)
+        Me.pnlAthlete.Controls.Add(Me.lblUnexplained)
+        Me.pnlAthlete.Controls.Add(Me.lblId)
+        Me.pnlAthlete.Controls.Add(Me.lblAverages)
+        Me.pnlAthlete.Controls.Add(Me.lblName)
+        Me.pnlAthlete.Controls.Add(Me.chbAthlete)
+        Me.pnlAthlete.Controls.Add(Me.pbAthlete)
+        Me.pnlAthlete.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pnlAthlete.Location = New System.Drawing.Point(3, 65)
+        Me.pnlAthlete.Name = "pnlAthlete"
+        Me.pnlAthlete.Size = New System.Drawing.Size(348, 58)
+        Me.pnlAthlete.TabIndex = 43
+        '
+        'lblRollClass
+        '
+        Me.lblRollClass.AutoSize = True
+        Me.lblRollClass.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRollClass.Location = New System.Drawing.Point(291, 0)
+        Me.lblRollClass.Name = "lblRollClass"
+        Me.lblRollClass.Size = New System.Drawing.Size(34, 15)
+        Me.lblRollClass.TabIndex = 49
+        Me.lblRollClass.Text = "Class:"
+        '
+        'lblRecents
+        '
+        Me.lblRecents.AutoSize = True
+        Me.lblRecents.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRecents.Location = New System.Drawing.Point(81, 36)
+        Me.lblRecents.Name = "lblRecents"
+        Me.lblRecents.Size = New System.Drawing.Size(44, 15)
+        Me.lblRecents.TabIndex = 48
+        Me.lblRecents.Text = "Recents:"
+        '
+        'lblUnexplained
+        '
+        Me.lblUnexplained.AutoSize = True
+        Me.lblUnexplained.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUnexplained.Location = New System.Drawing.Point(209, 37)
+        Me.lblUnexplained.Name = "lblUnexplained"
+        Me.lblUnexplained.Size = New System.Drawing.Size(106, 15)
+        Me.lblUnexplained.TabIndex = 47
+        Me.lblUnexplained.Text = "Unexplained Absences:"
+        '
+        'lblId
+        '
+        Me.lblId.AutoSize = True
+        Me.lblId.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblId.Location = New System.Drawing.Point(209, 0)
+        Me.lblId.Name = "lblId"
+        Me.lblId.Size = New System.Drawing.Size(18, 15)
+        Me.lblId.TabIndex = 46
+        Me.lblId.Text = "ID:"
+        '
+        'lblAverages
+        '
+        Me.lblAverages.AutoSize = True
+        Me.lblAverages.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAverages.Location = New System.Drawing.Point(81, 17)
+        Me.lblAverages.Name = "lblAverages"
+        Me.lblAverages.Size = New System.Drawing.Size(50, 15)
+        Me.lblAverages.TabIndex = 45
+        Me.lblAverages.Text = "Averages:"
+        '
+        'lblName
+        '
+        Me.lblName.AutoSize = True
+        Me.lblName.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblName.Location = New System.Drawing.Point(81, -1)
+        Me.lblName.Name = "lblName"
+        Me.lblName.Size = New System.Drawing.Size(35, 15)
+        Me.lblName.TabIndex = 44
+        Me.lblName.Text = "Name:"
+        '
+        'chbAthlete
+        '
+        Me.chbAthlete.AutoSize = True
+        Me.chbAthlete.Location = New System.Drawing.Point(329, 18)
+        Me.chbAthlete.Name = "chbAthlete"
+        Me.chbAthlete.Size = New System.Drawing.Size(15, 14)
+        Me.chbAthlete.TabIndex = 43
+        Me.chbAthlete.UseVisualStyleBackColor = True
+        '
+        'pbAthlete
+        '
+        Me.pbAthlete.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbAthlete.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbAthlete.Location = New System.Drawing.Point(0, 0)
+        Me.pbAthlete.Name = "pbAthlete"
+        Me.pbAthlete.Size = New System.Drawing.Size(74, 56)
+        Me.pbAthlete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbAthlete.TabIndex = 42
+        Me.pbAthlete.TabStop = False
+        Me.pbAthlete.Tag = "add"
         '
         'createEvent
         '
@@ -731,18 +883,16 @@ Partial Class createEvent
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(983, 591)
         Me.Controls.Add(Me.gbAttachments)
+        Me.Controls.Add(Me.gbAthletes)
         Me.Controls.Add(Me.gbEvents)
         Me.Controls.Add(Me.pbPlus)
         Me.Controls.Add(Me.pbMinus)
         Me.Controls.Add(Me.gbLocation)
         Me.Controls.Add(Me.map)
         Me.Controls.Add(Me.gbDetails)
-        Me.Controls.Add(Me.btnSelect)
-        Me.Controls.Add(Me.lblEvents)
+        Me.Controls.Add(Me.btnSelectA)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSaveEvent)
-        Me.Controls.Add(Me.btnBrowse)
-        Me.Controls.Add(Me.lblAthletes)
         Me.Controls.Add(Me.lblTitle)
         Me.MaximizeBox = False
         Me.Name = "createEvent"
@@ -755,25 +905,28 @@ Partial Class createEvent
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbLocation.ResumeLayout(False)
         Me.gbLocation.PerformLayout()
-        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbEvents.ResumeLayout(False)
         Me.gbEvents.PerformLayout()
         Me.gbAttachments.ResumeLayout(False)
+        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbAthletes.ResumeLayout(False)
+        Me.gbAthletes.PerformLayout()
+        Me.pnlAthlete.ResumeLayout(False)
+        Me.pnlAthlete.PerformLayout()
+        CType(Me.pbAthlete, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents lblDate As Label
     Friend WithEvents lblStart As Label
-    Friend WithEvents lblAthletes As Label
     Friend WithEvents btnBrowse As Button
     Friend WithEvents btnSaveEvent As Button
     Friend WithEvents btnCancel As Button
     Friend WithEvents dtpDate As DateTimePicker
     Friend WithEvents dtpStart As DateTimePicker
-    Friend WithEvents lblEvents As Label
-    Friend WithEvents btnSelect As Button
+    Friend WithEvents btnSelectA As Button
     Friend WithEvents dtpEnd As DateTimePicker
     Friend WithEvents lblEnd As Label
     Friend WithEvents lblComment As Label
@@ -784,7 +937,7 @@ Partial Class createEvent
     Friend WithEvents ofdOpen As OpenFileDialog
     Friend WithEvents txtComment As TextBox
     Friend WithEvents lblTitle As Label
-    Friend WithEvents lblName As Label
+    Friend WithEvents lblEventName As Label
     Friend WithEvents txtName As TextBox
     Friend WithEvents lblTemplate As Label
     Friend WithEvents cmbTemplate As ComboBox
@@ -822,4 +975,18 @@ Partial Class createEvent
     Friend WithEvents lblOpens As Label
     Friend WithEvents cmbEvent As ComboBox
     Friend WithEvents btnSaveTimes As Button
+    Friend WithEvents gbAthletes As GroupBox
+    Friend WithEvents flpAthletes As FlowLayoutPanel
+    Friend WithEvents pnlAthlete As Panel
+    Friend WithEvents pbAthlete As PictureBox
+    Friend WithEvents cmbGroup As ComboBox
+    Friend WithEvents chbAll As CheckBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents chbAthlete As CheckBox
+    Friend WithEvents lblRecents As Label
+    Friend WithEvents lblUnexplained As Label
+    Friend WithEvents lblId As Label
+    Friend WithEvents lblAverages As Label
+    Friend WithEvents lblName As Label
+    Friend WithEvents lblRollClass As Label
 End Class

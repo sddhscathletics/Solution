@@ -36,6 +36,10 @@ Public Class createEvent
     Dim selected As String = "100"
     Public Shared timesNotAdded As New List(Of String)
     Public Shared previousDropSelection As String
+    'Athletes
+    Dim changesSaved As Boolean = False
+    Public Shared peopleNotAdded As New List(Of String)
+    Dim prevIndex As Integer = 0
 #End Region
 #Region "Form Operations"
     Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
@@ -208,7 +212,7 @@ Public Class createEvent
         '    conn.Close()
         'End Using
     End Sub
-    Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
+    Private Sub btnSelectA_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelectA.Click
         selectAthletes.Show()
     End Sub
     Private Sub chbNA_CheckedChanged(sender As Object, e As EventArgs) Handles chbNA.CheckedChanged
@@ -276,6 +280,10 @@ Public Class createEvent
         Dim tmpBox As New PictureBox
         tmpBox.Tag = "firstOpen"
         cmbEvent_SelectionChangeCommitted(tmpBox, Nothing)
+        'Athletes
+        cmbGroup.SelectedIndex = 0
+        cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
+        cmbGroup.Tag = "First"
     End Sub
     Private Sub chbNone_CheckedChanged(sender As Object, e As EventArgs) Handles chbNone.CheckedChanged
         If chbNone.Checked = False Then
@@ -295,9 +303,9 @@ Public Class createEvent
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT * FROM Events WHERE EventDate = @date And EventName = @name", conn) '*takes the column with correct rows
+            Using cmd As New OleDbCommand("Select * FROM Events WHERE EventDate = @Date And EventName = @name", conn) '*takes the column with correct rows
                 Dim eventSplit As String() = cmbTemplate.SelectedItem.Split(" ")
-                cmd.Parameters.AddWithValue("@date", eventSplit(eventSplit.Length - 1))
+                cmd.Parameters.AddWithValue("@Date", eventSplit(eventSplit.Length - 1))
                 Dim name As String = ""
                 For Each part In eventSplit
                     If part <> eventSplit(eventSplit.Length - 1) Then 'if it's not the last element (the date)
@@ -548,7 +556,7 @@ Public Class createEvent
     Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
         If sender.Tag = "add" Then
             ofdOpen.FileName = ""
-            ofdOpen.Filter = "Word and Excel (*.docx, *.doc, *.xls *.xlsx)|*.docx; *.doc; *xls; *.xlsx"
+            ofdOpen.Filter = "Word And Excel (*.docx, * .doc, * .xls * .xlsx)|*.docx; *.doc; *xls; *.xlsx"
             ofdOpen.ShowDialog()
             If ofdOpen.FileName <> "" Then
                 sender.location = New Point(-1, -1)
@@ -628,9 +636,9 @@ Public Class createEvent
                     officeType = Type.GetTypeFromProgID("Excel.Application")
                     sfdSave.Filter = "(*.xlsx, *.xls)|*.xlsx; *.xls"
                 End If
-                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                Using conn As New OleDbConnection("Provider= Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                     conn.Open()
-                    Using cmd As New OleDbCommand("SELECT FileInfo FROM Attachments WHERE FileName = @fileName", conn)
+                    Using cmd As New OleDbCommand("Select FileInfo FROM Attachments WHERE FileName = @fileName", conn)
                         cmd.Parameters.AddWithValue("@fileName", fileName)
                         Using dr = cmd.ExecuteReader()
                             If dr.HasRows Then
@@ -649,15 +657,15 @@ Public Class createEvent
                                     End Using
                                 ElseIf officeType = Nothing Then
                                     If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                        MessageBox.Show("You do Not have Word installed.")
+                                        MessageBox.Show("You do not have Word installed.")
                                     Else
-                                        MessageBox.Show("You do Not have Excel installed.")
+                                        MessageBox.Show("You do not have Excel installed.")
                                     End If
                                 ElseIf sfdSave.FileName = "" Then
                                     MessageBox.Show("Please enter a valid file name.")
                                 End If
                             Else
-                                MessageBox.Show("Please upload the file first before trying to save.")
+                                MessageBox.Show("Please upload the file first before trying To save.")
                             End If
                         End Using
                     End Using
@@ -666,7 +674,7 @@ Public Class createEvent
             ElseIf saveOrOpen.result = "open" Then
                 Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                     conn.Open()
-                    Using cmd As New OleDbCommand("SELECT FileInfo FROM Attachments WHERE FileName = @fileName", conn)
+                    Using cmd As New OleDbCommand("Select FileInfo FROM Attachments WHERE FileName = @fileName", conn)
                         cmd.Parameters.AddWithValue("@fileName", fileName)
                         Using dr = cmd.ExecuteReader()
                             If dr.HasRows Then
@@ -689,7 +697,7 @@ Public Class createEvent
                                     End If
                                 End Using
                             Else
-                                If MessageBox.Show("The file has not been uploaded yet." + vbNewLine + "Would you like to open the file from your computer?", "File Not uploaded", MessageBoxButtons.OKCancel) = DialogResult.OK Then
+                                If MessageBox.Show("The file has not been uploaded yet." + vbNewLine + "Would you like to open the file from your computer?", "File Not Uploaded", MessageBoxButtons.OKCancel) = DialogResult.OK Then
                                     Dim fileValid As Boolean = False
                                     While fileValid = False
                                         ofdOpen.FileName = ""
@@ -709,9 +717,9 @@ Public Class createEvent
                                             fileValid = True
                                         ElseIf officeType = Nothing Then
                                             If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                                MessageBox.Show("You do Not have Word installed.")
+                                                MessageBox.Show("You do not have Word installed.")
                                             Else
-                                                MessageBox.Show("You do Not have Excel installed.")
+                                                MessageBox.Show("You do not have Excel installed.")
                                             End If
                                             fileValid = True
                                         ElseIf System.IO.Path.GetFileName(ofdOpen.FileName) <> fileName Then
@@ -732,7 +740,7 @@ Public Class createEvent
                 deleteAttachment(sender)
             End If
         Else
-            MessageBox.Show("You already have the attachment open." + vbNewLine + "Please finish operations with the open attachment before trying to interact with this one.", "Attachment Open", MessageBoxButtons.OK)
+            MessageBox.Show("You already have the attachment open." + vbNewLine + "Please finish operations With the open attachment before trying to interact with this one.", "Attachment Open", MessageBoxButtons.OK)
         End If
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
@@ -770,7 +778,7 @@ Public Class createEvent
                 Exit For
             End If
         Next
-        'this "copy and delete" results in panels below the sender being one number to high
+        'this "copy And delete" results in panels below the sender being one number to high
         'we now need to decrement these and their elements
         For Each pnlForDecrement In flpAttach.Controls.OfType(Of Panel)() 'find the panels to decrement
             If pnlForDecrement.Name <> pnlAttach.Name Then 'since the first panel will always have the correct name
@@ -1189,5 +1197,300 @@ Public Class createEvent
             End If
         Next
     End Sub
+#End Region
+#Region "Athlete Operations"
+    Private Sub chbAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbAll.Click
+        If chbAll.Checked = True Then
+            For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+                For Each chb In panel.Controls.OfType(Of CheckBox)()
+                    chb.Checked = True
+                Next
+            Next
+        Else
+            For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+                For Each chb In panel.Controls.OfType(Of CheckBox)()
+                    chb.Checked = False
+                Next
+            Next
+        End If
+    End Sub
+    Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelectA.Click
+        Dim checked As Integer = 0
+        For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+            For Each chb In panel.Controls.OfType(Of CheckBox)()
+                If chb.Checked = True Then
+                    checked += 1
+                End If
+            Next
+        Next
+        If checked > 0 Then
+            For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+                For Each label In panel.Controls.OfType(Of Label)()
+                    If label.Name = "lblId" Then
+                        If attendees.Contains(label.Text.Split(":")(1)) = False Then
+                            attendees.Add(label.Text.Split(":")(1))
+                        End If
+                        Exit For
+                    End If
+                Next
+            Next
+        Else
+            MessageBox.Show("You have not selected anyone.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End If
+    End Sub
+    Public Shared Function getName(ByVal idNum As Integer)
+        Dim fullName As String = ""
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT FirstName, LastName FROM athleteDb WHERE ID = @idNumber", conn) '*takes the column with correct rows
+                cmd.Parameters.Add(New OleDbParameter("@idNumber", idNum))
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            fullName += dr("FirstName") + " " + dr("LastName")
+                        Loop
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        End Using
+        Return fullName
+    End Function
+    Public Shared Function findSingleAgeGroup(ByVal idNum As Integer)
+        Dim ageGroup As String = ""
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT AgeGroup FROM athleteDb WHERE ID = @idNumber", conn) '*takes the column with correct rows
+                cmd.Parameters.Add(New OleDbParameter("@idNumber", idNum))
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            ageGroup += dr("AgeGroup")
+                            'retrieve agegroup and use to display in selectAtheltes
+                        Loop
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        End Using
+        Return ageGroup
+    End Function
+    Public Shared Function getWholeAgeGroup(ByVal ageGroup As String)
+        Dim ageAthletes As New List(Of String)
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT * FROM athleteDb WHERE AgeGroup = @age", conn) '*takes the column with correct rows
+                cmd.Parameters.Add(New OleDbParameter("@age", ageGroup))
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            Dim newPerson As String = dr("FirstName") & " " & dr("LastName") & ";" & dr("ID") & ";" & dr("RollClass") & ";" & "12.5 100m, 25.2 200m" & ";" & "12.5 100m, 24.8 200m" & ";" & "5"
+                            ageAthletes.Add(newPerson)
+                        Loop
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        End Using
+        Return ageAthletes.ToArray()
+    End Function
+    Public Shared Sub stopDropDownChange(ByVal idNum As Integer)
+        Select Case findSingleAgeGroup(idNum)
+            Case "U13" : createEvent.cmbGroup.SelectedItem = "U13"
+            Case "U14" : createEvent.cmbGroup.SelectedItem = "U14"
+            Case "U15" : createEvent.cmbGroup.SelectedItem = "U15"
+            Case "U16" : createEvent.cmbGroup.SelectedItem = "U16"
+            Case "U17" : createEvent.cmbGroup.SelectedItem = "U17"
+            Case "Opens" : createEvent.cmbGroup.SelectedItem = "Opens"
+        End Select
+        createEvent.cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
+    End Sub
+    Public Shared Sub tickAthletes(ByVal idNum)
+        For Each panel In createEvent.flpAthletes.Controls.OfType(Of Panel)()
+            For Each label In panel.Controls.OfType(Of Label)()
+                If label.Name = "lblId" Then
+                    If label.Text.Contains(idNum) Then
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            chb.Checked = True
+                        Next
+                    End If
+                    Exit For
+                End If
+            Next
+            If panel Is createEvent.flpAthletes.Controls.OfType(Of Panel)()(createEvent.flpAthletes.Controls.OfType(Of Panel)().Count - 1) Then 'if it's the last panel
+                checkShownNotAdded()
+                checkAllChecked()
+            End If
+        Next
+    End Sub
+    Public Shared Sub checkShownNotAdded()
+        If shownNotAdded = True Then
+            If confirmAddition.Tag = "people" Then
+                peopleNotAdded.Clear()
+            Else
+                previousDropSelection = createEvent.cmbEvent.SelectedItem
+                timesNotAdded.Clear()
+            End If
+        End If
+    End Sub
+    Public Shared Sub checkAllChecked()
+        Dim checked As Integer = 0
+        For Each panel In createEvent.flpAthletes.Controls.OfType(Of Panel)()
+            For Each chb In panel.Controls.OfType(Of CheckBox)()
+                If chb.Checked = True Then
+                    checked += 1
+                End If
+            Next
+        Next
+        If checked <> createEvent.flpAthletes.Controls.OfType(Of Panel)().Count Then
+            createEvent.chbAll.Checked = False
+        Else
+            createEvent.chbAll.Checked = True
+        End If
+    End Sub
+    Private Sub cmbGroup_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbGroup.SelectionChangeCommitted
+        For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+            For Each label In panel.Controls.OfType(Of Label)()
+                If label.Name = "lblId" Then
+                    If attendees.Contains(label.Text.Split(":")(1)) = False Then
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Checked = True Then
+                                Dim message As String = getName(label.Text.Split(":")(1)) + " currently not saved as attending"
+                                peopleNotAdded.Add(message)
+                            End If
+                        Next
+                    Else
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Checked = False Then
+                                Dim message As String = getName(label.Text.Split(":")(1)) + " currently incorrectly saved as attending"
+                                peopleNotAdded.Add(message)
+                            End If
+                        Next
+                    End If
+                    Exit For
+                End If
+            Next
+        Next
+        If peopleNotAdded.Count > 0 Then
+            shownNotAdded = False
+            confirmAddition.Tag = "people"
+            confirmAddition.ShowDialog()
+        End If
+        flpAthletes.Controls.Clear()
+        Dim athletes = Nothing
+        Select Case cmbGroup.SelectedItem
+            Case "U13" : athletes = getWholeAgeGroup("U13")
+            Case "U14" : athletes = getWholeAgeGroup("U14")
+            Case "U15" : athletes = getWholeAgeGroup("U15")
+            Case "U16" : athletes = getWholeAgeGroup("U16")
+            Case "U17" : athletes = getWholeAgeGroup("U17")
+            Case "Opens" : athletes = getWholeAgeGroup("Opens")
+        End Select
+        For Each person In athletes
+            createAthletePanel(person)
+        Next
+        For Each athleteID In attendees
+            tickAthletes(athleteID)
+        Next
+        checkAllChecked()
+    End Sub
+    Private Sub createAthletePanel(info As String)
+        'info is in the form: name; id; rollclass; averages; recents; unexplained
+        Dim pnl As New Panel
+        With pnl
+            .BackColor = Color.Gray
+            .Size = New Size(348, 56)
+        End With
+        flpAthletes.Controls.Add(pnl)
+        Dim pb As New PictureBox
+        With pb
+            .Image = My.Resources.transparent_plus
+            .Size = New Size(74, 56)
+            .SizeMode = PictureBoxSizeMode.StretchImage
+            .Name = "pbAthlete"
+        End With
+        pnl.Controls.Add(pb)
+        pb.Location = New Point(0, 0)
+        Dim lblName As New Label
+        With lblName
+            .Font = New Font("Microsoft Sans Serif", 8)
+            .Text = "Name: " & info.Split(";")(0)
+            .Name = "lblName"
+            .AutoSize = True
+        End With
+        pnl.Controls.Add(lblName)
+        lblName.Location = New Point(81, 0)
+        Dim lblId As New Label
+        With lblId
+            .Font = New Font("Microsoft Sans Serif", 8)
+            .Text = "ID: " & info.Split(";")(1)
+            .Name = "lblId"
+            .AutoSize = True
+        End With
+        pnl.Controls.Add(lblId)
+        lblId.Location = New Point(272, 0)
+        Dim lblRollClass As New Label
+        With lblRollClass
+            .Font = New Font("Microsoft Sans Serif", 8)
+            .Text = "Class: " & info.Split(";")(2)
+            .Name = "lblRollClass"
+            .AutoSize = True
+        End With
+        pnl.Controls.Add(lblRollClass)
+        lblRollClass.Location = New Point(291, 37)
+        Dim lblAverages As New Label
+        With lblAverages
+            .Font = New Font("Microsoft Sans Serif", 8)
+            .Text = "Averages: " & info.Split(";")(3)
+            .Name = "lblAverages"
+            .AutoSize = True
+        End With
+        pnl.Controls.Add(lblAverages)
+        lblAverages.Location = New Point(81, 17)
+        Dim lblRecents As New Label
+        With lblRecents
+            .Font = New Font("Microsoft Sans Serif", 8)
+            .Text = "Recents: " & info.Split(";")(4)
+            .Name = "lblRecents"
+            .AutoSize = True
+        End With
+        pnl.Controls.Add(lblRecents)
+        lblRecents.Location = New Point(81, 36)
+        'Dim lblUnexplained As New Label
+        'With lblUnexplained
+        '    .Font = New Font("Microsoft Sans Serif", 8)
+        '    .Text = "Unexplained: " & info.Split(";")(5)
+        '    .Name = "lblUnexplained"
+        '    .AutoSize = True
+        'End With
+        'pnl.Controls.Add(lblUnexplained)
+        'lblUnexplained.Location = New Point(272, 36)
+        Dim chbAthelte As New CheckBox
+        With chbAthelte
+            .Name = "chbAthlete"
+            .Font = New Font("Microsoft Sans Serif", 8)
+            .Location = New Point(320, 15)
+        End With
+        pnl.Controls.Add(chbAthelte)
+        chbAthlete.BringToFront()
+    End Sub
+    'Private Sub clbAthletes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles clbAthletes.SelectedIndexChanged
+    '    If prevIndex <> clbAthletes.SelectedIndex And cmbGroup.Tag <> "First" Then
+    '        If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
+    '            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
+    '        Else
+    '            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
+    '        End If
+    '    ElseIf cmbGroup.Tag = "First" Then
+    '        cmbGroup.Tag = ""
+    '        If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
+    '            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
+    '        Else
+    '            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
+    '        End If
+    '    End If
+    '    prevIndex = clbAthletes.SelectedIndex
+    '    checkAllChecked()
+    'End Sub
 #End Region
 End Class

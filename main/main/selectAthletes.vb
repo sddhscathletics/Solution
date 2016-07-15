@@ -1,5 +1,16 @@
 ﻿Imports System.Data.OleDb
 Public Class selectAthletes
+    Dim changesSaved As Boolean = False
+    Public Shared peopleNotAdded As New List(Of String)
+    Dim prevIndex As Integer = 0
+    Private Sub selectAthletes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        cmbGroup.SelectedIndex = 0
+        cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
+        cmbGroup.Tag = "First"
+    End Sub
+    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+        Me.Hide()
+    End Sub
     Private Sub chbAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbAll.Click
         If chbAll.Checked = True Then
             For i As Integer = 0 To clbAthletes.Items.Count - 1
@@ -11,7 +22,6 @@ Public Class selectAthletes
             Next
         End If
     End Sub
-    Dim changesSaved As Boolean = False
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
         If clbAthletes.CheckedItems.Count() > 0 Then
             For Each person In clbAthletes.CheckedItems
@@ -22,9 +32,6 @@ Public Class selectAthletes
         Else
             MessageBox.Show("You have not selected anyone.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
-    End Sub
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Me.Hide()
     End Sub
     Public Shared Function getName(ByVal idNum As Integer)
         Dim fullName As String = ""
@@ -82,8 +89,6 @@ Public Class selectAthletes
         End Using
         Return ageAthletes.ToArray()
     End Function
-    Dim savedU13 As String() = New String() {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"}
-    Public Shared peopleNotAdded As New List(Of String)
     Public Shared Sub stopDropDownChange(ByVal idNum As Integer)
         Select Case findSingleAgeGroup(idNum)
             Case "U13" : selectAthletes.cmbGroup.SelectedItem = "U13"
@@ -152,21 +157,15 @@ Public Class selectAthletes
         Next
         checkAllChecked()
     End Sub
-    Private Sub selectAthletes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cmbGroup.SelectedIndex = 0
-        cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
-        Me.Tag = "First"
-    End Sub
-    Dim prevIndex As Integer = 0
     Private Sub clbAthletes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles clbAthletes.SelectedIndexChanged
-        If prevIndex <> clbAthletes.SelectedIndex And Me.Tag <> "First" Then
+        If prevIndex <> clbAthletes.SelectedIndex And cmbGroup.Tag <> "First" Then
             If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
                 clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
             Else
                 clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
             End If
-        ElseIf Me.Tag = "First" Then
-            Me.Tag = ""
+        ElseIf cmbGroup.Tag = "First" Then
+            cmbGroup.Tag = ""
             If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
                 clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
             Else
