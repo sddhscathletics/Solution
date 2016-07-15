@@ -858,7 +858,7 @@ Public Class createEvent
     Private Sub map_OnMarkerClick(sender As Object, e As MouseEventArgs) Handles map.OnMarkerClick
         If hasRunClickEvent = False Then
             hasRunClickEvent = True
-            If tooManySelected = False Then
+            If tooManySelected = False Or (Math.Round(sender.location.lat, 0) = -33 AndAlso Math.Round(sender.location.lng, 0) = 151) Then
                 If map.Overlays.Count > 1 Then
                     If MessageBox.Show("Are you sure you want to select " + sender.tooltiptext + "?", "Marker Selection", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                         Dim lat = sender.position.lat
@@ -976,7 +976,6 @@ Public Class createEvent
         End If
     End Sub
     Dim connectionPresent As Boolean = True
-    Dim multipleResults As Boolean = False
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         checkConnection()
         Dim searchLocation As String = "", incorrectAddress As Boolean = False
@@ -1022,10 +1021,12 @@ Public Class createEvent
                     End If
                 Next
                 If map.Overlays.Count > 1 Then
-                    multipleResults = True
-                    MessageBox.Show("Multiple results found." + vbNewLine + "Please select one of the markers as your location.")
+                    MessageBox.Show(map.Overlays.Count.ToString() + " results found." + vbNewLine + "Please select one of the markers as your location.")
                 End If
                 map.ZoomAndCenterMarkers(Nothing)
+                If map.Overlays.Count < 3 Then
+                    map.Zoom += 4
+                End If
                 Cursor.Current = Cursors.Default
             Else
                 MessageBox.Show("Google could not find the address you are looking for." + vbNewLine + "Please recheck your location and try again.")

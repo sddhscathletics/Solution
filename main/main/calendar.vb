@@ -7,18 +7,11 @@
             selectionCount += 1
         Else
             If firstSelection = mnCalendar.SelectionStart Then
+                Cursor.Current = Cursors.AppStarting
                 createEvent.Show()
+                Cursor.Current = Cursors.Default
             End If
             selectionCount = 0
         End If
-    End Sub
-    Public Structure Meet
-        Public name As String
-        Public day As DateTime
-        Public events As Array
-        Public participants As Array
-    End Structure
-    Public Sub viewEvents(ByVal day As DateTime)
-        createEvent.Show()
     End Sub
 End Class
