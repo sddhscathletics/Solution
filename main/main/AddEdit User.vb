@@ -1,5 +1,4 @@
-﻿
-Public Class home
+﻿Public Class AddEdit_User
 
 #Region "Dim Variables"
     Dim out As Boolean = False
@@ -169,37 +168,18 @@ Public Class home
         Results.Show()
         Me.Hide()
     End Sub
-#End Region
 
-#Region "Buttons"
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        Close()
-    End Sub
-
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
-        checkNotif.Show()
-    End Sub
-
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        home.Show()
         Me.Close()
     End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Logon.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub resultBtn_Click_1(sender As Object, e As EventArgs) Handles resultBtn.Click
-        Results.Show()
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
-        calendar.Show()
-    End Sub
-
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        AddEdit_User.Show()
-    End Sub
 #End Region
+
+
+    Private Sub AddEdit_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'UserDataSet1.UserDb' table. You can move, or remove it, as needed.
+        Me.UserDbTableAdapter.Fill(Me.UserDataSet1.UserDb)
+
+    End Sub
 
 End Class
