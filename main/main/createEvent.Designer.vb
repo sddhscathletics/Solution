@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class createEvent
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,14 +20,12 @@ Partial Class createEvent
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.btnSelectA = New System.Windows.Forms.Button()
         Me.dtpStart = New System.Windows.Forms.DateTimePicker()
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSaveEvent = New System.Windows.Forms.Button()
-        Me.btnBrowse = New System.Windows.Forms.Button()
         Me.lblStart = New System.Windows.Forms.Label()
         Me.lblDate = New System.Windows.Forms.Label()
         Me.dtpEnd = New System.Windows.Forms.DateTimePicker()
@@ -47,7 +45,6 @@ Partial Class createEvent
         Me.chbNone = New System.Windows.Forms.CheckBox()
         Me.sfdSave = New System.Windows.Forms.SaveFileDialog()
         Me.gbDetails = New System.Windows.Forms.GroupBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.flpAttach = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlAttach = New System.Windows.Forms.Panel()
         Me.pbAttach = New System.Windows.Forms.PictureBox()
@@ -79,21 +76,12 @@ Partial Class createEvent
         Me.pbPlus = New System.Windows.Forms.PictureBox()
         Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.gbAthletes = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnSelect = New System.Windows.Forms.Button()
         Me.chbAll = New System.Windows.Forms.CheckBox()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
-        Me.pnlAthlete = New System.Windows.Forms.Panel()
-        Me.lblRollClass = New System.Windows.Forms.Label()
-        Me.lblRecents = New System.Windows.Forms.Label()
-        Me.lblUnexplained = New System.Windows.Forms.Label()
-        Me.lblId = New System.Windows.Forms.Label()
-        Me.lblAverages = New System.Windows.Forms.Label()
-        Me.lblName = New System.Windows.Forms.Label()
-        Me.chbAthlete = New System.Windows.Forms.CheckBox()
-        Me.pbAthlete = New System.Windows.Forms.PictureBox()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.gbDetails.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,19 +91,8 @@ Partial Class createEvent
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbAthletes.SuspendLayout()
-        Me.pnlAthlete.SuspendLayout()
-        CType(Me.pbAthlete, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'btnSelectA
-        '
-        Me.btnSelectA.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSelectA.Location = New System.Drawing.Point(389, 295)
-        Me.btnSelectA.Name = "btnSelectA"
-        Me.btnSelectA.Size = New System.Drawing.Size(144, 19)
-        Me.btnSelectA.TabIndex = 25
-        Me.btnSelectA.Text = "Select..."
-        Me.btnSelectA.UseVisualStyleBackColor = True
         '
         'dtpStart
         '
@@ -152,16 +129,6 @@ Partial Class createEvent
         Me.btnSaveEvent.TabIndex = 20
         Me.btnSaveEvent.Text = "Save"
         Me.btnSaveEvent.UseVisualStyleBackColor = True
-        '
-        'btnBrowse
-        '
-        Me.btnBrowse.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBrowse.Location = New System.Drawing.Point(230, -1)
-        Me.btnBrowse.Name = "btnBrowse"
-        Me.btnBrowse.Size = New System.Drawing.Size(144, 19)
-        Me.btnBrowse.TabIndex = 19
-        Me.btnBrowse.Text = "Browse..."
-        Me.btnBrowse.UseVisualStyleBackColor = True
         '
         'lblStart
         '
@@ -339,7 +306,6 @@ Partial Class createEvent
         '
         Me.gbDetails.Controls.Add(Me.chbNone)
         Me.gbDetails.Controls.Add(Me.cmbTemplate)
-        Me.gbDetails.Controls.Add(Me.DataGridView1)
         Me.gbDetails.Controls.Add(Me.lblTemplate)
         Me.gbDetails.Controls.Add(Me.txtName)
         Me.gbDetails.Controls.Add(Me.lblEventName)
@@ -362,24 +328,15 @@ Partial Class createEvent
         Me.gbDetails.TabStop = False
         Me.gbDetails.Text = "Details"
         '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(151, 161)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(236, 37)
-        Me.DataGridView1.TabIndex = 55
-        '
         'flpAttach
         '
         Me.flpAttach.AutoScroll = True
         Me.flpAttach.BackColor = System.Drawing.SystemColors.Control
         Me.flpAttach.Controls.Add(Me.pnlAttach)
-        Me.flpAttach.Controls.Add(Me.pnlAthlete)
         Me.flpAttach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpAttach.Location = New System.Drawing.Point(0, 24)
         Me.flpAttach.Name = "flpAttach"
-        Me.flpAttach.Size = New System.Drawing.Size(328, 235)
+        Me.flpAttach.Size = New System.Drawing.Size(328, 176)
         Me.flpAttach.TabIndex = 45
         Me.flpAttach.WrapContents = False
         '
@@ -481,6 +438,7 @@ Partial Class createEvent
         '
         'gbLocation
         '
+        Me.gbLocation.Controls.Add(Me.DataGridView1)
         Me.gbLocation.Controls.Add(Me.cmbState)
         Me.gbLocation.Controls.Add(Me.btnSearch)
         Me.gbLocation.Controls.Add(Me.lblState)
@@ -691,11 +649,10 @@ Partial Class createEvent
         'gbAttachments
         '
         Me.gbAttachments.Controls.Add(Me.flpAttach)
-        Me.gbAttachments.Controls.Add(Me.btnBrowse)
         Me.gbAttachments.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAttachments.Location = New System.Drawing.Point(12, 315)
         Me.gbAttachments.Name = "gbAttachments"
-        Me.gbAttachments.Size = New System.Drawing.Size(332, 273)
+        Me.gbAttachments.Size = New System.Drawing.Size(332, 206)
         Me.gbAttachments.TabIndex = 59
         Me.gbAttachments.TabStop = False
         Me.gbAttachments.Text = "Attachments"
@@ -722,27 +679,27 @@ Partial Class createEvent
         '
         'gbAthletes
         '
-        Me.gbAthletes.Controls.Add(Me.Button1)
+        Me.gbAthletes.Controls.Add(Me.btnSelect)
         Me.gbAthletes.Controls.Add(Me.chbAll)
         Me.gbAthletes.Controls.Add(Me.cmbGroup)
         Me.gbAthletes.Controls.Add(Me.flpAthletes)
         Me.gbAthletes.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbAthletes.Location = New System.Drawing.Point(345, 317)
+        Me.gbAthletes.Location = New System.Drawing.Point(345, 316)
         Me.gbAthletes.Name = "gbAthletes"
         Me.gbAthletes.Size = New System.Drawing.Size(371, 273)
         Me.gbAthletes.TabIndex = 60
         Me.gbAthletes.TabStop = False
         Me.gbAthletes.Text = "Athletes"
         '
-        'Button1
+        'btnSelect
         '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(238, 21)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 61
-        Me.Button1.Text = "Select"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelect.Location = New System.Drawing.Point(238, 21)
+        Me.btnSelect.Name = "btnSelect"
+        Me.btnSelect.Size = New System.Drawing.Size(75, 23)
+        Me.btnSelect.TabIndex = 61
+        Me.btnSelect.Text = "Select"
+        Me.btnSelect.UseVisualStyleBackColor = True
         '
         'chbAll
         '
@@ -776,104 +733,14 @@ Partial Class createEvent
         Me.flpAthletes.TabIndex = 45
         Me.flpAthletes.WrapContents = False
         '
-        'pnlAthlete
+        'DataGridView1
         '
-        Me.pnlAthlete.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.pnlAthlete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlAthlete.Controls.Add(Me.lblRollClass)
-        Me.pnlAthlete.Controls.Add(Me.lblRecents)
-        Me.pnlAthlete.Controls.Add(Me.lblUnexplained)
-        Me.pnlAthlete.Controls.Add(Me.lblId)
-        Me.pnlAthlete.Controls.Add(Me.lblAverages)
-        Me.pnlAthlete.Controls.Add(Me.lblName)
-        Me.pnlAthlete.Controls.Add(Me.chbAthlete)
-        Me.pnlAthlete.Controls.Add(Me.pbAthlete)
-        Me.pnlAthlete.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pnlAthlete.Location = New System.Drawing.Point(3, 65)
-        Me.pnlAthlete.Name = "pnlAthlete"
-        Me.pnlAthlete.Size = New System.Drawing.Size(348, 58)
-        Me.pnlAthlete.TabIndex = 43
-        '
-        'lblRollClass
-        '
-        Me.lblRollClass.AutoSize = True
-        Me.lblRollClass.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRollClass.Location = New System.Drawing.Point(291, 0)
-        Me.lblRollClass.Name = "lblRollClass"
-        Me.lblRollClass.Size = New System.Drawing.Size(34, 15)
-        Me.lblRollClass.TabIndex = 49
-        Me.lblRollClass.Text = "Class:"
-        '
-        'lblRecents
-        '
-        Me.lblRecents.AutoSize = True
-        Me.lblRecents.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRecents.Location = New System.Drawing.Point(81, 36)
-        Me.lblRecents.Name = "lblRecents"
-        Me.lblRecents.Size = New System.Drawing.Size(44, 15)
-        Me.lblRecents.TabIndex = 48
-        Me.lblRecents.Text = "Recents:"
-        '
-        'lblUnexplained
-        '
-        Me.lblUnexplained.AutoSize = True
-        Me.lblUnexplained.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblUnexplained.Location = New System.Drawing.Point(209, 37)
-        Me.lblUnexplained.Name = "lblUnexplained"
-        Me.lblUnexplained.Size = New System.Drawing.Size(106, 15)
-        Me.lblUnexplained.TabIndex = 47
-        Me.lblUnexplained.Text = "Unexplained Absences:"
-        '
-        'lblId
-        '
-        Me.lblId.AutoSize = True
-        Me.lblId.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblId.Location = New System.Drawing.Point(209, 0)
-        Me.lblId.Name = "lblId"
-        Me.lblId.Size = New System.Drawing.Size(18, 15)
-        Me.lblId.TabIndex = 46
-        Me.lblId.Text = "ID:"
-        '
-        'lblAverages
-        '
-        Me.lblAverages.AutoSize = True
-        Me.lblAverages.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAverages.Location = New System.Drawing.Point(81, 17)
-        Me.lblAverages.Name = "lblAverages"
-        Me.lblAverages.Size = New System.Drawing.Size(50, 15)
-        Me.lblAverages.TabIndex = 45
-        Me.lblAverages.Text = "Averages:"
-        '
-        'lblName
-        '
-        Me.lblName.AutoSize = True
-        Me.lblName.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblName.Location = New System.Drawing.Point(81, -1)
-        Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(35, 15)
-        Me.lblName.TabIndex = 44
-        Me.lblName.Text = "Name:"
-        '
-        'chbAthlete
-        '
-        Me.chbAthlete.AutoSize = True
-        Me.chbAthlete.Location = New System.Drawing.Point(329, 18)
-        Me.chbAthlete.Name = "chbAthlete"
-        Me.chbAthlete.Size = New System.Drawing.Size(15, 14)
-        Me.chbAthlete.TabIndex = 43
-        Me.chbAthlete.UseVisualStyleBackColor = True
-        '
-        'pbAthlete
-        '
-        Me.pbAthlete.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAthlete.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAthlete.Location = New System.Drawing.Point(0, 0)
-        Me.pbAthlete.Name = "pbAthlete"
-        Me.pbAthlete.Size = New System.Drawing.Size(74, 56)
-        Me.pbAthlete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbAthlete.TabIndex = 42
-        Me.pbAthlete.TabStop = False
-        Me.pbAthlete.Tag = "add"
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(9, 20)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(163, 22)
+        Me.DataGridView1.TabIndex = 44
+        Me.DataGridView1.Visible = False
         '
         'createEvent
         '
@@ -881,7 +748,7 @@ Partial Class createEvent
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(983, 591)
+        Me.ClientSize = New System.Drawing.Size(983, 580)
         Me.Controls.Add(Me.gbAttachments)
         Me.Controls.Add(Me.gbAthletes)
         Me.Controls.Add(Me.gbEvents)
@@ -890,7 +757,6 @@ Partial Class createEvent
         Me.Controls.Add(Me.gbLocation)
         Me.Controls.Add(Me.map)
         Me.Controls.Add(Me.gbDetails)
-        Me.Controls.Add(Me.btnSelectA)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSaveEvent)
         Me.Controls.Add(Me.lblTitle)
@@ -899,7 +765,6 @@ Partial Class createEvent
         Me.Text = "createEvent"
         Me.gbDetails.ResumeLayout(False)
         Me.gbDetails.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.flpAttach.ResumeLayout(False)
         Me.pnlAttach.ResumeLayout(False)
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
@@ -912,21 +777,17 @@ Partial Class createEvent
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbAthletes.ResumeLayout(False)
         Me.gbAthletes.PerformLayout()
-        Me.pnlAthlete.ResumeLayout(False)
-        Me.pnlAthlete.PerformLayout()
-        CType(Me.pbAthlete, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents lblDate As Label
     Friend WithEvents lblStart As Label
-    Friend WithEvents btnBrowse As Button
     Friend WithEvents btnSaveEvent As Button
     Friend WithEvents btnCancel As Button
     Friend WithEvents dtpDate As DateTimePicker
     Friend WithEvents dtpStart As DateTimePicker
-    Friend WithEvents btnSelectA As Button
     Friend WithEvents dtpEnd As DateTimePicker
     Friend WithEvents lblEnd As Label
     Friend WithEvents lblComment As Label
@@ -955,7 +816,6 @@ Partial Class createEvent
     Friend WithEvents lblState As Label
     Friend WithEvents gbLocation As GroupBox
     Friend WithEvents btnSearch As Button
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents cmbState As ComboBox
     Friend WithEvents pbMinus As PictureBox
     Friend WithEvents pbPlus As PictureBox
@@ -977,16 +837,8 @@ Partial Class createEvent
     Friend WithEvents btnSaveTimes As Button
     Friend WithEvents gbAthletes As GroupBox
     Friend WithEvents flpAthletes As FlowLayoutPanel
-    Friend WithEvents pnlAthlete As Panel
-    Friend WithEvents pbAthlete As PictureBox
     Friend WithEvents cmbGroup As ComboBox
     Friend WithEvents chbAll As CheckBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents chbAthlete As CheckBox
-    Friend WithEvents lblRecents As Label
-    Friend WithEvents lblUnexplained As Label
-    Friend WithEvents lblId As Label
-    Friend WithEvents lblAverages As Label
-    Friend WithEvents lblName As Label
-    Friend WithEvents lblRollClass As Label
+    Friend WithEvents btnSelect As Button
+    Friend WithEvents DataGridView1 As DataGridView
 End Class

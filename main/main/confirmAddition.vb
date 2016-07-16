@@ -4,7 +4,7 @@
         Select Case Me.Tag
             Case "people"
                 lblTop.Text = "The following people have attendance discrepancies that need to be resolved:" + vbNewLine + vbNewLine
-                For Each person In selectAthletes.peopleNotAdded
+                For Each person In createEvent.peopleNotAdded
                     rchText.Text += CStr(person) + vbNewLine
                 Next
             Case "times"
@@ -17,32 +17,33 @@
     End Sub
     Private Sub btnNo_Click(sender As Object, e As EventArgs) Handles btnNo.Click
         If Me.Tag = "people" Then
-            Dim substring() As String = selectAthletes.peopleNotAdded(0).Split(":")
-            'selectAthletes.stopDropDownChange(substring(0))
-            For person As Integer = 0 To selectAthletes.peopleNotAdded.Count - 1
-                If person = selectAthletes.peopleNotAdded.Count - 1 Then
+            'Dim substring() As String = createEvent.peopleNotAdded(0).Split(":")
+            'createEvent.stopDropDownChange(substring(0))
+            For person As Integer = 0 To createEvent.peopleNotAdded.Count - 1
+                If person = createEvent.peopleNotAdded.Count - 1 Then
                     shownNotAdded = True
                 End If
-                selectAthletes.tickAthletes(selectAthletes.peopleNotAdded(person).Split(":")(0))
+                'createEvent.tickAthletes(createEvent.peopleNotAdded(person).Split(":")(0))
             Next
         Else
             'eventTimes.cmbEvent.SelectedItem = eventTimes.previousDropSelection
             shownNotAdded = True
-            selectAthletes.checkShownNotAdded()
         End If
+        createEvent.checkShownNotAdded()
         Me.Close()
     End Sub
     Private Sub btnYes_Click(sender As Object, e As EventArgs) Handles btnYes.Click
         Dim added As New List(Of String)
         Dim removed As New List(Of String)
         If Me.Tag = "people" Then
-            For person As Integer = 0 To selectAthletes.peopleNotAdded.Count - 1
-                If selectAthletes.peopleNotAdded(person).Contains("Currently not saved as attending") Then
-                    createEvent.attendees.Add(selectAthletes.peopleNotAdded(person).Split(":")(0))
-                    added.Add(selectAthletes.getName(selectAthletes.peopleNotAdded(person).Split(":")(0)))
+            For person As Integer = 0 To createEvent.peopleNotAdded.Count - 1
+                If createEvent.peopleNotAdded(person).Contains("currently not saved as attending") Then
+                    Dim name As String = createEvent.peopleNotAdded(person).Split(" ")(0) + " " + createEvent.peopleNotAdded(person).Split(" ")(1)
+                    createEvent.attendees.Add(createEvent.getIdByName(name))
+                    added.Add(name)
                 Else
-                    createEvent.attendees.Remove(selectAthletes.peopleNotAdded(person).Split(":")(0))
-                    removed.Add(selectAthletes.getName(selectAthletes.peopleNotAdded(person).Split(":")(0)))
+                    createEvent.attendees.Remove(createEvent.getIdByName(Name))
+                    removed.Add(Name)
                 End If
             Next
         Else
@@ -73,7 +74,7 @@
         btnNo.Hide()
         btnOkay.Show()
         shownNotAdded = True
-        selectAthletes.checkShownNotAdded()
+        createEvent.checkShownNotAdded()
     End Sub
     Private Sub btnOkay_Click(sender As Object, e As EventArgs) Handles btnOkay.Click
         Me.Close()

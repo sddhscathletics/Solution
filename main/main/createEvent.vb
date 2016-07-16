@@ -14,7 +14,7 @@ Public Class createEvent
     Dim filePaths As New List(Of String)
     Dim newAttachBoxLocation As Point = New Point(135, 377)
     Dim pbCount = 1
-    Dim templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016", "Test Record Layout 23/06/2016"}
+    Public Shared templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016", "Testing all 16/07/2016"}
     Dim tempFilePath As String = ""
     'Office
     Private WithEvents wordApp As Word.Application
@@ -42,154 +42,211 @@ Public Class createEvent
     Dim prevIndex As Integer = 0
 #End Region
 #Region "Form Operations"
-    Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
-        eventTimes.Show()
-    End Sub
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Me.Hide()
+        Me.Close()
     End Sub
     Private Sub btnSaveEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveEvent.Click
-        If filePaths.Count > 0 And attendees.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
-            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                conn.Open()
-                Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Location, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @location, @fileNames, @comment)", conn)
-                    cmd.Parameters.AddWithValue("@name", txtName.Text)
-                    dtpDate.Format = DateTimePickerFormat.Short
-                    cmd.Parameters.AddWithValue("@date", dtpDate.Text)
-                    dtpDate.Format = DateTimePickerFormat.Long
-                    If rdbTraining.Checked Then
-                        cmd.Parameters.AddWithValue("@type", "Training")
+        Dim nameDateMatch As Boolean = False
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT EventName, EventDate FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                cmd.Parameters.AddWithValue("@name", txtName.Text)
+                dtpDate.Format = DateTimePickerFormat.Short
+                cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                dtpDate.Format = DateTimePickerFormat.Long
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            nameDateMatch = True
+                        Loop
                     Else
-                        cmd.Parameters.AddWithValue("@type", "Meet")
+                        nameDateMatch = False
                     End If
-                    cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                    cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
-                    Dim attendingAthletes As String = ""
-                    For athlete As Integer = 0 To attendees.Count - 1
-                        If athlete = 0 Then
-                            attendingAthletes = attendees(athlete)
+                End Using
+            End Using
+            conn.Close()
+        End Using
+        If nameDateMatch = False Then
+            If filePaths.Count > 0 And attendees.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Location, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @location, @fileNames, @comment)", conn)
+                        cmd.Parameters.AddWithValue("@name", txtName.Text)
+                        dtpDate.Format = DateTimePickerFormat.Short
+                        cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                        dtpDate.Format = DateTimePickerFormat.Long
+                        If rdbTraining.Checked Then
+                            cmd.Parameters.AddWithValue("@type", "Training")
                         Else
-                            attendingAthletes += ";" & attendees(athlete)
+                            cmd.Parameters.AddWithValue("@type", "Meet")
                         End If
-                    Next
-                    cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                    If chbNA.Checked = False Then
-                        Dim eventTimes As String = ""
-                        For time As Integer = 0 To times.Count - 1
-                            If time = 0 Then
-                                eventTimes = times(time)
+                        cmd.Parameters.AddWithValue("@start", dtpStart.Text)
+                        cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
+                        Dim attendingAthletes As String = ""
+                        For athlete As Integer = 0 To attendees.Count - 1
+                            If athlete = 0 Then
+                                attendingAthletes = attendees(athlete)
                             Else
-                                eventTimes += ";" & times(time)
+                                attendingAthletes += ";" & attendees(athlete)
                             End If
                         Next
-                        cmd.Parameters.AddWithValue("@times", eventTimes)
-                    Else
-                        cmd.Parameters.AddWithValue("@times", "N/A")
-                    End If
-                    Dim location As String = ""
-                    For Each overlay In map.Overlays
-                        For Each marker In overlay.Markers
-                            location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
-                            Exit For 'since there is only one marker
-                        Next
-                        Exit For
-                    Next
-                    cmd.Parameters.AddWithValue("@location", location)
-                    Dim fileNames As String = ""
-                    For Each filePath In filePaths
-                        If filePath = filePaths(0) Then
-                            Dim splitPath = filePath.Split("\")
-                            fileNames = splitPath(splitPath.Count - 1)
+                        cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                        If chbNA.Checked = False Then
+                            Dim eventTimes As String = ""
+                            For time As Integer = 0 To times.Count - 1
+                                If time = 0 Then
+                                    eventTimes = times(time)
+                                Else
+                                    eventTimes += ";" & times(time)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@times", eventTimes)
                         Else
-                            Dim splitPath = filePath.Split("\")
-                            fileNames += ";" & splitPath(splitPath.Count - 1)
+                            cmd.Parameters.AddWithValue("@times", "N/A")
                         End If
-
-                    Next
-                    cmd.Parameters.AddWithValue("@fileNames", fileNames)
-                    cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                    cmd.ExecuteNonQuery()
-                End Using
-                conn.Close()
-            End Using
-            For Each filePath In filePaths
-                Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
-                    Dim myData(fs.Length) As Byte
-                    fs.Read(myData, 0, fs.Length)
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                        conn.Open()
-                        Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn)
-                            Dim splitPath = filePath.Split("\")
-                            cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                            cmd.Parameters.Add("@attachments", OleDbType.VarBinary, fs.Length).Value = myData
-                            cmd.ExecuteNonQuery()
-                        End Using
+                        Dim location As String = ""
+                        For Each overlay In map.Overlays
+                            For Each marker In overlay.Markers
+                                location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
+                                Exit For 'since there is only one marker
+                            Next
+                            Exit For
+                        Next
+                        cmd.Parameters.AddWithValue("@location", location)
+                        Dim fileNames As String = ""
+                        For Each filePath In filePaths
+                            If filePath = filePaths(0) Then
+                                Dim splitPath = filePath.Split("\")
+                                fileNames = splitPath(splitPath.Count - 1)
+                            Else
+                                Dim splitPath = filePath.Split("\")
+                                fileNames += ";" & splitPath(splitPath.Count - 1)
+                            End If
+                        Next
+                        cmd.Parameters.AddWithValue("@fileNames", fileNames)
+                        cmd.Parameters.AddWithValue("@comment", txtComment.Text)
+                        cmd.ExecuteNonQuery()
                     End Using
+                    conn.Close()
                 End Using
-            Next
-            Me.Close()
-        ElseIf attendees.Count = 0 Then
-            MessageBox.Show("You must select athletes for the event.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-        ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
-            MessageBox.Show("You must either set event times or tick N/A", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-        ElseIf map.Overlays.Count <> 1 Then
-            If map.Overlays.Count < 1 Then
-                MessageBox.Show("You must select a location.", "No location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                For Each filePath In filePaths
+                    If filePath.Contains("\") Then
+                        Dim hasMatch As Boolean = False
+                        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                            conn.Open()
+                            Using cmd As New OleDbCommand("SELECT FileName FROM Attachments WHERE FileName = @name", conn) 'WHERE NOT EXISTS(SELECT FileName FROM Attachments WHERE FileName = @name)
+                                Dim splitPath = filePath.Split("\")
+                                cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                Using dr = cmd.ExecuteReader()
+                                    If dr.HasRows Then
+                                        Do While dr.Read()
+                                            hasMatch = True
+                                        Loop
+                                    Else
+                                        hasMatch = False
+                                    End If
+                                End Using
+                            End Using
+                        End Using
+                        If hasMatch = False Then
+                            Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+                                Dim myData(fs.Length) As Byte
+                                fs.Read(myData, 0, fs.Length)
+                                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                                    conn.Open()
+                                    Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn) 'INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)
+                                        Dim splitPath = filePath.Split("\")
+                                        cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                        cmd.Parameters.Add("@attachments", OleDbType.VarBinary, fs.Length).Value = myData
+                                        cmd.ExecuteNonQuery()
+                                    End Using
+                                End Using
+                            End Using
+                            'Else
+                            '    MessageBox.Show("Attachment: '" + filePath.Split("\")(filePath.Split("\").Count - 1) + "' is already in the database.")
+                        End If
+                        'Else
+                        '    MessageBox.Show("You are trying to upload '" + filePath + "' which was input from the template.")
+                    End If
+                Next
+                btnSaveEvent.Tag = "saved"
+                If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                    dtpDate.Format = DateTimePickerFormat.Short
+                    templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                    dtpDate.Format = DateTimePickerFormat.Long
+                End If
+                Me.Close()
+            ElseIf attendees.Count = 0 Then
+                MessageBox.Show("You must select athletes for the event.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
+                MessageBox.Show("You must either set event times or tick N/A", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            ElseIf map.Overlays.Count <> 1 Then
+                If map.Overlays.Count < 1 Then
+                    MessageBox.Show("You must select a location.", "No location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Else
+                    MessageBox.Show("Please select only one location.", "Multpiple locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                End If
             Else
-                MessageBox.Show("Please select only one location.", "Multpiple locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Location, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @location, @comment)", conn)
+                        cmd.Parameters.AddWithValue("@name", txtName.Text)
+                        dtpDate.Format = DateTimePickerFormat.Short
+                        cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                        dtpDate.Format = DateTimePickerFormat.Long
+                        If rdbTraining.Checked Then
+                            cmd.Parameters.AddWithValue("@type", "Training")
+                        Else
+                            cmd.Parameters.AddWithValue("@type", "Meet")
+                        End If
+                        cmd.Parameters.AddWithValue("@start", dtpStart.Text)
+                        cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
+                        Dim attendingAthletes As String = ""
+                        For athlete As Integer = 0 To attendees.Count - 1
+                            If athlete = 0 Then
+                                attendingAthletes = attendees(athlete)
+                            Else
+                                attendingAthletes += ";" & attendees(athlete)
+                            End If
+                        Next
+                        cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                        If chbNA.Checked = False Then
+                            Dim eventTimes As String = ""
+                            For time As Integer = 0 To times.Count - 1
+                                If time = 0 Then
+                                    eventTimes = times(time)
+                                Else
+                                    eventTimes += ";" & times(time)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@times", eventTimes)
+                        Else
+                            cmd.Parameters.AddWithValue("@times", "None")
+                        End If
+                        Dim location As String = ""
+                        For Each overlay In map.Overlays
+                            For Each marker In overlay.Markers
+                                location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
+                                Exit For 'since there is only one marker
+                            Next
+                            Exit For
+                        Next
+                        cmd.Parameters.AddWithValue("@location", location)
+                        cmd.Parameters.AddWithValue("@comment", txtComment.Text)
+                        cmd.ExecuteNonQuery()
+                    End Using
+                    conn.Close()
+                End Using
+                btnSaveEvent.Tag = "saved"
+                If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                    dtpDate.Format = DateTimePickerFormat.Short
+                    templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                    dtpDate.Format = DateTimePickerFormat.Long
+                End If
+                Me.Close()
             End If
         Else
-            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                conn.Open()
-                Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Location, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @location, @fileNames, @comment)", conn)
-                    cmd.Parameters.AddWithValue("@name", txtName.Text)
-                    dtpDate.Format = DateTimePickerFormat.Short
-                    cmd.Parameters.AddWithValue("@date", dtpDate.Text)
-                    dtpDate.Format = DateTimePickerFormat.Long
-                    If rdbTraining.Checked Then
-                        cmd.Parameters.AddWithValue("@type", "Training")
-                    Else
-                        cmd.Parameters.AddWithValue("@type", "Meet")
-                    End If
-                    cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                    cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
-                    Dim attendingAthletes As String = ""
-                    For athlete As Integer = 0 To attendees.Count - 1
-                        If athlete = 0 Then
-                            attendingAthletes = attendees(athlete)
-                        Else
-                            attendingAthletes += ";" & attendees(athlete)
-                        End If
-                    Next
-                    cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                    If chbNA.Checked = False Then
-                        Dim eventTimes As String = ""
-                        For time As Integer = 0 To times.Count - 1
-                            If time = 0 Then
-                                eventTimes = times(time)
-                            Else
-                                eventTimes += ";" & times(time)
-                            End If
-                        Next
-                        cmd.Parameters.AddWithValue("@times", eventTimes)
-                    Else
-                        cmd.Parameters.AddWithValue("@times", "None")
-                    End If
-                    Dim location As String = ""
-                    For Each overlay In map.Overlays
-                        For Each marker In overlay.Markers
-                            location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
-                            Exit For 'since there is only one marker
-                        Next
-                        Exit For
-                    Next
-                    cmd.Parameters.AddWithValue("@location", location)
-                    cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                    cmd.ExecuteNonQuery()
-                End Using
-                conn.Close()
-            End Using
-            Me.Close()
+            MessageBox.Show("The name and date of this event match an exisiting event." + vbNewLine + "Please change either of these and retry.", "Corresponding Event Exists", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         End If
 
         'retrieving and displaying images (change SQL query as needed)
@@ -212,9 +269,6 @@ Public Class createEvent
         '    conn.Close()
         'End Using
     End Sub
-    Private Sub btnSelectA_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelectA.Click
-        selectAthletes.Show()
-    End Sub
     Private Sub chbNA_CheckedChanged(sender As Object, e As EventArgs) Handles chbNA.CheckedChanged
         If chbNA.CheckState = CheckState.Checked Then
             For Each control In gbEvents.Controls()
@@ -234,6 +288,20 @@ Public Class createEvent
         Dim ptLowerLeft = New Point(0, sender.Height)
         ptLowerLeft = sender.PointToScreen(ptLowerLeft)
         'cmsTemplate.Show(ptLowerLeft)
+    End Sub
+    Private Sub createEvent_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
+        If btnSaveEvent.Tag <> "saved" Then
+            If MessageBox.Show("Are you sure you want to close the form?" + vbNewLine + "If there is information that has not been saved, it will be lost.", "Close confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                attendees.Clear()
+                times.Clear()
+            Else
+                e.Cancel = True
+            End If
+        Else
+            btnSaveEvent.Tag = Nothing
+            attendees.Clear()
+            times.Clear()
+        End If
     End Sub
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Dim savedEvents As New Dictionary(Of Date, String)
@@ -260,7 +328,10 @@ Public Class createEvent
         'Next
         'cmbTemplate.Items.AddRange(finalList.ToArray())
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
+        dtpDate.Text = calendar.mnCalendar.SelectionStart
         pbAttach.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
+        btnSaveEvent.Location = New Point(67, 538)
+        btnCancel.Location = New Point(btnSaveEvent.Location.X + btnSaveEvent.Width + 22, btnSaveEvent.Location.Y)
         'Maps
         map.MapProvider = MapProviders.GoogleMapProvider.Instance
         map.Manager.Mode = AccessMode.ServerAndCache
@@ -279,16 +350,16 @@ Public Class createEvent
         previousDropSelection = cmbEvent.SelectedItem
         Dim tmpBox As New PictureBox
         tmpBox.Tag = "firstOpen"
-        cmbEvent_SelectionChangeCommitted(tmpBox, Nothing)
+        cmbEvent_SelectedValueChanged(tmpBox, Nothing)
         'Athletes
         cmbGroup.SelectedIndex = 0
-        cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
-        cmbGroup.Tag = "First"
+        cmbGroup_SelectedValueChanged(Nothing, Nothing)
     End Sub
     Private Sub chbNone_CheckedChanged(sender As Object, e As EventArgs) Handles chbNone.CheckedChanged
         If chbNone.Checked = False Then
             cmbTemplate.Enabled = True
         Else
+            cmbTemplate.Text = ""
             cmbTemplate.Enabled = False
         End If
     End Sub
@@ -329,218 +400,233 @@ Public Class createEvent
                             End If
                             dtpStart.Text = dr("StartTime")
                             dtpEnd.Text = dr("EndTime")
+                            attendees.Clear()
                             attendees.AddRange(dr("Personnel").Split(";"))
-                            times.AddRange(dr("Events").Split(";"))
-                            Dim fileNames() As String = dr("AttachNames").Split(";")
-                            If fileNames.Count > 0 Then
-                                Dim tempPb As New PictureBox    'creates a temporary picturebox to be used as a sender
-                                With tempPb
-                                    .Width = pbAttach.Width
-                                    .Height = pbAttach.Height
-                                    .Tag = "add"
-                                    .SizeMode = PictureBoxSizeMode.StretchImage
-                                End With
-                                For Each fileName In fileNames
-                                    If fileName <> fileNames(0) Then    'checks if it's the first file
-                                        If fileNames.Count = pbCount Then 'if the number of files matches the number of panels
-                                            Dim currentNum As Integer = 2, numPanels As Integer = pbCount
-                                            While currentNum <= fileNames.Count 'add the files
-                                                For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                                                    If pnl.Name = "pnl" & currentNum.ToString() Then
-                                                        For Each control In pnl.Controls
-                                                            If currentNum = fileNames.Count Then
-                                                                If control.GetType() Is GetType(PictureBox) Then
-                                                                    control.Tag = fileName
-                                                                    If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                                                        control.Image = My.Resources.word
-                                                                    Else
-                                                                        control.Image = My.Resources.excel
-                                                                    End If
-                                                                    control.Location = New Point(-1, -1)
-                                                                End If
-                                                                Dim lbl As New Label
-                                                                lbl.Width = 500
-                                                                lbl.Font = New Drawing.Font("Arial", 9)
-                                                                lbl.Text = fileName
-                                                                Me.Controls.Add(lbl)
-                                                                lbl.Parent = pnl
-                                                                lbl.Location = New Point(75, 0)
-                                                                lbl.BackColor = Color.Transparent
-                                                                lbl.BringToFront()
-                                                            Else
-                                                                If control.GetType() Is GetType(PictureBox) Then
-                                                                    control.Tag = fileName
-                                                                    If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                                                        control.Image = My.Resources.word
-                                                                    Else
-                                                                        control.Image = My.Resources.excel
-                                                                    End If
-                                                                    control.Location = New Point(-1, -1)
-                                                                ElseIf control.GetType() Is GetType(Label) Then
-                                                                    control.text = fileName
-                                                                End If
-                                                            End If
-                                                        Next
-                                                        Exit For
-                                                    End If
+                            Dim tmpSender As New ComboBox
+                            tmpSender.Tag = "template"
+                            cmbGroup_SelectedValueChanged(tmpSender, Nothing)
+                            times.Clear()
+                            If dr("Events") = "None" Then
+                                chbNA.Checked = True
+                            Else
+                                times.AddRange(dr("Events").Split(";"))
+                                tmpSender.Tag = "firstOpen"
+                                cmbEvent_SelectedValueChanged(tmpSender, Nothing)
+                            End If
+                            MessageBox.Show(dr("AttachNames").ToString())
+                            If dr("AttachNames").ToString() <> "" Then
+                                Dim fileNames() As String = dr("AttachNames").Split(";")
+                                filePaths = fileNames.ToList()
+                                If fileNames.Count > 0 Then
+                                    Dim tempPb As New PictureBox    'creates a temporary picturebox to be used as a sender
+                                    With tempPb
+                                        .Width = pbAttach.Width
+                                        .Height = pbAttach.Height
+                                        .Tag = "add"
+                                        .SizeMode = PictureBoxSizeMode.StretchImage
+                                    End With
+                                    pbAttach.Tag = fileNames(0) 'sets the filename to the existing picturebox
+                                    If fileNames(0).EndsWith("doc") Or fileNames(0).EndsWith("docx") Then
+                                        pbAttach.Image = My.Resources.word
+                                    Else
+                                        pbAttach.Image = My.Resources.excel
+                                    End If
+                                    pbAttach.Location = New Point(-1, -1)
+                                    If pnlAttach.Controls.Count = 2 Then
+                                        For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                            If pnl.Name = pnlAttach.Name Then
+                                                For Each lbl In pnl.Controls.OfType(Of Label)()
+                                                    lbl.Text = fileNames(0)
                                                 Next
-                                                currentNum += 1
-                                            End While
-                                            createPictureBox(tempPb)
-                                        ElseIf fileNames.Count < pbCount Then
-                                            Dim currentNum As Integer = 2, numPanels As Integer = pbCount
-                                            While currentNum <= fileNames.Count 'add the files
-                                                For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                                                    If pnl.Name = "pnl" & currentNum.ToString() Then
-                                                        For Each control In pnl.Controls
-                                                            If control.GetType() Is GetType(PictureBox) Then
-                                                                control.Tag = fileName
-                                                                If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                                                    control.Image = My.Resources.word
-                                                                Else
-                                                                    control.Image = My.Resources.excel
-                                                                End If
-                                                                control.Location = New Point(-1, -1)
-                                                            ElseIf control.GetType() Is GetType(Label) Then
-                                                                control.text = fileName
-                                                            End If
-                                                        Next
-                                                        Exit For
-                                                    End If
-                                                Next
-                                                currentNum += 1
-                                            End While
-                                            While currentNum <= numPanels
-                                                If currentNum = fileNames.Count + 1 Then
-                                                    For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                                                        If pnl.Name = "pnl" & currentNum.ToString() Then
-                                                            pnl.Controls.Clear()
-                                                            Dim pb As New PictureBox
-                                                            With pb
-                                                                .Tag = "add"
-                                                                .Name = "pb" & currentNum.ToString()
-                                                                .Image = My.Resources.transparent_plus
-                                                                .SizeMode = pbAttach.SizeMode
-                                                                .Width = pbAttach.Width
-                                                                .Height = pbAttach.Height
-                                                                .Cursor = Cursors.Hand
-                                                            End With
-                                                            AddHandler pb.Click, AddressOf pbAttach_Click
-                                                            pnl.Controls.Add(pb)
-                                                            pb.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
-                                                            Exit For
-                                                        End If
-                                                    Next
-                                                Else
-                                                    For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                                                        If pnl.Name = "pnl" & currentNum.ToString() Then
-                                                            flpAttach.Controls.Remove(pnl)
-                                                            pbCount -= 1
-                                                            Exit For
-                                                        End If
-                                                    Next
-                                                End If
-                                                currentNum += 1
-                                            End While
-                                        Else
-                                            Dim currentNum As Integer = 2, numPanels As Integer = pbCount
-                                            While currentNum <= numPanels 'add the files
-                                                For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                                                    If pnl.Name = "pnl" & currentNum.ToString() Then
-                                                        For Each control In pnl.Controls
-                                                            If control.GetType() Is GetType(PictureBox) Then
-                                                                control.Tag = fileName
-                                                                If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                                                    control.Image = My.Resources.word
-                                                                Else
-                                                                    control.Image = My.Resources.excel
-                                                                End If
-                                                                control.Location = New Point(-1, -1)
-                                                            ElseIf control.GetType() Is GetType(Label) Then
-                                                                control.text = fileName
-                                                            End If
-                                                        Next
-                                                        Exit For
-                                                    End If
-                                                Next
-                                                currentNum += 1
-                                            End While
-                                            While currentNum <= fileNames.Count
-                                                pbCount += 1
-                                                Dim pnl As New Panel
-                                                With pnl
-                                                    pnl.BackColor = pnlAttach.BackColor
-                                                    pnl.Name = "pnl" & pbCount
-                                                    pnl.Width = pnlAttach.Width
-                                                    pnl.Height = pnlAttach.Height
-                                                    pnl.BorderStyle = pnlAttach.BorderStyle
-                                                    pnl.Cursor = Cursors.Hand
-                                                End With
-                                                AddHandler pnl.Click, AddressOf pnlAttach_Click
-                                                flpAttach.Controls.Add(pnl)
-                                                Dim pb As New PictureBox
-                                                pb.Name = "pb" & pbCount
-                                                pb.SizeMode = pbAttach.SizeMode
-                                                pb.Width = pbAttach.Width
-                                                pb.Height = pbAttach.Height
-                                                If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                                    pb.Image = My.Resources.word
-                                                Else
-                                                    pb.Image = My.Resources.excel
-                                                End If
-                                                pb.Tag = fileName
-                                                pb.Cursor = Cursors.Hand
-                                                AddHandler pb.Click, AddressOf pbAttach_Click
-                                                pnl.Controls.Add(pb)
-                                                pb.Location = New Point(-1, -1)
-                                                Dim lbl As New Label
-                                                lbl.Width = 500
-                                                lbl.Font = New Drawing.Font("Arial", 9)
-                                                lbl.Text = fileName
-                                                Me.Controls.Add(lbl)
-                                                lbl.Parent = pnl
-                                                lbl.Location = New Point(75, 0)
-                                                lbl.BackColor = Color.Transparent
-                                                lbl.BringToFront()
-                                                If currentNum = fileNames.Count Then
-                                                    createPictureBox(tempPb)
-                                                End If
-                                                currentNum += 1
-                                            End While
-                                        End If
-                                    Else                                'sets the filename to the existing picturebox
-                                        pbAttach.Tag = fileName
-                                        If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                            pbAttach.Image = My.Resources.word
-                                        Else
-                                            pbAttach.Image = My.Resources.excel
-                                        End If
-                                        pbAttach.Location = New Point(-1, -1)
-                                        If pnlAttach.Controls.Count = 2 Then
+                                                Exit For
+                                            End If
+                                        Next
+                                    ElseIf pnlAttach.Controls.Count = 1 Then
+                                        Dim lbl As New Label
+                                        lbl.Cursor = Cursors.Default
+                                        lbl.AutoSize = True
+                                        lbl.Font = New Drawing.Font("Arial", 9)
+                                        lbl.Text = fileNames(0)
+                                        Me.Controls.Add(lbl)
+                                        lbl.Parent = pbAttach.Parent
+                                        lbl.Location = New Point(75, 0)
+                                        lbl.BackColor = Color.Transparent
+                                        lbl.BringToFront()
+                                    End If
+                                    If fileNames.Count = 1 Then
+                                        createPictureBox(tempPb)
+                                    End If
+                                    If fileNames.Count = pbCount Then 'if the number of files matches the number of panels
+                                        Dim currentNum As Integer = 2, numPanels As Integer = pbCount
+                                        While currentNum <= fileNames.Count 'add the files
                                             For Each pnl In flpAttach.Controls.OfType(Of Panel)()
-                                                If pnl.Name = pnlAttach.Name Then
-                                                    For Each lbl In pnl.Controls.OfType(Of Label)()
-                                                        lbl.Text = fileName
+                                                If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                    For Each control In pnl.Controls
+                                                        If currentNum = fileNames.Count Then
+                                                            If control.GetType() Is GetType(PictureBox) Then
+                                                                control.Tag = fileNames(currentNum - 1)
+                                                                If fileNames(currentNum - 1).EndsWith("doc") Or fileNames(currentNum - 1).EndsWith("docx") Then
+                                                                    control.Image = My.Resources.word
+                                                                Else
+                                                                    control.Image = My.Resources.excel
+                                                                End If
+                                                                control.Location = New Point(-1, -1)
+                                                            End If
+                                                            Dim lbl As New Label
+                                                            lbl.Cursor = Cursors.Default
+                                                            lbl.AutoSize = True
+                                                            lbl.Font = New Drawing.Font("Arial", 9)
+                                                            lbl.Text = fileNames(currentNum - 1)
+                                                            Me.Controls.Add(lbl)
+                                                            lbl.Parent = pnl
+                                                            lbl.Location = New Point(75, 0)
+                                                            lbl.BackColor = Color.Transparent
+                                                            lbl.BringToFront()
+                                                        Else
+                                                            If control.GetType() Is GetType(PictureBox) Then
+                                                                control.Tag = fileNames(currentNum - 1)
+                                                                If fileNames(currentNum - 1).EndsWith("doc") Or fileNames(currentNum - 1).EndsWith("docx") Then
+                                                                    control.Image = My.Resources.word
+                                                                Else
+                                                                    control.Image = My.Resources.excel
+                                                                End If
+                                                                control.Location = New Point(-1, -1)
+                                                            ElseIf control.GetType() Is GetType(Label) Then
+                                                                control.text = fileNames(currentNum - 1)
+                                                            End If
+                                                        End If
                                                     Next
                                                     Exit For
                                                 End If
                                             Next
-                                        ElseIf pnlAttach.Controls.Count = 1 Then
+                                            currentNum += 1
+                                        End While
+                                        createPictureBox(tempPb)
+                                    ElseIf fileNames.Count < pbCount Then
+                                        Dim currentNum As Integer = 2, numPanels As Integer = pbCount
+                                        While currentNum <= fileNames.Count 'add the files
+                                            For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                    For Each control In pnl.Controls
+                                                        If control.GetType() Is GetType(PictureBox) Then
+                                                            control.Tag = fileNames(currentNum - 1)
+                                                            If fileNames(currentNum - 1).EndsWith("doc") Or fileNames(currentNum - 1).EndsWith("docx") Then
+                                                                control.Image = My.Resources.word
+                                                            Else
+                                                                control.Image = My.Resources.excel
+                                                            End If
+                                                            control.Location = New Point(-1, -1)
+                                                        ElseIf control.GetType() Is GetType(Label) Then
+                                                            control.text = fileNames(currentNum - 1)
+                                                        End If
+                                                    Next
+                                                    Exit For
+                                                End If
+                                            Next
+                                            currentNum += 1
+                                        End While
+                                        While currentNum <= numPanels
+                                            If currentNum = fileNames.Count + 1 Then
+                                                For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                    If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                        pnl.Controls.Clear()
+                                                        Dim pb As New PictureBox
+                                                        With pb
+                                                            .Tag = "add"
+                                                            .Name = "pb" & currentNum.ToString()
+                                                            .Image = My.Resources.transparent_plus
+                                                            .SizeMode = pbAttach.SizeMode
+                                                            .Width = pbAttach.Width
+                                                            .Height = pbAttach.Height
+                                                            .Cursor = Cursors.Hand
+                                                        End With
+                                                        AddHandler pb.Click, AddressOf pbAttach_Click
+                                                        pnl.Controls.Add(pb)
+                                                        pb.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
+                                                        Exit For
+                                                    End If
+                                                Next
+                                            Else
+                                                For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                    If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                        flpAttach.Controls.Remove(pnl)
+                                                        pbCount -= 1
+                                                        Exit For
+                                                    End If
+                                                Next
+                                            End If
+                                            currentNum += 1
+                                        End While
+                                    Else
+                                        Dim currentNum As Integer = 2, numPanels As Integer = pbCount
+                                        While currentNum <= numPanels 'add the files
+                                            For Each pnl In flpAttach.Controls.OfType(Of Panel)()
+                                                If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                    For Each control In pnl.Controls
+                                                        If control.GetType() Is GetType(PictureBox) Then
+                                                            control.Tag = fileNames(currentNum - 1)
+                                                            If fileNames(currentNum - 1).EndsWith("doc") Or fileNames(currentNum - 1).EndsWith("docx") Then
+                                                                control.Image = My.Resources.word
+                                                            Else
+                                                                control.Image = My.Resources.excel
+                                                            End If
+                                                            control.Location = New Point(-1, -1)
+                                                        ElseIf control.GetType() Is GetType(Label) Then
+                                                            control.text = fileNames(currentNum - 1)
+                                                        End If
+                                                    Next
+                                                    Exit For
+                                                End If
+                                            Next
+                                            currentNum += 1
+                                        End While
+                                        While currentNum <= fileNames.Count
+                                            pbCount += 1
+                                            Dim pnl As New Panel
+                                            With pnl
+                                                pnl.BackColor = pnlAttach.BackColor
+                                                pnl.Name = "pnl" & pbCount
+                                                pnl.Width = pnlAttach.Width
+                                                pnl.Height = pnlAttach.Height
+                                                pnl.BorderStyle = pnlAttach.BorderStyle
+                                                pnl.Cursor = Cursors.Hand
+                                            End With
+                                            AddHandler pnl.Click, AddressOf pnlAttach_Click
+                                            flpAttach.Controls.Add(pnl)
+                                            Dim pb As New PictureBox
+                                            pb.Name = "pb" & pbCount
+                                            pb.SizeMode = pbAttach.SizeMode
+                                            pb.Width = pbAttach.Width
+                                            pb.Height = pbAttach.Height
+                                            If fileNames(currentNum - 1).EndsWith("doc") Or fileNames(currentNum - 1).EndsWith("docx") Then
+                                                pb.Image = My.Resources.word
+                                            Else
+                                                pb.Image = My.Resources.excel
+                                            End If
+                                            pb.Tag = fileNames(currentNum - 1)
+                                            pb.Cursor = Cursors.Hand
+                                            AddHandler pb.Click, AddressOf pbAttach_Click
+                                            pnl.Controls.Add(pb)
+                                            pb.Location = New Point(-1, -1)
                                             Dim lbl As New Label
-                                            lbl.Width = 500
+                                            lbl.Cursor = Cursors.Default
+                                            lbl.AutoSize = True
                                             lbl.Font = New Drawing.Font("Arial", 9)
-                                            lbl.Text = fileName
+                                            lbl.Text = fileNames(currentNum - 1)
                                             Me.Controls.Add(lbl)
-                                            lbl.Parent = pbAttach.Parent
+                                            lbl.Parent = pnl
                                             lbl.Location = New Point(75, 0)
                                             lbl.BackColor = Color.Transparent
                                             lbl.BringToFront()
-                                        End If
-                                        If fileNames.Count = 1 Then
-                                            createPictureBox(tempPb)
-                                        End If
+                                            If currentNum = fileNames.Count Then
+                                                createPictureBox(tempPb)
+                                            End If
+                                            currentNum += 1
+                                        End While
                                     End If
-                                Next
+                                End If
+                            Else
+                                filePaths.Clear()
                             End If
                             placeMarker(CType(dr("Location").split(";")(0), Double), CType(dr("Location").split(";")(1), Double), "click")
                             txtComment.Text = dr("Comment")
@@ -570,12 +656,13 @@ Public Class createEvent
                 End Select
                 filePaths.Add(ofdOpen.FileName)
                 Dim lbl As New Label
+                lbl.Cursor = Cursors.Default
                 lbl.Font = New Drawing.Font("Arial", 9)
                 lbl.Text = sender.Tag
                 Me.Controls.Add(lbl)
                 lbl.Parent = sender.Parent
                 lbl.Location = New Point(75, 0)
-                lbl.Width = 500
+                lbl.AutoSize = True
                 lbl.BackColor = Color.Transparent
                 lbl.BringToFront()
                 createPictureBox(sender)
@@ -745,6 +832,7 @@ Public Class createEvent
     End Sub
     Private Sub deleteAttachment(ByVal sender As Object)
         Dim pnlToDelete As String = "pnl", numIndicator As Integer = 0
+        filePaths.Remove(sender.tag)
         If sender.name <> pbAttach.Name Then
             numIndicator = Int(sender.name.split("pb".ToCharArray, StringSplitOptions.RemoveEmptyEntries)(0).ToString()) 'splits on "pb" and gets the number after
             pnlToDelete += CStr(numIndicator + 1)
@@ -929,7 +1017,7 @@ Public Class createEvent
     Private Sub map_OnMarkerClick(sender As Object, e As MouseEventArgs) Handles map.OnMarkerClick
         If hasRunClickEvent = False Then
             hasRunClickEvent = True
-            If tooManySelected = False Or (Math.Round(sender.position.lat, 0) = -34 AndAlso Math.Round(sender.position.lng, 0) = 151) Then
+            If tooManySelected = False Or (sender.position.lat = -33.8688197 AndAlso sender.position.lng = 151.2092955) Then
                 If map.Overlays.Count > 1 Then
                     If MessageBox.Show("Are you sure you want to select " + sender.tooltiptext + "?", "Marker Selection", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                         Dim lat = sender.position.lat
@@ -987,13 +1075,15 @@ Public Class createEvent
         placeMarker(lat, lng, type)
     End Sub
     Private Sub checkConnection()
-        Dim places As List(Of Placemark) = Nothing
-        Dim status = MapProviders.GoogleMapProvider.Instance.GetPlacemarks(New PointLatLng(-33, 150), places)
-        If status = GeoCoderStatusCode.G_GEO_SUCCESS And places IsNot Nothing Then
-            connectionPresent = True
-        Else
+        Try
+            Dim url As String = "http://maps.google.com/maps/api/geocode/xml?address=sydney&sensor=false"
+            Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+            Using response As Net.WebResponse = DirectCast(request.GetResponse(), Net.HttpWebResponse)
+                connectionPresent = True
+            End Using
+        Catch ex As Exception
             connectionPresent = False
-        End If
+        End Try
     End Sub
     Private Sub placeMarker(lat As Double, lng As Double, type As String)
         If type = "click" Then
@@ -1038,9 +1128,7 @@ Public Class createEvent
             End If
         ElseIf places Is Nothing Then
             connectionPresent = False
-            MessageBox.Show("There is no server access to Google currently." + vbNewLine + "Please input the location in the textboxes provided.")
-            overlay.Markers.Clear()
-            overlayCount = 0
+            MessageBox.Show("There is no server access to Google currently." + vbNewLine + "Markers will still be placed but will not have a tooltip appear on hover.", "No server access", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -1102,12 +1190,12 @@ Public Class createEvent
                 End If
                 Cursor.Current = Cursors.Default
             Else
-                MessageBox.Show("Google could not find the address you are looking for." + vbNewLine + "Please recheck your location and try again.")
+                MessageBox.Show("Google could not find the address you are looking for." + vbNewLine + "Please recheck your location and try again.", "Location not found", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         ElseIf incorrectAddress <> "" Then
             MessageBox.Show("You must enter a " + incorrectAddress + ".")
         Else
-            MessageBox.Show("There is no server access to Google currently so your address cannot currently be displayed on the map.")
+            MessageBox.Show("There is no server access to Google currently so your address cannot currently be displayed on the map.", "No server access", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub pbPlus_Click(sender As Object, e As EventArgs) Handles pbPlus.Click
@@ -1126,12 +1214,12 @@ Public Class createEvent
     End Sub
 #End Region
 #Region "Event Operations"
-    Private Sub cmbEvent_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbEvent.SelectionChangeCommitted
-        If createEvent.times.Count > 0 And sender.Tag <> "firstOpen" Then
+    Private Sub cmbEvent_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbEvent.SelectedValueChanged
+        If times.Count > 0 And sender.Tag <> "firstOpen" Then
             For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
                 Dim hasMatch As Boolean = False
                 Dim eventTime As String = previousDropSelection & " " & dtp.Tag & " " & dtp.Text 'string in the form: event age time
-                For Each ageGroup In createEvent.times
+                For Each ageGroup In times
                     Dim substring() = ageGroup.Split(" ")
                     substring(2) = substring(2) & " " & substring(3) 'adds the PM to the time element
                     If substring(0) = previousDropSelection And substring(1) = dtp.Tag Then 'checks if event and age match
@@ -1160,7 +1248,7 @@ Public Class createEvent
         For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
             dtp.Text = "12:00:00 AM" 'sets all times to 12:00:00 AM, since the ones that have entries will be updated below
         Next
-        For Each ageGroup In createEvent.times 'setting all event times to the relevant saved times
+        For Each ageGroup In times 'setting all event times to the relevant saved times
             Dim substring() = ageGroup.Split(" ")
             If substring(0) = cmbEvent.SelectedItem Then
                 substring(2) = substring(2) & " " & substring(3)
@@ -1177,23 +1265,23 @@ Public Class createEvent
         For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
             Dim hasEntry As Boolean = False
             Dim eventTime As String = cmbEvent.SelectedItem & " " & dtp.Tag & " " & dtp.Text
-            If createEvent.times.Count > 0 Then
-                For ageGroup As Integer = 0 To createEvent.times.Count - 1
-                    Dim substring() = createEvent.times(ageGroup).Split(" ")
+            If times.Count > 0 Then
+                For ageGroup As Integer = 0 To times.Count - 1
+                    Dim substring() = times(ageGroup).Split(" ")
                     substring(2) = substring(2) & " " & substring(3)
                     If substring(0) = cmbEvent.SelectedItem And substring(1) = dtp.Tag Then
                         hasEntry = True
                         If substring(2) <> dtp.Text Then
-                            createEvent.times(ageGroup) = eventTime
+                            times(ageGroup) = eventTime
                             Exit For
                         End If
                     End If
                 Next
                 If hasEntry = False Then
-                    createEvent.times.Add(eventTime)
+                    times.Add(eventTime)
                 End If
             Else
-                createEvent.times.Add(eventTime)
+                times.Add(eventTime)
             End If
         Next
     End Sub
@@ -1214,28 +1302,34 @@ Public Class createEvent
             Next
         End If
     End Sub
-    Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelectA.Click
-        Dim checked As Integer = 0
+    Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
+        Dim added As Integer = 0, removed As Integer = 0
         For Each panel In flpAthletes.Controls.OfType(Of Panel)()
-            For Each chb In panel.Controls.OfType(Of CheckBox)()
-                If chb.Checked = True Then
-                    checked += 1
+            For Each label In panel.Controls.OfType(Of Label)()
+                If label.Name = "lblId" Then
+                    If attendees.Contains(LTrim(label.Text.Split(":")(1))) = False Then
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Checked = True Then
+                                attendees.Add(LTrim(label.Text.Split(":")(1)))
+                                added += 1
+                            End If
+                        Next
+                    Else
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Checked = False Then
+                                attendees.Remove(LTrim(label.Text.Split(":")(1)))
+                                removed += 1
+                            End If
+                        Next
+                    End If
+                    Exit For
                 End If
             Next
         Next
-        If checked > 0 Then
-            For Each panel In flpAthletes.Controls.OfType(Of Panel)()
-                For Each label In panel.Controls.OfType(Of Label)()
-                    If label.Name = "lblId" Then
-                        If attendees.Contains(label.Text.Split(":")(1)) = False Then
-                            attendees.Add(label.Text.Split(":")(1))
-                        End If
-                        Exit For
-                    End If
-                Next
-            Next
+        If added = 0 And removed = 0 Then
+            MessageBox.Show("No changes were made to the attendees.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            MessageBox.Show("You have not selected anyone.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removed.ToString() & " were removed.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Public Shared Function getName(ByVal idNum As Integer)
@@ -1256,16 +1350,29 @@ Public Class createEvent
         End Using
         Return fullName
     End Function
-    Public Shared Function findSingleAgeGroup(ByVal idNum As Integer)
-        Dim ageGroup As String = ""
+    Public Shared Function getIdByName(ByVal name As String)
+        Dim ID As String = ""
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT AgeGroup FROM athleteDb WHERE ID = @idNumber", conn) '*takes the column with correct rows
-                cmd.Parameters.Add(New OleDbParameter("@idNumber", idNum))
+            Using cmd As New OleDbCommand("SELECT ID FROM athleteDb WHERE FirstName = @fname AND LastName = @lname", conn) '*takes the column with correct rows
+                cmd.Parameters.Add(New OleDbParameter("@fName", name.Split(" ")(0)))
+                If name.Split(" ").Count > 2 Then
+                    Dim lname As String = ""
+                    For i As Integer = 1 To name.Split(" ").Count - 1 'to skip the fname
+                        If i = name.Split(" ").Count - 1 Then
+                            lname += name.Split(" ")(i)
+                        Else
+                            lname += name.Split(" ")(i) + " "
+                        End If
+                    Next
+                    cmd.Parameters.Add(New OleDbParameter("@lName", lname))
+                Else
+                    cmd.Parameters.Add(New OleDbParameter("@lName", name.Split(" ")(1)))
+                End If
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
-                            ageGroup += dr("AgeGroup")
+                            ID = dr("ID")
                             'retrieve agegroup and use to display in selectAtheltes
                         Loop
                     End If
@@ -1273,7 +1380,7 @@ Public Class createEvent
             End Using
             conn.Close()
         End Using
-        Return ageGroup
+        Return ID
     End Function
     Public Shared Function getWholeAgeGroup(ByVal ageGroup As String)
         Dim ageAthletes As New List(Of String)
@@ -1294,32 +1401,25 @@ Public Class createEvent
         End Using
         Return ageAthletes.ToArray()
     End Function
-    Public Shared Sub stopDropDownChange(ByVal idNum As Integer)
-        Select Case findSingleAgeGroup(idNum)
-            Case "U13" : createEvent.cmbGroup.SelectedItem = "U13"
-            Case "U14" : createEvent.cmbGroup.SelectedItem = "U14"
-            Case "U15" : createEvent.cmbGroup.SelectedItem = "U15"
-            Case "U16" : createEvent.cmbGroup.SelectedItem = "U16"
-            Case "U17" : createEvent.cmbGroup.SelectedItem = "U17"
-            Case "Opens" : createEvent.cmbGroup.SelectedItem = "Opens"
-        End Select
-        createEvent.cmbGroup_SelectionChangeCommitted(Nothing, Nothing)
-    End Sub
     Public Shared Sub tickAthletes(ByVal idNum)
+        Dim found As Boolean = False
         For Each panel In createEvent.flpAthletes.Controls.OfType(Of Panel)()
-            For Each label In panel.Controls.OfType(Of Label)()
-                If label.Name = "lblId" Then
-                    If label.Text.Contains(idNum) Then
-                        For Each chb In panel.Controls.OfType(Of CheckBox)()
-                            chb.Checked = True
-                        Next
+            If found = False Then
+                For Each label In panel.Controls.OfType(Of Label)()
+                    If label.Name = "lblId" Then
+                        If label.Text.Contains(idNum) Then
+                            For Each chb In panel.Controls.OfType(Of CheckBox)()
+                                chb.Checked = True
+                                found = True
+                            Next
+                        End If
+                        Exit For
                     End If
-                    Exit For
+                Next
+                If panel Is createEvent.flpAthletes.Controls.OfType(Of Panel)()(createEvent.flpAthletes.Controls.OfType(Of Panel)().Count - 1) Then 'if it's the last panel
+                    checkShownNotAdded()
+                    checkAllChecked()
                 End If
-            Next
-            If panel Is createEvent.flpAthletes.Controls.OfType(Of Panel)()(createEvent.flpAthletes.Controls.OfType(Of Panel)().Count - 1) Then 'if it's the last panel
-                checkShownNotAdded()
-                checkAllChecked()
             End If
         Next
     End Sub
@@ -1348,29 +1448,31 @@ Public Class createEvent
             createEvent.chbAll.Checked = True
         End If
     End Sub
-    Private Sub cmbGroup_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbGroup.SelectionChangeCommitted
-        For Each panel In flpAthletes.Controls.OfType(Of Panel)()
-            For Each label In panel.Controls.OfType(Of Label)()
-                If label.Name = "lblId" Then
-                    If attendees.Contains(label.Text.Split(":")(1)) = False Then
-                        For Each chb In panel.Controls.OfType(Of CheckBox)()
-                            If chb.Checked = True Then
-                                Dim message As String = getName(label.Text.Split(":")(1)) + " currently not saved as attending"
-                                peopleNotAdded.Add(message)
-                            End If
-                        Next
-                    Else
-                        For Each chb In panel.Controls.OfType(Of CheckBox)()
-                            If chb.Checked = False Then
-                                Dim message As String = getName(label.Text.Split(":")(1)) + " currently incorrectly saved as attending"
-                                peopleNotAdded.Add(message)
-                            End If
-                        Next
+    Private Sub cmbGroup_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbGroup.SelectedValueChanged
+        If sender.tag <> "template" Then
+            For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+                For Each label In panel.Controls.OfType(Of Label)()
+                    If label.Name = "lblId" Then
+                        If attendees.Contains(LTrim(label.Text.Split(":")(1))) = False Then
+                            For Each chb In panel.Controls.OfType(Of CheckBox)()
+                                If chb.Checked = True Then
+                                    Dim message As String = getName(LTrim(label.Text.Split(":")(1))) + " currently not saved as attending"
+                                    peopleNotAdded.Add(message)
+                                End If
+                            Next
+                        Else
+                            For Each chb In panel.Controls.OfType(Of CheckBox)()
+                                If chb.Checked = False Then
+                                    Dim message As String = getName(LTrim(label.Text.Split(":")(1))) + " currently incorrectly saved as attending"
+                                    peopleNotAdded.Add(message)
+                                End If
+                            Next
+                        End If
+                        Exit For
                     End If
-                    Exit For
-                End If
+                Next
             Next
-        Next
+        End If
         If peopleNotAdded.Count > 0 Then
             shownNotAdded = False
             confirmAddition.Tag = "people"
@@ -1400,16 +1502,28 @@ Public Class createEvent
         With pnl
             .BackColor = Color.Gray
             .Size = New Size(348, 56)
+            .Cursor = Cursors.Hand
         End With
         flpAthletes.Controls.Add(pnl)
+        AddHandler pnl.Click, AddressOf athletePanel_Click
+        Dim chbAthelte As New CheckBox
+        With chbAthelte
+            .Name = "chbAthlete"
+            .Font = New Font("Microsoft Sans Serif", 8)
+            .Location = New Point(320, 15)
+        End With
+        pnl.Controls.Add(chbAthelte)
+        chbAthelte.BringToFront()
         Dim pb As New PictureBox
         With pb
             .Image = My.Resources.transparent_plus
             .Size = New Size(74, 56)
             .SizeMode = PictureBoxSizeMode.StretchImage
             .Name = "pbAthlete"
+            .Cursor = Cursors.Hand
         End With
         pnl.Controls.Add(pb)
+        AddHandler pb.Click, AddressOf athletePanel_Click
         pb.Location = New Point(0, 0)
         Dim lblName As New Label
         With lblName
@@ -1417,8 +1531,10 @@ Public Class createEvent
             .Text = "Name: " & info.Split(";")(0)
             .Name = "lblName"
             .AutoSize = True
+            .Cursor = Cursors.Hand
         End With
         pnl.Controls.Add(lblName)
+        AddHandler lblName.Click, AddressOf athletePanel_Click
         lblName.Location = New Point(81, 0)
         Dim lblId As New Label
         With lblId
@@ -1426,7 +1542,9 @@ Public Class createEvent
             .Text = "ID: " & info.Split(";")(1)
             .Name = "lblId"
             .AutoSize = True
+            .Cursor = Cursors.Hand
         End With
+        AddHandler lblId.Click, AddressOf athletePanel_Click
         pnl.Controls.Add(lblId)
         lblId.Location = New Point(272, 0)
         Dim lblRollClass As New Label
@@ -1435,8 +1553,10 @@ Public Class createEvent
             .Text = "Class: " & info.Split(";")(2)
             .Name = "lblRollClass"
             .AutoSize = True
+            .Cursor = Cursors.Hand
         End With
         pnl.Controls.Add(lblRollClass)
+        AddHandler lblRollClass.Click, AddressOf athletePanel_Click
         lblRollClass.Location = New Point(291, 37)
         Dim lblAverages As New Label
         With lblAverages
@@ -1444,8 +1564,10 @@ Public Class createEvent
             .Text = "Averages: " & info.Split(";")(3)
             .Name = "lblAverages"
             .AutoSize = True
+            .Cursor = Cursors.Hand
         End With
         pnl.Controls.Add(lblAverages)
+        AddHandler lblAverages.Click, AddressOf athletePanel_Click
         lblAverages.Location = New Point(81, 17)
         Dim lblRecents As New Label
         With lblRecents
@@ -1453,8 +1575,10 @@ Public Class createEvent
             .Text = "Recents: " & info.Split(";")(4)
             .Name = "lblRecents"
             .AutoSize = True
+            .Cursor = Cursors.Hand
         End With
         pnl.Controls.Add(lblRecents)
+        AddHandler lblRecents.Click, AddressOf athletePanel_Click
         lblRecents.Location = New Point(81, 36)
         'Dim lblUnexplained As New Label
         'With lblUnexplained
@@ -1464,33 +1588,23 @@ Public Class createEvent
         '    .AutoSize = True
         'End With
         'pnl.Controls.Add(lblUnexplained)
+        'AddHandler lblUnexplained.Click, AddressOf athletePanel_Click
         'lblUnexplained.Location = New Point(272, 36)
-        Dim chbAthelte As New CheckBox
-        With chbAthelte
-            .Name = "chbAthlete"
-            .Font = New Font("Microsoft Sans Serif", 8)
-            .Location = New Point(320, 15)
-        End With
-        pnl.Controls.Add(chbAthelte)
-        chbAthlete.BringToFront()
     End Sub
-    'Private Sub clbAthletes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles clbAthletes.SelectedIndexChanged
-    '    If prevIndex <> clbAthletes.SelectedIndex And cmbGroup.Tag <> "First" Then
-    '        If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
-    '            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
-    '        Else
-    '            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
-    '        End If
-    '    ElseIf cmbGroup.Tag = "First" Then
-    '        cmbGroup.Tag = ""
-    '        If clbAthletes.GetItemCheckState(clbAthletes.SelectedIndex) = CheckState.Unchecked Then
-    '            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, True)
-    '        Else
-    '            clbAthletes.SetItemChecked(clbAthletes.SelectedIndex, False)
-    '        End If
-    '    End If
-    '    prevIndex = clbAthletes.SelectedIndex
-    '    checkAllChecked()
-    'End Sub
+    Public Sub athletePanel_Click(sender As Object, e As EventArgs)
+        Dim pnl As Panel
+        If sender.GetType() Is GetType(Panel) Then
+            pnl = sender
+        Else
+            pnl = sender.parent
+        End If
+        For Each chb In pnl.Controls.OfType(Of CheckBox)()
+            If chb.Checked = True Then
+                chb.Checked = False
+            Else
+                chb.Checked = True
+            End If
+        Next
+    End Sub
 #End Region
 End Class
