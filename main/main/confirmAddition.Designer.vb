@@ -60,9 +60,9 @@ Partial Class confirmAddition
         '
         'rchText
         '
-        Me.rchText.Enabled = False
         Me.rchText.Location = New System.Drawing.Point(22, 32)
         Me.rchText.Name = "rchText"
+        Me.rchText.ReadOnly = True
         Me.rchText.Size = New System.Drawing.Size(491, 232)
         Me.rchText.TabIndex = 4
         Me.rchText.Text = ""
@@ -90,6 +90,7 @@ Partial Class confirmAddition
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(575, 403)
+        Me.ControlBox = False
         Me.Controls.Add(Me.lblBottom)
         Me.Controls.Add(Me.rchText)
         Me.Controls.Add(Me.btnOkay)
@@ -97,7 +98,7 @@ Partial Class confirmAddition
         Me.Controls.Add(Me.btnYes)
         Me.Controls.Add(Me.lblTop)
         Me.Name = "confirmAddition"
-        Me.Text = "Confirm Additions"
+        Me.Text = "Confirm Edits"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

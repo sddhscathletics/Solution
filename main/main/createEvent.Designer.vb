@@ -55,6 +55,7 @@ Partial Class createEvent
         Me.txtSuburb = New System.Windows.Forms.TextBox()
         Me.lblState = New System.Windows.Forms.Label()
         Me.gbLocation = New System.Windows.Forms.GroupBox()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.cmbState = New System.Windows.Forms.ComboBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.gbEvents = New System.Windows.Forms.GroupBox()
@@ -77,21 +78,21 @@ Partial Class createEvent
         Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.gbAthletes = New System.Windows.Forms.GroupBox()
         Me.btnSelect = New System.Windows.Forms.Button()
-        Me.chbAll = New System.Windows.Forms.CheckBox()
+        Me.chbAllAthletes = New System.Windows.Forms.CheckBox()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.chbAllNotes = New System.Windows.Forms.CheckBox()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbLocation.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbEvents.SuspendLayout()
         Me.gbAttachments.SuspendLayout()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbAthletes.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dtpStart
@@ -454,6 +455,15 @@ Partial Class createEvent
         Me.gbLocation.TabStop = False
         Me.gbLocation.Text = "Location"
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(9, 20)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(163, 22)
+        Me.DataGridView1.TabIndex = 44
+        Me.DataGridView1.Visible = False
+        '
         'cmbState
         '
         Me.cmbState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -679,8 +689,9 @@ Partial Class createEvent
         '
         'gbAthletes
         '
+        Me.gbAthletes.Controls.Add(Me.chbAllNotes)
         Me.gbAthletes.Controls.Add(Me.btnSelect)
-        Me.gbAthletes.Controls.Add(Me.chbAll)
+        Me.gbAthletes.Controls.Add(Me.chbAllAthletes)
         Me.gbAthletes.Controls.Add(Me.cmbGroup)
         Me.gbAthletes.Controls.Add(Me.flpAthletes)
         Me.gbAthletes.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -694,30 +705,30 @@ Partial Class createEvent
         'btnSelect
         '
         Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelect.Location = New System.Drawing.Point(238, 21)
+        Me.btnSelect.Location = New System.Drawing.Point(291, 21)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(75, 23)
         Me.btnSelect.TabIndex = 61
         Me.btnSelect.Text = "Select"
         Me.btnSelect.UseVisualStyleBackColor = True
         '
-        'chbAll
+        'chbAllAthletes
         '
-        Me.chbAll.AutoSize = True
-        Me.chbAll.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbAll.Location = New System.Drawing.Point(11, 25)
-        Me.chbAll.Name = "chbAll"
-        Me.chbAll.Size = New System.Drawing.Size(70, 17)
-        Me.chbAll.TabIndex = 48
-        Me.chbAll.Text = "Select All"
-        Me.chbAll.UseVisualStyleBackColor = True
+        Me.chbAllAthletes.AutoSize = True
+        Me.chbAllAthletes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllAthletes.Location = New System.Drawing.Point(1, 25)
+        Me.chbAllAthletes.Name = "chbAllAthletes"
+        Me.chbAllAthletes.Size = New System.Drawing.Size(85, 17)
+        Me.chbAllAthletes.TabIndex = 48
+        Me.chbAllAthletes.Text = "All Attending"
+        Me.chbAllAthletes.UseVisualStyleBackColor = True
         '
         'cmbGroup
         '
         Me.cmbGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbGroup.FormattingEnabled = True
         Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbGroup.Location = New System.Drawing.Point(88, 23)
+        Me.cmbGroup.Location = New System.Drawing.Point(150, 23)
         Me.cmbGroup.Name = "cmbGroup"
         Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
         Me.cmbGroup.TabIndex = 46
@@ -733,14 +744,16 @@ Partial Class createEvent
         Me.flpAthletes.TabIndex = 45
         Me.flpAthletes.WrapContents = False
         '
-        'DataGridView1
+        'chbAllNotes
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(9, 20)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(163, 22)
-        Me.DataGridView1.TabIndex = 44
-        Me.DataGridView1.Visible = False
+        Me.chbAllNotes.AutoSize = True
+        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllNotes.Location = New System.Drawing.Point(86, 25)
+        Me.chbAllNotes.Name = "chbAllNotes"
+        Me.chbAllNotes.Size = New System.Drawing.Size(68, 17)
+        Me.chbAllNotes.TabIndex = 62
+        Me.chbAllNotes.Text = "All Notes"
+        Me.chbAllNotes.UseVisualStyleBackColor = True
         '
         'createEvent
         '
@@ -770,6 +783,7 @@ Partial Class createEvent
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbLocation.ResumeLayout(False)
         Me.gbLocation.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbEvents.ResumeLayout(False)
         Me.gbEvents.PerformLayout()
         Me.gbAttachments.ResumeLayout(False)
@@ -777,7 +791,6 @@ Partial Class createEvent
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbAthletes.ResumeLayout(False)
         Me.gbAthletes.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -838,7 +851,8 @@ Partial Class createEvent
     Friend WithEvents gbAthletes As GroupBox
     Friend WithEvents flpAthletes As FlowLayoutPanel
     Friend WithEvents cmbGroup As ComboBox
-    Friend WithEvents chbAll As CheckBox
+    Friend WithEvents chbAllAthletes As CheckBox
     Friend WithEvents btnSelect As Button
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents chbAllNotes As CheckBox
 End Class

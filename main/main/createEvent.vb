@@ -8,13 +8,13 @@ Imports GMap.NET.WindowsForms
 #End Region
 Public Class createEvent
 #Region "Declarations"
-    Public Shared attendees As New List(Of String) 'list of id's with which you look back at the database to find agegroup to display tick or not
+    Public Shared attendees As New List(Of String) 'list of id's
     Public Shared times As New List(Of String) 'list of "event: time"
+    Public Shared templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016", "Testing all 16/07/2016"}
     'Attachments
     Dim filePaths As New List(Of String)
     Dim newAttachBoxLocation As Point = New Point(135, 377)
     Dim pbCount = 1
-    Public Shared templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016", "Testing all 16/07/2016"}
     Dim tempFilePath As String = ""
     'Office
     Private WithEvents wordApp As Word.Application
@@ -39,7 +39,7 @@ Public Class createEvent
     'Athletes
     Dim changesSaved As Boolean = False
     Public Shared peopleNotAdded As New List(Of String)
-    Dim prevIndex As Integer = 0
+    Public Shared notes As New List(Of String)
 #End Region
 #Region "Form Operations"
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
@@ -70,7 +70,7 @@ Public Class createEvent
             If filePaths.Count > 0 And attendees.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
                 Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                     conn.Open()
-                    Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Location, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @location, @fileNames, @comment)", conn)
+                    Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @fileNames, @comment)", conn)
                         cmd.Parameters.AddWithValue("@name", txtName.Text)
                         dtpDate.Format = DateTimePickerFormat.Short
                         cmd.Parameters.AddWithValue("@date", dtpDate.Text)
@@ -91,6 +91,15 @@ Public Class createEvent
                             End If
                         Next
                         cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                        Dim notesNeeded As String = ""
+                        For note As Integer = 0 To notes.Count - 1
+                            If note = 0 Then
+                                notesNeeded = notes(note)
+                            Else
+                                notesNeeded += ";" & notes(note)
+                            End If
+                        Next
+                        cmd.Parameters.AddWithValue("@notes", notesNeeded)
                         If chbNA.Checked = False Then
                             Dim eventTimes As String = ""
                             For time As Integer = 0 To times.Count - 1
@@ -182,14 +191,14 @@ Public Class createEvent
                 MessageBox.Show("You must either set event times or tick N/A", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             ElseIf map.Overlays.Count <> 1 Then
                 If map.Overlays.Count < 1 Then
-                    MessageBox.Show("You must select a location.", "No location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    MessageBox.Show("You must select a location. (A marker must be showing on the map)", "No location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Else
                     MessageBox.Show("Please select only one location.", "Multpiple locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             Else
                 Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                     conn.Open()
-                    Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Events, Location, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @times, @location, @comment)", conn)
+                    Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @comment)", conn)
                         cmd.Parameters.AddWithValue("@name", txtName.Text)
                         dtpDate.Format = DateTimePickerFormat.Short
                         cmd.Parameters.AddWithValue("@date", dtpDate.Text)
@@ -210,6 +219,15 @@ Public Class createEvent
                             End If
                         Next
                         cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                        Dim notesNeeded As String = ""
+                        For note As Integer = 0 To notes.Count - 1
+                            If note = 0 Then
+                                notesNeeded = notes(note)
+                            Else
+                                notesNeeded += ";" & notes(note)
+                            End If
+                        Next
+                        cmd.Parameters.AddWithValue("@notes", notesNeeded)
                         If chbNA.Checked = False Then
                             Dim eventTimes As String = ""
                             For time As Integer = 0 To times.Count - 1
@@ -294,6 +312,7 @@ Public Class createEvent
             If MessageBox.Show("Are you sure you want to close the form?" + vbNewLine + "If there is information that has not been saved, it will be lost.", "Close confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 attendees.Clear()
                 times.Clear()
+                notes.Clear()
             Else
                 e.Cancel = True
             End If
@@ -301,6 +320,7 @@ Public Class createEvent
             btnSaveEvent.Tag = Nothing
             attendees.Clear()
             times.Clear()
+            notes.Clear()
         End If
     End Sub
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -402,6 +422,8 @@ Public Class createEvent
                             dtpEnd.Text = dr("EndTime")
                             attendees.Clear()
                             attendees.AddRange(dr("Personnel").Split(";"))
+                            notes.Clear()
+                            notes.AddRange(dr("Notes").Split(";"))
                             Dim tmpSender As New ComboBox
                             tmpSender.Tag = "template"
                             cmbGroup_SelectedValueChanged(tmpSender, Nothing)
@@ -413,7 +435,6 @@ Public Class createEvent
                                 tmpSender.Tag = "firstOpen"
                                 cmbEvent_SelectedValueChanged(tmpSender, Nothing)
                             End If
-                            MessageBox.Show(dr("AttachNames").ToString())
                             If dr("AttachNames").ToString() <> "" Then
                                 Dim fileNames() As String = dr("AttachNames").Split(";")
                                 filePaths = fileNames.ToList()
@@ -1185,7 +1206,7 @@ Public Class createEvent
                     MessageBox.Show(map.Overlays.Count.ToString() + " results found." + vbNewLine + "Please select one of the markers as your location.")
                 End If
                 map.ZoomAndCenterMarkers(Nothing)
-                If map.Overlays.Count < 3 Then
+                If map.Overlays.Count < 2 Then
                     map.Zoom += 4
                 End If
                 Cursor.Current = Cursors.Default
@@ -1262,6 +1283,7 @@ Public Class createEvent
         Next
     End Sub
     Private Sub btnSaveTimes_Click(sender As Object, e As EventArgs) Handles btnSaveTimes.Click
+        Dim changes As Integer = 0, added As Integer = 0
         For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
             Dim hasEntry As Boolean = False
             Dim eventTime As String = cmbEvent.SelectedItem & " " & dtp.Tag & " " & dtp.Text
@@ -1273,63 +1295,120 @@ Public Class createEvent
                         hasEntry = True
                         If substring(2) <> dtp.Text Then
                             times(ageGroup) = eventTime
+                            changes += 1
                             Exit For
                         End If
                     End If
                 Next
                 If hasEntry = False Then
                     times.Add(eventTime)
+                    added += 1
                 End If
             Else
                 times.Add(eventTime)
+                added += 1
             End If
         Next
+        MessageBox.Show(added.ToString() + " times were added for " + cmbEvent.SelectedItem + " and " + changes.ToString() + " times were updated.")
     End Sub
 #End Region
 #Region "Athlete Operations"
-    Private Sub chbAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbAll.Click
-        If chbAll.Checked = True Then
+    Private Sub chbAllAthletes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbAllAthletes.Click
+        If chbAllAthletes.Checked = True Then
             For Each panel In flpAthletes.Controls.OfType(Of Panel)()
                 For Each chb In panel.Controls.OfType(Of CheckBox)()
-                    chb.Checked = True
+                    If chb.Name = "chbAthlete" Then
+                        chb.Checked = True
+                        Exit For
+                    End If
                 Next
             Next
         Else
             For Each panel In flpAthletes.Controls.OfType(Of Panel)()
                 For Each chb In panel.Controls.OfType(Of CheckBox)()
-                    chb.Checked = False
+                    If chb.Name = "chbAthlete" Then
+                        chb.Checked = False
+                        Exit For
+                    End If
+                Next
+            Next
+        End If
+    End Sub
+    Private Sub chbAllNotes_Click(sender As Object, e As EventArgs) Handles chbAllNotes.Click
+        If chbAllNotes.Checked = True Then
+            For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+                For Each chb In panel.Controls.OfType(Of CheckBox)()
+                    If chb.Name = "chbNote" Then
+                        chb.Checked = True
+                        Exit For
+                    End If
+                Next
+            Next
+        Else
+            For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+                For Each chb In panel.Controls.OfType(Of CheckBox)()
+                    If chb.Name = "chbNote" Then
+                        chb.Checked = False
+                        Exit For
+                    End If
                 Next
             Next
         End If
     End Sub
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
-        Dim added As Integer = 0, removed As Integer = 0
+        Dim added As Integer = 0, removedPeople As Integer = 0, notesAdded As Integer = 0, notesRemoved As Integer = 0
         For Each panel In flpAthletes.Controls.OfType(Of Panel)()
             For Each label In panel.Controls.OfType(Of Label)()
                 If label.Name = "lblId" Then
                     If attendees.Contains(LTrim(label.Text.Split(":")(1))) = False Then
                         For Each chb In panel.Controls.OfType(Of CheckBox)()
-                            If chb.Checked = True Then
-                                attendees.Add(LTrim(label.Text.Split(":")(1)))
-                                added += 1
+                            If chb.Name = "chbAthlete" Then
+                                If chb.Checked = True Then
+                                    attendees.Add(LTrim(label.Text.Split(":")(1)))
+                                    added += 1
+                                End If
+                                Exit For
                             End If
                         Next
                     Else
                         For Each chb In panel.Controls.OfType(Of CheckBox)()
-                            If chb.Checked = False Then
-                                attendees.Remove(LTrim(label.Text.Split(":")(1)))
-                                removed += 1
+                            If chb.Name = "chbAthlete" Then
+                                If chb.Checked = False Then
+                                    attendees.Remove(LTrim(label.Text.Split(":")(1)))
+                                    removedPeople += 1
+                                End If
+                                Exit For
                             End If
                         Next
                     End If
-                    Exit For
+                    If notes.Contains(LTrim(label.Text.Split(":")(1))) = False Then
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Name = "chbNote" Then
+                                If chb.Checked = True Then
+                                    notes.Add(LTrim(label.Text.Split(":")(1)))
+                                    notesAdded += 1
+                                End If
+                                Exit For
+                            End If
+                        Next
+                    Else
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Name = "chbNote" Then
+                                If chb.Checked = False Then
+                                    notes.Remove(LTrim(label.Text.Split(":")(1)))
+                                    notesRemoved += 1
+                                End If
+                                Exit For
+                            End If
+                        Next
+                    End If
                 End If
             Next
         Next
-        If added = 0 And removed = 0 Then
+        If added = 0 And removedPeople = 0 And notesAdded = 0 And notesRemoved = 0 Then
             MessageBox.Show("No changes were made to the attendees.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removed.ToString() & " were removed.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Public Shared Function getName(ByVal idNum As Integer)
@@ -1373,7 +1452,6 @@ Public Class createEvent
                     If dr.HasRows Then
                         Do While dr.Read()
                             ID = dr("ID")
-                            'retrieve agegroup and use to display in selectAtheltes
                         Loop
                     End If
                 End Using
@@ -1401,25 +1479,45 @@ Public Class createEvent
         End Using
         Return ageAthletes.ToArray()
     End Function
-    Public Shared Sub tickAthletes(ByVal idNum)
-        Dim found As Boolean = False
+    Public Shared Sub tickAthletes(ByVal idNum, ByVal last)
         For Each panel In createEvent.flpAthletes.Controls.OfType(Of Panel)()
-            If found = False Then
-                For Each label In panel.Controls.OfType(Of Label)()
-                    If label.Name = "lblId" Then
-                        If label.Text.Contains(idNum) Then
-                            For Each chb In panel.Controls.OfType(Of CheckBox)()
+            For Each label In panel.Controls.OfType(Of Label)()
+                If label.Name = "lblId" Then
+                    If label.Text.Contains(idNum) Then
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Name = "chbAthlete" Then
                                 chb.Checked = True
-                                found = True
-                            Next
-                        End If
-                        Exit For
+                                Exit For
+                            End If
+                        Next
                     End If
-                Next
-                If panel Is createEvent.flpAthletes.Controls.OfType(Of Panel)()(createEvent.flpAthletes.Controls.OfType(Of Panel)().Count - 1) Then 'if it's the last panel
-                    checkShownNotAdded()
-                    checkAllChecked()
+                    Exit For
                 End If
+            Next
+            If last = True Then
+                checkShownNotAdded()
+                checkAllChecked()
+            End If
+        Next
+    End Sub
+    Public Shared Sub tickNotes(ByVal idNum, ByVal last)
+        For Each panel In createEvent.flpAthletes.Controls.OfType(Of Panel)()
+            For Each label In panel.Controls.OfType(Of Label)()
+                If label.Name = "lblId" Then
+                    If label.Text.Contains(idNum) Then
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Name = "chbNote" Then
+                                chb.Checked = True
+                                Exit For
+                            End If
+                        Next
+                    End If
+                    Exit For
+                End If
+            Next
+            If last = True Then
+                checkShownNotAdded()
+                checkAllChecked()
             End If
         Next
     End Sub
@@ -1434,37 +1532,76 @@ Public Class createEvent
         End If
     End Sub
     Public Shared Sub checkAllChecked()
-        Dim checked As Integer = 0
+        Dim checkedAth As Integer = 0, checkedNote As Integer = 0
         For Each panel In createEvent.flpAthletes.Controls.OfType(Of Panel)()
             For Each chb In panel.Controls.OfType(Of CheckBox)()
-                If chb.Checked = True Then
-                    checked += 1
+                If chb.Name = "chbAthlete" Then
+                    If chb.Checked = True Then
+                        checkedAth += 1
+                    End If
+                Else
+                    If chb.Checked = True Then
+                        checkedNote += 1
+                    End If
                 End If
             Next
         Next
-        If checked <> createEvent.flpAthletes.Controls.OfType(Of Panel)().Count Then
-            createEvent.chbAll.Checked = False
+        If checkedAth <> createEvent.flpAthletes.Controls.OfType(Of Panel)().Count Then
+            createEvent.chbAllAthletes.Checked = False
         Else
-            createEvent.chbAll.Checked = True
+            createEvent.chbAllAthletes.Checked = True
+        End If
+        If checkedNote <> createEvent.flpAthletes.Controls.OfType(Of Panel)().Count Then
+            createEvent.chbAllNotes.Checked = False
+        Else
+            createEvent.chbAllNotes.Checked = True
         End If
     End Sub
     Private Sub cmbGroup_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbGroup.SelectedValueChanged
+        Cursor.Current = Cursors.AppStarting
         If sender.tag <> "template" Then
             For Each panel In flpAthletes.Controls.OfType(Of Panel)()
                 For Each label In panel.Controls.OfType(Of Label)()
                     If label.Name = "lblId" Then
                         If attendees.Contains(LTrim(label.Text.Split(":")(1))) = False Then
                             For Each chb In panel.Controls.OfType(Of CheckBox)()
-                                If chb.Checked = True Then
-                                    Dim message As String = getName(LTrim(label.Text.Split(":")(1))) + " currently not saved as attending"
-                                    peopleNotAdded.Add(message)
+                                If chb.Name = "chbAthlete" Then
+                                    If chb.Checked = True Then
+                                        Dim message As String = getName(LTrim(label.Text.Split(":")(1))) + " currently not saved as attending"
+                                        peopleNotAdded.Add(message)
+                                    End If
+                                    Exit For
                                 End If
                             Next
                         Else
                             For Each chb In panel.Controls.OfType(Of CheckBox)()
-                                If chb.Checked = False Then
-                                    Dim message As String = getName(LTrim(label.Text.Split(":")(1))) + " currently incorrectly saved as attending"
-                                    peopleNotAdded.Add(message)
+                                If chb.Name = "chbAthlete" Then
+                                    If chb.Checked = False Then
+                                        Dim message As String = getName(LTrim(label.Text.Split(":")(1))) + " currently incorrectly saved as attending"
+                                        peopleNotAdded.Add(message)
+                                    End If
+                                    Exit For
+                                End If
+                            Next
+                        End If
+                        If notes.Contains(LTrim(label.Text.Split(":")(1))) = False Then
+                            For Each chb In panel.Controls.OfType(Of CheckBox)()
+                                If chb.Name = "chbNote" Then
+                                    If chb.Checked = True Then
+                                        Dim message As String = getName(LTrim(label.Text.Split(":")(1))) + " currently not saved as needing a note"
+                                        peopleNotAdded.Add(message)
+                                    End If
+                                    Exit For
+                                End If
+                            Next
+                        Else
+                            For Each chb In panel.Controls.OfType(Of CheckBox)()
+                                If chb.Name = "chbNote" Then
+                                    If chb.Checked = False Then
+                                        Dim message As String = getName(LTrim(label.Text.Split(":")(1))) + " currently incorrectly saved as needing a note"
+                                        peopleNotAdded.Add(message)
+                                    End If
+                                    Exit For
                                 End If
                             Next
                         End If
@@ -1492,9 +1629,21 @@ Public Class createEvent
             createAthletePanel(person)
         Next
         For Each athleteID In attendees
-            tickAthletes(athleteID)
+            If athleteID <> attendees(attendees.Count - 1) Then
+                tickAthletes(athleteID, False)
+            Else
+                tickAthletes(athleteID, True)
+            End If
+        Next
+        For Each athleteID In notes
+            If athleteID <> attendees(attendees.Count - 1) Then
+                tickNotes(athleteID, False)
+            Else
+                tickNotes(athleteID, True)
+            End If
         Next
         checkAllChecked()
+        Cursor.Current = Cursors.Default
     End Sub
     Private Sub createAthletePanel(info As String)
         'info is in the form: name; id; rollclass; averages; recents; unexplained
@@ -1510,10 +1659,21 @@ Public Class createEvent
         With chbAthelte
             .Name = "chbAthlete"
             .Font = New Font("Microsoft Sans Serif", 8)
-            .Location = New Point(320, 15)
+            .Text = "Attending"
+            .Location = New Point(272, 15)
         End With
         pnl.Controls.Add(chbAthelte)
         chbAthelte.BringToFront()
+        Dim chbNote As New CheckBox
+        With chbNote
+            .Name = "chbNote"
+            .Font = New Font("Microsoft Sans Serif", 8)
+            .Text = "Note Needed"
+            .Location = New Point(272, 36)
+        End With
+        pnl.Controls.Add(chbNote)
+        chbNote.BringToFront()
+        AddHandler chbNote.Click, AddressOf chbNote_Click
         Dim pb As New PictureBox
         With pb
             .Image = My.Resources.transparent_plus
@@ -1547,17 +1707,17 @@ Public Class createEvent
         AddHandler lblId.Click, AddressOf athletePanel_Click
         pnl.Controls.Add(lblId)
         lblId.Location = New Point(272, 0)
-        Dim lblRollClass As New Label
-        With lblRollClass
-            .Font = New Font("Microsoft Sans Serif", 8)
-            .Text = "Class: " & info.Split(";")(2)
-            .Name = "lblRollClass"
-            .AutoSize = True
-            .Cursor = Cursors.Hand
-        End With
-        pnl.Controls.Add(lblRollClass)
-        AddHandler lblRollClass.Click, AddressOf athletePanel_Click
-        lblRollClass.Location = New Point(291, 37)
+        'Dim lblRollClass As New Label
+        'With lblRollClass
+        '    .Font = New Font("Microsoft Sans Serif", 8)
+        '    .Text = "Class: " & info.Split(";")(2)
+        '    .Name = "lblRollClass"
+        '    .AutoSize = True
+        '    .Cursor = Cursors.Hand
+        'End With
+        'pnl.Controls.Add(lblRollClass)
+        'AddHandler lblRollClass.Click, AddressOf athletePanel_Click
+        'lblRollClass.Location = New Point(291, 37)
         Dim lblAverages As New Label
         With lblAverages
             .Font = New Font("Microsoft Sans Serif", 8)
@@ -1591,7 +1751,10 @@ Public Class createEvent
         'AddHandler lblUnexplained.Click, AddressOf athletePanel_Click
         'lblUnexplained.Location = New Point(272, 36)
     End Sub
-    Public Sub athletePanel_Click(sender As Object, e As EventArgs)
+    Private Sub chbNote_Click(sender As Object, e As EventArgs)
+        checkAllChecked()
+    End Sub
+    Private Sub athletePanel_Click(sender As Object, e As EventArgs)
         Dim pnl As Panel
         If sender.GetType() Is GetType(Panel) Then
             pnl = sender
@@ -1599,12 +1762,16 @@ Public Class createEvent
             pnl = sender.parent
         End If
         For Each chb In pnl.Controls.OfType(Of CheckBox)()
-            If chb.Checked = True Then
-                chb.Checked = False
-            Else
-                chb.Checked = True
+            If chb.Name = "chbAthlete" Then
+                If chb.Checked = True Then
+                    chb.Checked = False
+                Else
+                    chb.Checked = True
+                End If
+                Exit For
             End If
         Next
+        checkAllChecked()
     End Sub
 #End Region
 End Class
