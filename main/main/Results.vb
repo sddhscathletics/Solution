@@ -3,7 +3,7 @@ Imports System.Data.OleDb
 
 Public Class Results
     Private Sub Results_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Athlete.accdb") 'add your access file to bin\debug and then repalce \athelte with \(name of your file)
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb") 'add your access file to bin\debug and then repalce \athelte with \(name of your file)
             conn.Open() 'open the connection to the database
             Using cmd As New OleDbCommand("SELECT AthleteName, AgeGroup, Placement, MeetName, EventName, EventDate FROM resultsDb", conn) '*takes the column with correct rows
                 'cmd.Parameters.Add(New OleDbParameter("madeupVariable", Event)) 'maps your variable to that string

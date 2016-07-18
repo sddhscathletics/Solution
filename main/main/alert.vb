@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+
 Module alert
     Public Sub newEdit(changeType, changeMade) 'Appends the edit log with a new edit
         Dim edit As String = ""
@@ -36,14 +37,17 @@ Module alert
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
-                            Dim newnotif As New notif
-                            newnotif.ID = dr("ID")
-                            newnotif.ldate = dr("lDate")
-                            newnotif.ltime = dr("lTime")
-                            newnotif.username = dr("username")
-                            newnotif.edit = dr("edit")
+                            Dim newnotif As New notif With
+                                {
+                                .ID = dr("ID"),
+                                .ldate = dr("lDate"),
+                                .ltime = dr("lTime"),
+                                .username = dr("username"),
+                                .edit = dr("edit")
+                                }
                             alertList.Add(newnotif)
                             alertCount = alertList.Count
+
                         Loop
                     End If
                 End Using

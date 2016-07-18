@@ -1,13 +1,18 @@
 ﻿Imports System.Data.OleDb
+'Searching and sorting
 
 Public Class selectAthlete
+    Dim athleteList As New List(Of athlete)
+    Dim adNo, adSt, adSb, adPo As String
+
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         populate()
     End Sub
 
     Private Sub panelClicked(sender As Object, e As EventArgs)
         Dim clicked As Panel = sender
-        MsgBox(clicked.Tag)
+        id = clicked.Tag
+        athleteProfileBackup.Show()
     End Sub
 
     Private Sub labelClicked(sender As Object, e As EventArgs)

@@ -30,14 +30,14 @@ Partial Class selectAthlete
         Me.flpAthletes.AutoScroll = True
         Me.flpAthletes.Location = New System.Drawing.Point(12, 12)
         Me.flpAthletes.Name = "flpAthletes"
-        Me.flpAthletes.Size = New System.Drawing.Size(674, 415)
+        Me.flpAthletes.Size = New System.Drawing.Size(654, 376)
         Me.flpAthletes.TabIndex = 0
         '
         'selectAthlete
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(698, 439)
+        Me.ClientSize = New System.Drawing.Size(677, 400)
         Me.Controls.Add(Me.flpAthletes)
         Me.Name = "selectAthlete"
         Me.Text = "selectAthlete"

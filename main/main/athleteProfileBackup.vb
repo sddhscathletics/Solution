@@ -1,13 +1,14 @@
 ﻿Imports System.Data.OleDb
 
-Public Class athleteProfile
+Public Class athleteProfileBackup
     'Add the ability to copy?
     'ID Photo (2:3)
     'Draw best event based on participation
     'Get teams
 
     Dim adNo, adSt, adSb, adPo As String
-    Private Sub athleteProfile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    Public Sub athleteProfile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName, AgeGroup, Address, MedicalInfo, BestEvent, Email, PhoneNumber, Teams FROM athleteDb WHERE ID = " + id, conn)
@@ -46,6 +47,7 @@ Public Class athleteProfile
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+        Me.Close()
         selectAthlete.Show()
 
     End Sub
