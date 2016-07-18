@@ -11,8 +11,9 @@
     <AssemblyName>main</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +48,12 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GMap.NET.Core">
+      <HintPath>..\..\..\..\..\Downloads\GMap.NET Build-ef25f7c93e70-20150401\Release-NETv4.0\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms">
+      <HintPath>..\..\..\..\..\Downloads\GMap.NET Build-ef25f7c93e70-20150401\Release-NETv4.0\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -82,6 +89,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEdit User.Designer.vb">
+      <DependentUpon>AddEdit User.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddEdit User.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="alert.vb" />
     <Compile Include="athleteProfile.Designer.vb">
       <DependentUpon>athleteProfile.vb</DependentUpon>
@@ -131,6 +144,11 @@
     <Compile Include="confirmAddition.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="login.Designer.vb">
+      <DependentUpon>Login.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Logon.Designer.vb">
       <DependentUpon>Logon.vb</DependentUpon>
     </Compile>
@@ -173,6 +191,16 @@
     <Compile Include="selectAthletes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UserDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="variables.vb" />
     <Compile Include="home.vb">
       <SubType>Form</SubType>
@@ -198,6 +226,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddEdit User.resx">
+      <DependentUpon>AddEdit User.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="athleteProfile.resx">
       <DependentUpon>athleteProfile.vb</DependentUpon>
     </EmbeddedResource>
@@ -254,6 +285,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Login.xsc">
+      <DependentUpon>Login.xsd</DependentUpon>
+    </None>
+    <None Include="Login.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Login.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Login.xss">
+      <DependentUpon>Login.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -265,6 +307,28 @@
     </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="UserDataSet.xsc">
+      <DependentUpon>UserDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UserDataSet.xss">
+      <DependentUpon>UserDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserDataSet1.xsc">
+      <DependentUpon>UserDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="UserDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserDataSet1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UserDataSet1.xss">
+      <DependentUpon>UserDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +386,17 @@
     <None Include="Resources\Athlete.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\User.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="User.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transparent-minus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

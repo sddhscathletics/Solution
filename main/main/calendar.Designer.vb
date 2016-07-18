@@ -28,6 +28,7 @@ Partial Class calendar
         'mnCalendar
         '
         Me.mnCalendar.Location = New System.Drawing.Point(28, 48)
+        Me.mnCalendar.MaxSelectionCount = 1
         Me.mnCalendar.Name = "mnCalendar"
         Me.mnCalendar.TabIndex = 0
         '
