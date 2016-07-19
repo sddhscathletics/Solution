@@ -1,6 +1,8 @@
-﻿Imports System.Data.OleDb
-Imports System.IO.FileStream
+﻿
+
 #Region "Imports"
+Imports System.Data.OleDb
+Imports System.IO.FileStream
 Imports System.Threading
 Imports Microsoft.Office.Interop
 Imports GMap.NET
@@ -301,11 +303,6 @@ Public Class createEvent
                 End If
             Next
         End If
-    End Sub
-    Private Sub lblTitle_Click(sender As Object, e As EventArgs) Handles lblTitle.Click
-        Dim ptLowerLeft = New Point(0, sender.Height)
-        ptLowerLeft = sender.PointToScreen(ptLowerLeft)
-        'cmsTemplate.Show(ptLowerLeft)
     End Sub
     Private Sub createEvent_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         If btnSaveEvent.Tag <> "saved" Then
