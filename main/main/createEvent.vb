@@ -69,7 +69,7 @@ Public Class createEvent
             conn.Close()
         End Using
         If nameDateMatch = False Then
-            If filePaths.Count > 0 And attendees.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
+            If (attendees.Count > 0 Or rdbTraining.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
                 Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                     conn.Open()
                     Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, AttachNames, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @fileNames, @comment)", conn)
@@ -84,15 +84,19 @@ Public Class createEvent
                         End If
                         cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                         cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
-                        Dim attendingAthletes As String = ""
-                        For athlete As Integer = 0 To attendees.Count - 1
-                            If athlete = 0 Then
-                                attendingAthletes = attendees(athlete)
-                            Else
-                                attendingAthletes += ";" & attendees(athlete)
-                            End If
-                        Next
-                        cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                        If rdbTraining.Checked = True Then
+                            Dim attendingAthletes As String = ""
+                            For athlete As Integer = 0 To attendees.Count - 1
+                                If athlete = 0 Then
+                                    attendingAthletes = attendees(athlete)
+                                Else
+                                    attendingAthletes += ";" & attendees(athlete)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                        Else
+                            cmd.Parameters.AddWithValue("@personnel", "")
+                        End If
                         Dim notesNeeded As String = ""
                         For note As Integer = 0 To notes.Count - 1
                             If note = 0 Then
@@ -187,8 +191,8 @@ Public Class createEvent
                     dtpDate.Format = DateTimePickerFormat.Long
                 End If
                 Me.Close()
-            ElseIf attendees.Count = 0 Then
-                MessageBox.Show("You must select athletes for the event.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
+                MessageBox.Show("You must select athletes for the meet.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
                 MessageBox.Show("You must either set event times or tick N/A", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             ElseIf map.Overlays.Count <> 1 Then
@@ -212,15 +216,19 @@ Public Class createEvent
                         End If
                         cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                         cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
-                        Dim attendingAthletes As String = ""
-                        For athlete As Integer = 0 To attendees.Count - 1
-                            If athlete = 0 Then
-                                attendingAthletes = attendees(athlete)
-                            Else
-                                attendingAthletes += ";" & attendees(athlete)
-                            End If
-                        Next
-                        cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                        If rdbTraining.Checked = True Then
+                            Dim attendingAthletes As String = ""
+                            For athlete As Integer = 0 To attendees.Count - 1
+                                If athlete = 0 Then
+                                    attendingAthletes = attendees(athlete)
+                                Else
+                                    attendingAthletes += ";" & attendees(athlete)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                        Else
+                            cmd.Parameters.AddWithValue("@personnel", "")
+                        End If
                         Dim notesNeeded As String = ""
                         For note As Integer = 0 To notes.Count - 1
                             If note = 0 Then
@@ -292,15 +300,13 @@ Public Class createEvent
     Private Sub chbNA_CheckedChanged(sender As Object, e As EventArgs) Handles chbNA.CheckedChanged
         If chbNA.CheckState = CheckState.Checked Then
             For Each control In gbEvents.Controls()
-                If control IsNot chbNA Then
+                If control.name <> "chbNA" Then
                     control.enabled = False
                 End If
             Next
         Else
             For Each control In gbEvents.Controls()
-                If control IsNot chbNA Then
-                    control.enabled = True
-                End If
+                control.enabled = True
             Next
         End If
     End Sub
@@ -345,6 +351,7 @@ Public Class createEvent
         'Next
         'cmbTemplate.Items.AddRange(finalList.ToArray())
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
+        rdbTraining_CheckedChanged(Nothing, Nothing)
         dtpDate.Text = calendar.mnCalendar.SelectionStart
         pbAttach.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
         btnSaveEvent.Location = New Point(67, 538)
@@ -352,7 +359,8 @@ Public Class createEvent
         'Maps
         map.MapProvider = MapProviders.GoogleMapProvider.Instance
         map.Manager.Mode = AccessMode.ServerAndCache
-        map.SetPositionByKeywords("Sydney, Australia")
+        map.Position = New PointLatLng(-33.891543077486077, 151.21914625167847)
+        map.Zoom += 4
         map.DragButton = MouseButtons.Left
         map.ShowCenter = False
         pbPlus.Parent = map
@@ -382,9 +390,13 @@ Public Class createEvent
     End Sub
     Private Sub rdbTraining_CheckedChanged(sender As Object, e As EventArgs) Handles rdbTraining.CheckedChanged
         If rdbTraining.Checked = True Then
+            gbAthletes.Enabled = False
             rdbMeet.Checked = False
+            chbNA.Checked = True
         Else
+            gbAthletes.Enabled = True
             rdbMeet.Checked = True
+            chbNA.Checked = False
         End If
     End Sub
     Private Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
@@ -418,14 +430,19 @@ Public Class createEvent
                             dtpStart.Text = dr("StartTime")
                             dtpEnd.Text = dr("EndTime")
                             attendees.Clear()
-                            attendees.AddRange(dr("Personnel").Split(";"))
-                            notes.Clear()
-                            notes.AddRange(dr("Notes").Split(";"))
                             Dim tmpSender As New ComboBox
                             tmpSender.Tag = "template"
-                            cmbGroup_SelectedValueChanged(tmpSender, Nothing)
+                            If rdbTraining.Checked = False Then
+                                gbAthletes.Enabled = True
+                                attendees.AddRange(dr("Personnel").Split(";"))
+                                notes.Clear()
+                                If dr("Notes").ToString() <> "" Then
+                                    notes.AddRange(dr("Notes").Split(";"))
+                                End If
+                                cmbGroup_SelectedValueChanged(tmpSender, Nothing)
+                            End If
                             times.Clear()
-                            If dr("Events") = "None" Then
+                            If dr("Events") = "N/A" Then
                                 chbNA.Checked = True
                             Else
                                 times.AddRange(dr("Events").Split(";"))
@@ -580,6 +597,7 @@ Public Class createEvent
                                         While currentNum <= numPanels 'add the files
                                             For Each pnl In flpAttach.Controls.OfType(Of Panel)()
                                                 If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                    Dim hasLabel As Boolean = False
                                                     For Each control In pnl.Controls
                                                         If control.GetType() Is GetType(PictureBox) Then
                                                             control.Tag = fileNames(currentNum - 1)
@@ -590,9 +608,22 @@ Public Class createEvent
                                                             End If
                                                             control.Location = New Point(-1, -1)
                                                         ElseIf control.GetType() Is GetType(Label) Then
+                                                            hasLabel = True
                                                             control.text = fileNames(currentNum - 1)
                                                         End If
                                                     Next
+                                                    If hasLabel = False Then
+                                                        Dim lbl As New Label
+                                                        lbl.Cursor = Cursors.Default
+                                                        lbl.AutoSize = True
+                                                        lbl.Font = New Drawing.Font("Arial", 9)
+                                                        lbl.Text = fileNames(currentNum - 1)
+                                                        Me.Controls.Add(lbl)
+                                                        lbl.Parent = pnl
+                                                        lbl.Location = New Point(75, 0)
+                                                        lbl.BackColor = Color.Transparent
+                                                        lbl.BringToFront()
+                                                    End If
                                                     Exit For
                                                 End If
                                             Next
@@ -645,6 +676,27 @@ Public Class createEvent
                                 End If
                             Else
                                 filePaths.Clear()
+                                Dim panels As List(Of Panel) = flpAttach.Controls.OfType(Of Panel)().ToList
+                                For Each pnl In panels
+                                    If pnl.Name <> pnlAttach.Name And pnl.Name <> "pnl2" Then
+                                        flpAttach.Controls.Remove(pnl)
+                                    ElseIf pnl.Name = "pnl2" Then
+                                        pnl.Controls.Clear()
+                                        Dim pb As New PictureBox
+                                        pb.Name = "pb2"
+                                        pb.SizeMode = pbAttach.SizeMode
+                                        pb.Width = pbAttach.Width
+                                        pb.Height = pbAttach.Height
+                                        pb.Image = My.Resources.transparent_plus
+                                        pb.Tag = "add"
+                                        pb.Cursor = Cursors.Hand
+                                        AddHandler pb.Click, AddressOf pbAttach_Click
+                                        pnl.Controls.Add(pb)
+                                        pb.Location = New Point((pnlAttach.Width / 2 - pb.Width / 2), -1)
+                                    End If
+                                Next
+                                pbCount = 2
+                                deleteAttachment(pbAttach)
                             End If
                             placeMarker(CType(dr("Location").split(";")(0), Double), CType(dr("Location").split(";")(1), Double), "click")
                             txtComment.Text = dr("Comment")
@@ -654,6 +706,7 @@ Public Class createEvent
             End Using
             conn.Close()
         End Using
+        MessageBox.Show(filePaths.Count)
     End Sub
 #End Region
 #Region "Attachment Operations"
@@ -690,6 +743,7 @@ Public Class createEvent
         End If
     End Sub
     Private Sub pnlAttach_Click(sender As Object, e As EventArgs) Handles pnlAttach.Click
+        MessageBox.Show(sender.name)
         Dim tmpPbName As String = "pb"
         If sender.name <> pnlAttach.Name Then
             tmpPbName += CStr(Int(sender.name.Split("pnl".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)(0).ToString())) 'splits the string on "pnl" and gets the number after
@@ -1404,8 +1458,34 @@ Public Class createEvent
         Next
         If added = 0 And removedPeople = 0 And notesAdded = 0 And notesRemoved = 0 Then
             MessageBox.Show("No changes were made to the attendees.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added = 1 And removedPeople <> 1 And notesAdded <> 1 And notesRemoved <> 1 Then
+            MessageBox.Show(added.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added <> 1 And removedPeople = 1 And notesAdded <> 1 And notesRemoved <> 1 Then
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added <> 1 And removedPeople <> 1 And notesAdded = 1 And notesRemoved <> 1 Then
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added <> 1 And removedPeople <> 1 And notesAdded <> 1 And notesRemoved = 1 Then
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added = 1 And removedPeople = 1 And notesAdded <> 1 And notesRemoved <> 1 Then
+            MessageBox.Show(added.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added = 1 And removedPeople <> 1 And notesAdded = 1 And notesRemoved <> 1 Then
+            MessageBox.Show(added.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added = 1 And removedPeople <> 1 And notesAdded <> 1 And notesRemoved = 1 Then
+            MessageBox.Show(added.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added <> 1 And removedPeople = 1 And notesAdded = 1 And notesRemoved <> 1 Then
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added <> 1 And removedPeople = 1 And notesAdded <> 1 And notesRemoved = 1 Then
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added <> 1 And removedPeople <> 1 And notesAdded = 1 And notesRemoved = 1 Then
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added = 1 And removedPeople = 1 And notesAdded = 1 And notesRemoved <> 1 Then
+            MessageBox.Show(added.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added <> 1 And removedPeople = 1 And notesAdded = 1 And notesRemoved = 1 Then
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added = 1 And removedPeople = 1 And notesAdded = 1 And notesRemoved = 1 Then
+            MessageBox.Show(added.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show(added.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Public Shared Function getName(ByVal idNum As Integer)
@@ -1665,7 +1745,7 @@ Public Class createEvent
         With chbNote
             .Name = "chbNote"
             .Font = New Font("Microsoft Sans Serif", 8)
-            .Text = "Note Needed"
+            .Text = "Needs Note"
             .Location = New Point(272, 36)
         End With
         pnl.Controls.Add(chbNote)
@@ -1769,6 +1849,10 @@ Public Class createEvent
             End If
         Next
         checkAllChecked()
+    End Sub
+
+    Private Sub pnlAttach_Paint(sender As Object, e As PaintEventArgs) Handles pnlAttach.Paint
+
     End Sub
 #End Region
 End Class
