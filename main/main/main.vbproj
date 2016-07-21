@@ -48,11 +48,13 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GMap.NET.Core">
-      <HintPath>..\..\..\..\..\Downloads\GMap.NET Build-ef25f7c93e70-20150401\Release-NETv4.0\GMap.NET.Core.dll</HintPath>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="GMap.NET.WindowsForms">
-      <HintPath>..\..\..\..\..\Downloads\GMap.NET Build-ef25f7c93e70-20150401\Release-NETv4.0\GMap.NET.WindowsForms.dll</HintPath>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.WindowsForms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -107,12 +109,6 @@
     </Compile>
     <Compile Include="athleteProfileBackup.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="athleteSelect.Designer.vb">
-      <DependentUpon>athleteSelect.vb</DependentUpon>
-    </Compile>
-    <Compile Include="athleteSelect.vb">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="calendar.Designer.vb">
       <DependentUpon>calendar.vb</DependentUpon>
@@ -235,9 +231,6 @@
     <EmbeddedResource Include="athleteProfileBackup.resx">
       <DependentUpon>athleteProfileBackup.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="athleteSelect.resx">
-      <DependentUpon>athleteSelect.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="calendar.resx">
       <DependentUpon>calendar.vb</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +301,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="UserDataSet.xsc">
       <DependentUpon>UserDataSet.xsd</DependentUpon>
     </None>
