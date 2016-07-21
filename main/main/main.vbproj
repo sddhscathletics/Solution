@@ -98,18 +98,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="alert.vb" />
-    <Compile Include="athleteProfile.Designer.vb">
-      <DependentUpon>athleteProfile.vb</DependentUpon>
-    </Compile>
-    <Compile Include="athleteProfile.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="athleteProfileBackup.Designer.vb">
-      <DependentUpon>athleteProfileBackup.vb</DependentUpon>
-    </Compile>
-    <Compile Include="athleteProfileBackup.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="calendar.Designer.vb">
       <DependentUpon>calendar.vb</DependentUpon>
     </Compile>
@@ -175,6 +163,7 @@
     <Compile Include="saveOrOpen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="searchSortFilter.vb" />
     <Compile Include="selectAthlete.Designer.vb">
       <DependentUpon>selectAthlete.vb</DependentUpon>
     </Compile>
@@ -224,12 +213,6 @@
   <ItemGroup>
     <EmbeddedResource Include="AddEdit User.resx">
       <DependentUpon>AddEdit User.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="athleteProfile.resx">
-      <DependentUpon>athleteProfile.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="athleteProfileBackup.resx">
-      <DependentUpon>athleteProfileBackup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="calendar.resx">
       <DependentUpon>calendar.vb</DependentUpon>
@@ -382,6 +365,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\iconNotepad.png" />
     <Content Include="Resources\User.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

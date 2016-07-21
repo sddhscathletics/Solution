@@ -1,7 +1,6 @@
 Module variables
     Public username = "Student"
-    Public id As String = ""
-    Public access As Integer = 0
+    Public access As Integer = 0 'Admin Access, change back later
     Public alertCount As Integer = 0
     Public alertList As New List(Of notif)
 

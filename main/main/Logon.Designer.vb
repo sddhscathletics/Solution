@@ -46,10 +46,10 @@ Partial Class Logon
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Swis721 LtEx BT", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(407, 182)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(561, 76)
+        Me.Label1.Size = New System.Drawing.Size(516, 73)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "LOGIN SCREEN"
         '
@@ -72,17 +72,17 @@ Partial Class Logon
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Proxy 1", 15.0!)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!)
         Me.Label2.Location = New System.Drawing.Point(457, 314)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(36, 25)
+        Me.Label2.Size = New System.Drawing.Size(31, 25)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "ID"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Proxy 1", 15.0!)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!)
         Me.Label3.Location = New System.Drawing.Point(448, 403)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(45, 25)
