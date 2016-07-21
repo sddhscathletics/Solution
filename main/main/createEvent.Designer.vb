@@ -47,6 +47,7 @@ Partial Class createEvent
         Me.gbDetails = New System.Windows.Forms.GroupBox()
         Me.flpAttach = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlAttach = New System.Windows.Forms.Panel()
+        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.map = New GMap.NET.WindowsForms.GMapControl()
         Me.txtStreet = New System.Windows.Forms.TextBox()
         Me.lblStreet = New System.Windows.Forms.Label()
@@ -73,26 +74,25 @@ Partial Class createEvent
         Me.lbl14s = New System.Windows.Forms.Label()
         Me.lblOpens = New System.Windows.Forms.Label()
         Me.gbAttachments = New System.Windows.Forms.GroupBox()
+        Me.pbPlus = New System.Windows.Forms.PictureBox()
+        Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.gbAthletes = New System.Windows.Forms.GroupBox()
-        Me.chbAllNotes = New System.Windows.Forms.CheckBox()
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.chbAllAthletes = New System.Windows.Forms.CheckBox()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
-        Me.pbAttach = New System.Windows.Forms.PictureBox()
-        Me.pbPlus = New System.Windows.Forms.PictureBox()
-        Me.pbMinus = New System.Windows.Forms.PictureBox()
+        Me.chbAllNotes = New System.Windows.Forms.CheckBox()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbLocation.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbEvents.SuspendLayout()
         Me.gbAttachments.SuspendLayout()
-        Me.gbAthletes.SuspendLayout()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbAthletes.SuspendLayout()
         Me.SuspendLayout()
         '
         'dtpStart
@@ -351,6 +351,18 @@ Partial Class createEvent
         Me.pnlAttach.Name = "pnlAttach"
         Me.pnlAttach.Size = New System.Drawing.Size(305, 56)
         Me.pnlAttach.TabIndex = 43
+        '
+        'pbAttach
+        '
+        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbAttach.Location = New System.Drawing.Point(0, 0)
+        Me.pbAttach.Name = "pbAttach"
+        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
+        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbAttach.TabIndex = 42
+        Me.pbAttach.TabStop = False
+        Me.pbAttach.Tag = "add"
         '
         'map
         '
@@ -655,6 +667,26 @@ Partial Class createEvent
         Me.gbAttachments.TabStop = False
         Me.gbAttachments.Text = "Attachments"
         '
+        'pbPlus
+        '
+        Me.pbPlus.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbPlus.Location = New System.Drawing.Point(960, 122)
+        Me.pbPlus.Name = "pbPlus"
+        Me.pbPlus.Size = New System.Drawing.Size(25, 25)
+        Me.pbPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbPlus.TabIndex = 57
+        Me.pbPlus.TabStop = False
+        '
+        'pbMinus
+        '
+        Me.pbMinus.Image = Global.main.My.Resources.Resources.transparent_minus
+        Me.pbMinus.Location = New System.Drawing.Point(960, 159)
+        Me.pbMinus.Name = "pbMinus"
+        Me.pbMinus.Size = New System.Drawing.Size(25, 25)
+        Me.pbMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbMinus.TabIndex = 56
+        Me.pbMinus.TabStop = False
+        '
         'gbAthletes
         '
         Me.gbAthletes.Controls.Add(Me.chbAllNotes)
@@ -669,17 +701,6 @@ Partial Class createEvent
         Me.gbAthletes.TabIndex = 60
         Me.gbAthletes.TabStop = False
         Me.gbAthletes.Text = "Athletes"
-        '
-        'chbAllNotes
-        '
-        Me.chbAllNotes.AutoSize = True
-        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbAllNotes.Location = New System.Drawing.Point(86, 25)
-        Me.chbAllNotes.Name = "chbAllNotes"
-        Me.chbAllNotes.Size = New System.Drawing.Size(68, 17)
-        Me.chbAllNotes.TabIndex = 62
-        Me.chbAllNotes.Text = "All Notes"
-        Me.chbAllNotes.UseVisualStyleBackColor = True
         '
         'btnSelect
         '
@@ -723,37 +744,16 @@ Partial Class createEvent
         Me.flpAthletes.TabIndex = 45
         Me.flpAthletes.WrapContents = False
         '
-        'pbAttach
+        'chbAllNotes
         '
-        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(8, -1)
-        Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
-        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbAttach.TabIndex = 42
-        Me.pbAttach.TabStop = False
-        Me.pbAttach.Tag = "add"
-        '
-        'pbPlus
-        '
-        Me.pbPlus.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbPlus.Location = New System.Drawing.Point(960, 122)
-        Me.pbPlus.Name = "pbPlus"
-        Me.pbPlus.Size = New System.Drawing.Size(25, 25)
-        Me.pbPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbPlus.TabIndex = 57
-        Me.pbPlus.TabStop = False
-        '
-        'pbMinus
-        '
-        Me.pbMinus.Image = Global.main.My.Resources.Resources.transparent_minus
-        Me.pbMinus.Location = New System.Drawing.Point(960, 159)
-        Me.pbMinus.Name = "pbMinus"
-        Me.pbMinus.Size = New System.Drawing.Size(25, 25)
-        Me.pbMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbMinus.TabIndex = 56
-        Me.pbMinus.TabStop = False
+        Me.chbAllNotes.AutoSize = True
+        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllNotes.Location = New System.Drawing.Point(86, 25)
+        Me.chbAllNotes.Name = "chbAllNotes"
+        Me.chbAllNotes.Size = New System.Drawing.Size(68, 17)
+        Me.chbAllNotes.TabIndex = 62
+        Me.chbAllNotes.Text = "All Notes"
+        Me.chbAllNotes.UseVisualStyleBackColor = True
         '
         'createEvent
         '
@@ -780,17 +780,17 @@ Partial Class createEvent
         Me.gbDetails.PerformLayout()
         Me.flpAttach.ResumeLayout(False)
         Me.pnlAttach.ResumeLayout(False)
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbLocation.ResumeLayout(False)
         Me.gbLocation.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbEvents.ResumeLayout(False)
         Me.gbEvents.PerformLayout()
         Me.gbAttachments.ResumeLayout(False)
-        Me.gbAthletes.ResumeLayout(False)
-        Me.gbAthletes.PerformLayout()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbAthletes.ResumeLayout(False)
+        Me.gbAthletes.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

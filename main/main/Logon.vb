@@ -106,6 +106,7 @@ Public Class Logon
         End Using
         Return Found
     End Function
+
 #End Region
 
 End Class

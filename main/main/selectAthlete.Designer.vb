@@ -23,27 +23,372 @@ Partial Class selectAthlete
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.lblMedical = New System.Windows.Forms.Label()
+        Me.lblPhone = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.lblBestEvent = New System.Windows.Forms.Label()
+        Me.lblAgeGroup = New System.Windows.Forms.Label()
+        Me.lblStNo = New System.Windows.Forms.Label()
+        Me.lblSt = New System.Windows.Forms.Label()
+        Me.lblSb = New System.Windows.Forms.Label()
+        Me.lblPo = New System.Windows.Forms.Label()
+        Me.lblTeams = New System.Windows.Forms.Label()
+        Me.lblRoll = New System.Windows.Forms.Label()
+        Me.lblFName = New System.Windows.Forms.Label()
+        Me.lblID = New System.Windows.Forms.Label()
+        Me.lblLName = New System.Windows.Forms.Label()
+        Me.lblHeaderAddress = New System.Windows.Forms.Label()
+        Me.lblHeaderMedical = New System.Windows.Forms.Label()
+        Me.lblHeaderContact = New System.Windows.Forms.Label()
+        Me.gpbAddress = New System.Windows.Forms.GroupBox()
+        Me.gpbContact = New System.Windows.Forms.GroupBox()
+        Me.gpbMedical = New System.Windows.Forms.GroupBox()
+        Me.gpbAthlete = New System.Windows.Forms.GroupBox()
+        Me.gpbStudent = New System.Windows.Forms.GroupBox()
+        Me.lblHeaderAthlete = New System.Windows.Forms.Label()
+        Me.btnEdit = New System.Windows.Forms.Button()
+        Me.pbPhoto = New System.Windows.Forms.PictureBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.gpbAddress.SuspendLayout()
+        Me.gpbContact.SuspendLayout()
+        Me.gpbMedical.SuspendLayout()
+        Me.gpbAthlete.SuspendLayout()
+        Me.gpbStudent.SuspendLayout()
+        CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'flpAthletes
         '
         Me.flpAthletes.AutoScroll = True
-        Me.flpAthletes.Location = New System.Drawing.Point(12, 12)
+        Me.flpAthletes.Location = New System.Drawing.Point(12, 51)
         Me.flpAthletes.Name = "flpAthletes"
-        Me.flpAthletes.Size = New System.Drawing.Size(654, 376)
+        Me.flpAthletes.Size = New System.Drawing.Size(604, 618)
         Me.flpAthletes.TabIndex = 0
+        '
+        'txtSearch
+        '
+        Me.txtSearch.Location = New System.Drawing.Point(432, 12)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(397, 20)
+        Me.txtSearch.TabIndex = 1
+        '
+        'lblMedical
+        '
+        Me.lblMedical.AutoSize = True
+        Me.lblMedical.Location = New System.Drawing.Point(7, 20)
+        Me.lblMedical.Name = "lblMedical"
+        Me.lblMedical.Size = New System.Drawing.Size(99, 13)
+        Me.lblMedical.TabIndex = 31
+        Me.lblMedical.Text = "Medical Information"
+        '
+        'lblPhone
+        '
+        Me.lblPhone.AutoSize = True
+        Me.lblPhone.Location = New System.Drawing.Point(7, 20)
+        Me.lblPhone.Name = "lblPhone"
+        Me.lblPhone.Size = New System.Drawing.Size(78, 13)
+        Me.lblPhone.TabIndex = 29
+        Me.lblPhone.Text = "Phone Number"
+        '
+        'lblEmail
+        '
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.Location = New System.Drawing.Point(7, 33)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(73, 13)
+        Me.lblEmail.TabIndex = 28
+        Me.lblEmail.Text = "Email Address"
+        '
+        'lblBestEvent
+        '
+        Me.lblBestEvent.AutoSize = True
+        Me.lblBestEvent.Location = New System.Drawing.Point(10, 46)
+        Me.lblBestEvent.Name = "lblBestEvent"
+        Me.lblBestEvent.Size = New System.Drawing.Size(59, 13)
+        Me.lblBestEvent.TabIndex = 27
+        Me.lblBestEvent.Text = "Best Event"
+        '
+        'lblAgeGroup
+        '
+        Me.lblAgeGroup.AutoSize = True
+        Me.lblAgeGroup.Location = New System.Drawing.Point(10, 20)
+        Me.lblAgeGroup.Name = "lblAgeGroup"
+        Me.lblAgeGroup.Size = New System.Drawing.Size(58, 13)
+        Me.lblAgeGroup.TabIndex = 26
+        Me.lblAgeGroup.Text = "Age Group"
+        '
+        'lblStNo
+        '
+        Me.lblStNo.AutoSize = True
+        Me.lblStNo.Location = New System.Drawing.Point(5, 20)
+        Me.lblStNo.Name = "lblStNo"
+        Me.lblStNo.Size = New System.Drawing.Size(75, 13)
+        Me.lblStNo.TabIndex = 25
+        Me.lblStNo.Text = "Street Number"
+        '
+        'lblSt
+        '
+        Me.lblSt.AutoSize = True
+        Me.lblSt.Location = New System.Drawing.Point(5, 33)
+        Me.lblSt.Name = "lblSt"
+        Me.lblSt.Size = New System.Drawing.Size(35, 13)
+        Me.lblSt.TabIndex = 24
+        Me.lblSt.Text = "Street"
+        '
+        'lblSb
+        '
+        Me.lblSb.AutoSize = True
+        Me.lblSb.Location = New System.Drawing.Point(5, 46)
+        Me.lblSb.Name = "lblSb"
+        Me.lblSb.Size = New System.Drawing.Size(41, 13)
+        Me.lblSb.TabIndex = 23
+        Me.lblSb.Text = "Suburb"
+        '
+        'lblPo
+        '
+        Me.lblPo.AutoSize = True
+        Me.lblPo.Location = New System.Drawing.Point(5, 59)
+        Me.lblPo.Name = "lblPo"
+        Me.lblPo.Size = New System.Drawing.Size(52, 13)
+        Me.lblPo.TabIndex = 22
+        Me.lblPo.Text = "Postcode"
+        '
+        'lblTeams
+        '
+        Me.lblTeams.AutoSize = True
+        Me.lblTeams.Location = New System.Drawing.Point(10, 33)
+        Me.lblTeams.Name = "lblTeams"
+        Me.lblTeams.Size = New System.Drawing.Size(39, 13)
+        Me.lblTeams.TabIndex = 21
+        Me.lblTeams.Text = "Teams"
+        '
+        'lblRoll
+        '
+        Me.lblRoll.AutoSize = True
+        Me.lblRoll.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRoll.Location = New System.Drawing.Point(6, 61)
+        Me.lblRoll.Name = "lblRoll"
+        Me.lblRoll.Size = New System.Drawing.Size(79, 20)
+        Me.lblRoll.TabIndex = 19
+        Me.lblRoll.Text = "Roll Class"
+        '
+        'lblFName
+        '
+        Me.lblFName.AutoSize = True
+        Me.lblFName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFName.Location = New System.Drawing.Point(6, 41)
+        Me.lblFName.Name = "lblFName"
+        Me.lblFName.Size = New System.Drawing.Size(86, 20)
+        Me.lblFName.TabIndex = 18
+        Me.lblFName.Text = "First Name"
+        '
+        'lblID
+        '
+        Me.lblID.AutoSize = True
+        Me.lblID.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblID.Location = New System.Drawing.Point(6, 0)
+        Me.lblID.Name = "lblID"
+        Me.lblID.Size = New System.Drawing.Size(96, 24)
+        Me.lblID.TabIndex = 16
+        Me.lblID.Text = "Student ID"
+        '
+        'lblLName
+        '
+        Me.lblLName.AutoSize = True
+        Me.lblLName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLName.Location = New System.Drawing.Point(6, 21)
+        Me.lblLName.Name = "lblLName"
+        Me.lblLName.Size = New System.Drawing.Size(86, 20)
+        Me.lblLName.TabIndex = 17
+        Me.lblLName.Text = "Last Name"
+        '
+        'lblHeaderAddress
+        '
+        Me.lblHeaderAddress.AutoSize = True
+        Me.lblHeaderAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderAddress.Location = New System.Drawing.Point(4, 0)
+        Me.lblHeaderAddress.Name = "lblHeaderAddress"
+        Me.lblHeaderAddress.Size = New System.Drawing.Size(68, 20)
+        Me.lblHeaderAddress.TabIndex = 32
+        Me.lblHeaderAddress.Text = "Address"
+        '
+        'lblHeaderMedical
+        '
+        Me.lblHeaderMedical.AutoSize = True
+        Me.lblHeaderMedical.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderMedical.Location = New System.Drawing.Point(6, 0)
+        Me.lblHeaderMedical.Name = "lblHeaderMedical"
+        Me.lblHeaderMedical.Size = New System.Drawing.Size(116, 20)
+        Me.lblHeaderMedical.TabIndex = 33
+        Me.lblHeaderMedical.Text = "Medical Details"
+        '
+        'lblHeaderContact
+        '
+        Me.lblHeaderContact.AutoSize = True
+        Me.lblHeaderContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderContact.Location = New System.Drawing.Point(6, 0)
+        Me.lblHeaderContact.Name = "lblHeaderContact"
+        Me.lblHeaderContact.Size = New System.Drawing.Size(118, 20)
+        Me.lblHeaderContact.TabIndex = 34
+        Me.lblHeaderContact.Text = "Contact Details"
+        '
+        'gpbAddress
+        '
+        Me.gpbAddress.Controls.Add(Me.lblHeaderAddress)
+        Me.gpbAddress.Controls.Add(Me.lblPo)
+        Me.gpbAddress.Controls.Add(Me.lblSb)
+        Me.gpbAddress.Controls.Add(Me.lblSt)
+        Me.gpbAddress.Controls.Add(Me.lblStNo)
+        Me.gpbAddress.Location = New System.Drawing.Point(828, 274)
+        Me.gpbAddress.Name = "gpbAddress"
+        Me.gpbAddress.Size = New System.Drawing.Size(288, 79)
+        Me.gpbAddress.TabIndex = 35
+        Me.gpbAddress.TabStop = False
+        '
+        'gpbContact
+        '
+        Me.gpbContact.Controls.Add(Me.lblHeaderContact)
+        Me.gpbContact.Controls.Add(Me.lblEmail)
+        Me.gpbContact.Controls.Add(Me.lblPhone)
+        Me.gpbContact.Location = New System.Drawing.Point(828, 216)
+        Me.gpbContact.Name = "gpbContact"
+        Me.gpbContact.Size = New System.Drawing.Size(288, 52)
+        Me.gpbContact.TabIndex = 36
+        Me.gpbContact.TabStop = False
+        '
+        'gpbMedical
+        '
+        Me.gpbMedical.Controls.Add(Me.lblHeaderMedical)
+        Me.gpbMedical.Controls.Add(Me.lblMedical)
+        Me.gpbMedical.Location = New System.Drawing.Point(828, 359)
+        Me.gpbMedical.Name = "gpbMedical"
+        Me.gpbMedical.Size = New System.Drawing.Size(288, 43)
+        Me.gpbMedical.TabIndex = 37
+        Me.gpbMedical.TabStop = False
+        '
+        'gpbAthlete
+        '
+        Me.gpbAthlete.Controls.Add(Me.lblHeaderAthlete)
+        Me.gpbAthlete.Controls.Add(Me.lblAgeGroup)
+        Me.gpbAthlete.Controls.Add(Me.lblTeams)
+        Me.gpbAthlete.Controls.Add(Me.lblBestEvent)
+        Me.gpbAthlete.Location = New System.Drawing.Point(828, 146)
+        Me.gpbAthlete.Name = "gpbAthlete"
+        Me.gpbAthlete.Size = New System.Drawing.Size(288, 64)
+        Me.gpbAthlete.TabIndex = 38
+        Me.gpbAthlete.TabStop = False
+        '
+        'gpbStudent
+        '
+        Me.gpbStudent.Controls.Add(Me.lblID)
+        Me.gpbStudent.Controls.Add(Me.lblLName)
+        Me.gpbStudent.Controls.Add(Me.lblFName)
+        Me.gpbStudent.Controls.Add(Me.lblRoll)
+        Me.gpbStudent.Location = New System.Drawing.Point(828, 51)
+        Me.gpbStudent.Name = "gpbStudent"
+        Me.gpbStudent.Size = New System.Drawing.Size(288, 89)
+        Me.gpbStudent.TabIndex = 39
+        Me.gpbStudent.TabStop = False
+        '
+        'lblHeaderAthlete
+        '
+        Me.lblHeaderAthlete.AutoSize = True
+        Me.lblHeaderAthlete.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderAthlete.Location = New System.Drawing.Point(6, 0)
+        Me.lblHeaderAthlete.Name = "lblHeaderAthlete"
+        Me.lblHeaderAthlete.Size = New System.Drawing.Size(113, 20)
+        Me.lblHeaderAthlete.TabIndex = 34
+        Me.lblHeaderAthlete.Text = "Athlete Details"
+        '
+        'btnEdit
+        '
+        Me.btnEdit.BackgroundImage = Global.main.My.Resources.Resources.iconNotepad
+        Me.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnEdit.Location = New System.Drawing.Point(1041, 417)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(75, 75)
+        Me.btnEdit.TabIndex = 40
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
+        'pbPhoto
+        '
+        Me.pbPhoto.Location = New System.Drawing.Point(622, 51)
+        Me.pbPhoto.Name = "pbPhoto"
+        Me.pbPhoto.Size = New System.Drawing.Size(200, 300)
+        Me.pbPhoto.TabIndex = 20
+        Me.pbPhoto.TabStop = False
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(895, 417)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(140, 114)
+        Me.Button1.TabIndex = 41
+        Me.Button1.Text = "GIB ADMIN OR RIOT"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'selectAthlete
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(677, 400)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnEdit)
+        Me.Controls.Add(Me.gpbStudent)
+        Me.Controls.Add(Me.gpbAthlete)
+        Me.Controls.Add(Me.gpbMedical)
+        Me.Controls.Add(Me.gpbContact)
+        Me.Controls.Add(Me.gpbAddress)
+        Me.Controls.Add(Me.pbPhoto)
+        Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.flpAthletes)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "selectAthlete"
         Me.Text = "selectAthlete"
+        Me.gpbAddress.ResumeLayout(False)
+        Me.gpbAddress.PerformLayout()
+        Me.gpbContact.ResumeLayout(False)
+        Me.gpbContact.PerformLayout()
+        Me.gpbMedical.ResumeLayout(False)
+        Me.gpbMedical.PerformLayout()
+        Me.gpbAthlete.ResumeLayout(False)
+        Me.gpbAthlete.PerformLayout()
+        Me.gpbStudent.ResumeLayout(False)
+        Me.gpbStudent.PerformLayout()
+        CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents flpAthletes As FlowLayoutPanel
+    Friend WithEvents txtSearch As TextBox
+    Friend WithEvents lblMedical As Label
+    Friend WithEvents lblPhone As Label
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblBestEvent As Label
+    Friend WithEvents lblAgeGroup As Label
+    Friend WithEvents lblStNo As Label
+    Friend WithEvents lblSt As Label
+    Friend WithEvents lblSb As Label
+    Friend WithEvents lblPo As Label
+    Friend WithEvents lblTeams As Label
+    Friend WithEvents pbPhoto As PictureBox
+    Friend WithEvents lblRoll As Label
+    Friend WithEvents lblFName As Label
+    Friend WithEvents lblID As Label
+    Friend WithEvents lblLName As Label
+    Friend WithEvents lblHeaderAddress As Label
+    Friend WithEvents lblHeaderMedical As Label
+    Friend WithEvents lblHeaderContact As Label
+    Friend WithEvents gpbAddress As GroupBox
+    Friend WithEvents gpbContact As GroupBox
+    Friend WithEvents gpbMedical As GroupBox
+    Friend WithEvents gpbAthlete As GroupBox
+    Friend WithEvents lblHeaderAthlete As Label
+    Friend WithEvents gpbStudent As GroupBox
+    Friend WithEvents btnEdit As Button
+    Friend WithEvents Button1 As Button
 End Class

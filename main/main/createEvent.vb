@@ -1,5 +1,4 @@
 ﻿
-
 #Region "Imports"
 Imports System.Data.OleDb
 Imports System.IO.FileStream
@@ -1849,10 +1848,6 @@ Public Class createEvent
             End If
         Next
         checkAllChecked()
-    End Sub
-
-    Private Sub pnlAttach_Paint(sender As Object, e As PaintEventArgs) Handles pnlAttach.Paint
-
     End Sub
 #End Region
 End Class
