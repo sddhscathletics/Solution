@@ -194,7 +194,9 @@ Public Class home
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
+        Cursor.Current = Cursors.AppStarting
         calendar.Show()
+        Cursor.Current = Cursors.Default
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click

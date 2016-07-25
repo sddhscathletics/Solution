@@ -27,7 +27,7 @@ Partial Class calendar
         '
         'mnCalendar
         '
-        Me.mnCalendar.Location = New System.Drawing.Point(28, 48)
+        Me.mnCalendar.Location = New System.Drawing.Point(57, 39)
         Me.mnCalendar.MaxSelectionCount = 1
         Me.mnCalendar.Name = "mnCalendar"
         Me.mnCalendar.TabIndex = 0
@@ -36,7 +36,7 @@ Partial Class calendar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.ClientSize = New System.Drawing.Size(343, 292)
         Me.Controls.Add(Me.mnCalendar)
         Me.Name = "calendar"
         Me.Text = "Form1"

@@ -29,12 +29,18 @@ Public Class calendar
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
-
+                            mnCalendar.AddBoldedDate(CType(dr("EventDate"), Date)) '"#29/7/16#"
                         Loop
                     End If
                 End Using
             End Using
             conn.Close()
         End Using
+        mnCalendar.UpdateBoldedDates()
+    End Sub
+    Private Sub mnCalendar_DateChanged(sender As Object, e As DateRangeEventArgs) Handles mnCalendar.DateChanged
+        If mnCalendar.BoldedDates.Contains(e.Start.ToShortDateString()) Then
+            MessageBox.Show("this date has events")
+        End If
     End Sub
 End Class
