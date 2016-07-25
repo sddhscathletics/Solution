@@ -5,17 +5,17 @@
 
 Public Class selectAthlete
     Dim athleteList As New List(Of athlete)
+    Dim editing As Boolean = False
 
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        hidecontrols()
+        btnSave.Visible = False
+        btnCancel.Visible = False
         populate()
-        If access <> 2 Then
-            gpbAddress.Visible = False
-            gpbContact.Visible = False
-            gpbMedical.Visible = False
-        End If
     End Sub
 
     Private Sub panelClicked(sender As Object, e As EventArgs)
+        showcontrols()
         Dim clicked As Panel = sender
         displayDetails(clicked.Tag)
     End Sub
@@ -26,66 +26,57 @@ Public Class selectAthlete
 
     Private Sub populate()
         flpAthletes.Controls.Clear()
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName FROM athleteDb", conn)
                 'Need to add photo
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
-                            Dim newAthlete As New athlete With
-                                {
-                                .ID = dr("ID"),
-                                .roll = dr("RollClass"),
-                                .fName = dr("FirstName"),
-                                .lName = dr("LastName").ToString.ToUpper
-                                }
-                            athleteList.Add(newAthlete)
-
                             Dim newpanel As New Panel With
                                 {
                                 .Margin = New Padding(3, 3, 3, 3),
                                 .Height = 55,
                                 .Width = 140,
                                 .BackColor = Color.CadetBlue,
-                                .Name = newAthlete.ID,
+                                .Name = dr("ID"),
                                 .Tag = dr("ID")
                                 }
 
                             Dim ID As New Label With
                                 {
-                                .Text = newAthlete.ID,
+                                .Text = dr("ID").ToString,
                                 .Font = New Font("Segoe UI", 9, FontStyle.Bold),
                                 .Height = 15,
                                 .Location = New Point(0, 0),
-                                .Name = newAthlete.ID + ".ID"
+                                .Name = dr("ID").ToString + ".ID"
                                 }
 
                             Dim roll As New Label With
                                 {
-                                .Text = newAthlete.roll,
+                                .Text = dr("RollClass"),
                                 .Font = New Font("Segoe UI", 8),
                                 .Height = 13,
                                 .Location = New Point(0, 15),
-                                .Name = newAthlete.ID + ".roll"
+                                .Name = dr("ID").ToString + ".roll"
                                 }
 
                             Dim lName As New Label With
                                 {
-                                .Text = newAthlete.lName,
+                                .Text = dr("LastName").ToString.ToUpper,
                                 .Font = New Font("Segoe UI", 8),
                                 .Height = 13,
                                 .Location = New Point(0, 28),
-                                .Name = newAthlete.ID + ".lName"
+                                .Name = dr("ID").ToString + ".lName"
                                 }
 
                             Dim fName As New Label With
                                 {
-                                .Text = newAthlete.fName,
+                                .Text = dr("FirstName"),
                                 .Font = New Font("Segoe UI", 8),
                                 .Height = 13,
                                 .Location = New Point(0, 41),
-                                .Name = newAthlete.ID + ".fName"
+                                .Name = dr("ID").ToString + ".fName"
                                 }
 
                             newpanel.Controls.Add(ID)
@@ -133,7 +124,14 @@ Public Class selectAthlete
                             lblRoll.Text = "Roll Class: " + dr("RollClass")
                             lblFName.Text = dr("FirstName")
                             lblLName.Text = dr("LastName")
-                            lblTeams.Text = "Teams: " + dr("Teams")
+                            flpTeams.Controls.Clear()
+                            If dr("Teams") <> "None Specified" Then
+                                lblTeams.Text = "Teams"
+                                parseTeams(dr("Teams"))
+                            Else
+                                lblTeams.Text = "No Teams Specified"
+                            End If
+
                             lblAgeGroup.Text = "Age Group: " + dr("AgeGroup")
                             lblBestEvent.Text = "Best Event: " + dr("BestEvent")
                         Loop
@@ -176,10 +174,94 @@ Public Class selectAthlete
         lblPo.Text = adPo
     End Sub
 
+    Private Sub parseTeams(teams As String)
+        Dim team As String
+        Dim i = 0
+        While i < teams.Length
+            If teams(i) = "," Or i = (teams.Length - 1) Then 'Check for the separator symbol or the last character
+                If i = (teams.Length - 1) Then
+                    team += teams(i)
+                End If
+                Dim newpanel As New Panel With
+                {
+                .Margin = New Padding(3, 3, 3, 3),
+                .Height = 30,
+                .Width = 140,
+                .BackColor = Color.CadetBlue,
+                .Name = team + ".panel",
+                .Tag = team + ".tag"
+                }
+                Dim teamLabel As New Label With
+                {
+                .Text = team,
+                .Font = New Font("Segoe UI", 8),
+                .Height = 13,
+                .Location = New Point(0, 0),
+                .Name = team + ".name"
+                }
+
+                newpanel.Controls.Add(teamLabel)
+                flpTeams.Controls.Add(newpanel)
+                team = ""
+            Else
+                team += teams(i)
+            End If
+            i += 1
+        End While
+    End Sub
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         access = 2
-        gpbAddress.Visible = True
-        gpbContact.Visible = True
-        gpbMedical.Visible = True
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        editing = True
+        hidecontrols()
+    End Sub
+
+    Private Sub hidecontrols()
+        gpbAthlete.Visible = False
+        gpbStudent.Visible = False
+        gpbAddress.Visible = False
+        gpbContact.Visible = False
+        gpbMedical.Visible = False
+        btnEdit.Visible = False
+        If editing = True Then
+            btnSave.Visible = True
+            btnCancel.Visible = True
+        End If
+    End Sub
+
+    Private Sub showcontrols()
+        gpbAthlete.Visible = True
+        gpbStudent.Visible = True
+        btnEdit.Visible = True
+        btnSave.Visible = False
+        btnCancel.Visible = False
+        If access = 1 Or access = 2 Then 'Check if the user is a coach or Kurt
+            gpbContact.Visible = True
+            gpbMedical.Visible = True
+        End If
+        If access = 2 Then 'Check if the user is kurt
+            gpbAddress.Visible = True
+        End If
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        checkChanges()
+        saveChanges
+        showcontrols()
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        showcontrols()
+    End Sub
+
+    Private Sub checkChanges()
+        'Compare textbox contents and labels
+    End Sub
+
+    Public Sub saveChanges()
+        'Write changes to the database
     End Sub
 End Class

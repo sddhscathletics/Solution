@@ -1,8 +1,9 @@
 Module variables
     Public username = "Student"
-    Public access As Integer = 0 'Admin Access, change back later
+    Public access As Integer = 0
     Public alertCount As Integer = 0
     Public alertList As New List(Of notif)
+    Public dataPath As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources"
 
     Public Class notif
         Property ID As String

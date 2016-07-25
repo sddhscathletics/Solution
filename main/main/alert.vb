@@ -17,7 +17,7 @@ Module alert
             Case "acDelete"
                 edit = ("Deleted account " + changeMade)
         End Select
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("INSERT INTO edits (username, edit, lDate, lTime) VALUES (@edit, @username, @lDate, @lTime)", conn) 'Appends the database with a new edit
                 cmd.Parameters.AddWithValue("@username", username)
@@ -31,7 +31,7 @@ Module alert
 
     Public Sub checkAlert() 'Creates a new alert from the recent edit made
         alertList.Clear()
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT ID, lDate, lTime, edit, username FROM edits WHERE [read] = 0", conn) 'Selects unread edits
                 Using dr = cmd.ExecuteReader()
@@ -56,7 +56,7 @@ Module alert
     End Sub
 
     Public Sub markRead(ID)
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("UPDATE edits SET [read] = 1 WHERE ID = " + ID, conn) 'Marks edits as read using the given ID
                 cmd.ExecuteNonQuery()

@@ -33,7 +33,6 @@ Partial Class selectAthlete
         Me.lblSt = New System.Windows.Forms.Label()
         Me.lblSb = New System.Windows.Forms.Label()
         Me.lblPo = New System.Windows.Forms.Label()
-        Me.lblTeams = New System.Windows.Forms.Label()
         Me.lblRoll = New System.Windows.Forms.Label()
         Me.lblFName = New System.Windows.Forms.Label()
         Me.lblID = New System.Windows.Forms.Label()
@@ -45,11 +44,17 @@ Partial Class selectAthlete
         Me.gpbContact = New System.Windows.Forms.GroupBox()
         Me.gpbMedical = New System.Windows.Forms.GroupBox()
         Me.gpbAthlete = New System.Windows.Forms.GroupBox()
-        Me.gpbStudent = New System.Windows.Forms.GroupBox()
+        Me.flpTeams = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblHeaderAthlete = New System.Windows.Forms.Label()
+        Me.gpbStudent = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.txtBestEvent = New System.Windows.Forms.TextBox()
+        Me.cmbAge = New System.Windows.Forms.ComboBox()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.lblTeams = New System.Windows.Forms.Label()
         Me.gpbAddress.SuspendLayout()
         Me.gpbContact.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
@@ -103,7 +108,7 @@ Partial Class selectAthlete
         'lblBestEvent
         '
         Me.lblBestEvent.AutoSize = True
-        Me.lblBestEvent.Location = New System.Drawing.Point(10, 46)
+        Me.lblBestEvent.Location = New System.Drawing.Point(10, 33)
         Me.lblBestEvent.Name = "lblBestEvent"
         Me.lblBestEvent.Size = New System.Drawing.Size(59, 13)
         Me.lblBestEvent.TabIndex = 27
@@ -154,20 +159,11 @@ Partial Class selectAthlete
         Me.lblPo.TabIndex = 22
         Me.lblPo.Text = "Postcode"
         '
-        'lblTeams
-        '
-        Me.lblTeams.AutoSize = True
-        Me.lblTeams.Location = New System.Drawing.Point(10, 33)
-        Me.lblTeams.Name = "lblTeams"
-        Me.lblTeams.Size = New System.Drawing.Size(39, 13)
-        Me.lblTeams.TabIndex = 21
-        Me.lblTeams.Text = "Teams"
-        '
         'lblRoll
         '
         Me.lblRoll.AutoSize = True
         Me.lblRoll.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRoll.Location = New System.Drawing.Point(6, 61)
+        Me.lblRoll.Location = New System.Drawing.Point(9, 40)
         Me.lblRoll.Name = "lblRoll"
         Me.lblRoll.Size = New System.Drawing.Size(79, 20)
         Me.lblRoll.TabIndex = 19
@@ -177,7 +173,7 @@ Partial Class selectAthlete
         '
         Me.lblFName.AutoSize = True
         Me.lblFName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFName.Location = New System.Drawing.Point(6, 41)
+        Me.lblFName.Location = New System.Drawing.Point(9, 20)
         Me.lblFName.Name = "lblFName"
         Me.lblFName.Size = New System.Drawing.Size(86, 20)
         Me.lblFName.TabIndex = 18
@@ -187,17 +183,17 @@ Partial Class selectAthlete
         '
         Me.lblID.AutoSize = True
         Me.lblID.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblID.Location = New System.Drawing.Point(6, 0)
+        Me.lblID.Location = New System.Drawing.Point(622, 51)
         Me.lblID.Name = "lblID"
-        Me.lblID.Size = New System.Drawing.Size(96, 24)
+        Me.lblID.Size = New System.Drawing.Size(206, 24)
         Me.lblID.TabIndex = 16
-        Me.lblID.Text = "Student ID"
+        Me.lblID.Text = "Select a student to start."
         '
         'lblLName
         '
         Me.lblLName.AutoSize = True
         Me.lblLName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLName.Location = New System.Drawing.Point(6, 21)
+        Me.lblLName.Location = New System.Drawing.Point(9, 0)
         Me.lblLName.Name = "lblLName"
         Me.lblLName.Size = New System.Drawing.Size(86, 20)
         Me.lblLName.TabIndex = 17
@@ -240,7 +236,7 @@ Partial Class selectAthlete
         Me.gpbAddress.Controls.Add(Me.lblSb)
         Me.gpbAddress.Controls.Add(Me.lblSt)
         Me.gpbAddress.Controls.Add(Me.lblStNo)
-        Me.gpbAddress.Location = New System.Drawing.Point(828, 274)
+        Me.gpbAddress.Location = New System.Drawing.Point(622, 403)
         Me.gpbAddress.Name = "gpbAddress"
         Me.gpbAddress.Size = New System.Drawing.Size(288, 79)
         Me.gpbAddress.TabIndex = 35
@@ -251,7 +247,7 @@ Partial Class selectAthlete
         Me.gpbContact.Controls.Add(Me.lblHeaderContact)
         Me.gpbContact.Controls.Add(Me.lblEmail)
         Me.gpbContact.Controls.Add(Me.lblPhone)
-        Me.gpbContact.Location = New System.Drawing.Point(828, 216)
+        Me.gpbContact.Location = New System.Drawing.Point(622, 345)
         Me.gpbContact.Name = "gpbContact"
         Me.gpbContact.Size = New System.Drawing.Size(288, 52)
         Me.gpbContact.TabIndex = 36
@@ -261,7 +257,7 @@ Partial Class selectAthlete
         '
         Me.gpbMedical.Controls.Add(Me.lblHeaderMedical)
         Me.gpbMedical.Controls.Add(Me.lblMedical)
-        Me.gpbMedical.Location = New System.Drawing.Point(828, 359)
+        Me.gpbMedical.Location = New System.Drawing.Point(622, 296)
         Me.gpbMedical.Name = "gpbMedical"
         Me.gpbMedical.Size = New System.Drawing.Size(288, 43)
         Me.gpbMedical.TabIndex = 37
@@ -269,27 +265,24 @@ Partial Class selectAthlete
         '
         'gpbAthlete
         '
+        Me.gpbAthlete.Controls.Add(Me.lblTeams)
+        Me.gpbAthlete.Controls.Add(Me.flpTeams)
         Me.gpbAthlete.Controls.Add(Me.lblHeaderAthlete)
         Me.gpbAthlete.Controls.Add(Me.lblAgeGroup)
-        Me.gpbAthlete.Controls.Add(Me.lblTeams)
         Me.gpbAthlete.Controls.Add(Me.lblBestEvent)
-        Me.gpbAthlete.Location = New System.Drawing.Point(828, 146)
+        Me.gpbAthlete.Location = New System.Drawing.Point(622, 148)
         Me.gpbAthlete.Name = "gpbAthlete"
-        Me.gpbAthlete.Size = New System.Drawing.Size(288, 64)
+        Me.gpbAthlete.Size = New System.Drawing.Size(288, 142)
         Me.gpbAthlete.TabIndex = 38
         Me.gpbAthlete.TabStop = False
         '
-        'gpbStudent
+        'flpTeams
         '
-        Me.gpbStudent.Controls.Add(Me.lblID)
-        Me.gpbStudent.Controls.Add(Me.lblLName)
-        Me.gpbStudent.Controls.Add(Me.lblFName)
-        Me.gpbStudent.Controls.Add(Me.lblRoll)
-        Me.gpbStudent.Location = New System.Drawing.Point(828, 51)
-        Me.gpbStudent.Name = "gpbStudent"
-        Me.gpbStudent.Size = New System.Drawing.Size(288, 89)
-        Me.gpbStudent.TabIndex = 39
-        Me.gpbStudent.TabStop = False
+        Me.flpTeams.AutoScroll = True
+        Me.flpTeams.Location = New System.Drawing.Point(13, 71)
+        Me.flpTeams.Name = "flpTeams"
+        Me.flpTeams.Size = New System.Drawing.Size(172, 54)
+        Me.flpTeams.TabIndex = 49
         '
         'lblHeaderAthlete
         '
@@ -301,11 +294,67 @@ Partial Class selectAthlete
         Me.lblHeaderAthlete.TabIndex = 34
         Me.lblHeaderAthlete.Text = "Athlete Details"
         '
+        'gpbStudent
+        '
+        Me.gpbStudent.Controls.Add(Me.lblLName)
+        Me.gpbStudent.Controls.Add(Me.lblFName)
+        Me.gpbStudent.Controls.Add(Me.lblRoll)
+        Me.gpbStudent.Location = New System.Drawing.Point(622, 78)
+        Me.gpbStudent.Name = "gpbStudent"
+        Me.gpbStudent.Size = New System.Drawing.Size(288, 64)
+        Me.gpbStudent.TabIndex = 39
+        Me.gpbStudent.TabStop = False
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(997, 362)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(119, 75)
+        Me.Button1.TabIndex = 41
+        Me.Button1.Text = "GIB ADMIN OR RIOT"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'txtBestEvent
+        '
+        Me.txtBestEvent.Location = New System.Drawing.Point(916, 443)
+        Me.txtBestEvent.Name = "txtBestEvent"
+        Me.txtBestEvent.Size = New System.Drawing.Size(172, 20)
+        Me.txtBestEvent.TabIndex = 47
+        '
+        'cmbAge
+        '
+        Me.cmbAge.FormattingEnabled = True
+        Me.cmbAge.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "Opens"})
+        Me.cmbAge.Location = New System.Drawing.Point(916, 469)
+        Me.cmbAge.Name = "cmbAge"
+        Me.cmbAge.Size = New System.Drawing.Size(74, 21)
+        Me.cmbAge.TabIndex = 48
+        '
+        'btnCancel
+        '
+        Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.iconCancel
+        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancel.Location = New System.Drawing.Point(703, 594)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 75)
+        Me.btnCancel.TabIndex = 43
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
+        'btnSave
+        '
+        Me.btnSave.BackgroundImage = Global.main.My.Resources.Resources.iconSave
+        Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSave.Location = New System.Drawing.Point(622, 594)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(75, 75)
+        Me.btnSave.TabIndex = 42
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
         'btnEdit
         '
-        Me.btnEdit.BackgroundImage = Global.main.My.Resources.Resources.iconNotepad
+        Me.btnEdit.BackgroundImage = Global.main.My.Resources.Resources.iconEdit
         Me.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnEdit.Location = New System.Drawing.Point(1041, 417)
+        Me.btnEdit.Location = New System.Drawing.Point(916, 362)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(75, 75)
         Me.btnEdit.TabIndex = 40
@@ -313,20 +362,20 @@ Partial Class selectAthlete
         '
         'pbPhoto
         '
-        Me.pbPhoto.Location = New System.Drawing.Point(622, 51)
+        Me.pbPhoto.Location = New System.Drawing.Point(916, 56)
         Me.pbPhoto.Name = "pbPhoto"
         Me.pbPhoto.Size = New System.Drawing.Size(200, 300)
         Me.pbPhoto.TabIndex = 20
         Me.pbPhoto.TabStop = False
         '
-        'Button1
+        'lblTeams
         '
-        Me.Button1.Location = New System.Drawing.Point(895, 417)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(140, 114)
-        Me.Button1.TabIndex = 41
-        Me.Button1.Text = "GIB ADMIN OR RIOT"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.lblTeams.AutoSize = True
+        Me.lblTeams.Location = New System.Drawing.Point(10, 55)
+        Me.lblTeams.Name = "lblTeams"
+        Me.lblTeams.Size = New System.Drawing.Size(39, 13)
+        Me.lblTeams.TabIndex = 50
+        Me.lblTeams.Text = "Teams"
         '
         'selectAthlete
         '
@@ -334,6 +383,11 @@ Partial Class selectAthlete
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.cmbAge)
+        Me.Controls.Add(Me.txtBestEvent)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.lblID)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.gpbStudent)
@@ -374,7 +428,6 @@ Partial Class selectAthlete
     Friend WithEvents lblSt As Label
     Friend WithEvents lblSb As Label
     Friend WithEvents lblPo As Label
-    Friend WithEvents lblTeams As Label
     Friend WithEvents pbPhoto As PictureBox
     Friend WithEvents lblRoll As Label
     Friend WithEvents lblFName As Label
@@ -391,4 +444,10 @@ Partial Class selectAthlete
     Friend WithEvents gpbStudent As GroupBox
     Friend WithEvents btnEdit As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents btnSave As Button
+    Friend WithEvents btnCancel As Button
+    Friend WithEvents txtBestEvent As TextBox
+    Friend WithEvents cmbAge As ComboBox
+    Friend WithEvents flpTeams As FlowLayoutPanel
+    Friend WithEvents lblTeams As Label
 End Class

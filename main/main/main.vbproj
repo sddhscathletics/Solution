@@ -366,6 +366,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconNotepad.png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\iconCancel.png" />
     <Content Include="Resources\User.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
