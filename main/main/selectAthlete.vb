@@ -6,6 +6,7 @@
 Public Class selectAthlete
     Dim athleteList As New List(Of athlete)
     Dim editing As Boolean = False
+    Dim panelColor As Color = Color.CadetBlue
 
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hidecontrols()
@@ -38,7 +39,7 @@ Public Class selectAthlete
                                 .Margin = New Padding(3, 3, 3, 3),
                                 .Height = 55,
                                 .Width = 140,
-                                .BackColor = Color.CadetBlue,
+                                .BackColor = panelColor,
                                 .Name = dr("ID"),
                                 .Tag = dr("ID")
                                 }
@@ -186,28 +187,48 @@ Public Class selectAthlete
                 {
                 .Margin = New Padding(3, 3, 3, 3),
                 .Height = 30,
-                .Width = 140,
-                .BackColor = Color.CadetBlue,
+                .Width = 160,
+                .BackColor = panelColor,
                 .Name = team + ".panel",
-                .Tag = team + ".tag"
+                .Tag = team
                 }
                 Dim teamLabel As New Label With
                 {
                 .Text = team,
-                .Font = New Font("Segoe UI", 8),
-                .Height = 13,
+                .Font = New Font("Segoe UI", 10),
                 .Location = New Point(0, 0),
                 .Name = team + ".name"
                 }
 
                 newpanel.Controls.Add(teamLabel)
                 flpTeams.Controls.Add(newpanel)
+                AddHandler newpanel.MouseClick, AddressOf teamPanelClicked
+                AddHandler teamLabel.MouseClick, AddressOf teamLabelClicked
                 team = ""
             Else
                 team += teams(i)
             End If
             i += 1
         End While
+    End Sub
+
+    Private Sub teamPanelClicked(sender As Object, e As EventArgs)
+        Dim clicked As Panel = sender
+        If editing = True Then
+            If clicked.BackColor = Color.Red Then
+                clicked.BackColor = panelColor
+            Else
+                clicked.BackColor = Color.Red
+                'Highlight for deletion
+            End If
+        Else
+            MsgBox("Go to " + clicked.Tag + "?")
+            'Go to team page
+        End If
+    End Sub
+
+    Private Sub teamLabelClicked(sender As Object, e As EventArgs)
+        teamPanelClicked(sender.Parent, e)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -217,6 +238,11 @@ Public Class selectAthlete
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         editing = True
         hidecontrols()
+        gpbStudent.Visible = True
+        gpbAthlete.Visible = True
+        'Show delete team button
+        'Delete team selection
+        'Show add team button
     End Sub
 
     Private Sub hidecontrols()
@@ -229,6 +255,8 @@ Public Class selectAthlete
         If editing = True Then
             btnSave.Visible = True
             btnCancel.Visible = True
+            btnAddTeam.Visible = True
+            btnDeleteTeam.Visible = True
         End If
     End Sub
 
@@ -238,6 +266,8 @@ Public Class selectAthlete
         btnEdit.Visible = True
         btnSave.Visible = False
         btnCancel.Visible = False
+        btnAddTeam.Visible = False
+        btnDeleteTeam.Visible = False
         If access = 1 Or access = 2 Then 'Check if the user is a coach or Kurt
             gpbContact.Visible = True
             gpbMedical.Visible = True
@@ -249,7 +279,7 @@ Public Class selectAthlete
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         checkChanges()
-        saveChanges
+        saveChanges()
         showcontrols()
     End Sub
 
