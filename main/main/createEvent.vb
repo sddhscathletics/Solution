@@ -11,7 +11,7 @@ Public Class createEvent
 #Region "Declarations"
     Public Shared attendees As New List(Of String) 'list of id's
     Public Shared times As New List(Of String) 'list of "event: time"
-    Public Shared templateEvents As New List(Of String) From {"Enter the event name here 13/05/2016", "Testing all 16/07/2016"}
+    Public Shared templateEvents As New List(Of String) From {"Enter the event name here 19/07/2016", "Testing all 21/07/2016"}
     'Attachments
     Dim filePaths As New List(Of String)
     Dim newAttachBoxLocation As Point = New Point(135, 377)
@@ -541,6 +541,7 @@ Public Class createEvent
                                         While currentNum <= fileNames.Count 'add the files
                                             For Each pnl In flpAttach.Controls.OfType(Of Panel)()
                                                 If pnl.Name = "pnl" & currentNum.ToString() Then
+                                                    Dim hasLabel As Boolean = False
                                                     For Each control In pnl.Controls
                                                         If control.GetType() Is GetType(PictureBox) Then
                                                             control.Tag = fileNames(currentNum - 1)
@@ -551,9 +552,22 @@ Public Class createEvent
                                                             End If
                                                             control.Location = New Point(-1, -1)
                                                         ElseIf control.GetType() Is GetType(Label) Then
+                                                            hasLabel = True
                                                             control.text = fileNames(currentNum - 1)
                                                         End If
                                                     Next
+                                                    If hasLabel = False Then
+                                                        Dim lbl As New Label
+                                                        lbl.Cursor = Cursors.Default
+                                                        lbl.AutoSize = True
+                                                        lbl.Font = New Drawing.Font("Arial", 9)
+                                                        lbl.Text = fileNames(currentNum - 1)
+                                                        Me.Controls.Add(lbl)
+                                                        lbl.Parent = pnl
+                                                        lbl.Location = New Point(75, 0)
+                                                        lbl.BackColor = Color.Transparent
+                                                        lbl.BringToFront()
+                                                    End If
                                                     Exit For
                                                 End If
                                             Next
@@ -705,7 +719,6 @@ Public Class createEvent
             End Using
             conn.Close()
         End Using
-        MessageBox.Show(filePaths.Count)
     End Sub
 #End Region
 #Region "Attachment Operations"
@@ -1157,6 +1170,7 @@ Public Class createEvent
         End Try
     End Sub
     Private Sub placeMarker(lat As Double, lng As Double, type As String)
+        Cursor.Current = Cursors.AppStarting
         If type = "click" Then
             map.Overlays.Clear()
             overlayCount = 0
@@ -1201,6 +1215,7 @@ Public Class createEvent
             connectionPresent = False
             MessageBox.Show("There is no server access to Google currently." + vbNewLine + "Markers will still be placed but will not have a tooltip appear on hover.", "No server access", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+        Cursor.Current = Cursors.Default
     End Sub
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         checkConnection()
