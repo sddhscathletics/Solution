@@ -77,11 +77,11 @@ Partial Class createEvent
         Me.pbPlus = New System.Windows.Forms.PictureBox()
         Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.gbAthletes = New System.Windows.Forms.GroupBox()
+        Me.chbAllNotes = New System.Windows.Forms.CheckBox()
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.chbAllAthletes = New System.Windows.Forms.CheckBox()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
-        Me.chbAllNotes = New System.Windows.Forms.CheckBox()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
@@ -115,7 +115,7 @@ Partial Class createEvent
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(522, 554)
+        Me.btnCancel.Location = New System.Drawing.Point(185, 534)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(86, 34)
         Me.btnCancel.TabIndex = 21
@@ -124,7 +124,7 @@ Partial Class createEvent
         '
         'btnSaveEvent
         '
-        Me.btnSaveEvent.Location = New System.Drawing.Point(415, 554)
+        Me.btnSaveEvent.Location = New System.Drawing.Point(52, 534)
         Me.btnSaveEvent.Name = "btnSaveEvent"
         Me.btnSaveEvent.Size = New System.Drawing.Size(86, 34)
         Me.btnSaveEvent.TabIndex = 20
@@ -695,12 +695,23 @@ Partial Class createEvent
         Me.gbAthletes.Controls.Add(Me.cmbGroup)
         Me.gbAthletes.Controls.Add(Me.flpAthletes)
         Me.gbAthletes.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbAthletes.Location = New System.Drawing.Point(345, 316)
+        Me.gbAthletes.Location = New System.Drawing.Point(345, 315)
         Me.gbAthletes.Name = "gbAthletes"
         Me.gbAthletes.Size = New System.Drawing.Size(371, 273)
         Me.gbAthletes.TabIndex = 60
         Me.gbAthletes.TabStop = False
         Me.gbAthletes.Text = "Athletes"
+        '
+        'chbAllNotes
+        '
+        Me.chbAllNotes.AutoSize = True
+        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllNotes.Location = New System.Drawing.Point(86, 25)
+        Me.chbAllNotes.Name = "chbAllNotes"
+        Me.chbAllNotes.Size = New System.Drawing.Size(68, 17)
+        Me.chbAllNotes.TabIndex = 62
+        Me.chbAllNotes.Text = "All Notes"
+        Me.chbAllNotes.UseVisualStyleBackColor = True
         '
         'btnSelect
         '
@@ -743,17 +754,6 @@ Partial Class createEvent
         Me.flpAthletes.Size = New System.Drawing.Size(371, 211)
         Me.flpAthletes.TabIndex = 45
         Me.flpAthletes.WrapContents = False
-        '
-        'chbAllNotes
-        '
-        Me.chbAllNotes.AutoSize = True
-        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbAllNotes.Location = New System.Drawing.Point(86, 25)
-        Me.chbAllNotes.Name = "chbAllNotes"
-        Me.chbAllNotes.Size = New System.Drawing.Size(68, 17)
-        Me.chbAllNotes.TabIndex = 62
-        Me.chbAllNotes.Text = "All Notes"
-        Me.chbAllNotes.UseVisualStyleBackColor = True
         '
         'createEvent
         '

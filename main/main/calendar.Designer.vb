@@ -22,7 +22,12 @@ Partial Class calendar
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.mnCalendar = New System.Windows.Forms.MonthCalendar()
+        Me.cms = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EdtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cms.SuspendLayout()
         Me.SuspendLayout()
         '
         'mnCalendar
@@ -32,6 +37,24 @@ Partial Class calendar
         Me.mnCalendar.Name = "mnCalendar"
         Me.mnCalendar.TabIndex = 0
         '
+        'cms
+        '
+        Me.cms.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.EdtyToolStripMenuItem})
+        Me.cms.Name = "cms"
+        Me.cms.Size = New System.Drawing.Size(98, 48)
+        '
+        'AddToolStripMenuItem
+        '
+        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(97, 22)
+        Me.AddToolStripMenuItem.Text = "Add"
+        '
+        'EdtyToolStripMenuItem
+        '
+        Me.EdtyToolStripMenuItem.Name = "EdtyToolStripMenuItem"
+        Me.EdtyToolStripMenuItem.Size = New System.Drawing.Size(97, 22)
+        Me.EdtyToolStripMenuItem.Text = "Edty"
+        '
         'calendar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -40,9 +63,13 @@ Partial Class calendar
         Me.Controls.Add(Me.mnCalendar)
         Me.Name = "calendar"
         Me.Text = "Form1"
+        Me.cms.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents mnCalendar As MonthCalendar
+    Friend WithEvents cms As ContextMenuStrip
+    Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EdtyToolStripMenuItem As ToolStripMenuItem
 End Class
