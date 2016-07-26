@@ -128,11 +128,10 @@ Public Class selectAthlete
                             flpTeams.Controls.Clear()
                             If dr("Teams") <> "None Specified" Then
                                 lblTeams.Text = "Teams"
-                                parseTeams(dr("Teams"))
+                                parseTeams(id)
                             Else
                                 lblTeams.Text = "No Teams Specified"
                             End If
-
                             lblAgeGroup.Text = "Age Group: " + dr("AgeGroup")
                             lblBestEvent.Text = "Best Event: " + dr("BestEvent")
                         Loop
@@ -146,6 +145,10 @@ Public Class selectAthlete
         'Default address format is UNIT/NUMBER STREET, SUBURB POSTCODE
         'Example: 1/23 Test Street, Suburbia 1234
         Dim adNo, adSt, adSb, adPo As String
+        adNo = ""
+        adSt = ""
+        adSb = ""
+        adPo = ""
         Dim i As Integer = 0
         While address(i) <> " " 'Parse until the space separator between unit/number and street is found
             adNo += address(i)
@@ -175,41 +178,38 @@ Public Class selectAthlete
         lblPo.Text = adPo
     End Sub
 
-    Private Sub parseTeams(teams As String)
-        Dim team As String
-        Dim i = 0
-        While i < teams.Length
-            If teams(i) = "," Or i = (teams.Length - 1) Then 'Check for the separator symbol or the last character
-                If i = (teams.Length - 1) Then
-                    team += teams(i)
-                End If
-                Dim newpanel As New Panel With
-                {
-                .Margin = New Padding(3, 3, 3, 3),
-                .Height = 30,
-                .Width = 160,
-                .BackColor = panelColor,
-                .Name = team + ".panel",
-                .Tag = team
-                }
-                Dim teamLabel As New Label With
-                {
-                .Text = team,
-                .Font = New Font("Segoe UI", 10),
-                .Location = New Point(0, 0),
-                .Name = team + ".name"
-                }
-
-                newpanel.Controls.Add(teamLabel)
-                flpTeams.Controls.Add(newpanel)
-                AddHandler newpanel.MouseClick, AddressOf teamPanelClicked
-                AddHandler teamLabel.MouseClick, AddressOf teamLabelClicked
-                team = ""
-            Else
-                team += teams(i)
-            End If
-            i += 1
-        End While
+    Private Sub parseTeams(id As String)
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE Members.Value =" + id, conn) 'Selects unread edits
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            Dim newpanel As New Panel With
+                            {
+                            .Margin = New Padding(3, 3, 3, 3),
+                            .Height = 30,
+                            .Width = 160,
+                            .BackColor = panelColor,
+                            .Name = dr("Team") + ".panel",
+                            .Tag = dr("Team")
+                            }
+                            Dim teamLabel As New Label With
+                            {
+                            .Text = dr("Team"),
+                            .Font = New Font("Segoe UI", 10),
+                            .Location = New Point(0, 0),
+                            .Name = dr("Team") + ".name"
+                            }
+                            newpanel.Controls.Add(teamLabel)
+                            flpTeams.Controls.Add(newpanel)
+                            AddHandler newpanel.MouseClick, AddressOf teamPanelClicked
+                            AddHandler teamLabel.MouseClick, AddressOf teamLabelClicked
+                        Loop
+                    End If
+                End Using
+            End Using
+        End Using
     End Sub
 
     Private Sub teamPanelClicked(sender As Object, e As EventArgs)
@@ -271,15 +271,15 @@ Public Class selectAthlete
         If access = 1 Or access = 2 Then 'Check if the user is a coach or Kurt
             gpbContact.Visible = True
             gpbMedical.Visible = True
-        End If
-        If access = 2 Then 'Check if the user is kurt
-            gpbAddress.Visible = True
+            If access = 2 Then 'Check if the user is kurt
+                gpbAddress.Visible = True
+            End If
         End If
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         checkChanges()
-        saveChanges()
+        'saveChanges()
         showcontrols()
     End Sub
 
@@ -292,6 +292,18 @@ Public Class selectAthlete
     End Sub
 
     Public Sub saveChanges()
-        'Write changes to the database
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("UPDATE teamDb SET [read] = 1 WHERE ID = ", conn) 'Selects unread edits
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            'Add team to student's details
+                            'Add student ID to team
+                        Loop
+                    End If
+                End Using
+            End Using
+        End Using
     End Sub
 End Class

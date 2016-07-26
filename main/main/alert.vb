@@ -47,7 +47,6 @@ Module alert
                                 }
                             alertList.Add(newnotif)
                             alertCount = alertList.Count
-
                         Loop
                     End If
                 End Using
