@@ -187,7 +187,9 @@ Public Class createEvent
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
-                        templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
                         dtpDate.Format = DateTimePickerFormat.Long
                     End If
                     Me.Close()
@@ -268,7 +270,9 @@ Public Class createEvent
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
-                        templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
                         dtpDate.Format = DateTimePickerFormat.Long
                     End If
                     Me.Close()
@@ -416,7 +420,9 @@ Public Class createEvent
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
-                        templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
                         dtpDate.Format = DateTimePickerFormat.Long
                     End If
                     Me.Close()
@@ -490,14 +496,33 @@ Public Class createEvent
                             Next
                             cmd.Parameters.AddWithValue("@location", location)
                             cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                            Dim affected = cmd.ExecuteNonQuery()
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        conn.Close()
+                    End Using
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                        conn.Open()
+                        Using cmd As New OleDbCommand("UPDATE Events SET AttachNames = '' WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                            Dim tagSplit = Me.Tag.split(" ")
+                            Dim name As String = ""
+                            For part As Integer = 0 To tagSplit.Length - 1
+                                If part <> 0 And part <> tagSplit.Length - 1 Then
+                                    name += tagSplit(part) + " "
+                                End If
+                            Next
+                            name = RTrim(name)
+                            cmd.Parameters.AddWithValue("@name", name)
+                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                            cmd.ExecuteNonQuery()
                         End Using
                         conn.Close()
                     End Using
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been edited." + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
-                        templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
                         dtpDate.Format = DateTimePickerFormat.Long
                     End If
                     Me.Close()
@@ -638,8 +663,10 @@ Public Class createEvent
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
-                        templateEvents.Add(txtName.Text + " " + dtpDate.Text)
-                        dtpDate.Format = DateTimePickerFormat.Long
+                            If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                                templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                            End If
+                            dtpDate.Format = DateTimePickerFormat.Long
                     End If
                     Me.Close()
                 ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
@@ -736,8 +763,10 @@ Public Class createEvent
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been edited." + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
-                        templateEvents.Add(txtName.Text + " " + dtpDate.Text)
-                        dtpDate.Format = DateTimePickerFormat.Long
+                            If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                                templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                            End If
+                            dtpDate.Format = DateTimePickerFormat.Long
                     End If
                     Me.Close()
                 End If

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class calendar
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,14 +20,11 @@ Partial Class calendar
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.mnCalendar = New System.Windows.Forms.MonthCalendar()
         Me.cms = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EdtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.cms.SuspendLayout()
         Me.SuspendLayout()
         '
         'mnCalendar
@@ -39,21 +36,8 @@ Partial Class calendar
         '
         'cms
         '
-        Me.cms.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.EdtyToolStripMenuItem})
         Me.cms.Name = "cms"
-        Me.cms.Size = New System.Drawing.Size(98, 48)
-        '
-        'AddToolStripMenuItem
-        '
-        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
-        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(97, 22)
-        Me.AddToolStripMenuItem.Text = "Add"
-        '
-        'EdtyToolStripMenuItem
-        '
-        Me.EdtyToolStripMenuItem.Name = "EdtyToolStripMenuItem"
-        Me.EdtyToolStripMenuItem.Size = New System.Drawing.Size(97, 22)
-        Me.EdtyToolStripMenuItem.Text = "Edty"
+        Me.cms.Size = New System.Drawing.Size(153, 26)
         '
         'calendar
         '
@@ -63,13 +47,10 @@ Partial Class calendar
         Me.Controls.Add(Me.mnCalendar)
         Me.Name = "calendar"
         Me.Text = "Form1"
-        Me.cms.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents mnCalendar As MonthCalendar
     Friend WithEvents cms As ContextMenuStrip
-    Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EdtyToolStripMenuItem As ToolStripMenuItem
 End Class

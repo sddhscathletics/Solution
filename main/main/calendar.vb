@@ -20,8 +20,8 @@ Public Class calendar
         '    End If
         '    selectionCount = 0
         'End If
+        cms.Items.Clear()
         If mnCalendar.BoldedDates.Contains(e.Start.ToShortDateString()) Then
-            cms.Items.Clear()
             For Each dt In eventInfo
                 If dt.Key.ToShortDateString() = e.Start.ToShortDateString() Then
                     For Each eventName In dt.Value
@@ -53,12 +53,14 @@ Public Class calendar
                 End If
             Next
             cms.Items.Add("Add", Nothing, AddressOf menuItemAdd_Click)
-            cms.Show(Cursor.Position)
             'Dim ptLowerLeft = New Point(0, sender.Height)
             'ptLowerLeft = sender.PointToScreen(ptLowerLeft)
             'Dim menu As New ContextMenuStrip
             'menu.Show(ptLowerLeft)
+        Else
+            cms.Items.Add("Add", Nothing, AddressOf menuItemAdd_Click)
         End If
+        cms.Show(Cursor.Position)
     End Sub
     Public Sub calendar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mnCalendar.BoldedDates = New Date() {}
@@ -107,6 +109,25 @@ Public Class calendar
 
     End Sub
     Private Sub menuItemDelete_Click(sender As Object, e As EventArgs)
-
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                cmd.Parameters.AddWithValue("@name", sender.OwnerItem.Text)
+                cmd.Parameters.AddWithValue("@date", sender.OwnerItem.Tag)
+                cmd.ExecuteNonQuery()
+            End Using
+            conn.Close()
+        End Using
+        If eventInfo(sender.OwnerItem.Tag).Count > 1 Then
+            eventInfo(sender.OwnerItem.Tag).Remove(sender.OwnerItem.Text)
+        Else
+            eventInfo.Remove(sender.OwnerItem.Tag)
+        End If
+        If eventInfo.ContainsKey(sender.OwnerItem.Tag) = False Then
+            Dim newList As List(Of Date) = mnCalendar.BoldedDates.ToList()
+            newList.Remove(sender.OwnerItem.Tag)
+            mnCalendar.BoldedDates = newList.ToArray()
+            mnCalendar.UpdateBoldedDates()
+        End If
     End Sub
 End Class
