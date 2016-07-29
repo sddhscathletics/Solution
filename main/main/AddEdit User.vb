@@ -1,4 +1,5 @@
-﻿Public Class AddEdit_User
+﻿Imports System.Data.OleDb
+Public Class AddEdit_User
 
 #Region "Dim Variables"
     Dim out As Boolean = False
@@ -11,6 +12,8 @@
     Dim adDrop As Boolean = False
     Dim adDown As Boolean = False
     Dim jun As Integer = 0
+
+    Dim Pass As String = ""
 #End Region
 
 #Region " Move Form "
@@ -173,13 +176,29 @@
         home.Show()
         Me.Close()
     End Sub
-#End Region
-
 
     Private Sub AddEdit_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'UserDataSet1.UserDb' table. You can move, or remove it, as needed.
-        Me.UserDbTableAdapter.Fill(Me.UserDataSet1.UserDb)
+        'TODO: This line of code loads data into the 'Login.UserDb' table. You can move, or remove it, as needed.
+        Me.UserDbTableAdapter.Fill(Me.Login.UserDb)
 
     End Sub
+#End Region
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        Dim id, pass As String
+        Dim access As Integer
+        Using conn As New OleDbConnection(dataPath + "\User.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT ID, Pass, Access FROM UserDb WHERE ID = @Username AND Pass = @Pass AND Access = @Access", conn) 'Selects unread edits
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            idText.Text = id
+                            passText.Text = pass
+                        Loop
+                    End If
+                End Using
+            End Using
+        End Using
+    End Sub
 End Class

@@ -5,7 +5,6 @@ Public Class Logon
     Dim adpCustomer As New OleDbDataAdapter
     Dim conCreditUnion As OleDbConnection
     Dim datCustomer As New DataSet()
-    Dim User As String
     Dim valid As Boolean = False
     Dim Pass As String
     Dim DataTable As DataTable
@@ -87,7 +86,7 @@ Public Class Logon
     Public Shared Function findUserPass(ByVal username As String, pass As String)
         Dim enteredStuff As New List(Of String)
         Dim Found As Boolean
-        Using conn As New System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=|DataDirectory|User.accdb")
+        Using conn As New System.Data.OleDb.OleDbConnection(dataPath + "\User.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT ID, Pass FROM UserDb WHERE ID = @Username AND Pass = @Pass", conn)
                 '("SELECT * FROM UserDb WHERE User='" & TextBox1.Text & "' AND Pass = '" & TextBox2.Text & "'")
@@ -106,6 +105,7 @@ Public Class Logon
         End Using
         Return Found
     End Function
+
 
 #End Region
 

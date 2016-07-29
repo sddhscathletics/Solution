@@ -181,11 +181,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="UserDataSet1.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserDataSet1.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="variables.vb" />
     <Compile Include="home.vb">
@@ -288,25 +284,17 @@
     <None Include="packages.config" />
     <None Include="UserDataSet.xsc">
       <DependentUpon>UserDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="UserDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>UserDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="UserDataSet.xss">
       <DependentUpon>UserDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="UserDataSet1.xsc">
-      <DependentUpon>UserDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="UserDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UserDataSet1.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="UserDataSet1.xss">
-      <DependentUpon>UserDataSet1.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

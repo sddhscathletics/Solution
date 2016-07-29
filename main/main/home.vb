@@ -201,6 +201,7 @@ Public Class home
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         AddEdit_User.Show()
+        Me.Hide()
     End Sub
 #End Region
 

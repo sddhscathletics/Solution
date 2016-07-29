@@ -435,6 +435,7 @@ Partial Public Class UserDataSet
             Me.columnID.Unique = true
             Me.columnID.MaxLength = 255
             Me.columnPass.MaxLength = 255
+            Me.CaseSensitive = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

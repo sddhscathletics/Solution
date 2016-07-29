@@ -70,7 +70,7 @@
   <xs:element name="UserDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="UserDataSet" msprop:Generator_UserDSName="UserDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="UserDb" msprop:Generator_TableClassName="UserDbDataTable" msprop:Generator_TableVarName="tableUserDb" msprop:Generator_RowChangedName="UserDbRowChanged" msprop:Generator_TablePropName="UserDb" msprop:Generator_RowDeletingName="UserDbRowDeleting" msprop:Generator_RowChangingName="UserDbRowChanging" msprop:Generator_RowEvHandlerName="UserDbRowChangeEventHandler" msprop:Generator_RowDeletedName="UserDbRowDeleted" msprop:Generator_RowClassName="UserDbRow" msprop:Generator_UserTableName="UserDb" msprop:Generator_RowEvArgName="UserDbRowChangeEvent">
+        <xs:element name="UserDb" msdata:CaseSensitive="True" msprop:Generator_TableClassName="UserDbDataTable" msprop:Generator_TableVarName="tableUserDb" msprop:Generator_TablePropName="UserDb" msprop:Generator_RowDeletingName="UserDbRowDeleting" msprop:Generator_RowChangingName="UserDbRowChanging" msprop:Generator_RowEvHandlerName="UserDbRowChangeEventHandler" msprop:Generator_RowDeletedName="UserDbRowDeleted" msprop:Generator_UserTableName="UserDb" msprop:Generator_RowChangedName="UserDbRowChanged" msprop:Generator_RowEvArgName="UserDbRowChangeEvent" msprop:Generator_RowClassName="UserDbRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
