@@ -19,7 +19,7 @@ Module alert
         End Select
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("INSERT INTO edits (username, edit, lDate, lTime) VALUES (@edit, @username, @lDate, @lTime)", conn) 'Appends the database with a new edit
+            Using cmd As New OleDbCommand("INSERT INTO editDb (username, edit, lDate, lTime) VALUES (@edit, @username, @lDate, @lTime)", conn) 'Appends the database with a new edit
                 cmd.Parameters.AddWithValue("@username", username)
                 cmd.Parameters.AddWithValue("@edit", edit)
                 cmd.Parameters.AddWithValue("@lDate", DateTime.Now.ToString("dd/MM/yy"))
@@ -33,7 +33,7 @@ Module alert
         alertList.Clear()
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, lDate, lTime, edit, username FROM edits WHERE [read] = 0", conn) 'Selects unread edits
+            Using cmd As New OleDbCommand("SELECT ID, lDate, lTime, edit, username FROM editDb WHERE [read] = 0", conn) 'Selects unread edits
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
@@ -57,7 +57,7 @@ Module alert
     Public Sub markRead(ID)
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("UPDATE edits SET [read] = 1 WHERE ID = " + ID, conn) 'Marks edits as read using the given ID
+            Using cmd As New OleDbCommand("UPDATE editDb SET [read] = 1 WHERE ID = " + ID, conn) 'Marks edits as read using the given ID
                 cmd.ExecuteNonQuery()
             End Using
         End Using

@@ -5,18 +5,19 @@
 
 Public Class selectAthlete
     Dim athleteList As New List(Of athlete)
-    Dim editing As Boolean = False
+    Dim addList As New List(Of String)
+    Dim remList As New List(Of String)
+    Dim controlState As String = "first"
     Dim panelColor As Color = Color.CadetBlue
 
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        hidecontrols()
-        btnSave.Visible = False
-        btnCancel.Visible = False
+        toggleControls()
         populate()
     End Sub
 
     Private Sub panelClicked(sender As Object, e As EventArgs)
-        showcontrols()
+        controlState = "show"
+        toggleControls()
         Dim clicked As Panel = sender
         displayDetails(clicked.Tag)
     End Sub
@@ -128,7 +129,7 @@ Public Class selectAthlete
                             flpTeams.Controls.Clear()
                             If dr("Teams") <> "None Specified" Then
                                 lblTeams.Text = "Teams"
-                                parseTeams(id)
+                                parseTeams()
                             Else
                                 lblTeams.Text = "No Teams Specified"
                             End If
@@ -145,10 +146,6 @@ Public Class selectAthlete
         'Default address format is UNIT/NUMBER STREET, SUBURB POSTCODE
         'Example: 1/23 Test Street, Suburbia 1234
         Dim adNo, adSt, adSb, adPo As String
-        adNo = ""
-        adSt = ""
-        adSb = ""
-        adPo = ""
         Dim i As Integer = 0
         While address(i) <> " " 'Parse until the space separator between unit/number and street is found
             adNo += address(i)
@@ -178,10 +175,11 @@ Public Class selectAthlete
         lblPo.Text = adPo
     End Sub
 
-    Private Sub parseTeams(id As String)
+    Private Sub parseTeams()
+        flpTeams.Controls.Clear()
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE Members.Value =" + id, conn) 'Selects unread edits
+            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE Members.Value =" + lblID.Text, conn) 'Selects teams the student is a member of
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
@@ -197,14 +195,15 @@ Public Class selectAthlete
                             Dim teamLabel As New Label With
                             {
                             .Text = dr("Team"),
+                            .Width = 160,
                             .Font = New Font("Segoe UI", 10),
                             .Location = New Point(0, 0),
                             .Name = dr("Team") + ".name"
                             }
                             newpanel.Controls.Add(teamLabel)
                             flpTeams.Controls.Add(newpanel)
-                            AddHandler newpanel.MouseClick, AddressOf teamPanelClicked
-                            AddHandler teamLabel.MouseClick, AddressOf teamLabelClicked
+                            AddHandler newpanel.MouseClick, AddressOf remTeamPanelClicked
+                            AddHandler teamLabel.MouseClick, AddressOf remTeamLabelClicked
                         Loop
                     End If
                 End Using
@@ -212,9 +211,9 @@ Public Class selectAthlete
         End Using
     End Sub
 
-    Private Sub teamPanelClicked(sender As Object, e As EventArgs)
+    Private Sub remTeamPanelClicked(sender As Object, e As EventArgs)
         Dim clicked As Panel = sender
-        If editing = True Then
+        If controlState = "editing" Then
             If clicked.BackColor = Color.Red Then
                 clicked.BackColor = panelColor
             Else
@@ -227,8 +226,23 @@ Public Class selectAthlete
         End If
     End Sub
 
-    Private Sub teamLabelClicked(sender As Object, e As EventArgs)
-        teamPanelClicked(sender.Parent, e)
+    Private Sub remTeamLabelClicked(sender As Object, e As EventArgs)
+        remTeamPanelClicked(sender.Parent, e)
+    End Sub
+
+    Private Sub addTeamPanelClicked(sender As Object, e As EventArgs)
+        Dim clicked As Panel = sender
+        If clicked.BackColor = Color.Green Then
+            clicked.BackColor = panelColor
+            addList.Remove(clicked.Tag)
+        Else
+            clicked.BackColor = Color.Green 'Highlight team for addition
+            addList.Add(clicked.Tag)
+        End If
+    End Sub
+
+    Private Sub addTeamLabelClicked(sender As Object, e As EventArgs)
+        addTeamPanelClicked(sender.Parent, e)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -236,62 +250,71 @@ Public Class selectAthlete
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        editing = True
-        hidecontrols()
-        gpbStudent.Visible = True
-        gpbAthlete.Visible = True
-        'Show delete team button
-        'Delete team selection
-        'Show add team button
+        controlState = "editing"
+        toggleControls()
+        readTeams()
     End Sub
 
-    Private Sub hidecontrols()
-        gpbAthlete.Visible = False
-        gpbStudent.Visible = False
-        gpbAddress.Visible = False
-        gpbContact.Visible = False
-        gpbMedical.Visible = False
-        btnEdit.Visible = False
-        If editing = True Then
-            btnSave.Visible = True
-            btnCancel.Visible = True
-            btnAddTeam.Visible = True
-            btnDeleteTeam.Visible = True
-        End If
-    End Sub
-
-    Private Sub showcontrols()
-        gpbAthlete.Visible = True
-        gpbStudent.Visible = True
-        btnEdit.Visible = True
-        btnSave.Visible = False
-        btnCancel.Visible = False
-        btnAddTeam.Visible = False
-        btnDeleteTeam.Visible = False
-        If access = 1 Or access = 2 Then 'Check if the user is a coach or Kurt
-            gpbContact.Visible = True
-            gpbMedical.Visible = True
-            If access = 2 Then 'Check if the user is kurt
-                gpbAddress.Visible = True
-            End If
-        End If
+    Private Sub toggleControls()
+        Select Case controlState
+            Case "first"
+                gpbAthlete.Visible = False
+                gpbStudent.Visible = False
+                gpbAddress.Visible = False
+                gpbContact.Visible = False
+                gpbMedical.Visible = False
+                gpbTeamManagement.Visible = False
+                btnEdit.Visible = False
+                btnSave.Visible = False
+                btnCancel.Visible = False
+                btnAddTeam.Visible = False
+                btnDeleteTeam.Visible = False
+            Case "show"
+                gpbAthlete.Visible = True
+                gpbStudent.Visible = True
+                gpbTeamManagement.Visible = False
+                btnSave.Visible = False
+                btnCancel.Visible = False
+                btnAddTeam.Visible = False
+                btnDeleteTeam.Visible = False
+                If access = 1 Or access = 2 Then 'Check if the user is a coach or Kurt
+                    gpbContact.Visible = True
+                    gpbMedical.Visible = True
+                    If access = 2 Then 'Check if the user is kurt
+                        gpbAddress.Visible = True
+                        btnEdit.Visible = True
+                    End If
+                End If
+            Case "editing"
+                gpbAddress.Visible = False
+                gpbContact.Visible = False
+                gpbMedical.Visible = False
+                gpbTeamManagement.Visible = True
+                btnEdit.Visible = False
+                btnSave.Visible = True
+                btnCancel.Visible = True
+                btnAddTeam.Visible = True
+                btnDeleteTeam.Visible = True
+        End Select
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         checkChanges()
         'saveChanges()
-        showcontrols()
+        controlState = "show"
+        toggleControls()
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        showcontrols()
+        controlState = "show"
+        toggleControls()
     End Sub
 
     Private Sub checkChanges()
         'Compare textbox contents and labels
     End Sub
 
-    Public Sub saveChanges()
+    Private Sub saveChanges()
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("UPDATE teamDb SET [read] = 1 WHERE ID = ", conn) 'Selects unread edits
@@ -305,5 +328,60 @@ Public Class selectAthlete
                 End Using
             End Using
         End Using
+    End Sub
+
+    Public Sub readTeams()
+        flpAttachTeam.Controls.Clear()
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE Members.Value <>" + lblID.Text, conn) 'Selects teams the student is a member of
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            Dim newpanel As New Panel With
+                            {
+                            .Margin = New Padding(3, 3, 3, 3),
+                            .Height = 30,
+                            .Width = 160,
+                            .BackColor = panelColor,
+                            .Name = dr("Team") + ".panel",
+                            .Tag = dr("Team")
+                            }
+                            Dim teamLabel As New Label With
+                            {
+                            .Text = dr("Team"),
+                            .Width = 160,
+                            .Font = New Font("Segoe UI", 10),
+                            .Location = New Point(0, 0),
+                            .Name = dr("Team") + ".name"
+                            }
+                            newpanel.Controls.Add(teamLabel)
+                            flpAttachTeam.Controls.Add(newpanel)
+                            AddHandler newpanel.MouseClick, AddressOf addTeamPanelClicked
+                            AddHandler teamLabel.MouseClick, AddressOf addTeamLabelClicked
+                        Loop
+                    End If
+                End Using
+            End Using
+        End Using
+    End Sub
+
+    Private Sub btnAddTeam_Click(sender As Object, e As EventArgs) Handles btnAddTeam.Click
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            For Each team As String In addList
+                Using cmd As New OleDbCommand("INSERT INTO teamDb (Members.Value) VALUES (" + lblID.Text + ") WHERE Team = '" + team + "'", conn) '
+                    cmd.ExecuteNonQuery()
+                End Using
+            Next
+        End Using
+        refreshTeams()
+    End Sub
+
+    Private Sub refreshTeams()
+        parseTeams()
+        readTeams()
+        addList.Clear()
+        remList.Clear()
     End Sub
 End Class
