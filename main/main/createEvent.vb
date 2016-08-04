@@ -12,6 +12,7 @@ Public Class createEvent
     Public Shared attendees As New List(Of String) 'list of id's
     Public Shared times As New List(Of String) 'list of "event: time"
     Public Shared templateEvents As New List(Of String) From {"Enter the event name here 19/07/2016", "Testing all 21/07/2016"}
+    Dim proxyPresent As Boolean = True
     'Attachments
     Dim filePaths As New List(Of String)
     Dim newAttachBoxLocation As Point = New Point(135, 377)
@@ -835,6 +836,17 @@ Public Class createEvent
         'btnSaveEvent.Location = New Point(67, 538)
         'btnCancel.Location = New Point(btnSaveEvent.Location.X + btnSaveEvent.Width + 22, btnSaveEvent.Location.Y)
         'Maps
+        Dim proxyTester = Net.WebRequest.GetSystemWebProxy()
+        If (proxyTester.GetProxy(New Uri("http://www.google.com")).Equals(New Uri("http://www.google.com"))) Then
+            Console.Write("no proxy")
+            proxyPresent = False
+        Else
+            Console.Write("proxy enabled")
+            proxyPresent = True
+            MapProviders.GoogleMapProvider.WebProxy = New Net.WebProxy("proxy.intranet", 8080)
+            MapProviders.GoogleMapProvider.WebProxy.Credentials = New Net.NetworkCredential("eddie.belokopytov", "zorba491")
+        End If
+        'https://searchcode.com/codesearch/view/195986/
         map.MapProvider = MapProviders.GoogleMapProvider.Instance
         map.Manager.Mode = AccessMode.ServerAndCache
         map.Position = New PointLatLng(-33.891543077486077, 151.21914625167847)
@@ -1652,8 +1664,17 @@ Public Class createEvent
     End Sub
     Private Sub checkConnection()
         Try
+            'Dim client As Net.WebClient = New Net.WebClient()
+            'client.Proxy = proxy
+            'Dim resp = client.DownloadString(url)
+            'connectionPresent = True
             Dim url As String = "http://maps.google.com/maps/api/geocode/xml?address=sydney&sensor=false"
             Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+            If proxyPresent Then
+                Dim proxy As Net.IWebProxy = New Net.WebProxy("proxy.intranet", 8080)
+                proxy.Credentials = New Net.NetworkCredential("eddie.belokopytov", "zorba491")
+                request.Proxy = proxy
+            End If
             Using response As Net.WebResponse = DirectCast(request.GetResponse(), Net.HttpWebResponse)
                 connectionPresent = True
             End Using
@@ -1732,6 +1753,11 @@ Public Class createEvent
             Cursor.Current = Cursors.AppStarting
             Dim url As String = "http://maps.google.com/maps/api/geocode/xml?address=" + searchLocation + "&sensor=false"
             Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+            If proxyPresent Then
+                Dim proxy As Net.IWebProxy = New Net.WebProxy("proxy.intranet", 8080)
+                proxy.Credentials = New Net.NetworkCredential("eddie.belokopytov", "zorba491")
+                request.Proxy = proxy
+            End If
             Using response As Net.WebResponse = DirectCast(request.GetResponse(), Net.HttpWebResponse)
                 Using reader As New IO.StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8)
                     Dim dsResult As New DataSet()
