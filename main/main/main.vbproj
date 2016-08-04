@@ -129,6 +129,12 @@
     <Compile Include="confirmAddition.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="eventResults.Designer.vb">
+      <DependentUpon>eventResults.vb</DependentUpon>
+    </Compile>
+    <Compile Include="eventResults.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="login.Designer.vb">
       <DependentUpon>Login.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -222,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="eventTimes.resx">
       <DependentUpon>eventTimes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eventResults.resx">
+      <DependentUpon>eventResults.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="home.resx">
       <DependentUpon>home.vb</DependentUpon>
