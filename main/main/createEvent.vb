@@ -837,10 +837,10 @@ Public Class createEvent
         'btnCancel.Location = New Point(btnSaveEvent.Location.X + btnSaveEvent.Width + 22, btnSaveEvent.Location.Y)
         'Maps
         Dim proxyTester = Net.WebRequest.GetSystemWebProxy()
-        If (proxyTester.GetProxy(New Uri("http://www.google.com")).Equals(New Uri("http://www.google.com"))) Then
+        If (proxyTester.GetProxy(New Uri("http://www.google.com")).Equals(New Uri("http://www.google.com"))) Then 'check if no proxy present by comparing URI's
             Console.Write("no proxy")
             proxyPresent = False
-        Else
+        Else 'set proxy
             Console.Write("proxy enabled")
             proxyPresent = True
             MapProviders.GoogleMapProvider.WebProxy = New Net.WebProxy("proxy.intranet", 8080)
@@ -1701,7 +1701,7 @@ Public Class createEvent
             marker.ToolTip = New GMapToolTip(marker)
             marker.ToolTipText = placeInfo
             marker.ToolTipMode = MarkerTooltipMode.OnMouseOver
-            If Thread.CurrentThread.ManagedThreadId = mainThreadID Then
+            If Thread.CurrentThread.ManagedThreadId = mainThreadID Then 'checks if it's the main thread so that textboxes can be updated
                 If map.Overlays.Count <= 1 Then
                     Dim address = places(0).Address.Split(",")
                     For i As Integer = 0 To address.Count - 2 'to skip "Australia"
@@ -1781,7 +1781,7 @@ Public Class createEvent
                 map.Overlays.Clear()
                 overlayCount = 0
                 For Each row As DataGridViewRow In DataGridView1.Rows()
-                    If row.Index <> DataGridView1.Rows().Count - 1 Then
+                    If row.Index <> DataGridView1.Rows().Count - 1 Then 'if it's not the empty "input" row
                         placeMarker(CType(row.Cells(2).Value, Double), CType(row.Cells(3).Value, Double), "search")
                     End If
                 Next
