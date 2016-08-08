@@ -366,12 +366,8 @@
   <ItemGroup>
     <None Include="Resources\iconCancel.png" />
     <None Include="Resources\iconNotepad.png" />
-    <None Include="Resources\iconAdd.PNG" />
     <None Include="Resources\iconSave.png" />
-    <None Include="Resources\iconAdd1.PNG" />
-    <None Include="Resources\iconCancel1.png" />
-    <None Include="Resources\iconNotepad1.png" />
-    <None Include="Resources\iconSave1.png" />
+    <None Include="Resources\iconAdd.PNG" />
     <Content Include="Resources\User.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -50,6 +50,7 @@ Partial Class selectAthlete
         Me.gpbContact = New System.Windows.Forms.GroupBox()
         Me.lblSt = New System.Windows.Forms.Label()
         Me.gpbAthlete = New System.Windows.Forms.GroupBox()
+        Me.btnAddTeam = New System.Windows.Forms.Button()
         Me.lblTeams = New System.Windows.Forms.Label()
         Me.flpTeams = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblHeaderAthlete = New System.Windows.Forms.Label()
@@ -60,7 +61,6 @@ Partial Class selectAthlete
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
-        Me.btnAddTeam = New System.Windows.Forms.Button()
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
         Me.gpbStudent.SuspendLayout()
@@ -337,6 +337,16 @@ Partial Class selectAthlete
         Me.gpbAthlete.TabIndex = 76
         Me.gpbAthlete.TabStop = False
         '
+        'btnAddTeam
+        '
+        Me.btnAddTeam.BackgroundImage = Global.main.My.Resources.Resources.iconAdd
+        Me.btnAddTeam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAddTeam.Location = New System.Drawing.Point(189, 93)
+        Me.btnAddTeam.Name = "btnAddTeam"
+        Me.btnAddTeam.Size = New System.Drawing.Size(40, 40)
+        Me.btnAddTeam.TabIndex = 49
+        Me.btnAddTeam.UseVisualStyleBackColor = True
+        '
         'lblTeams
         '
         Me.lblTeams.AutoSize = True
@@ -430,16 +440,6 @@ Partial Class selectAthlete
         Me.pbPhoto.Size = New System.Drawing.Size(200, 300)
         Me.pbPhoto.TabIndex = 72
         Me.pbPhoto.TabStop = False
-        '
-        'btnAddTeam
-        '
-        Me.btnAddTeam.BackgroundImage = Global.main.My.Resources.Resources.iconAdd
-        Me.btnAddTeam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnAddTeam.Location = New System.Drawing.Point(189, 93)
-        Me.btnAddTeam.Name = "btnAddTeam"
-        Me.btnAddTeam.Size = New System.Drawing.Size(40, 40)
-        Me.btnAddTeam.TabIndex = 49
-        Me.btnAddTeam.UseVisualStyleBackColor = True
         '
         'selectAthlete
         '
