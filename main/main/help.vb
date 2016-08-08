@@ -12,4 +12,9 @@
     'custom: Custom notification
 
     'changeMade Is a free string for custom data.
+
+    'Access Levels
+    '0 is the standard student
+    '1 are the coaches
+    '2 is Kurt or the admin
 End Module

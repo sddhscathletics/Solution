@@ -260,7 +260,6 @@ Public Class selectAthlete
                 btnSave.Visible = False
                 btnCancel.Visible = False
                 btnAddTeam.Visible = False
-                btnDeleteTeam.Visible = False
             Case "show"
                 gpbAthlete.Visible = True
                 gpbStudent.Visible = True
@@ -268,7 +267,6 @@ Public Class selectAthlete
                 btnSave.Visible = False
                 btnCancel.Visible = False
                 btnAddTeam.Visible = False
-                btnDeleteTeam.Visible = False
                 If access = 1 Or access = 2 Then 'Check if the user is a coach or Kurt
                     gpbContact.Visible = True
                     gpbMedical.Visible = True
@@ -286,7 +284,6 @@ Public Class selectAthlete
                 btnSave.Visible = True
                 btnCancel.Visible = True
                 btnAddTeam.Visible = True
-                btnDeleteTeam.Visible = True
         End Select
     End Sub
 
@@ -367,17 +364,6 @@ Public Class selectAthlete
                 End Using
             Next
         End Using
-        refreshTeams()
-    End Sub
-
-    Private Sub refreshTeams()
-        parseTeams()
-        readTeams()
-        addList.Clear()
-        remList.Clear()
-    End Sub
-
-    Private Sub btnDeleteTeam_Click(sender As Object, e As EventArgs) Handles btnDeleteTeam.Click
         Dim memberList As String = ""
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
@@ -397,5 +383,12 @@ Public Class selectAthlete
             Next
         End Using
         refreshTeams()
+    End Sub
+
+    Private Sub refreshTeams()
+        parseTeams()
+        readTeams()
+        addList.Clear()
+        remList.Clear()
     End Sub
 End Class
