@@ -2,6 +2,7 @@
 'Searching and sorting
 'Profile photo
 'Adding and editing
+'When adding team, put a leading character in.
 
 Public Class selectAthlete
     Dim athleteList As New List(Of athlete)
@@ -102,7 +103,7 @@ Public Class selectAthlete
     Private Sub displayDetails(id As String)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName, AgeGroup, Address, MedicalInfo, BestEvent, Email, PhoneNumber, Teams FROM athleteDb WHERE ID = " + id, conn)
+            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName, AgeGroup, Address, MedicalInfo, BestEvent, Email, PhoneNumber FROM athleteDb WHERE ID = " + id, conn)
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
@@ -127,12 +128,7 @@ Public Class selectAthlete
                             lblFName.Text = dr("FirstName")
                             lblLName.Text = dr("LastName")
                             flpTeams.Controls.Clear()
-                            If dr("Teams") <> "None Specified" Then
-                                lblTeams.Text = "Teams"
-                                parseTeams()
-                            Else
-                                lblTeams.Text = "No Teams Specified"
-                            End If
+                            parseTeams()
                             lblAgeGroup.Text = "Age Group: " + dr("AgeGroup")
                             lblBestEvent.Text = "Best Event: " + dr("BestEvent")
                         Loop
@@ -179,7 +175,7 @@ Public Class selectAthlete
         flpTeams.Controls.Clear()
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE Members.Value =" + lblID.Text, conn) 'Selects teams the student is a member of
+            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE INSTR (Members, '" + lblID.Text + "')", conn) 'Selects teams the student is a member of
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
@@ -211,18 +207,14 @@ Public Class selectAthlete
         End Using
     End Sub
 
-    Private Sub remTeamPanelClicked(sender As Object, e As EventArgs)
+    Private Sub remTeamPanelClicked(sender As Object, e As EventArgs) 'Optimise!
         Dim clicked As Panel = sender
-        If controlState = "editing" Then
-            If clicked.BackColor = Color.Red Then
-                clicked.BackColor = panelColor
-            Else
-                clicked.BackColor = Color.Red
-                'Highlight for deletion
-            End If
+        If clicked.BackColor = Color.Red Then
+            clicked.BackColor = panelColor
+            remList.Remove(clicked.Tag)
         Else
-            MsgBox("Go to " + clicked.Tag + "?")
-            'Go to team page
+            clicked.BackColor = Color.Red 'Highlight team for deletion
+            remList.Add(clicked.Tag)
         End If
     End Sub
 
@@ -230,7 +222,7 @@ Public Class selectAthlete
         remTeamPanelClicked(sender.Parent, e)
     End Sub
 
-    Private Sub addTeamPanelClicked(sender As Object, e As EventArgs)
+    Private Sub addTeamPanelClicked(sender As Object, e As EventArgs) 'Optimise!
         Dim clicked As Panel = sender
         If clicked.BackColor = Color.Green Then
             clicked.BackColor = panelColor
@@ -299,7 +291,7 @@ Public Class selectAthlete
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        checkChanges()
+        'checkChanges()
         'saveChanges()
         controlState = "show"
         toggleControls()
@@ -334,7 +326,7 @@ Public Class selectAthlete
         flpAttachTeam.Controls.Clear()
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE Members.Value <>" + lblID.Text, conn) 'Selects teams the student is a member of
+            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE INSTR (Members, '" + lblID.Text + "') = 0 OR Members IS NULL", conn) 'Selects teams the student is a member of
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
@@ -370,7 +362,7 @@ Public Class selectAthlete
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             For Each team As String In addList
-                Using cmd As New OleDbCommand("INSERT INTO teamDb (Members.Value) VALUES (" + lblID.Text + ") WHERE Team = '" + team + "'", conn) '
+                Using cmd As New OleDbCommand("UPDATE teamDb SET Members = (Members + '" + lblID.Text + ";') WHERE Team = '" + team + "'", conn) 'Works
                     cmd.ExecuteNonQuery()
                 End Using
             Next
@@ -383,5 +375,27 @@ Public Class selectAthlete
         readTeams()
         addList.Clear()
         remList.Clear()
+    End Sub
+
+    Private Sub btnDeleteTeam_Click(sender As Object, e As EventArgs) Handles btnDeleteTeam.Click
+        Dim memberList As String = ""
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            For Each team As String In remList
+                Using cmd As New OleDbCommand("SELECT Members FROM teamDb WHERE Team = '" + team + "'", conn) 'Selects unread edits
+                    Using dr = cmd.ExecuteReader()
+                        If dr.HasRows Then
+                            Do While dr.Read()
+                                memberList = Replace(dr("Members"), lblID.Text + ";", "")
+                            Loop
+                        End If
+                    End Using
+                End Using
+                Using cmd As New OleDbCommand("UPDATE teamDb SET Members = '" + memberList + "' WHERE Team = '" + team + "'", conn) 'Works
+                    cmd.ExecuteNonQuery()
+                End Using
+            Next
+        End Using
+        refreshTeams()
     End Sub
 End Class
