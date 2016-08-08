@@ -82,6 +82,8 @@ Partial Class createEvent
         Me.chbAllAthletes = New System.Windows.Forms.CheckBox()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
@@ -755,6 +757,25 @@ Partial Class createEvent
         Me.flpAthletes.TabIndex = 45
         Me.flpAthletes.WrapContents = False
         '
+        'ComboBox1
+        '
+        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(515, 295)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(182, 21)
+        Me.ComboBox1.TabIndex = 44
+        '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.Enabled = False
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Items.AddRange(New Object() {"Swag", "Bomsl"})
+        Me.CheckedListBox1.Location = New System.Drawing.Point(389, 288)
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        Me.CheckedListBox1.Size = New System.Drawing.Size(120, 19)
+        Me.CheckedListBox1.TabIndex = 61
+        '
         'createEvent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -762,6 +783,8 @@ Partial Class createEvent
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(983, 580)
+        Me.Controls.Add(Me.CheckedListBox1)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.gbAttachments)
         Me.Controls.Add(Me.gbAthletes)
         Me.Controls.Add(Me.gbEvents)
@@ -855,4 +878,6 @@ Partial Class createEvent
     Friend WithEvents btnSelect As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents chbAllNotes As CheckBox
+    Friend WithEvents CheckedListBox1 As CheckedListBox
+    Friend WithEvents ComboBox1 As ComboBox
 End Class
