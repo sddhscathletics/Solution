@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 
 Module alert
-    Public Sub newEdit(changeType, changeMade) 'Appends the edit log with a new edit
+    Public Sub newEdit(changeType As String, changeMade As String) 'Appends the edit log with a new edit
         Dim edit As String = ""
         Select Case changeType
             Case "evAdd"
@@ -16,6 +16,10 @@ Module alert
                 edit = ("Edited account " + changeMade)
             Case "acDelete"
                 edit = ("Deleted account " + changeMade)
+            Case "misNotes"
+                edit = ("Missing notes " + changeMade)
+            Case "custom"
+                edit = (changeMade)
         End Select
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()

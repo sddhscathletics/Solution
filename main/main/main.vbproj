@@ -135,6 +135,7 @@
     <Compile Include="eventResults.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="help.vb" />
     <Compile Include="login.Designer.vb">
       <DependentUpon>Login.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
