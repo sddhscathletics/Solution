@@ -44,6 +44,8 @@ Partial Class selectAthlete
         Me.gpbContact = New System.Windows.Forms.GroupBox()
         Me.gpbMedical = New System.Windows.Forms.GroupBox()
         Me.gpbAthlete = New System.Windows.Forms.GroupBox()
+        Me.btnDeleteTeam = New System.Windows.Forms.Button()
+        Me.btnAddTeam = New System.Windows.Forms.Button()
         Me.lblTeams = New System.Windows.Forms.Label()
         Me.flpTeams = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblHeaderAthlete = New System.Windows.Forms.Label()
@@ -56,12 +58,10 @@ Partial Class selectAthlete
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
-        Me.btnDeleteTeam = New System.Windows.Forms.Button()
-        Me.btnAddTeam = New System.Windows.Forms.Button()
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
         Me.gpbTeamManagement = New System.Windows.Forms.GroupBox()
-        Me.lblHeaderTeamManagement = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.lblHeaderTeamManagement = New System.Windows.Forms.Label()
         Me.gpbAddress.SuspendLayout()
         Me.gpbContact.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
@@ -286,6 +286,26 @@ Partial Class selectAthlete
         Me.gpbAthlete.TabIndex = 38
         Me.gpbAthlete.TabStop = False
         '
+        'btnDeleteTeam
+        '
+        Me.btnDeleteTeam.BackgroundImage = Global.main.My.Resources.Resources.iconCancel
+        Me.btnDeleteTeam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnDeleteTeam.Location = New System.Drawing.Point(189, 117)
+        Me.btnDeleteTeam.Name = "btnDeleteTeam"
+        Me.btnDeleteTeam.Size = New System.Drawing.Size(40, 40)
+        Me.btnDeleteTeam.TabIndex = 51
+        Me.btnDeleteTeam.UseVisualStyleBackColor = True
+        '
+        'btnAddTeam
+        '
+        Me.btnAddTeam.BackgroundImage = Global.main.My.Resources.Resources.iconAdd
+        Me.btnAddTeam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAddTeam.Location = New System.Drawing.Point(189, 71)
+        Me.btnAddTeam.Name = "btnAddTeam"
+        Me.btnAddTeam.Size = New System.Drawing.Size(40, 40)
+        Me.btnAddTeam.TabIndex = 49
+        Me.btnAddTeam.UseVisualStyleBackColor = True
+        '
         'lblTeams
         '
         Me.lblTeams.AutoSize = True
@@ -396,26 +416,6 @@ Partial Class selectAthlete
         Me.btnEdit.TabIndex = 40
         Me.btnEdit.UseVisualStyleBackColor = True
         '
-        'btnDeleteTeam
-        '
-        Me.btnDeleteTeam.BackgroundImage = Global.main.My.Resources.Resources.iconCancel
-        Me.btnDeleteTeam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnDeleteTeam.Location = New System.Drawing.Point(189, 117)
-        Me.btnDeleteTeam.Name = "btnDeleteTeam"
-        Me.btnDeleteTeam.Size = New System.Drawing.Size(40, 40)
-        Me.btnDeleteTeam.TabIndex = 51
-        Me.btnDeleteTeam.UseVisualStyleBackColor = True
-        '
-        'btnAddTeam
-        '
-        Me.btnAddTeam.BackgroundImage = Global.main.My.Resources.Resources.iconAdd
-        Me.btnAddTeam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnAddTeam.Location = New System.Drawing.Point(189, 71)
-        Me.btnAddTeam.Name = "btnAddTeam"
-        Me.btnAddTeam.Size = New System.Drawing.Size(40, 40)
-        Me.btnAddTeam.TabIndex = 49
-        Me.btnAddTeam.UseVisualStyleBackColor = True
-        '
         'pbPhoto
         '
         Me.pbPhoto.Location = New System.Drawing.Point(622, 78)
@@ -436,6 +436,13 @@ Partial Class selectAthlete
         Me.gpbTeamManagement.TabIndex = 52
         Me.gpbTeamManagement.TabStop = False
         '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(6, 23)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(172, 20)
+        Me.TextBox1.TabIndex = 53
+        '
         'lblHeaderTeamManagement
         '
         Me.lblHeaderTeamManagement.AutoSize = True
@@ -445,13 +452,6 @@ Partial Class selectAthlete
         Me.lblHeaderTeamManagement.Size = New System.Drawing.Size(147, 20)
         Me.lblHeaderTeamManagement.TabIndex = 34
         Me.lblHeaderTeamManagement.Text = "Team Management"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(6, 23)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(172, 20)
-        Me.TextBox1.TabIndex = 53
         '
         'selectAthlete
         '
