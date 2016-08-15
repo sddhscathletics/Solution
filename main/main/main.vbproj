@@ -368,6 +368,7 @@
     <None Include="Resources\iconNotepad.png" />
     <None Include="Resources\iconSave.png" />
     <None Include="Resources\iconAdd.PNG" />
+    <None Include="Resources\iconSwitch.png" />
     <Content Include="Resources\User.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
