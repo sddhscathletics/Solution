@@ -37,7 +37,7 @@ Partial Class calendar
         'cms
         '
         Me.cms.Name = "cms"
-        Me.cms.Size = New System.Drawing.Size(153, 26)
+        Me.cms.Size = New System.Drawing.Size(61, 4)
         '
         'calendar
         '
@@ -46,6 +46,7 @@ Partial Class calendar
         Me.ClientSize = New System.Drawing.Size(343, 292)
         Me.Controls.Add(Me.mnCalendar)
         Me.Name = "calendar"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Form1"
         Me.ResumeLayout(False)
 

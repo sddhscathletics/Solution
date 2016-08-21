@@ -133,6 +133,7 @@ Partial Class eventResults
         Me.Controls.Add(Me.gbResults)
         Me.Controls.Add(Me.gbNotes)
         Me.Name = "eventResults"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Form1"
         Me.gbNotes.ResumeLayout(False)
         Me.gbNotes.PerformLayout()

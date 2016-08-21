@@ -98,6 +98,7 @@ Partial Class confirmAddition
         Me.Controls.Add(Me.btnYes)
         Me.Controls.Add(Me.lblTop)
         Me.Name = "confirmAddition"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Confirm Edits"
         Me.ResumeLayout(False)
         Me.PerformLayout()
