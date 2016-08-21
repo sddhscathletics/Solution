@@ -60,7 +60,7 @@ Partial Class selectAthlete
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
-        Me.btnAddTeam = New System.Windows.Forms.Button()
+        Me.btnCommitTeams = New System.Windows.Forms.Button()
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
         Me.gpbStudent.SuspendLayout()
@@ -325,7 +325,7 @@ Partial Class selectAthlete
         '
         'gpbAthlete
         '
-        Me.gpbAthlete.Controls.Add(Me.btnAddTeam)
+        Me.gpbAthlete.Controls.Add(Me.btnCommitTeams)
         Me.gpbAthlete.Controls.Add(Me.lblTeams)
         Me.gpbAthlete.Controls.Add(Me.flpTeams)
         Me.gpbAthlete.Controls.Add(Me.lblHeaderAthlete)
@@ -431,15 +431,15 @@ Partial Class selectAthlete
         Me.pbPhoto.TabIndex = 72
         Me.pbPhoto.TabStop = False
         '
-        'btnAddTeam
+        'btnCommitTeams
         '
-        Me.btnAddTeam.BackgroundImage = Global.main.My.Resources.Resources.iconSwitch
-        Me.btnAddTeam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnAddTeam.Location = New System.Drawing.Point(189, 93)
-        Me.btnAddTeam.Name = "btnAddTeam"
-        Me.btnAddTeam.Size = New System.Drawing.Size(40, 40)
-        Me.btnAddTeam.TabIndex = 49
-        Me.btnAddTeam.UseVisualStyleBackColor = True
+        Me.btnCommitTeams.BackgroundImage = Global.main.My.Resources.Resources.iconSwitch
+        Me.btnCommitTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCommitTeams.Location = New System.Drawing.Point(189, 93)
+        Me.btnCommitTeams.Name = "btnCommitTeams"
+        Me.btnCommitTeams.Size = New System.Drawing.Size(40, 40)
+        Me.btnCommitTeams.TabIndex = 49
+        Me.btnCommitTeams.UseVisualStyleBackColor = True
         '
         'selectAthlete
         '
@@ -514,7 +514,7 @@ Partial Class selectAthlete
     Friend WithEvents gpbContact As GroupBox
     Friend WithEvents lblSt As Label
     Friend WithEvents gpbAthlete As GroupBox
-    Friend WithEvents btnAddTeam As Button
+    Friend WithEvents btnCommitTeams As Button
     Friend WithEvents lblTeams As Label
     Friend WithEvents flpTeams As FlowLayoutPanel
     Friend WithEvents lblHeaderAthlete As Label

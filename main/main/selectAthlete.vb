@@ -2,29 +2,19 @@
 'Searching and sorting
 'Profile photo
 'Adding and editing
-'When adding team, put a leading character in.
+'When adding team, put a leading character in. (;)
+'Team creation
 
 Public Class selectAthlete
     Dim athleteList As New List(Of athlete)
-    Dim addList As New List(Of String)
-    Dim remList As New List(Of String)
+    Dim listAdd As New List(Of String)
+    Dim listRem As New List(Of String)
     Dim controlState As String = "first"
     Dim panelColor As Color = Color.CadetBlue
 
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         toggleControls()
         populate()
-    End Sub
-
-    Private Sub panelClicked(sender As Object, e As EventArgs)
-        controlState = "show"
-        toggleControls()
-        Dim clicked As Panel = sender
-        displayDetails(clicked.Tag)
-    End Sub
-
-    Private Sub labelClicked(sender As Object, e As EventArgs)
-        panelClicked(sender.Parent, e)
     End Sub
 
     Private Sub populate()
@@ -100,6 +90,17 @@ Public Class selectAthlete
         End Using
     End Sub
 
+    Private Sub panelClicked(sender As Object, e As EventArgs)
+        controlState = "show"
+        toggleControls()
+        Dim clicked As Panel = sender
+        displayDetails(clicked.Tag)
+    End Sub
+
+    Private Sub labelClicked(sender As Object, e As EventArgs)
+        panelClicked(sender.Parent, e)
+    End Sub
+
     Private Sub displayDetails(id As String)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
             conn.Open()
@@ -128,7 +129,7 @@ Public Class selectAthlete
                             lblFName.Text = dr("FirstName")
                             lblLName.Text = dr("LastName")
                             flpTeams.Controls.Clear()
-                            parseTeams()
+                            loadTeams(flpTeams, "rem")
                             lblAgeGroup.Text = "Age Group: " + dr("AgeGroup")
                             lblBestEvent.Text = "Best Event: " + dr("BestEvent")
                         Loop
@@ -171,35 +172,64 @@ Public Class selectAthlete
         lblPo.Text = adPo
     End Sub
 
-    Private Sub parseTeams()
-        flpTeams.Controls.Clear()
+    Private Sub teamPanelClicked(sender As Object, e As EventArgs) 'Optimise!
+        Dim clicked As Panel = sender
+        Dim colorSelect As Color
+        Dim listSelect As List(Of String)
+        If clicked.Tag = "add" Then
+            colorSelect = Color.Green
+            listSelect = listAdd
+        Else
+            colorSelect = Color.Red
+            listSelect = listRem
+        End If
+        If controlState = "editing" Then
+            If clicked.BackColor = colorSelect Then
+                clicked.BackColor = panelColor
+                listSelect.Remove(clicked.Name)
+            Else
+                clicked.BackColor = colorSelect 'Highlight team for addition
+                listSelect.Add(clicked.Name)
+            End If
+        End If
+    End Sub
+
+    Private Sub teamLabelClicked(sender As Object, e As EventArgs)
+        teamPanelClicked(sender.Parent, e)
+    End Sub
+
+    Private Sub loadTeams(flp As FlowLayoutPanel, tagType As String)
+        flp.Controls.Clear()
+        Dim append As String = ""
+        If tagType = "add" Then
+            append = " = 0 OR Members IS NULL"
+        End If
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE INSTR (Members, '" + lblID.Text + "')", conn) 'Selects teams the student is a member of
+            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE INSTR (Members, '" + lblID.Text + "')" + append, conn) 'Selects teams the student is a member of
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
                             Dim newpanel As New Panel With
                             {
                             .Margin = New Padding(3, 3, 3, 3),
-                            .Height = 30,
+                            .Height = 20,
                             .Width = 160,
                             .BackColor = panelColor,
-                            .Name = dr("Team") + ".panel",
-                            .Tag = dr("Team")
+                            .Name = dr("Team"),
+                            .Tag = tagType
                             }
                             Dim teamLabel As New Label With
                             {
                             .Text = dr("Team"),
                             .Width = 160,
                             .Font = New Font("Segoe UI", 10),
-                            .Location = New Point(0, 0),
-                            .Name = dr("Team") + ".name"
+                            .Location = New Point(0, 0)
                             }
                             newpanel.Controls.Add(teamLabel)
-                            flpTeams.Controls.Add(newpanel)
-                            AddHandler newpanel.MouseClick, AddressOf remTeamPanelClicked
-                            AddHandler teamLabel.MouseClick, AddressOf remTeamLabelClicked
+                            flp.Controls.Add(newpanel)
+                            AddHandler newpanel.MouseClick, AddressOf teamPanelClicked
+                            AddHandler teamLabel.MouseClick, AddressOf teamLabelClicked
                         Loop
                     End If
                 End Using
@@ -207,34 +237,45 @@ Public Class selectAthlete
         End Using
     End Sub
 
-    Private Sub remTeamPanelClicked(sender As Object, e As EventArgs) 'Optimise!
-        Dim clicked As Panel = sender
-        If clicked.BackColor = Color.Red Then
-            clicked.BackColor = panelColor
-            remList.Remove(clicked.Tag)
+    Private Sub refreshTeams()
+        loadTeams(flpAttachTeam, "add")
+        loadTeams(flpTeams, "rem")
+        listAdd.Clear()
+        listRem.Clear()
+    End Sub
+
+    Private Sub btnCommitTeams_Click(sender As Object, e As EventArgs) Handles btnCommitTeams.Click
+        If listAdd.Count = 0 And listRem.Count = 0 Then
+            MsgBox("Please select teams to add/remove first.")
         Else
-            clicked.BackColor = Color.Red 'Highlight team for deletion
-            remList.Add(clicked.Tag)
+            Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+                conn.Open()
+                For Each team As String In listAdd
+                    Using cmd As New OleDbCommand("UPDATE teamDb SET Members = (Members + '" + lblID.Text + ";') WHERE Team = '" + team + "'", conn) 'Works
+                        cmd.ExecuteNonQuery()
+                    End Using
+                Next
+            End Using
+            Dim memberList As String = ""
+            Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+                conn.Open()
+                For Each team As String In listRem
+                    Using cmd As New OleDbCommand("SELECT Members FROM teamDb WHERE Team = '" + team + "'", conn) 'Selects unread edits
+                        Using dr = cmd.ExecuteReader()
+                            If dr.HasRows Then
+                                Do While dr.Read()
+                                    memberList = Replace(dr("Members"), lblID.Text + ";", "")
+                                Loop
+                            End If
+                        End Using
+                    End Using
+                    Using cmd As New OleDbCommand("UPDATE teamDb SET Members = '" + memberList + "' WHERE Team = '" + team + "'", conn) 'Works
+                        cmd.ExecuteNonQuery()
+                    End Using
+                Next
+            End Using
+            refreshTeams()
         End If
-    End Sub
-
-    Private Sub remTeamLabelClicked(sender As Object, e As EventArgs)
-        remTeamPanelClicked(sender.Parent, e)
-    End Sub
-
-    Private Sub addTeamPanelClicked(sender As Object, e As EventArgs) 'Optimise!
-        Dim clicked As Panel = sender
-        If clicked.BackColor = Color.Green Then
-            clicked.BackColor = panelColor
-            addList.Remove(clicked.Tag)
-        Else
-            clicked.BackColor = Color.Green 'Highlight team for addition
-            addList.Add(clicked.Tag)
-        End If
-    End Sub
-
-    Private Sub addTeamLabelClicked(sender As Object, e As EventArgs)
-        addTeamPanelClicked(sender.Parent, e)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -244,7 +285,7 @@ Public Class selectAthlete
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         controlState = "editing"
         toggleControls()
-        readTeams()
+        loadTeams(flpAttachTeam, "add")
     End Sub
 
     Private Sub toggleControls()
@@ -259,14 +300,14 @@ Public Class selectAthlete
                 btnEdit.Visible = False
                 btnSave.Visible = False
                 btnCancel.Visible = False
-                btnAddTeam.Visible = False
+                btnCommitTeams.Visible = False
             Case "show"
                 gpbAthlete.Visible = True
                 gpbStudent.Visible = True
                 gpbTeamManagement.Visible = False
                 btnSave.Visible = False
                 btnCancel.Visible = False
-                btnAddTeam.Visible = False
+                btnCommitTeams.Visible = False
                 If access = 1 Or access = 2 Then 'Check if the user is a coach or Kurt
                     gpbContact.Visible = True
                     gpbMedical.Visible = True
@@ -283,7 +324,7 @@ Public Class selectAthlete
                 btnEdit.Visible = False
                 btnSave.Visible = True
                 btnCancel.Visible = True
-                btnAddTeam.Visible = True
+                btnCommitTeams.Visible = True
         End Select
     End Sub
 
@@ -297,6 +338,7 @@ Public Class selectAthlete
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         controlState = "show"
         toggleControls()
+        refreshTeams()
     End Sub
 
     Private Sub checkChanges()
@@ -319,76 +361,4 @@ Public Class selectAthlete
         End Using
     End Sub
 
-    Public Sub readTeams()
-        flpAttachTeam.Controls.Clear()
-        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
-            conn.Open()
-            Using cmd As New OleDbCommand("SELECT Team FROM teamDb WHERE INSTR (Members, '" + lblID.Text + "') = 0 OR Members IS NULL", conn) 'Selects teams the student is a member of
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        Do While dr.Read()
-                            Dim newpanel As New Panel With
-                            {
-                            .Margin = New Padding(3, 3, 3, 3),
-                            .Height = 30,
-                            .Width = 160,
-                            .BackColor = panelColor,
-                            .Name = dr("Team") + ".panel",
-                            .Tag = dr("Team")
-                            }
-                            Dim teamLabel As New Label With
-                            {
-                            .Text = dr("Team"),
-                            .Width = 160,
-                            .Font = New Font("Segoe UI", 10),
-                            .Location = New Point(0, 0),
-                            .Name = dr("Team") + ".name"
-                            }
-                            newpanel.Controls.Add(teamLabel)
-                            flpAttachTeam.Controls.Add(newpanel)
-                            AddHandler newpanel.MouseClick, AddressOf addTeamPanelClicked
-                            AddHandler teamLabel.MouseClick, AddressOf addTeamLabelClicked
-                        Loop
-                    End If
-                End Using
-            End Using
-        End Using
-    End Sub
-
-    Private Sub btnAddTeam_Click(sender As Object, e As EventArgs) Handles btnAddTeam.Click
-        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
-            conn.Open()
-            For Each team As String In addList
-                Using cmd As New OleDbCommand("UPDATE teamDb SET Members = (Members + '" + lblID.Text + ";') WHERE Team = '" + team + "'", conn) 'Works
-                    cmd.ExecuteNonQuery()
-                End Using
-            Next
-        End Using
-        Dim memberList As String = ""
-        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
-            conn.Open()
-            For Each team As String In remList
-                Using cmd As New OleDbCommand("SELECT Members FROM teamDb WHERE Team = '" + team + "'", conn) 'Selects unread edits
-                    Using dr = cmd.ExecuteReader()
-                        If dr.HasRows Then
-                            Do While dr.Read()
-                                memberList = Replace(dr("Members"), lblID.Text + ";", "")
-                            Loop
-                        End If
-                    End Using
-                End Using
-                Using cmd As New OleDbCommand("UPDATE teamDb SET Members = '" + memberList + "' WHERE Team = '" + team + "'", conn) 'Works
-                    cmd.ExecuteNonQuery()
-                End Using
-            Next
-        End Using
-        refreshTeams()
-    End Sub
-
-    Private Sub refreshTeams()
-        parseTeams()
-        readTeams()
-        addList.Clear()
-        remList.Clear()
-    End Sub
 End Class
