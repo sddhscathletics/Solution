@@ -12,6 +12,8 @@ Public Class createEvent
     Public Shared attendees As New List(Of String) 'list of id's
     Public Shared times As New List(Of String) 'list of "event: time"
     Public Shared templateEvents As New List(Of String) From {"Enter the event name here 19/07/2016", "Testing all 21/07/2016"}
+    Dim proxyPresent As Boolean = True
+    Dim waitForDrop As Thread = Nothing
     'Attachments
     Dim filePaths As New List(Of String)
     Dim newAttachBoxLocation As Point = New Point(135, 377)
@@ -192,6 +194,7 @@ Public Class createEvent
                         End If
                         dtpDate.Format = DateTimePickerFormat.Long
                     End If
+                    newEdit("evAdd", txtName.Text + " on the " + dtpDate.Text + ".")
                     Me.Close()
                 ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
                     MessageBox.Show("You must select athletes for the meet.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -204,12 +207,12 @@ Public Class createEvent
                         MessageBox.Show("Please select only one location.", "Multpiple locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Else
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    Using conn As New OleDbConnection("Provider= Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                         conn.Open()
-                        Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, Comment) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @comment)", conn)
+                        Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, Comment) VALUES (@name, @Date, @type, @start, @End, @personnel, @notes, @times, @location, @comment)", conn)
                             cmd.Parameters.AddWithValue("@name", txtName.Text)
                             dtpDate.Format = DateTimePickerFormat.Short
-                            cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                            cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
                             dtpDate.Format = DateTimePickerFormat.Long
                             If rdbTraining.Checked Then
                                 cmd.Parameters.AddWithValue("@type", "Training")
@@ -217,7 +220,7 @@ Public Class createEvent
                                 cmd.Parameters.AddWithValue("@type", "Meet")
                             End If
                             cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                            cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
+                            cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
                             If rdbMeet.Checked = True Then
                                 Dim attendingAthletes As String = ""
                                 For athlete As Integer = 0 To attendees.Count - 1
@@ -268,26 +271,27 @@ Public Class createEvent
                         conn.Close()
                     End Using
                     btnSaveEvent.Tag = "saved"
-                    If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                    If MessageBox.Show("Your Event has been saved" + vbNewLine + "Would you Like To create a template from this Event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
                         If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
                             templateEvents.Add(txtName.Text + " " + dtpDate.Text)
                         End If
                         dtpDate.Format = DateTimePickerFormat.Long
                     End If
+                    newEdit("evAdd", txtName.Text + " on the " + dtpDate.Text + ".")
                     Me.Close()
                 End If
             Else
-                MessageBox.Show("The name and date of this event match an exisiting event." + vbNewLine + "Please change either of these and retry.", "Corresponding Event Exists", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+                MessageBox.Show("The name And date of this event match an exisiting event." + vbNewLine + "Please change either Of these And retry.", "Corresponding Event Exists", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             End If
         ElseIf Me.Tag.Contains("edit") Then
             Dim nameDateMatch As Boolean = False
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                 conn.Open()
-                Using cmd As New OleDbCommand("SELECT EventName, EventDate FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                Using cmd As New OleDbCommand("Select EventName, EventDate FROM Events WHERE EventName = @name And EventDate = @Date", conn) '*takes the column with correct rows
                     cmd.Parameters.AddWithValue("@name", txtName.Text)
                     dtpDate.Format = DateTimePickerFormat.Short
-                    cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                    cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
                     dtpDate.Format = DateTimePickerFormat.Long
                     Using dr = cmd.ExecuteReader()
                         If dr.HasRows Then
@@ -305,10 +309,10 @@ Public Class createEvent
                 If (attendees.Count > 0 Or rdbTraining.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
                     Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                         conn.Open()
-                        Using cmd As New OleDbCommand("UPDATE Events SET EventName = @name, EventDate = @date, Type = @type, StartTime = @start, EndTime = @end, Personnel = @personnel, Notes = @notes, Events = @times, Location = @location, AttachNames = @fileNames, Comment = @comment WHERE EventName = @name AND EventDate = @date", conn)
+                        Using cmd As New OleDbCommand("UPDATE Events Set EventName = @name, EventDate = @Date, Type = @type, StartTime = @start, EndTime = @End, Personnel = @personnel, Notes = @notes, Events = @times, Location = @location, AttachNames = @fileNames, Comment = @comment WHERE EventName = @name And EventDate = @Date", conn)
                             cmd.Parameters.AddWithValue("@name", txtName.Text)
                             dtpDate.Format = DateTimePickerFormat.Short
-                            cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                            cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
                             dtpDate.Format = DateTimePickerFormat.Long
                             If rdbTraining.Checked Then
                                 cmd.Parameters.AddWithValue("@type", "Training")
@@ -316,7 +320,7 @@ Public Class createEvent
                                 cmd.Parameters.AddWithValue("@type", "Meet")
                             End If
                             cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                            cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
+                            cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
                             If rdbMeet.Checked = True Then
                                 Dim attendingAthletes As String = ""
                                 For athlete As Integer = 0 To attendees.Count - 1
@@ -382,7 +386,7 @@ Public Class createEvent
                             Dim hasMatch As Boolean = False
                             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                                 conn.Open()
-                                Using cmd As New OleDbCommand("SELECT FileName FROM Attachments WHERE FileName = @name", conn) 'WHERE NOT EXISTS(SELECT FileName FROM Attachments WHERE FileName = @name)
+                                Using cmd As New OleDbCommand("Select FileName FROM Attachments WHERE FileName = @name", conn) 'WHERE NOT EXISTS(SELECT FileName FROM Attachments WHERE FileName = @name)
                                     Dim splitPath = filePath.Split("\")
                                     cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
                                     Using dr = cmd.ExecuteReader()
@@ -425,6 +429,7 @@ Public Class createEvent
                         End If
                         dtpDate.Format = DateTimePickerFormat.Long
                     End If
+                    newEdit("evEdit", txtName.Text + " on the " + dtpDate.Text + ".")
                     Me.Close()
                 ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
                     MessageBox.Show("You must select athletes for the meet.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -525,6 +530,7 @@ Public Class createEvent
                         End If
                         dtpDate.Format = DateTimePickerFormat.Long
                     End If
+                    newEdit("evEdit", txtName.Text + " on the " + dtpDate.Text + ".")
                     Me.Close()
                 End If
             Else 'add normally then delete the one that was being edited
@@ -663,11 +669,12 @@ Public Class createEvent
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
-                            If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
-                                templateEvents.Add(txtName.Text + " " + dtpDate.Text)
-                            End If
-                            dtpDate.Format = DateTimePickerFormat.Long
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
+                        dtpDate.Format = DateTimePickerFormat.Long
                     End If
+                    newEdit("evEdit", txtName.Text + " on the " + dtpDate.Text + ".")
                     Me.Close()
                 ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
                     MessageBox.Show("You must select athletes for the meet.", "No selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -763,15 +770,29 @@ Public Class createEvent
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been edited." + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
-                            If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
-                                templateEvents.Add(txtName.Text + " " + dtpDate.Text)
-                            End If
-                            dtpDate.Format = DateTimePickerFormat.Long
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
+                        dtpDate.Format = DateTimePickerFormat.Long
                     End If
+                    newEdit("evEdit", txtName.Text + " on the " + dtpDate.Text + ".")
                     Me.Close()
                 End If
             End If
         End If
+        checkNotif.Show()
+    End Sub
+    Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
+        CheckedListBox1.Visible = True
+        waitForDrop = New Thread(Sub() waitForDropDown())
+        waitForDrop.Start()
+    End Sub
+    Private Sub ComboBox1_DropDownClose(sender As Object, e As EventArgs) Handles ComboBox1.DropDownClosed
+        CheckedListBox1.Visible = False
+    End Sub
+    Private Sub waitForDropDown()
+        Thread.Sleep(500)
+        CheckedListBox1.BringToFront()
     End Sub
     Private Sub chbNA_CheckedChanged(sender As Object, e As EventArgs) Handles chbNA.CheckedChanged
         If chbNA.CheckState = CheckState.Checked Then
@@ -832,9 +853,22 @@ Public Class createEvent
         rdbTraining_CheckedChanged(Nothing, Nothing)
         dtpDate.Text = calendar.mnCalendar.SelectionStart
         pbAttach.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
+        CheckedListBox1.Location = New Point(ComboBox1.Location.X, ComboBox1.Location.Y + ComboBox1.Height)
+        CheckedListBox1.Width = ComboBox1.Width
         'btnSaveEvent.Location = New Point(67, 538)
         'btnCancel.Location = New Point(btnSaveEvent.Location.X + btnSaveEvent.Width + 22, btnSaveEvent.Location.Y)
         'Maps
+        Dim proxyTester = Net.WebRequest.GetSystemWebProxy()
+        If (proxyTester.GetProxy(New Uri("http://www.google.com")).Equals(New Uri("http://www.google.com"))) Then 'check if no proxy present by comparing URI's
+            Console.Write("no proxy")
+            proxyPresent = False
+        Else 'set proxy
+            Console.Write("proxy enabled")
+            proxyPresent = True
+            MapProviders.GoogleMapProvider.WebProxy = New Net.WebProxy("proxy.intranet", 8080)
+            MapProviders.GoogleMapProvider.WebProxy.Credentials = New Net.NetworkCredential("eddie.belokopytov", "zorba491")
+        End If
+        'https://searchcode.com/codesearch/view/195986/
         map.MapProvider = MapProviders.GoogleMapProvider.Instance
         map.Manager.Mode = AccessMode.ServerAndCache
         map.Position = New PointLatLng(-33.891543077486077, 151.21914625167847)
@@ -1652,8 +1686,17 @@ Public Class createEvent
     End Sub
     Private Sub checkConnection()
         Try
+            'Dim client As Net.WebClient = New Net.WebClient()
+            'client.Proxy = proxy
+            'Dim resp = client.DownloadString(url)
+            'connectionPresent = True
             Dim url As String = "http://maps.google.com/maps/api/geocode/xml?address=sydney&sensor=false"
             Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+            If proxyPresent Then
+                Dim proxy As Net.IWebProxy = New Net.WebProxy("proxy.intranet", 8080)
+                proxy.Credentials = New Net.NetworkCredential("eddie.belokopytov", "zorba491")
+                request.Proxy = proxy
+            End If
             Using response As Net.WebResponse = DirectCast(request.GetResponse(), Net.HttpWebResponse)
                 connectionPresent = True
             End Using
@@ -1680,7 +1723,7 @@ Public Class createEvent
             marker.ToolTip = New GMapToolTip(marker)
             marker.ToolTipText = placeInfo
             marker.ToolTipMode = MarkerTooltipMode.OnMouseOver
-            If Thread.CurrentThread.ManagedThreadId = mainThreadID Then
+            If Thread.CurrentThread.ManagedThreadId = mainThreadID Then 'checks if it's the main thread so that textboxes can be updated
                 If map.Overlays.Count <= 1 Then
                     Dim address = places(0).Address.Split(",")
                     For i As Integer = 0 To address.Count - 2 'to skip "Australia"
@@ -1732,6 +1775,11 @@ Public Class createEvent
             Cursor.Current = Cursors.AppStarting
             Dim url As String = "http://maps.google.com/maps/api/geocode/xml?address=" + searchLocation + "&sensor=false"
             Dim request As Net.WebRequest = Net.WebRequest.Create(url)
+            If proxyPresent Then
+                Dim proxy As Net.IWebProxy = New Net.WebProxy("proxy.intranet", 8080)
+                proxy.Credentials = New Net.NetworkCredential("eddie.belokopytov", "zorba491")
+                request.Proxy = proxy
+            End If
             Using response As Net.WebResponse = DirectCast(request.GetResponse(), Net.HttpWebResponse)
                 Using reader As New IO.StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8)
                     Dim dsResult As New DataSet()
@@ -1755,7 +1803,7 @@ Public Class createEvent
                 map.Overlays.Clear()
                 overlayCount = 0
                 For Each row As DataGridViewRow In DataGridView1.Rows()
-                    If row.Index <> DataGridView1.Rows().Count - 1 Then
+                    If row.Index <> DataGridView1.Rows().Count - 1 Then 'if it's not the empty "input" row
                         placeMarker(CType(row.Cells(2).Value, Double), CType(row.Cells(3).Value, Double), "search")
                     End If
                 Next
