@@ -86,6 +86,7 @@ Partial Class saveOrOpen
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.Label1)
         Me.Name = "saveOrOpen"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "saveOrOpen"
         Me.ResumeLayout(False)
         Me.PerformLayout()

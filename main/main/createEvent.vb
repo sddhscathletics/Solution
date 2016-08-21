@@ -2255,6 +2255,7 @@ Public Class createEvent
         End With
         pnl.Controls.Add(chbAthelte)
         chbAthelte.BringToFront()
+        AddHandler chbAthelte.Click, AddressOf chb_Click
         Dim chbNote As New CheckBox
         With chbNote
             .Name = "chbNote"
@@ -2264,7 +2265,7 @@ Public Class createEvent
         End With
         pnl.Controls.Add(chbNote)
         chbNote.BringToFront()
-        AddHandler chbNote.Click, AddressOf chbNote_Click
+        AddHandler chbNote.Click, AddressOf chb_Click
         Dim pb As New PictureBox
         With pb
             .Image = My.Resources.transparent_plus
@@ -2342,7 +2343,7 @@ Public Class createEvent
         'AddHandler lblUnexplained.Click, AddressOf athletePanel_Click
         'lblUnexplained.Location = New Point(272, 36)
     End Sub
-    Private Sub chbNote_Click(sender As Object, e As EventArgs)
+    Private Sub chb_Click(sender As Object, e As EventArgs)
         checkAllChecked()
     End Sub
     Private Sub athletePanel_Click(sender As Object, e As EventArgs)
