@@ -40,32 +40,32 @@ Public Class eventResults
         End If
         flpAthletes.Controls.Clear()
         Dim athletes = Nothing
-        Select Case cmbGroup.SelectedItem
-            Case "U13" : athletes = getWholeAgeGroup("U13")
-            Case "U14" : athletes = getWholeAgeGroup("U14")
-            Case "U15" : athletes = getWholeAgeGroup("U15")
-            Case "U16" : athletes = getWholeAgeGroup("U16")
-            Case "U17" : athletes = getWholeAgeGroup("U17")
-            Case "Opens" : athletes = getWholeAgeGroup("Opens")
-        End Select
-        For Each person In athletes
-            createAthletePanel(person)
-        Next
-        For Each athleteID In attendees
-            If athleteID <> attendees(attendees.Count - 1) Then
-                tickAthletes(athleteID, False)
-            Else
-                tickAthletes(athleteID, True)
-            End If
-        Next
-        For Each athleteID In notes
-            If athleteID <> attendees(attendees.Count - 1) Then
-                tickNotes(athleteID, False)
-            Else
-                tickNotes(athleteID, True)
-            End If
-        Next
-        checkAllChecked()
+        'Select Case cmbGroup.SelectedItem
+        '    Case "U13" : athletes = getWholeAgeGroup("U13")
+        '    Case "U14" : athletes = getWholeAgeGroup("U14")
+        '    Case "U15" : athletes = getWholeAgeGroup("U15")
+        '    Case "U16" : athletes = getWholeAgeGroup("U16")
+        '    Case "U17" : athletes = getWholeAgeGroup("U17")
+        '    Case "Opens" : athletes = getWholeAgeGroup("Opens")
+        'End Select
+        'For Each person In athletes
+        '    createAthletePanel(person)
+        'Next
+        'For Each athleteID In attendees
+        '    If athleteID <> attendees(attendees.Count - 1) Then
+        '        tickAthletes(athleteID, False)
+        '    Else
+        '        tickAthletes(athleteID, True)
+        '    End If
+        'Next
+        'For Each athleteID In notes
+        '    If athleteID <> attendees(attendees.Count - 1) Then
+        '        tickNotes(athleteID, False)
+        '    Else
+        '        tickNotes(athleteID, True)
+        '    End If
+        'Next
+        'checkAllChecked()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
