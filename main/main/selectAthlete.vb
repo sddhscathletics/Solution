@@ -2,7 +2,6 @@
 'Searching and sorting
 'Profile photo
 'Adding and editing
-'When adding team, put a leading character in. (;)
 'Team creation
 
 Public Class selectAthlete
@@ -361,4 +360,7 @@ Public Class selectAthlete
         End Using
     End Sub
 
+    Private Sub btnNewTeam_Click(sender As Object, e As EventArgs) Handles btnNewTeam.Click
+        newTeam.Show()
+    End Sub
 End Class
