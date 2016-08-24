@@ -12,6 +12,11 @@
                 For Each person In createEvent.timesNotAdded
                     rchText.Text += CStr(person) + vbNewLine
                 Next
+            Case "results"
+                lblTop.Text = "The following people have note discrepancies that need to be resolved:" + vbNewLine + vbNewLine
+                For Each person In eventResults.notesNotAdded
+                    rchText.Text += CStr(person) + vbNewLine
+                Next
         End Select
         lblBottom.Text = "Would you like to fix the discrepancies?"
     End Sub
@@ -25,6 +30,8 @@
         Dim removedPeople As New List(Of String)
         Dim addedNotes As New List(Of String)
         Dim removedNotes As New List(Of String)
+        Dim addedResults As New List(Of String)
+        Dim removedResults As New List(Of String)
         If Me.Tag = "people" Then
             For person As Integer = 0 To createEvent.peopleNotAdded.Count - 1
                 If createEvent.peopleNotAdded(person).Contains("currently not saved as attending") Then
@@ -43,6 +50,18 @@
                     Dim name As String = createEvent.peopleNotAdded(person).Split(" ")(0) + " " + createEvent.peopleNotAdded(person).Split(" ")(1)
                     createEvent.attendees.Remove(createEvent.getIdByName(name))
                     removedPeople.Add(name)
+                End If
+            Next
+        ElseIf Me.Tag = "results" Then
+            For note As Integer = 0 To eventResults.notesNotAdded.Count - 1
+                If eventResults.notesNotAdded(note).Contains("currently not saved as having submitted a note") Then
+                    Dim name As String = eventResults.notesNotAdded(note).Split(" ")(0) + " " + eventResults.notesNotAdded(note).Split(" ")(1)
+                    eventResults.newNotes.Add(createEvent.getIdByName(name))
+                    addedResults.Add(name)
+                Else
+                    Dim name As String = eventResults.notesNotAdded(note).Split(" ")(0) + " " + eventResults.notesNotAdded(note).Split(" ")(1)
+                    eventResults.newNotes.Remove(createEvent.getIdByName(name))
+                    removedResults.Add(name)
                 End If
             Next
         Else
@@ -67,6 +86,13 @@
             Next
             For Each note In removedNotes
                 rchText.Text += CStr(note) + " is now saved as not needing a note" + vbNewLine
+            Next
+        ElseIf Me.Tag = "results" Then
+            For Each note In addedResults
+                rchText.Text += CStr(note) + " is now saved as having submitted a note" + vbNewLine
+            Next
+            For Each note In removedResults
+                rchText.Text += CStr(note) + " is now saved as not having submitted a note" + vbNewLine
             Next
         Else
             For Each time In addedPeople

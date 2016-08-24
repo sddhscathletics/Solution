@@ -33,7 +33,7 @@ Partial Class saveOrOpen
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Modern No. 20", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(41, 79)
+        Me.Label1.Location = New System.Drawing.Point(39, 51)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(394, 22)
         Me.Label1.TabIndex = 0
@@ -41,7 +41,7 @@ Partial Class saveOrOpen
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(23, 156)
+        Me.btnSave.Location = New System.Drawing.Point(132, 136)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(97, 40)
         Me.btnSave.TabIndex = 1
@@ -50,7 +50,7 @@ Partial Class saveOrOpen
         '
         'btnOpen
         '
-        Me.btnOpen.Location = New System.Drawing.Point(135, 156)
+        Me.btnOpen.Location = New System.Drawing.Point(28, 136)
         Me.btnOpen.Name = "btnOpen"
         Me.btnOpen.Size = New System.Drawing.Size(96, 40)
         Me.btnOpen.TabIndex = 2
@@ -59,7 +59,7 @@ Partial Class saveOrOpen
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(350, 156)
+        Me.btnCancel.Location = New System.Drawing.Point(346, 136)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(98, 40)
         Me.btnCancel.TabIndex = 3
@@ -68,7 +68,7 @@ Partial Class saveOrOpen
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(241, 156)
+        Me.btnDelete.Location = New System.Drawing.Point(237, 136)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(98, 40)
         Me.btnDelete.TabIndex = 4
@@ -79,7 +79,7 @@ Partial Class saveOrOpen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(471, 224)
+        Me.ClientSize = New System.Drawing.Size(471, 203)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnOpen)

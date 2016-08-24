@@ -186,23 +186,23 @@ Public Class createEvent
                             '    MessageBox.Show("You are trying to upload '" + filePath + "' which was input from the template.")
                         End If
                     Next
-                    If notes.Count >= 1 Then
-                        For Each note In notes
-                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                conn.Open()
-                                Using cmd As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
-                                    dtpDate.Format = DateTimePickerFormat.Short
-                                    cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
-                                    dtpDate.Format = DateTimePickerFormat.Long
-                                    Dim fullname = getName(note)
-                                    cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                    cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                    cmd.ExecuteNonQuery()
-                                End Using
-                                conn.Close()
-                            End Using
-                        Next
-                    End If
+                    'If notes.Count >= 1 Then
+                    '    For Each note In notes
+                    '        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                    '            conn.Open()
+                    '            Using cmd As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
+                    '                dtpDate.Format = DateTimePickerFormat.Short
+                    '                cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
+                    '                dtpDate.Format = DateTimePickerFormat.Long
+                    '                Dim fullname = getName(note)
+                    '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                    '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                    '                cmd.ExecuteNonQuery()
+                    '            End Using
+                    '            conn.Close()
+                    '        End Using
+                    '    Next
+                    'End If
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
@@ -287,23 +287,23 @@ Public Class createEvent
                         End Using
                         conn.Close()
                     End Using
-                    If notes.Count >= 1 Then
-                        For Each note In notes
-                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                conn.Open()
-                                Using cmd As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
-                                    dtpDate.Format = DateTimePickerFormat.Short
-                                    cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
-                                    dtpDate.Format = DateTimePickerFormat.Long
-                                    Dim fullname = getName(note)
-                                    cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                    cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                    cmd.ExecuteNonQuery()
-                                End Using
-                                conn.Close()
-                            End Using
-                        Next
-                    End If
+                    'If notes.Count >= 1 Then
+                    '    For Each note In notes
+                    '        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                    '            conn.Open()
+                    '            Using cmd As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
+                    '                dtpDate.Format = DateTimePickerFormat.Short
+                    '                cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
+                    '                dtpDate.Format = DateTimePickerFormat.Long
+                    '                Dim fullname = getName(note)
+                    '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                    '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                    '                cmd.ExecuteNonQuery()
+                    '            End Using
+                    '            conn.Close()
+                    '        End Using
+                    '    Next
+                    'End If
                     btnSaveEvent.Tag = "saved"
                     If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                         dtpDate.Format = DateTimePickerFormat.Short
@@ -377,80 +377,80 @@ Public Class createEvent
                                 End If
                             Next
                             cmd.Parameters.AddWithValue("@notes", notesNeeded)
-                            Dim currentNotes As String = ""
-                            Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                conn1.Open()
-                                Using cmd1 As New OleDbCommand("SELECT Notes FROM Events WHERE EventName = @name And EventDate = @Date", conn)
-                                    cmd.Parameters.AddWithValue("@name", txtName.Text)
-                                    dtpDate.Format = DateTimePickerFormat.Short
-                                    cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
-                                    dtpDate.Format = DateTimePickerFormat.Long
-                                    Using dr = cmd.ExecuteReader()
-                                        If dr.HasRows Then
-                                            Do While dr.Read()
-                                                currentNotes = dr(0)
-                                            Loop
-                                        Else
-                                            nameDateMatch = False
-                                        End If
-                                    End Using
-                                End Using
-                                conn1.Close()
-                            End Using
-                            Dim notInCurrent As IEnumerable(Of String) = notesNeeded.Except(currentNotes) 'returns all new people who need notes
-                            Dim notInNew As IEnumerable(Of String) = currentNotes.Except(notesNeeded) 'returns the previous people who now dont need notes
-                            If notInNew.Count >= 1 Then
-                                For Each person In notInNew
-                                    Dim oldNotes As String = ""
-                                    Dim fullname = getName(person)
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd2 As New OleDbCommand("SELECT NotesNeeded FROM athleteDb WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            Using dr = cmd.ExecuteReader()
-                                                If dr.HasRows() Then
-                                                    Do While dr.Read()
-                                                        oldNotes = dr(0)
-                                                    Loop
-                                                End If
-                                            End Using
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd2 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = @newNotes WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            Dim newNotes As List(Of String) = oldNotes.Split(";").ToList()
-                                            dtpDate.Format = DateTimePickerFormat.Short
-                                            newNotes.Remove(txtName.Text + " " + dtpDate.Text)
-                                            dtpDate.Format = DateTimePickerFormat.Long
-                                            cmd.Parameters.AddWithValue("@newNotes", String.Join(";", newNotes))
-                                            cmd.ExecuteNonQuery()
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                Next
-                            End If
-                            If notInCurrent.Count >= 1 Then
-                                For Each person In notInCurrent
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd1 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            dtpDate.Format = DateTimePickerFormat.Short
-                                            cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
-                                            dtpDate.Format = DateTimePickerFormat.Long
-                                            Dim fullname = getName(person)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            cmd.ExecuteNonQuery()
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                Next
-                            End If
+                            'Dim currentNotes As String = ""
+                            'Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                            '    conn1.Open()
+                            '    Using cmd1 As New OleDbCommand("SELECT Notes FROM Events WHERE EventName = @name And EventDate = @Date", conn)
+                            '        cmd.Parameters.AddWithValue("@name", txtName.Text)
+                            '        dtpDate.Format = DateTimePickerFormat.Short
+                            '        cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
+                            '        dtpDate.Format = DateTimePickerFormat.Long
+                            '        Using dr = cmd.ExecuteReader()
+                            '            If dr.HasRows Then
+                            '                Do While dr.Read()
+                            '                    currentNotes = dr(0)
+                            '                Loop
+                            '            Else
+                            '                nameDateMatch = False
+                            '            End If
+                            '        End Using
+                            '    End Using
+                            '    conn1.Close()
+                            'End Using
+                            'Dim notInCurrent As IEnumerable(Of String) = notesNeeded.Except(currentNotes) 'returns all new people who need notes
+                            'Dim notInNew As IEnumerable(Of String) = currentNotes.Except(notesNeeded) 'returns the previous people who now dont need notes
+                            'If notInNew.Count >= 1 Then
+                            '    For Each person In notInNew
+                            '        Dim oldNotes As String = ""
+                            '        Dim fullname = getName(person)
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd2 As New OleDbCommand("SELECT NotesNeeded FROM athleteDb WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                Using dr = cmd.ExecuteReader()
+                            '                    If dr.HasRows() Then
+                            '                        Do While dr.Read()
+                            '                            oldNotes = dr(0)
+                            '                        Loop
+                            '                    End If
+                            '                End Using
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd2 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = @newNotes WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                Dim newNotes As List(Of String) = oldNotes.Split(";").ToList()
+                            '                dtpDate.Format = DateTimePickerFormat.Short
+                            '                newNotes.Remove(txtName.Text + " " + dtpDate.Text)
+                            '                dtpDate.Format = DateTimePickerFormat.Long
+                            '                cmd.Parameters.AddWithValue("@newNotes", String.Join(";", newNotes))
+                            '                cmd.ExecuteNonQuery()
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '    Next
+                            'End If
+                            'If notInCurrent.Count >= 1 Then
+                            '    For Each person In notInCurrent
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd1 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                dtpDate.Format = DateTimePickerFormat.Short
+                            '                cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
+                            '                dtpDate.Format = DateTimePickerFormat.Long
+                            '                Dim fullname = getName(person)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                cmd.ExecuteNonQuery()
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '    Next
+                            'End If
                             If chbNA.Checked = False Then
                                 Dim eventTimes As String = ""
                                 For time As Integer = 0 To times.Count - 1
@@ -586,6 +586,80 @@ Public Class createEvent
                                 End If
                             Next
                             cmd.Parameters.AddWithValue("@notes", notesNeeded)
+                            'Dim currentNotes As String = ""
+                            'Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                            '    conn1.Open()
+                            '    Using cmd1 As New OleDbCommand("SELECT Notes FROM Events WHERE EventName = @name And EventDate = @Date", conn1)
+                            '        cmd1.Parameters.AddWithValue("@name", txtName.Text)
+                            '        dtpDate.Format = DateTimePickerFormat.Short
+                            '        cmd1.Parameters.AddWithValue("@Date", dtpDate.Text)
+                            '        dtpDate.Format = DateTimePickerFormat.Long
+                            '        Using dr = cmd1.ExecuteReader()
+                            '            If dr.HasRows Then
+                            '                Do While dr.Read()
+                            '                    currentNotes = dr(0)
+                            '                Loop
+                            '            End If
+                            '        End Using
+                            '    End Using
+                            '    conn1.Close()
+                            'End Using
+                            'Dim notInCurrent = notesNeeded.Split(";").Except(currentNotes.Split(";")) 'returns all new people who need notes
+                            'Dim notInNew = currentNotes.Split(";").Except(notesNeeded.Split(";")) 'returns the previous people who now dont need notes
+                            'If notInNew.Count >= 1 Then
+                            '    For Each person In notInNew
+                            '        Dim oldNotes As String = ""
+                            '        Dim fullname = getName(Int(person))
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd2 As New OleDbCommand("SELECT NotesNeeded FROM athleteDb WHERE FirstName = @fName AND LastName = @lName", conn1)
+                            '                cmd2.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd2.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                Using dr = cmd2.ExecuteReader()
+                            '                    If dr.HasRows() Then
+                            '                        Do While dr.Read()
+                            '                            oldNotes = dr(0)
+                            '                        Loop
+                            '                    End If
+                            '                End Using
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd2 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = 's' WHERE FirstName = @fName AND LastName = @lName", conn1)
+                            '                cmd2.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd2.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                'Dim newNotes As List(Of String) = oldNotes.Split(";").ToList()
+                            '                'dtpDate.Format = DateTimePickerFormat.Short
+                            '                'newNotes.Remove(txtName.Text + " " + dtpDate.Text)
+                            '                'dtpDate.Format = DateTimePickerFormat.Long
+                            '                cmd2.Parameters.AddWithValue("@newNotes", "s") 'String.Join(";", newNotes))
+                            '                Dim t = 5
+                            '                t = cmd2.ExecuteNonQuery()
+                            '                MessageBox.Show(t)
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '    Next
+                            'End If
+                            'If notInCurrent.Count >= 1 Then
+                            '    For Each person In notInCurrent
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd1 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn1)
+                            '                dtpDate.Format = DateTimePickerFormat.Short
+                            '                cmd1.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
+                            '                dtpDate.Format = DateTimePickerFormat.Long
+                            '                Dim fullname = getName(Int(person))
+                            '                cmd1.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd1.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                cmd1.ExecuteNonQuery()
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '    Next
+                            'End If
                             If chbNA.Checked = False Then
                                 Dim eventTimes As String = ""
                                 For time As Integer = 0 To times.Count - 1
@@ -679,80 +753,80 @@ Public Class createEvent
                                 End If
                             Next
                             cmd.Parameters.AddWithValue("@notes", notesNeeded)
-                            Dim currentNotes As String = ""
-                            Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                conn1.Open()
-                                Using cmd1 As New OleDbCommand("SELECT Notes FROM Events WHERE EventName = @name And EventDate = @Date", conn)
-                                    cmd.Parameters.AddWithValue("@name", txtName.Text)
-                                    dtpDate.Format = DateTimePickerFormat.Short
-                                    cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
-                                    dtpDate.Format = DateTimePickerFormat.Long
-                                    Using dr = cmd.ExecuteReader()
-                                        If dr.HasRows Then
-                                            Do While dr.Read()
-                                                currentNotes = dr(0)
-                                            Loop
-                                        Else
-                                            nameDateMatch = False
-                                        End If
-                                    End Using
-                                End Using
-                                conn1.Close()
-                            End Using
-                            Dim notInCurrent As IEnumerable(Of String) = notesNeeded.Except(currentNotes) 'returns all new people who need notes
-                            Dim notInNew As IEnumerable(Of String) = currentNotes.Except(notesNeeded) 'returns the previous people who now dont need notes
-                            If notInNew.Count >= 1 Then
-                                For Each person In notInNew
-                                    Dim oldNotes As String = ""
-                                    Dim fullname = getName(person)
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd2 As New OleDbCommand("SELECT NotesNeeded FROM athleteDb WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            Using dr = cmd.ExecuteReader()
-                                                If dr.HasRows() Then
-                                                    Do While dr.Read()
-                                                        oldNotes = dr(0)
-                                                    Loop
-                                                End If
-                                            End Using
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd2 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = @newNotes WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            Dim newNotes As List(Of String) = oldNotes.Split(";").ToList()
-                                            dtpDate.Format = DateTimePickerFormat.Short
-                                            newNotes.Remove(txtName.Text + " " + dtpDate.Text)
-                                            dtpDate.Format = DateTimePickerFormat.Long
-                                            cmd.Parameters.AddWithValue("@newNotes", String.Join(";", newNotes))
-                                            cmd.ExecuteNonQuery()
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                Next
-                            End If
-                            If notInCurrent.Count >= 1 Then
-                                For Each person In notInCurrent
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd1 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            dtpDate.Format = DateTimePickerFormat.Short
-                                            cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
-                                            dtpDate.Format = DateTimePickerFormat.Long
-                                            Dim fullname = getName(person)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            cmd.ExecuteNonQuery()
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                Next
-                            End If
+                            'Dim currentNotes As String = ""
+                            'Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                            '    conn1.Open()
+                            '    Using cmd1 As New OleDbCommand("SELECT Notes FROM Events WHERE EventName = @name And EventDate = @Date", conn)
+                            '        cmd.Parameters.AddWithValue("@name", txtName.Text)
+                            '        dtpDate.Format = DateTimePickerFormat.Short
+                            '        cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
+                            '        dtpDate.Format = DateTimePickerFormat.Long
+                            '        Using dr = cmd.ExecuteReader()
+                            '            If dr.HasRows Then
+                            '                Do While dr.Read()
+                            '                    currentNotes = dr(0)
+                            '                Loop
+                            '            Else
+                            '                nameDateMatch = False
+                            '            End If
+                            '        End Using
+                            '    End Using
+                            '    conn1.Close()
+                            'End Using
+                            'Dim notInCurrent As IEnumerable(Of String) = notesNeeded.Except(currentNotes) 'returns all new people who need notes
+                            'Dim notInNew As IEnumerable(Of String) = currentNotes.Except(notesNeeded) 'returns the previous people who now dont need notes
+                            'If notInNew.Count >= 1 Then
+                            '    For Each person In notInNew
+                            '        Dim oldNotes As String = ""
+                            '        Dim fullname = getName(person)
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd2 As New OleDbCommand("SELECT NotesNeeded FROM athleteDb WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                Using dr = cmd.ExecuteReader()
+                            '                    If dr.HasRows() Then
+                            '                        Do While dr.Read()
+                            '                            oldNotes = dr(0)
+                            '                        Loop
+                            '                    End If
+                            '                End Using
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd2 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = @newNotes WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                Dim newNotes As List(Of String) = oldNotes.Split(";").ToList()
+                            '                dtpDate.Format = DateTimePickerFormat.Short
+                            '                newNotes.Remove(txtName.Text + " " + dtpDate.Text)
+                            '                dtpDate.Format = DateTimePickerFormat.Long
+                            '                cmd.Parameters.AddWithValue("@newNotes", String.Join(";", newNotes))
+                            '                cmd.ExecuteNonQuery()
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '    Next
+                            'End If
+                            'If notInCurrent.Count >= 1 Then
+                            '    For Each person In notInCurrent
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd1 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                dtpDate.Format = DateTimePickerFormat.Short
+                            '                cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
+                            '                dtpDate.Format = DateTimePickerFormat.Long
+                            '                Dim fullname = getName(person)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                cmd.ExecuteNonQuery()
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '    Next
+                            'End If
                             If chbNA.Checked = False Then
                                 Dim eventTimes As String = ""
                                 For time As Integer = 0 To times.Count - 1
@@ -905,80 +979,80 @@ Public Class createEvent
                                 End If
                             Next
                             cmd.Parameters.AddWithValue("@notes", notesNeeded)
-                            Dim currentNotes As String = ""
-                            Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                conn1.Open()
-                                Using cmd1 As New OleDbCommand("SELECT Notes FROM Events WHERE EventName = @name And EventDate = @Date", conn)
-                                    cmd.Parameters.AddWithValue("@name", txtName.Text)
-                                    dtpDate.Format = DateTimePickerFormat.Short
-                                    cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
-                                    dtpDate.Format = DateTimePickerFormat.Long
-                                    Using dr = cmd.ExecuteReader()
-                                        If dr.HasRows Then
-                                            Do While dr.Read()
-                                                currentNotes = dr(0)
-                                            Loop
-                                        Else
-                                            nameDateMatch = False
-                                        End If
-                                    End Using
-                                End Using
-                                conn1.Close()
-                            End Using
-                            Dim notInCurrent As IEnumerable(Of String) = notesNeeded.Except(currentNotes) 'returns all new people who need notes
-                            Dim notInNew As IEnumerable(Of String) = currentNotes.Except(notesNeeded) 'returns the previous people who now dont need notes
-                            If notInNew.Count >= 1 Then
-                                For Each person In notInNew
-                                    Dim oldNotes As String = ""
-                                    Dim fullname = getName(person)
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd2 As New OleDbCommand("SELECT NotesNeeded FROM athleteDb WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            Using dr = cmd.ExecuteReader()
-                                                If dr.HasRows() Then
-                                                    Do While dr.Read()
-                                                        oldNotes = dr(0)
-                                                    Loop
-                                                End If
-                                            End Using
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd2 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = @newNotes WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            Dim newNotes As List(Of String) = oldNotes.Split(";").ToList()
-                                            dtpDate.Format = DateTimePickerFormat.Short
-                                            newNotes.Remove(txtName.Text + " " + dtpDate.Text)
-                                            dtpDate.Format = DateTimePickerFormat.Long
-                                            cmd.Parameters.AddWithValue("@newNotes", String.Join(";", newNotes))
-                                            cmd.ExecuteNonQuery()
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                Next
-                            End If
-                            If notInCurrent.Count >= 1 Then
-                                For Each person In notInCurrent
-                                    Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
-                                        conn1.Open()
-                                        Using cmd1 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
-                                            dtpDate.Format = DateTimePickerFormat.Short
-                                            cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
-                                            dtpDate.Format = DateTimePickerFormat.Long
-                                            Dim fullname = getName(person)
-                                            cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
-                                            cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
-                                            cmd.ExecuteNonQuery()
-                                        End Using
-                                        conn1.Close()
-                                    End Using
-                                Next
-                            End If
+                            'Dim currentNotes As String = ""
+                            'Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                            '    conn1.Open()
+                            '    Using cmd1 As New OleDbCommand("SELECT Notes FROM Events WHERE EventName = @name And EventDate = @Date", conn)
+                            '        cmd.Parameters.AddWithValue("@name", txtName.Text)
+                            '        dtpDate.Format = DateTimePickerFormat.Short
+                            '        cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
+                            '        dtpDate.Format = DateTimePickerFormat.Long
+                            '        Using dr = cmd.ExecuteReader()
+                            '            If dr.HasRows Then
+                            '                Do While dr.Read()
+                            '                    currentNotes = dr(0)
+                            '                Loop
+                            '            Else
+                            '                nameDateMatch = False
+                            '            End If
+                            '        End Using
+                            '    End Using
+                            '    conn1.Close()
+                            'End Using
+                            'Dim notInCurrent As IEnumerable(Of String) = notesNeeded.Except(currentNotes) 'returns all new people who need notes
+                            'Dim notInNew As IEnumerable(Of String) = currentNotes.Except(notesNeeded) 'returns the previous people who now dont need notes
+                            'If notInNew.Count >= 1 Then
+                            '    For Each person In notInNew
+                            '        Dim oldNotes As String = ""
+                            '        Dim fullname = getName(person)
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd2 As New OleDbCommand("SELECT NotesNeeded FROM athleteDb WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                Using dr = cmd.ExecuteReader()
+                            '                    If dr.HasRows() Then
+                            '                        Do While dr.Read()
+                            '                            oldNotes = dr(0)
+                            '                        Loop
+                            '                    End If
+                            '                End Using
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd2 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = @newNotes WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                Dim newNotes As List(Of String) = oldNotes.Split(";").ToList()
+                            '                dtpDate.Format = DateTimePickerFormat.Short
+                            '                newNotes.Remove(txtName.Text + " " + dtpDate.Text)
+                            '                dtpDate.Format = DateTimePickerFormat.Long
+                            '                cmd.Parameters.AddWithValue("@newNotes", String.Join(";", newNotes))
+                            '                cmd.ExecuteNonQuery()
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '    Next
+                            'End If
+                            'If notInCurrent.Count >= 1 Then
+                            '    For Each person In notInCurrent
+                            '        Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                            '            conn1.Open()
+                            '            Using cmd1 As New OleDbCommand("UPDATE athleteDb SET NotesNeeded = IIF(ISNULL(NotesNeeded), '', NotesNeeded & ';') & @newEvent WHERE FirstName = @fName AND LastName = @lName", conn)
+                            '                dtpDate.Format = DateTimePickerFormat.Short
+                            '                cmd.Parameters.AddWithValue("@newEvent", txtName.Text + " " + dtpDate.Text)
+                            '                dtpDate.Format = DateTimePickerFormat.Long
+                            '                Dim fullname = getName(person)
+                            '                cmd.Parameters.AddWithValue("@fName", fullname.split(" ")(0))
+                            '                cmd.Parameters.AddWithValue("@lName", fullname.split(" ")(1))
+                            '                cmd.ExecuteNonQuery()
+                            '            End Using
+                            '            conn1.Close()
+                            '        End Using
+                            '    Next
+                            'End If
                             If chbNA.Checked = False Then
                                 Dim eventTimes As String = ""
                                 For time As Integer = 0 To times.Count - 1
@@ -1081,29 +1155,6 @@ Public Class createEvent
         calendar.calendar_Load(Nothing, Nothing)
     End Sub
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Dim savedEvents As New Dictionary(Of Date, String)
-        'Dim dates As New List(Of Date)
-        'Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-        '    conn.Open()
-        '    Using cmd As New OleDbCommand("SELECT EventName, EventDate FROM Events", conn) '*takes the column with correct rows
-        '        Using dr = cmd.ExecuteReader()
-        '            If dr.HasRows Then
-        '                Do While dr.Read()
-        '                    Dim savedEvent As String = dr("EventDate") & " " & dr("EventName")
-        '                    savedEvents.Add(dr("EventDate"), dr("EventName"))
-        '                    dates.Add(dr("EventDate"))
-        '                Loop
-        '            End If
-        '        End Using
-        '    End Using
-        '    conn.Close()
-        'End Using
-        'dates.Sort()
-        'Dim finalList As New List(Of String)
-        'For Each entry In dates
-        '    finalList.Add(entry.ToShortDateString() & " " & savedEvents(entry))
-        'Next
-        'cmbTemplate.Items.AddRange(finalList.ToArray())
         chbNA.Checked = False
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
         rdbTraining_CheckedChanged(Nothing, Nothing)
@@ -1111,8 +1162,6 @@ Public Class createEvent
         pbAttach.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
         CheckedListBox1.Location = New Point(ComboBox1.Location.X, ComboBox1.Location.Y + ComboBox1.Height)
         CheckedListBox1.Width = ComboBox1.Width
-        'btnSaveEvent.Location = New Point(67, 538)
-        'btnCancel.Location = New Point(btnSaveEvent.Location.X + btnSaveEvent.Width + 22, btnSaveEvent.Location.Y)
         'Maps
         Dim proxyTester = Net.WebRequest.GetSystemWebProxy()
         If (proxyTester.GetProxy(New Uri("http://www.google.com")).Equals(New Uri("http://www.google.com"))) Then 'check if no proxy present by comparing URI's
