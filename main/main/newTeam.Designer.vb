@@ -80,7 +80,7 @@ Partial Class newTeam
         '
         Me.txtSearch.Location = New System.Drawing.Point(12, 101)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(352, 20)
+        Me.txtSearch.Size = New System.Drawing.Size(323, 20)
         Me.txtSearch.TabIndex = 86
         Me.txtSearch.Text = "Search"
         '
@@ -88,9 +88,9 @@ Partial Class newTeam
         '
         Me.cmbFilter.FormattingEnabled = True
         Me.cmbFilter.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
-        Me.cmbFilter.Location = New System.Drawing.Point(370, 100)
+        Me.cmbFilter.Location = New System.Drawing.Point(341, 101)
         Me.cmbFilter.Name = "cmbFilter"
-        Me.cmbFilter.Size = New System.Drawing.Size(121, 21)
+        Me.cmbFilter.Size = New System.Drawing.Size(150, 21)
         Me.cmbFilter.TabIndex = 87
         Me.cmbFilter.Text = "Filter"
         '
