@@ -21,5 +21,13 @@
     End Sub
     Private Sub saveOrOpen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         result = "cancel"
+        If Me.Tag = "results" Then
+            btnSave.Text = "Save Edit"
+            btnOpen.Text = "Edit"
+            Me.Tag = ""
+        Else
+            btnSave.Text = "Save"
+            btnOpen.Text = "Open"
+        End If
     End Sub
 End Class

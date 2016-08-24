@@ -106,7 +106,10 @@ Public Class calendar
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemResults_Click(sender As Object, e As EventArgs)
-
+        Cursor.Current = Cursors.AppStarting
+        eventResults.Tag = sender.OwnerItem.Text + " " + sender.OwnerItem.Tag
+        eventResults.Show()
+        Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemDelete_Click(sender As Object, e As EventArgs)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
