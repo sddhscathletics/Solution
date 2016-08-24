@@ -6,14 +6,14 @@ Public Class newTeam
     Dim listAdd As New List(Of String)
 
     Private Sub newTeam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        populate()
+        populate("")
     End Sub
 
-    Private Sub populate()
+    Private Sub populate(append As String)
         flpAthletes.Controls.Clear()
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName FROM athleteDb", conn)
+            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName FROM athleteDb" + append, conn)
                 'Need to add photo
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
@@ -116,5 +116,10 @@ Public Class newTeam
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         'Commit team and members
         Me.Close()
+    End Sub
+
+    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
+        Dim append As String = " WHERE AgeGroup = '" + cmbAgeGroup.SelectedItem.ToString + "'"
+        populate(append)
     End Sub
 End Class
