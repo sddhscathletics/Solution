@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 'Searching
 'Profile photo
-'Adding and editing
+'Team Manager
 
 Public Class selectAthlete
     Dim listAthletes As New List(Of athlete)
@@ -211,7 +211,10 @@ Public Class selectAthlete
         flp.Controls.Clear()
         Dim append As String = ""
         If tagType = "add" Then
-            append = " = 0 OR Members IS NULL"
+            append += " = 0"
+            If cmbTeamAgeGroup.SelectedItem <> Nothing Then
+                append += " AND AgeGroup = '" + cmbTeamAgeGroup.SelectedItem.ToString + "'"
+            End If
         End If
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
@@ -223,7 +226,7 @@ Public Class selectAthlete
                             {
                             .Margin = New Padding(3, 3, 3, 3),
                             .Height = 20,
-                            .Width = 160,
+                            .Width = 140,
                             .BackColor = panelColor,
                             .Name = dr("Team"),
                             .Tag = tagType
@@ -466,5 +469,9 @@ Public Class selectAthlete
             End If
         End If
         fillPanels()
+    End Sub
+
+    Private Sub cmbTeamAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTeamAgeGroup.SelectedIndexChanged
+        loadTeams(flpAttachTeam, "add")
     End Sub
 End Class

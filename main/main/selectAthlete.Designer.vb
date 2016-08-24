@@ -63,6 +63,8 @@ Partial Class selectAthlete
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.cmbAgeGroup = New System.Windows.Forms.ComboBox()
+        Me.cmbTeamAgeGroup = New System.Windows.Forms.ComboBox()
+        Me.lblTeamSearch = New System.Windows.Forms.Label()
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
         Me.gpbStudent.SuspendLayout()
@@ -74,21 +76,23 @@ Partial Class selectAthlete
         '
         'gpbTeamManagement
         '
+        Me.gpbTeamManagement.Controls.Add(Me.lblTeamSearch)
+        Me.gpbTeamManagement.Controls.Add(Me.cmbTeamAgeGroup)
         Me.gpbTeamManagement.Controls.Add(Me.TextBox1)
         Me.gpbTeamManagement.Controls.Add(Me.lblHeaderTeamManagement)
         Me.gpbTeamManagement.Controls.Add(Me.btnNewTeam)
         Me.gpbTeamManagement.Controls.Add(Me.flpAttachTeam)
         Me.gpbTeamManagement.Location = New System.Drawing.Point(1068, 162)
         Me.gpbTeamManagement.Name = "gpbTeamManagement"
-        Me.gpbTeamManagement.Size = New System.Drawing.Size(184, 288)
+        Me.gpbTeamManagement.Size = New System.Drawing.Size(184, 333)
         Me.gpbTeamManagement.TabIndex = 84
         Me.gpbTeamManagement.TabStop = False
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(6, 23)
+        Me.TextBox1.Location = New System.Drawing.Point(6, 36)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(172, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(170, 20)
         Me.TextBox1.TabIndex = 53
         '
         'lblHeaderTeamManagement
@@ -103,9 +107,9 @@ Partial Class selectAthlete
         '
         'btnNewTeam
         '
-        Me.btnNewTeam.Location = New System.Drawing.Point(6, 251)
+        Me.btnNewTeam.Location = New System.Drawing.Point(6, 295)
         Me.btnNewTeam.Name = "btnNewTeam"
-        Me.btnNewTeam.Size = New System.Drawing.Size(172, 31)
+        Me.btnNewTeam.Size = New System.Drawing.Size(170, 31)
         Me.btnNewTeam.TabIndex = 51
         Me.btnNewTeam.Text = "Create New Team"
         Me.btnNewTeam.UseVisualStyleBackColor = True
@@ -113,9 +117,9 @@ Partial Class selectAthlete
         'flpAttachTeam
         '
         Me.flpAttachTeam.AutoScroll = True
-        Me.flpAttachTeam.Location = New System.Drawing.Point(6, 49)
+        Me.flpAttachTeam.Location = New System.Drawing.Point(6, 89)
         Me.flpAttachTeam.Name = "flpAttachTeam"
-        Me.flpAttachTeam.Size = New System.Drawing.Size(172, 196)
+        Me.flpAttachTeam.Size = New System.Drawing.Size(170, 200)
         Me.flpAttachTeam.TabIndex = 50
         '
         'lblID
@@ -463,6 +467,25 @@ Partial Class selectAthlete
         Me.cmbAgeGroup.TabIndex = 88
         Me.cmbAgeGroup.Text = "Age Group"
         '
+        'cmbTeamAgeGroup
+        '
+        Me.cmbTeamAgeGroup.FormattingEnabled = True
+        Me.cmbTeamAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
+        Me.cmbTeamAgeGroup.Location = New System.Drawing.Point(6, 62)
+        Me.cmbTeamAgeGroup.Name = "cmbTeamAgeGroup"
+        Me.cmbTeamAgeGroup.Size = New System.Drawing.Size(170, 21)
+        Me.cmbTeamAgeGroup.TabIndex = 90
+        Me.cmbTeamAgeGroup.Text = "Age Group"
+        '
+        'lblTeamSearch
+        '
+        Me.lblTeamSearch.AutoSize = True
+        Me.lblTeamSearch.Location = New System.Drawing.Point(3, 20)
+        Me.lblTeamSearch.Name = "lblTeamSearch"
+        Me.lblTeamSearch.Size = New System.Drawing.Size(41, 13)
+        Me.lblTeamSearch.TabIndex = 51
+        Me.lblTeamSearch.Text = "Search"
+        '
         'selectAthlete
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -547,4 +570,6 @@ Partial Class selectAthlete
     Friend WithEvents lblStNo As Label
     Friend WithEvents cmbFilter As ComboBox
     Friend WithEvents cmbAgeGroup As ComboBox
+    Friend WithEvents lblTeamSearch As Label
+    Friend WithEvents cmbTeamAgeGroup As ComboBox
 End Class
