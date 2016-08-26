@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 'Searching
+'Add a whole new flp?
 
 Public Class newTeam
     Dim panelColor As Color = Color.CadetBlue
@@ -111,6 +112,26 @@ Public Class newTeam
         Else
             clicked.BackColor = Color.Green 'Highlight team for addition
             listSelect.Add(clicked.Name)
+        End If
+        If listSelect.Count = Nothing Then
+            txtSelectedMembers.Text = "Please add members to the team on the left."
+        Else
+            Dim listOutput As New List(Of String)
+            Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+                conn.Open()
+                For Each id As String In listSelect
+                    Using cmd As New OleDbCommand("SELECT FirstName, LastName FROM athleteDb WHERE ID = " + id, conn)
+                        Using dr = cmd.ExecuteReader()
+                            If dr.HasRows Then
+                                Do While dr.Read()
+                                    listOutput.Add(id + ": " + dr("LastName").ToString.ToUpper + ", " + dr("FirstName"))
+                                Loop
+                            End If
+                        End Using
+                    End Using
+                Next
+            End Using
+            txtSelectedMembers.Lines = listOutput.ToArray
         End If
     End Sub
 

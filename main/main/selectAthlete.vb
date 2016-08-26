@@ -96,6 +96,7 @@ Public Class selectAthlete
             AddHandler roll.MouseClick, AddressOf labelClicked
             AddHandler fName.MouseClick, AddressOf labelClicked
             AddHandler lName.MouseClick, AddressOf labelClicked
+
         Next
     End Sub
 
@@ -231,6 +232,7 @@ Public Class selectAthlete
                             .Name = dr("Team"),
                             .Tag = tagType
                             }
+
                             Dim teamLabel As New Label With
                             {
                             .Text = dr("Team"),

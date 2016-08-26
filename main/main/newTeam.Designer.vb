@@ -26,16 +26,18 @@ Partial Class newTeam
         Me.cmbAgeGroup = New System.Windows.Forms.ComboBox()
         Me.lblTeamName = New System.Windows.Forms.Label()
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
-        Me.lblSelectMembers = New System.Windows.Forms.Label()
+        Me.lblAddMembers = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.lblSelectedMembers = New System.Windows.Forms.Label()
+        Me.txtSelectedMembers = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'txtTeamName
         '
-        Me.txtTeamName.Location = New System.Drawing.Point(12, 25)
+        Me.txtTeamName.Location = New System.Drawing.Point(177, 23)
         Me.txtTeamName.Name = "txtTeamName"
         Me.txtTeamName.Size = New System.Drawing.Size(179, 20)
         Me.txtTeamName.TabIndex = 0
@@ -44,7 +46,7 @@ Partial Class newTeam
         '
         Me.cmbAgeGroup.FormattingEnabled = True
         Me.cmbAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbAgeGroup.Location = New System.Drawing.Point(12, 51)
+        Me.cmbAgeGroup.Location = New System.Drawing.Point(177, 49)
         Me.cmbAgeGroup.Name = "cmbAgeGroup"
         Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 21)
         Me.cmbAgeGroup.TabIndex = 1
@@ -53,7 +55,7 @@ Partial Class newTeam
         'lblTeamName
         '
         Me.lblTeamName.AutoSize = True
-        Me.lblTeamName.Location = New System.Drawing.Point(9, 9)
+        Me.lblTeamName.Location = New System.Drawing.Point(174, 7)
         Me.lblTeamName.Name = "lblTeamName"
         Me.lblTeamName.Size = New System.Drawing.Size(65, 13)
         Me.lblTeamName.TabIndex = 2
@@ -64,23 +66,23 @@ Partial Class newTeam
         Me.flpAthletes.AutoScroll = True
         Me.flpAthletes.Location = New System.Drawing.Point(12, 127)
         Me.flpAthletes.Name = "flpAthletes"
-        Me.flpAthletes.Size = New System.Drawing.Size(479, 263)
+        Me.flpAthletes.Size = New System.Drawing.Size(459, 263)
         Me.flpAthletes.TabIndex = 84
         '
-        'lblSelectMembers
+        'lblAddMembers
         '
-        Me.lblSelectMembers.AutoSize = True
-        Me.lblSelectMembers.Location = New System.Drawing.Point(9, 85)
-        Me.lblSelectMembers.Name = "lblSelectMembers"
-        Me.lblSelectMembers.Size = New System.Drawing.Size(83, 13)
-        Me.lblSelectMembers.TabIndex = 85
-        Me.lblSelectMembers.Text = "Select Members"
+        Me.lblAddMembers.AutoSize = True
+        Me.lblAddMembers.Location = New System.Drawing.Point(9, 85)
+        Me.lblAddMembers.Name = "lblAddMembers"
+        Me.lblAddMembers.Size = New System.Drawing.Size(72, 13)
+        Me.lblAddMembers.TabIndex = 85
+        Me.lblAddMembers.Text = "Add Members"
         '
         'txtSearch
         '
         Me.txtSearch.Location = New System.Drawing.Point(12, 101)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(323, 20)
+        Me.txtSearch.Size = New System.Drawing.Size(303, 20)
         Me.txtSearch.TabIndex = 86
         Me.txtSearch.Text = "Search"
         '
@@ -88,7 +90,7 @@ Partial Class newTeam
         '
         Me.cmbFilter.FormattingEnabled = True
         Me.cmbFilter.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
-        Me.cmbFilter.Location = New System.Drawing.Point(341, 101)
+        Me.cmbFilter.Location = New System.Drawing.Point(321, 101)
         Me.cmbFilter.Name = "cmbFilter"
         Me.cmbFilter.Size = New System.Drawing.Size(150, 21)
         Me.cmbFilter.TabIndex = 87
@@ -98,7 +100,7 @@ Partial Class newTeam
         '
         Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.iconCancel
         Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnCancel.Location = New System.Drawing.Point(416, 9)
+        Me.btnCancel.Location = New System.Drawing.Point(93, 7)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 75)
         Me.btnCancel.TabIndex = 83
@@ -108,20 +110,41 @@ Partial Class newTeam
         '
         Me.btnSave.BackgroundImage = Global.main.My.Resources.Resources.iconSave
         Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnSave.Location = New System.Drawing.Point(335, 9)
+        Me.btnSave.Location = New System.Drawing.Point(12, 7)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 75)
         Me.btnSave.TabIndex = 82
         Me.btnSave.UseVisualStyleBackColor = True
         '
+        'lblSelectedMembers
+        '
+        Me.lblSelectedMembers.AutoSize = True
+        Me.lblSelectedMembers.Location = New System.Drawing.Point(474, 7)
+        Me.lblSelectedMembers.Name = "lblSelectedMembers"
+        Me.lblSelectedMembers.Size = New System.Drawing.Size(95, 13)
+        Me.lblSelectedMembers.TabIndex = 88
+        Me.lblSelectedMembers.Text = "Selected Members"
+        '
+        'txtSelectedMembers
+        '
+        Me.txtSelectedMembers.Enabled = False
+        Me.txtSelectedMembers.Location = New System.Drawing.Point(477, 23)
+        Me.txtSelectedMembers.Multiline = True
+        Me.txtSelectedMembers.Name = "txtSelectedMembers"
+        Me.txtSelectedMembers.Size = New System.Drawing.Size(246, 367)
+        Me.txtSelectedMembers.TabIndex = 89
+        Me.txtSelectedMembers.Text = "Please add members to the team on the left."
+        '
         'newTeam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(503, 402)
+        Me.ClientSize = New System.Drawing.Size(735, 402)
+        Me.Controls.Add(Me.txtSelectedMembers)
+        Me.Controls.Add(Me.lblSelectedMembers)
         Me.Controls.Add(Me.cmbFilter)
         Me.Controls.Add(Me.txtSearch)
-        Me.Controls.Add(Me.lblSelectMembers)
+        Me.Controls.Add(Me.lblAddMembers)
         Me.Controls.Add(Me.flpAthletes)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
@@ -142,7 +165,9 @@ Partial Class newTeam
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnSave As Button
     Friend WithEvents flpAthletes As FlowLayoutPanel
-    Friend WithEvents lblSelectMembers As Label
+    Friend WithEvents lblAddMembers As Label
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents cmbFilter As ComboBox
+    Friend WithEvents lblSelectedMembers As Label
+    Friend WithEvents txtSelectedMembers As TextBox
 End Class
