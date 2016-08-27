@@ -4,6 +4,7 @@ Public Class calendar
     Dim selectionCount As Integer = 0
     Dim firstClickTime As Integer = 0
     Dim eventInfo As New Dictionary(Of Date, List(Of String))
+    Dim showPos As Point
     Private Sub mnCalendar_DateSelected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles mnCalendar.DateSelected
         'If selectionCount = 0 Then
         '    firstSelection = mnCalendar.SelectionStart
@@ -30,6 +31,7 @@ Public Class calendar
                             .Text = eventName
                             .Tag = e.Start.ToShortDateString()
                         End With
+                        AddHandler newMnuItm.MouseEnter, AddressOf newMnuItem_MouseEnter
                         For i As Integer = 1 To 3
                             Dim subMnuItm As New ToolStripMenuItem
                             With subMnuItm
@@ -60,7 +62,35 @@ Public Class calendar
         Else
             cms.Items.Add("Add", Nothing, AddressOf menuItemAdd_Click)
         End If
-        cms.Show(Cursor.Position)
+        showPos = Cursor.Position
+        cms.Show(showPos)
+    End Sub
+    Private Sub newMnuItem_MouseEnter(sender As Object, e As EventArgs)
+        Dim notesEntered = hasNote(sender.text, sender.tag)
+        Dim resultsEntered = hasResult(sender.text, sender.tag)
+        If notesEntered And resultsEntered Then
+            '.BackColor = Color.Green
+        ElseIf (notesEntered And resultsEntered = False) Or (notesEntered = False And resultsEntered) Then
+            '  .ForeColor = Color.DarkOrange
+            Using brder As New Pen(Color.Orange)
+                Using myBrush As New System.Drawing.SolidBrush(Color.FromArgb(128, Color.Orange))
+                    Using g As Graphics = Me.CreateGraphics()
+
+
+
+                        Dim xloc = e '+ sender.width
+                        Dim yloc = cms.Location.Y '+ sender.height + 1
+                        g.FillRectangle(myBrush, New Rectangle(showPos.X, showPos.Y, sender.DropDownItems(1).Bounds.Width, sender.DropDownItems(1).Bounds.Height))
+                        'g.DrawLine(brder, 10, 50, 200, 50)
+                        ' myBrush.Color = Color.BlueViolet ' change brush color
+                        ' g.FillEllipse(myBrush, 40, 90, 86, 30)
+                    End Using
+                End Using
+            End Using
+        End If
+    End Sub
+    Private Sub cms_MouseLeave(sender As Object, e As EventArgs) Handles cms.MouseLeave
+        Me.Refresh()
     End Sub
     Public Sub calendar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mnCalendar.BoldedDates = New Date() {}
@@ -87,6 +117,40 @@ Public Class calendar
         End Using
         mnCalendar.UpdateBoldedDates()
     End Sub
+    Private Function hasResult(eventName, eventDate)
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT TOP 1 AthleteName FROM resultsDb WHERE MeetName = @name AND EventDate = @date", conn)
+                cmd.Parameters.AddWithValue("@name", eventName)
+                cmd.Parameters.AddWithValue("@date", eventDate)
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows() Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        End Using
+    End Function
+    Private Function hasNote(eventName, eventDate)
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT TOP 1 * FROM Events WHERE EventName = @name AND EventDate = @date AND NotesGiven IS NOT NULL", conn)
+                cmd.Parameters.AddWithValue("@name", eventName)
+                cmd.Parameters.AddWithValue("@date", eventDate)
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows() Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        End Using
+    End Function
     Private Sub menuItemAdd_Click()
         Cursor.Current = Cursors.AppStarting
         createEvent.Show()

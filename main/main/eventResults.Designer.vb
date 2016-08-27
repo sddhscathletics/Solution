@@ -29,13 +29,14 @@ Partial Class eventResults
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
         Me.gbResults = New System.Windows.Forms.GroupBox()
         Me.pnlAttach = New System.Windows.Forms.Panel()
+        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.lblNotes = New System.Windows.Forms.Label()
         Me.ofdOpen = New System.Windows.Forms.OpenFileDialog()
-        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSaveEvent = New System.Windows.Forms.Button()
         Me.rchTxt = New System.Windows.Forms.RichTextBox()
         Me.lblEdit = New System.Windows.Forms.Label()
+        Me.sfdSave = New System.Windows.Forms.SaveFileDialog()
         Me.gbNotes.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +120,18 @@ Partial Class eventResults
         Me.pnlAttach.Size = New System.Drawing.Size(305, 56)
         Me.pnlAttach.TabIndex = 44
         '
+        'pbAttach
+        '
+        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbAttach.Location = New System.Drawing.Point(114, 0)
+        Me.pbAttach.Name = "pbAttach"
+        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
+        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbAttach.TabIndex = 42
+        Me.pbAttach.TabStop = False
+        Me.pbAttach.Tag = "add"
+        '
         'lblNotes
         '
         Me.lblNotes.AutoSize = True
@@ -132,18 +145,6 @@ Partial Class eventResults
         'ofdOpen
         '
         Me.ofdOpen.FileName = "OpenFileDialog1"
-        '
-        'pbAttach
-        '
-        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(114, 0)
-        Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
-        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbAttach.TabIndex = 42
-        Me.pbAttach.TabStop = False
-        Me.pbAttach.Tag = "add"
         '
         'btnCancel
         '
@@ -170,6 +171,7 @@ Partial Class eventResults
         Me.rchTxt.Name = "rchTxt"
         Me.rchTxt.Size = New System.Drawing.Size(305, 208)
         Me.rchTxt.TabIndex = 63
+        Me.rchTxt.Tag = "empty"
         Me.rchTxt.Text = ""
         '
         'lblEdit
@@ -223,4 +225,5 @@ Partial Class eventResults
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnSaveEvent As Button
     Friend WithEvents lblEdit As Label
+    Friend WithEvents sfdSave As SaveFileDialog
 End Class

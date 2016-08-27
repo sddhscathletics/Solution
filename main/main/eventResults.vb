@@ -2,6 +2,7 @@
 Public Class eventResults
     Public Shared notesNotAdded As New List(Of String) From {}
     Public Shared newNotes As New List(Of String) From {} 'any new notes given in the current entry
+    Public Shared editMade As Boolean = False
     Dim loadThread As Threading.Thread = New Threading.Thread(Sub() loadVariables())
     Private Sub cmbGroup_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbGroup.SelectedValueChanged
         Cursor.Current = Cursors.AppStarting
@@ -128,6 +129,8 @@ Public Class eventResults
             MessageBox.Show(added.ToString() & " note was added and " & removed.ToString() & " were removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ElseIf added <> 1 And removed = 1 Then
             MessageBox.Show(added.ToString() & " notes were added and " & removed.ToString() & " was removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf added = 1 And removed = 1 Then
+            MessageBox.Show(added.ToString() & " note was added and " & removed.ToString() & " was removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             MessageBox.Show(added.ToString() & " notes were added and " & removed.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
@@ -224,6 +227,32 @@ Public Class eventResults
         End Using
         Dim eventList = notesIn.Split(";")
         Return eventList.ToList()
+    End Function
+    Private Function getAgeGroupByName(name)
+        Dim age As String = ""
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT AgeGroup FROM athleteDb WHERE LastName = ? AND FirstName = ?", conn) '*takes the column with correct rows
+                Dim nameSplit() As String = name.Split(" ")
+                Dim p1 = cmd.CreateParameter()
+                p1.Value = nameSplit(nameSplit.Count - 1)
+                cmd.Parameters.Add(p1)
+                Dim tempList = nameSplit.ToList()
+                tempList.RemoveAt(nameSplit.Count - 1)
+                Dim p2 = cmd.CreateParameter()
+                p2.Value = String.Join(" ", tempList)
+                cmd.Parameters.Add(p2)
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            age = dr(0)
+                        Loop
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        End Using
+        Return age
     End Function
     Private Sub createAthletePanel(info As String)
         'info is in the form: name; id; rollclass; averages; recents; unexplained
@@ -354,6 +383,7 @@ Public Class eventResults
             ofdOpen.Filter = "Text Files (*.txt)|*.txt"
             ofdOpen.ShowDialog()
             If ofdOpen.FileName <> "" Then
+                editMade = False
                 pbAttach.Location = New Point(-1, -1)
                 Dim backSplit = ofdOpen.FileName.Split("\")
                 pbAttach.Tag = backSplit(backSplit.Count - 1)
@@ -373,7 +403,22 @@ Public Class eventResults
             saveOrOpen.Tag = "results"
             saveOrOpen.ShowDialog()
             If saveOrOpen.result = "save" Then
-
+                sfdSave.FileName = IO.Path.GetFileNameWithoutExtension(ofdOpen.FileName) + " Edit.txt"
+                sfdSave.Filter = "Text Files (*.txt)|*.txt"
+                sfdSave.ShowDialog()
+                Using writer As IO.StreamWriter = New IO.StreamWriter(sfdSave.FileName)
+                    Dim k = rchTxt.Text.Split(ControlChars.Lf)
+                    For Each line In k
+                        writer.WriteLine(line)
+                    Next
+                End Using
+                If MessageBox.Show("Would you like to use this edited file for your results?", "Confirm Results File", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                    pbAttach.Tag = IO.Path.GetFileNameWithoutExtension(sfdSave.FileName) + ".txt"
+                    For Each lbl In pnlAttach.Controls.OfType(Of Label)
+                        lbl.Text = pbAttach.Tag
+                    Next
+                    ofdOpen.FileName = sfdSave.FileName
+                End If
             ElseIf saveOrOpen.result = "open" Then
                 rchTxt.Enabled = True
                 lblEdit.Enabled = True
@@ -385,12 +430,250 @@ Public Class eventResults
                         line = reader.ReadLine()
                     Loop
                 End Using
+                rchTxt.Tag = ""
             ElseIf saveOrOpen.result = "delete" Then
-
+                pbAttach.Location = New Point(114, 0)
+                pbAttach.Image = My.Resources.transparent_plus
+                editMade = False
+                lblEdit.Enabled = False
+                rchTxt.Enabled = False
+                rchTxt.Text = ""
+                rchTxt.Tag = "empty"
+                For Each lbl In pnlAttach.Controls.OfType(Of Label)
+                    pnlAttach.Controls.Remove(lbl)
+                    Exit For
+                Next
             End If
         End If
     End Sub
     Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
         pnlAttach_Click(Nothing, Nothing)
+    End Sub
+    Private Sub rchTxt_TextChanged(sender As Object, e As EventArgs) Handles rchTxt.TextChanged
+        If rchTxt.Tag <> "empty" Then
+            Dim txt As String = ""
+            Using reader As IO.StreamReader = New IO.StreamReader(ofdOpen.FileName)
+                Dim line As String
+                line = reader.ReadLine()
+                Do While (line IsNot Nothing)
+                    txt += line + vbNewLine
+                    line = reader.ReadLine()
+                Loop
+            End Using
+            If txt = rchTxt.Text Then
+                editMade = False
+            Else
+                editMade = True
+            End If
+        End If
+    End Sub
+    Private Sub eventResults_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
+        If btnSaveEvent.Tag <> "saved" Then
+            If MessageBox.Show("Are you sure you want to close the form?" + vbNewLine + "If there is information that has not been saved, it will be lost.", "Close Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                notesNotAdded.Clear()
+                newNotes.Clear()
+                editMade = False
+            Else
+                e.Cancel = True
+            End If
+        Else
+            btnSaveEvent.Tag = ""
+            notesNotAdded.Clear()
+            newNotes.Clear()
+            editMade = False
+        End If
+        calendar.calendar_Load(Nothing, Nothing)
+    End Sub
+    'how are you going to keep the text file there when you open the same thing after save?
+    'maybe add into attachments?
+    'what about new results being added?
+    'remove the previous results for that event and rewrite
+    'provide warning that ALL results need to be included
+    'when generating toolstripitem, yellow for only one, green for two
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Me.Close()
+    End Sub
+    Private Sub btnSaveEvent_Click(sender As Object, e As EventArgs) Handles btnSaveEvent.Click
+        'update the notes handed in
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("UPDATE Events SET NotesGiven = ? WHERE EventName = @name AND EventDate = @date", conn)
+                Dim notesGiven As String = ""
+                For note As Integer = 0 To newNotes.Count - 1
+                    If note = 0 Then
+                        notesGiven = newNotes(note)
+                    Else
+                        notesGiven += ";" & newNotes(note)
+                    End If
+                Next
+                Dim p1 = cmd.CreateParameter()
+                p1.Value = notesGiven
+                cmd.Parameters.Add(p1)
+                Dim tagSplit = Me.Tag.split(" ")
+                Dim name As String = ""
+                For part As Integer = 0 To tagSplit.Length - 2
+                    If part <> tagSplit.Length - 2 Then
+                        name += tagSplit(part) + " "
+                    Else
+                        name += tagSplit(part)
+                    End If
+                Next
+                cmd.Parameters.AddWithValue("@name", RTrim(name))
+                cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+            End Using
+            conn.Close()
+        End Using
+        Dim resultsAdded As Boolean = False, changes As Integer = 0
+        If pbAttach.Tag <> "add" Then
+            If MessageBox.Show("If previous results have been entered they will all be deleted and the new results will be entered." + vbNewLine + "Would you like to continue?", "New Results", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                'delete all previous results if they exist
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("DELETE FROM resultsDb WHERE MeetName = @name AND EventDate = @date", conn)
+                        Dim tagSplit = Me.Tag.split(" ")
+                        Dim name As String = ""
+                        For part As Integer = 0 To tagSplit.Length - 2
+                            If part <> tagSplit.Length - 2 Then
+                                name += tagSplit(part) + " "
+                            Else
+                                name += tagSplit(part)
+                            End If
+                        Next
+                        cmd.Parameters.AddWithValue("@name", RTrim(name))
+                        cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                        cmd.ExecuteNonQuery()
+                    End Using
+                    conn.Close()
+                End Using
+                'read the results file and add the results
+                Using reader As IO.StreamReader = New IO.StreamReader(ofdOpen.FileName)
+                    Dim line As String
+                    line = reader.ReadLine()
+                    Do While (line IsNot Nothing)
+                        Dim splitLine = line.Split(" ")
+                        If line.Contains("4x100m") Then
+                            Dim commaSplit = line.Split(",")
+                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                                conn.Open()
+                                Using cmd As New OleDbCommand("INSERT INTO resultsDb (AthleteName, AgeGroup, Result, MeetName, EventName, EventDate) VALUES (@person, @age, @result, @name, @event, @date)", conn)
+                                    Dim tagSplit = Me.Tag.split(" ")
+                                    Dim name As String = ""
+                                    For part As Integer = 0 To tagSplit.Length - 2
+                                        If part <> tagSplit.Length - 2 Then
+                                            name += tagSplit(part) + " "
+                                        Else
+                                            name += tagSplit(part)
+                                        End If
+                                    Next
+                                    Dim tempList = splitLine.ToList()
+                                    tempList.RemoveAt(tempList.Count - 1)
+                                    tempList.RemoveAt(tempList.Count - 1)
+                                    cmd.Parameters.AddWithValue("@person", String.Join(" ", tempList))
+                                    cmd.Parameters.AddWithValue("@age", getAgeGroupByName(commaSplit(0)))
+                                    cmd.Parameters.AddWithValue("@result", splitLine(splitLine.Count - 1))
+                                    cmd.Parameters.AddWithValue("@name", RTrim(name))
+                                    cmd.Parameters.AddWithValue("@event", "4x100m")
+                                    cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                                    changes += cmd.ExecuteNonQuery()
+                                End Using
+                                conn.Close()
+                            End Using
+                        Else
+                            Dim name As String = ""
+                            For index = splitLine.Count - 1 To 1 Step -2
+                                If Char.IsDigit(splitLine(index)) = False Then
+                                    Dim tempList = splitLine.ToList
+                                    tempList.RemoveRange(index + 1, splitLine.Count - (index + 1))
+                                    name = String.Join(" ", tempList)
+                                    Exit For
+                                End If
+                            Next
+                            For i = splitLine.Count - 1 To 1 Step -2
+                                If Char.IsDigit(splitLine(i)) Then
+                                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                                        conn.Open()
+                                        'paramaters to wrong field?
+                                        Using cmd As New OleDbCommand("INSERT INTO resultsDb (AthleteName, AgeGroup, Result, MeetName, EventName, EventDate) VALUES (@person, @age, @result, @name, @event, @date)", conn)
+                                            Dim tagSplit = Me.Tag.split(" ")
+                                            Dim evName As String = ""
+                                            For part As Integer = 0 To tagSplit.Length - 2
+                                                If part <> tagSplit.Length - 2 Then
+                                                    evName += tagSplit(part) + " "
+                                                Else
+                                                    evName += tagSplit(part)
+                                                End If
+                                            Next
+                                            cmd.Parameters.AddWithValue("@person", name)
+                                            cmd.Parameters.AddWithValue("@age", getAgeGroupByName(name))
+                                            cmd.Parameters.AddWithValue("@result", splitLine(i))
+                                            cmd.Parameters.AddWithValue("@name", RTrim(evName))
+                                            cmd.Parameters.AddWithValue("@event", splitLine(i - 1))
+                                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                                            changes += cmd.ExecuteNonQuery()
+                                        End Using
+                                        conn.Close()
+                                    End Using
+                                End If
+                            Next
+                        End If
+                        line = reader.ReadLine()
+                    Loop
+                End Using
+                'check if the results file exists and then either add or update
+                Dim hasMatch As Boolean = False
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("SELECT FileName FROM Attachments WHERE FileName = @name", conn)
+                        Dim splitPath = ofdOpen.FileName.Split("\")
+                        cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                        Using dr = cmd.ExecuteReader()
+                            If dr.HasRows Then
+                                Do While dr.Read()
+                                    hasMatch = True
+                                Loop
+                            Else
+                                hasMatch = False
+                            End If
+                        End Using
+                    End Using
+                End Using
+                If hasMatch = False Then
+                    Using fs As New System.IO.FileStream(ofdOpen.FileName, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+                        Dim myData(fs.Length) As Byte
+                        fs.Read(myData, 0, fs.Length)
+                        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                            conn.Open()
+                            Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn) 'INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)
+                                Dim splitPath = ofdOpen.FileName.Split("\")
+                                cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                cmd.Parameters.Add("@attachments", OleDbType.VarBinary, fs.Length).Value = myData
+                                cmd.ExecuteNonQuery()
+                            End Using
+                        End Using
+                    End Using
+                Else
+                    Using fs As New System.IO.FileStream(ofdOpen.FileName, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+                        Dim myData(fs.Length) As Byte
+                        fs.Read(myData, 0, fs.Length)
+                        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                            conn.Open()
+                            Using cmd As New OleDbCommand("UPDATE Attachments SET FileInfo = @attachment WHERE FileName = @name", conn)
+                                Dim splitPath = ofdOpen.FileName.Split("\")
+                                cmd.Parameters.Add("@attachment", OleDbType.VarBinary, fs.Length).Value = myData
+                                cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                cmd.ExecuteNonQuery()
+                            End Using
+                        End Using
+                    End Using
+                End If
+            End If
+        End If
+        btnSaveEvent.Tag = "saved"
+        If changes <> 0 Then
+            MessageBox.Show("Notes handed in were updated and results were saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            MessageBox.Show("Notes handed in were updated.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+        Me.Close()
     End Sub
 End Class

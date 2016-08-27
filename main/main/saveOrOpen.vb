@@ -23,10 +23,16 @@
         result = "cancel"
         If Me.Tag = "results" Then
             btnSave.Text = "Save Edit"
+            If eventResults.editMade = True Then
+                btnSave.Enabled = True
+            Else
+                btnSave.Enabled = False
+            End If
             btnOpen.Text = "Edit"
             Me.Tag = ""
         Else
             btnSave.Text = "Save"
+            btnSave.Enabled = True
             btnOpen.Text = "Open"
         End If
     End Sub
