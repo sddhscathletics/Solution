@@ -4,23 +4,7 @@ Public Class calendar
     Dim selectionCount As Integer = 0
     Dim firstClickTime As Integer = 0
     Dim eventInfo As New Dictionary(Of Date, List(Of String))
-    Dim showPos As Point
     Private Sub mnCalendar_DateSelected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles mnCalendar.DateSelected
-        'If selectionCount = 0 Then
-        '    firstSelection = mnCalendar.SelectionStart
-        '    selectionCount += 1
-        '    firstClickTime = Environment.TickCount
-        'Else
-        '    If firstSelection = mnCalendar.SelectionStart Then
-        '        Dim timeBetweenClicks = Environment.TickCount - firstClickTime
-        '        If timeBetweenClicks <= SystemInformation.DoubleClickTime Then
-        '            Cursor.Current = Cursors.AppStarting
-        '            createEvent.Show()
-        '            Cursor.Current = Cursors.Default
-        '        End If
-        '    End If
-        '    selectionCount = 0
-        'End If
         cms.Items.Clear()
         If mnCalendar.BoldedDates.Contains(e.Start.ToShortDateString()) Then
             For Each dt In eventInfo
@@ -31,63 +15,80 @@ Public Class calendar
                             .Text = eventName
                             .Tag = e.Start.ToShortDateString()
                         End With
-                        AddHandler newMnuItm.MouseEnter, AddressOf newMnuItem_MouseEnter
-                        For i As Integer = 1 To 3
-                            Dim subMnuItm As New ToolStripMenuItem
-                            With subMnuItm
-                                Select Case i
-                                    Case 1
-                                        .Text = "Edit"
-                                        AddHandler subMnuItm.Click, AddressOf menuItemEdit_Click
-                                    Case 2
-                                        .Text = "Results"
-                                        AddHandler subMnuItm.Click, AddressOf menuItemResults_Click
-                                    Case 3
-                                        .Text = "Delete"
-                                        AddHandler subMnuItm.Click, AddressOf menuItemDelete_Click
-                                End Select
-                            End With
-                            newMnuItm.DropDownItems.Add(subMnuItm)
-                        Next
+                        If access = 0 Then
+                            AddHandler newMnuItm.MouseEnter, AddressOf newMnuItem_MouseEnter
+                            For i As Integer = 1 To 3
+                                Dim subMnuItm As New ToolStripMenuItem
+                                With subMnuItm
+                                    Select Case i
+                                        Case 1
+                                            .Text = "Edit"
+                                            AddHandler subMnuItm.Click, AddressOf menuItemEdit_Click
+                                        Case 2
+                                            .Text = "Results"
+                                            AddHandler subMnuItm.Click, AddressOf menuItemResults_Click
+                                        Case 3
+                                            .Text = "Delete"
+                                            AddHandler subMnuItm.Click, AddressOf menuItemDelete_Click
+                                    End Select
+                                End With
+                                newMnuItm.DropDownItems.Add(subMnuItm)
+                            Next
+                        Else
+                            AddHandler newMnuItm.Click, AddressOf menuItemView_Click
+                        End If
                         cms.Items.Add(newMnuItm)
                     Next
                     Exit For
                 End If
             Next
-            cms.Items.Add("Add", Nothing, AddressOf menuItemAdd_Click)
+
             'Dim ptLowerLeft = New Point(0, sender.Height)
             'ptLowerLeft = sender.PointToScreen(ptLowerLeft)
             'Dim menu As New ContextMenuStrip
             'menu.Show(ptLowerLeft)
-        Else
+        End If
+        If access = 0 Then
             cms.Items.Add("Add", Nothing, AddressOf menuItemAdd_Click)
         End If
-        showPos = Cursor.Position
-        cms.Show(showPos)
+        cms.Show(Cursor.Position)
+        'If selectionCount = 0 Then
+        '    firstSelection = mnCalendar.SelectionStart
+        '    selectionCount += 1
+        '    firstClickTime = Environment.TickCount
+        'Else
+        '    If firstSelection = mnCalendar.SelectionStart Then
+        '        Dim timeBetweenClicks = Environment.TickCount - firstClickTime
+        '        If timeBetweenClicks <= SystemInformation.DoubleClickTime Then
     End Sub
     Private Sub newMnuItem_MouseEnter(sender As Object, e As EventArgs)
-        Dim notesEntered = hasNote(sender.text, sender.tag)
-        Dim resultsEntered = hasResult(sender.text, sender.tag)
-        If notesEntered And resultsEntered Then
-            '.BackColor = Color.Green
-        ElseIf (notesEntered And resultsEntered = False) Or (notesEntered = False And resultsEntered) Then
-            '  .ForeColor = Color.DarkOrange
-            Using brder As New Pen(Color.Orange)
-                Using myBrush As New System.Drawing.SolidBrush(Color.FromArgb(128, Color.Orange))
-                    Using g As Graphics = Me.CreateGraphics()
+        Using g As Graphics = Me.CreateGraphics()
+            Dim x = cms.Location.X - mnCalendar.Location.X - 40
+            Dim y = cms.Location.Y - mnCalendar.Location.Y - 50
+            g.FillRectangle(New SolidBrush(Color.FromArgb(128, Color.Orange)), New Rectangle(New Point(x, y), sender.size))
+        End Using
+        'Dim notesEntered = hasNote(sender.text, sender.tag)
+        'Dim resultsEntered = hasResult(sender.text, sender.tag)
+        'If notesEntered And resultsEntered Then
+        '    '.BackColor = Color.Green
+        'ElseIf (notesEntered And resultsEntered = False) Or (notesEntered = False And resultsEntered) Then
+        '    '  .ForeColor = Color.DarkOrange
+        '    Using brder As New Pen(Color.Orange)
+        '        Using myBrush As New System.Drawing.SolidBrush(Color.FromArgb(128, Color.Orange))
+        '            Using g As Graphics = Me.CreateGraphics()
 
 
 
-                        Dim xloc = e '+ sender.width
-                        Dim yloc = cms.Location.Y '+ sender.height + 1
-                        g.FillRectangle(myBrush, New Rectangle(showPos.X, showPos.Y, sender.DropDownItems(1).Bounds.Width, sender.DropDownItems(1).Bounds.Height))
-                        'g.DrawLine(brder, 10, 50, 200, 50)
-                        ' myBrush.Color = Color.BlueViolet ' change brush color
-                        ' g.FillEllipse(myBrush, 40, 90, 86, 30)
-                    End Using
-                End Using
-            End Using
-        End If
+        '                Dim xloc = e '+ sender.width
+        '                Dim yloc = cms.Location.Y '+ sender.height + 1
+        '                g.FillRectangle(myBrush, New Rectangle(showPos.X, showPos.Y, sender.DropDownItems(1).Bounds.Width, sender.DropDownItems(1).Bounds.Height))
+        '                'g.DrawLine(brder, 10, 50, 200, 50)
+        '                ' myBrush.Color = Color.BlueViolet ' change brush color
+        '                ' g.FillEllipse(myBrush, 40, 90, 86, 30)
+        '            End Using
+        '        End Using
+        '    End Using
+        'End If
     End Sub
     Private Sub cms_MouseLeave(sender As Object, e As EventArgs) Handles cms.MouseLeave
         Me.Refresh()
@@ -155,6 +156,20 @@ Public Class calendar
         Cursor.Current = Cursors.AppStarting
         createEvent.Show()
         createEvent.Tag = "add"
+        Cursor.Current = Cursors.Default
+    End Sub
+    Private Sub menuItemView_Click(sender As Object, e As EventArgs)
+        Cursor.Current = Cursors.AppStarting
+        Dim cmbSender As New ComboBox
+        With cmbSender
+            .Items.Add(sender.Text + " " + sender.Tag)
+            .SelectedItem = sender.Text + " " + sender.Tag
+        End With
+        createEvent.Tag = "view" + " " + sender.Text + " " + sender.Tag
+        createEvent.Show()
+        createEvent.cmbGroup.SelectedIndex = 0
+        createEvent.cmbEvent.SelectedIndex = 0
+        createEvent.cmbTemplate_SelectedIndexChanged(cmbSender, Nothing)
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemEdit_Click(sender As Object, e As EventArgs)

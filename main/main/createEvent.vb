@@ -824,16 +824,22 @@ Public Class createEvent
         End If
         checkNotif.Show()
     End Sub
-    Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
+    'Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
+    '    waitForDrop = New Thread(Sub() waitForDropDown())
+    '    waitForDrop.Start()
+    'End Sub
+    Private Sub ComboBox1_Click(sender As Object, e As EventArgs) Handles ComboBox1.Click
+        ComboBox1.DroppedDown = True
+        Thread.Sleep(50)
         CheckedListBox1.Visible = True
-        waitForDrop = New Thread(Sub() waitForDropDown())
-        waitForDrop.Start()
+        CheckedListBox1.BringToFront()
     End Sub
     Private Sub ComboBox1_DropDownClose(sender As Object, e As EventArgs) Handles ComboBox1.DropDownClosed
         CheckedListBox1.Visible = False
     End Sub
     Private Sub waitForDropDown()
         Thread.Sleep(500)
+        CheckedListBox1.Visible = True
         CheckedListBox1.BringToFront()
     End Sub
     Private Sub chbNA_CheckedChanged(sender As Object, e As EventArgs) Handles chbNA.CheckedChanged
@@ -885,7 +891,6 @@ Public Class createEvent
             MapProviders.GoogleMapProvider.WebProxy = New Net.WebProxy("proxy.intranet", 8080)
             MapProviders.GoogleMapProvider.WebProxy.Credentials = New Net.NetworkCredential("eddie.belokopytov", "zorba491")
         End If
-        'https://searchcode.com/codesearch/view/195986/
         map.MapProvider = MapProviders.GoogleMapProvider.Instance
         map.Manager.Mode = AccessMode.ServerAndCache
         map.Position = New PointLatLng(-33.891543077486077, 151.21914625167847)
@@ -899,6 +904,17 @@ Public Class createEvent
         pbMinus.Location = New Point((map.Width - pbMinus.Width - 5), Int(map.Height / 2 + (pbMinus.Height / 2) + 5))
         pbMinus.BackColor = Color.Transparent
         mainThreadID = Thread.CurrentThread.ManagedThreadId
+        If Me.Tag.contains("view") Then
+            gbLocation.Enabled = False
+            gbDetails.Enabled = False
+            gbAttachments.Enabled = False
+            btnSelect.Enabled = False
+            btnSaveTimes.Enabled = False
+            ComboBox1.Enabled = False
+            chbAllAthletes.Enabled = False
+            chbAllNotes.Enabled = False
+            chbNA.Enabled = False
+        End If
         'Events
         cmbEvent.SelectedIndex = 0
         previousDropSelection = cmbEvent.SelectedItem
@@ -1858,7 +1874,7 @@ Public Class createEvent
 #End Region
 #Region "Event Operations"
     Private Sub cmbEvent_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbEvent.SelectedValueChanged
-        If times.Count > 0 And sender.Tag <> "firstOpen" Then
+        If times.Count > 0 And sender.Tag <> "firstOpen" And Me.Tag.contains("view") = False Then
             For Each dtp As DateTimePicker In gbEvents.Controls.OfType(Of DateTimePicker)()
                 Dim hasMatch As Boolean = False
                 Dim eventTime As String = previousDropSelection & " " & dtp.Tag & " " & dtp.Text 'string in the form: event age time
@@ -1903,6 +1919,11 @@ Public Class createEvent
                 Next
             End If
         Next
+        If Me.Tag.contains("view") Then
+            For Each dtp In gbEvents.Controls.OfType(Of DateTimePicker)
+                dtp.Enabled = False
+            Next
+        End If
     End Sub
     Private Sub btnSaveTimes_Click(sender As Object, e As EventArgs) Handles btnSaveTimes.Click
         Dim changes As Integer = 0, added As Integer = 0
@@ -2215,7 +2236,7 @@ Public Class createEvent
     End Sub
     Private Sub cmbGroup_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbGroup.SelectedValueChanged
         Cursor.Current = Cursors.AppStarting
-        If sender.tag <> "template" Then
+        If sender.tag <> "template" And Me.Tag.contains("view") = False Then
             For Each panel In flpAthletes.Controls.OfType(Of Panel)()
                 For Each label In panel.Controls.OfType(Of Label)()
                     If label.Name = "lblId" Then
@@ -2265,6 +2286,8 @@ Public Class createEvent
                     End If
                 Next
             Next
+        ElseIf sender.tag = "template" Then
+            sender.tag = ""
         End If
         If peopleNotAdded.Count > 0 Then
             shownNotAdded = False
@@ -2299,6 +2322,9 @@ Public Class createEvent
             End If
         Next
         checkAllChecked()
+        For Each pnl In flpAthletes.Controls.OfType(Of Panel)
+            pnl.Enabled = False
+        Next
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub createAthletePanel(info As String)

@@ -201,7 +201,7 @@ Partial Class eventResults
         Me.Name = "eventResults"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Tag = ""
-        Me.Text = "Form1"
+        Me.Text = "Event Results"
         Me.gbNotes.ResumeLayout(False)
         Me.gbNotes.PerformLayout()
         Me.pnlAttach.ResumeLayout(False)
