@@ -12,7 +12,11 @@ Public Class newTeam
         sort()
     End Sub
 
-    Private Sub populate(append As String)
+    Private Sub sort()
+        Dim append As String = ""
+        If cmbAgeGroup.SelectedItem <> Nothing Then
+            append = " WHERE AgeGroup = '" + cmbAgeGroup.SelectedItem.ToString + "'" 'Filters by age group
+        End If
         listAthletes.Clear()
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
@@ -22,20 +26,41 @@ Public Class newTeam
                     If dr.HasRows Then
                         Do While dr.Read()
                             Dim ath As New athlete
-                            ath.id = dr("ID")
+                            ath.ID = dr("ID")
                             ath.roll = dr("RollClass")
-                            ath.fname = dr("FirstName")
-                            ath.lname = dr("LastName")
+                            ath.fName = dr("FirstName")
+                            ath.lName = dr("LastName")
                             listAthletes.Add(ath)
                         Loop
                     End If
                 End Using
             End Using
         End Using
-    End Sub
+        If cmbFilter.SelectedItem <> Nothing Then
+            Dim asc As Boolean = True
+            Select Case cmbFilter.SelectedItem.ToString
+                Case "ID"
+                    listAthletes.Sort(Function(x, y) x.ID.CompareTo(y.ID))
 
-    Private Sub fillPanels()
-        flpAthletes.Controls.Clear()
+                Case "First Name (Ascending)"
+                    listAthletes.Sort(Function(x, y) x.fName.CompareTo(y.fName))
+
+                Case "First Name (Descending)"
+                    asc = False
+                    listAthletes.Sort(Function(x, y) x.fName.CompareTo(y.fName))
+
+                Case "Last Name (Ascending)"
+                    listAthletes.Sort(Function(x, y) x.lName.CompareTo(y.lName))
+
+                Case "Last Name (Descending)"
+                    asc = False
+                    listAthletes.Sort(Function(x, y) x.lName.CompareTo(y.lName))
+            End Select
+            If asc = False Then
+                listAthletes.Reverse()
+            End If
+        End If
+        flpAthletes.Controls.Clear() 'Filling panels
         For Each ath As athlete In listAthletes
             Dim newpanel As New Panel With
                 {
@@ -43,16 +68,16 @@ Public Class newTeam
                 .Height = 55,
                 .Width = 140,
                 .BackColor = panelColor,
-                .Name = ath.id
+                .Name = ath.ID
                 }
 
             Dim ID As New Label With
                 {
-                .Text = ath.id,
+                .Text = ath.ID,
                 .Font = New Font("Segoe UI", 9, FontStyle.Bold),
                 .Height = 15,
                 .Location = New Point(0, 0),
-                .Name = ath.id + ".ID"
+                .Name = ath.ID + ".ID"
                 }
 
             Dim roll As New Label With
@@ -61,25 +86,25 @@ Public Class newTeam
                 .Font = New Font("Segoe UI", 8),
                 .Height = 13,
                 .Location = New Point(0, 15),
-                .Name = ath.id.ToString + ".roll"
+                .Name = ath.ID.ToString + ".roll"
                 }
 
             Dim lName As New Label With
                 {
-                .Text = ath.lname.ToUpper,
+                .Text = ath.lName.ToUpper,
                 .Font = New Font("Segoe UI", 8),
                 .Height = 13,
                 .Location = New Point(0, 28),
-                .Name = ath.id.ToString + ".lName"
+                .Name = ath.ID.ToString + ".lName"
                 }
 
             Dim fName As New Label With
                 {
-                .Text = ath.fname,
+                .Text = ath.fName,
                 .Font = New Font("Segoe UI", 8),
                 .Height = 13,
                 .Location = New Point(0, 41),
-                .Name = ath.id.ToString + ".fName"
+                .Name = ath.ID.ToString + ".fName"
                 }
 
             newpanel.Controls.Add(ID)
@@ -94,9 +119,6 @@ Public Class newTeam
             AddHandler fName.MouseClick, AddressOf labelClicked
             AddHandler lName.MouseClick, AddressOf labelClicked
         Next
-    End Sub
-
-    Private Sub checkSelected()
         For Each pnl As Panel In flpAthletes.Controls 'Check for previously selected members
             If listSelect.Contains(pnl.Name) = True Then
                 pnl.BackColor = Color.Green
@@ -113,7 +135,7 @@ Public Class newTeam
             clicked.BackColor = Color.Green 'Highlight team for addition
             listSelect.Add(clicked.Name)
         End If
-        If listSelect.Count = Nothing Then
+        If listSelect.Count = Nothing Then 'Output list of team members
             txtSelectedMembers.Text = "Please add members to the team on the left."
         Else
             Dim listOutput As New List(Of String)
@@ -194,37 +216,5 @@ Public Class newTeam
         sort()
     End Sub
 
-    Private Sub sort()
-        Dim append As String = ""
-        If cmbAgeGroup.SelectedItem <> Nothing Then
-            append = " WHERE AgeGroup = '" + cmbAgeGroup.SelectedItem.ToString + "'" 'Filters by age group
-        End If
-        populate(append)
-        If cmbFilter.SelectedItem <> Nothing Then
-            Dim asc As Boolean = True
-            Select Case cmbFilter.SelectedItem.ToString
-                Case "ID"
-                    listAthletes.Sort(Function(x, y) x.ID.CompareTo(y.ID))
 
-                Case "First Name (Ascending)"
-                    listAthletes.Sort(Function(x, y) x.fName.CompareTo(y.fName))
-
-                Case "First Name (Descending)"
-                    asc = False
-                    listAthletes.Sort(Function(x, y) x.fName.CompareTo(y.fName))
-
-                Case "Last Name (Ascending)"
-                    listAthletes.Sort(Function(x, y) x.lName.CompareTo(y.lName))
-
-                Case "Last Name (Descending)"
-                    asc = False
-                    listAthletes.Sort(Function(x, y) x.lName.CompareTo(y.lName))
-            End Select
-            If asc = False Then
-                listAthletes.Reverse()
-            End If
-        End If
-        fillPanels()
-        checkSelected()
-    End Sub
 End Class

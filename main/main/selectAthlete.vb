@@ -2,6 +2,7 @@
 'Searching
 'Profile photo
 'Team Manager
+'Optimise parsing
 
 Public Class selectAthlete
     Dim listAthletes As New List(Of athlete)
@@ -154,6 +155,14 @@ Public Class selectAthlete
         'Example: 1/23 Test Street, Suburbia 1234
         Dim adNo, adSt, adSb, adPo As String
         Dim i As Integer = 0
+
+        'i = parse(address, adNo, " ", i)
+        'i += 1
+        'i = parse(address, adSt, ",", i)
+        'i += 2 'Jump two places in the string to account for the comma and space
+        'i = parse(address, adSb, " ", i)
+
+
         While address(i) <> " " 'Parse until the space separator between unit/number and street is found
             adNo += address(i)
             i += 1
@@ -180,7 +189,16 @@ Public Class selectAthlete
         lblSt.Text = adSt
         lblSb.Text = adSb
         lblPo.Text = adPo
+        'MsgBox(adNo + adSt + adSb + adPo)
     End Sub
+
+    'Private Function parse(address As String, target As String, separator As Char, i As Integer)
+    '    While address(i) <> separator
+    '        target += address(i)
+    '        i += 1
+    '    End While
+    '    Return i
+    'End Function
 
     Private Sub teamPanelClicked(sender As Object, e As EventArgs) 'Optimise!
         Dim clicked As Panel = sender
