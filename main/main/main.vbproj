@@ -369,6 +369,8 @@
     <None Include="Resources\iconSave.png" />
     <None Include="Resources\iconAdd.PNG" />
     <None Include="Resources\iconSwitch.png" />
+    <None Include="Resources\Accused-photo-crop.jpg" />
+    <None Include="Resources\sbhslogoreal.png" />
     <Content Include="Resources\User.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

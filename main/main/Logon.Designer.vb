@@ -30,7 +30,11 @@ Partial Class Logon
         Me.Label3 = New System.Windows.Forms.Label()
         Me.UserDataSet = New main.UserDataSet()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(Me.UserDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox2
@@ -46,46 +50,48 @@ Partial Class Logon
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(225, 98)
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Rockwell", 40.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Location = New System.Drawing.Point(96, 70)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(232, 73)
+        Me.Label1.Size = New System.Drawing.Size(497, 66)
         Me.Label1.TabIndex = 6
-        Me.Label1.Text = "LOGIN"
+        Me.Label1.Text = "SBHS ATHLETICS"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(178, 210)
+        Me.TextBox1.Location = New System.Drawing.Point(198, 335)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(338, 32)
+        Me.TextBox1.Size = New System.Drawing.Size(338, 25)
         Me.TextBox1.TabIndex = 7
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(178, 299)
+        Me.TextBox2.Location = New System.Drawing.Point(198, 366)
         Me.TextBox2.Multiline = True
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(338, 32)
+        Me.TextBox2.Size = New System.Drawing.Size(338, 25)
         Me.TextBox2.TabIndex = 7
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!)
-        Me.Label2.Location = New System.Drawing.Point(136, 210)
+        Me.Label2.Font = New System.Drawing.Font("Rockwell", 12.0!)
+        Me.Label2.Location = New System.Drawing.Point(166, 335)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(31, 25)
+        Me.Label2.Size = New System.Drawing.Size(26, 19)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "ID"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!)
-        Me.Label3.Location = New System.Drawing.Point(127, 299)
+        Me.Label3.Font = New System.Drawing.Font("Rockwell", 12.0!)
+        Me.Label3.Location = New System.Drawing.Point(158, 366)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(45, 25)
+        Me.Label3.Size = New System.Drawing.Size(34, 19)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "PW"
         '
@@ -97,19 +103,60 @@ Partial Class Logon
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(308, 361)
+        Me.Button1.BackColor = System.Drawing.Color.Gray
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.Font = New System.Drawing.Font("Rockwell", 12.0!)
+        Me.Button1.Location = New System.Drawing.Point(156, 423)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(207, 64)
         Me.Button1.TabIndex = 8
-        Me.Button1.Text = "czech"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Text = "OK"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Gray
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button2.Font = New System.Drawing.Font("Rockwell", 12.0!)
+        Me.Button2.Location = New System.Drawing.Point(369, 458)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(167, 29)
+        Me.Button2.TabIndex = 9
+        Me.Button2.Text = "EXIT"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Gray
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button3.Font = New System.Drawing.Font("Rockwell", 10.0!)
+        Me.Button3.Location = New System.Drawing.Point(369, 423)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(167, 29)
+        Me.Button3.TabIndex = 9
+        Me.Button3.Text = "FORGOT PASSWORD"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.PictureBox1.Image = Global.main.My.Resources.Resources.sbhslogoreal
+        Me.PictureBox1.Location = New System.Drawing.Point(265, 139)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(156, 164)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 10
+        Me.PictureBox1.TabStop = False
         '
         'Logon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(685, 457)
+        Me.ClientSize = New System.Drawing.Size(685, 530)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.TextBox1)
@@ -117,11 +164,13 @@ Partial Class Logon
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.PictureBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Logon"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Logon"
         CType(Me.UserDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -135,4 +184,7 @@ Partial Class Logon
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents UserDataSet As UserDataSet
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

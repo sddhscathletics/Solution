@@ -53,7 +53,7 @@ Public Class Logon
 #Region "Login Feedback"
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text = "" Or TextBox2.Text = "" Then
-            MsgBox("u missin somefin")
+            MessageBox.Show("Fill out all forms", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         Else
             Dim success As Boolean = findUserPass(username:=TextBox1.Text, pass:=TextBox2.Text)
             If success = False Then
@@ -62,19 +62,18 @@ Public Class Logon
                 TextBox1.Text = ""
                 TextBox1.Focus()
                 attempts -= 1
-                MsgBox("yo suck wrong pw/user fooooool")
+                MessageBox.Show("Incorrect username or password", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                 TextBox2.Text = ""
                 TextBox1.Text = ""
                 TextBox1.Focus()
                 If attempts = 0 Then ' 3 Tries used up, locked out
                     Button1.Enabled = False
-                    MsgBox("Email Kurt at: kurtscoolemail@wow.com for your password")
+                    MessageBox.Show("Email Kurt at: KURTSCOOLEMAIL@GMAIL.COM", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                     TextBox1.ReadOnly = True
                     TextBox2.ReadOnly = True
                 End If
             End If
             If success = True Then
-                MsgBox("ye boiiiiiiiiiiii!")
                 home.Show()
                 Me.Close()
             End If
@@ -105,6 +104,16 @@ Public Class Logon
         End Using
         Return Found
     End Function
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        home.Close()
+        Close()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        MessageBox.Show("Email Kurt at: KURTSCOOLEMAIL@GMAIL.COM", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+    End Sub
 
 
 #End Region

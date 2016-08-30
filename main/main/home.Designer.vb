@@ -55,6 +55,7 @@ Partial Class home
         Me.Button8 = New System.Windows.Forms.Button()
         Me.calendarBtn = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.sidecalbtn3 = New System.Windows.Forms.Button()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -85,10 +86,11 @@ Partial Class home
         Me.Sidebar.Controls.Add(Me.sideresultBtn)
         Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.sideCalSub1)
+        Me.Sidebar.Controls.Add(Me.sidecalbtn3)
         Me.Sidebar.Controls.Add(Me.sideCalSub2)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
         Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(0, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 2
@@ -122,6 +124,7 @@ Partial Class home
         Me.admDrop.TabIndex = 1
         Me.admDrop.Text = "▼"
         Me.admDrop.UseVisualStyleBackColor = False
+        Me.admDrop.Visible = False
         '
         'athdrop
         '
@@ -180,6 +183,7 @@ Partial Class home
         Me.sideadminBtn.Text = "   ADMIN SETTINGS"
         Me.sideadminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideadminBtn.UseVisualStyleBackColor = False
+        Me.sideadminBtn.Visible = False
         '
         'caldrop
         '
@@ -194,6 +198,7 @@ Partial Class home
         Me.caldrop.TabIndex = 1
         Me.caldrop.Text = "▼"
         Me.caldrop.UseVisualStyleBackColor = False
+        Me.caldrop.Visible = False
         '
         'sideresultBtn
         '
@@ -219,7 +224,7 @@ Partial Class home
         Me.sidecalendarBtn.ForeColor = System.Drawing.SystemColors.ControlLight
         Me.sidecalendarBtn.Location = New System.Drawing.Point(2, 84)
         Me.sidecalendarBtn.Name = "sidecalendarBtn"
-        Me.sidecalendarBtn.Size = New System.Drawing.Size(172, 50)
+        Me.sidecalendarBtn.Size = New System.Drawing.Size(196, 50)
         Me.sidecalendarBtn.TabIndex = 0
         Me.sidecalendarBtn.Text = "   CALENDAR"
         Me.sidecalendarBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -232,11 +237,11 @@ Partial Class home
         Me.sideCalSub1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.sideCalSub1.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
         Me.sideCalSub1.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideCalSub1.Location = New System.Drawing.Point(2, 75)
+        Me.sideCalSub1.Location = New System.Drawing.Point(2, 45)
         Me.sideCalSub1.Name = "sideCalSub1"
         Me.sideCalSub1.Size = New System.Drawing.Size(196, 29)
         Me.sideCalSub1.TabIndex = 2
-        Me.sideCalSub1.Text = "   CALENDAR SUB 1"
+        Me.sideCalSub1.Text = "   ADD EVENT"
         Me.sideCalSub1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideCalSub1.UseVisualStyleBackColor = False
         '
@@ -247,11 +252,11 @@ Partial Class home
         Me.sideCalSub2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.sideCalSub2.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
         Me.sideCalSub2.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideCalSub2.Location = New System.Drawing.Point(2, 105)
+        Me.sideCalSub2.Location = New System.Drawing.Point(2, 75)
         Me.sideCalSub2.Name = "sideCalSub2"
         Me.sideCalSub2.Size = New System.Drawing.Size(196, 29)
         Me.sideCalSub2.TabIndex = 2
-        Me.sideCalSub2.Text = "   CALENDAR SUB 1"
+        Me.sideCalSub2.Text = "   EDIT EVENT"
         Me.sideCalSub2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideCalSub2.UseVisualStyleBackColor = False
         '
@@ -390,7 +395,7 @@ Partial Class home
         Me.bigbtngroup.Controls.Add(Me.calendarBtn)
         Me.bigbtngroup.Location = New System.Drawing.Point(0, 0)
         Me.bigbtngroup.Name = "bigbtngroup"
-        Me.bigbtngroup.Size = New System.Drawing.Size(1411, 728)
+        Me.bigbtngroup.Size = New System.Drawing.Size(1411, 723)
         Me.bigbtngroup.TabIndex = 5
         Me.bigbtngroup.TabStop = False
         Me.bigbtngroup.Text = "GroupBox1"
@@ -474,6 +479,21 @@ Partial Class home
         '
         Me.Timer1.Interval = 1
         '
+        'sidecalbtn3
+        '
+        Me.sidecalbtn3.BackColor = System.Drawing.Color.Gray
+        Me.sidecalbtn3.FlatAppearance.BorderSize = 0
+        Me.sidecalbtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sidecalbtn3.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sidecalbtn3.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sidecalbtn3.Location = New System.Drawing.Point(2, 105)
+        Me.sidecalbtn3.Name = "sidecalbtn3"
+        Me.sidecalbtn3.Size = New System.Drawing.Size(196, 29)
+        Me.sidecalbtn3.TabIndex = 2
+        Me.sidecalbtn3.Text = "   DELETE EVENT"
+        Me.sidecalbtn3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sidecalbtn3.UseVisualStyleBackColor = False
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -528,4 +548,5 @@ Partial Class home
     Friend WithEvents sideResSub1 As Button
     Friend WithEvents sideResSub2 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents sidecalbtn3 As Button
 End Class

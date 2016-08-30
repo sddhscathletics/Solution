@@ -52,6 +52,16 @@ Public Class home
 #End Region
 
 #Region "Sidebar"
+
+    Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'access = 1 FOR TEST
+        'If access = 2 Then
+        caldrop.Visible = True
+            admDrop.Visible = True
+            sideadminBtn.Visible = True
+        'End If
+    End Sub
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
         Timer1.Enabled = True
     End Sub
@@ -84,6 +94,7 @@ Public Class home
                 admDrop.Top += 10
                 sideCalSub1.Top += 10
                 sideCalSub2.Top += 10
+                sidecalbtn3.Top += 10
 
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
@@ -97,12 +108,13 @@ Public Class home
                 admDrop.Top -= 10
                 sideCalSub1.Top -= 10
                 sideCalSub2.Top -= 10
+                sidecalbtn3.Top -= 10
 
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
             jun += 1
-            If jun = 6 Then
+            If jun = 9 Then
                 jun = 0
                 cDrop = False
                 sidebartime.Enabled = False

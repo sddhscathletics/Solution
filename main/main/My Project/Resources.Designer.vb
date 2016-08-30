@@ -61,6 +61,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Accused_photo_crop() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Accused-photo-crop", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Byte[].
         '''</summary>
         Friend ReadOnly Property Athlete() As Byte()
@@ -136,6 +146,16 @@ Namespace My.Resources
         Friend ReadOnly Property iconSwitch() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("iconSwitch", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sbhslogoreal() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sbhslogoreal", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
