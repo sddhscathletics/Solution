@@ -181,6 +181,8 @@ Public Class calendar
         End With
         createEvent.Show()
         createEvent.Tag = "edit" + " " + sender.OwnerItem.Text + " " + sender.OwnerItem.Tag
+        createEvent.cmbEvent.SelectedIndex = 0
+        createEvent.cmbGroup.SelectedIndex = 0
         createEvent.cmbTemplate_SelectedIndexChanged(cmbSender, Nothing)
         Cursor.Current = Cursors.Default
     End Sub
