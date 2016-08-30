@@ -358,7 +358,7 @@ Partial Class createEvent
         '
         Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(0, 0)
+        Me.pbAttach.Location = New System.Drawing.Point(116, -1)
         Me.pbAttach.Name = "pbAttach"
         Me.pbAttach.Size = New System.Drawing.Size(74, 56)
         Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage

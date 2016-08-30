@@ -154,8 +154,8 @@ Public Class calendar
     End Function
     Private Sub menuItemAdd_Click()
         Cursor.Current = Cursors.AppStarting
-        createEvent.Show()
         createEvent.Tag = "add"
+        createEvent.Show()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemView_Click(sender As Object, e As EventArgs)
@@ -179,11 +179,11 @@ Public Class calendar
             .Items.Add(sender.OwnerItem.Text + " " + sender.OwnerItem.Tag)
             .SelectedItem = sender.OwnerItem.Text + " " + sender.OwnerItem.Tag
         End With
-        createEvent.Show()
         createEvent.Tag = "edit" + " " + sender.OwnerItem.Text + " " + sender.OwnerItem.Tag
         createEvent.cmbEvent.SelectedIndex = 0
         createEvent.cmbGroup.SelectedIndex = 0
         createEvent.cmbTemplate_SelectedIndexChanged(cmbSender, Nothing)
+        createEvent.Show()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemResults_Click(sender As Object, e As EventArgs)
@@ -193,25 +193,27 @@ Public Class calendar
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemDelete_Click(sender As Object, e As EventArgs)
-        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-            conn.Open()
-            Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
-                cmd.Parameters.AddWithValue("@name", sender.OwnerItem.Text)
-                cmd.Parameters.AddWithValue("@date", sender.OwnerItem.Tag)
-                cmd.ExecuteNonQuery()
+        If MessageBox.Show("Are you sure you want to delete " + sender.owneritem.text + " on " + sender.owneritem.tag + "?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                conn.Open()
+                Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                    cmd.Parameters.AddWithValue("@name", sender.OwnerItem.Text)
+                    cmd.Parameters.AddWithValue("@date", sender.OwnerItem.Tag)
+                    cmd.ExecuteNonQuery()
+                End Using
+                conn.Close()
             End Using
-            conn.Close()
-        End Using
-        If eventInfo(sender.OwnerItem.Tag).Count > 1 Then
-            eventInfo(sender.OwnerItem.Tag).Remove(sender.OwnerItem.Text)
-        Else
-            eventInfo.Remove(sender.OwnerItem.Tag)
-        End If
-        If eventInfo.ContainsKey(sender.OwnerItem.Tag) = False Then
-            Dim newList As List(Of Date) = mnCalendar.BoldedDates.ToList()
-            newList.Remove(sender.OwnerItem.Tag)
-            mnCalendar.BoldedDates = newList.ToArray()
-            mnCalendar.UpdateBoldedDates()
+            If eventInfo(sender.OwnerItem.Tag).Count > 1 Then
+                eventInfo(sender.OwnerItem.Tag).Remove(sender.OwnerItem.Text)
+            Else
+                eventInfo.Remove(sender.OwnerItem.Tag)
+            End If
+            If eventInfo.ContainsKey(sender.OwnerItem.Tag) = False Then
+                Dim newList As List(Of Date) = mnCalendar.BoldedDates.ToList()
+                newList.Remove(sender.OwnerItem.Tag)
+                mnCalendar.BoldedDates = newList.ToArray()
+                mnCalendar.UpdateBoldedDates()
+            End If
         End If
     End Sub
 End Class

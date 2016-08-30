@@ -877,24 +877,43 @@ Public Class createEvent
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
         rdbTraining_CheckedChanged(Nothing, Nothing)
         dtpDate.Text = calendar.mnCalendar.SelectionStart
-        pbAttach.Location = New Point((pnlAttach.Width / 2 - pbAttach.Width / 2), -1)
         CheckedListBox1.Location = New Point(ComboBox1.Location.X, ComboBox1.Location.Y + ComboBox1.Height)
         CheckedListBox1.Width = ComboBox1.Width
         'Maps
         Dim proxyTester = Net.WebRequest.GetSystemWebProxy()
         If (proxyTester.GetProxy(New Uri("http://www.google.com")).Equals(New Uri("http://www.google.com"))) Then 'check if no proxy present by comparing URI's
-            Console.Write("no proxy")
             proxyPresent = False
         Else 'set proxy
-            Console.Write("proxy enabled")
             proxyPresent = True
             MapProviders.GoogleMapProvider.WebProxy = New Net.WebProxy("proxy.intranet", 8080)
             MapProviders.GoogleMapProvider.WebProxy.Credentials = New Net.NetworkCredential("eddie.belokopytov", "zorba491")
         End If
         map.MapProvider = MapProviders.GoogleMapProvider.Instance
         map.Manager.Mode = AccessMode.ServerAndCache
-        map.Position = New PointLatLng(-33.891543077486077, 151.21914625167847)
-        map.Zoom += 4
+        If Me.Tag.contains("add") Then
+            map.Position = New PointLatLng(-33.891543077486077, 151.21914625167847)
+            map.Zoom += 4
+        Else
+            Dim address = map.Overlays(0).Markers(0).ToolTipText.Split(",")
+            For i As Integer = 0 To address.Count - 2 'to skip "Australia"
+                If i = address.Count - 2 Then 'the part with SUBURB STATE POSTCODE
+                    Dim details = LTrim(address(i)).Split(" ")
+                    txtSuburb.Text = ""
+                    For j As Integer = 0 To details.Count - 2 'to skip the postcode
+                        If j <> details.Count - 2 Then
+                            txtSuburb.Text += details(j) + " "
+                        Else
+                            cmbState.SelectedItem = details(j)
+                        End If
+                    Next
+                    txtSuburb.Text = RTrim(txtSuburb.Text)
+                Else
+                    txtStreet.Text = address(i)
+                End If
+            Next
+            map.ZoomAndCenterMarkers(Nothing)
+            map.Zoom += 4
+        End If
         map.DragButton = MouseButtons.Left
         map.ShowCenter = False
         pbPlus.Parent = map
@@ -2322,9 +2341,11 @@ Public Class createEvent
             End If
         Next
         checkAllChecked()
-        For Each pnl In flpAthletes.Controls.OfType(Of Panel)
-            pnl.Enabled = False
-        Next
+        If Me.Tag.contains("view") Then
+            For Each pnl In flpAthletes.Controls.OfType(Of Panel)
+                pnl.Enabled = False
+            Next
+        End If
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub createAthletePanel(info As String)
