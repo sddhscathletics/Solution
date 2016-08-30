@@ -189,16 +189,20 @@ Public Class AddEdit_User
         Dim access As Integer
         Using conn As New OleDbConnection(dataPath + "\User.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, Pass, Access FROM UserDb WHERE ID = @Username AND Pass = @Pass AND Access = @Access", conn) 'Selects unread edits
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        Do While dr.Read()
-                            idText.Text = id
-                            passText.Text = pass
-                        Loop
-                    End If
-                End Using
-            End Using
+            'Using cmd As New OleDbCommand("SELECT ID, Pass, Access FROM UserDb WHERE ID = @Username AND Pass = @Pass AND Access = @Access", conn) 'Selects unread edits
+            'Using dr = cmd.ExecuteReader()
+            'If dr.HasRows Then
+            'Do While dr.Read()
+            'idText.Text = id
+            'passText.Text = pass
+            'Loop
+            'End If
+            'End Using
+            'End Using
         End Using
+    End Sub
+
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+        home.Close()
     End Sub
 End Class
