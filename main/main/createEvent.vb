@@ -49,6 +49,7 @@ Public Class createEvent
         Me.Close()
     End Sub
     Private Sub btnSaveEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveEvent.Click
+#Region "Add"
         If Me.Tag.contains("add") Then
             Dim nameDateMatch As Boolean = False
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -299,6 +300,8 @@ Public Class createEvent
             Else
                 MessageBox.Show("The name And date of this event match an exisiting event." + vbNewLine + "Please change either Of these And retry.", "Corresponding Event Exists", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             End If
+#End Region
+#Region "Edit"
         ElseIf Me.Tag.Contains("edit") Then
             Dim nameDateMatch As Boolean = False
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -822,6 +825,7 @@ Public Class createEvent
                 End If
             End If
         End If
+#End Region
     End Sub
     'Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
     '    waitForDrop = New Thread(Sub() waitForDropDown())
@@ -963,6 +967,7 @@ Public Class createEvent
         End If
     End Sub
     Public Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
+#Region "Template Load"
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
@@ -1297,6 +1302,7 @@ Public Class createEvent
             End Using
             conn.Close()
         End Using
+#End Region
     End Sub
 #End Region
 #Region "Attachment Operations"
@@ -1939,6 +1945,9 @@ Public Class createEvent
         If Me.Tag.contains("view") Then
             For Each dtp In gbEvents.Controls.OfType(Of DateTimePicker)
                 dtp.Enabled = False
+            Next
+            For Each chb In gbEvents.Controls.OfType(Of CheckBox)
+                chb.Enabled = False
             Next
         End If
     End Sub
