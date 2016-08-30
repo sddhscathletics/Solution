@@ -372,30 +372,30 @@ Public Class createEvent
                                 cmd.Parameters.AddWithValue("@times", "N/A")
                             End If
                             Dim location As String = ""
-                                    For Each overlay In map.Overlays
-                                        For Each marker In overlay.Markers
-                                            location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
-                                            Exit For 'since there is only one marker
-                                        Next
-                                        Exit For
-                                    Next
-                                    cmd.Parameters.AddWithValue("@location", location)
-                                    Dim fileNames As String = ""
-                                    For Each filePath In filePaths
-                                        If filePath = filePaths(0) Then
-                                            Dim splitPath = filePath.Split("\")
-                                            fileNames = splitPath(splitPath.Count - 1)
-                                        Else
-                                            Dim splitPath = filePath.Split("\")
-                                            fileNames += ";" & splitPath(splitPath.Count - 1)
-                                        End If
-                                    Next
-                                    cmd.Parameters.AddWithValue("@fileNames", fileNames)
-                                    cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                                    cmd.ExecuteNonQuery()
-                                End Using
-                                conn.Close()
-                            End Using
+                            For Each overlay In map.Overlays
+                                For Each marker In overlay.Markers
+                                    location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
+                                    Exit For 'since there is only one marker
+                                Next
+                                Exit For
+                            Next
+                            cmd.Parameters.AddWithValue("@location", location)
+                            Dim fileNames As String = ""
+                            For Each filePath In filePaths
+                                If filePath = filePaths(0) Then
+                                    Dim splitPath = filePath.Split("\")
+                                    fileNames = splitPath(splitPath.Count - 1)
+                                Else
+                                    Dim splitPath = filePath.Split("\")
+                                    fileNames += ";" & splitPath(splitPath.Count - 1)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@fileNames", fileNames)
+                            cmd.Parameters.AddWithValue("@comment", txtComment.Text)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        conn.Close()
+                    End Using
                     For Each filePath In filePaths
                         If filePath.Contains("\") Then
                             'check if the results file exists and then either add or update
@@ -822,7 +822,6 @@ Public Class createEvent
                 End If
             End If
         End If
-        checkNotif.Show()
     End Sub
     'Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
     '    waitForDrop = New Thread(Sub() waitForDropDown())
@@ -1406,15 +1405,15 @@ Public Class createEvent
                                     End Using
                                 ElseIf officeType = Nothing Then
                                     If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                        MessageBox.Show("You do not have Word installed.")
+                                        MessageBox.Show("You do not have Word installed.", "Missing Application", MessageBoxButtons.OK, MessageBoxIcon.Information)
                                     Else
-                                        MessageBox.Show("You do not have Excel installed.")
+                                        MessageBox.Show("You do not have Excel installed.", "Missing Application", MessageBoxButtons.OK, MessageBoxIcon.Information)
                                     End If
                                 ElseIf sfdSave.FileName = "" Then
-                                    MessageBox.Show("Please enter a valid file name.")
+                                    MessageBox.Show("Please enter a valid file name.", "Invalid Filename", MessageBoxButtons.OK, MessageBoxIcon.Information)
                                 End If
                             Else
-                                MessageBox.Show("Please upload the file first before trying To save.")
+                                MessageBox.Show("Please upload the file first before trying to save.", "Invalid Save Request", MessageBoxButtons.OK, MessageBoxIcon.Information)
                             End If
                         End Using
                     End Using
@@ -1466,9 +1465,9 @@ Public Class createEvent
                                             fileValid = True
                                         ElseIf officeType = Nothing Then
                                             If fileName.EndsWith("doc") Or fileName.EndsWith("docx") Then
-                                                MessageBox.Show("You do not have Word installed.")
+                                                MessageBox.Show("You do not have Word installed.", "Missing Application", MessageBoxButtons.OK, MessageBoxIcon.Information)
                                             Else
-                                                MessageBox.Show("You do not have Excel installed.")
+                                                MessageBox.Show("You do not have Excel installed.", "Missing Application", MessageBoxButtons.OK, MessageBoxIcon.Information)
                                             End If
                                             fileValid = True
                                         ElseIf System.IO.Path.GetFileName(ofdOpen.FileName) <> fileName Then
@@ -1876,19 +1875,18 @@ Public Class createEvent
             MessageBox.Show("There is no server access to Google currently so your address cannot currently be displayed on the map.", "No server access", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
-    Private Sub pbPlus_Click(sender As Object, e As EventArgs) Handles pbPlus.Click
+    Private Sub map_ZoomChange() Handles map.OnMapZoomChanged
         If map.Zoom = map.MaxZoom Then
             MessageBox.Show("You have reached maximum zoom.")
-        Else
-            map.Zoom += 1
+        ElseIf map.Zoom = map.MinZoom Then
+            MessageBox.Show("You have reached minimum zoom.")
         End If
     End Sub
+    Private Sub pbPlus_Click(sender As Object, e As EventArgs) Handles pbPlus.Click
+        map.Zoom += 1
+    End Sub
     Private Sub pbMinus_Click(sender As Object, e As EventArgs) Handles pbMinus.Click
-        If map.Zoom = map.MinZoom Then
-            MessageBox.Show("You have reached minimum zoom.")
-        Else
-            map.Zoom -= 1
-        End If
+        map.Zoom -= 1
     End Sub
 #End Region
 #Region "Event Operations"
