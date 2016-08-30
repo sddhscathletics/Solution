@@ -177,34 +177,29 @@ Public Class AddEdit_User
         Me.Close()
     End Sub
 
-    Private Sub AddEdit_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'Login.UserDb' table. You can move, or remove it, as needed.
-        Me.UserDbTableAdapter.Fill(Me.Login.UserDb)
 
-    End Sub
 #End Region
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-        Dim id, pass As String
-#Disable Warning BC42024 ' Unused local variable
-        Dim access As Integer
-#Enable Warning BC42024 ' Unused local variable
-        Using conn As New OleDbConnection(dataPath + "\User.accdb")
+
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim person As String = DataGridView1.CurrentCell.Value.ToString
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, Pass, Access FROM UserDb WHERE ID = @Username AND Pass = @Pass AND Access = @Access", conn) 'Selects unread edits
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        Do While dr.Read()
-#Disable Warning BC42104 ' Variable is used before it has been assigned a value
-                            idText.Text = id
-#Enable Warning BC42104 ' Variable is used before it has been assigned a value
-#Disable Warning BC42104 ' Variable is used before it has been assigned a value
-                            passText.Text = pass
-#Enable Warning BC42104 ' Variable is used before it has been assigned a value
-                        Loop
-                    End If
-                End Using
+            Using cmd As New OleDbCommand("DELETE ID, Pass, AccessLevel FROM userDb WHERE ID = @username", conn)
+                cmd.Parameters.Add(New OleDbParameter("@Username", username))
+                cmd.ExecuteNonQuery()
             End Using
         End Using
+    End Sub
+
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+        home.Close()
+    End Sub
+
+    Private Sub AddEdit_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'AthleteDataSet.userDb' table. You can move, or remove it, as needed.
+        Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
+
     End Sub
 End Class

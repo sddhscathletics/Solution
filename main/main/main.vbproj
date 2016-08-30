@@ -99,6 +99,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="alert.vb" />
+    <Compile Include="AthleteDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AthleteDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="calendar.Designer.vb">
       <DependentUpon>calendar.vb</DependentUpon>
     </Compile>
@@ -268,6 +273,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AthleteDataSet.xsc">
+      <DependentUpon>AthleteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AthleteDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AthleteDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AthleteDataSet.xss">
+      <DependentUpon>AthleteDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Login.xsc">
       <DependentUpon>Login.xsd</DependentUpon>
     </None>

@@ -8,6 +8,42 @@ Imports GMap.NET
 Imports GMap.NET.WindowsForms
 #End Region
 Public Class createEvent
+#Region " Move Form "
+
+    Public MoveForm As Boolean
+    Public MoveForm_MousePosition As Point
+
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
+    GroupBox2.MouseDown
+
+        If e.Button = MouseButtons.Left Then
+            MoveForm = True
+            Me.Cursor = Cursors.NoMove2D
+            MoveForm_MousePosition = e.Location
+        End If
+
+    End Sub
+
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles _
+    GroupBox2.MouseMove
+
+        If MoveForm Then
+            Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
+        End If
+
+    End Sub
+
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles _
+    GroupBox2.MouseUp
+
+        If e.Button = MouseButtons.Left Then
+            MoveForm = False
+            Me.Cursor = Cursors.Default
+        End If
+
+    End Sub
+
+#End Region
 #Region "Declarations"
     Public Shared attendees As New List(Of String) 'list of id's
     Public Shared times As New List(Of String) 'list of "event: time"
@@ -1943,7 +1979,7 @@ Public Class createEvent
             End If
         Next
         If Me.Tag.contains("view") Then
-            For Each dtp In gbEvents.Controls.OfType(Of DateTimePicker)
+            For Each dtp In gbEvents.Controls.OfType(Of DateTimePicker)()
                 dtp.Enabled = False
             Next
             For Each chb In gbEvents.Controls.OfType(Of CheckBox)
@@ -2349,7 +2385,7 @@ Public Class createEvent
         Next
         checkAllChecked()
         If Me.Tag.contains("view") Then
-            For Each pnl In flpAthletes.Controls.OfType(Of Panel)
+            For Each pnl In flpAthletes.Controls.OfType(Of Panel)()
                 pnl.Enabled = False
             Next
         End If
@@ -2485,4 +2521,8 @@ Public Class createEvent
         checkAllChecked()
     End Sub
 #End Region
+
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+        Me.Close()
+    End Sub
 End Class

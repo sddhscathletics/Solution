@@ -35,6 +35,7 @@ Partial Class home
         Me.sideresultBtn = New System.Windows.Forms.Button()
         Me.sidecalendarBtn = New System.Windows.Forms.Button()
         Me.sideCalSub1 = New System.Windows.Forms.Button()
+        Me.sidecalbtn3 = New System.Windows.Forms.Button()
         Me.sideCalSub2 = New System.Windows.Forms.Button()
         Me.sideResSub1 = New System.Windows.Forms.Button()
         Me.sideResSub2 = New System.Windows.Forms.Button()
@@ -45,7 +46,6 @@ Partial Class home
         Me.Button12 = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.backBtn = New System.Windows.Forms.Button()
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -55,7 +55,6 @@ Partial Class home
         Me.Button8 = New System.Windows.Forms.Button()
         Me.calendarBtn = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.sidecalbtn3 = New System.Windows.Forms.Button()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -64,7 +63,7 @@ Partial Class home
         '
         'scrollBtn
         '
-        Me.scrollBtn.BackColor = System.Drawing.Color.Gray
+        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
         Me.scrollBtn.Name = "scrollBtn"
@@ -245,6 +244,21 @@ Partial Class home
         Me.sideCalSub1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideCalSub1.UseVisualStyleBackColor = False
         '
+        'sidecalbtn3
+        '
+        Me.sidecalbtn3.BackColor = System.Drawing.Color.Gray
+        Me.sidecalbtn3.FlatAppearance.BorderSize = 0
+        Me.sidecalbtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sidecalbtn3.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sidecalbtn3.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sidecalbtn3.Location = New System.Drawing.Point(2, 105)
+        Me.sidecalbtn3.Name = "sidecalbtn3"
+        Me.sidecalbtn3.Size = New System.Drawing.Size(196, 29)
+        Me.sidecalbtn3.TabIndex = 2
+        Me.sidecalbtn3.Text = "   DELETE EVENT"
+        Me.sidecalbtn3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sidecalbtn3.UseVisualStyleBackColor = False
+        '
         'sideCalSub2
         '
         Me.sideCalSub2.BackColor = System.Drawing.Color.Gray
@@ -302,7 +316,6 @@ Partial Class home
         Me.GroupBox2.Controls.Add(Me.Button12)
         Me.GroupBox2.Controls.Add(Me.exitBtn)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
-        Me.GroupBox2.Controls.Add(Me.backBtn)
         Me.GroupBox2.Controls.Add(Me.scrollBtn)
         Me.GroupBox2.Location = New System.Drawing.Point(-10, -11)
         Me.GroupBox2.Name = "GroupBox2"
@@ -326,7 +339,7 @@ Partial Class home
         '
         'Button13
         '
-        Me.Button13.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
         Me.Button13.FlatAppearance.BorderSize = 0
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -339,7 +352,7 @@ Partial Class home
         '
         'Button12
         '
-        Me.Button12.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button12.BackColor = System.Drawing.SystemColors.GrayText
         Me.Button12.FlatAppearance.BorderSize = 0
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button12.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -352,7 +365,7 @@ Partial Class home
         '
         'exitBtn
         '
-        Me.exitBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.exitBtn.FlatAppearance.BorderSize = 0
         Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -370,19 +383,6 @@ Partial Class home
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(633, 22)
         Me.TextBox1.TabIndex = 5
-        '
-        'backBtn
-        '
-        Me.backBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.backBtn.FlatAppearance.BorderSize = 0
-        Me.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.backBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.backBtn.Location = New System.Drawing.Point(54, 11)
-        Me.backBtn.Name = "backBtn"
-        Me.backBtn.Size = New System.Drawing.Size(44, 44)
-        Me.backBtn.TabIndex = 4
-        Me.backBtn.Text = "Back"
-        Me.backBtn.UseVisualStyleBackColor = False
         '
         'bigbtngroup
         '
@@ -479,21 +479,6 @@ Partial Class home
         '
         Me.Timer1.Interval = 1
         '
-        'sidecalbtn3
-        '
-        Me.sidecalbtn3.BackColor = System.Drawing.Color.Gray
-        Me.sidecalbtn3.FlatAppearance.BorderSize = 0
-        Me.sidecalbtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.sidecalbtn3.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
-        Me.sidecalbtn3.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sidecalbtn3.Location = New System.Drawing.Point(2, 105)
-        Me.sidecalbtn3.Name = "sidecalbtn3"
-        Me.sidecalbtn3.Size = New System.Drawing.Size(196, 29)
-        Me.sidecalbtn3.TabIndex = 2
-        Me.sidecalbtn3.Text = "   DELETE EVENT"
-        Me.sidecalbtn3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sidecalbtn3.UseVisualStyleBackColor = False
-        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -524,7 +509,6 @@ Partial Class home
     Friend WithEvents sideresultBtn As Button
     Friend WithEvents sideadminBtn As Button
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents backBtn As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents bigbtngroup As GroupBox
     Friend WithEvents calendarBtn As Button

@@ -84,6 +84,8 @@ Partial Class createEvent
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.exitBtn = New System.Windows.Forms.Button()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
@@ -95,112 +97,119 @@ Partial Class createEvent
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbAthletes.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'dtpStart
         '
-        Me.dtpStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpStart.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpStart.Location = New System.Drawing.Point(117, 190)
+        Me.dtpStart.Location = New System.Drawing.Point(98, 188)
         Me.dtpStart.Name = "dtpStart"
         Me.dtpStart.ShowUpDown = True
-        Me.dtpStart.Size = New System.Drawing.Size(176, 20)
+        Me.dtpStart.Size = New System.Drawing.Size(230, 23)
         Me.dtpStart.TabIndex = 23
         '
         'dtpDate
         '
-        Me.dtpDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpDate.Location = New System.Drawing.Point(117, 146)
+        Me.dtpDate.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpDate.Location = New System.Drawing.Point(98, 150)
         Me.dtpDate.Name = "dtpDate"
-        Me.dtpDate.Size = New System.Drawing.Size(176, 20)
+        Me.dtpDate.Size = New System.Drawing.Size(230, 23)
         Me.dtpDate.TabIndex = 22
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(185, 534)
+        Me.btnCancel.BackColor = System.Drawing.Color.Gray
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnCancel.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.btnCancel.Location = New System.Drawing.Point(856, 632)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(86, 34)
+        Me.btnCancel.Size = New System.Drawing.Size(396, 37)
         Me.btnCancel.TabIndex = 21
-        Me.btnCancel.Text = "Cancel"
-        Me.btnCancel.UseVisualStyleBackColor = True
+        Me.btnCancel.Text = "CANCEL"
+        Me.btnCancel.UseVisualStyleBackColor = False
         '
         'btnSaveEvent
         '
-        Me.btnSaveEvent.Location = New System.Drawing.Point(52, 534)
+        Me.btnSaveEvent.BackColor = System.Drawing.Color.Gray
+        Me.btnSaveEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnSaveEvent.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.btnSaveEvent.Location = New System.Drawing.Point(856, 572)
         Me.btnSaveEvent.Name = "btnSaveEvent"
-        Me.btnSaveEvent.Size = New System.Drawing.Size(86, 34)
+        Me.btnSaveEvent.Size = New System.Drawing.Size(396, 54)
         Me.btnSaveEvent.TabIndex = 20
-        Me.btnSaveEvent.Text = "Save"
-        Me.btnSaveEvent.UseVisualStyleBackColor = True
+        Me.btnSaveEvent.Text = "SAVE"
+        Me.btnSaveEvent.UseVisualStyleBackColor = False
         '
         'lblStart
         '
         Me.lblStart.AutoSize = True
-        Me.lblStart.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStart.Location = New System.Drawing.Point(7, 190)
+        Me.lblStart.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStart.Location = New System.Drawing.Point(35, 188)
         Me.lblStart.Name = "lblStart"
-        Me.lblStart.Size = New System.Drawing.Size(51, 24)
+        Me.lblStart.Size = New System.Drawing.Size(46, 16)
         Me.lblStart.TabIndex = 17
-        Me.lblStart.Text = "Start"
+        Me.lblStart.Text = "START"
         '
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDate.Location = New System.Drawing.Point(7, 146)
+        Me.lblDate.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDate.Location = New System.Drawing.Point(44, 155)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(49, 24)
+        Me.lblDate.Size = New System.Drawing.Size(41, 16)
         Me.lblDate.TabIndex = 16
-        Me.lblDate.Text = "Date"
+        Me.lblDate.Text = "DATE"
         '
         'dtpEnd
         '
-        Me.dtpEnd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpEnd.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpEnd.Location = New System.Drawing.Point(117, 232)
+        Me.dtpEnd.Location = New System.Drawing.Point(98, 217)
         Me.dtpEnd.Name = "dtpEnd"
         Me.dtpEnd.ShowUpDown = True
-        Me.dtpEnd.Size = New System.Drawing.Size(176, 20)
+        Me.dtpEnd.Size = New System.Drawing.Size(230, 23)
         Me.dtpEnd.TabIndex = 27
         '
         'lblEnd
         '
         Me.lblEnd.AutoSize = True
-        Me.lblEnd.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEnd.Location = New System.Drawing.Point(7, 232)
+        Me.lblEnd.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEnd.Location = New System.Drawing.Point(44, 222)
         Me.lblEnd.Name = "lblEnd"
-        Me.lblEnd.Size = New System.Drawing.Size(46, 24)
+        Me.lblEnd.Size = New System.Drawing.Size(34, 16)
         Me.lblEnd.TabIndex = 26
-        Me.lblEnd.Text = "End"
+        Me.lblEnd.Text = "END"
         '
         'lblComment
         '
         Me.lblComment.AutoSize = True
-        Me.lblComment.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblComment.Location = New System.Drawing.Point(8, 278)
+        Me.lblComment.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblComment.Location = New System.Drawing.Point(8, 258)
         Me.lblComment.Name = "lblComment"
-        Me.lblComment.Size = New System.Drawing.Size(87, 24)
+        Me.lblComment.Size = New System.Drawing.Size(74, 16)
         Me.lblComment.TabIndex = 29
-        Me.lblComment.Text = "Comment"
+        Me.lblComment.Text = "COMMENT"
         '
         'lblType
         '
         Me.lblType.AutoSize = True
-        Me.lblType.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblType.Location = New System.Drawing.Point(7, 105)
+        Me.lblType.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblType.Location = New System.Drawing.Point(44, 120)
         Me.lblType.Name = "lblType"
-        Me.lblType.Size = New System.Drawing.Size(50, 24)
+        Me.lblType.Size = New System.Drawing.Size(38, 16)
         Me.lblType.TabIndex = 30
-        Me.lblType.Text = "Type"
+        Me.lblType.Text = "TYPE"
         '
         'rdbTraining
         '
         Me.rdbTraining.AutoSize = True
         Me.rdbTraining.Checked = True
-        Me.rdbTraining.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdbTraining.Location = New System.Drawing.Point(117, 105)
+        Me.rdbTraining.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdbTraining.Location = New System.Drawing.Point(109, 118)
         Me.rdbTraining.Name = "rdbTraining"
-        Me.rdbTraining.Size = New System.Drawing.Size(63, 17)
+        Me.rdbTraining.Size = New System.Drawing.Size(73, 20)
         Me.rdbTraining.TabIndex = 31
         Me.rdbTraining.TabStop = True
         Me.rdbTraining.Text = "Training"
@@ -209,10 +218,10 @@ Partial Class createEvent
         'rdbMeet
         '
         Me.rdbMeet.AutoSize = True
-        Me.rdbMeet.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdbMeet.Location = New System.Drawing.Point(230, 105)
+        Me.rdbMeet.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdbMeet.Location = New System.Drawing.Point(188, 120)
         Me.rdbMeet.Name = "rdbMeet"
-        Me.rdbMeet.Size = New System.Drawing.Size(49, 17)
+        Me.rdbMeet.Size = New System.Drawing.Size(55, 20)
         Me.rdbMeet.TabIndex = 32
         Me.rdbMeet.Text = "Meet"
         Me.rdbMeet.UseVisualStyleBackColor = True
@@ -234,10 +243,11 @@ Partial Class createEvent
         '
         'txtComment
         '
-        Me.txtComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtComment.Location = New System.Drawing.Point(101, 283)
+        Me.txtComment.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtComment.Location = New System.Drawing.Point(98, 255)
+        Me.txtComment.Multiline = True
         Me.txtComment.Name = "txtComment"
-        Me.txtComment.Size = New System.Drawing.Size(227, 20)
+        Me.txtComment.Size = New System.Drawing.Size(230, 54)
         Me.txtComment.TabIndex = 36
         Me.txtComment.Text = "Enter your comment here"
         Me.txtComment.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -245,29 +255,30 @@ Partial Class createEvent
         'lblTitle
         '
         Me.lblTitle.AutoSize = True
-        Me.lblTitle.Font = New System.Drawing.Font("Modern No. 20", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.Location = New System.Drawing.Point(384, 2)
+        Me.lblTitle.Font = New System.Drawing.Font("Rockwell", 18.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitle.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lblTitle.Location = New System.Drawing.Point(22, 16)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(167, 29)
+        Me.lblTitle.Size = New System.Drawing.Size(201, 27)
         Me.lblTitle.TabIndex = 15
-        Me.lblTitle.Text = "Event Creator"
+        Me.lblTitle.Text = "EVENT CREATOR"
         '
         'lblEventName
         '
         Me.lblEventName.AutoSize = True
-        Me.lblEventName.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEventName.Location = New System.Drawing.Point(8, 63)
+        Me.lblEventName.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEventName.Location = New System.Drawing.Point(37, 93)
         Me.lblEventName.Name = "lblEventName"
-        Me.lblEventName.Size = New System.Drawing.Size(59, 24)
+        Me.lblEventName.Size = New System.Drawing.Size(45, 16)
         Me.lblEventName.TabIndex = 37
-        Me.lblEventName.Text = "Name"
+        Me.lblEventName.Text = "NAME"
         '
         'txtName
         '
-        Me.txtName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtName.Location = New System.Drawing.Point(90, 67)
+        Me.txtName.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtName.Location = New System.Drawing.Point(95, 86)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(227, 20)
+        Me.txtName.Size = New System.Drawing.Size(230, 23)
         Me.txtName.TabIndex = 38
         Me.txtName.Text = "Enter the event name here"
         Me.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -275,21 +286,21 @@ Partial Class createEvent
         'lblTemplate
         '
         Me.lblTemplate.AutoSize = True
-        Me.lblTemplate.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTemplate.Location = New System.Drawing.Point(7, 26)
+        Me.lblTemplate.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTemplate.Location = New System.Drawing.Point(15, 51)
         Me.lblTemplate.Name = "lblTemplate"
-        Me.lblTemplate.Size = New System.Drawing.Size(88, 24)
+        Me.lblTemplate.Size = New System.Drawing.Size(72, 16)
         Me.lblTemplate.TabIndex = 40
-        Me.lblTemplate.Text = "Template"
+        Me.lblTemplate.Text = "TEMPLATE"
         '
         'cmbTemplate
         '
         Me.cmbTemplate.Enabled = False
         Me.cmbTemplate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbTemplate.FormattingEnabled = True
-        Me.cmbTemplate.Location = New System.Drawing.Point(111, 31)
+        Me.cmbTemplate.Location = New System.Drawing.Point(98, 46)
         Me.cmbTemplate.Name = "cmbTemplate"
-        Me.cmbTemplate.Size = New System.Drawing.Size(182, 21)
+        Me.cmbTemplate.Size = New System.Drawing.Size(161, 21)
         Me.cmbTemplate.TabIndex = 41
         '
         'chbNone
@@ -297,10 +308,10 @@ Partial Class createEvent
         Me.chbNone.AutoSize = True
         Me.chbNone.Checked = True
         Me.chbNone.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNone.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbNone.Location = New System.Drawing.Point(299, 33)
+        Me.chbNone.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbNone.Location = New System.Drawing.Point(271, 47)
         Me.chbNone.Name = "chbNone"
-        Me.chbNone.Size = New System.Drawing.Size(52, 17)
+        Me.chbNone.Size = New System.Drawing.Size(57, 20)
         Me.chbNone.TabIndex = 43
         Me.chbNone.Text = "None"
         Me.chbNone.UseVisualStyleBackColor = True
@@ -323,13 +334,13 @@ Partial Class createEvent
         Me.gbDetails.Controls.Add(Me.dtpDate)
         Me.gbDetails.Controls.Add(Me.lblStart)
         Me.gbDetails.Controls.Add(Me.lblDate)
-        Me.gbDetails.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbDetails.Location = New System.Drawing.Point(12, 5)
+        Me.gbDetails.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbDetails.Location = New System.Drawing.Point(12, 64)
         Me.gbDetails.Name = "gbDetails"
-        Me.gbDetails.Size = New System.Drawing.Size(362, 308)
+        Me.gbDetails.Size = New System.Drawing.Size(347, 354)
         Me.gbDetails.TabIndex = 44
         Me.gbDetails.TabStop = False
-        Me.gbDetails.Text = "Details"
+        Me.gbDetails.Text = "DETAILS"
         '
         'flpAttach
         '
@@ -337,9 +348,9 @@ Partial Class createEvent
         Me.flpAttach.BackColor = System.Drawing.SystemColors.Control
         Me.flpAttach.Controls.Add(Me.pnlAttach)
         Me.flpAttach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpAttach.Location = New System.Drawing.Point(0, 24)
+        Me.flpAttach.Location = New System.Drawing.Point(0, 58)
         Me.flpAttach.Name = "flpAttach"
-        Me.flpAttach.Size = New System.Drawing.Size(328, 176)
+        Me.flpAttach.Size = New System.Drawing.Size(347, 176)
         Me.flpAttach.TabIndex = 45
         Me.flpAttach.WrapContents = False
         '
@@ -351,14 +362,14 @@ Partial Class createEvent
         Me.pnlAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlAttach.Location = New System.Drawing.Point(3, 3)
         Me.pnlAttach.Name = "pnlAttach"
-        Me.pnlAttach.Size = New System.Drawing.Size(305, 56)
+        Me.pnlAttach.Size = New System.Drawing.Size(344, 56)
         Me.pnlAttach.TabIndex = 43
         '
         'pbAttach
         '
         Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(116, -1)
+        Me.pbAttach.Location = New System.Drawing.Point(136, -1)
         Me.pbAttach.Name = "pbAttach"
         Me.pbAttach.Size = New System.Drawing.Size(74, 56)
         Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -368,14 +379,14 @@ Partial Class createEvent
         '
         'map
         '
-        Me.map.Bearing = 0!
+        Me.map.Bearing = 0.0!
         Me.map.CanDragMap = True
         Me.map.Cursor = System.Windows.Forms.Cursors.Hand
         Me.map.EmptyTileColor = System.Drawing.Color.Navy
         Me.map.GrayScaleMode = False
         Me.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow
         Me.map.LevelsKeepInMemmory = 5
-        Me.map.Location = New System.Drawing.Point(561, 8)
+        Me.map.Location = New System.Drawing.Point(856, 57)
         Me.map.MarkersEnabled = True
         Me.map.MaxZoom = 18
         Me.map.MinZoom = 2
@@ -388,56 +399,56 @@ Partial Class createEvent
         Me.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.[Integer]
         Me.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.map.ShowTileGridLines = False
-        Me.map.Size = New System.Drawing.Size(424, 290)
+        Me.map.Size = New System.Drawing.Size(394, 290)
         Me.map.TabIndex = 46
         Me.map.Zoom = 10.0R
         '
         'txtStreet
         '
         Me.txtStreet.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtStreet.Location = New System.Drawing.Point(9, 73)
+        Me.txtStreet.Location = New System.Drawing.Point(81, 71)
         Me.txtStreet.Multiline = True
         Me.txtStreet.Name = "txtStreet"
-        Me.txtStreet.Size = New System.Drawing.Size(162, 35)
+        Me.txtStreet.Size = New System.Drawing.Size(213, 21)
         Me.txtStreet.TabIndex = 47
         '
         'lblStreet
         '
         Me.lblStreet.AutoSize = True
-        Me.lblStreet.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStreet.Location = New System.Drawing.Point(5, 37)
+        Me.lblStreet.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStreet.Location = New System.Drawing.Point(22, 75)
         Me.lblStreet.Name = "lblStreet"
-        Me.lblStreet.Size = New System.Drawing.Size(108, 24)
+        Me.lblStreet.Size = New System.Drawing.Size(53, 16)
         Me.lblStreet.TabIndex = 44
-        Me.lblStreet.Text = "Street/Place"
+        Me.lblStreet.Text = "STREET"
         '
         'lblSuburb
         '
         Me.lblSuburb.AutoSize = True
-        Me.lblSuburb.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSuburb.Location = New System.Drawing.Point(4, 127)
+        Me.lblSuburb.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSuburb.Location = New System.Drawing.Point(18, 99)
         Me.lblSuburb.Name = "lblSuburb"
-        Me.lblSuburb.Size = New System.Drawing.Size(71, 24)
+        Me.lblSuburb.Size = New System.Drawing.Size(57, 16)
         Me.lblSuburb.TabIndex = 48
-        Me.lblSuburb.Text = "Suburb"
+        Me.lblSuburb.Text = "SUBURB"
         '
         'txtSuburb
         '
         Me.txtSuburb.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSuburb.Location = New System.Drawing.Point(78, 131)
+        Me.txtSuburb.Location = New System.Drawing.Point(81, 99)
         Me.txtSuburb.Name = "txtSuburb"
-        Me.txtSuburb.Size = New System.Drawing.Size(100, 20)
+        Me.txtSuburb.Size = New System.Drawing.Size(213, 20)
         Me.txtSuburb.TabIndex = 49
         '
         'lblState
         '
         Me.lblState.AutoSize = True
-        Me.lblState.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblState.Location = New System.Drawing.Point(4, 173)
+        Me.lblState.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblState.Location = New System.Drawing.Point(29, 126)
         Me.lblState.Name = "lblState"
-        Me.lblState.Size = New System.Drawing.Size(51, 24)
+        Me.lblState.Size = New System.Drawing.Size(46, 16)
         Me.lblState.TabIndex = 50
-        Me.lblState.Text = "State"
+        Me.lblState.Text = "STATE"
         '
         'gbLocation
         '
@@ -449,18 +460,18 @@ Partial Class createEvent
         Me.gbLocation.Controls.Add(Me.txtSuburb)
         Me.gbLocation.Controls.Add(Me.lblStreet)
         Me.gbLocation.Controls.Add(Me.txtStreet)
-        Me.gbLocation.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbLocation.Location = New System.Drawing.Point(375, 35)
+        Me.gbLocation.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbLocation.Location = New System.Drawing.Point(856, 375)
         Me.gbLocation.Name = "gbLocation"
-        Me.gbLocation.Size = New System.Drawing.Size(182, 254)
+        Me.gbLocation.Size = New System.Drawing.Size(394, 172)
         Me.gbLocation.TabIndex = 54
         Me.gbLocation.TabStop = False
-        Me.gbLocation.Text = "Location"
+        Me.gbLocation.Text = "LOCATION"
         '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(9, 20)
+        Me.DataGridView1.Location = New System.Drawing.Point(6, 38)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(163, 22)
         Me.DataGridView1.TabIndex = 44
@@ -471,21 +482,23 @@ Partial Class createEvent
         Me.cmbState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbState.FormattingEnabled = True
         Me.cmbState.Items.AddRange(New Object() {"NSW", "ACT", "WA", "NT", "TAS", "SA", "QLD", "VIC"})
-        Me.cmbState.Location = New System.Drawing.Point(78, 176)
+        Me.cmbState.Location = New System.Drawing.Point(81, 126)
         Me.cmbState.Name = "cmbState"
-        Me.cmbState.Size = New System.Drawing.Size(100, 21)
+        Me.cmbState.Size = New System.Drawing.Size(213, 21)
         Me.cmbState.TabIndex = 55
         Me.cmbState.Text = "NSW"
         '
         'btnSearch
         '
-        Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(56, 209)
+        Me.btnSearch.BackColor = System.Drawing.Color.Gray
+        Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnSearch.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearch.Location = New System.Drawing.Point(312, 48)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 32)
+        Me.btnSearch.Size = New System.Drawing.Size(76, 99)
         Me.btnSearch.TabIndex = 54
-        Me.btnSearch.Text = "Search"
-        Me.btnSearch.UseVisualStyleBackColor = True
+        Me.btnSearch.Text = "SEARCH"
+        Me.btnSearch.UseVisualStyleBackColor = False
         '
         'gbEvents
         '
@@ -504,23 +517,25 @@ Partial Class createEvent
         Me.gbEvents.Controls.Add(Me.dtp17s)
         Me.gbEvents.Controls.Add(Me.lbl14s)
         Me.gbEvents.Controls.Add(Me.lblOpens)
-        Me.gbEvents.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbEvents.Location = New System.Drawing.Point(722, 304)
+        Me.gbEvents.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbEvents.Location = New System.Drawing.Point(396, 392)
         Me.gbEvents.Name = "gbEvents"
         Me.gbEvents.Size = New System.Drawing.Size(257, 277)
         Me.gbEvents.TabIndex = 58
         Me.gbEvents.TabStop = False
-        Me.gbEvents.Text = "Events"
+        Me.gbEvents.Text = "EVENTS"
         '
         'btnSaveTimes
         '
-        Me.btnSaveTimes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSaveTimes.BackColor = System.Drawing.Color.Gray
+        Me.btnSaveTimes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnSaveTimes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSaveTimes.Location = New System.Drawing.Point(201, 29)
         Me.btnSaveTimes.Name = "btnSaveTimes"
         Me.btnSaveTimes.Size = New System.Drawing.Size(51, 23)
         Me.btnSaveTimes.TabIndex = 45
-        Me.btnSaveTimes.Text = "Save"
-        Me.btnSaveTimes.UseVisualStyleBackColor = True
+        Me.btnSaveTimes.Text = "SAVE"
+        Me.btnSaveTimes.UseVisualStyleBackColor = False
         '
         'cmbEvent
         '
@@ -534,145 +549,145 @@ Partial Class createEvent
         '
         'dtp13s
         '
-        Me.dtp13s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp13s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp13s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp13s.Location = New System.Drawing.Point(76, 64)
         Me.dtp13s.Name = "dtp13s"
         Me.dtp13s.ShowUpDown = True
-        Me.dtp13s.Size = New System.Drawing.Size(176, 26)
+        Me.dtp13s.Size = New System.Drawing.Size(176, 23)
         Me.dtp13s.TabIndex = 71
         Me.dtp13s.Tag = "U13"
         '
         'dtpOpens
         '
-        Me.dtpOpens.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpOpens.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpOpens.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtpOpens.Location = New System.Drawing.Point(76, 246)
         Me.dtpOpens.Name = "dtpOpens"
         Me.dtpOpens.ShowUpDown = True
-        Me.dtpOpens.Size = New System.Drawing.Size(176, 26)
+        Me.dtpOpens.Size = New System.Drawing.Size(176, 23)
         Me.dtpOpens.TabIndex = 70
         Me.dtpOpens.Tag = "Opens"
         '
         'lbl16s
         '
         Me.lbl16s.AutoSize = True
-        Me.lbl16s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl16s.Location = New System.Drawing.Point(6, 176)
+        Me.lbl16s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl16s.Location = New System.Drawing.Point(22, 181)
         Me.lbl16s.Name = "lbl16s"
-        Me.lbl16s.Size = New System.Drawing.Size(43, 21)
+        Me.lbl16s.Size = New System.Drawing.Size(37, 15)
         Me.lbl16s.TabIndex = 65
         Me.lbl16s.Text = "16's:"
         '
         'dtp16s
         '
-        Me.dtp16s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp16s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp16s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp16s.Location = New System.Drawing.Point(76, 174)
         Me.dtp16s.Name = "dtp16s"
         Me.dtp16s.ShowUpDown = True
-        Me.dtp16s.Size = New System.Drawing.Size(176, 26)
+        Me.dtp16s.Size = New System.Drawing.Size(176, 23)
         Me.dtp16s.TabIndex = 67
         Me.dtp16s.Tag = "U16"
         '
         'dtp15s
         '
-        Me.dtp15s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp15s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp15s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp15s.Location = New System.Drawing.Point(76, 138)
         Me.dtp15s.Name = "dtp15s"
         Me.dtp15s.ShowUpDown = True
-        Me.dtp15s.Size = New System.Drawing.Size(176, 26)
+        Me.dtp15s.Size = New System.Drawing.Size(176, 23)
         Me.dtp15s.TabIndex = 64
         Me.dtp15s.Tag = "U15"
         '
         'lbl17s
         '
         Me.lbl17s.AutoSize = True
-        Me.lbl17s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl17s.Location = New System.Drawing.Point(6, 210)
+        Me.lbl17s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl17s.Location = New System.Drawing.Point(22, 215)
         Me.lbl17s.Name = "lbl17s"
-        Me.lbl17s.Size = New System.Drawing.Size(43, 21)
+        Me.lbl17s.Size = New System.Drawing.Size(37, 15)
         Me.lbl17s.TabIndex = 66
         Me.lbl17s.Text = "17's:"
         '
         'dtp14s
         '
-        Me.dtp14s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp14s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp14s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp14s.Location = New System.Drawing.Point(76, 102)
         Me.dtp14s.Name = "dtp14s"
         Me.dtp14s.ShowUpDown = True
-        Me.dtp14s.Size = New System.Drawing.Size(176, 26)
+        Me.dtp14s.Size = New System.Drawing.Size(176, 23)
         Me.dtp14s.TabIndex = 63
         Me.dtp14s.Tag = "U14"
         '
         'lbl15s
         '
         Me.lbl15s.AutoSize = True
-        Me.lbl15s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl15s.Location = New System.Drawing.Point(6, 138)
+        Me.lbl15s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl15s.Location = New System.Drawing.Point(22, 143)
         Me.lbl15s.Name = "lbl15s"
-        Me.lbl15s.Size = New System.Drawing.Size(43, 21)
+        Me.lbl15s.Size = New System.Drawing.Size(37, 15)
         Me.lbl15s.TabIndex = 62
         Me.lbl15s.Text = "15's:"
         '
         'lbl13s
         '
         Me.lbl13s.AutoSize = True
-        Me.lbl13s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl13s.Location = New System.Drawing.Point(6, 65)
+        Me.lbl13s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl13s.Location = New System.Drawing.Point(22, 70)
         Me.lbl13s.Name = "lbl13s"
-        Me.lbl13s.Size = New System.Drawing.Size(43, 21)
+        Me.lbl13s.Size = New System.Drawing.Size(37, 15)
         Me.lbl13s.TabIndex = 60
         Me.lbl13s.Text = "13's:"
         '
         'dtp17s
         '
-        Me.dtp17s.Font = New System.Drawing.Font("Modern No. 20", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp17s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp17s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp17s.Location = New System.Drawing.Point(76, 210)
         Me.dtp17s.Name = "dtp17s"
         Me.dtp17s.ShowUpDown = True
-        Me.dtp17s.Size = New System.Drawing.Size(176, 26)
+        Me.dtp17s.Size = New System.Drawing.Size(176, 23)
         Me.dtp17s.TabIndex = 68
         Me.dtp17s.Tag = "U17"
         '
         'lbl14s
         '
         Me.lbl14s.AutoSize = True
-        Me.lbl14s.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl14s.Location = New System.Drawing.Point(6, 101)
+        Me.lbl14s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl14s.Location = New System.Drawing.Point(22, 106)
         Me.lbl14s.Name = "lbl14s"
-        Me.lbl14s.Size = New System.Drawing.Size(43, 21)
+        Me.lbl14s.Size = New System.Drawing.Size(37, 15)
         Me.lbl14s.TabIndex = 61
         Me.lbl14s.Text = "14's:"
         '
         'lblOpens
         '
         Me.lblOpens.AutoSize = True
-        Me.lblOpens.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOpens.Location = New System.Drawing.Point(6, 246)
+        Me.lblOpens.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOpens.Location = New System.Drawing.Point(1, 246)
         Me.lblOpens.Name = "lblOpens"
-        Me.lblOpens.Size = New System.Drawing.Size(60, 21)
+        Me.lblOpens.Size = New System.Drawing.Size(58, 15)
         Me.lblOpens.TabIndex = 69
-        Me.lblOpens.Text = "Opens:"
+        Me.lblOpens.Text = "OPENS:"
         '
         'gbAttachments
         '
         Me.gbAttachments.Controls.Add(Me.flpAttach)
-        Me.gbAttachments.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbAttachments.Location = New System.Drawing.Point(12, 315)
+        Me.gbAttachments.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbAttachments.Location = New System.Drawing.Point(12, 406)
         Me.gbAttachments.Name = "gbAttachments"
-        Me.gbAttachments.Size = New System.Drawing.Size(332, 206)
+        Me.gbAttachments.Size = New System.Drawing.Size(347, 206)
         Me.gbAttachments.TabIndex = 59
         Me.gbAttachments.TabStop = False
-        Me.gbAttachments.Text = "Attachments"
+        Me.gbAttachments.Text = "ATTACHMENTS"
         '
         'pbPlus
         '
         Me.pbPlus.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbPlus.Location = New System.Drawing.Point(960, 122)
+        Me.pbPlus.Location = New System.Drawing.Point(1225, 171)
         Me.pbPlus.Name = "pbPlus"
         Me.pbPlus.Size = New System.Drawing.Size(25, 25)
         Me.pbPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -682,7 +697,7 @@ Partial Class createEvent
         'pbMinus
         '
         Me.pbMinus.Image = Global.main.My.Resources.Resources.transparent_minus
-        Me.pbMinus.Location = New System.Drawing.Point(960, 159)
+        Me.pbMinus.Location = New System.Drawing.Point(1225, 208)
         Me.pbMinus.Name = "pbMinus"
         Me.pbMinus.Size = New System.Drawing.Size(25, 25)
         Me.pbMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -696,44 +711,46 @@ Partial Class createEvent
         Me.gbAthletes.Controls.Add(Me.chbAllAthletes)
         Me.gbAthletes.Controls.Add(Me.cmbGroup)
         Me.gbAthletes.Controls.Add(Me.flpAthletes)
-        Me.gbAthletes.Font = New System.Drawing.Font("Modern No. 20", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbAthletes.Location = New System.Drawing.Point(345, 315)
+        Me.gbAthletes.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbAthletes.Location = New System.Drawing.Point(391, 64)
         Me.gbAthletes.Name = "gbAthletes"
-        Me.gbAthletes.Size = New System.Drawing.Size(371, 273)
+        Me.gbAthletes.Size = New System.Drawing.Size(444, 263)
         Me.gbAthletes.TabIndex = 60
         Me.gbAthletes.TabStop = False
-        Me.gbAthletes.Text = "Athletes"
+        Me.gbAthletes.Text = "ATHLETES"
         '
         'chbAllNotes
         '
         Me.chbAllNotes.AutoSize = True
-        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbAllNotes.Location = New System.Drawing.Point(86, 25)
+        Me.chbAllNotes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllNotes.Location = New System.Drawing.Point(137, 31)
         Me.chbAllNotes.Name = "chbAllNotes"
-        Me.chbAllNotes.Size = New System.Drawing.Size(68, 17)
+        Me.chbAllNotes.Size = New System.Drawing.Size(94, 20)
         Me.chbAllNotes.TabIndex = 62
-        Me.chbAllNotes.Text = "All Notes"
+        Me.chbAllNotes.Text = "ALL NOTES"
         Me.chbAllNotes.UseVisualStyleBackColor = True
         '
         'btnSelect
         '
-        Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelect.Location = New System.Drawing.Point(291, 21)
+        Me.btnSelect.BackColor = System.Drawing.Color.Gray
+        Me.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnSelect.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelect.Location = New System.Drawing.Point(369, 28)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(75, 23)
         Me.btnSelect.TabIndex = 61
-        Me.btnSelect.Text = "Select"
-        Me.btnSelect.UseVisualStyleBackColor = True
+        Me.btnSelect.Text = "SELECT"
+        Me.btnSelect.UseVisualStyleBackColor = False
         '
         'chbAllAthletes
         '
         Me.chbAllAthletes.AutoSize = True
-        Me.chbAllAthletes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbAllAthletes.Location = New System.Drawing.Point(1, 25)
+        Me.chbAllAthletes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllAthletes.Location = New System.Drawing.Point(6, 31)
         Me.chbAllAthletes.Name = "chbAllAthletes"
-        Me.chbAllAthletes.Size = New System.Drawing.Size(85, 17)
+        Me.chbAllAthletes.Size = New System.Drawing.Size(125, 20)
         Me.chbAllAthletes.TabIndex = 48
-        Me.chbAllAthletes.Text = "All Attending"
+        Me.chbAllAthletes.Text = "ALL ATTENDING"
         Me.chbAllAthletes.UseVisualStyleBackColor = True
         '
         'cmbGroup
@@ -741,7 +758,7 @@ Partial Class createEvent
         Me.cmbGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbGroup.FormattingEnabled = True
         Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbGroup.Location = New System.Drawing.Point(150, 23)
+        Me.cmbGroup.Location = New System.Drawing.Point(228, 30)
         Me.cmbGroup.Name = "cmbGroup"
         Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
         Me.cmbGroup.TabIndex = 46
@@ -751,9 +768,9 @@ Partial Class createEvent
         Me.flpAthletes.AutoScroll = True
         Me.flpAthletes.BackColor = System.Drawing.SystemColors.Control
         Me.flpAthletes.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpAthletes.Location = New System.Drawing.Point(0, 48)
+        Me.flpAthletes.Location = New System.Drawing.Point(5, 54)
         Me.flpAthletes.Name = "flpAthletes"
-        Me.flpAthletes.Size = New System.Drawing.Size(371, 211)
+        Me.flpAthletes.Size = New System.Drawing.Size(456, 211)
         Me.flpAthletes.TabIndex = 45
         Me.flpAthletes.WrapContents = False
         '
@@ -761,7 +778,7 @@ Partial Class createEvent
         '
         Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(515, 295)
+        Me.ComboBox1.Location = New System.Drawing.Point(398, 352)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(182, 21)
         Me.ComboBox1.TabIndex = 44
@@ -771,10 +788,35 @@ Partial Class createEvent
         Me.CheckedListBox1.Enabled = False
         Me.CheckedListBox1.FormattingEnabled = True
         Me.CheckedListBox1.Items.AddRange(New Object() {"Swag", "Bomsl"})
-        Me.CheckedListBox1.Location = New System.Drawing.Point(389, 288)
+        Me.CheckedListBox1.Location = New System.Drawing.Point(619, 354)
         Me.CheckedListBox1.Name = "CheckedListBox1"
         Me.CheckedListBox1.Size = New System.Drawing.Size(120, 19)
         Me.CheckedListBox1.TabIndex = 61
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
+        Me.GroupBox2.Controls.Add(Me.exitBtn)
+        Me.GroupBox2.Controls.Add(Me.lblTitle)
+        Me.GroupBox2.Location = New System.Drawing.Point(-10, -11)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(1377, 58)
+        Me.GroupBox2.TabIndex = 62
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "GroupBox2"
+        '
+        'exitBtn
+        '
+        Me.exitBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.exitBtn.FlatAppearance.BorderSize = 0
+        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.exitBtn.Location = New System.Drawing.Point(1228, 11)
+        Me.exitBtn.Name = "exitBtn"
+        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
+        Me.exitBtn.TabIndex = 6
+        Me.exitBtn.Text = "exit"
+        Me.exitBtn.UseVisualStyleBackColor = False
         '
         'createEvent
         '
@@ -782,7 +824,9 @@ Partial Class createEvent
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(983, 580)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.CheckedListBox1)
         Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.gbAttachments)
@@ -795,9 +839,10 @@ Partial Class createEvent
         Me.Controls.Add(Me.gbDetails)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSaveEvent)
-        Me.Controls.Add(Me.lblTitle)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
         Me.Name = "createEvent"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "createEvent"
         Me.gbDetails.ResumeLayout(False)
         Me.gbDetails.PerformLayout()
@@ -814,8 +859,9 @@ Partial Class createEvent
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbAthletes.ResumeLayout(False)
         Me.gbAthletes.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents lblDate As Label
@@ -880,4 +926,6 @@ Partial Class createEvent
     Friend WithEvents chbAllNotes As CheckBox
     Friend WithEvents CheckedListBox1 As CheckedListBox
     Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents exitBtn As System.Windows.Forms.Button
 End Class

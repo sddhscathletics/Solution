@@ -85,7 +85,7 @@ Public Class Logon
     Public Shared Function findUserPass(ByVal username As String, pass As String)
         Dim enteredStuff As New List(Of String)
         Dim Found As Boolean
-        Using conn As New System.Data.OleDb.OleDbConnection(dataPath + "\User.accdb")
+        Using conn As New System.Data.OleDb.OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT ID, Pass FROM UserDb WHERE ID = @Username AND Pass = @Pass", conn)
                 '("SELECT * FROM UserDb WHERE User='" & TextBox1.Text & "' AND Pass = '" & TextBox2.Text & "'")
