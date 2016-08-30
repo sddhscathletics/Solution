@@ -186,15 +186,21 @@ Public Class AddEdit_User
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         Dim id, pass As String
+#Disable Warning BC42024 ' Unused local variable
         Dim access As Integer
+#Enable Warning BC42024 ' Unused local variable
         Using conn As New OleDbConnection(dataPath + "\User.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT ID, Pass, Access FROM UserDb WHERE ID = @Username AND Pass = @Pass AND Access = @Access", conn) 'Selects unread edits
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
+#Disable Warning BC42104 ' Variable is used before it has been assigned a value
                             idText.Text = id
+#Enable Warning BC42104 ' Variable is used before it has been assigned a value
+#Disable Warning BC42104 ' Variable is used before it has been assigned a value
                             passText.Text = pass
+#Enable Warning BC42104 ' Variable is used before it has been assigned a value
                         Loop
                     End If
                 End Using

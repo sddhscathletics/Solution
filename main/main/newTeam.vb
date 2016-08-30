@@ -1,26 +1,26 @@
 ﻿Imports System.Data.OleDb
 'Searching
 'Add a whole new flp?
+'Remove colors
+'Add new flp
+'Move people between flps
 
 Public Class newTeam
     Dim panelColor As Color = Color.CadetBlue
     Dim first As Boolean = True
     Dim listAthletes As New List(Of athlete)
-    Dim listSelect As New List(Of String)
+    Dim listSelect As New List(Of athlete)
+    Dim listSorted As New List(Of athlete)
 
     Private Sub newTeam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        sort()
+        populate()
     End Sub
 
-    Private Sub sort()
-        Dim append As String = ""
-        If cmbAgeGroup.SelectedItem <> Nothing Then
-            append = " WHERE AgeGroup = '" + cmbAgeGroup.SelectedItem.ToString + "'" 'Filters by age group
-        End If
-        listAthletes.Clear()
+    Private Sub populate()
+        listAthletes.Clear() 'Populate athlete list with people
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName FROM athleteDb" + append, conn)
+            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName, AgeGroup FROM athleteDb", conn)
                 'Need to add photo
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
@@ -30,13 +30,17 @@ Public Class newTeam
                             ath.roll = dr("RollClass")
                             ath.fName = dr("FirstName")
                             ath.lName = dr("LastName")
+                            ath.ageGroup = dr("AgeGroup")
                             listAthletes.Add(ath)
                         Loop
                     End If
                 End Using
             End Using
         End Using
-        If cmbFilter.SelectedItem <> Nothing Then
+    End Sub
+
+    Private Sub sort()
+        If cmbFilter.SelectedItem <> Nothing Then 'Sorting
             Dim asc As Boolean = True
             Select Case cmbFilter.SelectedItem.ToString
                 Case "ID"
@@ -60,100 +64,81 @@ Public Class newTeam
                 listAthletes.Reverse()
             End If
         End If
-        flpAthletes.Controls.Clear() 'Filling panels
-        For Each ath As athlete In listAthletes
-            Dim newpanel As New Panel With
-                {
-                .Margin = New Padding(3, 3, 3, 3),
-                .Height = 55,
-                .Width = 140,
-                .BackColor = panelColor,
-                .Name = ath.ID
-                }
+    End Sub
 
-            Dim ID As New Label With
-                {
-                .Text = ath.ID,
-                .Font = New Font("Segoe UI", 9, FontStyle.Bold),
-                .Height = 15,
-                .Location = New Point(0, 0),
-                .Name = ath.ID + ".ID"
-                }
+    Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
+        flp.Controls.Clear() 'Filling panels
+        For Each ath As athlete In list
+            If ath.ageGroup = cmbAgeGroup.SelectedItem.ToString And cmbAgeGroup.SelectedItem <> Nothing Then 'Age group filter
+                Dim newpanel As New Panel With
+                    {
+                    .Margin = New Padding(3, 3, 3, 3),
+                    .Height = 55,
+                    .Width = 140,
+                    .BackColor = panelColor,
+                    .Name = ath.ID,
+                    .Tag = tag
+                    }
 
-            Dim roll As New Label With
-                {
-                .Text = ath.roll,
-                .Font = New Font("Segoe UI", 8),
-                .Height = 13,
-                .Location = New Point(0, 15),
-                .Name = ath.ID.ToString + ".roll"
-                }
+                Dim ID As New Label With
+                    {
+                    .Text = ath.ID,
+                    .Font = New Font("Segoe UI", 9, FontStyle.Bold),
+                    .Height = 15,
+                    .Location = New Point(0, 0),
+                    .Name = ath.ID + ".ID"
+                    }
 
-            Dim lName As New Label With
-                {
-                .Text = ath.lName.ToUpper,
-                .Font = New Font("Segoe UI", 8),
-                .Height = 13,
-                .Location = New Point(0, 28),
-                .Name = ath.ID.ToString + ".lName"
-                }
+                Dim roll As New Label With
+                    {
+                    .Text = ath.roll,
+                    .Font = New Font("Segoe UI", 8),
+                    .Height = 13,
+                    .Location = New Point(0, 15),
+                    .Name = ath.ID.ToString + ".roll"
+                    }
 
-            Dim fName As New Label With
-                {
-                .Text = ath.fName,
-                .Font = New Font("Segoe UI", 8),
-                .Height = 13,
-                .Location = New Point(0, 41),
-                .Name = ath.ID.ToString + ".fName"
-                }
+                Dim lName As New Label With
+                    {
+                    .Text = ath.lName.ToUpper,
+                    .Font = New Font("Segoe UI", 8),
+                    .Height = 13,
+                    .Location = New Point(0, 28),
+                    .Name = ath.ID.ToString + ".lName"
+                    }
 
-            newpanel.Controls.Add(ID)
-            newpanel.Controls.Add(roll)
-            newpanel.Controls.Add(fName)
-            newpanel.Controls.Add(lName)
+                Dim fName As New Label With
+                    {
+                    .Text = ath.fName,
+                    .Font = New Font("Segoe UI", 8),
+                    .Height = 13,
+                    .Location = New Point(0, 41),
+                    .Name = ath.ID.ToString + ".fName"
+                    }
 
-            flpAthletes.Controls.Add(newpanel)
-            AddHandler newpanel.MouseClick, AddressOf panelClicked
-            AddHandler ID.MouseClick, AddressOf labelClicked
-            AddHandler roll.MouseClick, AddressOf labelClicked
-            AddHandler fName.MouseClick, AddressOf labelClicked
-            AddHandler lName.MouseClick, AddressOf labelClicked
-        Next
-        For Each pnl As Panel In flpAthletes.Controls 'Check for previously selected members
-            If listSelect.Contains(pnl.Name) = True Then
-                pnl.BackColor = Color.Green
+                newpanel.Controls.Add(ID)
+                newpanel.Controls.Add(roll)
+                newpanel.Controls.Add(fName)
+                newpanel.Controls.Add(lName)
+
+                flp.Controls.Add(newpanel)
+                AddHandler newpanel.MouseClick, AddressOf panelClicked
+                AddHandler ID.MouseClick, AddressOf labelClicked
+                AddHandler roll.MouseClick, AddressOf labelClicked
+                AddHandler fName.MouseClick, AddressOf labelClicked
+                AddHandler lName.MouseClick, AddressOf labelClicked
             End If
         Next
     End Sub
 
     Private Sub panelClicked(sender As Object, e As EventArgs)
         Dim clicked As Panel = sender
-        If clicked.BackColor = Color.Green Then
-            clicked.BackColor = panelColor
-            listSelect.Remove(clicked.Name)
+        If clicked.Tag = "sel" Then
+            listAthletes.Add(listSelect(clicked.Name))
+            listSelect.Remove(listAthletes(clicked.Name))
         Else
-            clicked.BackColor = Color.Green 'Highlight team for addition
-            listSelect.Add(clicked.Name)
-        End If
-        If listSelect.Count = Nothing Then 'Output list of team members
-            txtSelectedMembers.Text = "Please add members to the team on the left."
-        Else
-            Dim listOutput As New List(Of String)
-            Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
-                conn.Open()
-                For Each id As String In listSelect
-                    Using cmd As New OleDbCommand("SELECT FirstName, LastName FROM athleteDb WHERE ID = " + id, conn)
-                        Using dr = cmd.ExecuteReader()
-                            If dr.HasRows Then
-                                Do While dr.Read()
-                                    listOutput.Add(id + ": " + dr("LastName").ToString.ToUpper + ", " + dr("FirstName"))
-                                Loop
-                            End If
-                        End Using
-                    End Using
-                Next
-            End Using
-            txtSelectedMembers.Lines = listOutput.ToArray
+            listSelect.Add(listAthletes(clicked.Name))
+            listAthletes.Remove(listSelect(clicked.Name))
         End If
     End Sub
 
@@ -194,8 +179,8 @@ Public Class newTeam
                     Using cmd As New OleDbCommand("INSERT INTO teamDb (Team, AgeGroup, Members) VALUES (@team, @AgeGroup, @Members)", conn) 'Appends the database with a new team
                         'Spool members list
                         Dim Members As String = ";" 'Leading separator character
-                        For Each member As String In listSelect
-                            Members += (member + ";")
+                        For Each ath As athlete In listSelect
+                            Members += (ath.ID + ";")
                         Next
                         cmd.Parameters.AddWithValue("@Team", txtTeamName.Text)
                         cmd.Parameters.AddWithValue("@AgeGroup", cmbAgeGroup.SelectedItem.ToString)
@@ -215,6 +200,4 @@ Public Class newTeam
     Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFilter.SelectedIndexChanged
         sort()
     End Sub
-
-
 End Class

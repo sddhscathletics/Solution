@@ -164,25 +164,33 @@ Public Class selectAthlete
 
 
         While address(i) <> " " 'Parse until the space separator between unit/number and street is found
+#Disable Warning BC42104 ' Variable is used before it has been assigned a value
             adNo += address(i)
+#Enable Warning BC42104 ' Variable is used before it has been assigned a value
             i += 1
         End While
 
         i += 1
         While address(i) <> "," 'Parse until comma separator between street and subrub is found
+#Disable Warning BC42104 ' Variable is used before it has been assigned a value
             adSt += address(i)
+#Enable Warning BC42104 ' Variable is used before it has been assigned a value
             i += 1
         End While
 
         i += 2 'Jump two places in the string to account for the comma and space
         While address(i) <> " " 'Parse until the space separator between suburb and postcode is found
+#Disable Warning BC42104 ' Variable is used before it has been assigned a value
             adSb += address(i)
+#Enable Warning BC42104 ' Variable is used before it has been assigned a value
             i += 1
         End While
 
         i += 1
         For i = i To Len(address) - 1 'Parse until the end of the string to find post code
+#Disable Warning BC42104 ' Variable is used before it has been assigned a value
             adPo += address(i)
+#Enable Warning BC42104 ' Variable is used before it has been assigned a value
         Next
 
         lblStNo.Text = adNo
