@@ -23,7 +23,6 @@ Partial Class home
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.admDrop = New System.Windows.Forms.Button()
@@ -42,35 +41,23 @@ Partial Class home
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button14 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.Button12 = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.resultBtn = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
         Me.calendarBtn = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.scrollBtn = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.resultBtn = New System.Windows.Forms.Button()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'scrollBtn
-        '
-        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
-        Me.scrollBtn.Name = "scrollBtn"
-        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
-        Me.scrollBtn.TabIndex = 3
-        Me.scrollBtn.Text = "scrollbarbutton"
-        Me.scrollBtn.UseVisualStyleBackColor = False
         '
         'Sidebar
         '
@@ -89,7 +76,7 @@ Partial Class home
         Me.Sidebar.Controls.Add(Me.sideCalSub2)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
         Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(0, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 2
@@ -313,7 +300,6 @@ Partial Class home
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
         Me.GroupBox2.Controls.Add(Me.Button14)
         Me.GroupBox2.Controls.Add(Me.Button13)
-        Me.GroupBox2.Controls.Add(Me.Button12)
         Me.GroupBox2.Controls.Add(Me.exitBtn)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
         Me.GroupBox2.Controls.Add(Me.scrollBtn)
@@ -336,32 +322,6 @@ Partial Class home
         Me.Button14.TabIndex = 6
         Me.Button14.Text = "search"
         Me.Button14.UseVisualStyleBackColor = False
-        '
-        'Button13
-        '
-        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1157, 11)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(44, 44)
-        Me.Button13.TabIndex = 6
-        Me.Button13.Text = "notif"
-        Me.Button13.UseVisualStyleBackColor = False
-        '
-        'Button12
-        '
-        Me.Button12.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button12.FlatAppearance.BorderSize = 0
-        Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button12.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button12.Location = New System.Drawing.Point(1201, 11)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(44, 44)
-        Me.Button12.TabIndex = 6
-        Me.Button12.Text = "settings"
-        Me.Button12.UseVisualStyleBackColor = False
         '
         'exitBtn
         '
@@ -389,7 +349,6 @@ Partial Class home
         Me.bigbtngroup.Controls.Add(Me.Button2)
         Me.bigbtngroup.Controls.Add(Me.PictureBox1)
         Me.bigbtngroup.Controls.Add(Me.resultBtn)
-        Me.bigbtngroup.Controls.Add(Me.Button10)
         Me.bigbtngroup.Controls.Add(Me.Button9)
         Me.bigbtngroup.Controls.Add(Me.Button8)
         Me.bigbtngroup.Controls.Add(Me.calendarBtn)
@@ -411,6 +370,47 @@ Partial Class home
         Me.Button2.Text = "Button6"
         Me.Button2.UseVisualStyleBackColor = False
         '
+        'calendarBtn
+        '
+        Me.calendarBtn.BackColor = System.Drawing.Color.Gray
+        Me.calendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.calendarBtn.Location = New System.Drawing.Point(45, 83)
+        Me.calendarBtn.Name = "calendarBtn"
+        Me.calendarBtn.Size = New System.Drawing.Size(500, 300)
+        Me.calendarBtn.TabIndex = 0
+        Me.calendarBtn.Text = "calendar"
+        Me.calendarBtn.UseVisualStyleBackColor = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1
+        '
+        'Button13
+        '
+        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
+        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
+        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button13.FlatAppearance.BorderSize = 0
+        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Button13.Location = New System.Drawing.Point(1201, 11)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(44, 44)
+        Me.Button13.TabIndex = 6
+        Me.Button13.UseVisualStyleBackColor = False
+        '
+        'scrollBtn
+        '
+        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
+        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
+        Me.scrollBtn.Name = "scrollBtn"
+        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
+        Me.scrollBtn.TabIndex = 3
+        Me.scrollBtn.UseVisualStyleBackColor = False
+        '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImage = Global.main.My.Resources.Resources.excel
@@ -424,60 +424,34 @@ Partial Class home
         '
         Me.resultBtn.BackColor = System.Drawing.Color.Gray
         Me.resultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.resultBtn.Image = Global.main.My.Resources.Resources.Results_Btn
         Me.resultBtn.Location = New System.Drawing.Point(45, 409)
         Me.resultBtn.Name = "resultBtn"
-        Me.resultBtn.Size = New System.Drawing.Size(529, 300)
+        Me.resultBtn.Size = New System.Drawing.Size(500, 300)
         Me.resultBtn.TabIndex = 0
-        Me.resultBtn.Text = "results"
         Me.resultBtn.UseVisualStyleBackColor = False
-        '
-        'Button10
-        '
-        Me.Button10.BackColor = System.Drawing.Color.Gray
-        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Location = New System.Drawing.Point(599, 300)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(529, 193)
-        Me.Button10.TabIndex = 0
-        Me.Button10.Text = "Button6"
-        Me.Button10.UseVisualStyleBackColor = False
         '
         'Button9
         '
         Me.Button9.BackColor = System.Drawing.Color.Gray
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(599, 516)
+        Me.Button9.Image = Global.main.My.Resources.Resources.View_Athletes_Btn
+        Me.Button9.Location = New System.Drawing.Point(599, 409)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(529, 193)
+        Me.Button9.Size = New System.Drawing.Size(500, 300)
         Me.Button9.TabIndex = 0
-        Me.Button9.Text = "Button6"
         Me.Button9.UseVisualStyleBackColor = False
         '
         'Button8
         '
         Me.Button8.BackColor = System.Drawing.Color.Gray
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button8.Image = Global.main.My.Resources.Resources.Manage_Users_Btn
         Me.Button8.Location = New System.Drawing.Point(599, 86)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(529, 193)
+        Me.Button8.Size = New System.Drawing.Size(500, 300)
         Me.Button8.TabIndex = 0
-        Me.Button8.Text = "Button6"
         Me.Button8.UseVisualStyleBackColor = False
-        '
-        'calendarBtn
-        '
-        Me.calendarBtn.BackColor = System.Drawing.Color.Gray
-        Me.calendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.calendarBtn.Location = New System.Drawing.Point(45, 86)
-        Me.calendarBtn.Name = "calendarBtn"
-        Me.calendarBtn.Size = New System.Drawing.Size(529, 300)
-        Me.calendarBtn.TabIndex = 0
-        Me.calendarBtn.Text = "calendar"
-        Me.calendarBtn.UseVisualStyleBackColor = False
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 1
         '
         'home
         '
@@ -512,13 +486,11 @@ Partial Class home
     Friend WithEvents Button1 As Button
     Friend WithEvents bigbtngroup As GroupBox
     Friend WithEvents calendarBtn As Button
-    Friend WithEvents Button10 As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents resultBtn As Button
     Friend WithEvents Button14 As Button
     Friend WithEvents Button13 As Button
-    Friend WithEvents Button12 As Button
     Friend WithEvents exitBtn As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents PictureBox1 As PictureBox

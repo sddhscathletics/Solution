@@ -391,6 +391,24 @@
   <ItemGroup>
     <None Include="Resources\transparent-minus.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Manage Users Btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Results Btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\View Athletes Btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scrollbtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notifbtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\helpbtn.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
