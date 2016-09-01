@@ -116,6 +116,7 @@
     <Compile Include="checkNotif.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="common.vb" />
     <Compile Include="createEvent.Designer.vb">
       <DependentUpon>createEvent.vb</DependentUpon>
     </Compile>

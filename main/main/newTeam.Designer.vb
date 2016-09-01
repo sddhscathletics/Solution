@@ -28,7 +28,7 @@ Partial Class newTeam
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblAddMembers = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.cmbFilter = New System.Windows.Forms.ComboBox()
+        Me.cmbSort = New System.Windows.Forms.ComboBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblSelectedMembers = New System.Windows.Forms.Label()
@@ -86,15 +86,15 @@ Partial Class newTeam
         Me.txtSearch.TabIndex = 86
         Me.txtSearch.Text = "Search"
         '
-        'cmbFilter
+        'cmbSort
         '
-        Me.cmbFilter.FormattingEnabled = True
-        Me.cmbFilter.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
-        Me.cmbFilter.Location = New System.Drawing.Point(321, 101)
-        Me.cmbFilter.Name = "cmbFilter"
-        Me.cmbFilter.Size = New System.Drawing.Size(150, 21)
-        Me.cmbFilter.TabIndex = 87
-        Me.cmbFilter.Text = "Sort By"
+        Me.cmbSort.FormattingEnabled = True
+        Me.cmbSort.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
+        Me.cmbSort.Location = New System.Drawing.Point(321, 101)
+        Me.cmbSort.Name = "cmbSort"
+        Me.cmbSort.Size = New System.Drawing.Size(150, 21)
+        Me.cmbSort.TabIndex = 87
+        Me.cmbSort.Text = "Sort By"
         '
         'btnCancel
         '
@@ -142,7 +142,7 @@ Partial Class newTeam
         Me.ClientSize = New System.Drawing.Size(735, 402)
         Me.Controls.Add(Me.txtSelectedMembers)
         Me.Controls.Add(Me.lblSelectedMembers)
-        Me.Controls.Add(Me.cmbFilter)
+        Me.Controls.Add(Me.cmbSort)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lblAddMembers)
         Me.Controls.Add(Me.flpAthletes)
@@ -167,7 +167,7 @@ Partial Class newTeam
     Friend WithEvents flpAthletes As FlowLayoutPanel
     Friend WithEvents lblAddMembers As Label
     Friend WithEvents txtSearch As TextBox
-    Friend WithEvents cmbFilter As ComboBox
+    Friend WithEvents cmbSort As ComboBox
     Friend WithEvents lblSelectedMembers As Label
     Friend WithEvents txtSelectedMembers As TextBox
 End Class

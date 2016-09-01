@@ -13,121 +13,79 @@ Public Class newTeam
     Dim listSorted As New List(Of athlete)
 
     Private Sub newTeam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        populate()
+        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
-    Private Sub populate()
-        listAthletes.Clear() 'Populate athlete list with people
-        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
-            conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName, AgeGroup FROM athleteDb", conn)
-                'Need to add photo
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        Do While dr.Read()
-                            Dim ath As New athlete
-                            ath.ID = dr("ID")
-                            ath.roll = dr("RollClass")
-                            ath.fName = dr("FirstName")
-                            ath.lName = dr("LastName")
-                            ath.ageGroup = dr("AgeGroup")
-                            listAthletes.Add(ath)
-                        Loop
-                    End If
-                End Using
-            End Using
-        End Using
+    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
+        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
-    Private Sub sort()
-        If cmbFilter.SelectedItem <> Nothing Then 'Sorting
-            Dim asc As Boolean = True
-            Select Case cmbFilter.SelectedItem.ToString
-                Case "ID"
-                    listAthletes.Sort(Function(x, y) x.ID.CompareTo(y.ID))
-
-                Case "First Name (Ascending)"
-                    listAthletes.Sort(Function(x, y) x.fName.CompareTo(y.fName))
-
-                Case "First Name (Descending)"
-                    asc = False
-                    listAthletes.Sort(Function(x, y) x.fName.CompareTo(y.fName))
-
-                Case "Last Name (Ascending)"
-                    listAthletes.Sort(Function(x, y) x.lName.CompareTo(y.lName))
-
-                Case "Last Name (Descending)"
-                    asc = False
-                    listAthletes.Sort(Function(x, y) x.lName.CompareTo(y.lName))
-            End Select
-            If asc = False Then
-                listAthletes.Reverse()
-            End If
-        End If
+    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
+        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
         flp.Controls.Clear() 'Filling panels
         For Each ath As athlete In list
-            If ath.ageGroup = cmbAgeGroup.SelectedItem.ToString And cmbAgeGroup.SelectedItem <> Nothing Then 'Age group filter
-                Dim newpanel As New Panel With
-                    {
-                    .Margin = New Padding(3, 3, 3, 3),
-                    .Height = 55,
-                    .Width = 140,
-                    .BackColor = panelColor,
-                    .Name = ath.ID,
-                    .Tag = tag
-                    }
+            Dim newpanel As New Panel With
+                {
+                .Margin = New Padding(3, 3, 3, 3),
+                .Height = 55,
+                .Width = 140,
+                .BackColor = panelColor,
+                .Name = ath.ID,
+                .Tag = tag
+                }
+            Dim ID As New Label With
+                {
+                .Text = ath.ID,
+                .Font = New Font("Segoe UI", 9, FontStyle.Bold),
+                .Height = 15,
+                .Location = New Point(0, 0),
+                .Name = ath.ID + ".ID"
+                }
 
-                Dim ID As New Label With
-                    {
-                    .Text = ath.ID,
-                    .Font = New Font("Segoe UI", 9, FontStyle.Bold),
-                    .Height = 15,
-                    .Location = New Point(0, 0),
-                    .Name = ath.ID + ".ID"
-                    }
+            Dim roll As New Label With
+                {
+                .Text = ath.roll,
+                .Font = New Font("Segoe UI", 8),
+                .Height = 13,
+                .Location = New Point(0, 15),
+                .Name = ath.ID.ToString + ".roll"
+                }
 
-                Dim roll As New Label With
-                    {
-                    .Text = ath.roll,
-                    .Font = New Font("Segoe UI", 8),
-                    .Height = 13,
-                    .Location = New Point(0, 15),
-                    .Name = ath.ID.ToString + ".roll"
-                    }
+            Dim lName As New Label With
+                {
+                .Text = ath.lName.ToUpper,
+                .Font = New Font("Segoe UI", 8),
+                .Height = 13,
+                .Location = New Point(0, 28),
+                .Name = ath.ID.ToString + ".lName"
+                }
 
-                Dim lName As New Label With
-                    {
-                    .Text = ath.lName.ToUpper,
-                    .Font = New Font("Segoe UI", 8),
-                    .Height = 13,
-                    .Location = New Point(0, 28),
-                    .Name = ath.ID.ToString + ".lName"
-                    }
+            Dim fName As New Label With
+                {
+                .Text = ath.fName,
+                .Font = New Font("Segoe UI", 8),
+                .Height = 13,
+                .Location = New Point(0, 41),
+                .Name = ath.ID.ToString + ".fName"
+                }
 
-                Dim fName As New Label With
-                    {
-                    .Text = ath.fName,
-                    .Font = New Font("Segoe UI", 8),
-                    .Height = 13,
-                    .Location = New Point(0, 41),
-                    .Name = ath.ID.ToString + ".fName"
-                    }
+            newpanel.Controls.Add(ID)
+            newpanel.Controls.Add(roll)
+            newpanel.Controls.Add(fName)
+            newpanel.Controls.Add(lName)
 
-                newpanel.Controls.Add(ID)
-                newpanel.Controls.Add(roll)
-                newpanel.Controls.Add(fName)
-                newpanel.Controls.Add(lName)
-
-                flp.Controls.Add(newpanel)
-                AddHandler newpanel.MouseClick, AddressOf panelClicked
-                AddHandler ID.MouseClick, AddressOf labelClicked
-                AddHandler roll.MouseClick, AddressOf labelClicked
-                AddHandler fName.MouseClick, AddressOf labelClicked
-                AddHandler lName.MouseClick, AddressOf labelClicked
-            End If
+            flp.Controls.Add(newpanel)
+            AddHandler newpanel.MouseClick, AddressOf panelClicked
+            AddHandler ID.MouseClick, AddressOf labelClicked
+            AddHandler roll.MouseClick, AddressOf labelClicked
+            AddHandler fName.MouseClick, AddressOf labelClicked
+            AddHandler lName.MouseClick, AddressOf labelClicked
         Next
     End Sub
 
@@ -193,11 +151,4 @@ Public Class newTeam
         End If
     End Sub
 
-    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        sort()
-    End Sub
-
-    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFilter.SelectedIndexChanged
-        sort()
-    End Sub
 End Class

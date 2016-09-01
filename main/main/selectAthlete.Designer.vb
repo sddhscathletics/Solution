@@ -63,7 +63,7 @@ Partial Class selectAthlete
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
-        Me.cmbFilter = New System.Windows.Forms.ComboBox()
+        Me.cmbSort = New System.Windows.Forms.ComboBox()
         Me.cmbAgeGroup = New System.Windows.Forms.ComboBox()
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
@@ -479,16 +479,16 @@ Partial Class selectAthlete
         Me.pbPhoto.TabIndex = 72
         Me.pbPhoto.TabStop = False
         '
-        'cmbFilter
+        'cmbSort
         '
-        Me.cmbFilter.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbFilter.FormattingEnabled = True
-        Me.cmbFilter.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
-        Me.cmbFilter.Location = New System.Drawing.Point(432, 38)
-        Me.cmbFilter.Name = "cmbFilter"
-        Me.cmbFilter.Size = New System.Drawing.Size(150, 24)
-        Me.cmbFilter.TabIndex = 89
-        Me.cmbFilter.Text = "Sort By"
+        Me.cmbSort.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbSort.FormattingEnabled = True
+        Me.cmbSort.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
+        Me.cmbSort.Location = New System.Drawing.Point(432, 38)
+        Me.cmbSort.Name = "cmbSort"
+        Me.cmbSort.Size = New System.Drawing.Size(150, 24)
+        Me.cmbSort.TabIndex = 89
+        Me.cmbSort.Text = "Sort By"
         '
         'cmbAgeGroup
         '
@@ -506,7 +506,7 @@ Partial Class selectAthlete
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.cmbFilter)
+        Me.Controls.Add(Me.cmbSort)
         Me.Controls.Add(Me.gpbTeamManagement)
         Me.Controls.Add(Me.cmbAgeGroup)
         Me.Controls.Add(Me.lblID)
@@ -583,7 +583,7 @@ Partial Class selectAthlete
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents gpbAddress As GroupBox
     Friend WithEvents lblStNo As Label
-    Friend WithEvents cmbFilter As ComboBox
+    Friend WithEvents cmbSort As ComboBox
     Friend WithEvents cmbAgeGroup As ComboBox
     Friend WithEvents lblTeamSearch As Label
     Friend WithEvents cmbTeamAgeGroup As ComboBox
