@@ -37,33 +37,37 @@ Partial Class newTeam
         '
         'txtTeamName
         '
+        Me.txtTeamName.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTeamName.Location = New System.Drawing.Point(177, 23)
         Me.txtTeamName.Name = "txtTeamName"
-        Me.txtTeamName.Size = New System.Drawing.Size(179, 20)
+        Me.txtTeamName.Size = New System.Drawing.Size(179, 23)
         Me.txtTeamName.TabIndex = 0
         '
         'cmbAgeGroup
         '
+        Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAgeGroup.FormattingEnabled = True
         Me.cmbAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
         Me.cmbAgeGroup.Location = New System.Drawing.Point(177, 49)
         Me.cmbAgeGroup.Name = "cmbAgeGroup"
-        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 21)
+        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 24)
         Me.cmbAgeGroup.TabIndex = 1
         Me.cmbAgeGroup.Text = "Age Group"
         '
         'lblTeamName
         '
         Me.lblTeamName.AutoSize = True
+        Me.lblTeamName.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTeamName.Location = New System.Drawing.Point(174, 7)
         Me.lblTeamName.Name = "lblTeamName"
-        Me.lblTeamName.Size = New System.Drawing.Size(65, 13)
+        Me.lblTeamName.Size = New System.Drawing.Size(74, 13)
         Me.lblTeamName.TabIndex = 2
-        Me.lblTeamName.Text = "Team Name"
+        Me.lblTeamName.Text = "TEAM NAME"
         '
         'flpAthletes
         '
         Me.flpAthletes.AutoScroll = True
+        Me.flpAthletes.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flpAthletes.Location = New System.Drawing.Point(12, 127)
         Me.flpAthletes.Name = "flpAthletes"
         Me.flpAthletes.Size = New System.Drawing.Size(459, 263)
@@ -72,62 +76,71 @@ Partial Class newTeam
         'lblAddMembers
         '
         Me.lblAddMembers.AutoSize = True
+        Me.lblAddMembers.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAddMembers.Location = New System.Drawing.Point(9, 85)
         Me.lblAddMembers.Name = "lblAddMembers"
-        Me.lblAddMembers.Size = New System.Drawing.Size(72, 13)
+        Me.lblAddMembers.Size = New System.Drawing.Size(87, 13)
         Me.lblAddMembers.TabIndex = 85
-        Me.lblAddMembers.Text = "Add Members"
+        Me.lblAddMembers.Text = "ADD MEMBERS"
         '
         'txtSearch
         '
+        Me.txtSearch.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSearch.Location = New System.Drawing.Point(12, 101)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(303, 20)
+        Me.txtSearch.Size = New System.Drawing.Size(303, 23)
         Me.txtSearch.TabIndex = 86
         Me.txtSearch.Text = "Search"
         '
         'cmbSort
         '
+        Me.cmbSort.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbSort.FormattingEnabled = True
         Me.cmbSort.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
         Me.cmbSort.Location = New System.Drawing.Point(321, 101)
         Me.cmbSort.Name = "cmbSort"
-        Me.cmbSort.Size = New System.Drawing.Size(150, 21)
+        Me.cmbSort.Size = New System.Drawing.Size(150, 24)
         Me.cmbSort.TabIndex = 87
         Me.cmbSort.Text = "Sort By"
         '
         'btnCancel
         '
-        Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.iconCancel
+        Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.close1
         Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnCancel.Location = New System.Drawing.Point(93, 7)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 75)
         Me.btnCancel.TabIndex = 83
-        Me.btnCancel.UseVisualStyleBackColor = True
+        Me.btnCancel.UseVisualStyleBackColor = False
         '
         'btnSave
         '
-        Me.btnSave.BackgroundImage = Global.main.My.Resources.Resources.iconSave
+        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnSave.BackgroundImage = Global.main.My.Resources.Resources.savebtn
         Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSave.Location = New System.Drawing.Point(12, 7)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 75)
         Me.btnSave.TabIndex = 82
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'lblSelectedMembers
         '
         Me.lblSelectedMembers.AutoSize = True
+        Me.lblSelectedMembers.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSelectedMembers.Location = New System.Drawing.Point(474, 7)
         Me.lblSelectedMembers.Name = "lblSelectedMembers"
-        Me.lblSelectedMembers.Size = New System.Drawing.Size(95, 13)
+        Me.lblSelectedMembers.Size = New System.Drawing.Size(118, 13)
         Me.lblSelectedMembers.TabIndex = 88
-        Me.lblSelectedMembers.Text = "Selected Members"
+        Me.lblSelectedMembers.Text = "SELECTED MEMBERS"
         '
         'txtSelectedMembers
         '
         Me.txtSelectedMembers.Enabled = False
+        Me.txtSelectedMembers.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSelectedMembers.Location = New System.Drawing.Point(477, 23)
         Me.txtSelectedMembers.Multiline = True
         Me.txtSelectedMembers.Name = "txtSelectedMembers"
@@ -139,6 +152,7 @@ Partial Class newTeam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(735, 402)
         Me.Controls.Add(Me.txtSelectedMembers)
         Me.Controls.Add(Me.lblSelectedMembers)
@@ -151,6 +165,7 @@ Partial Class newTeam
         Me.Controls.Add(Me.lblTeamName)
         Me.Controls.Add(Me.cmbAgeGroup)
         Me.Controls.Add(Me.txtTeamName)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "newTeam"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Create New Team"

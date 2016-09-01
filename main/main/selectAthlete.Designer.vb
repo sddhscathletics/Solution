@@ -439,9 +439,10 @@ Partial Class selectAthlete
         '
         'txtSearch
         '
+        Me.txtSearch.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSearch.Location = New System.Drawing.Point(435, 61)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(397, 20)
+        Me.txtSearch.Size = New System.Drawing.Size(397, 25)
         Me.txtSearch.TabIndex = 70
         '
         'gpbAddress
@@ -469,23 +470,23 @@ Partial Class selectAthlete
         '
         'cmbFilter
         '
-        Me.cmbFilter.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbFilter.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbFilter.FormattingEnabled = True
         Me.cmbFilter.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
         Me.cmbFilter.Location = New System.Drawing.Point(435, 87)
         Me.cmbFilter.Name = "cmbFilter"
-        Me.cmbFilter.Size = New System.Drawing.Size(150, 24)
+        Me.cmbFilter.Size = New System.Drawing.Size(150, 25)
         Me.cmbFilter.TabIndex = 89
         Me.cmbFilter.Text = "Sort By"
         '
         'cmbAgeGroup
         '
-        Me.cmbAgeGroup.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAgeGroup.FormattingEnabled = True
         Me.cmbAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
         Me.cmbAgeGroup.Location = New System.Drawing.Point(591, 87)
         Me.cmbAgeGroup.Name = "cmbAgeGroup"
-        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 24)
+        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 25)
         Me.cmbAgeGroup.TabIndex = 88
         Me.cmbAgeGroup.Text = "Age Group"
         '
