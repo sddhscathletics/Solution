@@ -94,7 +94,7 @@ Partial Class newTeam
         Me.cmbFilter.Name = "cmbFilter"
         Me.cmbFilter.Size = New System.Drawing.Size(150, 21)
         Me.cmbFilter.TabIndex = 87
-        Me.cmbFilter.Text = "Filter"
+        Me.cmbFilter.Text = "Sort By"
         '
         'btnCancel
         '
