@@ -60,7 +60,7 @@ Partial Class selectAthlete
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.gpbAddress = New System.Windows.Forms.GroupBox()
         Me.lblStNo = New System.Windows.Forms.Label()
-        Me.cmbSort = New System.Windows.Forms.ComboBox()
+        Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.cmbAgeGroup = New System.Windows.Forms.ComboBox()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
@@ -113,36 +113,36 @@ Partial Class selectAthlete
         '
         'cmbTeamAgeGroup
         '
-        Me.cmbTeamAgeGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbTeamAgeGroup.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbTeamAgeGroup.FormattingEnabled = True
         Me.cmbTeamAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
         Me.cmbTeamAgeGroup.Location = New System.Drawing.Point(6, 62)
         Me.cmbTeamAgeGroup.Name = "cmbTeamAgeGroup"
-        Me.cmbTeamAgeGroup.Size = New System.Drawing.Size(170, 24)
+        Me.cmbTeamAgeGroup.Size = New System.Drawing.Size(170, 25)
         Me.cmbTeamAgeGroup.TabIndex = 90
         Me.cmbTeamAgeGroup.Text = "Age Group"
         '
         'TextBox1
         '
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(6, 36)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(170, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(170, 22)
         Me.TextBox1.TabIndex = 53
         '
         'lblHeaderTeamManagement
         '
         Me.lblHeaderTeamManagement.AutoSize = True
-        Me.lblHeaderTeamManagement.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblHeaderTeamManagement.Font = New System.Drawing.Font("Microsoft MHei", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblHeaderTeamManagement.Location = New System.Drawing.Point(6, 0)
         Me.lblHeaderTeamManagement.Name = "lblHeaderTeamManagement"
-        Me.lblHeaderTeamManagement.Size = New System.Drawing.Size(162, 20)
+        Me.lblHeaderTeamManagement.Size = New System.Drawing.Size(151, 21)
         Me.lblHeaderTeamManagement.TabIndex = 34
         Me.lblHeaderTeamManagement.Text = "Team Management"
         '
         'btnNewTeam
         '
-        Me.btnNewTeam.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNewTeam.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNewTeam.Location = New System.Drawing.Point(6, 295)
         Me.btnNewTeam.Name = "btnNewTeam"
         Me.btnNewTeam.Size = New System.Drawing.Size(170, 31)
@@ -161,60 +161,60 @@ Partial Class selectAthlete
         'lblTeamSearch
         '
         Me.lblTeamSearch.AutoSize = True
-        Me.lblTeamSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
+        Me.lblTeamSearch.Font = New System.Drawing.Font("Microsoft MHei", 9.75!)
         Me.lblTeamSearch.Location = New System.Drawing.Point(3, 20)
         Me.lblTeamSearch.Name = "lblTeamSearch"
-        Me.lblTeamSearch.Size = New System.Drawing.Size(64, 16)
+        Me.lblTeamSearch.Size = New System.Drawing.Size(54, 17)
         Me.lblTeamSearch.TabIndex = 51
         Me.lblTeamSearch.Text = "SEARCH"
         '
         'lblID
         '
         Me.lblID.AutoSize = True
-        Me.lblID.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblID.Font = New System.Drawing.Font("Microsoft MHei", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblID.Location = New System.Drawing.Point(621, 114)
         Me.lblID.Name = "lblID"
-        Me.lblID.Size = New System.Drawing.Size(256, 18)
+        Me.lblID.Size = New System.Drawing.Size(211, 20)
         Me.lblID.TabIndex = 71
         Me.lblID.Text = "SELECT A STUDENT TO START"
         '
         'lblBestEvent
         '
         Me.lblBestEvent.AutoSize = True
-        Me.lblBestEvent.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBestEvent.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBestEvent.Location = New System.Drawing.Point(12, 39)
         Me.lblBestEvent.Name = "lblBestEvent"
-        Me.lblBestEvent.Size = New System.Drawing.Size(72, 16)
+        Me.lblBestEvent.Size = New System.Drawing.Size(66, 17)
         Me.lblBestEvent.TabIndex = 27
         Me.lblBestEvent.Text = "Best Event"
         '
         'lblHeaderContact
         '
         Me.lblHeaderContact.AutoSize = True
-        Me.lblHeaderContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderContact.Font = New System.Drawing.Font("Microsoft MHei", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderContact.Location = New System.Drawing.Point(6, 0)
         Me.lblHeaderContact.Name = "lblHeaderContact"
-        Me.lblHeaderContact.Size = New System.Drawing.Size(133, 20)
+        Me.lblHeaderContact.Size = New System.Drawing.Size(120, 21)
         Me.lblHeaderContact.TabIndex = 34
         Me.lblHeaderContact.Text = "Contact Details"
         '
         'lblEmail
         '
         Me.lblEmail.AutoSize = True
-        Me.lblEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmail.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEmail.Location = New System.Drawing.Point(7, 42)
         Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(96, 16)
+        Me.lblEmail.Size = New System.Drawing.Size(86, 17)
         Me.lblEmail.TabIndex = 28
         Me.lblEmail.Text = "Email Address"
         '
         'lblPhone
         '
         Me.lblPhone.AutoSize = True
-        Me.lblPhone.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPhone.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPhone.Location = New System.Drawing.Point(7, 20)
         Me.lblPhone.Name = "lblPhone"
-        Me.lblPhone.Size = New System.Drawing.Size(98, 16)
+        Me.lblPhone.Size = New System.Drawing.Size(92, 17)
         Me.lblPhone.TabIndex = 29
         Me.lblPhone.Text = "Phone Number"
         '
@@ -257,20 +257,20 @@ Partial Class selectAthlete
         'lblHeaderMedical
         '
         Me.lblHeaderMedical.AutoSize = True
-        Me.lblHeaderMedical.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderMedical.Font = New System.Drawing.Font("Microsoft MHei", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderMedical.Location = New System.Drawing.Point(6, 0)
         Me.lblHeaderMedical.Name = "lblHeaderMedical"
-        Me.lblHeaderMedical.Size = New System.Drawing.Size(131, 20)
+        Me.lblHeaderMedical.Size = New System.Drawing.Size(121, 21)
         Me.lblHeaderMedical.TabIndex = 33
         Me.lblHeaderMedical.Text = "Medical Details"
         '
         'lblMedical
         '
         Me.lblMedical.AutoSize = True
-        Me.lblMedical.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMedical.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMedical.Location = New System.Drawing.Point(7, 20)
         Me.lblMedical.Name = "lblMedical"
-        Me.lblMedical.Size = New System.Drawing.Size(124, 16)
+        Me.lblMedical.Size = New System.Drawing.Size(120, 17)
         Me.lblMedical.TabIndex = 31
         Me.lblMedical.Text = "Medical Information"
         '
@@ -288,30 +288,30 @@ Partial Class selectAthlete
         'lblLName
         '
         Me.lblLName.AutoSize = True
-        Me.lblLName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLName.Font = New System.Drawing.Font("Microsoft MHei", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLName.Location = New System.Drawing.Point(9, 0)
         Me.lblLName.Name = "lblLName"
-        Me.lblLName.Size = New System.Drawing.Size(95, 20)
+        Me.lblLName.Size = New System.Drawing.Size(86, 21)
         Me.lblLName.TabIndex = 17
         Me.lblLName.Text = "Last Name"
         '
         'lblFName
         '
         Me.lblFName.AutoSize = True
-        Me.lblFName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFName.Font = New System.Drawing.Font("Microsoft MHei", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFName.Location = New System.Drawing.Point(9, 20)
         Me.lblFName.Name = "lblFName"
-        Me.lblFName.Size = New System.Drawing.Size(86, 20)
+        Me.lblFName.Size = New System.Drawing.Size(84, 21)
         Me.lblFName.TabIndex = 18
         Me.lblFName.Text = "First Name"
         '
         'lblRoll
         '
         Me.lblRoll.AutoSize = True
-        Me.lblRoll.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRoll.Font = New System.Drawing.Font("Microsoft MHei", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRoll.Location = New System.Drawing.Point(9, 40)
         Me.lblRoll.Name = "lblRoll"
-        Me.lblRoll.Size = New System.Drawing.Size(79, 20)
+        Me.lblRoll.Size = New System.Drawing.Size(76, 21)
         Me.lblRoll.TabIndex = 19
         Me.lblRoll.Text = "Roll Class"
         '
@@ -326,40 +326,40 @@ Partial Class selectAthlete
         'lblAgeGroup
         '
         Me.lblAgeGroup.AutoSize = True
-        Me.lblAgeGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAgeGroup.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAgeGroup.Location = New System.Drawing.Point(10, 20)
         Me.lblAgeGroup.Name = "lblAgeGroup"
-        Me.lblAgeGroup.Size = New System.Drawing.Size(73, 16)
+        Me.lblAgeGroup.Size = New System.Drawing.Size(68, 17)
         Me.lblAgeGroup.TabIndex = 26
         Me.lblAgeGroup.Text = "Age Group"
         '
         'lblHeaderAddress
         '
         Me.lblHeaderAddress.AutoSize = True
-        Me.lblHeaderAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderAddress.Font = New System.Drawing.Font("Microsoft MHei", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderAddress.Location = New System.Drawing.Point(4, 0)
         Me.lblHeaderAddress.Name = "lblHeaderAddress"
-        Me.lblHeaderAddress.Size = New System.Drawing.Size(75, 20)
+        Me.lblHeaderAddress.Size = New System.Drawing.Size(70, 21)
         Me.lblHeaderAddress.TabIndex = 32
         Me.lblHeaderAddress.Text = "Address"
         '
         'lblPo
         '
         Me.lblPo.AutoSize = True
-        Me.lblPo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPo.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPo.Location = New System.Drawing.Point(5, 71)
         Me.lblPo.Name = "lblPo"
-        Me.lblPo.Size = New System.Drawing.Size(66, 16)
+        Me.lblPo.Size = New System.Drawing.Size(58, 17)
         Me.lblPo.TabIndex = 22
         Me.lblPo.Text = "Postcode"
         '
         'lblSb
         '
         Me.lblSb.AutoSize = True
-        Me.lblSb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSb.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSb.Location = New System.Drawing.Point(7, 54)
         Me.lblSb.Name = "lblSb"
-        Me.lblSb.Size = New System.Drawing.Size(51, 16)
+        Me.lblSb.Size = New System.Drawing.Size(47, 17)
         Me.lblSb.TabIndex = 23
         Me.lblSb.Text = "Suburb"
         '
@@ -377,10 +377,10 @@ Partial Class selectAthlete
         'lblSt
         '
         Me.lblSt.AutoSize = True
-        Me.lblSt.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSt.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSt.Location = New System.Drawing.Point(7, 37)
         Me.lblSt.Name = "lblSt"
-        Me.lblSt.Size = New System.Drawing.Size(43, 16)
+        Me.lblSt.Size = New System.Drawing.Size(41, 17)
         Me.lblSt.TabIndex = 24
         Me.lblSt.Text = "Street"
         '
@@ -412,10 +412,10 @@ Partial Class selectAthlete
         'lblTeams
         '
         Me.lblTeams.AutoSize = True
-        Me.lblTeams.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTeams.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTeams.Location = New System.Drawing.Point(10, 55)
         Me.lblTeams.Name = "lblTeams"
-        Me.lblTeams.Size = New System.Drawing.Size(51, 16)
+        Me.lblTeams.Size = New System.Drawing.Size(45, 17)
         Me.lblTeams.TabIndex = 50
         Me.lblTeams.Text = "Teams"
         '
@@ -430,18 +430,19 @@ Partial Class selectAthlete
         'lblHeaderAthlete
         '
         Me.lblHeaderAthlete.AutoSize = True
-        Me.lblHeaderAthlete.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderAthlete.Font = New System.Drawing.Font("Microsoft MHei", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderAthlete.Location = New System.Drawing.Point(6, 0)
         Me.lblHeaderAthlete.Name = "lblHeaderAthlete"
-        Me.lblHeaderAthlete.Size = New System.Drawing.Size(128, 20)
+        Me.lblHeaderAthlete.Size = New System.Drawing.Size(117, 21)
         Me.lblHeaderAthlete.TabIndex = 34
         Me.lblHeaderAthlete.Text = "Athlete Details"
         '
         'txtSearch
         '
+        Me.txtSearch.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSearch.Location = New System.Drawing.Point(435, 61)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(397, 20)
+        Me.txtSearch.Size = New System.Drawing.Size(397, 25)
         Me.txtSearch.TabIndex = 70
         '
         'gpbAddress
@@ -460,32 +461,32 @@ Partial Class selectAthlete
         'lblStNo
         '
         Me.lblStNo.AutoSize = True
-        Me.lblStNo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStNo.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStNo.Location = New System.Drawing.Point(5, 20)
         Me.lblStNo.Name = "lblStNo"
-        Me.lblStNo.Size = New System.Drawing.Size(94, 16)
+        Me.lblStNo.Size = New System.Drawing.Size(90, 17)
         Me.lblStNo.TabIndex = 25
         Me.lblStNo.Text = "Street Number"
         '
-        'cmbSort
+        'cmbFilter
         '
-        Me.cmbSort.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbSort.FormattingEnabled = True
-        Me.cmbSort.Items.AddRange(New Object() {"ID", "Roll Class", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
-        Me.cmbSort.Location = New System.Drawing.Point(435, 87)
-        Me.cmbSort.Name = "cmbSort"
-        Me.cmbSort.Size = New System.Drawing.Size(150, 24)
-        Me.cmbSort.TabIndex = 89
-        Me.cmbSort.Text = "Sort By"
+        Me.cmbFilter.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbFilter.FormattingEnabled = True
+        Me.cmbFilter.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
+        Me.cmbFilter.Location = New System.Drawing.Point(435, 87)
+        Me.cmbFilter.Name = "cmbFilter"
+        Me.cmbFilter.Size = New System.Drawing.Size(150, 25)
+        Me.cmbFilter.TabIndex = 89
+        Me.cmbFilter.Text = "Sort By"
         '
         'cmbAgeGroup
         '
-        Me.cmbAgeGroup.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAgeGroup.FormattingEnabled = True
         Me.cmbAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
         Me.cmbAgeGroup.Location = New System.Drawing.Point(591, 87)
         Me.cmbAgeGroup.Name = "cmbAgeGroup"
-        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 24)
+        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 25)
         Me.cmbAgeGroup.TabIndex = 88
         Me.cmbAgeGroup.Text = "Age Group"
         '
@@ -772,7 +773,7 @@ Partial Class selectAthlete
         '
         'bigbtngroup
         '
-        Me.bigbtngroup.Controls.Add(Me.cmbSort)
+        Me.bigbtngroup.Controls.Add(Me.cmbFilter)
         Me.bigbtngroup.Controls.Add(Me.flpAthletes)
         Me.bigbtngroup.Controls.Add(Me.gpbAddress)
         Me.bigbtngroup.Controls.Add(Me.gpbTeamManagement)
@@ -870,7 +871,7 @@ Partial Class selectAthlete
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents gpbAddress As GroupBox
     Friend WithEvents lblStNo As Label
-    Friend WithEvents cmbSort As ComboBox
+    Friend WithEvents cmbFilter As ComboBox
     Friend WithEvents cmbAgeGroup As ComboBox
     Friend WithEvents lblTeamSearch As Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox

@@ -46,7 +46,7 @@ Partial Class calendar
         Me.ClientSize = New System.Drawing.Size(343, 292)
         Me.Controls.Add(Me.mnCalendar)
         Me.Name = "calendar"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
         Me.ResumeLayout(False)
 
