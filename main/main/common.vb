@@ -115,6 +115,10 @@ Module common
                 Case "ID"
                     list.Sort(Function(x, y) x.ID.CompareTo(y.ID))
 
+                Case "Roll Class" 'Not working yet
+                    asc = False
+                    list.Sort(Function(x, y) x.roll.CompareTo(y.roll))
+
                 Case "First Name (Ascending)"
                     list.Sort(Function(x, y) x.fName.CompareTo(y.fName))
 
@@ -129,9 +133,11 @@ Module common
                     asc = False
                     list.Sort(Function(x, y) x.lName.CompareTo(y.lName))
             End Select
+
             If asc = False Then
                 list.Reverse()
             End If
+
         End If
         Return list
     End Function
