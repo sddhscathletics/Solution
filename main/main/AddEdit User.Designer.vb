@@ -23,10 +23,19 @@ Partial Class AddEdit_User
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
+        Me.Sidebar = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.resdrop = New System.Windows.Forms.Button()
+        Me.sideAthletesBtn = New System.Windows.Forms.Button()
+        Me.sideadminBtn = New System.Windows.Forms.Button()
+        Me.sideresultBtn = New System.Windows.Forms.Button()
+        Me.sidecalendarBtn = New System.Windows.Forms.Button()
+        Me.sideResSub1 = New System.Windows.Forms.Button()
+        Me.sideResSub2 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
@@ -54,22 +63,13 @@ Partial Class AddEdit_User
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.scrollBtn = New System.Windows.Forms.Button()
-        Me.Sidebar = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.resdrop = New System.Windows.Forms.Button()
-        Me.sideAthletesBtn = New System.Windows.Forms.Button()
-        Me.sideadminBtn = New System.Windows.Forms.Button()
-        Me.sideresultBtn = New System.Windows.Forms.Button()
-        Me.sidecalendarBtn = New System.Windows.Forms.Button()
-        Me.sideResSub1 = New System.Windows.Forms.Button()
-        Me.sideResSub2 = New System.Windows.Forms.Button()
         Me.bigbtngroup.SuspendLayout()
+        Me.Sidebar.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.UserDbBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AthleteDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Login, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
-        Me.Sidebar.SuspendLayout()
         Me.SuspendLayout()
         '
         'sidebartime
@@ -97,6 +97,143 @@ Partial Class AddEdit_User
         Me.bigbtngroup.TabIndex = 6
         Me.bigbtngroup.TabStop = False
         Me.bigbtngroup.Text = "GroupBox1"
+        '
+        'Sidebar
+        '
+        Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.Sidebar.Controls.Add(Me.Button1)
+        Me.Sidebar.Controls.Add(Me.resdrop)
+        Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
+        Me.Sidebar.Controls.Add(Me.sideadminBtn)
+        Me.Sidebar.Controls.Add(Me.sideresultBtn)
+        Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
+        Me.Sidebar.Controls.Add(Me.sideResSub1)
+        Me.Sidebar.Controls.Add(Me.sideResSub2)
+        Me.Sidebar.Location = New System.Drawing.Point(-180, -10)
+        Me.Sidebar.Name = "Sidebar"
+        Me.Sidebar.Size = New System.Drawing.Size(200, 731)
+        Me.Sidebar.TabIndex = 92
+        Me.Sidebar.TabStop = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button1.Location = New System.Drawing.Point(2, 33)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(196, 50)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "   MAIN"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'resdrop
+        '
+        Me.resdrop.BackColor = System.Drawing.Color.Gray
+        Me.resdrop.FlatAppearance.BorderSize = 0
+        Me.resdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.resdrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.resdrop.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.resdrop.Location = New System.Drawing.Point(173, 135)
+        Me.resdrop.Name = "resdrop"
+        Me.resdrop.Size = New System.Drawing.Size(25, 50)
+        Me.resdrop.TabIndex = 1
+        Me.resdrop.Text = "▼"
+        Me.resdrop.UseVisualStyleBackColor = False
+        '
+        'sideAthletesBtn
+        '
+        Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
+        Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sideAthletesBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideAthletesBtn.Location = New System.Drawing.Point(2, 186)
+        Me.sideAthletesBtn.Name = "sideAthletesBtn"
+        Me.sideAthletesBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideAthletesBtn.TabIndex = 0
+        Me.sideAthletesBtn.Text = "   ATHLETES"
+        Me.sideAthletesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideAthletesBtn.UseVisualStyleBackColor = False
+        '
+        'sideadminBtn
+        '
+        Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideadminBtn.FlatAppearance.BorderSize = 0
+        Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sideadminBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideadminBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideadminBtn.Name = "sideadminBtn"
+        Me.sideadminBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideadminBtn.TabIndex = 0
+        Me.sideadminBtn.Text = "   MANAGE USERS"
+        Me.sideadminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideadminBtn.UseVisualStyleBackColor = False
+        Me.sideadminBtn.Visible = False
+        '
+        'sideresultBtn
+        '
+        Me.sideresultBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideresultBtn.FlatAppearance.BorderSize = 0
+        Me.sideresultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideresultBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sideresultBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideresultBtn.Location = New System.Drawing.Point(2, 135)
+        Me.sideresultBtn.Name = "sideresultBtn"
+        Me.sideresultBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideresultBtn.TabIndex = 0
+        Me.sideresultBtn.Text = "   RESULTS"
+        Me.sideresultBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideresultBtn.UseVisualStyleBackColor = False
+        '
+        'sidecalendarBtn
+        '
+        Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
+        Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sidecalendarBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sidecalendarBtn.Location = New System.Drawing.Point(2, 84)
+        Me.sidecalendarBtn.Name = "sidecalendarBtn"
+        Me.sidecalendarBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sidecalendarBtn.TabIndex = 0
+        Me.sidecalendarBtn.Text = "   CALENDAR"
+        Me.sidecalendarBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sidecalendarBtn.UseVisualStyleBackColor = False
+        '
+        'sideResSub1
+        '
+        Me.sideResSub1.BackColor = System.Drawing.Color.Gray
+        Me.sideResSub1.FlatAppearance.BorderSize = 0
+        Me.sideResSub1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sideResSub1.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sideResSub1.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideResSub1.Location = New System.Drawing.Point(2, 126)
+        Me.sideResSub1.Name = "sideResSub1"
+        Me.sideResSub1.Size = New System.Drawing.Size(196, 29)
+        Me.sideResSub1.TabIndex = 2
+        Me.sideResSub1.Text = "   RESULTS SUB 1"
+        Me.sideResSub1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideResSub1.UseVisualStyleBackColor = False
+        '
+        'sideResSub2
+        '
+        Me.sideResSub2.BackColor = System.Drawing.Color.Gray
+        Me.sideResSub2.FlatAppearance.BorderSize = 0
+        Me.sideResSub2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sideResSub2.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sideResSub2.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideResSub2.Location = New System.Drawing.Point(2, 156)
+        Me.sideResSub2.Name = "sideResSub2"
+        Me.sideResSub2.Size = New System.Drawing.Size(196, 29)
+        Me.sideResSub2.TabIndex = 2
+        Me.sideResSub2.Text = "   RESULTS SUB 1"
+        Me.sideResSub2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideResSub2.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -191,14 +328,14 @@ Partial Class AddEdit_User
         Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoGenerateColumns = False
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeight = 30
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.PassDataGridViewTextBoxColumn, Me.AccessLevel})
@@ -211,8 +348,8 @@ Partial Class AddEdit_User
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidth = 150
         Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Size = New System.Drawing.Size(903, 600)
         Me.DataGridView1.TabIndex = 0
         '
@@ -379,143 +516,6 @@ Partial Class AddEdit_User
         Me.scrollBtn.TabIndex = 3
         Me.scrollBtn.UseVisualStyleBackColor = False
         '
-        'Sidebar
-        '
-        Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.Sidebar.Controls.Add(Me.Button1)
-        Me.Sidebar.Controls.Add(Me.resdrop)
-        Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
-        Me.Sidebar.Controls.Add(Me.sideadminBtn)
-        Me.Sidebar.Controls.Add(Me.sideresultBtn)
-        Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
-        Me.Sidebar.Controls.Add(Me.sideResSub1)
-        Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, -10)
-        Me.Sidebar.Name = "Sidebar"
-        Me.Sidebar.Size = New System.Drawing.Size(200, 731)
-        Me.Sidebar.TabIndex = 92
-        Me.Sidebar.TabStop = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button1.Location = New System.Drawing.Point(2, 33)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(196, 50)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "   MAIN"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'resdrop
-        '
-        Me.resdrop.BackColor = System.Drawing.Color.Gray
-        Me.resdrop.FlatAppearance.BorderSize = 0
-        Me.resdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.resdrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.resdrop.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.resdrop.Location = New System.Drawing.Point(173, 135)
-        Me.resdrop.Name = "resdrop"
-        Me.resdrop.Size = New System.Drawing.Size(25, 50)
-        Me.resdrop.TabIndex = 1
-        Me.resdrop.Text = "▼"
-        Me.resdrop.UseVisualStyleBackColor = False
-        '
-        'sideAthletesBtn
-        '
-        Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
-        Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.sideAthletesBtn.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideAthletesBtn.Location = New System.Drawing.Point(2, 186)
-        Me.sideAthletesBtn.Name = "sideAthletesBtn"
-        Me.sideAthletesBtn.Size = New System.Drawing.Size(196, 50)
-        Me.sideAthletesBtn.TabIndex = 0
-        Me.sideAthletesBtn.Text = "   ATHLETES"
-        Me.sideAthletesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sideAthletesBtn.UseVisualStyleBackColor = False
-        '
-        'sideadminBtn
-        '
-        Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.sideadminBtn.FlatAppearance.BorderSize = 0
-        Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.sideadminBtn.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideadminBtn.Location = New System.Drawing.Point(2, 237)
-        Me.sideadminBtn.Name = "sideadminBtn"
-        Me.sideadminBtn.Size = New System.Drawing.Size(196, 50)
-        Me.sideadminBtn.TabIndex = 0
-        Me.sideadminBtn.Text = "   MANAGE USERS"
-        Me.sideadminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sideadminBtn.UseVisualStyleBackColor = False
-        Me.sideadminBtn.Visible = False
-        '
-        'sideresultBtn
-        '
-        Me.sideresultBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.sideresultBtn.FlatAppearance.BorderSize = 0
-        Me.sideresultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.sideresultBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.sideresultBtn.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideresultBtn.Location = New System.Drawing.Point(2, 135)
-        Me.sideresultBtn.Name = "sideresultBtn"
-        Me.sideresultBtn.Size = New System.Drawing.Size(196, 50)
-        Me.sideresultBtn.TabIndex = 0
-        Me.sideresultBtn.Text = "   RESULTS"
-        Me.sideresultBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sideresultBtn.UseVisualStyleBackColor = False
-        '
-        'sidecalendarBtn
-        '
-        Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
-        Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.sidecalendarBtn.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sidecalendarBtn.Location = New System.Drawing.Point(2, 84)
-        Me.sidecalendarBtn.Name = "sidecalendarBtn"
-        Me.sidecalendarBtn.Size = New System.Drawing.Size(196, 50)
-        Me.sidecalendarBtn.TabIndex = 0
-        Me.sidecalendarBtn.Text = "   CALENDAR"
-        Me.sidecalendarBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sidecalendarBtn.UseVisualStyleBackColor = False
-        '
-        'sideResSub1
-        '
-        Me.sideResSub1.BackColor = System.Drawing.Color.Gray
-        Me.sideResSub1.FlatAppearance.BorderSize = 0
-        Me.sideResSub1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.sideResSub1.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
-        Me.sideResSub1.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideResSub1.Location = New System.Drawing.Point(2, 126)
-        Me.sideResSub1.Name = "sideResSub1"
-        Me.sideResSub1.Size = New System.Drawing.Size(196, 29)
-        Me.sideResSub1.TabIndex = 2
-        Me.sideResSub1.Text = "   RESULTS SUB 1"
-        Me.sideResSub1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sideResSub1.UseVisualStyleBackColor = False
-        '
-        'sideResSub2
-        '
-        Me.sideResSub2.BackColor = System.Drawing.Color.Gray
-        Me.sideResSub2.FlatAppearance.BorderSize = 0
-        Me.sideResSub2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.sideResSub2.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
-        Me.sideResSub2.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideResSub2.Location = New System.Drawing.Point(2, 156)
-        Me.sideResSub2.Name = "sideResSub2"
-        Me.sideResSub2.Size = New System.Drawing.Size(196, 29)
-        Me.sideResSub2.TabIndex = 2
-        Me.sideResSub2.Text = "   RESULTS SUB 1"
-        Me.sideResSub2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sideResSub2.UseVisualStyleBackColor = False
-        '
         'AddEdit_User
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -530,13 +530,13 @@ Partial Class AddEdit_User
         Me.Text = "name yo form fool"
         Me.bigbtngroup.ResumeLayout(False)
         Me.bigbtngroup.PerformLayout()
+        Me.Sidebar.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.UserDbBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AthleteDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Login, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.Sidebar.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

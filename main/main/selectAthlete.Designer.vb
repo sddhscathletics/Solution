@@ -24,11 +24,12 @@ Partial Class selectAthlete
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.gpbTeamManagement = New System.Windows.Forms.GroupBox()
-        Me.lblTeamSearch = New System.Windows.Forms.Label()
+        Me.cmbTeamAgeGroup = New System.Windows.Forms.ComboBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.lblHeaderTeamManagement = New System.Windows.Forms.Label()
         Me.btnNewTeam = New System.Windows.Forms.Button()
         Me.flpAttachTeam = New System.Windows.Forms.FlowLayoutPanel()
+        Me.lblTeamSearch = New System.Windows.Forms.Label()
         Me.lblID = New System.Windows.Forms.Label()
         Me.lblBestEvent = New System.Windows.Forms.Label()
         Me.lblHeaderContact = New System.Windows.Forms.Label()
@@ -66,12 +67,12 @@ Partial Class selectAthlete
         Me.btnSave = New System.Windows.Forms.Button()
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblAlertCount = New System.Windows.Forms.Label()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
-        Me.lblTitle = New System.Windows.Forms.Label()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
@@ -84,7 +85,6 @@ Partial Class selectAthlete
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
-        Me.cmbTeamAgeGroup = New System.Windows.Forms.ComboBox()
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
         Me.gpbStudent.SuspendLayout()
@@ -111,15 +111,16 @@ Partial Class selectAthlete
         Me.gpbTeamManagement.TabIndex = 84
         Me.gpbTeamManagement.TabStop = False
         '
-        'lblTeamSearch
+        'cmbTeamAgeGroup
         '
-        Me.lblTeamSearch.AutoSize = True
-        Me.lblTeamSearch.Font = New System.Drawing.Font("Microsoft MHei", 9.75!)
-        Me.lblTeamSearch.Location = New System.Drawing.Point(3, 20)
-        Me.lblTeamSearch.Name = "lblTeamSearch"
-        Me.lblTeamSearch.Size = New System.Drawing.Size(54, 17)
-        Me.lblTeamSearch.TabIndex = 51
-        Me.lblTeamSearch.Text = "SEARCH"
+        Me.cmbTeamAgeGroup.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbTeamAgeGroup.FormattingEnabled = True
+        Me.cmbTeamAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
+        Me.cmbTeamAgeGroup.Location = New System.Drawing.Point(6, 62)
+        Me.cmbTeamAgeGroup.Name = "cmbTeamAgeGroup"
+        Me.cmbTeamAgeGroup.Size = New System.Drawing.Size(170, 25)
+        Me.cmbTeamAgeGroup.TabIndex = 90
+        Me.cmbTeamAgeGroup.Text = "Age Group"
         '
         'TextBox1
         '
@@ -156,6 +157,16 @@ Partial Class selectAthlete
         Me.flpAttachTeam.Name = "flpAttachTeam"
         Me.flpAttachTeam.Size = New System.Drawing.Size(170, 200)
         Me.flpAttachTeam.TabIndex = 50
+        '
+        'lblTeamSearch
+        '
+        Me.lblTeamSearch.AutoSize = True
+        Me.lblTeamSearch.Font = New System.Drawing.Font("Microsoft MHei", 9.75!)
+        Me.lblTeamSearch.Location = New System.Drawing.Point(3, 20)
+        Me.lblTeamSearch.Name = "lblTeamSearch"
+        Me.lblTeamSearch.Size = New System.Drawing.Size(54, 17)
+        Me.lblTeamSearch.TabIndex = 51
+        Me.lblTeamSearch.Text = "SEARCH"
         '
         'lblID
         '
@@ -537,6 +548,17 @@ Partial Class selectAthlete
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GroupBox2"
         '
+        'lblTitle
+        '
+        Me.lblTitle.AutoSize = True
+        Me.lblTitle.Font = New System.Drawing.Font("Rockwell", 18.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitle.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lblTitle.Location = New System.Drawing.Point(84, 17)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(192, 27)
+        Me.lblTitle.TabIndex = 91
+        Me.lblTitle.Text = "VIEW ATHLETES"
+        '
         'lblAlertCount
         '
         Me.lblAlertCount.AutoSize = True
@@ -602,17 +624,6 @@ Partial Class selectAthlete
         Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
         Me.scrollBtn.TabIndex = 3
         Me.scrollBtn.UseVisualStyleBackColor = False
-        '
-        'lblTitle
-        '
-        Me.lblTitle.AutoSize = True
-        Me.lblTitle.Font = New System.Drawing.Font("Rockwell", 18.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.lblTitle.Location = New System.Drawing.Point(84, 17)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(192, 27)
-        Me.lblTitle.TabIndex = 91
-        Me.lblTitle.Text = "VIEW ATHLETES"
         '
         'Sidebar
         '
@@ -784,17 +795,6 @@ Partial Class selectAthlete
         Me.bigbtngroup.Size = New System.Drawing.Size(1279, 678)
         Me.bigbtngroup.TabIndex = 92
         Me.bigbtngroup.TabStop = False
-        '
-        'cmbTeamAgeGroup
-        '
-        Me.cmbTeamAgeGroup.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbTeamAgeGroup.FormattingEnabled = True
-        Me.cmbTeamAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbTeamAgeGroup.Location = New System.Drawing.Point(6, 62)
-        Me.cmbTeamAgeGroup.Name = "cmbTeamAgeGroup"
-        Me.cmbTeamAgeGroup.Size = New System.Drawing.Size(170, 25)
-        Me.cmbTeamAgeGroup.TabIndex = 90
-        Me.cmbTeamAgeGroup.Text = "Age Group"
         '
         'selectAthlete
         '

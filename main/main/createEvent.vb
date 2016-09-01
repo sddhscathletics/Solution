@@ -81,9 +81,7 @@ Public Class createEvent
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         Me.Close()
     End Sub
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs)
-        Me.Close()
-    End Sub
+
     Private Sub btnSaveEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveEvent.Click
 #Region "Add"
         If Me.Tag.contains("add") Then
@@ -2667,11 +2665,17 @@ Public Class createEvent
 
 
 #Region "TopBar"
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click, Button3.Click
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         checkNotif.Show()
     End Sub
     Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
         Me.Close()
     End Sub
 #End Region
+
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        home.Show()
+        Me.Close()
+    End Sub
 End Class
