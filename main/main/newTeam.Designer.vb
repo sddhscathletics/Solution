@@ -32,25 +32,25 @@ Partial Class newTeam
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblSelectedMembers = New System.Windows.Forms.Label()
-        Me.txtSelectedMembers = New System.Windows.Forms.TextBox()
+        Me.flpSelected = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
         '
         'txtTeamName
         '
-        Me.txtTeamName.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTeamName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTeamName.Location = New System.Drawing.Point(177, 23)
         Me.txtTeamName.Name = "txtTeamName"
-        Me.txtTeamName.Size = New System.Drawing.Size(179, 23)
+        Me.txtTeamName.Size = New System.Drawing.Size(179, 21)
         Me.txtTeamName.TabIndex = 0
         '
         'cmbAgeGroup
         '
-        Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAgeGroup.FormattingEnabled = True
         Me.cmbAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
         Me.cmbAgeGroup.Location = New System.Drawing.Point(177, 49)
         Me.cmbAgeGroup.Name = "cmbAgeGroup"
-        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 24)
+        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 23)
         Me.cmbAgeGroup.TabIndex = 1
         Me.cmbAgeGroup.Text = "Age Group"
         '
@@ -67,7 +67,7 @@ Partial Class newTeam
         'flpAthletes
         '
         Me.flpAthletes.AutoScroll = True
-        Me.flpAthletes.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flpAthletes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flpAthletes.Location = New System.Drawing.Point(12, 127)
         Me.flpAthletes.Name = "flpAthletes"
         Me.flpAthletes.Size = New System.Drawing.Size(459, 263)
@@ -85,21 +85,21 @@ Partial Class newTeam
         '
         'txtSearch
         '
-        Me.txtSearch.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSearch.Location = New System.Drawing.Point(12, 101)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(303, 23)
+        Me.txtSearch.Size = New System.Drawing.Size(303, 21)
         Me.txtSearch.TabIndex = 86
         Me.txtSearch.Text = "Search"
         '
         'cmbSort
         '
-        Me.cmbSort.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbSort.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbSort.FormattingEnabled = True
         Me.cmbSort.Items.AddRange(New Object() {"ID", "Roll Class", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
         Me.cmbSort.Location = New System.Drawing.Point(321, 101)
         Me.cmbSort.Name = "cmbSort"
-        Me.cmbSort.Size = New System.Drawing.Size(150, 24)
+        Me.cmbSort.Size = New System.Drawing.Size(150, 23)
         Me.cmbSort.TabIndex = 87
         Me.cmbSort.Text = "Sort By"
         '
@@ -131,22 +131,20 @@ Partial Class newTeam
         '
         Me.lblSelectedMembers.AutoSize = True
         Me.lblSelectedMembers.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSelectedMembers.Location = New System.Drawing.Point(474, 7)
+        Me.lblSelectedMembers.Location = New System.Drawing.Point(477, 109)
         Me.lblSelectedMembers.Name = "lblSelectedMembers"
         Me.lblSelectedMembers.Size = New System.Drawing.Size(118, 13)
         Me.lblSelectedMembers.TabIndex = 88
         Me.lblSelectedMembers.Text = "SELECTED MEMBERS"
         '
-        'txtSelectedMembers
+        'flpSelected
         '
-        Me.txtSelectedMembers.Enabled = False
-        Me.txtSelectedMembers.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSelectedMembers.Location = New System.Drawing.Point(477, 23)
-        Me.txtSelectedMembers.Multiline = True
-        Me.txtSelectedMembers.Name = "txtSelectedMembers"
-        Me.txtSelectedMembers.Size = New System.Drawing.Size(246, 367)
-        Me.txtSelectedMembers.TabIndex = 89
-        Me.txtSelectedMembers.Text = "Please add members to the team on the left."
+        Me.flpSelected.AutoScroll = True
+        Me.flpSelected.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flpSelected.Location = New System.Drawing.Point(477, 127)
+        Me.flpSelected.Name = "flpSelected"
+        Me.flpSelected.Size = New System.Drawing.Size(246, 263)
+        Me.flpSelected.TabIndex = 85
         '
         'newTeam
         '
@@ -154,7 +152,7 @@ Partial Class newTeam
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(735, 402)
-        Me.Controls.Add(Me.txtSelectedMembers)
+        Me.Controls.Add(Me.flpSelected)
         Me.Controls.Add(Me.lblSelectedMembers)
         Me.Controls.Add(Me.cmbSort)
         Me.Controls.Add(Me.txtSearch)
@@ -184,5 +182,5 @@ Partial Class newTeam
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents cmbSort As ComboBox
     Friend WithEvents lblSelectedMembers As Label
-    Friend WithEvents txtSelectedMembers As TextBox
+    Friend WithEvents flpSelected As FlowLayoutPanel
 End Class
