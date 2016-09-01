@@ -1,6 +1,10 @@
 ﻿Imports System.Data.OleDb
 Public Class Logon
 
+    'login info: admin, adminpass
+    '            coach, coachpass
+    '            student, studentpass
+
 #Region "Dim Variables"
     Dim adpCustomer As New OleDbDataAdapter
     Dim conCreditUnion As OleDbConnection

@@ -56,9 +56,7 @@ Public Class home
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'access = 1 FOR TEST
         'If access = 2 Then
-        caldrop.Visible = True
-            admDrop.Visible = True
-            sideadminBtn.Visible = True
+        sideadminBtn.Visible = True
         'End If
     End Sub
 
@@ -90,11 +88,6 @@ Public Class home
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
                 resdrop.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
-                sideCalSub1.Top += 10
-                sideCalSub2.Top += 10
-                sidecalbtn3.Top += 10
 
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
@@ -104,11 +97,6 @@ Public Class home
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
                 resdrop.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
-                sideCalSub1.Top -= 10
-                sideCalSub2.Top -= 10
-                sidecalbtn3.Top -= 10
 
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
@@ -125,16 +113,12 @@ Public Class home
             If rDown = True Then
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
@@ -146,7 +130,7 @@ Public Class home
             End If
         End If
     End Sub
-    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles caldrop.Click
+    Private Sub calDrop_Click(sender As Object, e As EventArgs)
         If cDrop = False Then
             cDrop = True
             If cDown = False Then
@@ -215,7 +199,13 @@ Public Class home
         AddEdit_User.Show()
         Me.Hide()
     End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        selectAthlete.Show()
+        Me.Hide()
+    End Sub
 #End Region
+
 
 
 End Class

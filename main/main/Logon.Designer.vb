@@ -28,10 +28,10 @@ Partial Class Logon
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.UserDataSet = New main.UserDataSet()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.UserDataSet = New main.UserDataSet()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(Me.UserDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,25 +61,27 @@ Partial Class Logon
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(198, 335)
-        Me.TextBox1.Multiline = True
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(184, 325)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(338, 25)
-        Me.TextBox1.TabIndex = 7
+        Me.TextBox1.Size = New System.Drawing.Size(352, 29)
+        Me.TextBox1.TabIndex = 1
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(198, 366)
-        Me.TextBox2.Multiline = True
+        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.Location = New System.Drawing.Point(184, 366)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(338, 25)
-        Me.TextBox2.TabIndex = 7
+        Me.TextBox2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.TextBox2.Size = New System.Drawing.Size(352, 29)
+        Me.TextBox2.TabIndex = 2
+        Me.TextBox2.UseSystemPasswordChar = True
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Rockwell", 12.0!)
-        Me.Label2.Location = New System.Drawing.Point(166, 335)
+        Me.Label2.Location = New System.Drawing.Point(152, 332)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(26, 19)
         Me.Label2.TabIndex = 6
@@ -89,17 +91,11 @@ Partial Class Logon
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Rockwell", 12.0!)
-        Me.Label3.Location = New System.Drawing.Point(158, 366)
+        Me.Label3.Location = New System.Drawing.Point(144, 373)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(34, 19)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "PW"
-        '
-        'UserDataSet
-        '
-        Me.UserDataSet.CaseSensitive = True
-        Me.UserDataSet.DataSetName = "UserDataSet"
-        Me.UserDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Button1
         '
@@ -109,7 +105,7 @@ Partial Class Logon
         Me.Button1.Location = New System.Drawing.Point(156, 423)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(207, 64)
-        Me.Button1.TabIndex = 8
+        Me.Button1.TabIndex = 3
         Me.Button1.Text = "OK"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -121,7 +117,7 @@ Partial Class Logon
         Me.Button2.Location = New System.Drawing.Point(369, 458)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(167, 29)
-        Me.Button2.TabIndex = 9
+        Me.Button2.TabIndex = 5
         Me.Button2.Text = "EXIT"
         Me.Button2.UseVisualStyleBackColor = False
         '
@@ -133,9 +129,15 @@ Partial Class Logon
         Me.Button3.Location = New System.Drawing.Point(369, 423)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(167, 29)
-        Me.Button3.TabIndex = 9
+        Me.Button3.TabIndex = 4
         Me.Button3.Text = "FORGOT PASSWORD"
         Me.Button3.UseVisualStyleBackColor = False
+        '
+        'UserDataSet
+        '
+        Me.UserDataSet.CaseSensitive = True
+        Me.UserDataSet.DataSetName = "UserDataSet"
+        Me.UserDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'PictureBox1
         '
