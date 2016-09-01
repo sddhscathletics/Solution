@@ -60,8 +60,6 @@ Public Class home
         If lblAlertCount.Text = "0" Then
             lblAlertCount.Text = ""
         End If
-        caldrop.Visible = True
-            admDrop.Visible = True
             sideadminBtn.Visible = True
         'End If
     End Sub
@@ -94,12 +92,6 @@ Public Class home
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
                 resdrop.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
-                sideCalSub1.Top += 10
-                sideCalSub2.Top += 10
-                sidecalbtn3.Top += 10
-
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
@@ -108,11 +100,6 @@ Public Class home
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
                 resdrop.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
-                sideCalSub1.Top -= 10
-                sideCalSub2.Top -= 10
-                sidecalbtn3.Top -= 10
 
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
@@ -129,16 +116,12 @@ Public Class home
             If rDown = True Then
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
@@ -150,7 +133,7 @@ Public Class home
             End If
         End If
     End Sub
-    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles caldrop.Click
+    Private Sub calDrop_Click(sender As Object, e As EventArgs)
         If cDrop = False Then
             cDrop = True
             If cDown = False Then
@@ -187,18 +170,18 @@ Public Class home
     End Sub
 #End Region
 
-#Region "Buttons"
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        Close()
-    End Sub
-
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+#Region "TopBar"
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click, Button3.Click
         checkNotif.Show()
     End Sub
-
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
         Me.Close()
     End Sub
+#End Region
+
+
+
+#Region "Buttons"
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Logon.Show()

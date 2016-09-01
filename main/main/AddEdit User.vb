@@ -21,8 +21,7 @@ Public Class AddEdit_User
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseDown
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -32,8 +31,7 @@ Public Class AddEdit_User
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseMove
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -41,8 +39,7 @@ Public Class AddEdit_User
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseUp
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -54,7 +51,7 @@ Public Class AddEdit_User
 #End Region
 
 #Region "Sidebar"
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         Timer1.Enabled = True
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -136,7 +133,7 @@ Public Class AddEdit_User
             End If
         End If
     End Sub
-    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles caldrop.Click
+    Private Sub calDrop_Click(sender As Object, e As EventArgs)
         If cDrop = False Then
             cDrop = True
             If cDown = False Then
@@ -149,7 +146,7 @@ Public Class AddEdit_User
             sidebartime.Enabled = True
         End If
     End Sub
-    Private Sub resdrop_Click(sender As Object, e As EventArgs) Handles resdrop.Click
+    Private Sub resdrop_Click(sender As Object, e As EventArgs)
         If rDrop = False Then
             rDrop = True
             If rDown = False Then
@@ -163,16 +160,16 @@ Public Class AddEdit_User
         End If
     End Sub
 
-    Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles sidecalendarBtn.Click
+    Private Sub calendarBtn_Click(sender As Object, e As EventArgs)
         calendar.Show()
         Me.Hide()
     End Sub
-    Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles sideresultBtn.Click
+    Private Sub resultBtn_Click(sender As Object, e As EventArgs)
         Results.Show()
         Me.Hide()
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs)
         home.Show()
         Me.Close()
     End Sub
@@ -193,7 +190,7 @@ Public Class AddEdit_User
         End Using
     End Sub
 
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs)
         home.Close()
     End Sub
 
