@@ -408,7 +408,12 @@
     <None Include="Resources\notifbtn.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\savebtn.png" />
+    <None Include="Resources\Manage User UPD Btn.png" />
     <None Include="Resources\comboBoxImage.png" />
+    <None Include="Resources\Calendar Btn.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\close1.png" />
     <Content Include="Resources\helpbtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

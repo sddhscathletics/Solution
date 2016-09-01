@@ -1,28 +1,12 @@
 ﻿Imports System.Data.OleDb
 Public Class AddEdit_User
 
-#Region "Dim Variables"
-    Dim out As Boolean = False
-    Dim cDrop As Boolean = False
-    Dim rDrop As Boolean = False
-    Dim cDown As Boolean = False
-    Dim rDown As Boolean = False
-    Dim atDrop As Boolean = False
-    Dim atDown As Boolean = False
-    Dim adDrop As Boolean = False
-    Dim adDown As Boolean = False
-    Dim jun As Integer = 0
-
-    Dim Pass As String = ""
-#End Region
-
 #Region " Move Form "
 
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseDown
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -32,8 +16,7 @@ Public Class AddEdit_User
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseMove
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -41,8 +24,7 @@ Public Class AddEdit_User
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseUp
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -53,7 +35,31 @@ Public Class AddEdit_User
 
 #End Region
 
+#Region "Dim Variables - JUN"
+    Dim out As Boolean = False
+    Dim cDrop As Boolean = False
+    Dim rDrop As Boolean = False
+    Dim cDown As Boolean = False
+    Dim rDown As Boolean = False
+    Dim atDrop As Boolean = False
+    Dim atDown As Boolean = False
+    Dim adDrop As Boolean = False
+    Dim adDown As Boolean = False
+    Dim jun As Integer = 0
+#End Region
 #Region "Sidebar"
+
+    Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'access = 1 FOR TEST
+        'If access = 2 Then
+        lblAlertCount.Text = getNotifCount()
+        If lblAlertCount.Text = "0" Then
+            lblAlertCount.Text = ""
+        End If
+        sideadminBtn.Visible = True
+        'End If
+    End Sub
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
         Timer1.Enabled = True
     End Sub
@@ -82,11 +88,6 @@ Public Class AddEdit_User
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
                 resdrop.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
-                sideCalSub1.Top += 10
-                sideCalSub2.Top += 10
-
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
@@ -95,16 +96,12 @@ Public Class AddEdit_User
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
                 resdrop.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
-                sideCalSub1.Top -= 10
-                sideCalSub2.Top -= 10
 
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
             jun += 1
-            If jun = 6 Then
+            If jun = 9 Then
                 jun = 0
                 cDrop = False
                 sidebartime.Enabled = False
@@ -115,16 +112,12 @@ Public Class AddEdit_User
             If rDown = True Then
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
@@ -136,7 +129,7 @@ Public Class AddEdit_User
             End If
         End If
     End Sub
-    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles caldrop.Click
+    Private Sub calDrop_Click(sender As Object, e As EventArgs)
         If cDrop = False Then
             cDrop = True
             If cDown = False Then
@@ -171,13 +164,6 @@ Public Class AddEdit_User
         Results.Show()
         Me.Hide()
     End Sub
-
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        home.Show()
-        Me.Close()
-    End Sub
-
-
 #End Region
 
 
@@ -193,7 +179,7 @@ Public Class AddEdit_User
         End Using
     End Sub
 
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs)
         home.Close()
     End Sub
 
