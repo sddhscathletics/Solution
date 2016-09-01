@@ -34,7 +34,6 @@ Partial Class createEvent
         Me.lblType = New System.Windows.Forms.Label()
         Me.rdbTraining = New System.Windows.Forms.RadioButton()
         Me.rdbMeet = New System.Windows.Forms.RadioButton()
-        Me.chbNA = New System.Windows.Forms.CheckBox()
         Me.ofdOpen = New System.Windows.Forms.OpenFileDialog()
         Me.txtComment = New System.Windows.Forms.TextBox()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -47,7 +46,6 @@ Partial Class createEvent
         Me.gbDetails = New System.Windows.Forms.GroupBox()
         Me.flpAttach = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlAttach = New System.Windows.Forms.Panel()
-        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.map = New GMap.NET.WindowsForms.GMapControl()
         Me.txtStreet = New System.Windows.Forms.TextBox()
         Me.lblStreet = New System.Windows.Forms.Label()
@@ -58,46 +56,49 @@ Partial Class createEvent
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.cmbState = New System.Windows.Forms.ComboBox()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.gbEvents = New System.Windows.Forms.GroupBox()
-        Me.btnSaveTimes = New System.Windows.Forms.Button()
-        Me.cmbEvent = New System.Windows.Forms.ComboBox()
-        Me.dtp13s = New System.Windows.Forms.DateTimePicker()
-        Me.dtpOpens = New System.Windows.Forms.DateTimePicker()
-        Me.lbl16s = New System.Windows.Forms.Label()
-        Me.dtp16s = New System.Windows.Forms.DateTimePicker()
-        Me.dtp15s = New System.Windows.Forms.DateTimePicker()
-        Me.lbl17s = New System.Windows.Forms.Label()
-        Me.dtp14s = New System.Windows.Forms.DateTimePicker()
-        Me.lbl15s = New System.Windows.Forms.Label()
-        Me.lbl13s = New System.Windows.Forms.Label()
-        Me.dtp17s = New System.Windows.Forms.DateTimePicker()
-        Me.lbl14s = New System.Windows.Forms.Label()
-        Me.lblOpens = New System.Windows.Forms.Label()
         Me.gbAttachments = New System.Windows.Forms.GroupBox()
-        Me.pbPlus = New System.Windows.Forms.PictureBox()
-        Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.gbAthletes = New System.Windows.Forms.GroupBox()
         Me.chbAllNotes = New System.Windows.Forms.CheckBox()
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.chbAllAthletes = New System.Windows.Forms.CheckBox()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
         Me.flpAthletes = New System.Windows.Forms.FlowLayoutPanel()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.exitBtn = New System.Windows.Forms.Button()
+        Me.lblOpens = New System.Windows.Forms.Label()
+        Me.lbl14s = New System.Windows.Forms.Label()
+        Me.dtp17s = New System.Windows.Forms.DateTimePicker()
+        Me.lbl13s = New System.Windows.Forms.Label()
+        Me.lbl15s = New System.Windows.Forms.Label()
+        Me.dtp14s = New System.Windows.Forms.DateTimePicker()
+        Me.lbl17s = New System.Windows.Forms.Label()
+        Me.chbNA = New System.Windows.Forms.CheckBox()
+        Me.dtp15s = New System.Windows.Forms.DateTimePicker()
+        Me.dtp16s = New System.Windows.Forms.DateTimePicker()
+        Me.lbl16s = New System.Windows.Forms.Label()
+        Me.dtpOpens = New System.Windows.Forms.DateTimePicker()
+        Me.dtp13s = New System.Windows.Forms.DateTimePicker()
+        Me.cmbEvent = New System.Windows.Forms.ComboBox()
+        Me.btnSaveTimes = New System.Windows.Forms.Button()
+        Me.gbEvents = New System.Windows.Forms.GroupBox()
+        Me.pbCmb = New System.Windows.Forms.PictureBox()
+        Me.pbAttach = New System.Windows.Forms.PictureBox()
+        Me.pbPlus = New System.Windows.Forms.PictureBox()
+        Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbLocation.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.gbEvents.SuspendLayout()
         Me.gbAttachments.SuspendLayout()
-        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbAthletes.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.gbEvents.SuspendLayout()
+        CType(Me.pbCmb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dtpStart
@@ -226,17 +227,6 @@ Partial Class createEvent
         Me.rdbMeet.Text = "Meet"
         Me.rdbMeet.UseVisualStyleBackColor = True
         '
-        'chbNA
-        '
-        Me.chbNA.AutoSize = True
-        Me.chbNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbNA.Location = New System.Drawing.Point(11, 31)
-        Me.chbNA.Name = "chbNA"
-        Me.chbNA.Size = New System.Drawing.Size(46, 17)
-        Me.chbNA.TabIndex = 33
-        Me.chbNA.Text = "N/A"
-        Me.chbNA.UseVisualStyleBackColor = True
-        '
         'ofdOpen
         '
         Me.ofdOpen.FileName = "OpenFileDialog1"
@@ -295,6 +285,7 @@ Partial Class createEvent
         '
         'cmbTemplate
         '
+        Me.cmbTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTemplate.Enabled = False
         Me.cmbTemplate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbTemplate.FormattingEnabled = True
@@ -337,7 +328,7 @@ Partial Class createEvent
         Me.gbDetails.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
         Me.gbDetails.Location = New System.Drawing.Point(12, 64)
         Me.gbDetails.Name = "gbDetails"
-        Me.gbDetails.Size = New System.Drawing.Size(347, 354)
+        Me.gbDetails.Size = New System.Drawing.Size(347, 343)
         Me.gbDetails.TabIndex = 44
         Me.gbDetails.TabStop = False
         Me.gbDetails.Text = "DETAILS"
@@ -348,9 +339,9 @@ Partial Class createEvent
         Me.flpAttach.BackColor = System.Drawing.SystemColors.Control
         Me.flpAttach.Controls.Add(Me.pnlAttach)
         Me.flpAttach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpAttach.Location = New System.Drawing.Point(0, 58)
+        Me.flpAttach.Location = New System.Drawing.Point(2, 24)
         Me.flpAttach.Name = "flpAttach"
-        Me.flpAttach.Size = New System.Drawing.Size(347, 176)
+        Me.flpAttach.Size = New System.Drawing.Size(342, 178)
         Me.flpAttach.TabIndex = 45
         Me.flpAttach.WrapContents = False
         '
@@ -362,24 +353,12 @@ Partial Class createEvent
         Me.pnlAttach.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlAttach.Location = New System.Drawing.Point(3, 3)
         Me.pnlAttach.Name = "pnlAttach"
-        Me.pnlAttach.Size = New System.Drawing.Size(344, 56)
+        Me.pnlAttach.Size = New System.Drawing.Size(319, 56)
         Me.pnlAttach.TabIndex = 43
-        '
-        'pbAttach
-        '
-        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(136, -1)
-        Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
-        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbAttach.TabIndex = 42
-        Me.pbAttach.TabStop = False
-        Me.pbAttach.Tag = "add"
         '
         'map
         '
-        Me.map.Bearing = 0.0!
+        Me.map.Bearing = 0!
         Me.map.CanDragMap = True
         Me.map.Cursor = System.Windows.Forms.Cursors.Hand
         Me.map.EmptyTileColor = System.Drawing.Color.Navy
@@ -500,179 +479,6 @@ Partial Class createEvent
         Me.btnSearch.Text = "SEARCH"
         Me.btnSearch.UseVisualStyleBackColor = False
         '
-        'gbEvents
-        '
-        Me.gbEvents.Controls.Add(Me.btnSaveTimes)
-        Me.gbEvents.Controls.Add(Me.cmbEvent)
-        Me.gbEvents.Controls.Add(Me.dtp13s)
-        Me.gbEvents.Controls.Add(Me.dtpOpens)
-        Me.gbEvents.Controls.Add(Me.lbl16s)
-        Me.gbEvents.Controls.Add(Me.dtp16s)
-        Me.gbEvents.Controls.Add(Me.dtp15s)
-        Me.gbEvents.Controls.Add(Me.chbNA)
-        Me.gbEvents.Controls.Add(Me.lbl17s)
-        Me.gbEvents.Controls.Add(Me.dtp14s)
-        Me.gbEvents.Controls.Add(Me.lbl15s)
-        Me.gbEvents.Controls.Add(Me.lbl13s)
-        Me.gbEvents.Controls.Add(Me.dtp17s)
-        Me.gbEvents.Controls.Add(Me.lbl14s)
-        Me.gbEvents.Controls.Add(Me.lblOpens)
-        Me.gbEvents.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbEvents.Location = New System.Drawing.Point(396, 392)
-        Me.gbEvents.Name = "gbEvents"
-        Me.gbEvents.Size = New System.Drawing.Size(257, 277)
-        Me.gbEvents.TabIndex = 58
-        Me.gbEvents.TabStop = False
-        Me.gbEvents.Text = "EVENTS"
-        '
-        'btnSaveTimes
-        '
-        Me.btnSaveTimes.BackColor = System.Drawing.Color.Gray
-        Me.btnSaveTimes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSaveTimes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSaveTimes.Location = New System.Drawing.Point(201, 29)
-        Me.btnSaveTimes.Name = "btnSaveTimes"
-        Me.btnSaveTimes.Size = New System.Drawing.Size(51, 23)
-        Me.btnSaveTimes.TabIndex = 45
-        Me.btnSaveTimes.Text = "SAVE"
-        Me.btnSaveTimes.UseVisualStyleBackColor = False
-        '
-        'cmbEvent
-        '
-        Me.cmbEvent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbEvent.FormattingEnabled = True
-        Me.cmbEvent.Items.AddRange(New Object() {"100m", "200m", "400m", "800m", "1.5k", "3k", "Hurdles", "High Jump", "Long Jump", "Shotput"})
-        Me.cmbEvent.Location = New System.Drawing.Point(59, 29)
-        Me.cmbEvent.Name = "cmbEvent"
-        Me.cmbEvent.Size = New System.Drawing.Size(136, 21)
-        Me.cmbEvent.TabIndex = 44
-        '
-        'dtp13s
-        '
-        Me.dtp13s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtp13s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp13s.Location = New System.Drawing.Point(76, 64)
-        Me.dtp13s.Name = "dtp13s"
-        Me.dtp13s.ShowUpDown = True
-        Me.dtp13s.Size = New System.Drawing.Size(176, 23)
-        Me.dtp13s.TabIndex = 71
-        Me.dtp13s.Tag = "U13"
-        '
-        'dtpOpens
-        '
-        Me.dtpOpens.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpOpens.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpOpens.Location = New System.Drawing.Point(76, 246)
-        Me.dtpOpens.Name = "dtpOpens"
-        Me.dtpOpens.ShowUpDown = True
-        Me.dtpOpens.Size = New System.Drawing.Size(176, 23)
-        Me.dtpOpens.TabIndex = 70
-        Me.dtpOpens.Tag = "Opens"
-        '
-        'lbl16s
-        '
-        Me.lbl16s.AutoSize = True
-        Me.lbl16s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl16s.Location = New System.Drawing.Point(22, 181)
-        Me.lbl16s.Name = "lbl16s"
-        Me.lbl16s.Size = New System.Drawing.Size(37, 15)
-        Me.lbl16s.TabIndex = 65
-        Me.lbl16s.Text = "16's:"
-        '
-        'dtp16s
-        '
-        Me.dtp16s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtp16s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp16s.Location = New System.Drawing.Point(76, 174)
-        Me.dtp16s.Name = "dtp16s"
-        Me.dtp16s.ShowUpDown = True
-        Me.dtp16s.Size = New System.Drawing.Size(176, 23)
-        Me.dtp16s.TabIndex = 67
-        Me.dtp16s.Tag = "U16"
-        '
-        'dtp15s
-        '
-        Me.dtp15s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtp15s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp15s.Location = New System.Drawing.Point(76, 138)
-        Me.dtp15s.Name = "dtp15s"
-        Me.dtp15s.ShowUpDown = True
-        Me.dtp15s.Size = New System.Drawing.Size(176, 23)
-        Me.dtp15s.TabIndex = 64
-        Me.dtp15s.Tag = "U15"
-        '
-        'lbl17s
-        '
-        Me.lbl17s.AutoSize = True
-        Me.lbl17s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl17s.Location = New System.Drawing.Point(22, 215)
-        Me.lbl17s.Name = "lbl17s"
-        Me.lbl17s.Size = New System.Drawing.Size(37, 15)
-        Me.lbl17s.TabIndex = 66
-        Me.lbl17s.Text = "17's:"
-        '
-        'dtp14s
-        '
-        Me.dtp14s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtp14s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp14s.Location = New System.Drawing.Point(76, 102)
-        Me.dtp14s.Name = "dtp14s"
-        Me.dtp14s.ShowUpDown = True
-        Me.dtp14s.Size = New System.Drawing.Size(176, 23)
-        Me.dtp14s.TabIndex = 63
-        Me.dtp14s.Tag = "U14"
-        '
-        'lbl15s
-        '
-        Me.lbl15s.AutoSize = True
-        Me.lbl15s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl15s.Location = New System.Drawing.Point(22, 143)
-        Me.lbl15s.Name = "lbl15s"
-        Me.lbl15s.Size = New System.Drawing.Size(37, 15)
-        Me.lbl15s.TabIndex = 62
-        Me.lbl15s.Text = "15's:"
-        '
-        'lbl13s
-        '
-        Me.lbl13s.AutoSize = True
-        Me.lbl13s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl13s.Location = New System.Drawing.Point(22, 70)
-        Me.lbl13s.Name = "lbl13s"
-        Me.lbl13s.Size = New System.Drawing.Size(37, 15)
-        Me.lbl13s.TabIndex = 60
-        Me.lbl13s.Text = "13's:"
-        '
-        'dtp17s
-        '
-        Me.dtp17s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtp17s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp17s.Location = New System.Drawing.Point(76, 210)
-        Me.dtp17s.Name = "dtp17s"
-        Me.dtp17s.ShowUpDown = True
-        Me.dtp17s.Size = New System.Drawing.Size(176, 23)
-        Me.dtp17s.TabIndex = 68
-        Me.dtp17s.Tag = "U17"
-        '
-        'lbl14s
-        '
-        Me.lbl14s.AutoSize = True
-        Me.lbl14s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl14s.Location = New System.Drawing.Point(22, 106)
-        Me.lbl14s.Name = "lbl14s"
-        Me.lbl14s.Size = New System.Drawing.Size(37, 15)
-        Me.lbl14s.TabIndex = 61
-        Me.lbl14s.Text = "14's:"
-        '
-        'lblOpens
-        '
-        Me.lblOpens.AutoSize = True
-        Me.lblOpens.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOpens.Location = New System.Drawing.Point(1, 246)
-        Me.lblOpens.Name = "lblOpens"
-        Me.lblOpens.Size = New System.Drawing.Size(58, 15)
-        Me.lblOpens.TabIndex = 69
-        Me.lblOpens.Text = "OPENS:"
-        '
         'gbAttachments
         '
         Me.gbAttachments.Controls.Add(Me.flpAttach)
@@ -683,26 +489,6 @@ Partial Class createEvent
         Me.gbAttachments.TabIndex = 59
         Me.gbAttachments.TabStop = False
         Me.gbAttachments.Text = "ATTACHMENTS"
-        '
-        'pbPlus
-        '
-        Me.pbPlus.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbPlus.Location = New System.Drawing.Point(1225, 171)
-        Me.pbPlus.Name = "pbPlus"
-        Me.pbPlus.Size = New System.Drawing.Size(25, 25)
-        Me.pbPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbPlus.TabIndex = 57
-        Me.pbPlus.TabStop = False
-        '
-        'pbMinus
-        '
-        Me.pbMinus.Image = Global.main.My.Resources.Resources.transparent_minus
-        Me.pbMinus.Location = New System.Drawing.Point(1225, 208)
-        Me.pbMinus.Name = "pbMinus"
-        Me.pbMinus.Size = New System.Drawing.Size(25, 25)
-        Me.pbMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbMinus.TabIndex = 56
-        Me.pbMinus.TabStop = False
         '
         'gbAthletes
         '
@@ -723,7 +509,7 @@ Partial Class createEvent
         '
         Me.chbAllNotes.AutoSize = True
         Me.chbAllNotes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbAllNotes.Location = New System.Drawing.Point(137, 31)
+        Me.chbAllNotes.Location = New System.Drawing.Point(134, 31)
         Me.chbAllNotes.Name = "chbAllNotes"
         Me.chbAllNotes.Size = New System.Drawing.Size(94, 20)
         Me.chbAllNotes.TabIndex = 62
@@ -735,7 +521,7 @@ Partial Class createEvent
         Me.btnSelect.BackColor = System.Drawing.Color.Gray
         Me.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSelect.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelect.Location = New System.Drawing.Point(369, 28)
+        Me.btnSelect.Location = New System.Drawing.Point(365, 28)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(75, 23)
         Me.btnSelect.TabIndex = 61
@@ -758,7 +544,7 @@ Partial Class createEvent
         Me.cmbGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbGroup.FormattingEnabled = True
         Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbGroup.Location = New System.Drawing.Point(228, 30)
+        Me.cmbGroup.Location = New System.Drawing.Point(226, 30)
         Me.cmbGroup.Name = "cmbGroup"
         Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
         Me.cmbGroup.TabIndex = 46
@@ -770,18 +556,9 @@ Partial Class createEvent
         Me.flpAthletes.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpAthletes.Location = New System.Drawing.Point(5, 54)
         Me.flpAthletes.Name = "flpAthletes"
-        Me.flpAthletes.Size = New System.Drawing.Size(456, 211)
+        Me.flpAthletes.Size = New System.Drawing.Size(433, 206)
         Me.flpAthletes.TabIndex = 45
         Me.flpAthletes.WrapContents = False
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(398, 352)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(182, 21)
-        Me.ComboBox1.TabIndex = 44
         '
         'CheckedListBox1
         '
@@ -818,6 +595,233 @@ Partial Class createEvent
         Me.exitBtn.Text = "exit"
         Me.exitBtn.UseVisualStyleBackColor = False
         '
+        'lblOpens
+        '
+        Me.lblOpens.AutoSize = True
+        Me.lblOpens.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOpens.Location = New System.Drawing.Point(5, 246)
+        Me.lblOpens.Name = "lblOpens"
+        Me.lblOpens.Size = New System.Drawing.Size(58, 15)
+        Me.lblOpens.TabIndex = 69
+        Me.lblOpens.Text = "OPENS:"
+        '
+        'lbl14s
+        '
+        Me.lbl14s.AutoSize = True
+        Me.lbl14s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl14s.Location = New System.Drawing.Point(26, 106)
+        Me.lbl14s.Name = "lbl14s"
+        Me.lbl14s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl14s.TabIndex = 61
+        Me.lbl14s.Text = "14's:"
+        '
+        'dtp17s
+        '
+        Me.dtp17s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp17s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp17s.Location = New System.Drawing.Point(80, 210)
+        Me.dtp17s.Name = "dtp17s"
+        Me.dtp17s.ShowUpDown = True
+        Me.dtp17s.Size = New System.Drawing.Size(176, 23)
+        Me.dtp17s.TabIndex = 68
+        Me.dtp17s.Tag = "U17"
+        '
+        'lbl13s
+        '
+        Me.lbl13s.AutoSize = True
+        Me.lbl13s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl13s.Location = New System.Drawing.Point(26, 70)
+        Me.lbl13s.Name = "lbl13s"
+        Me.lbl13s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl13s.TabIndex = 60
+        Me.lbl13s.Text = "13's:"
+        '
+        'lbl15s
+        '
+        Me.lbl15s.AutoSize = True
+        Me.lbl15s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl15s.Location = New System.Drawing.Point(26, 143)
+        Me.lbl15s.Name = "lbl15s"
+        Me.lbl15s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl15s.TabIndex = 62
+        Me.lbl15s.Text = "15's:"
+        '
+        'dtp14s
+        '
+        Me.dtp14s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp14s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp14s.Location = New System.Drawing.Point(80, 102)
+        Me.dtp14s.Name = "dtp14s"
+        Me.dtp14s.ShowUpDown = True
+        Me.dtp14s.Size = New System.Drawing.Size(176, 23)
+        Me.dtp14s.TabIndex = 63
+        Me.dtp14s.Tag = "U14"
+        '
+        'lbl17s
+        '
+        Me.lbl17s.AutoSize = True
+        Me.lbl17s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl17s.Location = New System.Drawing.Point(26, 215)
+        Me.lbl17s.Name = "lbl17s"
+        Me.lbl17s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl17s.TabIndex = 66
+        Me.lbl17s.Text = "17's:"
+        '
+        'chbNA
+        '
+        Me.chbNA.AutoSize = True
+        Me.chbNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbNA.Location = New System.Drawing.Point(11, 31)
+        Me.chbNA.Name = "chbNA"
+        Me.chbNA.Size = New System.Drawing.Size(46, 17)
+        Me.chbNA.TabIndex = 33
+        Me.chbNA.Text = "N/A"
+        Me.chbNA.UseVisualStyleBackColor = True
+        '
+        'dtp15s
+        '
+        Me.dtp15s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp15s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp15s.Location = New System.Drawing.Point(80, 138)
+        Me.dtp15s.Name = "dtp15s"
+        Me.dtp15s.ShowUpDown = True
+        Me.dtp15s.Size = New System.Drawing.Size(176, 23)
+        Me.dtp15s.TabIndex = 64
+        Me.dtp15s.Tag = "U15"
+        '
+        'dtp16s
+        '
+        Me.dtp16s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp16s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp16s.Location = New System.Drawing.Point(80, 174)
+        Me.dtp16s.Name = "dtp16s"
+        Me.dtp16s.ShowUpDown = True
+        Me.dtp16s.Size = New System.Drawing.Size(176, 23)
+        Me.dtp16s.TabIndex = 67
+        Me.dtp16s.Tag = "U16"
+        '
+        'lbl16s
+        '
+        Me.lbl16s.AutoSize = True
+        Me.lbl16s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl16s.Location = New System.Drawing.Point(26, 181)
+        Me.lbl16s.Name = "lbl16s"
+        Me.lbl16s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl16s.TabIndex = 65
+        Me.lbl16s.Text = "16's:"
+        '
+        'dtpOpens
+        '
+        Me.dtpOpens.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpOpens.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpOpens.Location = New System.Drawing.Point(80, 246)
+        Me.dtpOpens.Name = "dtpOpens"
+        Me.dtpOpens.ShowUpDown = True
+        Me.dtpOpens.Size = New System.Drawing.Size(176, 23)
+        Me.dtpOpens.TabIndex = 70
+        Me.dtpOpens.Tag = "Opens"
+        '
+        'dtp13s
+        '
+        Me.dtp13s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp13s.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtp13s.Location = New System.Drawing.Point(80, 64)
+        Me.dtp13s.Name = "dtp13s"
+        Me.dtp13s.ShowUpDown = True
+        Me.dtp13s.Size = New System.Drawing.Size(176, 23)
+        Me.dtp13s.TabIndex = 71
+        Me.dtp13s.Tag = "U13"
+        '
+        'cmbEvent
+        '
+        Me.cmbEvent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbEvent.FormattingEnabled = True
+        Me.cmbEvent.Items.AddRange(New Object() {"100m", "200m", "400m", "800m", "1.5k", "3k", "Hurdles", "High Jump", "Long Jump", "Shotput"})
+        Me.cmbEvent.Location = New System.Drawing.Point(60, 29)
+        Me.cmbEvent.Name = "cmbEvent"
+        Me.cmbEvent.Size = New System.Drawing.Size(136, 21)
+        Me.cmbEvent.TabIndex = 44
+        '
+        'btnSaveTimes
+        '
+        Me.btnSaveTimes.BackColor = System.Drawing.Color.Gray
+        Me.btnSaveTimes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnSaveTimes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSaveTimes.Location = New System.Drawing.Point(204, 29)
+        Me.btnSaveTimes.Name = "btnSaveTimes"
+        Me.btnSaveTimes.Size = New System.Drawing.Size(51, 23)
+        Me.btnSaveTimes.TabIndex = 45
+        Me.btnSaveTimes.Text = "SAVE"
+        Me.btnSaveTimes.UseVisualStyleBackColor = False
+        '
+        'gbEvents
+        '
+        Me.gbEvents.Controls.Add(Me.btnSaveTimes)
+        Me.gbEvents.Controls.Add(Me.cmbEvent)
+        Me.gbEvents.Controls.Add(Me.dtp13s)
+        Me.gbEvents.Controls.Add(Me.dtpOpens)
+        Me.gbEvents.Controls.Add(Me.lbl16s)
+        Me.gbEvents.Controls.Add(Me.dtp16s)
+        Me.gbEvents.Controls.Add(Me.dtp15s)
+        Me.gbEvents.Controls.Add(Me.chbNA)
+        Me.gbEvents.Controls.Add(Me.lbl17s)
+        Me.gbEvents.Controls.Add(Me.dtp14s)
+        Me.gbEvents.Controls.Add(Me.lbl15s)
+        Me.gbEvents.Controls.Add(Me.lbl13s)
+        Me.gbEvents.Controls.Add(Me.dtp17s)
+        Me.gbEvents.Controls.Add(Me.lbl14s)
+        Me.gbEvents.Controls.Add(Me.lblOpens)
+        Me.gbEvents.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbEvents.Location = New System.Drawing.Point(396, 392)
+        Me.gbEvents.Name = "gbEvents"
+        Me.gbEvents.Size = New System.Drawing.Size(267, 277)
+        Me.gbEvents.TabIndex = 58
+        Me.gbEvents.TabStop = False
+        Me.gbEvents.Text = "EVENTS"
+        '
+        'pbCmb
+        '
+        Me.pbCmb.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbCmb.Image = Global.main.My.Resources.Resources.comboBoxImage
+        Me.pbCmb.Location = New System.Drawing.Point(407, 333)
+        Me.pbCmb.Name = "pbCmb"
+        Me.pbCmb.Size = New System.Drawing.Size(182, 21)
+        Me.pbCmb.TabIndex = 43
+        Me.pbCmb.TabStop = False
+        Me.pbCmb.Tag = "add"
+        '
+        'pbAttach
+        '
+        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbAttach.Location = New System.Drawing.Point(114, -1)
+        Me.pbAttach.Name = "pbAttach"
+        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
+        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbAttach.TabIndex = 42
+        Me.pbAttach.TabStop = False
+        Me.pbAttach.Tag = "add"
+        '
+        'pbPlus
+        '
+        Me.pbPlus.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbPlus.Location = New System.Drawing.Point(1225, 171)
+        Me.pbPlus.Name = "pbPlus"
+        Me.pbPlus.Size = New System.Drawing.Size(25, 25)
+        Me.pbPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbPlus.TabIndex = 57
+        Me.pbPlus.TabStop = False
+        '
+        'pbMinus
+        '
+        Me.pbMinus.Image = Global.main.My.Resources.Resources.transparent_minus
+        Me.pbMinus.Location = New System.Drawing.Point(1225, 208)
+        Me.pbMinus.Name = "pbMinus"
+        Me.pbMinus.Size = New System.Drawing.Size(25, 25)
+        Me.pbMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbMinus.TabIndex = 56
+        Me.pbMinus.TabStop = False
+        '
         'createEvent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -826,9 +830,9 @@ Partial Class createEvent
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.pbCmb)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.CheckedListBox1)
-        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.gbAttachments)
         Me.Controls.Add(Me.gbAthletes)
         Me.Controls.Add(Me.gbEvents)
@@ -848,19 +852,20 @@ Partial Class createEvent
         Me.gbDetails.PerformLayout()
         Me.flpAttach.ResumeLayout(False)
         Me.pnlAttach.ResumeLayout(False)
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbLocation.ResumeLayout(False)
         Me.gbLocation.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.gbEvents.ResumeLayout(False)
-        Me.gbEvents.PerformLayout()
         Me.gbAttachments.ResumeLayout(False)
-        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbAthletes.ResumeLayout(False)
         Me.gbAthletes.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.gbEvents.ResumeLayout(False)
+        Me.gbEvents.PerformLayout()
+        CType(Me.pbCmb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -876,7 +881,6 @@ Partial Class createEvent
     Friend WithEvents lblType As Label
     Friend WithEvents rdbTraining As RadioButton
     Friend WithEvents rdbMeet As RadioButton
-    Friend WithEvents chbNA As CheckBox
     Friend WithEvents ofdOpen As OpenFileDialog
     Friend WithEvents txtComment As TextBox
     Friend WithEvents lblTitle As Label
@@ -901,22 +905,7 @@ Partial Class createEvent
     Friend WithEvents cmbState As ComboBox
     Friend WithEvents pbMinus As PictureBox
     Friend WithEvents pbPlus As PictureBox
-    Friend WithEvents gbEvents As GroupBox
     Friend WithEvents gbAttachments As GroupBox
-    Friend WithEvents dtp13s As DateTimePicker
-    Friend WithEvents dtpOpens As DateTimePicker
-    Friend WithEvents lbl16s As Label
-    Friend WithEvents dtp16s As DateTimePicker
-    Friend WithEvents dtp15s As DateTimePicker
-    Friend WithEvents lbl17s As Label
-    Friend WithEvents dtp14s As DateTimePicker
-    Friend WithEvents lbl15s As Label
-    Friend WithEvents lbl13s As Label
-    Friend WithEvents dtp17s As DateTimePicker
-    Friend WithEvents lbl14s As Label
-    Friend WithEvents lblOpens As Label
-    Friend WithEvents cmbEvent As ComboBox
-    Friend WithEvents btnSaveTimes As Button
     Friend WithEvents gbAthletes As GroupBox
     Friend WithEvents flpAthletes As FlowLayoutPanel
     Friend WithEvents cmbGroup As ComboBox
@@ -925,7 +914,23 @@ Partial Class createEvent
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents chbAllNotes As CheckBox
     Friend WithEvents CheckedListBox1 As CheckedListBox
-    Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents exitBtn As System.Windows.Forms.Button
+    Friend WithEvents gbEvents As GroupBox
+    Friend WithEvents btnSaveTimes As Button
+    Friend WithEvents cmbEvent As ComboBox
+    Friend WithEvents dtp13s As DateTimePicker
+    Friend WithEvents dtpOpens As DateTimePicker
+    Friend WithEvents lbl16s As Label
+    Friend WithEvents dtp16s As DateTimePicker
+    Friend WithEvents dtp15s As DateTimePicker
+    Friend WithEvents chbNA As CheckBox
+    Friend WithEvents lbl17s As Label
+    Friend WithEvents dtp14s As DateTimePicker
+    Friend WithEvents lbl15s As Label
+    Friend WithEvents lbl13s As Label
+    Friend WithEvents dtp17s As DateTimePicker
+    Friend WithEvents lbl14s As Label
+    Friend WithEvents lblOpens As Label
+    Friend WithEvents pbCmb As PictureBox
 End Class
