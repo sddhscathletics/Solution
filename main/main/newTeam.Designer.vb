@@ -96,7 +96,7 @@ Partial Class newTeam
         '
         Me.cmbSort.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbSort.FormattingEnabled = True
-        Me.cmbSort.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
+        Me.cmbSort.Items.AddRange(New Object() {"ID", "Roll Class", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
         Me.cmbSort.Location = New System.Drawing.Point(321, 101)
         Me.cmbSort.Name = "cmbSort"
         Me.cmbSort.Size = New System.Drawing.Size(150, 24)

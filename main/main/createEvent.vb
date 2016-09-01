@@ -2668,11 +2668,7 @@ Public Class createEvent
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         checkNotif.Show()
     End Sub
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        Me.Close()
-    End Sub
 #End Region
-
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         home.Show()
