@@ -51,6 +51,9 @@ Partial Class AddEdit_User
         Me.Label1 = New System.Windows.Forms.Label()
         Me.idText = New System.Windows.Forms.TextBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PassDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AccessLevel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UserDbBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.AthleteDataSet = New main.AthleteDataSet()
         Me.Login = New main.Login()
@@ -64,9 +67,8 @@ Partial Class AddEdit_User
         Me.backBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
         Me.UserDbTableAdapter1 = New main.AthleteDataSetTableAdapters.userDbTableAdapter()
-        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PassDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AccessLevel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.Sidebar.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -296,6 +298,8 @@ Partial Class AddEdit_User
         'bigbtngroup
         '
         Me.bigbtngroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.bigbtngroup.Controls.Add(Me.Button4)
+        Me.bigbtngroup.Controls.Add(Me.Button3)
         Me.bigbtngroup.Controls.Add(Me.Button2)
         Me.bigbtngroup.Controls.Add(Me.RadioButton3)
         Me.bigbtngroup.Controls.Add(Me.RadioButton2)
@@ -316,7 +320,7 @@ Partial Class AddEdit_User
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(1022, 398)
+        Me.Button2.Location = New System.Drawing.Point(1001, 498)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 4
@@ -326,23 +330,23 @@ Partial Class AddEdit_User
         'RadioButton3
         '
         Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(1172, 333)
+        Me.RadioButton3.Location = New System.Drawing.Point(1038, 379)
         Me.RadioButton3.Name = "RadioButton3"
         Me.RadioButton3.Size = New System.Drawing.Size(31, 17)
         Me.RadioButton3.TabIndex = 3
         Me.RadioButton3.TabStop = True
-        Me.RadioButton3.Text = "3"
+        Me.RadioButton3.Text = "2"
         Me.RadioButton3.UseVisualStyleBackColor = True
         '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(1104, 333)
+        Me.RadioButton2.Location = New System.Drawing.Point(1038, 356)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(31, 17)
         Me.RadioButton2.TabIndex = 3
         Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "2"
+        Me.RadioButton2.Text = "1"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'RadioButton1
@@ -353,7 +357,7 @@ Partial Class AddEdit_User
         Me.RadioButton1.Size = New System.Drawing.Size(31, 17)
         Me.RadioButton1.TabIndex = 3
         Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "1"
+        Me.RadioButton1.Text = "0"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'Label3
@@ -377,9 +381,8 @@ Partial Class AddEdit_User
         'passText
         '
         Me.passText.Location = New System.Drawing.Point(1035, 227)
-        Me.passText.Multiline = True
         Me.passText.Name = "passText"
-        Me.passText.Size = New System.Drawing.Size(200, 29)
+        Me.passText.Size = New System.Drawing.Size(200, 20)
         Me.passText.TabIndex = 1
         '
         'Label1
@@ -394,13 +397,14 @@ Partial Class AddEdit_User
         'idText
         '
         Me.idText.Location = New System.Drawing.Point(1035, 116)
-        Me.idText.Multiline = True
         Me.idText.Name = "idText"
-        Me.idText.Size = New System.Drawing.Size(200, 29)
+        Me.idText.Size = New System.Drawing.Size(200, 20)
         Me.idText.TabIndex = 1
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoGenerateColumns = False
@@ -428,6 +432,30 @@ Partial Class AddEdit_User
         Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Size = New System.Drawing.Size(903, 600)
         Me.DataGridView1.TabIndex = 0
+        '
+        'IDDataGridViewTextBoxColumn
+        '
+        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
+        Me.IDDataGridViewTextBoxColumn.ReadOnly = True
+        Me.IDDataGridViewTextBoxColumn.Width = 300
+        '
+        'PassDataGridViewTextBoxColumn
+        '
+        Me.PassDataGridViewTextBoxColumn.DataPropertyName = "Pass"
+        Me.PassDataGridViewTextBoxColumn.HeaderText = "Pass"
+        Me.PassDataGridViewTextBoxColumn.Name = "PassDataGridViewTextBoxColumn"
+        Me.PassDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PassDataGridViewTextBoxColumn.Width = 300
+        '
+        'AccessLevel
+        '
+        Me.AccessLevel.DataPropertyName = "AccessLevel"
+        Me.AccessLevel.HeaderText = "AccessLevel"
+        Me.AccessLevel.Name = "AccessLevel"
+        Me.AccessLevel.ReadOnly = True
+        Me.AccessLevel.Width = 300
         '
         'UserDbBindingSource1
         '
@@ -553,29 +581,23 @@ Partial Class AddEdit_User
         '
         Me.UserDbTableAdapter1.ClearBeforeFill = True
         '
-        'IDDataGridViewTextBoxColumn
+        'Button3
         '
-        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
-        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
-        Me.IDDataGridViewTextBoxColumn.ReadOnly = True
-        Me.IDDataGridViewTextBoxColumn.Width = 300
+        Me.Button3.Location = New System.Drawing.Point(1104, 498)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 5
+        Me.Button3.Text = "Create"
+        Me.Button3.UseVisualStyleBackColor = True
         '
-        'PassDataGridViewTextBoxColumn
+        'Button4
         '
-        Me.PassDataGridViewTextBoxColumn.DataPropertyName = "Pass"
-        Me.PassDataGridViewTextBoxColumn.HeaderText = "Pass"
-        Me.PassDataGridViewTextBoxColumn.Name = "PassDataGridViewTextBoxColumn"
-        Me.PassDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PassDataGridViewTextBoxColumn.Width = 300
-        '
-        'AccessLevel
-        '
-        Me.AccessLevel.DataPropertyName = "AccessLevel"
-        Me.AccessLevel.HeaderText = "AccessLevel"
-        Me.AccessLevel.Name = "AccessLevel"
-        Me.AccessLevel.ReadOnly = True
-        Me.AccessLevel.Width = 300
+        Me.Button4.Location = New System.Drawing.Point(1001, 554)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 6
+        Me.Button4.Text = "Edit"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'AddEdit_User
         '
@@ -644,4 +666,6 @@ Partial Class AddEdit_User
     Friend WithEvents IDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PassDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AccessLevel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
 End Class
