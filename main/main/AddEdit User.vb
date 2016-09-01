@@ -188,4 +188,9 @@ Public Class AddEdit_User
         Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
 
     End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        home.Show()
+        Me.Close()
+    End Sub
 End Class

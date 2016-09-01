@@ -1061,7 +1061,7 @@ Partial Class createEvent
         Me.bigbtngroup.Controls.Add(Me.pbPlus)
         Me.bigbtngroup.Location = New System.Drawing.Point(0, 10)
         Me.bigbtngroup.Name = "bigbtngroup"
-        Me.bigbtngroup.Size = New System.Drawing.Size(1294, 726)
+        Me.bigbtngroup.Size = New System.Drawing.Size(1279, 726)
         Me.bigbtngroup.TabIndex = 64
         Me.bigbtngroup.TabStop = False
         '
