@@ -488,7 +488,7 @@ Partial Class selectAthlete
         Me.cmbFilter.Name = "cmbFilter"
         Me.cmbFilter.Size = New System.Drawing.Size(150, 24)
         Me.cmbFilter.TabIndex = 89
-        Me.cmbFilter.Text = "Filter"
+        Me.cmbFilter.Text = "Sort By"
         '
         'cmbAgeGroup
         '

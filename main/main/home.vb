@@ -56,6 +56,10 @@ Public Class home
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'access = 1 FOR TEST
         'If access = 2 Then
+        lblAlertCount.Text = getNotifCount()
+        If lblAlertCount.Text = "0" Then
+            lblAlertCount.Text = ""
+        End If
         caldrop.Visible = True
             admDrop.Visible = True
             sideadminBtn.Visible = True
@@ -216,6 +220,4 @@ Public Class home
         Me.Hide()
     End Sub
 #End Region
-
-
 End Class
