@@ -142,12 +142,13 @@ Module common
         Return list
     End Function
 
-    Public Sub refreshFlp(cmdA As ComboBox, cmbS As ComboBox, list As List(Of athlete))
+    Public Function refreshFlp(cmdA As ComboBox, cmbS As ComboBox, list As List(Of athlete)) 'cmbA is the age group, cmbS is the sort by
         If cmdA.SelectedItem <> Nothing Then
             list = populate(" WHERE AgeGroup = '" + cmdA.SelectedItem.ToString + "'", list)
         Else
             list = populate("", list)
         End If
         list = sort(cmbS, list)
-    End Sub
+        Return list
+    End Function
 End Module

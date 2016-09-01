@@ -32,7 +32,7 @@ Partial Class newTeam
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblSelectedMembers = New System.Windows.Forms.Label()
-        Me.txtSelectedMembers = New System.Windows.Forms.TextBox()
+        Me.flpSelected = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
         '
         'txtTeamName
@@ -119,28 +119,26 @@ Partial Class newTeam
         'lblSelectedMembers
         '
         Me.lblSelectedMembers.AutoSize = True
-        Me.lblSelectedMembers.Location = New System.Drawing.Point(474, 7)
+        Me.lblSelectedMembers.Location = New System.Drawing.Point(477, 111)
         Me.lblSelectedMembers.Name = "lblSelectedMembers"
         Me.lblSelectedMembers.Size = New System.Drawing.Size(95, 13)
         Me.lblSelectedMembers.TabIndex = 88
         Me.lblSelectedMembers.Text = "Selected Members"
         '
-        'txtSelectedMembers
+        'flpSelected
         '
-        Me.txtSelectedMembers.Enabled = False
-        Me.txtSelectedMembers.Location = New System.Drawing.Point(477, 23)
-        Me.txtSelectedMembers.Multiline = True
-        Me.txtSelectedMembers.Name = "txtSelectedMembers"
-        Me.txtSelectedMembers.Size = New System.Drawing.Size(246, 367)
-        Me.txtSelectedMembers.TabIndex = 89
-        Me.txtSelectedMembers.Text = "Please add members to the team on the left."
+        Me.flpSelected.AutoScroll = True
+        Me.flpSelected.Location = New System.Drawing.Point(477, 127)
+        Me.flpSelected.Name = "flpSelected"
+        Me.flpSelected.Size = New System.Drawing.Size(246, 263)
+        Me.flpSelected.TabIndex = 85
         '
         'newTeam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(735, 402)
-        Me.Controls.Add(Me.txtSelectedMembers)
+        Me.Controls.Add(Me.flpSelected)
         Me.Controls.Add(Me.lblSelectedMembers)
         Me.Controls.Add(Me.cmbSort)
         Me.Controls.Add(Me.txtSearch)
@@ -169,5 +167,5 @@ Partial Class newTeam
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents cmbSort As ComboBox
     Friend WithEvents lblSelectedMembers As Label
-    Friend WithEvents txtSelectedMembers As TextBox
+    Friend WithEvents flpSelected As FlowLayoutPanel
 End Class

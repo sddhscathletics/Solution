@@ -1,30 +1,35 @@
 ﻿Imports System.Data.OleDb
 'Searching
-'Add a whole new flp?
-'Remove colors
-'Add new flp
-'Move people between flps
 
 Public Class newTeam
     Dim panelColor As Color = Color.CadetBlue
     Dim first As Boolean = True
     Dim listAthletes As New List(Of athlete)
-    Dim listSelect As New List(Of athlete)
-    Dim listSorted As New List(Of athlete)
+    Dim listSelected As New List(Of athlete)
 
     Private Sub newTeam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
         fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        checkDuplicates()
         fillPanels(flpAthletes, "", listAthletes)
+        fillPanels(flpSelected, "sel", listSelected)
     End Sub
 
-    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
-        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+    Private Sub cmbSort_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
+        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        checkDuplicates()
         fillPanels(flpAthletes, "", listAthletes)
+        fillPanels(flpSelected, "sel", listSelected)
+    End Sub
+
+    Private Sub checkDuplicates()
+        For Each athlete In listSelected
+            listAthletes.Remove(athlete)
+        Next
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
@@ -92,12 +97,16 @@ Public Class newTeam
     Private Sub panelClicked(sender As Object, e As EventArgs)
         Dim clicked As Panel = sender
         If clicked.Tag = "sel" Then
-            listAthletes.Add(listSelect(clicked.Name))
-            listSelect.Remove(listAthletes(clicked.Name))
+            Dim ath As athlete = listSelected.Find(Function(x) x.ID = clicked.Name)
+            listAthletes.Add(ath)
+            listSelected.Remove(ath)
         Else
-            listSelect.Add(listAthletes(clicked.Name))
-            listAthletes.Remove(listSelect(clicked.Name))
+            Dim ath As athlete = listAthletes.Find(Function(x) x.ID = clicked.Name)
+            listSelected.Add(ath)
+            listAthletes.Remove(ath)
         End If
+        fillPanels(flpAthletes, "", listAthletes)
+        fillPanels(flpSelected, "sel", listSelected)
     End Sub
 
     Private Sub labelClicked(sender As Object, e As EventArgs)
@@ -105,10 +114,12 @@ Public Class newTeam
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        If txtTeamName.Text = "" Or cmbAgeGroup.SelectedItem = Nothing Or listSelect.Count <> 0 Then
+        If txtTeamName.Text <> "" Or cmbAgeGroup.SelectedItem <> Nothing Or listSelected.Count <> 0 Then
             If MsgBox("You have unsaved changes. Continue?", MsgBoxStyle.YesNo, "Save Changes?") = MsgBoxResult.Yes Then
                 Me.Close()
             End If
+        Else
+            Me.Close()
         End If
     End Sub
 
@@ -128,16 +139,16 @@ Public Class newTeam
             MsgBox("Please enter a team name.")
         ElseIf cmbAgeGroup.SelectedItem = Nothing Then
             MsgBox("Please select an age group.")
-        ElseIf listSelect.Count = 0 Then
+        ElseIf listSelected.Count = 0 Then
             MsgBox("Please select members to add.")
         Else
-            If MsgBox("You are creating a " + cmbAgeGroup.SelectedItem.ToString + " team with " + listSelect.Count.ToString + " members named " + txtTeamName.Text + ". Is this okay?", MsgBoxStyle.YesNo, "Confirm Team Creation") = MsgBoxResult.Yes Then
+            If MsgBox("You are creating a " + cmbAgeGroup.SelectedItem.ToString + " team with " + listSelected.Count.ToString + " members named " + txtTeamName.Text + ". Is this okay?", MsgBoxStyle.YesNo, "Confirm Team Creation") = MsgBoxResult.Yes Then
                 Using conn As New OleDbConnection(dataPath + "\Athlete.accdb") 'Commits the team
                     conn.Open()
                     Using cmd As New OleDbCommand("INSERT INTO teamDb (Team, AgeGroup, Members) VALUES (@team, @AgeGroup, @Members)", conn) 'Appends the database with a new team
                         'Spool members list
                         Dim Members As String = ";" 'Leading separator character
-                        For Each ath As athlete In listSelect
+                        For Each ath As athlete In listSelected
                             Members += (ath.ID + ";")
                         Next
                         cmd.Parameters.AddWithValue("@Team", txtTeamName.Text)

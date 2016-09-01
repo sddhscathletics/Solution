@@ -178,7 +178,7 @@ Public Class selectAthlete
 
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         toggleControls()
-        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
         fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
@@ -192,10 +192,10 @@ Public Class selectAthlete
                     If dr.HasRows Then
                         Do While dr.Read()
                             Dim ath As New athlete
-                            ath.id = dr("ID")
+                            ath.ID = dr("ID")
                             ath.roll = dr("RollClass")
-                            ath.fname = dr("FirstName")
-                            ath.lname = dr("LastName")
+                            ath.fName = dr("FirstName")
+                            ath.lName = dr("LastName")
                             listAthletes.Add(ath)
                         Loop
                     End If
@@ -554,12 +554,12 @@ Public Class selectAthlete
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
         fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
     Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
-        refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
+        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
         fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
