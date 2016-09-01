@@ -143,6 +143,39 @@ Public Class selectAthlete
         Me.Hide()
     End Sub
 #End Region
+#Region " Move Form "
+
+    Public MoveForm As Boolean
+    Public MoveForm_MousePosition As Point
+
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
+
+        If e.Button = MouseButtons.Left Then
+            MoveForm = True
+            Me.Cursor = Cursors.NoMove2D
+            MoveForm_MousePosition = e.Location
+        End If
+
+    End Sub
+
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
+
+        If MoveForm Then
+            Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
+        End If
+
+    End Sub
+
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
+
+        If e.Button = MouseButtons.Left Then
+            MoveForm = False
+            Me.Cursor = Cursors.Default
+        End If
+
+    End Sub
+
+#End Region
 
 
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load

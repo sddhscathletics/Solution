@@ -1,21 +1,6 @@
 ﻿Imports System.Data.OleDb
 Public Class AddEdit_User
 
-#Region "Dim Variables"
-    Dim out As Boolean = False
-    Dim cDrop As Boolean = False
-    Dim rDrop As Boolean = False
-    Dim cDown As Boolean = False
-    Dim rDown As Boolean = False
-    Dim atDrop As Boolean = False
-    Dim atDown As Boolean = False
-    Dim adDrop As Boolean = False
-    Dim adDown As Boolean = False
-    Dim jun As Integer = 0
-
-    Dim Pass As String = ""
-#End Region
-
 #Region " Move Form "
 
     Public MoveForm As Boolean
@@ -50,8 +35,32 @@ Public Class AddEdit_User
 
 #End Region
 
+#Region "Dim Variables - JUN"
+    Dim out As Boolean = False
+    Dim cDrop As Boolean = False
+    Dim rDrop As Boolean = False
+    Dim cDown As Boolean = False
+    Dim rDown As Boolean = False
+    Dim atDrop As Boolean = False
+    Dim atDown As Boolean = False
+    Dim adDrop As Boolean = False
+    Dim adDown As Boolean = False
+    Dim jun As Integer = 0
+#End Region
 #Region "Sidebar"
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
+
+    Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'access = 1 FOR TEST
+        'If access = 2 Then
+        lblAlertCount.Text = getNotifCount()
+        If lblAlertCount.Text = "0" Then
+            lblAlertCount.Text = ""
+        End If
+        sideadminBtn.Visible = True
+        'End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
         Timer1.Enabled = True
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -79,11 +88,6 @@ Public Class AddEdit_User
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
                 resdrop.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
-                sideCalSub1.Top += 10
-                sideCalSub2.Top += 10
-
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
@@ -92,16 +96,12 @@ Public Class AddEdit_User
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
                 resdrop.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
-                sideCalSub1.Top -= 10
-                sideCalSub2.Top -= 10
 
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
             jun += 1
-            If jun = 6 Then
+            If jun = 9 Then
                 jun = 0
                 cDrop = False
                 sidebartime.Enabled = False
@@ -112,16 +112,12 @@ Public Class AddEdit_User
             If rDown = True Then
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
@@ -146,7 +142,7 @@ Public Class AddEdit_User
             sidebartime.Enabled = True
         End If
     End Sub
-    Private Sub resdrop_Click(sender As Object, e As EventArgs)
+    Private Sub resdrop_Click(sender As Object, e As EventArgs) Handles resdrop.Click
         If rDrop = False Then
             rDrop = True
             If rDown = False Then
@@ -160,21 +156,14 @@ Public Class AddEdit_User
         End If
     End Sub
 
-    Private Sub calendarBtn_Click(sender As Object, e As EventArgs)
+    Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles sidecalendarBtn.Click
         calendar.Show()
         Me.Hide()
     End Sub
-    Private Sub resultBtn_Click(sender As Object, e As EventArgs)
+    Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles sideresultBtn.Click
         Results.Show()
         Me.Hide()
     End Sub
-
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs)
-        home.Show()
-        Me.Close()
-    End Sub
-
-
 #End Region
 
 

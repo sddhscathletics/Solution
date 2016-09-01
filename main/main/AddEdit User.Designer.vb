@@ -23,8 +23,8 @@ Partial Class AddEdit_User
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -46,6 +46,7 @@ Partial Class AddEdit_User
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.UserDbTableAdapter1 = New main.AthleteDataSetTableAdapters.userDbTableAdapter()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblAlertCount = New System.Windows.Forms.Label()
         Me.Button14 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -53,13 +54,22 @@ Partial Class AddEdit_User
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.scrollBtn = New System.Windows.Forms.Button()
-        Me.lblTitle = New System.Windows.Forms.Label()
+        Me.Sidebar = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.resdrop = New System.Windows.Forms.Button()
+        Me.sideAthletesBtn = New System.Windows.Forms.Button()
+        Me.sideadminBtn = New System.Windows.Forms.Button()
+        Me.sideresultBtn = New System.Windows.Forms.Button()
+        Me.sidecalendarBtn = New System.Windows.Forms.Button()
+        Me.sideResSub1 = New System.Windows.Forms.Button()
+        Me.sideResSub2 = New System.Windows.Forms.Button()
         Me.bigbtngroup.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.UserDbBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AthleteDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Login, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        Me.Sidebar.SuspendLayout()
         Me.SuspendLayout()
         '
         'sidebartime
@@ -69,6 +79,7 @@ Partial Class AddEdit_User
         'bigbtngroup
         '
         Me.bigbtngroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.bigbtngroup.Controls.Add(Me.Sidebar)
         Me.bigbtngroup.Controls.Add(Me.Button2)
         Me.bigbtngroup.Controls.Add(Me.RadioButton3)
         Me.bigbtngroup.Controls.Add(Me.RadioButton2)
@@ -89,7 +100,7 @@ Partial Class AddEdit_User
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(1022, 398)
+        Me.Button2.Location = New System.Drawing.Point(1010, 383)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 4
@@ -99,7 +110,7 @@ Partial Class AddEdit_User
         'RadioButton3
         '
         Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(1172, 333)
+        Me.RadioButton3.Location = New System.Drawing.Point(1160, 318)
         Me.RadioButton3.Name = "RadioButton3"
         Me.RadioButton3.Size = New System.Drawing.Size(31, 17)
         Me.RadioButton3.TabIndex = 3
@@ -110,7 +121,7 @@ Partial Class AddEdit_User
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(1104, 333)
+        Me.RadioButton2.Location = New System.Drawing.Point(1092, 318)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(31, 17)
         Me.RadioButton2.TabIndex = 3
@@ -121,7 +132,7 @@ Partial Class AddEdit_User
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(1038, 333)
+        Me.RadioButton1.Location = New System.Drawing.Point(1026, 318)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(31, 17)
         Me.RadioButton1.TabIndex = 3
@@ -133,7 +144,7 @@ Partial Class AddEdit_User
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft MHei", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.Label3.Location = New System.Drawing.Point(1035, 300)
+        Me.Label3.Location = New System.Drawing.Point(1023, 285)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(92, 20)
         Me.Label3.TabIndex = 2
@@ -143,7 +154,7 @@ Partial Class AddEdit_User
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft MHei", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.Label2.Location = New System.Drawing.Point(1035, 200)
+        Me.Label2.Location = New System.Drawing.Point(1023, 185)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(38, 20)
         Me.Label2.TabIndex = 2
@@ -151,7 +162,7 @@ Partial Class AddEdit_User
         '
         'passText
         '
-        Me.passText.Location = New System.Drawing.Point(1035, 227)
+        Me.passText.Location = New System.Drawing.Point(1023, 212)
         Me.passText.Multiline = True
         Me.passText.Name = "passText"
         Me.passText.Size = New System.Drawing.Size(200, 29)
@@ -161,7 +172,7 @@ Partial Class AddEdit_User
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft MHei", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.Label1.Location = New System.Drawing.Point(1035, 89)
+        Me.Label1.Location = New System.Drawing.Point(1023, 74)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(24, 20)
         Me.Label1.TabIndex = 2
@@ -169,7 +180,7 @@ Partial Class AddEdit_User
         '
         'idText
         '
-        Me.idText.Location = New System.Drawing.Point(1035, 116)
+        Me.idText.Location = New System.Drawing.Point(1023, 101)
         Me.idText.Multiline = True
         Me.idText.Name = "idText"
         Me.idText.Size = New System.Drawing.Size(200, 29)
@@ -180,19 +191,19 @@ Partial Class AddEdit_User
         Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoGenerateColumns = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridView1.ColumnHeadersHeight = 30
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.PassDataGridViewTextBoxColumn, Me.AccessLevel})
         Me.DataGridView1.DataSource = Me.UserDbBindingSource1
-        Me.DataGridView1.Location = New System.Drawing.Point(64, 49)
+        Me.DataGridView1.Location = New System.Drawing.Point(52, 34)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
@@ -200,8 +211,8 @@ Partial Class AddEdit_User
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidth = 150
         Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridView1.Size = New System.Drawing.Size(903, 600)
         Me.DataGridView1.TabIndex = 0
         '
@@ -269,6 +280,17 @@ Partial Class AddEdit_User
         Me.GroupBox2.TabIndex = 7
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GroupBox2"
+        '
+        'lblTitle
+        '
+        Me.lblTitle.AutoSize = True
+        Me.lblTitle.Font = New System.Drawing.Font("Rockwell", 18.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitle.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lblTitle.Location = New System.Drawing.Point(78, 18)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(189, 27)
+        Me.lblTitle.TabIndex = 16
+        Me.lblTitle.Text = "MANAGE USERS"
         '
         'lblAlertCount
         '
@@ -357,16 +379,142 @@ Partial Class AddEdit_User
         Me.scrollBtn.TabIndex = 3
         Me.scrollBtn.UseVisualStyleBackColor = False
         '
-        'lblTitle
+        'Sidebar
         '
-        Me.lblTitle.AutoSize = True
-        Me.lblTitle.Font = New System.Drawing.Font("Rockwell", 18.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.lblTitle.Location = New System.Drawing.Point(78, 18)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(189, 27)
-        Me.lblTitle.TabIndex = 16
-        Me.lblTitle.Text = "MANAGE USERS"
+        Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.Sidebar.Controls.Add(Me.Button1)
+        Me.Sidebar.Controls.Add(Me.resdrop)
+        Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
+        Me.Sidebar.Controls.Add(Me.sideadminBtn)
+        Me.Sidebar.Controls.Add(Me.sideresultBtn)
+        Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
+        Me.Sidebar.Controls.Add(Me.sideResSub1)
+        Me.Sidebar.Controls.Add(Me.sideResSub2)
+        Me.Sidebar.Location = New System.Drawing.Point(-180, -10)
+        Me.Sidebar.Name = "Sidebar"
+        Me.Sidebar.Size = New System.Drawing.Size(200, 731)
+        Me.Sidebar.TabIndex = 92
+        Me.Sidebar.TabStop = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button1.Location = New System.Drawing.Point(2, 33)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(196, 50)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "   MAIN"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'resdrop
+        '
+        Me.resdrop.BackColor = System.Drawing.Color.Gray
+        Me.resdrop.FlatAppearance.BorderSize = 0
+        Me.resdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.resdrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.resdrop.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.resdrop.Location = New System.Drawing.Point(173, 135)
+        Me.resdrop.Name = "resdrop"
+        Me.resdrop.Size = New System.Drawing.Size(25, 50)
+        Me.resdrop.TabIndex = 1
+        Me.resdrop.Text = "▼"
+        Me.resdrop.UseVisualStyleBackColor = False
+        '
+        'sideAthletesBtn
+        '
+        Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
+        Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sideAthletesBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideAthletesBtn.Location = New System.Drawing.Point(2, 186)
+        Me.sideAthletesBtn.Name = "sideAthletesBtn"
+        Me.sideAthletesBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideAthletesBtn.TabIndex = 0
+        Me.sideAthletesBtn.Text = "   ATHLETES"
+        Me.sideAthletesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideAthletesBtn.UseVisualStyleBackColor = False
+        '
+        'sideadminBtn
+        '
+        Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideadminBtn.FlatAppearance.BorderSize = 0
+        Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sideadminBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideadminBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideadminBtn.Name = "sideadminBtn"
+        Me.sideadminBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideadminBtn.TabIndex = 0
+        Me.sideadminBtn.Text = "   MANAGE USERS"
+        Me.sideadminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideadminBtn.UseVisualStyleBackColor = False
+        Me.sideadminBtn.Visible = False
+        '
+        'sideresultBtn
+        '
+        Me.sideresultBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideresultBtn.FlatAppearance.BorderSize = 0
+        Me.sideresultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideresultBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sideresultBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideresultBtn.Location = New System.Drawing.Point(2, 135)
+        Me.sideresultBtn.Name = "sideresultBtn"
+        Me.sideresultBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideresultBtn.TabIndex = 0
+        Me.sideresultBtn.Text = "   RESULTS"
+        Me.sideresultBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideresultBtn.UseVisualStyleBackColor = False
+        '
+        'sidecalendarBtn
+        '
+        Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
+        Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sidecalendarBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sidecalendarBtn.Location = New System.Drawing.Point(2, 84)
+        Me.sidecalendarBtn.Name = "sidecalendarBtn"
+        Me.sidecalendarBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sidecalendarBtn.TabIndex = 0
+        Me.sidecalendarBtn.Text = "   CALENDAR"
+        Me.sidecalendarBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sidecalendarBtn.UseVisualStyleBackColor = False
+        '
+        'sideResSub1
+        '
+        Me.sideResSub1.BackColor = System.Drawing.Color.Gray
+        Me.sideResSub1.FlatAppearance.BorderSize = 0
+        Me.sideResSub1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sideResSub1.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sideResSub1.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideResSub1.Location = New System.Drawing.Point(2, 126)
+        Me.sideResSub1.Name = "sideResSub1"
+        Me.sideResSub1.Size = New System.Drawing.Size(196, 29)
+        Me.sideResSub1.TabIndex = 2
+        Me.sideResSub1.Text = "   RESULTS SUB 1"
+        Me.sideResSub1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideResSub1.UseVisualStyleBackColor = False
+        '
+        'sideResSub2
+        '
+        Me.sideResSub2.BackColor = System.Drawing.Color.Gray
+        Me.sideResSub2.FlatAppearance.BorderSize = 0
+        Me.sideResSub2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sideResSub2.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!)
+        Me.sideResSub2.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideResSub2.Location = New System.Drawing.Point(2, 156)
+        Me.sideResSub2.Name = "sideResSub2"
+        Me.sideResSub2.Size = New System.Drawing.Size(196, 29)
+        Me.sideResSub2.TabIndex = 2
+        Me.sideResSub2.Text = "   RESULTS SUB 1"
+        Me.sideResSub2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideResSub2.UseVisualStyleBackColor = False
         '
         'AddEdit_User
         '
@@ -388,6 +536,7 @@ Partial Class AddEdit_User
         CType(Me.Login, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.Sidebar.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -420,4 +569,13 @@ Partial Class AddEdit_User
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents scrollBtn As System.Windows.Forms.Button
     Friend WithEvents lblTitle As System.Windows.Forms.Label
+    Friend WithEvents Sidebar As System.Windows.Forms.GroupBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents resdrop As System.Windows.Forms.Button
+    Friend WithEvents sideAthletesBtn As System.Windows.Forms.Button
+    Friend WithEvents sideadminBtn As System.Windows.Forms.Button
+    Friend WithEvents sideresultBtn As System.Windows.Forms.Button
+    Friend WithEvents sidecalendarBtn As System.Windows.Forms.Button
+    Friend WithEvents sideResSub1 As System.Windows.Forms.Button
+    Friend WithEvents sideResSub2 As System.Windows.Forms.Button
 End Class
