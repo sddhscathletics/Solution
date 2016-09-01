@@ -8,7 +8,7 @@ Imports GMap.NET
 Imports GMap.NET.WindowsForms
 #End Region
 Public Class createEvent
-#Region " Move Form "
+#Region "Move Form"
 
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
@@ -870,13 +870,13 @@ Public Class createEvent
     '    waitForDrop = New Thread(Sub() waitForDropDown())
     '    waitForDrop.Start()
     'End Sub
-    Private Sub ComboBox1_Click(sender As Object, e As EventArgs) Handles ComboBox1.Click
-        ComboBox1.DroppedDown = True
-        Thread.Sleep(50)
-        CheckedListBox1.Visible = True
-        CheckedListBox1.BringToFront()
-    End Sub
-    Private Sub ComboBox1_DropDownClose(sender As Object, e As EventArgs) Handles ComboBox1.DropDownClosed
+    'Private Sub ComboBox1_Click(sender As Object, e As EventArgs)
+    '    ComboBox1.DroppedDown = True
+    '    Thread.Sleep(50)
+    '    CheckedListBox1.Visible = True
+    '    CheckedListBox1.BringToFront()
+    'End Sub
+    Private Sub ComboBox1_DropDownClose(sender As Object, e As EventArgs)
         CheckedListBox1.Visible = False
     End Sub
     Private Sub waitForDropDown()
@@ -919,8 +919,10 @@ Public Class createEvent
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
         rdbTraining_CheckedChanged(Nothing, Nothing)
         dtpDate.Text = calendar.mnCalendar.SelectionStart
-        CheckedListBox1.Location = New Point(ComboBox1.Location.X, ComboBox1.Location.Y + ComboBox1.Height)
-        CheckedListBox1.Width = ComboBox1.Width
+        flpAthletes.BackColor = Color.FromArgb(197, 197, 197)
+        flpAttach.BackColor = Color.FromArgb(197, 197, 197)
+        CheckedListBox1.Location = New Point(pbCmb.Location.X, pbCmb.Location.Y + pbCmb.Height)
+        CheckedListBox1.Width = pbCmb.Width
         'Maps
         Dim proxyTester = Net.WebRequest.GetSystemWebProxy()
         If (proxyTester.GetProxy(New Uri("http://www.google.com")).Equals(New Uri("http://www.google.com"))) Then 'check if no proxy present by comparing URI's
@@ -936,27 +938,29 @@ Public Class createEvent
             map.Position = New PointLatLng(-33.891543077486077, 151.21914625167847)
             map.Zoom += 4
         Else
-            Dim address = map.Overlays(0).Markers(0).ToolTipText.Split(",")
-            For i As Integer = 0 To address.Count - 2 'to skip "Australia"
-                If i = address.Count - 2 Then 'the part with SUBURB STATE POSTCODE
-                    Dim details = LTrim(address(i)).Split(" ")
-                    txtSuburb.Text = ""
-                    For j As Integer = 0 To details.Count - 2 'to skip the postcode
-                        If j <> details.Count - 2 Then
-                            txtSuburb.Text += details(j) + " "
-                        Else
-                            cmbState.SelectedItem = details(j)
-                        End If
-                    Next
-                    txtSuburb.Text = RTrim(txtSuburb.Text)
-                Else
-                    txtStreet.Text = address(i)
-                End If
-            Next
-            map.ZoomAndCenterMarkers(Nothing)
-            map.Zoom += 4
+            If map.Overlays.Count <> 0 Then
+                Dim address = map.Overlays(0).Markers(0).ToolTipText.Split(",")
+                For i As Integer = 0 To address.Count - 2 'to skip "Australia"
+                    If i = address.Count - 2 Then 'the part with SUBURB STATE POSTCODE
+                        Dim details = LTrim(address(i)).Split(" ")
+                        txtSuburb.Text = ""
+                        For j As Integer = 0 To details.Count - 2 'to skip the postcode
+                            If j <> details.Count - 2 Then
+                                txtSuburb.Text += details(j) + " "
+                            Else
+                                cmbState.SelectedItem = details(j)
+                            End If
+                        Next
+                        txtSuburb.Text = RTrim(txtSuburb.Text)
+                    Else
+                        txtStreet.Text = address(i)
+                    End If
+                Next
+                map.ZoomAndCenterMarkers(Nothing)
+                map.Zoom += 4
+            End If
         End If
-        map.DragButton = MouseButtons.Left
+            map.DragButton = MouseButtons.Left
         map.ShowCenter = False
         pbPlus.Parent = map
         pbPlus.BackColor = Color.Transparent
@@ -968,13 +972,15 @@ Public Class createEvent
         If Me.Tag.contains("view") Then
             gbLocation.Enabled = False
             gbDetails.Enabled = False
-            gbAttachments.Enabled = False
             btnSelect.Enabled = False
             btnSaveTimes.Enabled = False
-            ComboBox1.Enabled = False
+            btnSaveEvent.Enabled = False
+            btnCancel.Enabled = False
+            pbCmb.Enabled = False
             chbAllAthletes.Enabled = False
             chbAllNotes.Enabled = False
             chbNA.Enabled = False
+            map.Enabled = False
         End If
         'Events
         cmbEvent.SelectedIndex = 0
@@ -1007,6 +1013,7 @@ Public Class createEvent
     End Sub
     Public Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
 #Region "Template Load"
+        Cursor.Current = Cursors.AppStarting
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
@@ -1048,6 +1055,7 @@ Public Class createEvent
                                 End If
                                 cmbGroup_SelectedValueChanged(tmpSender, Nothing)
                             End If
+                            Cursor.Current = Cursors.AppStarting
                             times.Clear()
                             If dr("Events") = "N/A" Then
                                 chbNA.Checked = True
@@ -1334,6 +1342,7 @@ Public Class createEvent
                                 deleteAttachment(pbAttach)
                             End If
                             placeMarker(CType(dr("Location").split(";")(0), Double), CType(dr("Location").split(";")(1), Double), "click")
+                            Cursor.Current = Cursors.AppStarting
                             txtComment.Text = dr("Comment")
                         Loop
                     End If
@@ -1341,6 +1350,7 @@ Public Class createEvent
             End Using
             conn.Close()
         End Using
+        Cursor.Current = Cursors.Default
 #End Region
     End Sub
 #End Region
@@ -1419,6 +1429,9 @@ Public Class createEvent
     Sub checkFileBeforeOpen(ByVal fileName As String, ByVal sender As Object)
         If (fileName.EndsWith("xlsx") Or fileName.EndsWith("xls")) AndAlso excelApp Is Nothing OrElse (fileName.EndsWith("doc") Or fileName.EndsWith("docx")) AndAlso wordApp Is Nothing Then
             Dim officeType As Type
+            If access <> 2 Then
+                saveOrOpen.Tag = "view"
+            End If
             saveOrOpen.ShowDialog()
             If saveOrOpen.result = "save" Then
                 sfdSave.FileName = fileName
@@ -1985,9 +1998,8 @@ Public Class createEvent
             For Each dtp In gbEvents.Controls.OfType(Of DateTimePicker)()
                 dtp.Enabled = False
             Next
-            For Each chb In gbEvents.Controls.OfType(Of CheckBox)
-                chb.Enabled = False
-            Next
+            chbNA.Enabled = False
+            btnSaveTimes.Enabled = False
         End If
     End Sub
     Private Sub btnSaveTimes_Click(sender As Object, e As EventArgs) Handles btnSaveTimes.Click
@@ -2399,7 +2411,7 @@ Public Class createEvent
         Dim pnl As New Panel
         With pnl
             .BackColor = Color.Gray
-            .Size = New Size(348, 56)
+            .Size = New Size(410, 56)
             .Cursor = Cursors.Hand
         End With
         flpAthletes.Controls.Add(pnl)
@@ -2409,7 +2421,7 @@ Public Class createEvent
             .Name = "chbAthlete"
             .Font = New Font("Microsoft Sans Serif", 8)
             .Text = "Attending"
-            .Location = New Point(272, 15)
+            .Location = New Point(332, 15)
         End With
         pnl.Controls.Add(chbAthelte)
         chbAthelte.BringToFront()
@@ -2419,7 +2431,7 @@ Public Class createEvent
             .Name = "chbNote"
             .Font = New Font("Microsoft Sans Serif", 8)
             .Text = "Needs Note"
-            .Location = New Point(272, 36)
+            .Location = New Point(332, 36)
         End With
         pnl.Controls.Add(chbNote)
         chbNote.BringToFront()
@@ -2456,7 +2468,7 @@ Public Class createEvent
         End With
         AddHandler lblId.Click, AddressOf athletePanel_Click
         pnl.Controls.Add(lblId)
-        lblId.Location = New Point(272, 0)
+        lblId.Location = New Point(332, 0)
         'Dim lblRollClass As New Label
         'With lblRollClass
         '    .Font = New Font("Microsoft Sans Serif", 8)

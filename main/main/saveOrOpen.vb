@@ -30,7 +30,16 @@
             End If
             btnOpen.Text = "Edit"
             Me.Tag = ""
+        ElseIf Me.Tag = "view" Then
+            btnDelete.Hide()
+            btnCancel.Location = New Point(303, 136)
+            btnSave.Location = New Point(184, 136)
+            btnOpen.Location = New Point(63, 136)
         Else
+            btnDelete.Show()
+            btnCancel.Location = New Point(346, 136)
+            btnSave.Location = New Point(132, 136)
+            btnOpen.Location = New Point(28, 136)
             btnSave.Text = "Save"
             btnSave.Enabled = True
             btnOpen.Text = "Open"

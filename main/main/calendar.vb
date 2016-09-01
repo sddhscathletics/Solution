@@ -15,7 +15,7 @@ Public Class calendar
                             .Text = eventName
                             .Tag = e.Start.ToShortDateString()
                         End With
-                        If access = 0 Then
+                        If access = 2 Then
                             AddHandler newMnuItm.MouseEnter, AddressOf newMnuItem_MouseEnter
                             For i As Integer = 1 To 3
                                 Dim subMnuItm As New ToolStripMenuItem
@@ -48,7 +48,7 @@ Public Class calendar
             'Dim menu As New ContextMenuStrip
             'menu.Show(ptLowerLeft)
         End If
-        If access = 0 Then
+        If access = 2 Then
             cms.Items.Add("Add", Nothing, AddressOf menuItemAdd_Click)
         End If
         cms.Show(Cursor.Position)
@@ -167,9 +167,19 @@ Public Class calendar
         End With
         createEvent.Tag = "view" + " " + sender.Text + " " + sender.Tag
         createEvent.Show()
+        createEvent.Hide()
+        Cursor.Current = Cursors.AppStarting
         createEvent.cmbGroup.SelectedIndex = 0
         createEvent.cmbEvent.SelectedIndex = 0
         createEvent.cmbTemplate_SelectedIndexChanged(cmbSender, Nothing)
+        For Each pnl In createEvent.flpAttach.Controls.OfType(Of Panel)
+            For Each pb In pnl.Controls.OfType(Of PictureBox)
+                If pb.Tag = "add" Then
+                    pnl.Enabled = False
+                End If
+            Next
+        Next
+        createEvent.Show()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemEdit_Click(sender As Object, e As EventArgs)
@@ -180,6 +190,9 @@ Public Class calendar
             .SelectedItem = sender.OwnerItem.Text + " " + sender.OwnerItem.Tag
         End With
         createEvent.Tag = "edit" + " " + sender.OwnerItem.Text + " " + sender.OwnerItem.Tag
+        createEvent.Show()
+        createEvent.Hide()
+        Cursor.Current = Cursors.AppStarting
         createEvent.cmbEvent.SelectedIndex = 0
         createEvent.cmbGroup.SelectedIndex = 0
         createEvent.cmbTemplate_SelectedIndexChanged(cmbSender, Nothing)

@@ -58,6 +58,23 @@ Module alert
         End Using
     End Sub
 
+    Public Function getNotifCount()
+        alertCount = 0
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT FROM editDb WHERE [read] = 0", conn) 'Selects unread edits
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            alertCount += 1
+                        Loop
+                    End If
+                End Using
+            End Using
+        End Using
+        Return alertCount
+    End Function
+
     Public Sub markRead(ID)
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()

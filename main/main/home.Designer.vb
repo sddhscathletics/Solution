@@ -35,18 +35,19 @@ Partial Class home
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button14 = New System.Windows.Forms.Button()
+        Me.Button13 = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.calendarBtn = New System.Windows.Forms.Button()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.resultBtn = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
+        Me.calendarBtn = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.lblAlertCount = New System.Windows.Forms.Label()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -197,7 +198,11 @@ Partial Class home
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
+<<<<<<< HEAD
         Me.GroupBox2.Controls.Add(Me.Button2)
+=======
+        Me.GroupBox2.Controls.Add(Me.lblAlertCount)
+>>>>>>> origin/master
         Me.GroupBox2.Controls.Add(Me.Button14)
         Me.GroupBox2.Controls.Add(Me.Button13)
         Me.GroupBox2.Controls.Add(Me.exitBtn)
@@ -223,6 +228,20 @@ Partial Class home
         Me.Button14.Text = "search"
         Me.Button14.UseVisualStyleBackColor = False
         '
+        'Button13
+        '
+        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
+        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
+        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button13.FlatAppearance.BorderSize = 0
+        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Button13.Location = New System.Drawing.Point(1201, 11)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(44, 44)
+        Me.Button13.TabIndex = 6
+        Me.Button13.UseVisualStyleBackColor = False
+        '
         'exitBtn
         '
         Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
@@ -243,6 +262,18 @@ Partial Class home
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(633, 22)
         Me.TextBox1.TabIndex = 5
+        '
+        'scrollBtn
+        '
+        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
+        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
+        Me.scrollBtn.Name = "scrollBtn"
+        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
+        Me.scrollBtn.TabIndex = 3
+        Me.scrollBtn.UseVisualStyleBackColor = False
         '
         'bigbtngroup
         '
@@ -269,6 +300,7 @@ Partial Class home
         Me.Button2.Text = "Button6"
         Me.Button2.UseVisualStyleBackColor = False
         '
+<<<<<<< HEAD
         'calendarBtn
         '
         Me.calendarBtn.BackColor = System.Drawing.Color.Gray
@@ -310,6 +342,8 @@ Partial Class home
         Me.scrollBtn.TabIndex = 3
         Me.scrollBtn.UseVisualStyleBackColor = False
         '
+=======
+>>>>>>> origin/master
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImage = Global.main.My.Resources.Resources.Accused_photo_crop
@@ -355,6 +389,33 @@ Partial Class home
         Me.Button8.Size = New System.Drawing.Size(256, 154)
         Me.Button8.TabIndex = 0
         Me.Button8.UseVisualStyleBackColor = False
+        '
+        'calendarBtn
+        '
+        Me.calendarBtn.BackColor = System.Drawing.Color.Gray
+        Me.calendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.calendarBtn.Location = New System.Drawing.Point(45, 83)
+        Me.calendarBtn.Name = "calendarBtn"
+        Me.calendarBtn.Size = New System.Drawing.Size(500, 300)
+        Me.calendarBtn.TabIndex = 0
+        Me.calendarBtn.Text = "calendar"
+        Me.calendarBtn.UseVisualStyleBackColor = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1
+        '
+        'lblAlertCount
+        '
+        Me.lblAlertCount.AutoSize = True
+        Me.lblAlertCount.BackColor = System.Drawing.Color.DarkGray
+        Me.lblAlertCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAlertCount.Location = New System.Drawing.Point(1215, 16)
+        Me.lblAlertCount.Name = "lblAlertCount"
+        Me.lblAlertCount.Size = New System.Drawing.Size(15, 16)
+        Me.lblAlertCount.TabIndex = 3
+        Me.lblAlertCount.Text = "0"
+        Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'home
         '
@@ -402,4 +463,9 @@ Partial Class home
     Friend WithEvents sideResSub1 As Button
     Friend WithEvents sideResSub2 As Button
     Friend WithEvents Button2 As Button
+<<<<<<< HEAD
+=======
+    Friend WithEvents sidecalbtn3 As Button
+    Friend WithEvents lblAlertCount As Label
+>>>>>>> origin/master
 End Class

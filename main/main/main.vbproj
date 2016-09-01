@@ -407,6 +407,7 @@
     <None Include="Resources\notifbtn.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\comboBoxImage.png" />
     <Content Include="Resources\helpbtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
