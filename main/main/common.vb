@@ -85,11 +85,11 @@ Module common
         alertCount = alertList.Count
     End Sub
 
-    Public Function populate(append As String, list As List(Of athlete))
+    Public Function populate(list As List(Of athlete))
         list.Clear()
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName FROM athleteDb" + append, conn)
+            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName, AgeGroup FROM athleteDb", conn)
                 'Need to add photo
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
@@ -99,6 +99,7 @@ Module common
                             ath.roll = dr("RollClass")
                             ath.fName = dr("FirstName")
                             ath.lName = dr("LastName")
+                            ath.ageGroup = dr("AgeGroup")
                             list.Add(ath)
                         Loop
                     End If
@@ -137,18 +138,7 @@ Module common
             If asc = False Then
                 list.Reverse()
             End If
-
         End If
-        Return list
-    End Function
-
-    Public Function refreshFlp(cmdA As ComboBox, cmbS As ComboBox, list As List(Of athlete)) 'cmbA is the age group, cmbS is the sort by
-        If cmdA.SelectedItem <> Nothing Then
-            list = populate(" WHERE AgeGroup = '" + cmdA.SelectedItem.ToString + "'", list)
-        Else
-            list = populate("", list)
-        End If
-        list = sort(cmbS, list)
         Return list
     End Function
 End Module

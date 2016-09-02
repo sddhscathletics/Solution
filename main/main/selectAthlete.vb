@@ -6,6 +6,7 @@
 
 Public Class selectAthlete
     Dim listAthletes As New List(Of athlete)
+    Dim listSorted As New List(Of athlete)
     Dim listAdd As New List(Of String)
     Dim listRem As New List(Of String)
     Dim controlState As String = "first"
@@ -178,30 +179,20 @@ Public Class selectAthlete
 
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         toggleControls()
-        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
-        fillPanels(flpAthletes, "", listAthletes)
+        listAthletes = populate(listAthletes)
+        listSorted = listAthletes
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
-    Private Sub populate(append As String)
-        listAthletes.Clear()
-        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
-            conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName FROM athleteDb" + append, conn)
-                'Need to add photo
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        Do While dr.Read()
-                            Dim ath As New athlete
-                            ath.ID = dr("ID")
-                            ath.roll = dr("RollClass")
-                            ath.fName = dr("FirstName")
-                            ath.lName = dr("LastName")
-                            listAthletes.Add(ath)
-                        Loop
-                    End If
-                End Using
-            End Using
-        End Using
+    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
+        listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
+        listSorted = sort(cmbSort, listSorted)
+        fillPanels(flpAthletes, "", listSorted)
+    End Sub
+
+    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
+        listSorted = sort(cmbSort, listSorted)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
@@ -321,13 +312,6 @@ Public Class selectAthlete
         Dim adNo, adSt, adSb, adPo As String
         Dim i As Integer = 0
 
-        'i = parse(address, adNo, " ", i)
-        'i += 1
-        'i = parse(address, adSt, ",", i)
-        'i += 2 'Jump two places in the string to account for the comma and space
-        'i = parse(address, adSb, " ", i)
-
-
         While address(i) <> " " 'Parse until the space separator between unit/number and street is found
             adNo += address(i)
             i += 1
@@ -354,7 +338,6 @@ Public Class selectAthlete
         lblSt.Text = adSt
         lblSb.Text = adSb
         lblPo.Text = adPo
-        'MsgBox(adNo + adSt + adSb + adPo)
     End Sub
 
     Private Sub teamPanelClicked(sender As Object, e As EventArgs) 'Optimise!
@@ -551,16 +534,6 @@ Public Class selectAthlete
 
     Private Sub btnNewTeam_Click(sender As Object, e As EventArgs) Handles btnNewTeam.Click
         newTeam.Show()
-    End Sub
-
-    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
-        fillPanels(flpAthletes, "", listAthletes)
-    End Sub
-
-    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
-        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
-        fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
     Private Sub cmbTeamAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTeamAgeGroup.SelectedIndexChanged

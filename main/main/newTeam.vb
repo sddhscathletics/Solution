@@ -1,33 +1,28 @@
 ﻿Imports System.Data.OleDb
 'Searching
-'Find people in age group from list
 
 Public Class newTeam
     Dim panelColor As Color = Color.CadetBlue
     Dim first As Boolean = True
-    Dim listAthletes As New List(Of athlete)
-    Dim listSelected As New List(Of athlete)
+    Dim listAthletes As New List(Of athlete) 'Master list
+    Dim listSorted As New List(Of athlete) 'Actual list displayed
+    Dim listSelected As New List(Of athlete) 'People selected
 
     Private Sub newTeam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
-        fillPanels(flpAthletes, "", listAthletes)
+        listAthletes = populate(listAthletes) 'Populate with athletes
+        listSorted = listAthletes
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
-        checkDuplicates()
+        listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
+        listSorted = sort(cmbSort, listSorted)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub cmbSort_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
-        listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
-        checkDuplicates()
-    End Sub
-
-    Private Sub checkDuplicates()
-        For Each athlete In listSelected
-            listAthletes.Remove(athlete)
-        Next
-        fillPanels(flpAthletes, "", listAthletes)
+        listSorted = sort(cmbSort, listSorted)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
@@ -98,13 +93,15 @@ Public Class newTeam
         If clicked.Tag = "sel" Then
             Dim ath As athlete = listSelected.Find(Function(x) x.ID = clicked.Name)
             listAthletes.Add(ath)
+            listSorted.Add(ath)
             listSelected.Remove(ath)
         Else
             Dim ath As athlete = listAthletes.Find(Function(x) x.ID = clicked.Name)
             listSelected.Add(ath)
+            listSorted.Remove(ath)
             listAthletes.Remove(ath)
         End If
-        fillPanels(flpAthletes, "", listAthletes)
+        fillPanels(flpAthletes, "", listSorted)
         fillPanels(flpSelected, "sel", listSelected)
     End Sub
 
@@ -160,5 +157,4 @@ Public Class newTeam
             End If
         End If
     End Sub
-
 End Class
