@@ -122,20 +122,20 @@ Partial Class createEvent
         '
         'dtpStart
         '
-        Me.dtpStart.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtpStart.Location = New System.Drawing.Point(98, 188)
         Me.dtpStart.Name = "dtpStart"
         Me.dtpStart.ShowUpDown = True
-        Me.dtpStart.Size = New System.Drawing.Size(230, 25)
+        Me.dtpStart.Size = New System.Drawing.Size(230, 22)
         Me.dtpStart.TabIndex = 23
         '
         'dtpDate
         '
-        Me.dtpDate.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpDate.Location = New System.Drawing.Point(98, 150)
         Me.dtpDate.Name = "dtpDate"
-        Me.dtpDate.Size = New System.Drawing.Size(230, 25)
+        Me.dtpDate.Size = New System.Drawing.Size(230, 22)
         Me.dtpDate.TabIndex = 22
         '
         'btnCancel
@@ -173,12 +173,12 @@ Partial Class createEvent
         '
         'dtpEnd
         '
-        Me.dtpEnd.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpEnd.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtpEnd.Location = New System.Drawing.Point(98, 217)
         Me.dtpEnd.Name = "dtpEnd"
         Me.dtpEnd.ShowUpDown = True
-        Me.dtpEnd.Size = New System.Drawing.Size(230, 25)
+        Me.dtpEnd.Size = New System.Drawing.Size(230, 22)
         Me.dtpEnd.TabIndex = 27
         '
         'lblEnd
@@ -215,24 +215,24 @@ Partial Class createEvent
         '
         Me.rdbTraining.AutoSize = True
         Me.rdbTraining.Checked = True
-        Me.rdbTraining.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdbTraining.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdbTraining.Location = New System.Drawing.Point(109, 118)
         Me.rdbTraining.Name = "rdbTraining"
-        Me.rdbTraining.Size = New System.Drawing.Size(81, 21)
+        Me.rdbTraining.Size = New System.Drawing.Size(75, 20)
         Me.rdbTraining.TabIndex = 31
         Me.rdbTraining.TabStop = True
-        Me.rdbTraining.Text = "TRAINING"
+        Me.rdbTraining.Text = "Training"
         Me.rdbTraining.UseVisualStyleBackColor = True
         '
         'rdbMeet
         '
         Me.rdbMeet.AutoSize = True
-        Me.rdbMeet.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdbMeet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdbMeet.Location = New System.Drawing.Point(204, 118)
         Me.rdbMeet.Name = "rdbMeet"
-        Me.rdbMeet.Size = New System.Drawing.Size(58, 21)
+        Me.rdbMeet.Size = New System.Drawing.Size(56, 20)
         Me.rdbMeet.TabIndex = 32
-        Me.rdbMeet.Text = "MEET"
+        Me.rdbMeet.Text = "Meet"
         Me.rdbMeet.UseVisualStyleBackColor = True
         '
         'ofdOpen
@@ -241,7 +241,7 @@ Partial Class createEvent
         '
         'txtComment
         '
-        Me.txtComment.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtComment.Location = New System.Drawing.Point(98, 255)
         Me.txtComment.Multiline = True
         Me.txtComment.Name = "txtComment"
@@ -273,10 +273,10 @@ Partial Class createEvent
         '
         'txtName
         '
-        Me.txtName.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtName.Location = New System.Drawing.Point(95, 86)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(230, 25)
+        Me.txtName.Size = New System.Drawing.Size(230, 22)
         Me.txtName.TabIndex = 38
         Me.txtName.Text = "Enter the event name here"
         Me.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -307,10 +307,10 @@ Partial Class createEvent
         Me.chbNone.AutoSize = True
         Me.chbNone.Checked = True
         Me.chbNone.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNone.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbNone.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbNone.Location = New System.Drawing.Point(271, 47)
         Me.chbNone.Name = "chbNone"
-        Me.chbNone.Size = New System.Drawing.Size(57, 21)
+        Me.chbNone.Size = New System.Drawing.Size(60, 20)
         Me.chbNone.TabIndex = 43
         Me.chbNone.Text = "None"
         Me.chbNone.UseVisualStyleBackColor = True
@@ -378,7 +378,7 @@ Partial Class createEvent
         '
         'map
         '
-        Me.map.Bearing = 0.0!
+        Me.map.Bearing = 0!
         Me.map.CanDragMap = True
         Me.map.Cursor = System.Windows.Forms.Cursors.Hand
         Me.map.EmptyTileColor = System.Drawing.Color.Navy
@@ -404,7 +404,7 @@ Partial Class createEvent
         '
         'txtStreet
         '
-        Me.txtStreet.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtStreet.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtStreet.Location = New System.Drawing.Point(81, 71)
         Me.txtStreet.Multiline = True
         Me.txtStreet.Name = "txtStreet"
@@ -433,10 +433,10 @@ Partial Class createEvent
         '
         'txtSuburb
         '
-        Me.txtSuburb.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSuburb.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSuburb.Location = New System.Drawing.Point(81, 99)
         Me.txtSuburb.Name = "txtSuburb"
-        Me.txtSuburb.Size = New System.Drawing.Size(213, 22)
+        Me.txtSuburb.Size = New System.Drawing.Size(213, 20)
         Me.txtSuburb.TabIndex = 49
         '
         'lblState
@@ -478,12 +478,12 @@ Partial Class createEvent
         '
         'cmbState
         '
-        Me.cmbState.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbState.FormattingEnabled = True
         Me.cmbState.Items.AddRange(New Object() {"NSW", "ACT", "WA", "NT", "TAS", "SA", "QLD", "VIC"})
         Me.cmbState.Location = New System.Drawing.Point(81, 126)
         Me.cmbState.Name = "cmbState"
-        Me.cmbState.Size = New System.Drawing.Size(213, 23)
+        Me.cmbState.Size = New System.Drawing.Size(213, 21)
         Me.cmbState.TabIndex = 55
         Me.cmbState.Text = "NSW"
         '
@@ -589,6 +589,7 @@ Partial Class createEvent
         Me.CheckedListBox1.Name = "CheckedListBox1"
         Me.CheckedListBox1.Size = New System.Drawing.Size(120, 19)
         Me.CheckedListBox1.TabIndex = 61
+        Me.CheckedListBox1.Visible = False
         '
         'lblOpens
         '
@@ -612,12 +613,12 @@ Partial Class createEvent
         '
         'dtp17s
         '
-        Me.dtp17s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp17s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp17s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp17s.Location = New System.Drawing.Point(80, 210)
         Me.dtp17s.Name = "dtp17s"
         Me.dtp17s.ShowUpDown = True
-        Me.dtp17s.Size = New System.Drawing.Size(176, 25)
+        Me.dtp17s.Size = New System.Drawing.Size(176, 22)
         Me.dtp17s.TabIndex = 68
         Me.dtp17s.Tag = "U17"
         '
@@ -643,12 +644,12 @@ Partial Class createEvent
         '
         'dtp14s
         '
-        Me.dtp14s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp14s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp14s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp14s.Location = New System.Drawing.Point(80, 102)
         Me.dtp14s.Name = "dtp14s"
         Me.dtp14s.ShowUpDown = True
-        Me.dtp14s.Size = New System.Drawing.Size(176, 25)
+        Me.dtp14s.Size = New System.Drawing.Size(176, 22)
         Me.dtp14s.TabIndex = 63
         Me.dtp14s.Tag = "U14"
         '
@@ -675,23 +676,23 @@ Partial Class createEvent
         '
         'dtp15s
         '
-        Me.dtp15s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp15s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp15s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp15s.Location = New System.Drawing.Point(80, 138)
         Me.dtp15s.Name = "dtp15s"
         Me.dtp15s.ShowUpDown = True
-        Me.dtp15s.Size = New System.Drawing.Size(176, 25)
+        Me.dtp15s.Size = New System.Drawing.Size(176, 22)
         Me.dtp15s.TabIndex = 64
         Me.dtp15s.Tag = "U15"
         '
         'dtp16s
         '
-        Me.dtp16s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp16s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp16s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp16s.Location = New System.Drawing.Point(80, 174)
         Me.dtp16s.Name = "dtp16s"
         Me.dtp16s.ShowUpDown = True
-        Me.dtp16s.Size = New System.Drawing.Size(176, 25)
+        Me.dtp16s.Size = New System.Drawing.Size(176, 22)
         Me.dtp16s.TabIndex = 67
         Me.dtp16s.Tag = "U16"
         '
@@ -707,23 +708,23 @@ Partial Class createEvent
         '
         'dtpOpens
         '
-        Me.dtpOpens.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpOpens.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpOpens.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtpOpens.Location = New System.Drawing.Point(80, 246)
         Me.dtpOpens.Name = "dtpOpens"
         Me.dtpOpens.ShowUpDown = True
-        Me.dtpOpens.Size = New System.Drawing.Size(176, 25)
+        Me.dtpOpens.Size = New System.Drawing.Size(176, 22)
         Me.dtpOpens.TabIndex = 70
         Me.dtpOpens.Tag = "Opens"
         '
         'dtp13s
         '
-        Me.dtp13s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp13s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp13s.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtp13s.Location = New System.Drawing.Point(80, 64)
         Me.dtp13s.Name = "dtp13s"
         Me.dtp13s.ShowUpDown = True
-        Me.dtp13s.Size = New System.Drawing.Size(176, 25)
+        Me.dtp13s.Size = New System.Drawing.Size(176, 22)
         Me.dtp13s.TabIndex = 71
         Me.dtp13s.Tag = "U13"
         '
@@ -778,7 +779,7 @@ Partial Class createEvent
         '
         Me.pbCmb.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pbCmb.Image = Global.main.My.Resources.Resources.comboBoxImage
-        Me.pbCmb.Location = New System.Drawing.Point(409, 330)
+        Me.pbCmb.Location = New System.Drawing.Point(420, 349)
         Me.pbCmb.Name = "pbCmb"
         Me.pbCmb.Size = New System.Drawing.Size(182, 21)
         Me.pbCmb.TabIndex = 43
