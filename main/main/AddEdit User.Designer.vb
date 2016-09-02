@@ -27,6 +27,8 @@ Partial Class AddEdit_User
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
@@ -79,6 +81,8 @@ Partial Class AddEdit_User
         'bigbtngroup
         '
         Me.bigbtngroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.bigbtngroup.Controls.Add(Me.Button5)
+        Me.bigbtngroup.Controls.Add(Me.Button3)
         Me.bigbtngroup.Controls.Add(Me.Sidebar)
         Me.bigbtngroup.Controls.Add(Me.Button2)
         Me.bigbtngroup.Controls.Add(Me.RadioButton3)
@@ -97,6 +101,24 @@ Partial Class AddEdit_User
         Me.bigbtngroup.TabIndex = 6
         Me.bigbtngroup.TabStop = False
         Me.bigbtngroup.Text = "GroupBox1"
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(1010, 412)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(75, 23)
+        Me.Button5.TabIndex = 93
+        Me.Button5.Text = "Edit"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(1010, 354)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 93
+        Me.Button3.Text = "Create"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Sidebar
         '
@@ -280,20 +302,20 @@ Partial Class AddEdit_User
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft MHei", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold)
         Me.Label3.Location = New System.Drawing.Point(1023, 285)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(92, 20)
+        Me.Label3.Size = New System.Drawing.Size(107, 18)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Access Level"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft MHei", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold)
         Me.Label2.Location = New System.Drawing.Point(1023, 185)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 20)
+        Me.Label2.Size = New System.Drawing.Size(46, 18)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Pass"
         '
@@ -308,10 +330,10 @@ Partial Class AddEdit_User
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft MHei", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold)
         Me.Label1.Location = New System.Drawing.Point(1023, 74)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(24, 20)
+        Me.Label1.Size = New System.Drawing.Size(24, 18)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "ID"
         '
@@ -325,6 +347,8 @@ Partial Class AddEdit_User
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoGenerateColumns = False
@@ -578,4 +602,6 @@ Partial Class AddEdit_User
     Friend WithEvents sidecalendarBtn As System.Windows.Forms.Button
     Friend WithEvents sideResSub1 As System.Windows.Forms.Button
     Friend WithEvents sideResSub2 As System.Windows.Forms.Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button3 As Button
 End Class
