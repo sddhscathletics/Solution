@@ -413,6 +413,8 @@
     <None Include="Resources\Calendar Btn.png" />
     <None Include="Resources\close.png" />
     <None Include="Resources\close1.png" />
+    <None Include="Resources\comboBoxDropped.png" />
+    <None Include="Resources\comboBoxHover.png" />
     <Content Include="Resources\helpbtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

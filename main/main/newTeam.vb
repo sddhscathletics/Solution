@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 'Searching
-'Halp
+'Find people in age group from list
 
 Public Class newTeam
     Dim panelColor As Color = Color.CadetBlue
@@ -16,21 +16,18 @@ Public Class newTeam
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
         listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
         checkDuplicates()
-        fillPanels(flpAthletes, "", listAthletes)
-        fillPanels(flpSelected, "sel", listSelected)
     End Sub
 
     Private Sub cmbSort_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
         listAthletes = refreshFlp(cmbAgeGroup, cmbSort, listAthletes)
         checkDuplicates()
-        fillPanels(flpAthletes, "", listAthletes)
-        fillPanels(flpSelected, "sel", listSelected)
     End Sub
 
-    Private Sub checkDuplicates() 'Pls halp
+    Private Sub checkDuplicates()
         For Each athlete In listSelected
             listAthletes.Remove(athlete)
         Next
+        fillPanels(flpAthletes, "", listAthletes)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
@@ -45,6 +42,7 @@ Public Class newTeam
                 .Name = ath.ID,
                 .Tag = tag
                 }
+
             Dim ID As New Label With
                 {
                 .Text = ath.ID,

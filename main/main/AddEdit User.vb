@@ -168,6 +168,7 @@ Public Class AddEdit_User
 
 
 
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim person As String = DataGridView1.CurrentCell.Value.ToString
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
@@ -177,11 +178,14 @@ Public Class AddEdit_User
                 cmd.ExecuteNonQuery()
             End Using
         End Using
+        Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
     End Sub
 
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs)
+
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
         home.Close()
     End Sub
+
 
     Private Sub AddEdit_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'AthleteDataSet.userDb' table. You can move, or remove it, as needed.
@@ -189,8 +193,72 @@ Public Class AddEdit_User
 
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        home.Show()
-        Me.Close()
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("INSERT INTO userDb (ID, Pass, AccessLevel) VALUES (@id, @pass, @accesslvl)", conn)
+                cmd.Parameters.Add(New OleDbParameter("@id", idText.Text))
+                cmd.Parameters.Add(New OleDbParameter("@pass", passText.Text))
+                If RadioButton1.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton1.Text))
+                End If
+                If RadioButton2.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton2.Text))
+                End If
+                If RadioButton3.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton3.Text))
+                End If
+                'if username already exists provide error
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
+        Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
     End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim person As String = DataGridView1.CurrentCell.Value.ToString
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("DELETE ID, Pass, AccessLevel FROM userDb WHERE ID = @username", conn)
+                cmd.Parameters.Add(New OleDbParameter("@Username", username))
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("INSERT INTO userDb (ID, Pass, AccessLevel) VALUES (@id, @pass, @accesslvl)", conn)
+                cmd.Parameters.Add(New OleDbParameter("@id", idText.Text))
+                cmd.Parameters.Add(New OleDbParameter("@pass", passText.Text))
+                If RadioButton1.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton1.Text))
+                End If
+                If RadioButton2.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton2.Text))
+                End If
+                If RadioButton3.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton3.Text))
+                End If
+                'if username already exists provide error
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
+        Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        If e.RowIndex > -1 Then
+            idText.Text = sender.rows(e.RowIndex).cells(0).value
+            passText.Text = sender.rows(e.RowIndex).cells(1).value
+            If sender.rows(e.RowIndex).cells(2).value = 0 Then
+                RadioButton1.Checked = True
+            End If
+            If sender.rows(e.RowIndex).cells(2).value = 1 Then
+                RadioButton2.Checked = True
+            End If
+            If sender.rows(e.RowIndex).cells(2).value = 2 Then
+                RadioButton3.Checked = True
+            End If
+        End If
+    End Sub
+
 End Class

@@ -35,25 +35,25 @@ Partial Class home
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblAlertCount = New System.Windows.Forms.Label()
-        Me.bigbtngroup = New System.Windows.Forms.GroupBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
+        Me.bigbtngroup = New System.Windows.Forms.GroupBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.resultBtn = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.calendarBtn = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Sidebar
@@ -224,39 +224,6 @@ Partial Class home
         Me.lblAlertCount.Text = "0"
         Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'bigbtngroup
-        '
-        Me.bigbtngroup.Controls.Add(Me.Button2)
-        Me.bigbtngroup.Controls.Add(Me.Label1)
-        Me.bigbtngroup.Controls.Add(Me.PictureBox2)
-        Me.bigbtngroup.Controls.Add(Me.PictureBox1)
-        Me.bigbtngroup.Controls.Add(Me.resultBtn)
-        Me.bigbtngroup.Controls.Add(Me.Button9)
-        Me.bigbtngroup.Controls.Add(Me.Button8)
-        Me.bigbtngroup.Controls.Add(Me.calendarBtn)
-        Me.bigbtngroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.bigbtngroup.Location = New System.Drawing.Point(0, 0)
-        Me.bigbtngroup.Name = "bigbtngroup"
-        Me.bigbtngroup.Size = New System.Drawing.Size(1411, 723)
-        Me.bigbtngroup.TabIndex = 5
-        Me.bigbtngroup.TabStop = False
-        Me.bigbtngroup.Text = "GroupBox1"
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.Gray
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(652, 104)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(67, 31)
-        Me.Button2.TabIndex = 2
-        Me.Button2.Text = "Button6"
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 1
-        '
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.SystemColors.GrayText
@@ -310,6 +277,55 @@ Partial Class home
         Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
         Me.scrollBtn.TabIndex = 3
         Me.scrollBtn.UseVisualStyleBackColor = False
+        '
+        'bigbtngroup
+        '
+        Me.bigbtngroup.Controls.Add(Me.Button2)
+        Me.bigbtngroup.Controls.Add(Me.Label1)
+        Me.bigbtngroup.Controls.Add(Me.PictureBox2)
+        Me.bigbtngroup.Controls.Add(Me.PictureBox1)
+        Me.bigbtngroup.Controls.Add(Me.resultBtn)
+        Me.bigbtngroup.Controls.Add(Me.Button9)
+        Me.bigbtngroup.Controls.Add(Me.Button8)
+        Me.bigbtngroup.Controls.Add(Me.calendarBtn)
+        Me.bigbtngroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bigbtngroup.Location = New System.Drawing.Point(0, 0)
+        Me.bigbtngroup.Name = "bigbtngroup"
+        Me.bigbtngroup.Size = New System.Drawing.Size(1411, 723)
+        Me.bigbtngroup.TabIndex = 5
+        Me.bigbtngroup.TabStop = False
+        Me.bigbtngroup.Text = "GroupBox1"
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Gray
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(652, 104)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(67, 31)
+        Me.Button2.TabIndex = 2
+        Me.Button2.Text = "Button6"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Rockwell", 48.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(70, 65)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(223, 77)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "MAIN"
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackgroundImage = Global.main.My.Resources.Resources.excel
+        Me.PictureBox2.Location = New System.Drawing.Point(803, 405)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(454, 293)
+        Me.PictureBox2.TabIndex = 1
+        Me.PictureBox2.TabStop = False
         '
         'PictureBox1
         '
@@ -368,25 +384,9 @@ Partial Class home
         Me.calendarBtn.TabIndex = 0
         Me.calendarBtn.UseVisualStyleBackColor = False
         '
-        'Label1
+        'Timer1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Rockwell", 48.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(70, 65)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(223, 77)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "MAIN"
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackgroundImage = Global.main.My.Resources.Resources.excel
-        Me.PictureBox2.Location = New System.Drawing.Point(803, 405)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(454, 293)
-        Me.PictureBox2.TabIndex = 1
-        Me.PictureBox2.TabStop = False
+        Me.Timer1.Interval = 1
         '
         'home
         '
@@ -406,8 +406,8 @@ Partial Class home
         Me.GroupBox2.PerformLayout()
         Me.bigbtngroup.ResumeLayout(False)
         Me.bigbtngroup.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

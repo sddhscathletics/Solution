@@ -8,39 +8,6 @@ Imports GMap.NET
 Imports GMap.NET.WindowsForms
 #End Region
 Public Class createEvent
-#Region "Move Form"
-
-    Public MoveForm As Boolean
-    Public MoveForm_MousePosition As Point
-
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
-
-        If e.Button = MouseButtons.Left Then
-            MoveForm = True
-            Me.Cursor = Cursors.NoMove2D
-            MoveForm_MousePosition = e.Location
-        End If
-
-    End Sub
-
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
-
-        If MoveForm Then
-            Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
-        End If
-
-    End Sub
-
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
-
-        If e.Button = MouseButtons.Left Then
-            MoveForm = False
-            Me.Cursor = Cursors.Default
-        End If
-
-    End Sub
-
-#End Region
 #Region "Declarations"
     Public Shared attendees As New List(Of String) 'list of id's
     Public Shared times As New List(Of String) 'list of "event: time"
@@ -76,6 +43,18 @@ Public Class createEvent
     Dim changesSaved As Boolean = False
     Public Shared peopleNotAdded As New List(Of String)
     Public Shared notes As New List(Of String)
+#End Region
+#Region "Dim Variables - JUN"
+    Dim out As Boolean = False
+    Dim cDrop As Boolean = False
+    Dim rDrop As Boolean = False
+    Dim cDown As Boolean = False
+    Dim rDown As Boolean = False
+    Dim atDrop As Boolean = False
+    Dim atDown As Boolean = False
+    Dim adDrop As Boolean = False
+    Dim adDown As Boolean = False
+    Dim jun As Integer = 0
 #End Region
 #Region "Form Operations"
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
@@ -918,6 +897,9 @@ Public Class createEvent
         flpAttach.BackColor = Color.FromArgb(197, 197, 197)
         CheckedListBox1.Location = New Point(pbCmb.Location.X, pbCmb.Location.Y + pbCmb.Height)
         CheckedListBox1.Width = pbCmb.Width
+        pbCmb.Image = My.Resources.comboBoxImage
+        pbCmb.SizeMode = PictureBoxSizeMode.Normal
+        MessageBox.Show(pbCmb.SizeMode)
         'Maps
         Dim proxyTester = Net.WebRequest.GetSystemWebProxy()
         If (proxyTester.GetProxy(New Uri("http://www.google.com")).Equals(New Uri("http://www.google.com"))) Then 'check if no proxy present by comparing URI's
@@ -955,7 +937,7 @@ Public Class createEvent
                 map.Zoom += 4
             End If
         End If
-            map.DragButton = MouseButtons.Left
+        map.DragButton = MouseButtons.Left
         map.ShowCenter = False
         pbPlus.Parent = map
         pbPlus.BackColor = Color.Transparent
@@ -986,6 +968,7 @@ Public Class createEvent
         'Athletes
         cmbGroup.SelectedIndex = 0
         cmbGroup_SelectedValueChanged(Nothing, Nothing)
+
     End Sub
     Private Sub chbNone_CheckedChanged(sender As Object, e As EventArgs) Handles chbNone.CheckedChanged
         If chbNone.Checked = False Then
@@ -1005,6 +988,25 @@ Public Class createEvent
             rdbMeet.Checked = True
             chbNA.Checked = False
         End If
+    End Sub
+    Private Sub pbCmb_MouseHover(sender As Object, e As EventArgs) Handles pbCmb.MouseHover
+        If pbCmb.Image.GetHashCode() <> My.Resources.comboBoxDropped.GetHashCode() Then
+            pbCmb.Image = My.Resources.comboBoxHover
+        End If
+    End Sub
+    Private Sub pbCmb_MouseLeave(sender As Object, e As EventArgs) Handles pbCmb.MouseLeave
+        'check if the current control (me.activecontrol) that has focus is the same as the previous
+        If pbCmb.Image.GetHashCode() <> My.Resources.comboBoxDropped.GetHashCode() Then
+            pbCmb.Image = My.Resources.comboBoxHover
+        End If
+    End Sub
+    Private Sub pbCmb_GotFocus(sender As Object, e As EventArgs) Handles pbCmb.GotFocus
+        pbCmb.Image = My.Resources.comboBoxDropped
+        CheckedListBox1.Visible = True
+    End Sub
+    Private Sub pbCmb_LostFocus(sender As Object, e As EventArgs) Handles pbCmb.LostFocus
+        CheckedListBox1.Visible = False
+        pbCmb.Image = My.Resources.comboBoxImage
     End Sub
     Public Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
 #Region "Template Load"
@@ -2531,19 +2533,6 @@ Public Class createEvent
         checkAllChecked()
     End Sub
 #End Region
-
-#Region "Dim Variables - JUN"
-    Dim out As Boolean = False
-    Dim cDrop As Boolean = False
-    Dim rDrop As Boolean = False
-    Dim cDown As Boolean = False
-    Dim rDown As Boolean = False
-    Dim atDrop As Boolean = False
-    Dim atDown As Boolean = False
-    Dim adDrop As Boolean = False
-    Dim adDown As Boolean = False
-    Dim jun As Integer = 0
-#End Region
 #Region "Sidebar"
 
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -2662,16 +2651,48 @@ Public Class createEvent
         Me.Hide()
     End Sub
 #End Region
+#Region "Move Form"
 
+    Public MoveForm As Boolean
+    Public MoveForm_MousePosition As Point
 
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
+
+        If e.Button = MouseButtons.Left Then
+            MoveForm = True
+            Me.Cursor = Cursors.NoMove2D
+            MoveForm_MousePosition = e.Location
+        End If
+
+    End Sub
+
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
+
+        If MoveForm Then
+            Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
+        End If
+
+    End Sub
+
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
+
+        If e.Button = MouseButtons.Left Then
+            MoveForm = False
+            Me.Cursor = Cursors.Default
+        End If
+
+    End Sub
+
+#End Region
 #Region "TopBar"
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         checkNotif.Show()
     End Sub
-#End Region
-
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles exitBtn.Click
         home.Show()
         Me.Close()
     End Sub
+#End Region
+
+
 End Class

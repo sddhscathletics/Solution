@@ -65,7 +65,7 @@ Partial Class Logon
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(338, 25)
-        Me.TextBox1.TabIndex = 7
+        Me.TextBox1.TabIndex = 1
         '
         'TextBox2
         '
@@ -73,7 +73,7 @@ Partial Class Logon
         Me.TextBox2.Multiline = True
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(338, 25)
-        Me.TextBox2.TabIndex = 7
+        Me.TextBox2.TabIndex = 2
         '
         'Label2
         '
@@ -109,7 +109,7 @@ Partial Class Logon
         Me.Button1.Location = New System.Drawing.Point(156, 423)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(207, 64)
-        Me.Button1.TabIndex = 8
+        Me.Button1.TabIndex = 3
         Me.Button1.Text = "OK"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -121,7 +121,7 @@ Partial Class Logon
         Me.Button2.Location = New System.Drawing.Point(369, 458)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(167, 29)
-        Me.Button2.TabIndex = 9
+        Me.Button2.TabIndex = 5
         Me.Button2.Text = "EXIT"
         Me.Button2.UseVisualStyleBackColor = False
         '
@@ -133,7 +133,7 @@ Partial Class Logon
         Me.Button3.Location = New System.Drawing.Point(369, 423)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(167, 29)
-        Me.Button3.TabIndex = 9
+        Me.Button3.TabIndex = 4
         Me.Button3.Text = "FORGOT PASSWORD"
         Me.Button3.UseVisualStyleBackColor = False
         '
