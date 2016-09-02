@@ -162,7 +162,6 @@ Public Class home
 
     Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles sidecalendarBtn.Click
         calendar.Show()
-        Me.Hide()
     End Sub
     Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles sideresultBtn.Click
         Results.Show()
@@ -200,6 +199,11 @@ Public Class home
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         AddEdit_User.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        selectAthlete.Show()
         Me.Hide()
     End Sub
 #End Region
