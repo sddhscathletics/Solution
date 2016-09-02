@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 'Searching
+'Halp
 
 Public Class newTeam
     Dim panelColor As Color = Color.CadetBlue
@@ -26,7 +27,7 @@ Public Class newTeam
         fillPanels(flpSelected, "sel", listSelected)
     End Sub
 
-    Private Sub checkDuplicates()
+    Private Sub checkDuplicates() 'Pls halp
         For Each athlete In listSelected
             listAthletes.Remove(athlete)
         Next
