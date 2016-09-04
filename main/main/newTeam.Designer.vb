@@ -90,7 +90,6 @@ Partial Class newTeam
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(303, 21)
         Me.txtSearch.TabIndex = 86
-        Me.txtSearch.Text = "Search"
         '
         'cmbSort
         '
@@ -151,7 +150,7 @@ Partial Class newTeam
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(735, 402)
+        Me.ClientSize = New System.Drawing.Size(735, 429)
         Me.Controls.Add(Me.flpSelected)
         Me.Controls.Add(Me.lblSelectedMembers)
         Me.Controls.Add(Me.cmbSort)
