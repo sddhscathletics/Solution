@@ -117,6 +117,11 @@ Public Class calendar
             conn.Close()
         End Using
         mnCalendar.UpdateBoldedDates()
+        If access = 2 Then
+            lblInstruct.Text = "Click a date to add or edit events scheduled on that day."
+        Else
+            lblInstruct.Text = "Click a date to view events scheduled on that day."
+        End If
     End Sub
     Private Function hasResult(eventName, eventDate)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
@@ -221,12 +226,13 @@ Public Class calendar
             Else
                 eventInfo.Remove(sender.OwnerItem.Tag)
             End If
-            If eventInfo.ContainsKey(sender.OwnerItem.Tag) = False Then
+            If eventInfo.ContainsKey(sender.OwnerItem.Tag) = False Then 'if the date now has no events then unbold the date
                 Dim newList As List(Of Date) = mnCalendar.BoldedDates.ToList()
                 newList.Remove(sender.OwnerItem.Tag)
                 mnCalendar.BoldedDates = newList.ToArray()
                 mnCalendar.UpdateBoldedDates()
             End If
+            newEdit("evDelete", sender.OwnerItem.Text + " on " + sender.OwnerItem.Tag)
         End If
     End Sub
 End Class
