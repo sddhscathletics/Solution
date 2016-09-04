@@ -108,6 +108,7 @@ Partial Class createEvent
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.pbPlus = New System.Windows.Forms.PictureBox()
+        Me.lblRepeat = New System.Windows.Forms.Label()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
@@ -950,6 +951,7 @@ Partial Class createEvent
         '
         'gbRepeats
         '
+        Me.gbRepeats.Controls.Add(Me.lblRepeat)
         Me.gbRepeats.Controls.Add(Me.chbRepNA)
         Me.gbRepeats.Controls.Add(Me.cmbRepType)
         Me.gbRepeats.Controls.Add(Me.lblRepType)
@@ -1129,6 +1131,17 @@ Partial Class createEvent
         Me.pbPlus.TabIndex = 57
         Me.pbPlus.TabStop = False
         '
+        'lblRepeat
+        '
+        Me.lblRepeat.AutoSize = True
+        Me.lblRepeat.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRepeat.Location = New System.Drawing.Point(41, 89)
+        Me.lblRepeat.Name = "lblRepeat"
+        Me.lblRepeat.Size = New System.Drawing.Size(151, 16)
+        Me.lblRepeat.TabIndex = 56
+        Me.lblRepeat.Text = "could be a repeate event"
+        Me.lblRepeat.Visible = False
+        '
         'createEvent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1255,4 +1268,5 @@ Partial Class createEvent
     Friend WithEvents lblRepType As Label
     Friend WithEvents lblDays As Label
     Friend WithEvents chbRepNA As CheckBox
+    Friend WithEvents lblRepeat As Label
 End Class

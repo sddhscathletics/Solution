@@ -1527,6 +1527,16 @@ Public Class createEvent
                             Else
                                 chbRepNA.Checked = True
                             End If
+                            If dr("IsRepeat") Then
+                                chbRepNA.Enabled = False
+                                lblRepeat.Visible = True
+                                Dim baseText = "This is a repeating event."
+                                If access = 2 Then
+                                    lblRepeat.Text = baseText + vbNewLine + "If you wish to make changes to the repeating style, do so on the original event."
+                                Else
+                                    lblRepeat.Text = baseText
+                                End If
+                            End If
                         Loop
                     End If
                 End Using
