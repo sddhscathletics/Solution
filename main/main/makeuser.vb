@@ -89,7 +89,13 @@ Public Class makeuser
         End If
     End Sub
     Private Sub createCancelBtn_Click(sender As Object, e As EventArgs) Handles createCancelBtn.Click
-        Me.Close()
+        If createNewID.Text <> "" Or createNewPass.Text <> "" Then
+            If MessageBox.Show("Discard entered information?", "Close", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                Me.Close()
+            End If
+        Else
+            Me.Close()
+        End If
     End Sub
 
 End Class

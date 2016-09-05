@@ -82,8 +82,8 @@ Partial Class createEvent
         Me.gbEvents = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblAlertCount = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
+        Me.helpBtn = New System.Windows.Forms.Button()
+        Me.notifBtn = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
@@ -148,20 +148,20 @@ Partial Class createEvent
         'lblStart
         '
         Me.lblStart.AutoSize = True
-        Me.lblStart.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStart.Location = New System.Drawing.Point(35, 188)
         Me.lblStart.Name = "lblStart"
-        Me.lblStart.Size = New System.Drawing.Size(50, 17)
+        Me.lblStart.Size = New System.Drawing.Size(59, 16)
         Me.lblStart.TabIndex = 17
         Me.lblStart.Text = "START"
         '
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDate.Location = New System.Drawing.Point(44, 155)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(42, 17)
+        Me.lblDate.Size = New System.Drawing.Size(49, 16)
         Me.lblDate.TabIndex = 16
         Me.lblDate.Text = "DATE"
         '
@@ -178,30 +178,30 @@ Partial Class createEvent
         'lblEnd
         '
         Me.lblEnd.AutoSize = True
-        Me.lblEnd.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEnd.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEnd.Location = New System.Drawing.Point(44, 222)
         Me.lblEnd.Name = "lblEnd"
-        Me.lblEnd.Size = New System.Drawing.Size(36, 17)
+        Me.lblEnd.Size = New System.Drawing.Size(40, 16)
         Me.lblEnd.TabIndex = 26
         Me.lblEnd.Text = "END"
         '
         'lblComment
         '
         Me.lblComment.AutoSize = True
-        Me.lblComment.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblComment.Location = New System.Drawing.Point(8, 258)
         Me.lblComment.Name = "lblComment"
-        Me.lblComment.Size = New System.Drawing.Size(80, 17)
+        Me.lblComment.Size = New System.Drawing.Size(84, 16)
         Me.lblComment.TabIndex = 29
         Me.lblComment.Text = "COMMENT"
         '
         'lblType
         '
         Me.lblType.AutoSize = True
-        Me.lblType.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblType.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblType.Location = New System.Drawing.Point(47, 126)
         Me.lblType.Name = "lblType"
-        Me.lblType.Size = New System.Drawing.Size(39, 17)
+        Me.lblType.Size = New System.Drawing.Size(48, 16)
         Me.lblType.TabIndex = 30
         Me.lblType.Text = "TYPE"
         '
@@ -258,10 +258,10 @@ Partial Class createEvent
         'lblEventName
         '
         Me.lblEventName.AutoSize = True
-        Me.lblEventName.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEventName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEventName.Location = New System.Drawing.Point(37, 93)
         Me.lblEventName.Name = "lblEventName"
-        Me.lblEventName.Size = New System.Drawing.Size(48, 17)
+        Me.lblEventName.Size = New System.Drawing.Size(51, 16)
         Me.lblEventName.TabIndex = 37
         Me.lblEventName.Text = "NAME"
         '
@@ -278,10 +278,10 @@ Partial Class createEvent
         'lblTemplate
         '
         Me.lblTemplate.AutoSize = True
-        Me.lblTemplate.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTemplate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTemplate.Location = New System.Drawing.Point(15, 51)
         Me.lblTemplate.Name = "lblTemplate"
-        Me.lblTemplate.Size = New System.Drawing.Size(75, 17)
+        Me.lblTemplate.Size = New System.Drawing.Size(88, 16)
         Me.lblTemplate.TabIndex = 40
         Me.lblTemplate.Text = "TEMPLATE"
         '
@@ -372,7 +372,7 @@ Partial Class createEvent
         '
         'map
         '
-        Me.map.Bearing = 0.0!
+        Me.map.Bearing = 0!
         Me.map.CanDragMap = True
         Me.map.Cursor = System.Windows.Forms.Cursors.Hand
         Me.map.EmptyTileColor = System.Drawing.Color.Navy
@@ -398,7 +398,7 @@ Partial Class createEvent
         '
         'txtStreet
         '
-        Me.txtStreet.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtStreet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtStreet.Location = New System.Drawing.Point(81, 71)
         Me.txtStreet.Multiline = True
         Me.txtStreet.Name = "txtStreet"
@@ -408,38 +408,38 @@ Partial Class createEvent
         'lblStreet
         '
         Me.lblStreet.AutoSize = True
-        Me.lblStreet.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStreet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStreet.Location = New System.Drawing.Point(22, 75)
         Me.lblStreet.Name = "lblStreet"
-        Me.lblStreet.Size = New System.Drawing.Size(55, 17)
+        Me.lblStreet.Size = New System.Drawing.Size(69, 16)
         Me.lblStreet.TabIndex = 44
         Me.lblStreet.Text = "STREET"
         '
         'lblSuburb
         '
         Me.lblSuburb.AutoSize = True
-        Me.lblSuburb.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSuburb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSuburb.Location = New System.Drawing.Point(18, 99)
         Me.lblSuburb.Name = "lblSuburb"
-        Me.lblSuburb.Size = New System.Drawing.Size(61, 17)
+        Me.lblSuburb.Size = New System.Drawing.Size(71, 16)
         Me.lblSuburb.TabIndex = 48
         Me.lblSuburb.Text = "SUBURB"
         '
         'txtSuburb
         '
-        Me.txtSuburb.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSuburb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSuburb.Location = New System.Drawing.Point(81, 99)
         Me.txtSuburb.Name = "txtSuburb"
-        Me.txtSuburb.Size = New System.Drawing.Size(213, 24)
+        Me.txtSuburb.Size = New System.Drawing.Size(213, 22)
         Me.txtSuburb.TabIndex = 49
         '
         'lblState
         '
         Me.lblState.AutoSize = True
-        Me.lblState.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblState.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblState.Location = New System.Drawing.Point(29, 126)
         Me.lblState.Name = "lblState"
-        Me.lblState.Size = New System.Drawing.Size(48, 17)
+        Me.lblState.Size = New System.Drawing.Size(58, 16)
         Me.lblState.TabIndex = 50
         Me.lblState.Text = "STATE"
         '
@@ -453,7 +453,7 @@ Partial Class createEvent
         Me.gbLocation.Controls.Add(Me.txtSuburb)
         Me.gbLocation.Controls.Add(Me.lblStreet)
         Me.gbLocation.Controls.Add(Me.txtStreet)
-        Me.gbLocation.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbLocation.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbLocation.Location = New System.Drawing.Point(874, 405)
         Me.gbLocation.Name = "gbLocation"
         Me.gbLocation.Size = New System.Drawing.Size(394, 172)
@@ -472,12 +472,12 @@ Partial Class createEvent
         '
         'cmbState
         '
-        Me.cmbState.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbState.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbState.FormattingEnabled = True
         Me.cmbState.Items.AddRange(New Object() {"NSW", "ACT", "WA", "NT", "TAS", "SA", "QLD", "VIC"})
         Me.cmbState.Location = New System.Drawing.Point(81, 126)
         Me.cmbState.Name = "cmbState"
-        Me.cmbState.Size = New System.Drawing.Size(213, 25)
+        Me.cmbState.Size = New System.Drawing.Size(213, 24)
         Me.cmbState.TabIndex = 55
         Me.cmbState.Text = "NSW"
         '
@@ -486,7 +486,7 @@ Partial Class createEvent
         Me.btnSearch.BackColor = System.Drawing.Color.Gray
         Me.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSearch.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.Location = New System.Drawing.Point(312, 48)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(76, 99)
@@ -497,7 +497,7 @@ Partial Class createEvent
         'gbAttachments
         '
         Me.gbAttachments.Controls.Add(Me.flpAttach)
-        Me.gbAttachments.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbAttachments.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAttachments.Location = New System.Drawing.Point(14, 403)
         Me.gbAttachments.Name = "gbAttachments"
         Me.gbAttachments.Size = New System.Drawing.Size(347, 206)
@@ -512,7 +512,7 @@ Partial Class createEvent
         Me.gbAthletes.Controls.Add(Me.chbAllAthletes)
         Me.gbAthletes.Controls.Add(Me.cmbGroup)
         Me.gbAthletes.Controls.Add(Me.flpAthletes)
-        Me.gbAthletes.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbAthletes.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAthletes.Location = New System.Drawing.Point(393, 61)
         Me.gbAthletes.Name = "gbAthletes"
         Me.gbAthletes.Size = New System.Drawing.Size(444, 263)
@@ -523,10 +523,10 @@ Partial Class createEvent
         'chbAllNotes
         '
         Me.chbAllNotes.AutoSize = True
-        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbAllNotes.Location = New System.Drawing.Point(134, 31)
         Me.chbAllNotes.Name = "chbAllNotes"
-        Me.chbAllNotes.Size = New System.Drawing.Size(98, 21)
+        Me.chbAllNotes.Size = New System.Drawing.Size(109, 20)
         Me.chbAllNotes.TabIndex = 62
         Me.chbAllNotes.Text = "ALL NOTES"
         Me.chbAllNotes.UseVisualStyleBackColor = True
@@ -536,7 +536,7 @@ Partial Class createEvent
         Me.btnSelect.BackColor = System.Drawing.Color.Gray
         Me.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSelect.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSelect.Location = New System.Drawing.Point(365, 28)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(75, 23)
@@ -547,10 +547,10 @@ Partial Class createEvent
         'chbAllAthletes
         '
         Me.chbAllAthletes.AutoSize = True
-        Me.chbAllAthletes.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllAthletes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbAllAthletes.Location = New System.Drawing.Point(6, 31)
         Me.chbAllAthletes.Name = "chbAllAthletes"
-        Me.chbAllAthletes.Size = New System.Drawing.Size(131, 21)
+        Me.chbAllAthletes.Size = New System.Drawing.Size(145, 20)
         Me.chbAllAthletes.TabIndex = 48
         Me.chbAllAthletes.Text = "ALL ATTENDING"
         Me.chbAllAthletes.UseVisualStyleBackColor = True
@@ -578,32 +578,32 @@ Partial Class createEvent
         '
         'clbDays
         '
-        Me.clbDays.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.clbDays.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.clbDays.FormattingEnabled = True
         Me.clbDays.Items.AddRange(New Object() {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"})
         Me.clbDays.Location = New System.Drawing.Point(6, 71)
         Me.clbDays.Name = "clbDays"
-        Me.clbDays.Size = New System.Drawing.Size(164, 137)
+        Me.clbDays.Size = New System.Drawing.Size(164, 123)
         Me.clbDays.TabIndex = 61
         Me.clbDays.Visible = False
         '
         'lblOpens
         '
         Me.lblOpens.AutoSize = True
-        Me.lblOpens.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOpens.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOpens.Location = New System.Drawing.Point(5, 246)
         Me.lblOpens.Name = "lblOpens"
-        Me.lblOpens.Size = New System.Drawing.Size(56, 17)
+        Me.lblOpens.Size = New System.Drawing.Size(64, 16)
         Me.lblOpens.TabIndex = 69
         Me.lblOpens.Text = "OPENS:"
         '
         'lbl14s
         '
         Me.lbl14s.AutoSize = True
-        Me.lbl14s.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl14s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl14s.Location = New System.Drawing.Point(26, 106)
         Me.lbl14s.Name = "lbl14s"
-        Me.lbl14s.Size = New System.Drawing.Size(37, 17)
+        Me.lbl14s.Size = New System.Drawing.Size(40, 16)
         Me.lbl14s.TabIndex = 61
         Me.lbl14s.Text = "14's:"
         '
@@ -621,20 +621,20 @@ Partial Class createEvent
         'lbl13s
         '
         Me.lbl13s.AutoSize = True
-        Me.lbl13s.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl13s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl13s.Location = New System.Drawing.Point(26, 70)
         Me.lbl13s.Name = "lbl13s"
-        Me.lbl13s.Size = New System.Drawing.Size(37, 17)
+        Me.lbl13s.Size = New System.Drawing.Size(40, 16)
         Me.lbl13s.TabIndex = 60
         Me.lbl13s.Text = "13's:"
         '
         'lbl15s
         '
         Me.lbl15s.AutoSize = True
-        Me.lbl15s.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl15s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl15s.Location = New System.Drawing.Point(26, 143)
         Me.lbl15s.Name = "lbl15s"
-        Me.lbl15s.Size = New System.Drawing.Size(37, 17)
+        Me.lbl15s.Size = New System.Drawing.Size(40, 16)
         Me.lbl15s.TabIndex = 62
         Me.lbl15s.Text = "15's:"
         '
@@ -652,20 +652,20 @@ Partial Class createEvent
         'lbl17s
         '
         Me.lbl17s.AutoSize = True
-        Me.lbl17s.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl17s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl17s.Location = New System.Drawing.Point(26, 215)
         Me.lbl17s.Name = "lbl17s"
-        Me.lbl17s.Size = New System.Drawing.Size(37, 17)
+        Me.lbl17s.Size = New System.Drawing.Size(40, 16)
         Me.lbl17s.TabIndex = 66
         Me.lbl17s.Text = "17's:"
         '
         'chbNA
         '
         Me.chbNA.AutoSize = True
-        Me.chbNA.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbNA.Location = New System.Drawing.Point(11, 31)
         Me.chbNA.Name = "chbNA"
-        Me.chbNA.Size = New System.Drawing.Size(53, 21)
+        Me.chbNA.Size = New System.Drawing.Size(53, 20)
         Me.chbNA.TabIndex = 33
         Me.chbNA.Text = "N/A"
         Me.chbNA.UseVisualStyleBackColor = True
@@ -695,10 +695,10 @@ Partial Class createEvent
         'lbl16s
         '
         Me.lbl16s.AutoSize = True
-        Me.lbl16s.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl16s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl16s.Location = New System.Drawing.Point(26, 181)
         Me.lbl16s.Name = "lbl16s"
-        Me.lbl16s.Size = New System.Drawing.Size(37, 17)
+        Me.lbl16s.Size = New System.Drawing.Size(40, 16)
         Me.lbl16s.TabIndex = 65
         Me.lbl16s.Text = "16's:"
         '
@@ -739,7 +739,7 @@ Partial Class createEvent
         Me.btnSaveTimes.BackColor = System.Drawing.Color.Gray
         Me.btnSaveTimes.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSaveTimes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSaveTimes.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSaveTimes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSaveTimes.Location = New System.Drawing.Point(204, 29)
         Me.btnSaveTimes.Name = "btnSaveTimes"
         Me.btnSaveTimes.Size = New System.Drawing.Size(51, 23)
@@ -764,7 +764,7 @@ Partial Class createEvent
         Me.gbEvents.Controls.Add(Me.dtp17s)
         Me.gbEvents.Controls.Add(Me.lbl14s)
         Me.gbEvents.Controls.Add(Me.lblOpens)
-        Me.gbEvents.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbEvents.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbEvents.Location = New System.Drawing.Point(381, 405)
         Me.gbEvents.Name = "gbEvents"
         Me.gbEvents.Size = New System.Drawing.Size(267, 277)
@@ -777,8 +777,8 @@ Partial Class createEvent
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
         Me.GroupBox2.Controls.Add(Me.lblAlertCount)
         Me.GroupBox2.Controls.Add(Me.lblTitle)
-        Me.GroupBox2.Controls.Add(Me.Button4)
-        Me.GroupBox2.Controls.Add(Me.Button13)
+        Me.GroupBox2.Controls.Add(Me.helpBtn)
+        Me.GroupBox2.Controls.Add(Me.notifBtn)
         Me.GroupBox2.Controls.Add(Me.exitBtn)
         Me.GroupBox2.Controls.Add(Me.scrollBtn)
         Me.GroupBox2.Location = New System.Drawing.Point(-10, -11)
@@ -800,35 +800,35 @@ Partial Class createEvent
         Me.lblAlertCount.Text = "0"
         Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button4
+        'helpBtn
         '
-        Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button4.Location = New System.Drawing.Point(1196, 11)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(44, 44)
-        Me.Button4.TabIndex = 6
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.helpBtn.FlatAppearance.BorderSize = 0
+        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.helpBtn.Location = New System.Drawing.Point(1196, 11)
+        Me.helpBtn.Name = "helpBtn"
+        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
+        Me.helpBtn.TabIndex = 6
+        Me.helpBtn.UseVisualStyleBackColor = False
         '
-        'Button13
+        'notifBtn
         '
-        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
-        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button13.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1240, 11)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(44, 44)
-        Me.Button13.TabIndex = 6
-        Me.Button13.UseVisualStyleBackColor = False
+        Me.notifBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.notifBtn.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
+        Me.notifBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.notifBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.notifBtn.FlatAppearance.BorderSize = 0
+        Me.notifBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.notifBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.notifBtn.Location = New System.Drawing.Point(1240, 11)
+        Me.notifBtn.Name = "notifBtn"
+        Me.notifBtn.Size = New System.Drawing.Size(44, 44)
+        Me.notifBtn.TabIndex = 6
+        Me.notifBtn.UseVisualStyleBackColor = False
         '
         'exitBtn
         '
@@ -1037,7 +1037,7 @@ Partial Class createEvent
         Me.gbRepeats.Controls.Add(Me.lblDays)
         Me.gbRepeats.Controls.Add(Me.pbCmb)
         Me.gbRepeats.Controls.Add(Me.clbDays)
-        Me.gbRepeats.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbRepeats.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbRepeats.Location = New System.Drawing.Point(661, 405)
         Me.gbRepeats.Name = "gbRepeats"
         Me.gbRepeats.Size = New System.Drawing.Size(201, 277)
@@ -1047,11 +1047,10 @@ Partial Class createEvent
         '
         'lblRepeat
         '
-        Me.lblRepeat.AutoSize = True
         Me.lblRepeat.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRepeat.Location = New System.Drawing.Point(41, 89)
+        Me.lblRepeat.Location = New System.Drawing.Point(13, 89)
         Me.lblRepeat.Name = "lblRepeat"
-        Me.lblRepeat.Size = New System.Drawing.Size(151, 16)
+        Me.lblRepeat.Size = New System.Drawing.Size(180, 16)
         Me.lblRepeat.TabIndex = 56
         Me.lblRepeat.Text = "could be a repeate event"
         Me.lblRepeat.Visible = False
@@ -1059,10 +1058,10 @@ Partial Class createEvent
         'chbRepNA
         '
         Me.chbRepNA.AutoSize = True
-        Me.chbRepNA.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbRepNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbRepNA.Location = New System.Drawing.Point(129, 25)
         Me.chbRepNA.Name = "chbRepNA"
-        Me.chbRepNA.Size = New System.Drawing.Size(53, 21)
+        Me.chbRepNA.Size = New System.Drawing.Size(53, 20)
         Me.chbRepNA.TabIndex = 72
         Me.chbRepNA.Text = "N/A"
         Me.chbRepNA.UseVisualStyleBackColor = True
@@ -1070,31 +1069,31 @@ Partial Class createEvent
         'cmbRepType
         '
         Me.cmbRepType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbRepType.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbRepType.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbRepType.FormattingEnabled = True
         Me.cmbRepType.Items.AddRange(New Object() {"Weekly", "Monthly", "Yearly"})
         Me.cmbRepType.Location = New System.Drawing.Point(15, 243)
         Me.cmbRepType.Name = "cmbRepType"
-        Me.cmbRepType.Size = New System.Drawing.Size(161, 25)
+        Me.cmbRepType.Size = New System.Drawing.Size(161, 24)
         Me.cmbRepType.TabIndex = 66
         '
         'lblRepType
         '
         Me.lblRepType.AutoSize = True
-        Me.lblRepType.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRepType.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRepType.Location = New System.Drawing.Point(7, 220)
         Me.lblRepType.Name = "lblRepType"
-        Me.lblRepType.Size = New System.Drawing.Size(39, 17)
+        Me.lblRepType.Size = New System.Drawing.Size(48, 16)
         Me.lblRepType.TabIndex = 65
         Me.lblRepType.Text = "TYPE"
         '
         'lblDays
         '
         Me.lblDays.AutoSize = True
-        Me.lblDays.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDays.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDays.Location = New System.Drawing.Point(7, 29)
         Me.lblDays.Name = "lblDays"
-        Me.lblDays.Size = New System.Drawing.Size(43, 17)
+        Me.lblDays.Size = New System.Drawing.Size(49, 16)
         Me.lblDays.TabIndex = 64
         Me.lblDays.Text = "DAYS"
         '
@@ -1261,8 +1260,8 @@ Partial Class createEvent
     Friend WithEvents lblOpens As Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents lblAlertCount As System.Windows.Forms.Label
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button13 As System.Windows.Forms.Button
+    Friend WithEvents helpBtn As System.Windows.Forms.Button
+    Friend WithEvents notifBtn As System.Windows.Forms.Button
     Friend WithEvents exitBtn As System.Windows.Forms.Button
     Friend WithEvents scrollBtn As System.Windows.Forms.Button
     Friend WithEvents Sidebar As System.Windows.Forms.GroupBox

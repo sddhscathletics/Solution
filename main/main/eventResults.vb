@@ -681,7 +681,7 @@ Public Class eventResults
         Next
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("UPDATE Events SET Absences = @abs, Attended = @att WHERE EventName = @name AND EventDate = @date", conn)
+            Using cmd As New OleDbCommand("UPDATE Events SET Absences = @abs, PeopleAttended = @att WHERE EventName = @name AND EventDate = @date", conn)
                 cmd.Parameters.AddWithValue("@abs", String.Join(";", newAbsences))
                 cmd.Parameters.AddWithValue("@att", String.Join(";", newAttended))
                 Dim tagSplit = Me.Tag.split(" ")

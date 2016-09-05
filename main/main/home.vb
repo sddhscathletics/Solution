@@ -77,7 +77,7 @@ Public Class home
                                 For Each noteId In noteIds
                                     needNames.Add(createEvent.getName(noteId))
                                 Next
-                                If dr("NotesGiven") IsNot Nothing Then
+                                If dr("NotesGiven").ToString() <> "" Then
                                     noteIds = dr("NotesGiven").split(";")
                                     For Each noteId In noteIds
                                         givenNames.Add(createEvent.getName(noteId))
@@ -203,7 +203,9 @@ Public Class home
 
 #Region "Buttons"
     Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        End
+        If MessageBox.Show("Do you wish to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+            End
+        End If
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
@@ -241,7 +243,6 @@ Public Class home
         Me.Close()
     End Sub
 #End Region
-
 
     Private Sub clocktime_Tick(sender As Object, e As EventArgs) Handles clocktime.Tick
         timeLbl.Text = TimeOfDay
