@@ -2893,14 +2893,16 @@ Public Class createEvent
 #End Region
 
 #Region "TopBar"
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
         checkNotif.Show()
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles exitBtn.Click
-        End
+        If MessageBox.Show("Do you wish to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+            End
+        End If
     End Sub
 
-    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub mainBtn_Click(sender As Object, e As EventArgs) Handles Button1.Click
         home.Show()
         Me.Close()
     End Sub

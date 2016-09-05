@@ -182,7 +182,9 @@ Public Class AddEdit_User
 
 
     Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        End
+        If MessageBox.Show("Do you wish to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+            End
+        End If
     End Sub
 
     Private Sub editBtnClick(sender As Object, e As EventArgs) Handles editBtn.Click

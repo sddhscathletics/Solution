@@ -82,8 +82,8 @@ Partial Class createEvent
         Me.gbEvents = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblAlertCount = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
+        Me.helpBtn = New System.Windows.Forms.Button()
+        Me.notifBtn = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
@@ -777,8 +777,8 @@ Partial Class createEvent
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
         Me.GroupBox2.Controls.Add(Me.lblAlertCount)
         Me.GroupBox2.Controls.Add(Me.lblTitle)
-        Me.GroupBox2.Controls.Add(Me.Button4)
-        Me.GroupBox2.Controls.Add(Me.Button13)
+        Me.GroupBox2.Controls.Add(Me.helpBtn)
+        Me.GroupBox2.Controls.Add(Me.notifBtn)
         Me.GroupBox2.Controls.Add(Me.exitBtn)
         Me.GroupBox2.Controls.Add(Me.scrollBtn)
         Me.GroupBox2.Location = New System.Drawing.Point(-10, -11)
@@ -800,35 +800,35 @@ Partial Class createEvent
         Me.lblAlertCount.Text = "0"
         Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button4
+        'helpBtn
         '
-        Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button4.Location = New System.Drawing.Point(1196, 11)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(44, 44)
-        Me.Button4.TabIndex = 6
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.helpBtn.FlatAppearance.BorderSize = 0
+        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.helpBtn.Location = New System.Drawing.Point(1196, 11)
+        Me.helpBtn.Name = "helpBtn"
+        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
+        Me.helpBtn.TabIndex = 6
+        Me.helpBtn.UseVisualStyleBackColor = False
         '
-        'Button13
+        'notifBtn
         '
-        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
-        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button13.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1240, 11)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(44, 44)
-        Me.Button13.TabIndex = 6
-        Me.Button13.UseVisualStyleBackColor = False
+        Me.notifBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.notifBtn.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
+        Me.notifBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.notifBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.notifBtn.FlatAppearance.BorderSize = 0
+        Me.notifBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.notifBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.notifBtn.Location = New System.Drawing.Point(1240, 11)
+        Me.notifBtn.Name = "notifBtn"
+        Me.notifBtn.Size = New System.Drawing.Size(44, 44)
+        Me.notifBtn.TabIndex = 6
+        Me.notifBtn.UseVisualStyleBackColor = False
         '
         'exitBtn
         '
@@ -1261,8 +1261,8 @@ Partial Class createEvent
     Friend WithEvents lblOpens As Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents lblAlertCount As System.Windows.Forms.Label
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button13 As System.Windows.Forms.Button
+    Friend WithEvents helpBtn As System.Windows.Forms.Button
+    Friend WithEvents notifBtn As System.Windows.Forms.Button
     Friend WithEvents exitBtn As System.Windows.Forms.Button
     Friend WithEvents scrollBtn As System.Windows.Forms.Button
     Friend WithEvents Sidebar As System.Windows.Forms.GroupBox

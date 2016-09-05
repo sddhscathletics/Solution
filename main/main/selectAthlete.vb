@@ -546,7 +546,9 @@ Public Class selectAthlete
     End Sub
 
     Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        End
+        If MessageBox.Show("Do you wish to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+            End
+        End If
     End Sub
 
     Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
