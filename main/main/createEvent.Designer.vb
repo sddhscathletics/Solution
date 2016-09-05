@@ -45,6 +45,7 @@ Partial Class createEvent
         Me.gbDetails = New System.Windows.Forms.GroupBox()
         Me.flpAttach = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlAttach = New System.Windows.Forms.Panel()
+        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.map = New GMap.NET.WindowsForms.GMapControl()
         Me.txtStreet = New System.Windows.Forms.TextBox()
         Me.lblStreet = New System.Windows.Forms.Label()
@@ -81,6 +82,10 @@ Partial Class createEvent
         Me.gbEvents = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblAlertCount = New System.Windows.Forms.Label()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.exitBtn = New System.Windows.Forms.Button()
+        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
@@ -99,19 +104,15 @@ Partial Class createEvent
         Me.cmbRepType = New System.Windows.Forms.ComboBox()
         Me.lblRepType = New System.Windows.Forms.Label()
         Me.lblDays = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.exitBtn = New System.Windows.Forms.Button()
-        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.pbCmb = New System.Windows.Forms.PictureBox()
         Me.btnSaveEvent = New System.Windows.Forms.Button()
-        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.pbPlus = New System.Windows.Forms.PictureBox()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbLocation.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbAttachments.SuspendLayout()
@@ -122,7 +123,6 @@ Partial Class createEvent
         Me.bigbtngroup.SuspendLayout()
         Me.gbRepeats.SuspendLayout()
         CType(Me.pbCmb, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -358,9 +358,21 @@ Partial Class createEvent
         Me.pnlAttach.Size = New System.Drawing.Size(319, 56)
         Me.pnlAttach.TabIndex = 43
         '
+        'pbAttach
+        '
+        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbAttach.Location = New System.Drawing.Point(114, -1)
+        Me.pbAttach.Name = "pbAttach"
+        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
+        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbAttach.TabIndex = 42
+        Me.pbAttach.TabStop = False
+        Me.pbAttach.Tag = "add"
+        '
         'map
         '
-        Me.map.Bearing = 0!
+        Me.map.Bearing = 0.0!
         Me.map.CanDragMap = True
         Me.map.Cursor = System.Windows.Forms.Cursors.Hand
         Me.map.EmptyTileColor = System.Drawing.Color.Navy
@@ -441,7 +453,7 @@ Partial Class createEvent
         Me.gbLocation.Controls.Add(Me.txtSuburb)
         Me.gbLocation.Controls.Add(Me.lblStreet)
         Me.gbLocation.Controls.Add(Me.txtStreet)
-        Me.gbLocation.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbLocation.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbLocation.Location = New System.Drawing.Point(874, 405)
         Me.gbLocation.Name = "gbLocation"
         Me.gbLocation.Size = New System.Drawing.Size(394, 172)
@@ -472,6 +484,7 @@ Partial Class createEvent
         'btnSearch
         '
         Me.btnSearch.BackColor = System.Drawing.Color.Gray
+        Me.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSearch.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.Location = New System.Drawing.Point(312, 48)
@@ -484,7 +497,7 @@ Partial Class createEvent
         'gbAttachments
         '
         Me.gbAttachments.Controls.Add(Me.flpAttach)
-        Me.gbAttachments.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbAttachments.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAttachments.Location = New System.Drawing.Point(14, 403)
         Me.gbAttachments.Name = "gbAttachments"
         Me.gbAttachments.Size = New System.Drawing.Size(347, 206)
@@ -499,7 +512,7 @@ Partial Class createEvent
         Me.gbAthletes.Controls.Add(Me.chbAllAthletes)
         Me.gbAthletes.Controls.Add(Me.cmbGroup)
         Me.gbAthletes.Controls.Add(Me.flpAthletes)
-        Me.gbAthletes.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbAthletes.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAthletes.Location = New System.Drawing.Point(393, 61)
         Me.gbAthletes.Name = "gbAthletes"
         Me.gbAthletes.Size = New System.Drawing.Size(444, 263)
@@ -521,6 +534,7 @@ Partial Class createEvent
         'btnSelect
         '
         Me.btnSelect.BackColor = System.Drawing.Color.Gray
+        Me.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSelect.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSelect.Location = New System.Drawing.Point(365, 28)
@@ -546,9 +560,9 @@ Partial Class createEvent
         Me.cmbGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbGroup.FormattingEnabled = True
         Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbGroup.Location = New System.Drawing.Point(226, 30)
+        Me.cmbGroup.Location = New System.Drawing.Point(238, 30)
         Me.cmbGroup.Name = "cmbGroup"
-        Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
+        Me.cmbGroup.Size = New System.Drawing.Size(124, 21)
         Me.cmbGroup.TabIndex = 46
         '
         'flpAthletes
@@ -569,7 +583,7 @@ Partial Class createEvent
         Me.clbDays.Items.AddRange(New Object() {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"})
         Me.clbDays.Location = New System.Drawing.Point(6, 71)
         Me.clbDays.Name = "clbDays"
-        Me.clbDays.Size = New System.Drawing.Size(164, 144)
+        Me.clbDays.Size = New System.Drawing.Size(164, 137)
         Me.clbDays.TabIndex = 61
         Me.clbDays.Visible = False
         '
@@ -723,6 +737,7 @@ Partial Class createEvent
         'btnSaveTimes
         '
         Me.btnSaveTimes.BackColor = System.Drawing.Color.Gray
+        Me.btnSaveTimes.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSaveTimes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSaveTimes.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSaveTimes.Location = New System.Drawing.Point(204, 29)
@@ -749,7 +764,7 @@ Partial Class createEvent
         Me.gbEvents.Controls.Add(Me.dtp17s)
         Me.gbEvents.Controls.Add(Me.lbl14s)
         Me.gbEvents.Controls.Add(Me.lblOpens)
-        Me.gbEvents.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbEvents.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbEvents.Location = New System.Drawing.Point(381, 405)
         Me.gbEvents.Name = "gbEvents"
         Me.gbEvents.Size = New System.Drawing.Size(267, 277)
@@ -778,12 +793,70 @@ Partial Class createEvent
         Me.lblAlertCount.AutoSize = True
         Me.lblAlertCount.BackColor = System.Drawing.Color.DarkGray
         Me.lblAlertCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAlertCount.Location = New System.Drawing.Point(1215, 16)
+        Me.lblAlertCount.Location = New System.Drawing.Point(1263, 16)
         Me.lblAlertCount.Name = "lblAlertCount"
         Me.lblAlertCount.Size = New System.Drawing.Size(15, 16)
         Me.lblAlertCount.TabIndex = 3
         Me.lblAlertCount.Text = "0"
         Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
+        Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Button4.Location = New System.Drawing.Point(1196, 11)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(44, 44)
+        Me.Button4.TabIndex = 6
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Button13
+        '
+        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
+        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
+        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button13.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button13.FlatAppearance.BorderSize = 0
+        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Button13.Location = New System.Drawing.Point(1240, 11)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(44, 44)
+        Me.Button13.TabIndex = 6
+        Me.Button13.UseVisualStyleBackColor = False
+        '
+        'exitBtn
+        '
+        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
+        Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.exitBtn.FlatAppearance.BorderSize = 0
+        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.exitBtn.Location = New System.Drawing.Point(1284, 11)
+        Me.exitBtn.Name = "exitBtn"
+        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
+        Me.exitBtn.TabIndex = 6
+        Me.exitBtn.UseVisualStyleBackColor = False
+        '
+        'scrollBtn
+        '
+        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
+        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
+        Me.scrollBtn.Name = "scrollBtn"
+        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
+        Me.scrollBtn.TabIndex = 3
+        Me.scrollBtn.UseVisualStyleBackColor = False
         '
         'Sidebar
         '
@@ -796,7 +869,7 @@ Partial Class createEvent
         Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
         Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(-200, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 63
@@ -805,6 +878,7 @@ Partial Class createEvent
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -820,6 +894,7 @@ Partial Class createEvent
         'resdrop
         '
         Me.resdrop.BackColor = System.Drawing.Color.Gray
+        Me.resdrop.Cursor = System.Windows.Forms.Cursors.Hand
         Me.resdrop.FlatAppearance.BorderSize = 0
         Me.resdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.resdrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -834,6 +909,7 @@ Partial Class createEvent
         'sideAthletesBtn
         '
         Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAthletesBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
         Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -849,6 +925,7 @@ Partial Class createEvent
         'sideadminBtn
         '
         Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideadminBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideadminBtn.FlatAppearance.BorderSize = 0
         Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -865,6 +942,7 @@ Partial Class createEvent
         'sideresultBtn
         '
         Me.sideresultBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideresultBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideresultBtn.FlatAppearance.BorderSize = 0
         Me.sideresultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideresultBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -880,6 +958,7 @@ Partial Class createEvent
         'sidecalendarBtn
         '
         Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidecalendarBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
         Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -943,9 +1022,9 @@ Partial Class createEvent
         Me.bigbtngroup.Controls.Add(Me.gbEvents)
         Me.bigbtngroup.Controls.Add(Me.pbMinus)
         Me.bigbtngroup.Controls.Add(Me.pbPlus)
-        Me.bigbtngroup.Location = New System.Drawing.Point(0, 10)
+        Me.bigbtngroup.Location = New System.Drawing.Point(20, 10)
         Me.bigbtngroup.Name = "bigbtngroup"
-        Me.bigbtngroup.Size = New System.Drawing.Size(1279, 726)
+        Me.bigbtngroup.Size = New System.Drawing.Size(1329, 726)
         Me.bigbtngroup.TabIndex = 64
         Me.bigbtngroup.TabStop = False
         '
@@ -958,7 +1037,7 @@ Partial Class createEvent
         Me.gbRepeats.Controls.Add(Me.lblDays)
         Me.gbRepeats.Controls.Add(Me.pbCmb)
         Me.gbRepeats.Controls.Add(Me.clbDays)
-        Me.gbRepeats.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbRepeats.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbRepeats.Location = New System.Drawing.Point(661, 405)
         Me.gbRepeats.Name = "gbRepeats"
         Me.gbRepeats.Size = New System.Drawing.Size(201, 277)
@@ -1019,60 +1098,6 @@ Partial Class createEvent
         Me.lblDays.TabIndex = 64
         Me.lblDays.Text = "DAYS"
         '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button4.Location = New System.Drawing.Point(1157, 11)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(44, 44)
-        Me.Button4.TabIndex = 6
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Button13
-        '
-        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
-        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1201, 11)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(44, 44)
-        Me.Button13.TabIndex = 6
-        Me.Button13.UseVisualStyleBackColor = False
-        '
-        'exitBtn
-        '
-        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
-        Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.exitBtn.FlatAppearance.BorderSize = 0
-        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.exitBtn.Location = New System.Drawing.Point(1245, 11)
-        Me.exitBtn.Name = "exitBtn"
-        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
-        Me.exitBtn.TabIndex = 6
-        Me.exitBtn.UseVisualStyleBackColor = False
-        '
-        'scrollBtn
-        '
-        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
-        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
-        Me.scrollBtn.Name = "scrollBtn"
-        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
-        Me.scrollBtn.TabIndex = 3
-        Me.scrollBtn.UseVisualStyleBackColor = False
-        '
         'pbCmb
         '
         Me.pbCmb.Image = Global.main.My.Resources.Resources.comboBoxImage
@@ -1089,6 +1114,7 @@ Partial Class createEvent
         Me.btnSaveEvent.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnSaveEvent.BackgroundImage = Global.main.My.Resources.Resources.savebtn
         Me.btnSaveEvent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnSaveEvent.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSaveEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSaveEvent.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
         Me.btnSaveEvent.Location = New System.Drawing.Point(1090, 604)
@@ -1097,23 +1123,12 @@ Partial Class createEvent
         Me.btnSaveEvent.TabIndex = 20
         Me.btnSaveEvent.UseVisualStyleBackColor = False
         '
-        'pbAttach
-        '
-        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(114, -1)
-        Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
-        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbAttach.TabIndex = 42
-        Me.pbAttach.TabStop = False
-        Me.pbAttach.Tag = "add"
-        '
         'btnCancel
         '
         Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.close1
         Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnCancel.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
         Me.btnCancel.Location = New System.Drawing.Point(1199, 603)
@@ -1162,6 +1177,7 @@ Partial Class createEvent
         Me.gbDetails.PerformLayout()
         Me.flpAttach.ResumeLayout(False)
         Me.pnlAttach.ResumeLayout(False)
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbLocation.ResumeLayout(False)
         Me.gbLocation.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1177,7 +1193,6 @@ Partial Class createEvent
         Me.gbRepeats.ResumeLayout(False)
         Me.gbRepeats.PerformLayout()
         CType(Me.pbCmb, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

@@ -5,6 +5,7 @@ Public Class Logon
     '            coach, coachpass
     '            student, studentpass
 
+
 #Region "Dim Variables"
     Dim adpCustomer As New OleDbDataAdapter
     Dim conCreditUnion As OleDbConnection
@@ -55,7 +56,7 @@ Public Class Logon
 #End Region
 
 #Region "Login Feedback"
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub okBtn_Click(sender As Object, e As EventArgs) Handles okBtn.Click
         If TextBox1.Text = "" Or TextBox2.Text = "" Then
             MessageBox.Show("Fill out all forms", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         Else
@@ -71,15 +72,15 @@ Public Class Logon
                 TextBox1.Text = ""
                 TextBox1.Focus()
                 If attempts = 0 Then ' 3 Tries used up, locked out
-                    Button1.Enabled = False
-                    MessageBox.Show("Email Kurt at: KURTSCOOLEMAIL@GMAIL.COM", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    okBtn.Enabled = False
+                    MessageBox.Show("Email Kurt at: Kurt.Rich@gmail.com", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     TextBox1.ReadOnly = True
                     TextBox2.ReadOnly = True
                 End If
             End If
             If success = True Then
                 home.Show()
-                Me.Close()
+                Me.Hide()
             End If
         End If
     End Sub
@@ -91,13 +92,14 @@ Public Class Logon
         Dim Found As Boolean
         Using conn As New System.Data.OleDb.OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, Pass FROM UserDb WHERE ID = @Username AND Pass = @Pass", conn)
+            Using cmd As New OleDbCommand("SELECT ID, Pass, AccessLevel FROM UserDb WHERE ID = @Username AND Pass = @Pass", conn)
                 '("SELECT * FROM UserDb WHERE User='" & TextBox1.Text & "' AND Pass = '" & TextBox2.Text & "'")
                 cmd.Parameters.Add(New OleDbParameter("@Username", username))
                 cmd.Parameters.Add(New OleDbParameter("@Pass", pass)) 'maps your variable to that string
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         If dr.Read() Then
+                            access = dr("AccessLevel")
                             Found = True
                         Else
                             Found = False
@@ -109,16 +111,19 @@ Public Class Logon
         Return Found
     End Function
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
         End
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        MessageBox.Show("Email Kurt at: KURTSCOOLEMAIL@GMAIL.COM", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles forgotPwBtn.Click
+        MessageBox.Show("Email Kurt at: Kurt.Rich@gmail.com", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
 
     End Sub
-
-
 #End Region
 
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Me.Hide()
+        home.Show()
+    End Sub
 End Class

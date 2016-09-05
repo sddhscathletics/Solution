@@ -11,7 +11,9 @@ Public Class home
     Dim atDown As Boolean = False
     Dim adDrop As Boolean = False
     Dim adDown As Boolean = False
-    Dim jun As Integer = 0
+    Dim jun As Integer = 0 'jun is a counter for side bar scrolling
+    Dim pictimer As Integer = 0
+    Dim pic2 As Boolean = True
 #End Region
 
 #Region " Move Form "
@@ -19,8 +21,7 @@ Public Class home
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseDown
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseDown, lblTitle.MouseDown
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -30,8 +31,7 @@ Public Class home
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseMove
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseMove, lblTitle.MouseMove
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -39,8 +39,7 @@ Public Class home
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseUp
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseUp, lblTitle.MouseUp
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -54,11 +53,6 @@ Public Class home
 #Region "Sidebar"
 
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'access = 1 FOR TEST
-        'If access = 2 Then
-
-        sideadminBtn.Visible = True
-
         lblAlertCount.Text = getNotifCount()
         If lblAlertCount.Text = "0" Then
             lblAlertCount.Text = ""
@@ -101,22 +95,22 @@ Public Class home
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
-        Timer1.Enabled = True
+        sidebartime2.Enabled = True
     End Sub
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles sidebartime2.Tick
         If out = False Then
             bigbtngroup.Left = bigbtngroup.Left + 20
             Sidebar.Left = Sidebar.Left + 20
             If Sidebar.Left = 0 Then
                 out = True
-                Timer1.Enabled = False
+                sidebartime2.Enabled = False
             End If
         ElseIf out = True Then
             Sidebar.Left = Sidebar.Left - 20
             bigbtngroup.Left = bigbtngroup.Left - 20
             If Sidebar.Left = -200 Then
                 out = False
-                Timer1.Enabled = False
+                sidebartime2.Enabled = False
             End If
         End If
     End Sub
@@ -209,38 +203,30 @@ Public Class home
 
 #Region "Buttons"
     Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        Close()
+        End
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
         checkNotif.Show()
     End Sub
 
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        Me.Close()
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Logon.Show()
-        Me.Hide()
-    End Sub
-
     Private Sub resultBtn_Click_1(sender As Object, e As EventArgs) Handles resultBtn.Click
         Results.Show()
     End Sub
 
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
+    Private Sub ShowCalendar(sender As Object, e As EventArgs) Handles calendarBtn.Click
+        Me.Hide()
         Cursor.Current = Cursors.AppStarting
         calendar.Show()
         Cursor.Current = Cursors.Default
     End Sub
 
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles addEditUserBtn.Click
         AddEdit_User.Show()
         Me.Hide()
     End Sub
 
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles selectAthletesBtn.Click
         selectAthlete.Show()
         Me.Hide()
     End Sub
@@ -256,5 +242,23 @@ Public Class home
     End Sub
 #End Region
 
+
+    Private Sub clocktime_Tick(sender As Object, e As EventArgs) Handles clocktime.Tick
+        timeLbl.Text = TimeOfDay
+        dateLbl.Text = Date.Today
+        If pictimer < 100 Then
+            pictimer += 1
+        End If
+        If pictimer = 100 Then
+            If pic2 = True Then
+                gallerypic2.Visible = False
+                pic2 = False
+            Else
+                gallerypic2.Visible = True
+                pic2 = True
+            End If
+            pictimer = 0
+        End If
+    End Sub
 
 End Class
