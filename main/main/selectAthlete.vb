@@ -1,15 +1,12 @@
 ﻿Imports System.Data.OleDb
+'Searching
 'Profile photo
 'Team Manager
-'Help
-'Make alerts look pretty
-'Final dustup
-'Optimise!
+'Optimise parsing
 
 Public Class selectAthlete
     Dim listAthletes As New List(Of athlete)
     Dim listSorted As New List(Of athlete)
-    Dim listSearched As New List(Of athlete)
     Dim listAdd As New List(Of String)
     Dim listRem As New List(Of String)
     Dim controlState As String = "first"
@@ -184,21 +181,18 @@ Public Class selectAthlete
         toggleControls()
         listAthletes = populate(listAthletes)
         listSorted = listAthletes
-        listSearched.AddRange(listAthletes)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
         listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
         listSorted = sort(cmbSort, listSorted)
-        listSearched = updateSearched(listSearched, listSorted)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
         listSorted = sort(cmbSort, listSorted)
-        listSearched = updateSearched(listSearched, listSorted)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
@@ -211,7 +205,7 @@ Public Class selectAthlete
                 .Width = 140,
                 .BackColor = panelColor,
                 .Name = ath.ID,
-                .Tag = tag
+                .tag = tag
                 }
             Dim ID As New Label With
                 {
@@ -551,12 +545,19 @@ Public Class selectAthlete
         Me.Close()
     End Sub
 
-    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        If txtSearch.Text = "" Then
-            listSearched = updateSearched(listSearched, listSorted)
-        Else
-            listSearched = searchFilter(txtSearch, listSearched, listSorted)
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+        If MessageBox.Show("Do you wish to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+            End
         End If
-        fillPanels(flpAthletes, "", listSearched)
+    End Sub
+
+    Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
+        AddEdit_User.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
+        helpIdentifier = "selectAthlete"
+        helpForm.Show()
     End Sub
 End Class

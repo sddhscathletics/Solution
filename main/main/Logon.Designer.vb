@@ -28,11 +28,12 @@ Partial Class Logon
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.okBtn = New System.Windows.Forms.Button()
+        Me.exitBtn = New System.Windows.Forms.Button()
+        Me.forgotPwBtn = New System.Windows.Forms.Button()
         Me.UserDataSet = New main.UserDataSet()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Button4 = New System.Windows.Forms.Button()
         CType(Me.UserDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -51,10 +52,10 @@ Partial Class Logon
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Rockwell", 40.0!, System.Drawing.FontStyle.Bold)
-        Me.Label1.Location = New System.Drawing.Point(96, 70)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft MHei", 39.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(136, 66)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(497, 66)
+        Me.Label1.Size = New System.Drawing.Size(437, 70)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "SBHS ATHLETICS"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -97,41 +98,44 @@ Partial Class Logon
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "PW"
         '
-        'Button1
+        'okBtn
         '
-        Me.Button1.BackColor = System.Drawing.Color.Gray
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Rockwell", 12.0!)
-        Me.Button1.Location = New System.Drawing.Point(156, 423)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(207, 64)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "OK"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.okBtn.BackColor = System.Drawing.Color.Gray
+        Me.okBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.okBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.okBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.okBtn.Location = New System.Drawing.Point(156, 423)
+        Me.okBtn.Name = "okBtn"
+        Me.okBtn.Size = New System.Drawing.Size(207, 64)
+        Me.okBtn.TabIndex = 3
+        Me.okBtn.Text = "OK"
+        Me.okBtn.UseVisualStyleBackColor = False
         '
-        'Button2
+        'exitBtn
         '
-        Me.Button2.BackColor = System.Drawing.Color.Gray
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button2.Font = New System.Drawing.Font("Rockwell", 12.0!)
-        Me.Button2.Location = New System.Drawing.Point(369, 458)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(167, 29)
-        Me.Button2.TabIndex = 5
-        Me.Button2.Text = "EXIT"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.exitBtn.BackColor = System.Drawing.Color.Gray
+        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.exitBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.exitBtn.Location = New System.Drawing.Point(369, 458)
+        Me.exitBtn.Name = "exitBtn"
+        Me.exitBtn.Size = New System.Drawing.Size(167, 29)
+        Me.exitBtn.TabIndex = 5
+        Me.exitBtn.Text = "EXIT"
+        Me.exitBtn.UseVisualStyleBackColor = False
         '
-        'Button3
+        'forgotPwBtn
         '
-        Me.Button3.BackColor = System.Drawing.Color.Gray
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button3.Font = New System.Drawing.Font("Rockwell", 10.0!)
-        Me.Button3.Location = New System.Drawing.Point(369, 423)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(167, 29)
-        Me.Button3.TabIndex = 4
-        Me.Button3.Text = "FORGOT PASSWORD"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.forgotPwBtn.BackColor = System.Drawing.Color.Gray
+        Me.forgotPwBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.forgotPwBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.forgotPwBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 10.0!)
+        Me.forgotPwBtn.Location = New System.Drawing.Point(369, 423)
+        Me.forgotPwBtn.Name = "forgotPwBtn"
+        Me.forgotPwBtn.Size = New System.Drawing.Size(167, 29)
+        Me.forgotPwBtn.TabIndex = 4
+        Me.forgotPwBtn.Text = "FORGOT PASSWORD"
+        Me.forgotPwBtn.UseVisualStyleBackColor = False
         '
         'UserDataSet
         '
@@ -151,15 +155,26 @@ Partial Class Logon
         Me.PictureBox1.TabIndex = 10
         Me.PictureBox1.TabStop = False
         '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(581, 366)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 11
+        Me.Button4.Text = "free access"
+        Me.Button4.UseVisualStyleBackColor = True
+        Me.Button4.Visible = False
+        '
         'Logon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(685, 530)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.forgotPwBtn)
+        Me.Controls.Add(Me.exitBtn)
+        Me.Controls.Add(Me.okBtn)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label3)
@@ -185,8 +200,9 @@ Partial Class Logon
     Friend WithEvents Label3 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents UserDataSet As UserDataSet
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents okBtn As Button
+    Friend WithEvents exitBtn As Button
+    Friend WithEvents forgotPwBtn As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Button4 As System.Windows.Forms.Button
 End Class

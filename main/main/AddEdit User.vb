@@ -1,28 +1,11 @@
 ﻿Imports System.Data.OleDb
 Public Class AddEdit_User
-
-#Region "Dim Variables"
-    Dim out As Boolean = False
-    Dim cDrop As Boolean = False
-    Dim rDrop As Boolean = False
-    Dim cDown As Boolean = False
-    Dim rDown As Boolean = False
-    Dim atDrop As Boolean = False
-    Dim atDown As Boolean = False
-    Dim adDrop As Boolean = False
-    Dim adDown As Boolean = False
-    Dim jun As Integer = 0
-
-    Dim Pass As String = ""
-#End Region
-
 #Region " Move Form "
 
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseDown
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseDown, lblTitle.MouseDown
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -32,8 +15,7 @@ Public Class AddEdit_User
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseMove
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseMove, lblTitle.MouseMove
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -41,8 +23,7 @@ Public Class AddEdit_User
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseUp
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseUp, lblTitle.MouseUp
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -53,8 +34,33 @@ Public Class AddEdit_User
 
 #End Region
 
+#Region "Dim Variables - JUN"
+    Dim out As Boolean = False
+    Dim cDrop As Boolean = False
+    Dim rDrop As Boolean = False
+    Dim cDown As Boolean = False
+    Dim rDown As Boolean = False
+    Dim atDrop As Boolean = False
+    Dim atDown As Boolean = False
+    Dim adDrop As Boolean = False
+    Dim adDown As Boolean = False
+    Dim jun As Integer = 0
+    Dim storedID As String
+#End Region
 #Region "Sidebar"
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
+
+    Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'access = 1 FOR TEST
+        'If access = 2 Then
+        lblAlertCount.Text = getNotifCount()
+        If lblAlertCount.Text = "0" Then
+            lblAlertCount.Text = ""
+        End If
+        sideadminBtn.Visible = True
+        'End If
+    End Sub
+
+    Private Sub scrollclick(sender As Object, e As EventArgs) Handles scrollBtn.Click
         Timer1.Enabled = True
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -82,11 +88,6 @@ Public Class AddEdit_User
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
                 resdrop.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
-                sideCalSub1.Top += 10
-                sideCalSub2.Top += 10
-
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
@@ -95,16 +96,12 @@ Public Class AddEdit_User
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
                 resdrop.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
-                sideCalSub1.Top -= 10
-                sideCalSub2.Top -= 10
 
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
             jun += 1
-            If jun = 6 Then
+            If jun = 9 Then
                 jun = 0
                 cDrop = False
                 sidebartime.Enabled = False
@@ -115,16 +112,12 @@ Public Class AddEdit_User
             If rDown = True Then
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
-                athdrop.Top += 10
-                admDrop.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
                 sideadminBtn.Top -= 10
-                athdrop.Top -= 10
-                admDrop.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
             End If
@@ -136,7 +129,7 @@ Public Class AddEdit_User
             End If
         End If
     End Sub
-    Private Sub calDrop_Click(sender As Object, e As EventArgs) Handles caldrop.Click
+    Private Sub calDrop_Click(sender As Object, e As EventArgs)
         If cDrop = False Then
             cDrop = True
             If cDown = False Then
@@ -171,23 +164,15 @@ Public Class AddEdit_User
         Results.Show()
         Me.Hide()
     End Sub
-
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        home.Show()
-        Me.Close()
-    End Sub
-
-
 #End Region
 
 
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub deleteUser(sender As Object, e As EventArgs) Handles deleteBtn.Click
         Dim person As String = DataGridView1.CurrentCell.Value.ToString
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("DELETE ID, Pass, AccessLevel FROM userDb WHERE ID = @username", conn)
-                cmd.Parameters.Add(New OleDbParameter("@Username", username))
+                cmd.Parameters.Add(New OleDbParameter("@Username", idText.Text))
                 cmd.ExecuteNonQuery()
             End Using
         End Using
@@ -196,44 +181,34 @@ Public Class AddEdit_User
 
 
     Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        home.Close()
+        If MessageBox.Show("Do you wish to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+            End
+        End If
     End Sub
 
+    Private Sub editBtnClick(sender As Object, e As EventArgs) Handles editBtn.Click
+        editBtn.Visible = False
+        confirmBtn.Visible = True
+        deleteBtn.Visible = True
+        idText.ReadOnly = False
+        passText.ReadOnly = False
+        access1.Enabled = True
+        access2.Enabled = True
+        access3.Enabled = True
+        storedID = idText.Text
+    End Sub
 
     Private Sub AddEdit_User_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'AthleteDataSet.userDb' table. You can move, or remove it, as needed.
         Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
 
     End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
-            conn.Open()
-            Using cmd As New OleDbCommand("INSERT INTO userDb (ID, Pass, AccessLevel) VALUES (@id, @pass, @accesslvl)", conn)
-                cmd.Parameters.Add(New OleDbParameter("@id", idText.Text))
-                cmd.Parameters.Add(New OleDbParameter("@pass", passText.Text))
-                If RadioButton1.Checked Then
-                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton1.Text))
-                End If
-                If RadioButton2.Checked Then
-                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton2.Text))
-                End If
-                If RadioButton3.Checked Then
-                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton3.Text))
-                End If
-                'if username already exists provide error
-                cmd.ExecuteNonQuery()
-            End Using
-        End Using
-        Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub edit() Handles confirmBtn.Click
         Dim person As String = DataGridView1.CurrentCell.Value.ToString
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("DELETE ID, Pass, AccessLevel FROM userDb WHERE ID = @username", conn)
-                cmd.Parameters.Add(New OleDbParameter("@Username", username))
+                cmd.Parameters.Add(New OleDbParameter("@Username", storedID))
                 cmd.ExecuteNonQuery()
             End Using
         End Using
@@ -242,36 +217,81 @@ Public Class AddEdit_User
             Using cmd As New OleDbCommand("INSERT INTO userDb (ID, Pass, AccessLevel) VALUES (@id, @pass, @accesslvl)", conn)
                 cmd.Parameters.Add(New OleDbParameter("@id", idText.Text))
                 cmd.Parameters.Add(New OleDbParameter("@pass", passText.Text))
-                If RadioButton1.Checked Then
-                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton1.Text))
+                If access1.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", access1.Text))
                 End If
-                If RadioButton2.Checked Then
-                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton2.Text))
+                If access2.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", access2.Text))
                 End If
-                If RadioButton3.Checked Then
-                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", RadioButton3.Text))
+                If access3.Checked Then
+                    cmd.Parameters.Add(New OleDbParameter("@accesslvl", access3.Text))
                 End If
                 'if username already exists provide error
                 cmd.ExecuteNonQuery()
             End Using
         End Using
         Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
+        confirmBtn.Visible = False
+        editBtn.Visible = True
+        deleteBtn.Visible = False
+        idText.ReadOnly = True
+        passText.ReadOnly = True
+        access1.Enabled = False
+        access2.Enabled = False
+        access3.Enabled = False
     End Sub
+    Private Sub NewUser() Handles createBtn.Click
+        makeuser.Show()
+    End Sub
+
+
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         If e.RowIndex > -1 Then
             idText.Text = sender.rows(e.RowIndex).cells(0).value
             passText.Text = sender.rows(e.RowIndex).cells(1).value
             If sender.rows(e.RowIndex).cells(2).value = 0 Then
-                RadioButton1.Checked = True
+                access1.Checked = True
             End If
             If sender.rows(e.RowIndex).cells(2).value = 1 Then
-                RadioButton2.Checked = True
+                access2.Checked = True
             End If
             If sender.rows(e.RowIndex).cells(2).value = 2 Then
-                RadioButton3.Checked = True
+                access3.Checked = True
             End If
         End If
+        confirmBtn.Visible = False
+        editBtn.Visible = True
+        deleteBtn.Visible = False
+        idText.ReadOnly = True
+        passText.ReadOnly = True
+        access1.Enabled = False
+        access2.Enabled = False
+        access3.Enabled = False
+
     End Sub
 
+
+    Private Sub help(sender As Object, e As EventArgs) Handles helpBtn.Click
+        helpIdentifier = "addEdit"
+        helpForm.Show()
+    End Sub
+
+    Private Sub notifBtn_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
+        checkNotif.Show()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        home.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub sideAthletesBtn_Click(sender As Object, e As EventArgs) Handles sideAthletesBtn.Click
+        selectAthlete.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
+        Me.Close()
+    End Sub
 End Class

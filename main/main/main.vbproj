@@ -48,6 +48,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>sbhslogoreal.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.NET.WindowsForms.1.7.1\lib\net40\GMap.NET.Core.dll</HintPath>
@@ -135,6 +138,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="help.vb" />
+    <Compile Include="helpForm.Designer.vb">
+      <DependentUpon>helpForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="helpForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="login.Designer.vb">
       <DependentUpon>Login.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -144,6 +153,12 @@
       <DependentUpon>Logon.vb</DependentUpon>
     </Compile>
     <Compile Include="Logon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="makeuser.Designer.vb">
+      <DependentUpon>makeuser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="makeuser.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="manageTeams.Designer.vb">
@@ -234,11 +249,17 @@
     <EmbeddedResource Include="eventResults.resx">
       <DependentUpon>eventResults.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="helpForm.resx">
+      <DependentUpon>helpForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="home.resx">
       <DependentUpon>home.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Logon.resx">
       <DependentUpon>Logon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="makeuser.resx">
+      <DependentUpon>makeuser.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="manageTeams.resx">
       <DependentUpon>manageTeams.vb</DependentUpon>
@@ -406,14 +427,19 @@
     <None Include="Resources\notifbtn.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="sbhslogoreal.ico" />
     <None Include="Resources\savebtn.png" />
     <None Include="Resources\Manage User UPD Btn.png" />
     <None Include="Resources\comboBoxImage.png" />
     <None Include="Resources\Calendar Btn.png" />
     <None Include="Resources\close.png" />
     <None Include="Resources\close1.png" />
-    <None Include="Resources\comboBoxDropped.png" />
-    <None Include="Resources\comboBoxHover.png" />
+    <None Include="Resources\comboBoxDropped1.png" />
+    <None Include="Resources\comboBoxImage1.png" />
+    <None Include="Resources\comboBoxHover1.png" />
+    <None Include="Resources\comboBoxDisabled.png" />
+    <None Include="Resources\gallery1.jpg" />
+    <None Include="Resources\gallery2.jpg" />
     <Content Include="Resources\helpbtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

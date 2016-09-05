@@ -23,6 +23,7 @@ Partial Class selectAthlete
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(selectAthlete))
         Me.gpbTeamManagement = New System.Windows.Forms.GroupBox()
         Me.cmbTeamAgeGroup = New System.Windows.Forms.ComboBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -62,14 +63,10 @@ Partial Class selectAthlete
         Me.lblStNo = New System.Windows.Forms.Label()
         Me.cmbSort = New System.Windows.Forms.ComboBox()
         Me.cmbAgeGroup = New System.Windows.Forms.ComboBox()
-        Me.btnEdit = New System.Windows.Forms.Button()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.pbPhoto = New System.Windows.Forms.PictureBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblAlertCount = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.helpBtn = New System.Windows.Forms.Button()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
@@ -85,16 +82,20 @@ Partial Class selectAthlete
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
+        Me.btnEdit = New System.Windows.Forms.Button()
+        Me.pbPhoto = New System.Windows.Forms.PictureBox()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
         Me.gpbStudent.SuspendLayout()
         Me.gpbContact.SuspendLayout()
         Me.gpbAthlete.SuspendLayout()
         Me.gpbAddress.SuspendLayout()
-        CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.Sidebar.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
+        CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gpbTeamManagement
@@ -105,6 +106,7 @@ Partial Class selectAthlete
         Me.gpbTeamManagement.Controls.Add(Me.btnNewTeam)
         Me.gpbTeamManagement.Controls.Add(Me.flpAttachTeam)
         Me.gpbTeamManagement.Controls.Add(Me.lblTeamSearch)
+        Me.gpbTeamManagement.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpbTeamManagement.Location = New System.Drawing.Point(1082, 206)
         Me.gpbTeamManagement.Name = "gpbTeamManagement"
         Me.gpbTeamManagement.Size = New System.Drawing.Size(184, 333)
@@ -133,22 +135,24 @@ Partial Class selectAthlete
         'lblHeaderTeamManagement
         '
         Me.lblHeaderTeamManagement.AutoSize = True
-        Me.lblHeaderTeamManagement.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblHeaderTeamManagement.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderTeamManagement.Location = New System.Drawing.Point(6, 0)
         Me.lblHeaderTeamManagement.Name = "lblHeaderTeamManagement"
-        Me.lblHeaderTeamManagement.Size = New System.Drawing.Size(162, 20)
+        Me.lblHeaderTeamManagement.Size = New System.Drawing.Size(150, 19)
         Me.lblHeaderTeamManagement.TabIndex = 34
         Me.lblHeaderTeamManagement.Text = "Team Management"
         '
         'btnNewTeam
         '
-        Me.btnNewTeam.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNewTeam.BackColor = System.Drawing.Color.Gray
+        Me.btnNewTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNewTeam.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNewTeam.Location = New System.Drawing.Point(6, 295)
         Me.btnNewTeam.Name = "btnNewTeam"
         Me.btnNewTeam.Size = New System.Drawing.Size(170, 31)
         Me.btnNewTeam.TabIndex = 51
         Me.btnNewTeam.Text = "CREATE NEW TEAM"
-        Me.btnNewTeam.UseVisualStyleBackColor = True
+        Me.btnNewTeam.UseVisualStyleBackColor = False
         '
         'flpAttachTeam
         '
@@ -161,60 +165,60 @@ Partial Class selectAthlete
         'lblTeamSearch
         '
         Me.lblTeamSearch.AutoSize = True
-        Me.lblTeamSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
+        Me.lblTeamSearch.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTeamSearch.Location = New System.Drawing.Point(3, 20)
         Me.lblTeamSearch.Name = "lblTeamSearch"
-        Me.lblTeamSearch.Size = New System.Drawing.Size(64, 16)
+        Me.lblTeamSearch.Size = New System.Drawing.Size(58, 17)
         Me.lblTeamSearch.TabIndex = 51
         Me.lblTeamSearch.Text = "SEARCH"
         '
         'lblID
         '
         Me.lblID.AutoSize = True
-        Me.lblID.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblID.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblID.Location = New System.Drawing.Point(632, 109)
         Me.lblID.Name = "lblID"
-        Me.lblID.Size = New System.Drawing.Size(256, 18)
+        Me.lblID.Size = New System.Drawing.Size(278, 24)
         Me.lblID.TabIndex = 71
         Me.lblID.Text = "SELECT A STUDENT TO START"
         '
         'lblBestEvent
         '
         Me.lblBestEvent.AutoSize = True
-        Me.lblBestEvent.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBestEvent.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBestEvent.Location = New System.Drawing.Point(12, 39)
         Me.lblBestEvent.Name = "lblBestEvent"
-        Me.lblBestEvent.Size = New System.Drawing.Size(72, 16)
+        Me.lblBestEvent.Size = New System.Drawing.Size(71, 17)
         Me.lblBestEvent.TabIndex = 27
         Me.lblBestEvent.Text = "Best Event"
         '
         'lblHeaderContact
         '
         Me.lblHeaderContact.AutoSize = True
-        Me.lblHeaderContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderContact.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderContact.Location = New System.Drawing.Point(6, 0)
         Me.lblHeaderContact.Name = "lblHeaderContact"
-        Me.lblHeaderContact.Size = New System.Drawing.Size(133, 20)
+        Me.lblHeaderContact.Size = New System.Drawing.Size(120, 19)
         Me.lblHeaderContact.TabIndex = 34
         Me.lblHeaderContact.Text = "Contact Details"
         '
         'lblEmail
         '
         Me.lblEmail.AutoSize = True
-        Me.lblEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmail.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEmail.Location = New System.Drawing.Point(7, 42)
         Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(96, 16)
+        Me.lblEmail.Size = New System.Drawing.Size(92, 17)
         Me.lblEmail.TabIndex = 28
         Me.lblEmail.Text = "Email Address"
         '
         'lblPhone
         '
         Me.lblPhone.AutoSize = True
-        Me.lblPhone.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPhone.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPhone.Location = New System.Drawing.Point(7, 20)
         Me.lblPhone.Name = "lblPhone"
-        Me.lblPhone.Size = New System.Drawing.Size(98, 16)
+        Me.lblPhone.Size = New System.Drawing.Size(100, 17)
         Me.lblPhone.TabIndex = 29
         Me.lblPhone.Text = "Phone Number"
         '
@@ -248,6 +252,7 @@ Partial Class selectAthlete
         '
         Me.gpbMedical.Controls.Add(Me.lblHeaderMedical)
         Me.gpbMedical.Controls.Add(Me.lblMedical)
+        Me.gpbMedical.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpbMedical.Location = New System.Drawing.Point(842, 379)
         Me.gpbMedical.Name = "gpbMedical"
         Me.gpbMedical.Size = New System.Drawing.Size(234, 43)
@@ -257,20 +262,20 @@ Partial Class selectAthlete
         'lblHeaderMedical
         '
         Me.lblHeaderMedical.AutoSize = True
-        Me.lblHeaderMedical.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderMedical.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderMedical.Location = New System.Drawing.Point(6, 0)
         Me.lblHeaderMedical.Name = "lblHeaderMedical"
-        Me.lblHeaderMedical.Size = New System.Drawing.Size(131, 20)
+        Me.lblHeaderMedical.Size = New System.Drawing.Size(121, 19)
         Me.lblHeaderMedical.TabIndex = 33
         Me.lblHeaderMedical.Text = "Medical Details"
         '
         'lblMedical
         '
         Me.lblMedical.AutoSize = True
-        Me.lblMedical.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMedical.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMedical.Location = New System.Drawing.Point(7, 20)
         Me.lblMedical.Name = "lblMedical"
-        Me.lblMedical.Size = New System.Drawing.Size(124, 16)
+        Me.lblMedical.Size = New System.Drawing.Size(130, 17)
         Me.lblMedical.TabIndex = 31
         Me.lblMedical.Text = "Medical Information"
         '
@@ -279,6 +284,7 @@ Partial Class selectAthlete
         Me.gpbStudent.Controls.Add(Me.lblLName)
         Me.gpbStudent.Controls.Add(Me.lblFName)
         Me.gpbStudent.Controls.Add(Me.lblRoll)
+        Me.gpbStudent.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpbStudent.Location = New System.Drawing.Point(842, 136)
         Me.gpbStudent.Name = "gpbStudent"
         Me.gpbStudent.Size = New System.Drawing.Size(234, 64)
@@ -288,30 +294,30 @@ Partial Class selectAthlete
         'lblLName
         '
         Me.lblLName.AutoSize = True
-        Me.lblLName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLName.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLName.Location = New System.Drawing.Point(9, 0)
         Me.lblLName.Name = "lblLName"
-        Me.lblLName.Size = New System.Drawing.Size(95, 20)
+        Me.lblLName.Size = New System.Drawing.Size(85, 19)
         Me.lblLName.TabIndex = 17
         Me.lblLName.Text = "Last Name"
         '
         'lblFName
         '
         Me.lblFName.AutoSize = True
-        Me.lblFName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFName.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFName.Location = New System.Drawing.Point(9, 20)
         Me.lblFName.Name = "lblFName"
-        Me.lblFName.Size = New System.Drawing.Size(86, 20)
+        Me.lblFName.Size = New System.Drawing.Size(73, 17)
         Me.lblFName.TabIndex = 18
         Me.lblFName.Text = "First Name"
         '
         'lblRoll
         '
         Me.lblRoll.AutoSize = True
-        Me.lblRoll.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRoll.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRoll.Location = New System.Drawing.Point(9, 40)
         Me.lblRoll.Name = "lblRoll"
-        Me.lblRoll.Size = New System.Drawing.Size(79, 20)
+        Me.lblRoll.Size = New System.Drawing.Size(64, 17)
         Me.lblRoll.TabIndex = 19
         Me.lblRoll.Text = "Roll Class"
         '
@@ -326,40 +332,40 @@ Partial Class selectAthlete
         'lblAgeGroup
         '
         Me.lblAgeGroup.AutoSize = True
-        Me.lblAgeGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAgeGroup.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAgeGroup.Location = New System.Drawing.Point(10, 20)
         Me.lblAgeGroup.Name = "lblAgeGroup"
-        Me.lblAgeGroup.Size = New System.Drawing.Size(73, 16)
+        Me.lblAgeGroup.Size = New System.Drawing.Size(74, 17)
         Me.lblAgeGroup.TabIndex = 26
         Me.lblAgeGroup.Text = "Age Group"
         '
         'lblHeaderAddress
         '
         Me.lblHeaderAddress.AutoSize = True
-        Me.lblHeaderAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderAddress.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderAddress.Location = New System.Drawing.Point(4, 0)
         Me.lblHeaderAddress.Name = "lblHeaderAddress"
-        Me.lblHeaderAddress.Size = New System.Drawing.Size(75, 20)
+        Me.lblHeaderAddress.Size = New System.Drawing.Size(69, 19)
         Me.lblHeaderAddress.TabIndex = 32
         Me.lblHeaderAddress.Text = "Address"
         '
         'lblPo
         '
         Me.lblPo.AutoSize = True
-        Me.lblPo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPo.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPo.Location = New System.Drawing.Point(5, 71)
         Me.lblPo.Name = "lblPo"
-        Me.lblPo.Size = New System.Drawing.Size(66, 16)
+        Me.lblPo.Size = New System.Drawing.Size(64, 17)
         Me.lblPo.TabIndex = 22
         Me.lblPo.Text = "Postcode"
         '
         'lblSb
         '
         Me.lblSb.AutoSize = True
-        Me.lblSb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSb.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSb.Location = New System.Drawing.Point(7, 54)
         Me.lblSb.Name = "lblSb"
-        Me.lblSb.Size = New System.Drawing.Size(51, 16)
+        Me.lblSb.Size = New System.Drawing.Size(52, 17)
         Me.lblSb.TabIndex = 23
         Me.lblSb.Text = "Suburb"
         '
@@ -368,6 +374,7 @@ Partial Class selectAthlete
         Me.gpbContact.Controls.Add(Me.lblHeaderContact)
         Me.gpbContact.Controls.Add(Me.lblEmail)
         Me.gpbContact.Controls.Add(Me.lblPhone)
+        Me.gpbContact.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpbContact.Location = New System.Drawing.Point(842, 428)
         Me.gpbContact.Name = "gpbContact"
         Me.gpbContact.Size = New System.Drawing.Size(234, 67)
@@ -377,10 +384,10 @@ Partial Class selectAthlete
         'lblSt
         '
         Me.lblSt.AutoSize = True
-        Me.lblSt.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSt.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSt.Location = New System.Drawing.Point(7, 37)
         Me.lblSt.Name = "lblSt"
-        Me.lblSt.Size = New System.Drawing.Size(43, 16)
+        Me.lblSt.Size = New System.Drawing.Size(44, 17)
         Me.lblSt.TabIndex = 24
         Me.lblSt.Text = "Street"
         '
@@ -392,6 +399,7 @@ Partial Class selectAthlete
         Me.gpbAthlete.Controls.Add(Me.lblHeaderAthlete)
         Me.gpbAthlete.Controls.Add(Me.lblAgeGroup)
         Me.gpbAthlete.Controls.Add(Me.lblBestEvent)
+        Me.gpbAthlete.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpbAthlete.Location = New System.Drawing.Point(842, 206)
         Me.gpbAthlete.Name = "gpbAthlete"
         Me.gpbAthlete.Size = New System.Drawing.Size(234, 167)
@@ -402,6 +410,7 @@ Partial Class selectAthlete
         '
         Me.btnCommitTeams.BackgroundImage = Global.main.My.Resources.Resources.iconSwitch
         Me.btnCommitTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCommitTeams.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCommitTeams.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCommitTeams.Location = New System.Drawing.Point(189, 93)
         Me.btnCommitTeams.Name = "btnCommitTeams"
@@ -412,10 +421,10 @@ Partial Class selectAthlete
         'lblTeams
         '
         Me.lblTeams.AutoSize = True
-        Me.lblTeams.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTeams.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTeams.Location = New System.Drawing.Point(10, 55)
         Me.lblTeams.Name = "lblTeams"
-        Me.lblTeams.Size = New System.Drawing.Size(51, 16)
+        Me.lblTeams.Size = New System.Drawing.Size(47, 17)
         Me.lblTeams.TabIndex = 50
         Me.lblTeams.Text = "Teams"
         '
@@ -430,19 +439,19 @@ Partial Class selectAthlete
         'lblHeaderAthlete
         '
         Me.lblHeaderAthlete.AutoSize = True
-        Me.lblHeaderAthlete.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeaderAthlete.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeaderAthlete.Location = New System.Drawing.Point(6, 0)
         Me.lblHeaderAthlete.Name = "lblHeaderAthlete"
-        Me.lblHeaderAthlete.Size = New System.Drawing.Size(128, 20)
+        Me.lblHeaderAthlete.Size = New System.Drawing.Size(117, 19)
         Me.lblHeaderAthlete.TabIndex = 34
         Me.lblHeaderAthlete.Text = "Athlete Details"
         '
         'txtSearch
         '
-        Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSearch.Location = New System.Drawing.Point(480, 55)
+        Me.txtSearch.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSearch.Location = New System.Drawing.Point(411, 51)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(397, 22)
+        Me.txtSearch.Size = New System.Drawing.Size(397, 24)
         Me.txtSearch.TabIndex = 70
         '
         'gpbAddress
@@ -452,6 +461,7 @@ Partial Class selectAthlete
         Me.gpbAddress.Controls.Add(Me.lblSb)
         Me.gpbAddress.Controls.Add(Me.lblSt)
         Me.gpbAddress.Controls.Add(Me.lblStNo)
+        Me.gpbAddress.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpbAddress.Location = New System.Drawing.Point(842, 501)
         Me.gpbAddress.Name = "gpbAddress"
         Me.gpbAddress.Size = New System.Drawing.Size(234, 96)
@@ -461,84 +471,41 @@ Partial Class selectAthlete
         'lblStNo
         '
         Me.lblStNo.AutoSize = True
-        Me.lblStNo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStNo.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStNo.Location = New System.Drawing.Point(5, 20)
         Me.lblStNo.Name = "lblStNo"
-        Me.lblStNo.Size = New System.Drawing.Size(94, 16)
+        Me.lblStNo.Size = New System.Drawing.Size(97, 17)
         Me.lblStNo.TabIndex = 25
         Me.lblStNo.Text = "Street Number"
         '
         'cmbSort
         '
-        Me.cmbSort.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbSort.Font = New System.Drawing.Font("Microsoft JhengHei UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbSort.FormattingEnabled = True
         Me.cmbSort.Items.AddRange(New Object() {"ID", "First Name (Ascending)", "First Name (Descending)", "Last Name (Ascending)", "Last Name (Descending)"})
         Me.cmbSort.Location = New System.Drawing.Point(480, 81)
         Me.cmbSort.Name = "cmbSort"
-        Me.cmbSort.Size = New System.Drawing.Size(150, 24)
+        Me.cmbSort.Size = New System.Drawing.Size(150, 22)
         Me.cmbSort.TabIndex = 89
         Me.cmbSort.Text = "Sort By"
         '
         'cmbAgeGroup
         '
-        Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft JhengHei UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAgeGroup.FormattingEnabled = True
         Me.cmbAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
         Me.cmbAgeGroup.Location = New System.Drawing.Point(636, 81)
         Me.cmbAgeGroup.Name = "cmbAgeGroup"
-        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 24)
+        Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 22)
         Me.cmbAgeGroup.TabIndex = 88
         Me.cmbAgeGroup.Text = "Age Group"
-        '
-        'btnEdit
-        '
-        Me.btnEdit.BackgroundImage = Global.main.My.Resources.Resources.iconNotepad
-        Me.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnEdit.Location = New System.Drawing.Point(636, 442)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(75, 75)
-        Me.btnEdit.TabIndex = 78
-        Me.btnEdit.UseVisualStyleBackColor = True
-        '
-        'btnCancel
-        '
-        Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.close1
-        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnCancel.Location = New System.Drawing.Point(717, 566)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(75, 75)
-        Me.btnCancel.TabIndex = 81
-        Me.btnCancel.UseVisualStyleBackColor = False
-        '
-        'btnSave
-        '
-        Me.btnSave.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.btnSave.BackgroundImage = Global.main.My.Resources.Resources.savebtn
-        Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSave.Location = New System.Drawing.Point(636, 566)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(75, 75)
-        Me.btnSave.TabIndex = 80
-        Me.btnSave.UseVisualStyleBackColor = False
-        '
-        'pbPhoto
-        '
-        Me.pbPhoto.Location = New System.Drawing.Point(636, 136)
-        Me.pbPhoto.Name = "pbPhoto"
-        Me.pbPhoto.Size = New System.Drawing.Size(200, 300)
-        Me.pbPhoto.TabIndex = 72
-        Me.pbPhoto.TabStop = False
         '
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
         Me.GroupBox2.Controls.Add(Me.lblTitle)
         Me.GroupBox2.Controls.Add(Me.lblAlertCount)
-        Me.GroupBox2.Controls.Add(Me.Button4)
+        Me.GroupBox2.Controls.Add(Me.helpBtn)
         Me.GroupBox2.Controls.Add(Me.Button13)
         Me.GroupBox2.Controls.Add(Me.exitBtn)
         Me.GroupBox2.Controls.Add(Me.scrollBtn)
@@ -565,32 +532,34 @@ Partial Class selectAthlete
         Me.lblAlertCount.AutoSize = True
         Me.lblAlertCount.BackColor = System.Drawing.Color.DarkGray
         Me.lblAlertCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAlertCount.Location = New System.Drawing.Point(1215, 16)
+        Me.lblAlertCount.Location = New System.Drawing.Point(1224, 17)
         Me.lblAlertCount.Name = "lblAlertCount"
         Me.lblAlertCount.Size = New System.Drawing.Size(15, 16)
         Me.lblAlertCount.TabIndex = 3
         Me.lblAlertCount.Text = "0"
         Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button4
+        'helpBtn
         '
-        Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button4.Location = New System.Drawing.Point(1157, 11)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(44, 44)
-        Me.Button4.TabIndex = 6
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.helpBtn.FlatAppearance.BorderSize = 0
+        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.helpBtn.Location = New System.Drawing.Point(1157, 11)
+        Me.helpBtn.Name = "helpBtn"
+        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
+        Me.helpBtn.TabIndex = 6
+        Me.helpBtn.UseVisualStyleBackColor = False
         '
         'Button13
         '
         Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
         Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
         Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button13.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button13.FlatAppearance.BorderSize = 0
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -605,6 +574,7 @@ Partial Class selectAthlete
         Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
         Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.exitBtn.FlatAppearance.BorderSize = 0
         Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -619,6 +589,7 @@ Partial Class selectAthlete
         Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
         Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
         Me.scrollBtn.Name = "scrollBtn"
@@ -637,7 +608,7 @@ Partial Class selectAthlete
         Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
         Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(-200, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 91
@@ -646,6 +617,7 @@ Partial Class selectAthlete
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button2.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -661,6 +633,7 @@ Partial Class selectAthlete
         'resdrop
         '
         Me.resdrop.BackColor = System.Drawing.Color.Gray
+        Me.resdrop.Cursor = System.Windows.Forms.Cursors.Hand
         Me.resdrop.FlatAppearance.BorderSize = 0
         Me.resdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.resdrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -675,6 +648,7 @@ Partial Class selectAthlete
         'sideAthletesBtn
         '
         Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAthletesBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
         Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -690,6 +664,7 @@ Partial Class selectAthlete
         'sideadminBtn
         '
         Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideadminBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideadminBtn.FlatAppearance.BorderSize = 0
         Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -706,6 +681,7 @@ Partial Class selectAthlete
         'sideresultBtn
         '
         Me.sideresultBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideresultBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideresultBtn.FlatAppearance.BorderSize = 0
         Me.sideresultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideresultBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -721,6 +697,7 @@ Partial Class selectAthlete
         'sidecalendarBtn
         '
         Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidecalendarBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
         Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -797,16 +774,63 @@ Partial Class selectAthlete
         Me.bigbtngroup.TabIndex = 92
         Me.bigbtngroup.TabStop = False
         '
+        'btnEdit
+        '
+        Me.btnEdit.BackgroundImage = Global.main.My.Resources.Resources.iconNotepad
+        Me.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnEdit.Location = New System.Drawing.Point(636, 442)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(75, 75)
+        Me.btnEdit.TabIndex = 78
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
+        'pbPhoto
+        '
+        Me.pbPhoto.Location = New System.Drawing.Point(636, 136)
+        Me.pbPhoto.Name = "pbPhoto"
+        Me.pbPhoto.Size = New System.Drawing.Size(200, 300)
+        Me.pbPhoto.TabIndex = 72
+        Me.pbPhoto.TabStop = False
+        '
+        'btnCancel
+        '
+        Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.close1
+        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnCancel.Location = New System.Drawing.Point(717, 566)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 75)
+        Me.btnCancel.TabIndex = 81
+        Me.btnCancel.UseVisualStyleBackColor = False
+        '
+        'btnSave
+        '
+        Me.btnSave.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.btnSave.BackgroundImage = Global.main.My.Resources.Resources.savebtn
+        Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSave.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnSave.Location = New System.Drawing.Point(636, 566)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(75, 75)
+        Me.btnSave.TabIndex = 80
+        Me.btnSave.UseVisualStyleBackColor = False
+        '
         'selectAthlete
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.ClientSize = New System.Drawing.Size(1280, 720)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.Sidebar)
         Me.Controls.Add(Me.bigbtngroup)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "selectAthlete"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "selectAthlete"
@@ -822,12 +846,12 @@ Partial Class selectAthlete
         Me.gpbAthlete.PerformLayout()
         Me.gpbAddress.ResumeLayout(False)
         Me.gpbAddress.PerformLayout()
-        CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.Sidebar.ResumeLayout(False)
         Me.bigbtngroup.ResumeLayout(False)
         Me.bigbtngroup.PerformLayout()
+        CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -876,7 +900,7 @@ Partial Class selectAthlete
     Friend WithEvents lblTeamSearch As Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents lblAlertCount As System.Windows.Forms.Label
-    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents helpBtn As System.Windows.Forms.Button
     Friend WithEvents Button13 As System.Windows.Forms.Button
     Friend WithEvents exitBtn As System.Windows.Forms.Button
     Friend WithEvents scrollBtn As System.Windows.Forms.Button

@@ -23,6 +23,7 @@ Partial Class createEvent
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(createEvent))
         Me.dtpStart = New System.Windows.Forms.DateTimePicker()
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.lblStart = New System.Windows.Forms.Label()
@@ -45,6 +46,7 @@ Partial Class createEvent
         Me.gbDetails = New System.Windows.Forms.GroupBox()
         Me.flpAttach = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlAttach = New System.Windows.Forms.Panel()
+        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.map = New GMap.NET.WindowsForms.GMapControl()
         Me.txtStreet = New System.Windows.Forms.TextBox()
         Me.lblStreet = New System.Windows.Forms.Label()
@@ -81,8 +83,12 @@ Partial Class createEvent
         Me.gbEvents = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblAlertCount = New System.Windows.Forms.Label()
+        Me.helpBtn = New System.Windows.Forms.Button()
+        Me.notifBtn = New System.Windows.Forms.Button()
+        Me.exitBtn = New System.Windows.Forms.Button()
+        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.sideMainBtn = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
         Me.sideAthletesBtn = New System.Windows.Forms.Button()
         Me.sideadminBtn = New System.Windows.Forms.Button()
@@ -94,24 +100,20 @@ Partial Class createEvent
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
         Me.gbRepeats = New System.Windows.Forms.GroupBox()
+        Me.lblRepeat = New System.Windows.Forms.Label()
         Me.chbRepNA = New System.Windows.Forms.CheckBox()
         Me.cmbRepType = New System.Windows.Forms.ComboBox()
         Me.lblRepType = New System.Windows.Forms.Label()
         Me.lblDays = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.exitBtn = New System.Windows.Forms.Button()
-        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.pbCmb = New System.Windows.Forms.PictureBox()
         Me.btnSaveEvent = New System.Windows.Forms.Button()
-        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.pbPlus = New System.Windows.Forms.PictureBox()
-        Me.lblRepeat = New System.Windows.Forms.Label()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbLocation.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbAttachments.SuspendLayout()
@@ -122,25 +124,24 @@ Partial Class createEvent
         Me.bigbtngroup.SuspendLayout()
         Me.gbRepeats.SuspendLayout()
         CType(Me.pbCmb, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dtpStart
         '
-        Me.dtpStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpStart.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtpStart.Location = New System.Drawing.Point(98, 188)
         Me.dtpStart.Name = "dtpStart"
         Me.dtpStart.ShowUpDown = True
-        Me.dtpStart.Size = New System.Drawing.Size(230, 22)
+        Me.dtpStart.Size = New System.Drawing.Size(230, 23)
         Me.dtpStart.TabIndex = 23
         '
         'dtpDate
         '
-        Me.dtpDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpDate.Location = New System.Drawing.Point(98, 150)
+        Me.dtpDate.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpDate.Location = New System.Drawing.Point(98, 155)
         Me.dtpDate.Name = "dtpDate"
         Me.dtpDate.Size = New System.Drawing.Size(230, 22)
         Me.dtpDate.TabIndex = 22
@@ -148,60 +149,60 @@ Partial Class createEvent
         'lblStart
         '
         Me.lblStart.AutoSize = True
-        Me.lblStart.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStart.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblStart.Location = New System.Drawing.Point(35, 188)
         Me.lblStart.Name = "lblStart"
-        Me.lblStart.Size = New System.Drawing.Size(46, 16)
+        Me.lblStart.Size = New System.Drawing.Size(46, 17)
         Me.lblStart.TabIndex = 17
         Me.lblStart.Text = "START"
         '
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDate.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblDate.Location = New System.Drawing.Point(44, 155)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(41, 16)
+        Me.lblDate.Size = New System.Drawing.Size(40, 17)
         Me.lblDate.TabIndex = 16
         Me.lblDate.Text = "DATE"
         '
         'dtpEnd
         '
-        Me.dtpEnd.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpEnd.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtpEnd.Location = New System.Drawing.Point(98, 217)
         Me.dtpEnd.Name = "dtpEnd"
         Me.dtpEnd.ShowUpDown = True
-        Me.dtpEnd.Size = New System.Drawing.Size(230, 22)
+        Me.dtpEnd.Size = New System.Drawing.Size(230, 23)
         Me.dtpEnd.TabIndex = 27
         '
         'lblEnd
         '
         Me.lblEnd.AutoSize = True
-        Me.lblEnd.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEnd.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblEnd.Location = New System.Drawing.Point(44, 222)
         Me.lblEnd.Name = "lblEnd"
-        Me.lblEnd.Size = New System.Drawing.Size(34, 16)
+        Me.lblEnd.Size = New System.Drawing.Size(34, 17)
         Me.lblEnd.TabIndex = 26
         Me.lblEnd.Text = "END"
         '
         'lblComment
         '
         Me.lblComment.AutoSize = True
-        Me.lblComment.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblComment.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblComment.Location = New System.Drawing.Point(8, 258)
         Me.lblComment.Name = "lblComment"
-        Me.lblComment.Size = New System.Drawing.Size(74, 16)
+        Me.lblComment.Size = New System.Drawing.Size(74, 17)
         Me.lblComment.TabIndex = 29
         Me.lblComment.Text = "COMMENT"
         '
         'lblType
         '
         Me.lblType.AutoSize = True
-        Me.lblType.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblType.Location = New System.Drawing.Point(44, 120)
+        Me.lblType.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lblType.Location = New System.Drawing.Point(47, 126)
         Me.lblType.Name = "lblType"
-        Me.lblType.Size = New System.Drawing.Size(38, 16)
+        Me.lblType.Size = New System.Drawing.Size(38, 17)
         Me.lblType.TabIndex = 30
         Me.lblType.Text = "TYPE"
         '
@@ -209,10 +210,10 @@ Partial Class createEvent
         '
         Me.rdbTraining.AutoSize = True
         Me.rdbTraining.Checked = True
-        Me.rdbTraining.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdbTraining.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.rdbTraining.Location = New System.Drawing.Point(109, 118)
         Me.rdbTraining.Name = "rdbTraining"
-        Me.rdbTraining.Size = New System.Drawing.Size(75, 20)
+        Me.rdbTraining.Size = New System.Drawing.Size(78, 20)
         Me.rdbTraining.TabIndex = 31
         Me.rdbTraining.TabStop = True
         Me.rdbTraining.Text = "Training"
@@ -221,10 +222,10 @@ Partial Class createEvent
         'rdbMeet
         '
         Me.rdbMeet.AutoSize = True
-        Me.rdbMeet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdbMeet.Location = New System.Drawing.Point(204, 118)
+        Me.rdbMeet.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
+        Me.rdbMeet.Location = New System.Drawing.Point(203, 118)
         Me.rdbMeet.Name = "rdbMeet"
-        Me.rdbMeet.Size = New System.Drawing.Size(56, 20)
+        Me.rdbMeet.Size = New System.Drawing.Size(59, 20)
         Me.rdbMeet.TabIndex = 32
         Me.rdbMeet.Text = "Meet"
         Me.rdbMeet.UseVisualStyleBackColor = True
@@ -235,7 +236,7 @@ Partial Class createEvent
         '
         'txtComment
         '
-        Me.txtComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtComment.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.txtComment.Location = New System.Drawing.Point(98, 255)
         Me.txtComment.Multiline = True
         Me.txtComment.Name = "txtComment"
@@ -258,19 +259,19 @@ Partial Class createEvent
         'lblEventName
         '
         Me.lblEventName.AutoSize = True
-        Me.lblEventName.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEventName.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblEventName.Location = New System.Drawing.Point(37, 93)
         Me.lblEventName.Name = "lblEventName"
-        Me.lblEventName.Size = New System.Drawing.Size(45, 16)
+        Me.lblEventName.Size = New System.Drawing.Size(46, 17)
         Me.lblEventName.TabIndex = 37
         Me.lblEventName.Text = "NAME"
         '
         'txtName
         '
-        Me.txtName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtName.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.txtName.Location = New System.Drawing.Point(95, 86)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(230, 22)
+        Me.txtName.Size = New System.Drawing.Size(230, 23)
         Me.txtName.TabIndex = 38
         Me.txtName.Text = "Enter the event name here"
         Me.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -278,10 +279,10 @@ Partial Class createEvent
         'lblTemplate
         '
         Me.lblTemplate.AutoSize = True
-        Me.lblTemplate.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTemplate.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblTemplate.Location = New System.Drawing.Point(15, 51)
         Me.lblTemplate.Name = "lblTemplate"
-        Me.lblTemplate.Size = New System.Drawing.Size(72, 16)
+        Me.lblTemplate.Size = New System.Drawing.Size(71, 17)
         Me.lblTemplate.TabIndex = 40
         Me.lblTemplate.Text = "TEMPLATE"
         '
@@ -289,11 +290,11 @@ Partial Class createEvent
         '
         Me.cmbTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTemplate.Enabled = False
-        Me.cmbTemplate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbTemplate.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.cmbTemplate.FormattingEnabled = True
-        Me.cmbTemplate.Location = New System.Drawing.Point(98, 46)
+        Me.cmbTemplate.Location = New System.Drawing.Point(92, 48)
         Me.cmbTemplate.Name = "cmbTemplate"
-        Me.cmbTemplate.Size = New System.Drawing.Size(161, 21)
+        Me.cmbTemplate.Size = New System.Drawing.Size(161, 24)
         Me.cmbTemplate.TabIndex = 41
         '
         'chbNone
@@ -301,8 +302,8 @@ Partial Class createEvent
         Me.chbNone.AutoSize = True
         Me.chbNone.Checked = True
         Me.chbNone.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chbNone.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbNone.Location = New System.Drawing.Point(271, 47)
+        Me.chbNone.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
+        Me.chbNone.Location = New System.Drawing.Point(267, 52)
         Me.chbNone.Name = "chbNone"
         Me.chbNone.Size = New System.Drawing.Size(60, 20)
         Me.chbNone.TabIndex = 43
@@ -327,7 +328,7 @@ Partial Class createEvent
         Me.gbDetails.Controls.Add(Me.dtpDate)
         Me.gbDetails.Controls.Add(Me.lblStart)
         Me.gbDetails.Controls.Add(Me.lblDate)
-        Me.gbDetails.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbDetails.Font = New System.Drawing.Font("Microsoft MHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbDetails.Location = New System.Drawing.Point(14, 61)
         Me.gbDetails.Name = "gbDetails"
         Me.gbDetails.Size = New System.Drawing.Size(347, 343)
@@ -358,9 +359,21 @@ Partial Class createEvent
         Me.pnlAttach.Size = New System.Drawing.Size(319, 56)
         Me.pnlAttach.TabIndex = 43
         '
+        'pbAttach
+        '
+        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbAttach.Location = New System.Drawing.Point(114, -1)
+        Me.pbAttach.Name = "pbAttach"
+        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
+        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbAttach.TabIndex = 42
+        Me.pbAttach.TabStop = False
+        Me.pbAttach.Tag = "add"
+        '
         'map
         '
-        Me.map.Bearing = 0!
+        Me.map.Bearing = 0.0!
         Me.map.CanDragMap = True
         Me.map.Cursor = System.Windows.Forms.Cursors.Hand
         Me.map.EmptyTileColor = System.Drawing.Color.Navy
@@ -386,7 +399,7 @@ Partial Class createEvent
         '
         'txtStreet
         '
-        Me.txtStreet.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtStreet.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.txtStreet.Location = New System.Drawing.Point(81, 71)
         Me.txtStreet.Multiline = True
         Me.txtStreet.Name = "txtStreet"
@@ -396,38 +409,38 @@ Partial Class createEvent
         'lblStreet
         '
         Me.lblStreet.AutoSize = True
-        Me.lblStreet.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStreet.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblStreet.Location = New System.Drawing.Point(22, 75)
         Me.lblStreet.Name = "lblStreet"
-        Me.lblStreet.Size = New System.Drawing.Size(53, 16)
+        Me.lblStreet.Size = New System.Drawing.Size(51, 17)
         Me.lblStreet.TabIndex = 44
         Me.lblStreet.Text = "STREET"
         '
         'lblSuburb
         '
         Me.lblSuburb.AutoSize = True
-        Me.lblSuburb.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSuburb.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSuburb.Location = New System.Drawing.Point(18, 99)
         Me.lblSuburb.Name = "lblSuburb"
-        Me.lblSuburb.Size = New System.Drawing.Size(57, 16)
+        Me.lblSuburb.Size = New System.Drawing.Size(57, 17)
         Me.lblSuburb.TabIndex = 48
         Me.lblSuburb.Text = "SUBURB"
         '
         'txtSuburb
         '
-        Me.txtSuburb.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSuburb.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.txtSuburb.Location = New System.Drawing.Point(81, 99)
         Me.txtSuburb.Name = "txtSuburb"
-        Me.txtSuburb.Size = New System.Drawing.Size(213, 20)
+        Me.txtSuburb.Size = New System.Drawing.Size(213, 23)
         Me.txtSuburb.TabIndex = 49
         '
         'lblState
         '
         Me.lblState.AutoSize = True
-        Me.lblState.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblState.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblState.Location = New System.Drawing.Point(29, 126)
         Me.lblState.Name = "lblState"
-        Me.lblState.Size = New System.Drawing.Size(46, 16)
+        Me.lblState.Size = New System.Drawing.Size(45, 17)
         Me.lblState.TabIndex = 50
         Me.lblState.Text = "STATE"
         '
@@ -441,7 +454,7 @@ Partial Class createEvent
         Me.gbLocation.Controls.Add(Me.txtSuburb)
         Me.gbLocation.Controls.Add(Me.lblStreet)
         Me.gbLocation.Controls.Add(Me.txtStreet)
-        Me.gbLocation.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbLocation.Font = New System.Drawing.Font("Microsoft MHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbLocation.Location = New System.Drawing.Point(874, 405)
         Me.gbLocation.Name = "gbLocation"
         Me.gbLocation.Size = New System.Drawing.Size(394, 172)
@@ -460,20 +473,21 @@ Partial Class createEvent
         '
         'cmbState
         '
-        Me.cmbState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbState.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.cmbState.FormattingEnabled = True
         Me.cmbState.Items.AddRange(New Object() {"NSW", "ACT", "WA", "NT", "TAS", "SA", "QLD", "VIC"})
         Me.cmbState.Location = New System.Drawing.Point(81, 126)
         Me.cmbState.Name = "cmbState"
-        Me.cmbState.Size = New System.Drawing.Size(213, 21)
+        Me.cmbState.Size = New System.Drawing.Size(213, 24)
         Me.cmbState.TabIndex = 55
         Me.cmbState.Text = "NSW"
         '
         'btnSearch
         '
         Me.btnSearch.BackColor = System.Drawing.Color.Gray
+        Me.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSearch.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearch.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.Location = New System.Drawing.Point(312, 48)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(76, 99)
@@ -484,7 +498,7 @@ Partial Class createEvent
         'gbAttachments
         '
         Me.gbAttachments.Controls.Add(Me.flpAttach)
-        Me.gbAttachments.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbAttachments.Font = New System.Drawing.Font("Microsoft MHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAttachments.Location = New System.Drawing.Point(14, 403)
         Me.gbAttachments.Name = "gbAttachments"
         Me.gbAttachments.Size = New System.Drawing.Size(347, 206)
@@ -499,7 +513,7 @@ Partial Class createEvent
         Me.gbAthletes.Controls.Add(Me.chbAllAthletes)
         Me.gbAthletes.Controls.Add(Me.cmbGroup)
         Me.gbAthletes.Controls.Add(Me.flpAthletes)
-        Me.gbAthletes.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbAthletes.Font = New System.Drawing.Font("Microsoft MHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAthletes.Location = New System.Drawing.Point(393, 61)
         Me.gbAthletes.Name = "gbAthletes"
         Me.gbAthletes.Size = New System.Drawing.Size(444, 263)
@@ -510,10 +524,10 @@ Partial Class createEvent
         'chbAllNotes
         '
         Me.chbAllNotes.AutoSize = True
-        Me.chbAllNotes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.chbAllNotes.Location = New System.Drawing.Point(134, 31)
         Me.chbAllNotes.Name = "chbAllNotes"
-        Me.chbAllNotes.Size = New System.Drawing.Size(94, 20)
+        Me.chbAllNotes.Size = New System.Drawing.Size(93, 21)
         Me.chbAllNotes.TabIndex = 62
         Me.chbAllNotes.Text = "ALL NOTES"
         Me.chbAllNotes.UseVisualStyleBackColor = True
@@ -521,8 +535,9 @@ Partial Class createEvent
         'btnSelect
         '
         Me.btnSelect.BackColor = System.Drawing.Color.Gray
+        Me.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSelect.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelect.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.btnSelect.Location = New System.Drawing.Point(365, 28)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(75, 23)
@@ -533,22 +548,22 @@ Partial Class createEvent
         'chbAllAthletes
         '
         Me.chbAllAthletes.AutoSize = True
-        Me.chbAllAthletes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllAthletes.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.chbAllAthletes.Location = New System.Drawing.Point(6, 31)
         Me.chbAllAthletes.Name = "chbAllAthletes"
-        Me.chbAllAthletes.Size = New System.Drawing.Size(125, 20)
+        Me.chbAllAthletes.Size = New System.Drawing.Size(124, 21)
         Me.chbAllAthletes.TabIndex = 48
         Me.chbAllAthletes.Text = "ALL ATTENDING"
         Me.chbAllAthletes.UseVisualStyleBackColor = True
         '
         'cmbGroup
         '
-        Me.cmbGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbGroup.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.cmbGroup.FormattingEnabled = True
         Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbGroup.Location = New System.Drawing.Point(226, 30)
+        Me.cmbGroup.Location = New System.Drawing.Point(238, 30)
         Me.cmbGroup.Name = "cmbGroup"
-        Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
+        Me.cmbGroup.Size = New System.Drawing.Size(124, 24)
         Me.cmbGroup.TabIndex = 46
         '
         'flpAthletes
@@ -564,167 +579,168 @@ Partial Class createEvent
         '
         'clbDays
         '
-        Me.clbDays.Font = New System.Drawing.Font("Rockwell", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.clbDays.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.clbDays.FormattingEnabled = True
         Me.clbDays.Items.AddRange(New Object() {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"})
         Me.clbDays.Location = New System.Drawing.Point(6, 71)
         Me.clbDays.Name = "clbDays"
-        Me.clbDays.Size = New System.Drawing.Size(164, 144)
+        Me.clbDays.Size = New System.Drawing.Size(164, 130)
         Me.clbDays.TabIndex = 61
         Me.clbDays.Visible = False
         '
         'lblOpens
         '
         Me.lblOpens.AutoSize = True
-        Me.lblOpens.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOpens.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblOpens.Location = New System.Drawing.Point(5, 246)
         Me.lblOpens.Name = "lblOpens"
-        Me.lblOpens.Size = New System.Drawing.Size(58, 15)
+        Me.lblOpens.Size = New System.Drawing.Size(53, 17)
         Me.lblOpens.TabIndex = 69
         Me.lblOpens.Text = "OPENS:"
         '
         'lbl14s
         '
         Me.lbl14s.AutoSize = True
-        Me.lbl14s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl14s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lbl14s.Location = New System.Drawing.Point(26, 106)
         Me.lbl14s.Name = "lbl14s"
-        Me.lbl14s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl14s.Size = New System.Drawing.Size(32, 17)
         Me.lbl14s.TabIndex = 61
         Me.lbl14s.Text = "14's:"
         '
         'dtp17s
         '
-        Me.dtp17s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp17s.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp17s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp17s.Location = New System.Drawing.Point(80, 210)
+        Me.dtp17s.Location = New System.Drawing.Point(64, 210)
         Me.dtp17s.Name = "dtp17s"
         Me.dtp17s.ShowUpDown = True
-        Me.dtp17s.Size = New System.Drawing.Size(176, 22)
+        Me.dtp17s.Size = New System.Drawing.Size(192, 23)
         Me.dtp17s.TabIndex = 68
         Me.dtp17s.Tag = "U17"
         '
         'lbl13s
         '
         Me.lbl13s.AutoSize = True
-        Me.lbl13s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl13s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lbl13s.Location = New System.Drawing.Point(26, 70)
         Me.lbl13s.Name = "lbl13s"
-        Me.lbl13s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl13s.Size = New System.Drawing.Size(32, 17)
         Me.lbl13s.TabIndex = 60
         Me.lbl13s.Text = "13's:"
         '
         'lbl15s
         '
         Me.lbl15s.AutoSize = True
-        Me.lbl15s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl15s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lbl15s.Location = New System.Drawing.Point(26, 143)
         Me.lbl15s.Name = "lbl15s"
-        Me.lbl15s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl15s.Size = New System.Drawing.Size(32, 17)
         Me.lbl15s.TabIndex = 62
         Me.lbl15s.Text = "15's:"
         '
         'dtp14s
         '
-        Me.dtp14s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp14s.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp14s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp14s.Location = New System.Drawing.Point(80, 102)
+        Me.dtp14s.Location = New System.Drawing.Point(64, 102)
         Me.dtp14s.Name = "dtp14s"
         Me.dtp14s.ShowUpDown = True
-        Me.dtp14s.Size = New System.Drawing.Size(176, 22)
+        Me.dtp14s.Size = New System.Drawing.Size(192, 23)
         Me.dtp14s.TabIndex = 63
         Me.dtp14s.Tag = "U14"
         '
         'lbl17s
         '
         Me.lbl17s.AutoSize = True
-        Me.lbl17s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl17s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lbl17s.Location = New System.Drawing.Point(26, 215)
         Me.lbl17s.Name = "lbl17s"
-        Me.lbl17s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl17s.Size = New System.Drawing.Size(32, 17)
         Me.lbl17s.TabIndex = 66
         Me.lbl17s.Text = "17's:"
         '
         'chbNA
         '
         Me.chbNA.AutoSize = True
-        Me.chbNA.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbNA.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.chbNA.Location = New System.Drawing.Point(11, 31)
         Me.chbNA.Name = "chbNA"
-        Me.chbNA.Size = New System.Drawing.Size(47, 17)
+        Me.chbNA.Size = New System.Drawing.Size(51, 21)
         Me.chbNA.TabIndex = 33
         Me.chbNA.Text = "N/A"
         Me.chbNA.UseVisualStyleBackColor = True
         '
         'dtp15s
         '
-        Me.dtp15s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp15s.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp15s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp15s.Location = New System.Drawing.Point(80, 138)
+        Me.dtp15s.Location = New System.Drawing.Point(64, 138)
         Me.dtp15s.Name = "dtp15s"
         Me.dtp15s.ShowUpDown = True
-        Me.dtp15s.Size = New System.Drawing.Size(176, 22)
+        Me.dtp15s.Size = New System.Drawing.Size(192, 23)
         Me.dtp15s.TabIndex = 64
         Me.dtp15s.Tag = "U15"
         '
         'dtp16s
         '
-        Me.dtp16s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp16s.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp16s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp16s.Location = New System.Drawing.Point(80, 174)
+        Me.dtp16s.Location = New System.Drawing.Point(64, 174)
         Me.dtp16s.Name = "dtp16s"
         Me.dtp16s.ShowUpDown = True
-        Me.dtp16s.Size = New System.Drawing.Size(176, 22)
+        Me.dtp16s.Size = New System.Drawing.Size(192, 23)
         Me.dtp16s.TabIndex = 67
         Me.dtp16s.Tag = "U16"
         '
         'lbl16s
         '
         Me.lbl16s.AutoSize = True
-        Me.lbl16s.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl16s.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lbl16s.Location = New System.Drawing.Point(26, 181)
         Me.lbl16s.Name = "lbl16s"
-        Me.lbl16s.Size = New System.Drawing.Size(37, 15)
+        Me.lbl16s.Size = New System.Drawing.Size(32, 17)
         Me.lbl16s.TabIndex = 65
         Me.lbl16s.Text = "16's:"
         '
         'dtpOpens
         '
-        Me.dtpOpens.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpOpens.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpOpens.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpOpens.Location = New System.Drawing.Point(80, 246)
+        Me.dtpOpens.Location = New System.Drawing.Point(64, 246)
         Me.dtpOpens.Name = "dtpOpens"
         Me.dtpOpens.ShowUpDown = True
-        Me.dtpOpens.Size = New System.Drawing.Size(176, 22)
+        Me.dtpOpens.Size = New System.Drawing.Size(192, 23)
         Me.dtpOpens.TabIndex = 70
         Me.dtpOpens.Tag = "Opens"
         '
         'dtp13s
         '
-        Me.dtp13s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp13s.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtp13s.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtp13s.Location = New System.Drawing.Point(80, 64)
+        Me.dtp13s.Location = New System.Drawing.Point(64, 64)
         Me.dtp13s.Name = "dtp13s"
         Me.dtp13s.ShowUpDown = True
-        Me.dtp13s.Size = New System.Drawing.Size(176, 22)
+        Me.dtp13s.Size = New System.Drawing.Size(192, 23)
         Me.dtp13s.TabIndex = 71
         Me.dtp13s.Tag = "U13"
         '
         'cmbEvent
         '
-        Me.cmbEvent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbEvent.Font = New System.Drawing.Font("Microsoft MHei", 9.75!)
         Me.cmbEvent.FormattingEnabled = True
         Me.cmbEvent.Items.AddRange(New Object() {"100m", "200m", "400m", "800m", "1.5k", "3k", "Hurdles", "High Jump", "Long Jump", "Shotput"})
-        Me.cmbEvent.Location = New System.Drawing.Point(60, 29)
+        Me.cmbEvent.Location = New System.Drawing.Point(64, 31)
         Me.cmbEvent.Name = "cmbEvent"
-        Me.cmbEvent.Size = New System.Drawing.Size(136, 21)
+        Me.cmbEvent.Size = New System.Drawing.Size(136, 25)
         Me.cmbEvent.TabIndex = 44
         '
         'btnSaveTimes
         '
         Me.btnSaveTimes.BackColor = System.Drawing.Color.Gray
+        Me.btnSaveTimes.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSaveTimes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSaveTimes.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSaveTimes.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.btnSaveTimes.Location = New System.Drawing.Point(204, 29)
         Me.btnSaveTimes.Name = "btnSaveTimes"
         Me.btnSaveTimes.Size = New System.Drawing.Size(51, 23)
@@ -749,7 +765,7 @@ Partial Class createEvent
         Me.gbEvents.Controls.Add(Me.dtp17s)
         Me.gbEvents.Controls.Add(Me.lbl14s)
         Me.gbEvents.Controls.Add(Me.lblOpens)
-        Me.gbEvents.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbEvents.Font = New System.Drawing.Font("Microsoft MHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbEvents.Location = New System.Drawing.Point(381, 405)
         Me.gbEvents.Name = "gbEvents"
         Me.gbEvents.Size = New System.Drawing.Size(267, 277)
@@ -762,8 +778,8 @@ Partial Class createEvent
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
         Me.GroupBox2.Controls.Add(Me.lblAlertCount)
         Me.GroupBox2.Controls.Add(Me.lblTitle)
-        Me.GroupBox2.Controls.Add(Me.Button4)
-        Me.GroupBox2.Controls.Add(Me.Button13)
+        Me.GroupBox2.Controls.Add(Me.helpBtn)
+        Me.GroupBox2.Controls.Add(Me.notifBtn)
         Me.GroupBox2.Controls.Add(Me.exitBtn)
         Me.GroupBox2.Controls.Add(Me.scrollBtn)
         Me.GroupBox2.Location = New System.Drawing.Point(-10, -11)
@@ -778,17 +794,75 @@ Partial Class createEvent
         Me.lblAlertCount.AutoSize = True
         Me.lblAlertCount.BackColor = System.Drawing.Color.DarkGray
         Me.lblAlertCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAlertCount.Location = New System.Drawing.Point(1215, 16)
+        Me.lblAlertCount.Location = New System.Drawing.Point(1263, 16)
         Me.lblAlertCount.Name = "lblAlertCount"
         Me.lblAlertCount.Size = New System.Drawing.Size(15, 16)
         Me.lblAlertCount.TabIndex = 3
         Me.lblAlertCount.Text = "0"
         Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'helpBtn
+        '
+        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.helpBtn.FlatAppearance.BorderSize = 0
+        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.helpBtn.Location = New System.Drawing.Point(1196, 11)
+        Me.helpBtn.Name = "helpBtn"
+        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
+        Me.helpBtn.TabIndex = 6
+        Me.helpBtn.UseVisualStyleBackColor = False
+        '
+        'notifBtn
+        '
+        Me.notifBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.notifBtn.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
+        Me.notifBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.notifBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.notifBtn.FlatAppearance.BorderSize = 0
+        Me.notifBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.notifBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.notifBtn.Location = New System.Drawing.Point(1240, 11)
+        Me.notifBtn.Name = "notifBtn"
+        Me.notifBtn.Size = New System.Drawing.Size(44, 44)
+        Me.notifBtn.TabIndex = 6
+        Me.notifBtn.UseVisualStyleBackColor = False
+        '
+        'exitBtn
+        '
+        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
+        Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.exitBtn.FlatAppearance.BorderSize = 0
+        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.exitBtn.Location = New System.Drawing.Point(1284, 11)
+        Me.exitBtn.Name = "exitBtn"
+        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
+        Me.exitBtn.TabIndex = 6
+        Me.exitBtn.UseVisualStyleBackColor = False
+        '
+        'scrollBtn
+        '
+        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
+        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
+        Me.scrollBtn.Name = "scrollBtn"
+        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
+        Me.scrollBtn.TabIndex = 3
+        Me.scrollBtn.UseVisualStyleBackColor = False
+        '
         'Sidebar
         '
         Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.Sidebar.Controls.Add(Me.Button1)
+        Me.Sidebar.Controls.Add(Me.sideMainBtn)
         Me.Sidebar.Controls.Add(Me.resdrop)
         Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
         Me.Sidebar.Controls.Add(Me.sideadminBtn)
@@ -796,30 +870,32 @@ Partial Class createEvent
         Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
         Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(-200, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 63
         Me.Sidebar.TabStop = False
         '
-        'Button1
+        'sideMainBtn
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button1.Location = New System.Drawing.Point(2, 33)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(196, 50)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "   MAIN"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.sideMainBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideMainBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.sideMainBtn.FlatAppearance.BorderSize = 0
+        Me.sideMainBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideMainBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sideMainBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideMainBtn.Location = New System.Drawing.Point(2, 33)
+        Me.sideMainBtn.Name = "sideMainBtn"
+        Me.sideMainBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideMainBtn.TabIndex = 0
+        Me.sideMainBtn.Text = "   MAIN"
+        Me.sideMainBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideMainBtn.UseVisualStyleBackColor = False
         '
         'resdrop
         '
         Me.resdrop.BackColor = System.Drawing.Color.Gray
+        Me.resdrop.Cursor = System.Windows.Forms.Cursors.Hand
         Me.resdrop.FlatAppearance.BorderSize = 0
         Me.resdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.resdrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -834,6 +910,7 @@ Partial Class createEvent
         'sideAthletesBtn
         '
         Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAthletesBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
         Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -849,6 +926,7 @@ Partial Class createEvent
         'sideadminBtn
         '
         Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideadminBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideadminBtn.FlatAppearance.BorderSize = 0
         Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -865,6 +943,7 @@ Partial Class createEvent
         'sideresultBtn
         '
         Me.sideresultBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideresultBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideresultBtn.FlatAppearance.BorderSize = 0
         Me.sideresultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideresultBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -880,6 +959,7 @@ Partial Class createEvent
         'sidecalendarBtn
         '
         Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidecalendarBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
         Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -943,9 +1023,10 @@ Partial Class createEvent
         Me.bigbtngroup.Controls.Add(Me.gbEvents)
         Me.bigbtngroup.Controls.Add(Me.pbMinus)
         Me.bigbtngroup.Controls.Add(Me.pbPlus)
-        Me.bigbtngroup.Location = New System.Drawing.Point(0, 10)
+        Me.bigbtngroup.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bigbtngroup.Location = New System.Drawing.Point(20, 10)
         Me.bigbtngroup.Name = "bigbtngroup"
-        Me.bigbtngroup.Size = New System.Drawing.Size(1279, 726)
+        Me.bigbtngroup.Size = New System.Drawing.Size(1329, 726)
         Me.bigbtngroup.TabIndex = 64
         Me.bigbtngroup.TabStop = False
         '
@@ -958,7 +1039,7 @@ Partial Class createEvent
         Me.gbRepeats.Controls.Add(Me.lblDays)
         Me.gbRepeats.Controls.Add(Me.pbCmb)
         Me.gbRepeats.Controls.Add(Me.clbDays)
-        Me.gbRepeats.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbRepeats.Font = New System.Drawing.Font("Microsoft MHei", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbRepeats.Location = New System.Drawing.Point(661, 405)
         Me.gbRepeats.Name = "gbRepeats"
         Me.gbRepeats.Size = New System.Drawing.Size(201, 277)
@@ -966,13 +1047,23 @@ Partial Class createEvent
         Me.gbRepeats.TabStop = False
         Me.gbRepeats.Text = "REPEATS"
         '
+        'lblRepeat
+        '
+        Me.lblRepeat.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRepeat.Location = New System.Drawing.Point(13, 89)
+        Me.lblRepeat.Name = "lblRepeat"
+        Me.lblRepeat.Size = New System.Drawing.Size(180, 16)
+        Me.lblRepeat.TabIndex = 56
+        Me.lblRepeat.Text = "could be a repeate event"
+        Me.lblRepeat.Visible = False
+        '
         'chbRepNA
         '
         Me.chbRepNA.AutoSize = True
-        Me.chbRepNA.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbRepNA.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.chbRepNA.Location = New System.Drawing.Point(129, 25)
         Me.chbRepNA.Name = "chbRepNA"
-        Me.chbRepNA.Size = New System.Drawing.Size(47, 17)
+        Me.chbRepNA.Size = New System.Drawing.Size(51, 21)
         Me.chbRepNA.TabIndex = 72
         Me.chbRepNA.Text = "N/A"
         Me.chbRepNA.UseVisualStyleBackColor = True
@@ -980,95 +1071,41 @@ Partial Class createEvent
         'cmbRepType
         '
         Me.cmbRepType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbRepType.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbRepType.Font = New System.Drawing.Font("Microsoft MHei", 9.75!)
         Me.cmbRepType.FormattingEnabled = True
         Me.cmbRepType.Items.AddRange(New Object() {"Weekly", "Monthly", "Yearly"})
         Me.cmbRepType.Location = New System.Drawing.Point(15, 243)
         Me.cmbRepType.Name = "cmbRepType"
-        Me.cmbRepType.Size = New System.Drawing.Size(161, 21)
+        Me.cmbRepType.Size = New System.Drawing.Size(161, 25)
         Me.cmbRepType.TabIndex = 66
         '
         'lblRepType
         '
         Me.lblRepType.AutoSize = True
-        Me.lblRepType.Font = New System.Drawing.Font("Rockwell", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRepType.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblRepType.Location = New System.Drawing.Point(7, 220)
         Me.lblRepType.Name = "lblRepType"
-        Me.lblRepType.Size = New System.Drawing.Size(45, 17)
+        Me.lblRepType.Size = New System.Drawing.Size(38, 17)
         Me.lblRepType.TabIndex = 65
         Me.lblRepType.Text = "TYPE"
         '
         'lblDays
         '
         Me.lblDays.AutoSize = True
-        Me.lblDays.Font = New System.Drawing.Font("Rockwell", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDays.Font = New System.Drawing.Font("Microsoft MHei", 9.75!, System.Drawing.FontStyle.Bold)
         Me.lblDays.Location = New System.Drawing.Point(7, 29)
         Me.lblDays.Name = "lblDays"
-        Me.lblDays.Size = New System.Drawing.Size(47, 17)
+        Me.lblDays.Size = New System.Drawing.Size(41, 17)
         Me.lblDays.TabIndex = 64
         Me.lblDays.Text = "DAYS"
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button4.Location = New System.Drawing.Point(1157, 11)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(44, 44)
-        Me.Button4.TabIndex = 6
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Button13
-        '
-        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
-        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1201, 11)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(44, 44)
-        Me.Button13.TabIndex = 6
-        Me.Button13.UseVisualStyleBackColor = False
-        '
-        'exitBtn
-        '
-        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
-        Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.exitBtn.FlatAppearance.BorderSize = 0
-        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.exitBtn.Location = New System.Drawing.Point(1245, 11)
-        Me.exitBtn.Name = "exitBtn"
-        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
-        Me.exitBtn.TabIndex = 6
-        Me.exitBtn.UseVisualStyleBackColor = False
-        '
-        'scrollBtn
-        '
-        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
-        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
-        Me.scrollBtn.Name = "scrollBtn"
-        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
-        Me.scrollBtn.TabIndex = 3
-        Me.scrollBtn.UseVisualStyleBackColor = False
         '
         'pbCmb
         '
         Me.pbCmb.Image = Global.main.My.Resources.Resources.comboBoxImage
         Me.pbCmb.Location = New System.Drawing.Point(9, 48)
         Me.pbCmb.Name = "pbCmb"
-        Me.pbCmb.Size = New System.Drawing.Size(182, 21)
-        Me.pbCmb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCmb.Size = New System.Drawing.Size(186, 22)
+        Me.pbCmb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.pbCmb.TabIndex = 63
         Me.pbCmb.TabStop = False
         Me.pbCmb.Tag = ""
@@ -1078,6 +1115,7 @@ Partial Class createEvent
         Me.btnSaveEvent.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnSaveEvent.BackgroundImage = Global.main.My.Resources.Resources.savebtn
         Me.btnSaveEvent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnSaveEvent.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSaveEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSaveEvent.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
         Me.btnSaveEvent.Location = New System.Drawing.Point(1090, 604)
@@ -1086,23 +1124,12 @@ Partial Class createEvent
         Me.btnSaveEvent.TabIndex = 20
         Me.btnSaveEvent.UseVisualStyleBackColor = False
         '
-        'pbAttach
-        '
-        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(114, -1)
-        Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
-        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbAttach.TabIndex = 42
-        Me.pbAttach.TabStop = False
-        Me.pbAttach.Tag = "add"
-        '
         'btnCancel
         '
         Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.close1
         Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnCancel.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
         Me.btnCancel.Location = New System.Drawing.Point(1199, 603)
@@ -1131,17 +1158,6 @@ Partial Class createEvent
         Me.pbPlus.TabIndex = 57
         Me.pbPlus.TabStop = False
         '
-        'lblRepeat
-        '
-        Me.lblRepeat.AutoSize = True
-        Me.lblRepeat.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRepeat.Location = New System.Drawing.Point(41, 89)
-        Me.lblRepeat.Name = "lblRepeat"
-        Me.lblRepeat.Size = New System.Drawing.Size(151, 16)
-        Me.lblRepeat.TabIndex = 56
-        Me.lblRepeat.Text = "could be a repeate event"
-        Me.lblRepeat.Visible = False
-        '
         'createEvent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1154,6 +1170,7 @@ Partial Class createEvent
         Me.Controls.Add(Me.Sidebar)
         Me.Controls.Add(Me.bigbtngroup)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "createEvent"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -1162,6 +1179,7 @@ Partial Class createEvent
         Me.gbDetails.PerformLayout()
         Me.flpAttach.ResumeLayout(False)
         Me.pnlAttach.ResumeLayout(False)
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbLocation.ResumeLayout(False)
         Me.gbLocation.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1177,7 +1195,6 @@ Partial Class createEvent
         Me.gbRepeats.ResumeLayout(False)
         Me.gbRepeats.PerformLayout()
         CType(Me.pbCmb, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1246,12 +1263,12 @@ Partial Class createEvent
     Friend WithEvents lblOpens As Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents lblAlertCount As System.Windows.Forms.Label
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button13 As System.Windows.Forms.Button
+    Friend WithEvents helpBtn As System.Windows.Forms.Button
+    Friend WithEvents notifBtn As System.Windows.Forms.Button
     Friend WithEvents exitBtn As System.Windows.Forms.Button
     Friend WithEvents scrollBtn As System.Windows.Forms.Button
     Friend WithEvents Sidebar As System.Windows.Forms.GroupBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents sideMainBtn As System.Windows.Forms.Button
     Friend WithEvents resdrop As System.Windows.Forms.Button
     Friend WithEvents sideAthletesBtn As System.Windows.Forms.Button
     Friend WithEvents sideadminBtn As System.Windows.Forms.Button

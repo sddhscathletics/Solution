@@ -4,6 +4,41 @@ Public Class calendar
     Dim selectionCount As Integer = 0
     Dim firstClickTime As Integer = 0
     Dim eventInfo As New Dictionary(Of Date, List(Of String))
+
+#Region " Move Form "
+
+    Public MoveForm As Boolean
+    Public MoveForm_MousePosition As Point
+
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseDown, lblTitle.MouseDown
+
+        If e.Button = MouseButtons.Left Then
+            MoveForm = True
+            Me.Cursor = Cursors.NoMove2D
+            MoveForm_MousePosition = e.Location
+        End If
+
+    End Sub
+
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseMove, lblTitle.MouseMove
+
+        If MoveForm Then
+            Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
+        End If
+
+    End Sub
+
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseUp, lblTitle.MouseUp
+
+        If e.Button = MouseButtons.Left Then
+            MoveForm = False
+            Me.Cursor = Cursors.Default
+        End If
+
+    End Sub
+
+#End Region
+
     Private Sub mnCalendar_DateSelected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles mnCalendar.DateSelected
         cms.Items.Clear()
         If mnCalendar.BoldedDates.Contains(e.Start.ToShortDateString()) Then
@@ -161,6 +196,7 @@ Public Class calendar
         Cursor.Current = Cursors.AppStarting
         createEvent.Tag = "add"
         createEvent.Show()
+        Me.Close()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemView_Click(sender As Object, e As EventArgs)
@@ -185,6 +221,7 @@ Public Class calendar
             Next
         Next
         createEvent.Show()
+        Me.Close()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemEdit_Click(sender As Object, e As EventArgs)
@@ -202,12 +239,14 @@ Public Class calendar
         createEvent.cmbGroup.SelectedIndex = 0
         createEvent.cmbTemplate_SelectedIndexChanged(cmbSender, Nothing)
         createEvent.Show()
+        Me.Close()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemResults_Click(sender As Object, e As EventArgs)
         Cursor.Current = Cursors.AppStarting
         eventResults.Tag = sender.OwnerItem.Text + " " + sender.OwnerItem.Tag
         eventResults.Show()
+        Me.Close()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemDelete_Click(sender As Object, e As EventArgs)
@@ -235,4 +274,10 @@ Public Class calendar
             newEdit("evDelete", sender.OwnerItem.Text + " on " + sender.OwnerItem.Tag)
         End If
     End Sub
+
+    Private Sub backBtn_Click(sender As Object, e As EventArgs) Handles backBtn.Click
+        home.Show()
+        Me.Close()
+    End Sub
+
 End Class
