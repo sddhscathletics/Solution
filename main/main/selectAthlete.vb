@@ -544,4 +544,13 @@ Public Class selectAthlete
         home.Show()
         Me.Close()
     End Sub
+
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+        End
+    End Sub
+
+    Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
+        AddEdit_User.Show()
+        Me.Close()
+    End Sub
 End Class

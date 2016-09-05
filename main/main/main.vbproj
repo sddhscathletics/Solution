@@ -146,6 +146,12 @@
     <Compile Include="Logon.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="makeuser.Designer.vb">
+      <DependentUpon>makeuser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="makeuser.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="manageTeams.Designer.vb">
       <DependentUpon>manageTeams.vb</DependentUpon>
     </Compile>
@@ -240,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Logon.resx">
       <DependentUpon>Logon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="makeuser.resx">
+      <DependentUpon>makeuser.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="manageTeams.resx">
       <DependentUpon>manageTeams.vb</DependentUpon>

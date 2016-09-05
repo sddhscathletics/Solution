@@ -180,7 +180,7 @@ Public Class home
         Close()
     End Sub
 
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
         checkNotif.Show()
     End Sub
 
@@ -211,6 +211,16 @@ Public Class home
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         selectAthlete.Show()
         Me.Hide()
+    End Sub
+
+    Private Sub sideAthletesBtn_Click(sender As Object, e As EventArgs) Handles sideAthletesBtn.Click
+        selectAthlete.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
+        AddEdit_User.Show()
+        Me.Close()
     End Sub
 #End Region
 

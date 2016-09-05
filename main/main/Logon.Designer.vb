@@ -101,7 +101,7 @@ Partial Class Logon
         '
         Me.Button1.BackColor = System.Drawing.Color.Gray
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Rockwell", 12.0!)
+        Me.Button1.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Location = New System.Drawing.Point(156, 423)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(207, 64)
@@ -113,7 +113,7 @@ Partial Class Logon
         '
         Me.Button2.BackColor = System.Drawing.Color.Gray
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button2.Font = New System.Drawing.Font("Rockwell", 12.0!)
+        Me.Button2.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.Location = New System.Drawing.Point(369, 458)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(167, 29)
@@ -125,7 +125,7 @@ Partial Class Logon
         '
         Me.Button3.BackColor = System.Drawing.Color.Gray
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button3.Font = New System.Drawing.Font("Rockwell", 10.0!)
+        Me.Button3.Font = New System.Drawing.Font("Microsoft JhengHei UI", 10.0!)
         Me.Button3.Location = New System.Drawing.Point(369, 423)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(167, 29)
