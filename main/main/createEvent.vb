@@ -62,7 +62,7 @@ Public Class createEvent
     End Sub
 
     Private Sub btnSaveEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveEvent.Click
-#Region "Add"
+        '#Region "Add"
         Cursor.Current = Cursors.AppStarting
         If Me.Tag.contains("add") Then
             Dim nameDateMatch As Boolean = False
@@ -591,8 +591,8 @@ Public Class createEvent
             Else
                 MessageBox.Show("The name And date of this event match an exisiting event." + vbNewLine + "Please change either Of these And retry.", "Corresponding Event Exists", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             End If
-#End Region
-#Region "Edit"
+            '#End Region
+            '#Region "Edit"
         ElseIf Me.Tag.Contains("edit") Then
             'since any change should be reflected in all repeats, it is easiest to create a new record and delete all previous records
             If attendees.Count > 0 AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
@@ -1255,7 +1255,7 @@ Public Class createEvent
             End If
         End If
         Cursor.Current = Cursors.Default
-#End Region
+        '#End Region
     End Sub
     'Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
     '    waitForDrop = New Thread(Sub() waitForDropDown())
@@ -1473,7 +1473,7 @@ Public Class createEvent
         clbDays.Visible = False
     End Sub
     Public Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
-#Region "Template Load"
+        '#Region "Template Load"
         Cursor.Current = Cursors.AppStarting
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -1840,7 +1840,7 @@ Public Class createEvent
             conn.Close()
         End Using
         Cursor.Current = Cursors.Default
-#End Region
+        '#End Region
     End Sub
 #End Region
 #Region "Attachment Operations"
@@ -3153,19 +3153,19 @@ Public Class createEvent
 
     Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles sidecalendarBtn.Click
         calendar.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
     Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles sideresultBtn.Click
         Results.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 #End Region
-#Region "Move Form"
+#Region " Move Form "
 
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseDown, lblTitle.MouseDown
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -3175,7 +3175,7 @@ Public Class createEvent
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseMove, lblTitle.MouseMove
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -3183,7 +3183,7 @@ Public Class createEvent
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseUp, lblTitle.MouseUp
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -3198,9 +3198,30 @@ Public Class createEvent
         checkNotif.Show()
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles exitBtn.Click
+        If MessageBox.Show("Do you wish to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+            End
+        End If
+    End Sub
+
+#End Region
+
+    Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
+        helpIdentifier = "createEvent"
+        helpForm.Show()
+    End Sub
+
+    Private Sub sideMainBtn_Click(sender As Object, e As EventArgs) Handles sideMainBtn.Click
         home.Show()
         Me.Close()
     End Sub
 
-#End Region
+    Private Sub sideAthletesBtn_Click(sender As Object, e As EventArgs) Handles sideAthletesBtn.Click
+        selectAthlete.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
+        AddEdit_User.Show()
+        Me.Close()
+    End Sub
 End Class
