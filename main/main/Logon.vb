@@ -4,7 +4,6 @@ Public Class Logon
     'login info: admin, adminpass
     '            coach, coachpass
     '            student, studentpass
-    Public accessLevel As Integer
 
 
 #Region "Dim Variables"
@@ -93,13 +92,14 @@ Public Class Logon
         Dim Found As Boolean
         Using conn As New System.Data.OleDb.OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, Pass FROM UserDb WHERE ID = @Username AND Pass = @Pass", conn)
+            Using cmd As New OleDbCommand("SELECT ID, Pass, AccessLevel FROM UserDb WHERE ID = @Username AND Pass = @Pass", conn)
                 '("SELECT * FROM UserDb WHERE User='" & TextBox1.Text & "' AND Pass = '" & TextBox2.Text & "'")
                 cmd.Parameters.Add(New OleDbParameter("@Username", username))
                 cmd.Parameters.Add(New OleDbParameter("@Pass", pass)) 'maps your variable to that string
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         If dr.Read() Then
+                            access = dr("AccessLevel")
                             Found = True
                         Else
                             Found = False

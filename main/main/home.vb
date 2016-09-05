@@ -53,17 +53,14 @@ Public Class home
 #Region "Sidebar"
 
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'access = 1 FOR TEST
-        'If access = 2 Then
-        sideadminBtn.Visible = True
-
         lblAlertCount.Text = getNotifCount()
         If lblAlertCount.Text = "0" Then
             lblAlertCount.Text = ""
         End If
-        sideadminBtn.Visible = True
-
-        'End If
+        If access = 0 Or access = 1 Then
+            sideadminBtn.Visible = False
+            addEditUserBtn.Visible = False
+        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
