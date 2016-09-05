@@ -56,11 +56,15 @@ Public Class home
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'access = 1 FOR TEST
         'If access = 2 Then
+
+        sideadminBtn.Visible = True
+
         lblAlertCount.Text = getNotifCount()
         If lblAlertCount.Text = "0" Then
             lblAlertCount.Text = ""
         End If
-            sideadminBtn.Visible = True
+        sideadminBtn.Visible = True
+
         'End If
     End Sub
 
@@ -92,6 +96,7 @@ Public Class home
                 sideAthletesBtn.Top += 10
                 sideadminBtn.Top += 10
                 resdrop.Top += 10
+
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
             End If
@@ -162,6 +167,7 @@ Public Class home
 
     Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles sidecalendarBtn.Click
         calendar.Show()
+        Me.Hide()
     End Sub
     Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles sideresultBtn.Click
         Results.Show()
@@ -169,18 +175,18 @@ Public Class home
     End Sub
 #End Region
 
-#Region "TopBar"
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click, Button3.Click
+#Region "Buttons"
+    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+        Close()
+    End Sub
+
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
         checkNotif.Show()
     End Sub
-    Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
         Me.Close()
     End Sub
-#End Region
-
-
-
-#Region "Buttons"
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Logon.Show()
@@ -206,5 +212,19 @@ Public Class home
         selectAthlete.Show()
         Me.Hide()
     End Sub
+
+    Private Sub sideAthletesBtn_Click(sender As Object, e As EventArgs) Handles sideAthletesBtn.Click
+        selectAthlete.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
+        AddEdit_User.Show()
+        Me.Close()
+    End Sub
 #End Region
+
+
+
+
 End Class

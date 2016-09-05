@@ -1,6 +1,10 @@
 ﻿Imports System.Data.OleDb
 Public Class Logon
 
+    'login info: admin, adminpass
+    '            coach, coachpass
+    '            student, studentpass
+
 #Region "Dim Variables"
     Dim adpCustomer As New OleDbDataAdapter
     Dim conCreditUnion As OleDbConnection
@@ -62,13 +66,13 @@ Public Class Logon
                 TextBox1.Text = ""
                 TextBox1.Focus()
                 attempts -= 1
-                MessageBox.Show("Incorrect username or password", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+                MessageBox.Show("Incorrect username or password", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 TextBox2.Text = ""
                 TextBox1.Text = ""
                 TextBox1.Focus()
                 If attempts = 0 Then ' 3 Tries used up, locked out
                     Button1.Enabled = False
-                    MessageBox.Show("Email Kurt at: KURTSCOOLEMAIL@GMAIL.COM", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+                    MessageBox.Show("Email Kurt at: KURTSCOOLEMAIL@GMAIL.COM", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     TextBox1.ReadOnly = True
                     TextBox2.ReadOnly = True
                 End If
@@ -106,8 +110,7 @@ Public Class Logon
     End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        home.Close()
-        Close()
+        End
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
