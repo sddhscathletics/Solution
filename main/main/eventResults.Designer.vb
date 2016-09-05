@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class eventResults
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,10 @@ Partial Class eventResults
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.gbNotes = New System.Windows.Forms.GroupBox()
+        Me.chbAllAbsent = New System.Windows.Forms.CheckBox()
         Me.chbAllNotes = New System.Windows.Forms.CheckBox()
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
@@ -44,6 +45,7 @@ Partial Class eventResults
         '
         'gbNotes
         '
+        Me.gbNotes.Controls.Add(Me.chbAllAbsent)
         Me.gbNotes.Controls.Add(Me.chbAllNotes)
         Me.gbNotes.Controls.Add(Me.btnSelect)
         Me.gbNotes.Controls.Add(Me.cmbGroup)
@@ -51,58 +53,69 @@ Partial Class eventResults
         Me.gbNotes.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbNotes.Location = New System.Drawing.Point(12, 12)
         Me.gbNotes.Name = "gbNotes"
-        Me.gbNotes.Size = New System.Drawing.Size(371, 349)
+        Me.gbNotes.Size = New System.Drawing.Size(385, 349)
         Me.gbNotes.TabIndex = 61
         Me.gbNotes.TabStop = False
         Me.gbNotes.Text = "NOTES"
         '
+        'chbAllAbsent
+        '
+        Me.chbAllAbsent.AutoSize = True
+        Me.chbAllAbsent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllAbsent.Location = New System.Drawing.Point(6, 25)
+        Me.chbAllAbsent.Name = "chbAllAbsent"
+        Me.chbAllAbsent.Size = New System.Drawing.Size(91, 17)
+        Me.chbAllAbsent.TabIndex = 63
+        Me.chbAllAbsent.Text = "ALL ABSENT"
+        Me.chbAllAbsent.UseVisualStyleBackColor = True
+        '
         'chbAllNotes
         '
         Me.chbAllNotes.AutoSize = True
-        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbAllNotes.Location = New System.Drawing.Point(21, 25)
+        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllNotes.Location = New System.Drawing.Point(96, 25)
         Me.chbAllNotes.Name = "chbAllNotes"
-        Me.chbAllNotes.Size = New System.Drawing.Size(80, 19)
+        Me.chbAllNotes.Size = New System.Drawing.Size(85, 17)
         Me.chbAllNotes.TabIndex = 62
         Me.chbAllNotes.Text = "ALL NOTES"
         Me.chbAllNotes.UseVisualStyleBackColor = True
         '
         'btnSelect
         '
-        Me.btnSelect.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelect.Location = New System.Drawing.Point(267, 23)
+        Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelect.Location = New System.Drawing.Point(320, 23)
         Me.btnSelect.Name = "btnSelect"
-        Me.btnSelect.Size = New System.Drawing.Size(75, 23)
+        Me.btnSelect.Size = New System.Drawing.Size(61, 23)
         Me.btnSelect.TabIndex = 61
         Me.btnSelect.Text = "SELECT"
         Me.btnSelect.UseVisualStyleBackColor = True
         '
         'cmbGroup
         '
-        Me.cmbGroup.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbGroup.FormattingEnabled = True
         Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbGroup.Location = New System.Drawing.Point(107, 23)
+        Me.cmbGroup.Location = New System.Drawing.Point(180, 23)
         Me.cmbGroup.Name = "cmbGroup"
-        Me.cmbGroup.Size = New System.Drawing.Size(136, 23)
+        Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
         Me.cmbGroup.TabIndex = 46
         Me.cmbGroup.Tag = "template"
         '
         'flpAthletes
         '
         Me.flpAthletes.AutoScroll = True
-        Me.flpAthletes.BackColor = System.Drawing.SystemColors.Control
+        Me.flpAthletes.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.flpAthletes.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpAthletes.Location = New System.Drawing.Point(0, 48)
+        Me.flpAthletes.Location = New System.Drawing.Point(5, 48)
         Me.flpAthletes.Name = "flpAthletes"
-        Me.flpAthletes.Size = New System.Drawing.Size(371, 295)
+        Me.flpAthletes.Size = New System.Drawing.Size(376, 295)
         Me.flpAthletes.TabIndex = 45
         Me.flpAthletes.WrapContents = False
         '
         'gbResults
         '
         Me.gbResults.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbResults.Location = New System.Drawing.Point(389, 12)
+        Me.gbResults.Location = New System.Drawing.Point(403, 12)
         Me.gbResults.Name = "gbResults"
         Me.gbResults.Size = New System.Drawing.Size(305, 82)
         Me.gbResults.TabIndex = 62
@@ -115,9 +128,9 @@ Partial Class eventResults
         Me.pnlAttach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlAttach.Controls.Add(Me.pbAttach)
         Me.pnlAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pnlAttach.Location = New System.Drawing.Point(389, 34)
+        Me.pnlAttach.Location = New System.Drawing.Point(407, 34)
         Me.pnlAttach.Name = "pnlAttach"
-        Me.pnlAttach.Size = New System.Drawing.Size(305, 56)
+        Me.pnlAttach.Size = New System.Drawing.Size(297, 56)
         Me.pnlAttach.TabIndex = 44
         '
         'pbAttach
@@ -135,7 +148,7 @@ Partial Class eventResults
         'lblNotes
         '
         Me.lblNotes.AutoSize = True
-        Me.lblNotes.Location = New System.Drawing.Point(459, 211)
+        Me.lblNotes.Location = New System.Drawing.Point(473, 211)
         Me.lblNotes.Name = "lblNotes"
         Me.lblNotes.Size = New System.Drawing.Size(164, 13)
         Me.lblNotes.TabIndex = 0
@@ -148,7 +161,7 @@ Partial Class eventResults
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(567, 330)
+        Me.btnCancel.Location = New System.Drawing.Point(581, 330)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(86, 34)
         Me.btnCancel.TabIndex = 44
@@ -157,7 +170,7 @@ Partial Class eventResults
         '
         'btnSaveEvent
         '
-        Me.btnSaveEvent.Location = New System.Drawing.Point(434, 330)
+        Me.btnSaveEvent.Location = New System.Drawing.Point(448, 330)
         Me.btnSaveEvent.Name = "btnSaveEvent"
         Me.btnSaveEvent.Size = New System.Drawing.Size(86, 34)
         Me.btnSaveEvent.TabIndex = 43
@@ -167,7 +180,7 @@ Partial Class eventResults
         'rchTxt
         '
         Me.rchTxt.Enabled = False
-        Me.rchTxt.Location = New System.Drawing.Point(389, 119)
+        Me.rchTxt.Location = New System.Drawing.Point(403, 119)
         Me.rchTxt.Name = "rchTxt"
         Me.rchTxt.Size = New System.Drawing.Size(305, 208)
         Me.rchTxt.TabIndex = 63
@@ -179,7 +192,7 @@ Partial Class eventResults
         Me.lblEdit.AutoSize = True
         Me.lblEdit.Enabled = False
         Me.lblEdit.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEdit.Location = New System.Drawing.Point(389, 94)
+        Me.lblEdit.Location = New System.Drawing.Point(403, 94)
         Me.lblEdit.Name = "lblEdit"
         Me.lblEdit.Size = New System.Drawing.Size(87, 23)
         Me.lblEdit.TabIndex = 64
@@ -190,7 +203,7 @@ Partial Class eventResults
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(703, 373)
+        Me.ClientSize = New System.Drawing.Size(715, 373)
         Me.Controls.Add(Me.lblEdit)
         Me.Controls.Add(Me.rchTxt)
         Me.Controls.Add(Me.btnCancel)
@@ -228,4 +241,5 @@ Partial Class eventResults
     Friend WithEvents btnSaveEvent As Button
     Friend WithEvents lblEdit As Label
     Friend WithEvents sfdSave As SaveFileDialog
+    Friend WithEvents chbAllAbsent As CheckBox
 End Class
