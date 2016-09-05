@@ -7,7 +7,6 @@
 Public Class selectAthlete
     Dim listAthletes As New List(Of athlete)
     Dim listSorted As New List(Of athlete)
-    Dim listSearched As New List(Of athlete)
     Dim listAdd As New List(Of String)
     Dim listRem As New List(Of String)
     Dim controlState As String = "first"
@@ -182,21 +181,18 @@ Public Class selectAthlete
         toggleControls()
         listAthletes = populate(listAthletes)
         listSorted = listAthletes
-        listSearched.AddRange(listAthletes)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
         listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
         listSorted = sort(cmbSort, listSorted)
-        listSearched = updateSearched(listSearched, listSorted)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
         listSorted = sort(cmbSort, listSorted)
-        listSearched = updateSearched(listSearched, listSorted)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
@@ -547,14 +543,5 @@ Public Class selectAthlete
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         home.Show()
         Me.Close()
-    End Sub
-
-    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        If txtSearch.Text = "" Then
-            listSearched = updateSearched(listSearched, listSorted)
-        Else
-            listSearched = searchFilter(txtSearch, listSearched, listSorted)
-        End If
-        fillPanels(flpAthletes, "", listSearched)
     End Sub
 End Class

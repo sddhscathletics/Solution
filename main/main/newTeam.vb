@@ -3,29 +3,26 @@
 
 Public Class newTeam
     Dim panelColor As Color = Color.CadetBlue
+    Dim first As Boolean = True
     Dim listAthletes As New List(Of athlete) 'Master list
     Dim listSorted As New List(Of athlete) 'Actual list displayed
-    Dim listSearched As New List(Of athlete)
     Dim listSelected As New List(Of athlete) 'People selected
 
     Private Sub newTeam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         listAthletes = populate(listAthletes) 'Populate with athletes
         listSorted = listAthletes
-        listSearched.AddRange(listAthletes)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
         listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
         listSorted = sort(cmbSort, listSorted)
-        listSearched = updateSearched(listSearched, listSorted)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub cmbSort_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
         listSorted = sort(cmbSort, listSorted)
-        listSearched = updateSearched(listSearched, listSorted)
-        fillPanels(flpAthletes, "", listSearched)
+        fillPanels(flpAthletes, "", listSorted)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
@@ -123,12 +120,14 @@ Public Class newTeam
     End Sub
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        If txtSearch.Text = "" Then
-            listSearched = updateSearched(listSearched, listSorted)
-        Else
-            listSearched = searchFilter(txtSearch, listSearched, listSorted)
+        'Search in realtime
+    End Sub
+
+    Private Sub txtSearch_GotFocus(sender As Object, e As EventArgs) Handles txtSearch.GotFocus
+        If first = True Then
+            txtSearch.Text = ""
+            first = False
         End If
-        fillPanels(flpAthletes, "", listSearched)
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
