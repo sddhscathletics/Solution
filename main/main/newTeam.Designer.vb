@@ -57,10 +57,10 @@ Partial Class newTeam
         'lblTeamName
         '
         Me.lblTeamName.AutoSize = True
-        Me.lblTeamName.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTeamName.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTeamName.Location = New System.Drawing.Point(174, 7)
         Me.lblTeamName.Name = "lblTeamName"
-        Me.lblTeamName.Size = New System.Drawing.Size(74, 13)
+        Me.lblTeamName.Size = New System.Drawing.Size(70, 15)
         Me.lblTeamName.TabIndex = 2
         Me.lblTeamName.Text = "TEAM NAME"
         '
@@ -76,10 +76,10 @@ Partial Class newTeam
         'lblAddMembers
         '
         Me.lblAddMembers.AutoSize = True
-        Me.lblAddMembers.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAddMembers.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAddMembers.Location = New System.Drawing.Point(9, 85)
         Me.lblAddMembers.Name = "lblAddMembers"
-        Me.lblAddMembers.Size = New System.Drawing.Size(87, 13)
+        Me.lblAddMembers.Size = New System.Drawing.Size(83, 15)
         Me.lblAddMembers.TabIndex = 85
         Me.lblAddMembers.Text = "ADD MEMBERS"
         '
@@ -130,10 +130,10 @@ Partial Class newTeam
         'lblSelectedMembers
         '
         Me.lblSelectedMembers.AutoSize = True
-        Me.lblSelectedMembers.Font = New System.Drawing.Font("Rockwell", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSelectedMembers.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSelectedMembers.Location = New System.Drawing.Point(477, 109)
         Me.lblSelectedMembers.Name = "lblSelectedMembers"
-        Me.lblSelectedMembers.Size = New System.Drawing.Size(118, 13)
+        Me.lblSelectedMembers.Size = New System.Drawing.Size(110, 15)
         Me.lblSelectedMembers.TabIndex = 88
         Me.lblSelectedMembers.Text = "SELECTED MEMBERS"
         '

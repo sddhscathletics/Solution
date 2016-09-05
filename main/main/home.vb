@@ -56,7 +56,6 @@ Public Class home
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'access = 1 FOR TEST
         'If access = 2 Then
-
         sideadminBtn.Visible = True
 
         lblAlertCount.Text = getNotifCount()
@@ -69,22 +68,22 @@ Public Class home
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
-        Timer1.Enabled = True
+        sidebartime2.Enabled = True
     End Sub
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles sidebartime2.Tick
         If out = False Then
             bigbtngroup.Left = bigbtngroup.Left + 20
             Sidebar.Left = Sidebar.Left + 20
             If Sidebar.Left = 0 Then
                 out = True
-                Timer1.Enabled = False
+                sidebartime2.Enabled = False
             End If
         ElseIf out = True Then
             Sidebar.Left = Sidebar.Left - 20
             bigbtngroup.Left = bigbtngroup.Left - 20
             If Sidebar.Left = -200 Then
                 out = False
-                Timer1.Enabled = False
+                sidebartime2.Enabled = False
             End If
         End If
     End Sub
@@ -177,27 +176,19 @@ Public Class home
 
 #Region "Buttons"
     Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        Close()
+        End
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
         checkNotif.Show()
     End Sub
 
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        Me.Close()
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Logon.Show()
-        Me.Hide()
-    End Sub
-
     Private Sub resultBtn_Click_1(sender As Object, e As EventArgs) Handles resultBtn.Click
         Results.Show()
     End Sub
 
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles calendarBtn.Click
+    Private Sub ShowCalendar(sender As Object, e As EventArgs) Handles calendarBtn.Click
+        Me.Hide()
         Cursor.Current = Cursors.AppStarting
         calendar.Show()
         Cursor.Current = Cursors.Default
@@ -225,6 +216,8 @@ Public Class home
 #End Region
 
 
-
-
+    Private Sub clocktime_Tick(sender As Object, e As EventArgs) Handles clocktime.Tick
+        timeLbl.Text = TimeOfDay
+        dateLbl.Text = Date.Today
+    End Sub
 End Class

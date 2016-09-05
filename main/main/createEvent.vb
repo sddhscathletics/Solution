@@ -62,7 +62,6 @@ Public Class createEvent
     End Sub
 
     Private Sub btnSaveEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveEvent.Click
-#Region "Add"
         If Me.Tag.contains("add") Then
             Dim nameDateMatch As Boolean = False
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -378,8 +377,7 @@ Public Class createEvent
             Else
                 MessageBox.Show("The name And date of this event match an exisiting event." + vbNewLine + "Please change either Of these And retry.", "Corresponding Event Exists", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             End If
-#End Region
-#Region "Edit"
+
         ElseIf Me.Tag.Contains("edit") Then
             Dim nameDateMatch As Boolean = False
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -967,7 +965,7 @@ Public Class createEvent
                 End If
             End If
         End If
-#End Region
+
     End Sub
     'Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
     '    waitForDrop = New Thread(Sub() waitForDropDown())
@@ -1031,6 +1029,9 @@ Public Class createEvent
         calendar.calendar_Load(Nothing, Nothing)
     End Sub
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        home.Close()
+        selectAthlete.Close()
+        AddEdit_User.Close()
         chbNA.Checked = False
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
         rdbTraining_CheckedChanged(Nothing, Nothing)
@@ -1179,7 +1180,7 @@ Public Class createEvent
         clbDays.Visible = False
     End Sub
     Public Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
-#Region "Template Load"
+
         Cursor.Current = Cursors.AppStarting
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -1544,7 +1545,7 @@ Public Class createEvent
             conn.Close()
         End Using
         Cursor.Current = Cursors.Default
-#End Region
+
     End Sub
 #End Region
 #Region "Attachment Operations"
