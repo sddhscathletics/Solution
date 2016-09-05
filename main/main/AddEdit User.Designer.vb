@@ -376,7 +376,7 @@ Partial Class AddEdit_User
         Me.editBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.editBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.editBtn.Location = New System.Drawing.Point(1010, 443)
+        Me.editBtn.Location = New System.Drawing.Point(997, 438)
         Me.editBtn.Name = "editBtn"
         Me.editBtn.Size = New System.Drawing.Size(238, 40)
         Me.editBtn.TabIndex = 93
@@ -390,7 +390,7 @@ Partial Class AddEdit_User
         Me.createBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.createBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.createBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.createBtn.Location = New System.Drawing.Point(1010, 397)
+        Me.createBtn.Location = New System.Drawing.Point(997, 392)
         Me.createBtn.Name = "createBtn"
         Me.createBtn.Size = New System.Drawing.Size(238, 40)
         Me.createBtn.TabIndex = 93
@@ -540,7 +540,7 @@ Partial Class AddEdit_User
         Me.deleteBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.deleteBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.deleteBtn.Location = New System.Drawing.Point(1010, 443)
+        Me.deleteBtn.Location = New System.Drawing.Point(997, 438)
         Me.deleteBtn.Name = "deleteBtn"
         Me.deleteBtn.Size = New System.Drawing.Size(238, 40)
         Me.deleteBtn.TabIndex = 4
@@ -554,7 +554,7 @@ Partial Class AddEdit_User
         Me.access3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.access3.Enabled = False
         Me.access3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.access3.Location = New System.Drawing.Point(1029, 306)
+        Me.access3.Location = New System.Drawing.Point(1016, 301)
         Me.access3.Name = "access3"
         Me.access3.Size = New System.Drawing.Size(97, 17)
         Me.access3.TabIndex = 5
@@ -568,7 +568,7 @@ Partial Class AddEdit_User
         Me.access2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.access2.Enabled = False
         Me.access2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.access2.Location = New System.Drawing.Point(1029, 283)
+        Me.access2.Location = New System.Drawing.Point(1016, 278)
         Me.access2.Name = "access2"
         Me.access2.Size = New System.Drawing.Size(70, 17)
         Me.access2.TabIndex = 4
@@ -582,7 +582,7 @@ Partial Class AddEdit_User
         Me.access1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.access1.Enabled = False
         Me.access1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.access1.Location = New System.Drawing.Point(1029, 260)
+        Me.access1.Location = New System.Drawing.Point(1016, 255)
         Me.access1.Name = "access1"
         Me.access1.Size = New System.Drawing.Size(76, 17)
         Me.access1.TabIndex = 3
@@ -594,7 +594,7 @@ Partial Class AddEdit_User
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(1019, 227)
+        Me.Label3.Location = New System.Drawing.Point(1006, 222)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(101, 19)
         Me.Label3.TabIndex = 2
@@ -604,7 +604,7 @@ Partial Class AddEdit_User
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(1019, 129)
+        Me.Label2.Location = New System.Drawing.Point(1006, 124)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(40, 19)
         Me.Label2.TabIndex = 2
@@ -613,7 +613,7 @@ Partial Class AddEdit_User
         'passText
         '
         Me.passText.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.passText.Location = New System.Drawing.Point(1023, 151)
+        Me.passText.Location = New System.Drawing.Point(1010, 146)
         Me.passText.Name = "passText"
         Me.passText.ReadOnly = True
         Me.passText.Size = New System.Drawing.Size(225, 32)
@@ -623,7 +623,7 @@ Partial Class AddEdit_User
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(1019, 52)
+        Me.Label1.Location = New System.Drawing.Point(1006, 47)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(26, 19)
         Me.Label1.TabIndex = 2
@@ -632,7 +632,7 @@ Partial Class AddEdit_User
         'idText
         '
         Me.idText.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.idText.Location = New System.Drawing.Point(1023, 74)
+        Me.idText.Location = New System.Drawing.Point(1010, 69)
         Me.idText.Name = "idText"
         Me.idText.ReadOnly = True
         Me.idText.Size = New System.Drawing.Size(225, 32)

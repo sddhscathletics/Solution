@@ -53,6 +53,7 @@ Partial Class home
         Me.gallerypic1 = New System.Windows.Forms.PictureBox()
         Me.sidebartime2 = New System.Windows.Forms.Timer(Me.components)
         Me.clocktime = New System.Windows.Forms.Timer(Me.components)
+        Me.helpBtn = New System.Windows.Forms.Button()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -211,6 +212,7 @@ Partial Class home
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
+        Me.GroupBox2.Controls.Add(Me.helpBtn)
         Me.GroupBox2.Controls.Add(Me.lblAlertCount1)
         Me.GroupBox2.Controls.Add(Me.lblTitle)
         Me.GroupBox2.Controls.Add(Me.scrollBtn)
@@ -437,6 +439,21 @@ Partial Class home
         '
         Me.clocktime.Enabled = True
         '
+        'helpBtn
+        '
+        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.helpBtn.FlatAppearance.BorderSize = 0
+        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.helpBtn.Location = New System.Drawing.Point(1157, 11)
+        Me.helpBtn.Name = "helpBtn"
+        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
+        Me.helpBtn.TabIndex = 94
+        Me.helpBtn.UseVisualStyleBackColor = False
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -496,4 +513,5 @@ Partial Class home
     Friend WithEvents gallerypic1 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
     Friend WithEvents gallerypic2 As System.Windows.Forms.PictureBox
+    Friend WithEvents helpBtn As System.Windows.Forms.Button
 End Class

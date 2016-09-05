@@ -1,6 +1,5 @@
 ﻿Imports System.Data.OleDb
 Public Class home
-
 #Region "Dim Variables"
     Dim out As Boolean = False
     Dim rDrop As Boolean = False
@@ -218,4 +217,8 @@ Public Class home
         End If
     End Sub
 
+
+    Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
+        helpForm.Show()
+    End Sub
 End Class

@@ -2918,4 +2918,9 @@ Public Class createEvent
     End Sub
 
 #End Region
+
+    Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
+        helpIdentifier = "createEvent"
+        helpForm.Show()
+    End Sub
 End Class
