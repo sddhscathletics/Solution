@@ -153,11 +153,11 @@ Public Class home
 
     Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles sidecalendarBtn.Click
         calendar.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
     Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles sideresultBtn.Click
         Results.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 #End Region
 
@@ -172,10 +172,6 @@ Public Class home
         checkNotif.Show()
     End Sub
 
-    Private Sub resultBtn_click(sender As Object, e As EventArgs) Handles resultBtn.Click
-        Results.Show()
-    End Sub
-
     Private Sub ShowCalendar(sender As Object, e As EventArgs) Handles calendarBtn.Click
         Me.Hide()
         Cursor.Current = Cursors.AppStarting
@@ -185,12 +181,12 @@ Public Class home
 
     Private Sub addEdit_Click(sender As Object, e As EventArgs) Handles addEditUserBtn.Click
         AddEdit_User.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub selectAtheltes_Click(sender As Object, e As EventArgs) Handles selectAthletesBtn.Click
         selectAthlete.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub sideAthletesBtn_Click(sender As Object, e As EventArgs) Handles sideAthletesBtn.Click
