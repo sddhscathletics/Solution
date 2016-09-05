@@ -21,8 +21,7 @@ Public Class home
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseDown
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseDown, lblTitle.MouseDown
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -32,8 +31,7 @@ Public Class home
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseMove
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseMove, lblTitle.MouseMove
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -41,8 +39,7 @@ Public Class home
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles _
-    GroupBox2.MouseUp
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseUp, lblTitle.MouseUp
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -196,12 +193,12 @@ Public Class home
         Cursor.Current = Cursors.Default
     End Sub
 
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles addEditUserBtn.Click
         AddEdit_User.Show()
         Me.Hide()
     End Sub
 
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles selectAthletesBtn.Click
         selectAthlete.Show()
         Me.Hide()
     End Sub
@@ -235,4 +232,5 @@ Public Class home
             pictimer = 0
         End If
     End Sub
+
 End Class

@@ -453,7 +453,7 @@ Partial Class createEvent
         Me.gbLocation.Controls.Add(Me.txtSuburb)
         Me.gbLocation.Controls.Add(Me.lblStreet)
         Me.gbLocation.Controls.Add(Me.txtStreet)
-        Me.gbLocation.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbLocation.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbLocation.Location = New System.Drawing.Point(874, 405)
         Me.gbLocation.Name = "gbLocation"
         Me.gbLocation.Size = New System.Drawing.Size(394, 172)
@@ -497,7 +497,7 @@ Partial Class createEvent
         'gbAttachments
         '
         Me.gbAttachments.Controls.Add(Me.flpAttach)
-        Me.gbAttachments.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbAttachments.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAttachments.Location = New System.Drawing.Point(14, 403)
         Me.gbAttachments.Name = "gbAttachments"
         Me.gbAttachments.Size = New System.Drawing.Size(347, 206)
@@ -512,7 +512,7 @@ Partial Class createEvent
         Me.gbAthletes.Controls.Add(Me.chbAllAthletes)
         Me.gbAthletes.Controls.Add(Me.cmbGroup)
         Me.gbAthletes.Controls.Add(Me.flpAthletes)
-        Me.gbAthletes.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbAthletes.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAthletes.Location = New System.Drawing.Point(393, 61)
         Me.gbAthletes.Name = "gbAthletes"
         Me.gbAthletes.Size = New System.Drawing.Size(444, 263)
@@ -560,9 +560,9 @@ Partial Class createEvent
         Me.cmbGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbGroup.FormattingEnabled = True
         Me.cmbGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbGroup.Location = New System.Drawing.Point(226, 30)
+        Me.cmbGroup.Location = New System.Drawing.Point(238, 30)
         Me.cmbGroup.Name = "cmbGroup"
-        Me.cmbGroup.Size = New System.Drawing.Size(136, 21)
+        Me.cmbGroup.Size = New System.Drawing.Size(124, 21)
         Me.cmbGroup.TabIndex = 46
         '
         'flpAthletes
@@ -764,7 +764,7 @@ Partial Class createEvent
         Me.gbEvents.Controls.Add(Me.dtp17s)
         Me.gbEvents.Controls.Add(Me.lbl14s)
         Me.gbEvents.Controls.Add(Me.lblOpens)
-        Me.gbEvents.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbEvents.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbEvents.Location = New System.Drawing.Point(381, 405)
         Me.gbEvents.Name = "gbEvents"
         Me.gbEvents.Size = New System.Drawing.Size(267, 277)
@@ -793,7 +793,7 @@ Partial Class createEvent
         Me.lblAlertCount.AutoSize = True
         Me.lblAlertCount.BackColor = System.Drawing.Color.DarkGray
         Me.lblAlertCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAlertCount.Location = New System.Drawing.Point(1215, 16)
+        Me.lblAlertCount.Location = New System.Drawing.Point(1263, 16)
         Me.lblAlertCount.Name = "lblAlertCount"
         Me.lblAlertCount.Size = New System.Drawing.Size(15, 16)
         Me.lblAlertCount.TabIndex = 3
@@ -809,7 +809,7 @@ Partial Class createEvent
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button4.Location = New System.Drawing.Point(1157, 11)
+        Me.Button4.Location = New System.Drawing.Point(1196, 11)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(44, 44)
         Me.Button4.TabIndex = 6
@@ -824,7 +824,7 @@ Partial Class createEvent
         Me.Button13.FlatAppearance.BorderSize = 0
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1201, 11)
+        Me.Button13.Location = New System.Drawing.Point(1240, 11)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(44, 44)
         Me.Button13.TabIndex = 6
@@ -839,7 +839,7 @@ Partial Class createEvent
         Me.exitBtn.FlatAppearance.BorderSize = 0
         Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.exitBtn.Location = New System.Drawing.Point(1245, 11)
+        Me.exitBtn.Location = New System.Drawing.Point(1284, 11)
         Me.exitBtn.Name = "exitBtn"
         Me.exitBtn.Size = New System.Drawing.Size(44, 44)
         Me.exitBtn.TabIndex = 6
@@ -869,7 +869,7 @@ Partial Class createEvent
         Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
         Me.Sidebar.Controls.Add(Me.sideResSub2)
-        Me.Sidebar.Location = New System.Drawing.Point(-180, 20)
+        Me.Sidebar.Location = New System.Drawing.Point(-200, 20)
         Me.Sidebar.Name = "Sidebar"
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 63
@@ -1022,9 +1022,9 @@ Partial Class createEvent
         Me.bigbtngroup.Controls.Add(Me.gbEvents)
         Me.bigbtngroup.Controls.Add(Me.pbMinus)
         Me.bigbtngroup.Controls.Add(Me.pbPlus)
-        Me.bigbtngroup.Location = New System.Drawing.Point(0, 10)
+        Me.bigbtngroup.Location = New System.Drawing.Point(20, 10)
         Me.bigbtngroup.Name = "bigbtngroup"
-        Me.bigbtngroup.Size = New System.Drawing.Size(1279, 726)
+        Me.bigbtngroup.Size = New System.Drawing.Size(1329, 726)
         Me.bigbtngroup.TabIndex = 64
         Me.bigbtngroup.TabStop = False
         '
@@ -1037,7 +1037,7 @@ Partial Class createEvent
         Me.gbRepeats.Controls.Add(Me.lblDays)
         Me.gbRepeats.Controls.Add(Me.pbCmb)
         Me.gbRepeats.Controls.Add(Me.clbDays)
-        Me.gbRepeats.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.gbRepeats.Font = New System.Drawing.Font("Microsoft MHei", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbRepeats.Location = New System.Drawing.Point(661, 405)
         Me.gbRepeats.Name = "gbRepeats"
         Me.gbRepeats.Size = New System.Drawing.Size(201, 277)

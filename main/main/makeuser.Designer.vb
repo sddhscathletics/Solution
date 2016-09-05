@@ -126,7 +126,7 @@ Partial Class makeuser
         Me.newAccess3.Size = New System.Drawing.Size(30, 17)
         Me.newAccess3.TabIndex = 22
         Me.newAccess3.TabStop = True
-        Me.newAccess3.Text = "3"
+        Me.newAccess3.Text = "2"
         Me.newAccess3.UseVisualStyleBackColor = True
         '
         'newAccess2
@@ -138,7 +138,7 @@ Partial Class makeuser
         Me.newAccess2.Size = New System.Drawing.Size(30, 17)
         Me.newAccess2.TabIndex = 23
         Me.newAccess2.TabStop = True
-        Me.newAccess2.Text = "2"
+        Me.newAccess2.Text = "1"
         Me.newAccess2.UseVisualStyleBackColor = True
         '
         'newAccess1
@@ -150,7 +150,7 @@ Partial Class makeuser
         Me.newAccess1.Size = New System.Drawing.Size(30, 17)
         Me.newAccess1.TabIndex = 24
         Me.newAccess1.TabStop = True
-        Me.newAccess1.Text = "1"
+        Me.newAccess1.Text = "0"
         Me.newAccess1.UseVisualStyleBackColor = True
         '
         'createNewPass

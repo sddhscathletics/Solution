@@ -2857,12 +2857,13 @@ Public Class createEvent
         Me.Hide()
     End Sub
 #End Region
-#Region "Move Form"
+
+#Region " Move Form "
 
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseDown, lblTitle.MouseDown
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -2872,7 +2873,7 @@ Public Class createEvent
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseMove, lblTitle.MouseMove
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -2880,7 +2881,7 @@ Public Class createEvent
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseUp, lblTitle.MouseUp
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -2890,6 +2891,7 @@ Public Class createEvent
     End Sub
 
 #End Region
+
 #Region "TopBar"
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         checkNotif.Show()

@@ -6,7 +6,7 @@ Public Class AddEdit_User
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseDown, lblTitle.MouseDown
 
         If e.Button = MouseButtons.Left Then
             MoveForm = True
@@ -16,7 +16,7 @@ Public Class AddEdit_User
 
     End Sub
 
-    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseMove(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseMove, lblTitle.MouseMove
 
         If MoveForm Then
             Me.Location = Me.Location + (e.Location - MoveForm_MousePosition)
@@ -24,7 +24,7 @@ Public Class AddEdit_User
 
     End Sub
 
-    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs)
+    Public Sub MoveForm_MouseUp(sender As Object, e As MouseEventArgs) Handles GroupBox2.MouseUp, lblTitle.MouseUp
 
         If e.Button = MouseButtons.Left Then
             MoveForm = False
@@ -182,7 +182,7 @@ Public Class AddEdit_User
 
 
     Private Sub exitBtn_Click(sender As Object, e As EventArgs) Handles exitBtn.Click
-        home.Close()
+        End
     End Sub
 
     Private Sub editBtnClick(sender As Object, e As EventArgs) Handles editBtn.Click
@@ -272,7 +272,7 @@ Public Class AddEdit_User
 
 
     Private Sub help(sender As Object, e As EventArgs) Handles helpBtn.Click
-        MessageBox.Show("To create a user, select the create button and fill out the required information." & vbNewLine & "To edit an existing user's information, select their information from the table, press 'edit' and enter their new details." & vbNewLine & "To delete an user, select their informaiton from the table and select 'delete'.", "Help", MessageBoxButtons.OK, MessageBoxIcon.Question)
+        MessageBox.Show("To create a user, select the create button and fill out the required information." & vbNewLine & "To edit an existing user's information, select their information from the table, press 'edit' and enter their new details." & vbNewLine & "To delete an user, select their informaiton from the table and select 'delete'." & vbNewLine & "" & vbNewLine & "NOTE:" & vbNewLine & "AccessLevel 2 = Administrator" & vbNewLine & "AccessLevel 1 = Coach" & vbNewLine & "AccessLevel 0 = Student", "Help", MessageBoxButtons.OK, MessageBoxIcon.Question)
     End Sub
 
     Private Sub notifBtn_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
