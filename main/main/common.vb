@@ -141,4 +141,20 @@ Module common
         End If
         Return list
     End Function
+
+    Public Function updateSearched(searched As List(Of athlete), sorted As List(Of athlete))
+        searched.Clear()
+        searched.AddRange(sorted)
+        Return searched
+    End Function
+
+    Public Function searchFilter(filter As TextBox, searched As List(Of athlete), sorted As List(Of athlete))
+        searched.Clear()
+        For Each ath As athlete In sorted
+            If ath.fName.ToLower.Contains(filter.Text.ToLower) Or ath.lName.ToLower.Contains(filter.Text.ToLower) Or ath.ID.ToLower.Contains(filter.Text.ToLower) Then
+                searched.Add(ath)
+            End If
+        Next
+        Return searched
+    End Function
 End Module

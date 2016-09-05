@@ -187,7 +187,6 @@
     <Compile Include="saveOrOpen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchSortFilter.vb" />
     <Compile Include="selectAthlete.Designer.vb">
       <DependentUpon>selectAthlete.vb</DependentUpon>
     </Compile>
