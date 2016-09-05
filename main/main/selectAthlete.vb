@@ -1,6 +1,4 @@
 ﻿Imports System.Data.OleDb
-'Profile photo
-'Alerts
 
 Public Class selectAthlete
     Dim listAthletes As New List(Of athlete)
@@ -277,7 +275,16 @@ Public Class selectAthlete
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
-                            'pbPhoto.Image = dr("Photo")
+                            Dim photoNum As Integer = CInt(Math.Floor((3 - 1 + 1) * Rnd())) + 1
+                            Select Case photoNum
+                                Case 1
+                                    pbPhoto.Image = My.Resources.student1
+                                Case 2
+                                    pbPhoto.Image = My.Resources.student2
+                                Case 3
+                                    pbPhoto.Image = My.Resources.student3
+                            End Select
+
                             If access = 2 Then
                                 Try
                                     lblHeaderAddress.Text = "Address"
@@ -530,7 +537,6 @@ Public Class selectAthlete
     End Sub
 
     Private Sub saveChanges()
-        'Compare textbox contents and labels
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("UPDATE athleteDb SET BestEvent = '" + txtBestEvent.Text + "' WHERE ID = " + lblID.Text, conn)

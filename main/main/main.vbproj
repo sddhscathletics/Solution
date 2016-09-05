@@ -427,6 +427,9 @@
     <None Include="Resources\notifbtn.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\student2.png" />
+    <None Include="Resources\student3.png" />
+    <None Include="Resources\student1.png" />
     <Content Include="sbhslogoreal.ico" />
     <None Include="Resources\savebtn.png" />
     <None Include="Resources\Manage User UPD Btn.png" />
