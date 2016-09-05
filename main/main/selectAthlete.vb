@@ -559,8 +559,4 @@ Public Class selectAthlete
         End If
         fillPanels(flpAthletes, "", listSearched)
     End Sub
-
-    Private Sub bigbtngroup_Enter(sender As Object, e As EventArgs) Handles bigbtngroup.Enter
-
-    End Sub
 End Class
