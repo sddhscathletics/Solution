@@ -23,6 +23,7 @@ Partial Class home
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(home))
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
@@ -34,6 +35,7 @@ Partial Class home
         Me.sideResSub2 = New System.Windows.Forms.Button()
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.helpBtn = New System.Windows.Forms.Button()
         Me.lblAlertCount1 = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.scrollBtn = New System.Windows.Forms.Button()
@@ -53,7 +55,6 @@ Partial Class home
         Me.gallerypic1 = New System.Windows.Forms.PictureBox()
         Me.sidebartime2 = New System.Windows.Forms.Timer(Me.components)
         Me.clocktime = New System.Windows.Forms.Timer(Me.components)
-        Me.helpBtn = New System.Windows.Forms.Button()
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -225,6 +226,21 @@ Partial Class home
         Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GroupBox2"
+        '
+        'helpBtn
+        '
+        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.helpBtn.FlatAppearance.BorderSize = 0
+        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.helpBtn.Location = New System.Drawing.Point(1157, 11)
+        Me.helpBtn.Name = "helpBtn"
+        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
+        Me.helpBtn.TabIndex = 94
+        Me.helpBtn.UseVisualStyleBackColor = False
         '
         'lblAlertCount1
         '
@@ -439,21 +455,6 @@ Partial Class home
         '
         Me.clocktime.Enabled = True
         '
-        'helpBtn
-        '
-        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.helpBtn.FlatAppearance.BorderSize = 0
-        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.helpBtn.Location = New System.Drawing.Point(1157, 11)
-        Me.helpBtn.Name = "helpBtn"
-        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
-        Me.helpBtn.TabIndex = 94
-        Me.helpBtn.UseVisualStyleBackColor = False
-        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -464,9 +465,10 @@ Partial Class home
         Me.Controls.Add(Me.Sidebar)
         Me.Controls.Add(Me.bigbtngroup)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "home"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Form1"
+        Me.Text = "Home"
         Me.Sidebar.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
