@@ -163,6 +163,7 @@ Partial Class Logon
         Me.Button4.TabIndex = 11
         Me.Button4.Text = "free access"
         Me.Button4.UseVisualStyleBackColor = True
+        Me.Button4.Visible = False
         '
         'Logon
         '

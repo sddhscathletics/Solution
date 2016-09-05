@@ -555,4 +555,9 @@ Public Class selectAthlete
         AddEdit_User.Show()
         Me.Close()
     End Sub
+
+    Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
+        helpIdentifier = "selectAthlete"
+        helpForm.Show()
+    End Sub
 End Class

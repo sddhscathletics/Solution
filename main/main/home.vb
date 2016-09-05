@@ -1,19 +1,16 @@
 ﻿Imports System.Data.OleDb
 Public Class home
-
 #Region "Dim Variables"
     Dim out As Boolean = False
-    Dim cDrop As Boolean = False
     Dim rDrop As Boolean = False
-    Dim cDown As Boolean = False
     Dim rDown As Boolean = False
     Dim atDrop As Boolean = False
     Dim atDown As Boolean = False
     Dim adDrop As Boolean = False
-    Dim adDown As Boolean = False
-    Dim jun As Integer = 0 'jun is a counter for side bar scrolling
-    Dim pictimer As Integer = 0
-    Dim pic2 As Boolean = True
+    Dim adDown As Boolean = False 'all side bar counters for movement
+    Dim jun As Integer = 0 'jun is a counter for side bar horizontal movement
+    Dim pictimer As Integer = 0 'counter for pic looping
+    Dim pic2 As Boolean = True 'pic visible status
 #End Region
 
 #Region " Move Form "
@@ -50,16 +47,16 @@ Public Class home
 
 #End Region
 
-#Region "Sidebar"
-
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblAlertCount.Text = getNotifCount()
-        If lblAlertCount.Text = "0" Then
-            lblAlertCount.Text = ""
+        lblAlertCount1.Text = getNotifCount()
+        If lblAlertCount1.Text = "0" Then
+            lblAlertCount1.Text = ""
         End If
-        sideadminBtn.Visible = True
+        If access = 1 Or access = 0 Then 'checking accesslevel of user, if not admin cannot access certain functions
+            addEditUserBtn.Visible = False
+            sideadminBtn.Visible = False
+        End If
 
-        'End If
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT EventName, EventDate, Notes, NotesGiven FROM Events WHERE Notes IS NOT NULL AND DateValue(EventDate) > DateValue(@date)", conn)
@@ -90,9 +87,11 @@ Public Class home
                     End If
                 End Using
             End Using
-            conn.close()
+            conn.Close()
         End Using
     End Sub
+
+#Region "Sidebar"
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
         sidebartime2.Enabled = True
@@ -115,33 +114,6 @@ Public Class home
         End If
     End Sub
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
-        'calendar drop
-        If cDrop = True Then
-            If cDown = True Then
-                sideresultBtn.Top += 10
-                sideAthletesBtn.Top += 10
-                sideadminBtn.Top += 10
-                resdrop.Top += 10
-
-                sideResSub1.Top += 10
-                sideResSub2.Top += 10
-            End If
-            If cDown = False Then
-                sideresultBtn.Top -= 10
-                sideAthletesBtn.Top -= 10
-                sideadminBtn.Top -= 10
-                resdrop.Top -= 10
-
-                sideResSub1.Top -= 10
-                sideResSub2.Top -= 10
-            End If
-            jun += 1
-            If jun = 9 Then
-                jun = 0
-                cDrop = False
-                sidebartime.Enabled = False
-            End If
-        End If
         ' results drop
         If rDrop = True Then
             If rDown = True Then
@@ -164,19 +136,6 @@ Public Class home
             End If
         End If
     End Sub
-    Private Sub calDrop_Click(sender As Object, e As EventArgs)
-        If cDrop = False Then
-            cDrop = True
-            If cDown = False Then
-                cDown = True
-            Else
-                If cDown = True Then
-                    cDown = False
-                End If
-            End If
-            sidebartime.Enabled = True
-        End If
-    End Sub
     Private Sub resdrop_Click(sender As Object, e As EventArgs) Handles resdrop.Click
         If rDrop = False Then
             rDrop = True
@@ -193,11 +152,11 @@ Public Class home
 
     Private Sub calendarBtn_Click(sender As Object, e As EventArgs) Handles sidecalendarBtn.Click
         calendar.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
     Private Sub resultBtn_Click(sender As Object, e As EventArgs) Handles sideresultBtn.Click
         Results.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 #End Region
 
@@ -208,12 +167,8 @@ Public Class home
         End If
     End Sub
 
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
+    Private Sub check_Notif(sender As Object, e As EventArgs) Handles notifBtn.Click
         checkNotif.Show()
-    End Sub
-
-    Private Sub resultBtn_Click_1(sender As Object, e As EventArgs) Handles resultBtn.Click
-        Results.Show()
     End Sub
 
     Private Sub ShowCalendar(sender As Object, e As EventArgs) Handles calendarBtn.Click
@@ -223,14 +178,14 @@ Public Class home
         Cursor.Current = Cursors.Default
     End Sub
 
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles addEditUserBtn.Click
+    Private Sub addEdit_Click(sender As Object, e As EventArgs) Handles addEditUserBtn.Click
         AddEdit_User.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles selectAthletesBtn.Click
+    Private Sub selectAtheltes_Click(sender As Object, e As EventArgs) Handles selectAthletesBtn.Click
         selectAthlete.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub sideAthletesBtn_Click(sender As Object, e As EventArgs) Handles sideAthletesBtn.Click
@@ -245,7 +200,7 @@ Public Class home
 #End Region
 
     Private Sub clocktime_Tick(sender As Object, e As EventArgs) Handles clocktime.Tick
-        timeLbl.Text = TimeOfDay
+        timeLbl.Text = TimeOfDay 'sets date and time labels
         dateLbl.Text = Date.Today
         If pictimer < 100 Then
             pictimer += 1
@@ -262,4 +217,8 @@ Public Class home
         End If
     End Sub
 
+
+    Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
+        helpForm.Show()
+    End Sub
 End Class

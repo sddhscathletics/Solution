@@ -1,6 +1,5 @@
 ﻿Imports System.Data.OleDb
 Public Class AddEdit_User
-
 #Region " Move Form "
 
     Public MoveForm As Boolean
@@ -274,7 +273,8 @@ Public Class AddEdit_User
 
 
     Private Sub help(sender As Object, e As EventArgs) Handles helpBtn.Click
-        MessageBox.Show("To create a user, select the create button and fill out the required information." & vbNewLine & "To edit an existing user's information, select their information from the table, press 'edit' and enter their new details." & vbNewLine & "To delete an user, select their informaiton from the table and select 'delete'." & vbNewLine & "" & vbNewLine & "NOTE:" & vbNewLine & "AccessLevel 2 = Administrator" & vbNewLine & "AccessLevel 1 = Coach" & vbNewLine & "AccessLevel 0 = Student", "Help", MessageBoxButtons.OK, MessageBoxIcon.Question)
+        helpIdentifier = "addEdit"
+        helpForm.Show()
     End Sub
 
     Private Sub notifBtn_Click(sender As Object, e As EventArgs) Handles notifBtn.Click
