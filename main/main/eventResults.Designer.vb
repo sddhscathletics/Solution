@@ -23,6 +23,7 @@ Partial Class eventResults
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.gbNotes = New System.Windows.Forms.GroupBox()
+        Me.chbAllAbsent = New System.Windows.Forms.CheckBox()
         Me.chbAllNotes = New System.Windows.Forms.CheckBox()
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
@@ -37,7 +38,6 @@ Partial Class eventResults
         Me.rchTxt = New System.Windows.Forms.RichTextBox()
         Me.lblEdit = New System.Windows.Forms.Label()
         Me.sfdSave = New System.Windows.Forms.SaveFileDialog()
-        Me.chbAllAbsent = New System.Windows.Forms.CheckBox()
         Me.gbNotes.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +57,17 @@ Partial Class eventResults
         Me.gbNotes.TabIndex = 61
         Me.gbNotes.TabStop = False
         Me.gbNotes.Text = "NOTES"
+        '
+        'chbAllAbsent
+        '
+        Me.chbAllAbsent.AutoSize = True
+        Me.chbAllAbsent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbAllAbsent.Location = New System.Drawing.Point(6, 25)
+        Me.chbAllAbsent.Name = "chbAllAbsent"
+        Me.chbAllAbsent.Size = New System.Drawing.Size(91, 17)
+        Me.chbAllAbsent.TabIndex = 63
+        Me.chbAllAbsent.Text = "ALL ABSENT"
+        Me.chbAllAbsent.UseVisualStyleBackColor = True
         '
         'chbAllNotes
         '
@@ -93,7 +104,7 @@ Partial Class eventResults
         'flpAthletes
         '
         Me.flpAthletes.AutoScroll = True
-        Me.flpAthletes.BackColor = System.Drawing.SystemColors.Control
+        Me.flpAthletes.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.flpAthletes.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpAthletes.Location = New System.Drawing.Point(5, 48)
         Me.flpAthletes.Name = "flpAthletes"
@@ -117,9 +128,9 @@ Partial Class eventResults
         Me.pnlAttach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlAttach.Controls.Add(Me.pbAttach)
         Me.pnlAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pnlAttach.Location = New System.Drawing.Point(403, 34)
+        Me.pnlAttach.Location = New System.Drawing.Point(407, 34)
         Me.pnlAttach.Name = "pnlAttach"
-        Me.pnlAttach.Size = New System.Drawing.Size(305, 56)
+        Me.pnlAttach.Size = New System.Drawing.Size(297, 56)
         Me.pnlAttach.TabIndex = 44
         '
         'pbAttach
@@ -186,17 +197,6 @@ Partial Class eventResults
         Me.lblEdit.Size = New System.Drawing.Size(87, 23)
         Me.lblEdit.TabIndex = 64
         Me.lblEdit.Text = "EDITOR"
-        '
-        'chbAllAbsent
-        '
-        Me.chbAllAbsent.AutoSize = True
-        Me.chbAllAbsent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbAllAbsent.Location = New System.Drawing.Point(6, 25)
-        Me.chbAllAbsent.Name = "chbAllAbsent"
-        Me.chbAllAbsent.Size = New System.Drawing.Size(91, 17)
-        Me.chbAllAbsent.TabIndex = 63
-        Me.chbAllAbsent.Text = "ALL ABSENT"
-        Me.chbAllAbsent.UseVisualStyleBackColor = True
         '
         'eventResults
         '
