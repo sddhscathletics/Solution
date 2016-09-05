@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 
-Module alert
+Module common
     Public Sub newEdit(changeType As String, changeMade As String) 'Appends the edit log with a new edit
         Dim edit As String = ""
         Select Case changeType
@@ -62,7 +62,7 @@ Module alert
         alertCount = 0
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("SELECT FROM editDb WHERE [read] = 0", conn) 'Selects unread edits
+            Using cmd As New OleDbCommand("SELECT * FROM editDb WHERE [read] = 0", conn) 'Selects unread edits
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows Then
                         Do While dr.Read()
@@ -84,4 +84,77 @@ Module alert
         End Using
         alertCount = alertList.Count
     End Sub
+
+    Public Function populate(list As List(Of athlete))
+        list.Clear()
+        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName, AgeGroup FROM athleteDb", conn)
+                'Need to add photo
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            Dim ath As New athlete
+                            ath.ID = dr("ID")
+                            ath.roll = dr("RollClass")
+                            ath.fName = dr("FirstName")
+                            ath.lName = dr("LastName")
+                            ath.ageGroup = dr("AgeGroup")
+                            list.Add(ath)
+                        Loop
+                    End If
+                End Using
+            End Using
+        End Using
+        Return list
+    End Function
+
+    Public Function sort(cmb As ComboBox, list As List(Of athlete)) 'cmb should be the 'Sort by' combobox
+        If cmb.SelectedItem <> Nothing Then 'Sorting
+            Dim asc As Boolean = True
+            Select Case cmb.SelectedItem.ToString
+                Case "ID"
+                    list.Sort(Function(x, y) x.ID.CompareTo(y.ID))
+
+                Case "Roll Class" 'Not working yet
+                    asc = False
+                    list.Sort(Function(x, y) x.roll.CompareTo(y.roll))
+
+                Case "First Name (Ascending)"
+                    list.Sort(Function(x, y) x.fName.CompareTo(y.fName))
+
+                Case "First Name (Descending)"
+                    asc = False
+                    list.Sort(Function(x, y) x.fName.CompareTo(y.fName))
+
+                Case "Last Name (Ascending)"
+                    list.Sort(Function(x, y) x.lName.CompareTo(y.lName))
+
+                Case "Last Name (Descending)"
+                    asc = False
+                    list.Sort(Function(x, y) x.lName.CompareTo(y.lName))
+            End Select
+
+            If asc = False Then
+                list.Reverse()
+            End If
+        End If
+        Return list
+    End Function
+
+    Public Function updateSearched(searched As List(Of athlete), sorted As List(Of athlete))
+        searched.Clear()
+        searched.AddRange(sorted)
+        Return searched
+    End Function
+
+    Public Function searchFilter(filter As TextBox, searched As List(Of athlete), sorted As List(Of athlete))
+        searched.Clear()
+        For Each ath As athlete In sorted
+            If ath.fName.ToLower.Contains(filter.Text.ToLower) Or ath.lName.ToLower.Contains(filter.Text.ToLower) Or ath.ID.ToLower.Contains(filter.Text.ToLower) Then
+                searched.Add(ath)
+            End If
+        Next
+        Return searched
+    End Function
 End Module

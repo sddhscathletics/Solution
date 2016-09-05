@@ -98,7 +98,6 @@
     <Compile Include="AddEdit User.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="alert.vb" />
     <Compile Include="AthleteDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -116,6 +115,7 @@
     <Compile Include="checkNotif.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="common.vb" />
     <Compile Include="createEvent.Designer.vb">
       <DependentUpon>createEvent.vb</DependentUpon>
     </Compile>
@@ -407,7 +407,14 @@
     <None Include="Resources\notifbtn.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\savebtn.png" />
+    <None Include="Resources\Manage User UPD Btn.png" />
     <None Include="Resources\comboBoxImage.png" />
+    <None Include="Resources\Calendar Btn.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\close1.png" />
+    <None Include="Resources\comboBoxDropped.png" />
+    <None Include="Resources\comboBoxHover.png" />
     <Content Include="Resources\helpbtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

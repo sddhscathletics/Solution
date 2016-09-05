@@ -155,6 +155,7 @@ Partial Class checkNotif
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(569, 409)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -165,7 +166,9 @@ Partial Class checkNotif
         Me.Controls.Add(Me.txtChangeType)
         Me.Controls.Add(Me.btnLoad)
         Me.Controls.Add(Me.txtAlertCount)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "checkNotif"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "checkNotif"
         CType(Me.dgdNotifs, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

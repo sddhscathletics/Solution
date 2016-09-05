@@ -1,145 +1,111 @@
 ﻿Imports System.Data.OleDb
 'Searching
-'Add a whole new flp?
-'Remove colors
-'Add new flp
-'Move people between flps
 
 Public Class newTeam
     Dim panelColor As Color = Color.CadetBlue
-    Dim first As Boolean = True
-    Dim listAthletes As New List(Of athlete)
-    Dim listSelect As New List(Of athlete)
-    Dim listSorted As New List(Of athlete)
+    Dim listAthletes As New List(Of athlete) 'Master list
+    Dim listSorted As New List(Of athlete) 'Actual list displayed
+    Dim listSearched As New List(Of athlete)
+    Dim listSelected As New List(Of athlete) 'People selected
 
     Private Sub newTeam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        populate()
+        listAthletes = populate(listAthletes) 'Populate with athletes
+        listSorted = listAthletes
+        listSearched.AddRange(listAthletes)
+        fillPanels(flpAthletes, "", listSearched)
     End Sub
 
-    Private Sub populate()
-        listAthletes.Clear() 'Populate athlete list with people
-        Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
-            conn.Open()
-            Using cmd As New OleDbCommand("SELECT ID, RollClass, FirstName, LastName, AgeGroup FROM athleteDb", conn)
-                'Need to add photo
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        Do While dr.Read()
-                            Dim ath As New athlete
-                            ath.ID = dr("ID")
-                            ath.roll = dr("RollClass")
-                            ath.fName = dr("FirstName")
-                            ath.lName = dr("LastName")
-                            ath.ageGroup = dr("AgeGroup")
-                            listAthletes.Add(ath)
-                        Loop
-                    End If
-                End Using
-            End Using
-        End Using
+    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
+        listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
+        listSorted = sort(cmbSort, listSorted)
+        listSearched = updateSearched(listSearched, listSorted)
+        fillPanels(flpAthletes, "", listSearched)
     End Sub
 
-    Private Sub sort()
-        If cmbFilter.SelectedItem <> Nothing Then 'Sorting
-            Dim asc As Boolean = True
-            Select Case cmbFilter.SelectedItem.ToString
-                Case "ID"
-                    listAthletes.Sort(Function(x, y) x.ID.CompareTo(y.ID))
-
-                Case "First Name (Ascending)"
-                    listAthletes.Sort(Function(x, y) x.fName.CompareTo(y.fName))
-
-                Case "First Name (Descending)"
-                    asc = False
-                    listAthletes.Sort(Function(x, y) x.fName.CompareTo(y.fName))
-
-                Case "Last Name (Ascending)"
-                    listAthletes.Sort(Function(x, y) x.lName.CompareTo(y.lName))
-
-                Case "Last Name (Descending)"
-                    asc = False
-                    listAthletes.Sort(Function(x, y) x.lName.CompareTo(y.lName))
-            End Select
-            If asc = False Then
-                listAthletes.Reverse()
-            End If
-        End If
+    Private Sub cmbSort_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
+        listSorted = sort(cmbSort, listSorted)
+        listSearched = updateSearched(listSearched, listSorted)
+        fillPanels(flpAthletes, "", listSearched)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
         flp.Controls.Clear() 'Filling panels
         For Each ath As athlete In list
-            If ath.ageGroup = cmbAgeGroup.SelectedItem.ToString And cmbAgeGroup.SelectedItem <> Nothing Then 'Age group filter
-                Dim newpanel As New Panel With
-                    {
-                    .Margin = New Padding(3, 3, 3, 3),
-                    .Height = 55,
-                    .Width = 140,
-                    .BackColor = panelColor,
-                    .Name = ath.ID,
-                    .Tag = tag
-                    }
+            Dim newpanel As New Panel With
+                {
+                .Margin = New Padding(3, 3, 3, 3),
+                .Height = 55,
+                .Width = 140,
+                .BackColor = panelColor,
+                .Name = ath.ID,
+                .Tag = tag
+                }
 
-                Dim ID As New Label With
-                    {
-                    .Text = ath.ID,
-                    .Font = New Font("Segoe UI", 9, FontStyle.Bold),
-                    .Height = 15,
-                    .Location = New Point(0, 0),
-                    .Name = ath.ID + ".ID"
-                    }
+            Dim ID As New Label With
+                {
+                .Text = ath.ID,
+                .Font = New Font("Segoe UI", 9, FontStyle.Bold),
+                .Height = 15,
+                .Location = New Point(0, 0),
+                .Name = ath.ID + ".ID"
+                }
 
-                Dim roll As New Label With
-                    {
-                    .Text = ath.roll,
-                    .Font = New Font("Segoe UI", 8),
-                    .Height = 13,
-                    .Location = New Point(0, 15),
-                    .Name = ath.ID.ToString + ".roll"
-                    }
+            Dim roll As New Label With
+                {
+                .Text = ath.roll,
+                .Font = New Font("Segoe UI", 8),
+                .Height = 13,
+                .Location = New Point(0, 15),
+                .Name = ath.ID.ToString + ".roll"
+                }
 
-                Dim lName As New Label With
-                    {
-                    .Text = ath.lName.ToUpper,
-                    .Font = New Font("Segoe UI", 8),
-                    .Height = 13,
-                    .Location = New Point(0, 28),
-                    .Name = ath.ID.ToString + ".lName"
-                    }
+            Dim lName As New Label With
+                {
+                .Text = ath.lName.ToUpper,
+                .Font = New Font("Segoe UI", 8),
+                .Height = 13,
+                .Location = New Point(0, 28),
+                .Name = ath.ID.ToString + ".lName"
+                }
 
-                Dim fName As New Label With
-                    {
-                    .Text = ath.fName,
-                    .Font = New Font("Segoe UI", 8),
-                    .Height = 13,
-                    .Location = New Point(0, 41),
-                    .Name = ath.ID.ToString + ".fName"
-                    }
+            Dim fName As New Label With
+                {
+                .Text = ath.fName,
+                .Font = New Font("Segoe UI", 8),
+                .Height = 13,
+                .Location = New Point(0, 41),
+                .Name = ath.ID.ToString + ".fName"
+                }
 
-                newpanel.Controls.Add(ID)
-                newpanel.Controls.Add(roll)
-                newpanel.Controls.Add(fName)
-                newpanel.Controls.Add(lName)
+            newpanel.Controls.Add(ID)
+            newpanel.Controls.Add(roll)
+            newpanel.Controls.Add(fName)
+            newpanel.Controls.Add(lName)
 
-                flp.Controls.Add(newpanel)
-                AddHandler newpanel.MouseClick, AddressOf panelClicked
-                AddHandler ID.MouseClick, AddressOf labelClicked
-                AddHandler roll.MouseClick, AddressOf labelClicked
-                AddHandler fName.MouseClick, AddressOf labelClicked
-                AddHandler lName.MouseClick, AddressOf labelClicked
-            End If
+            flp.Controls.Add(newpanel)
+            AddHandler newpanel.MouseClick, AddressOf panelClicked
+            AddHandler ID.MouseClick, AddressOf labelClicked
+            AddHandler roll.MouseClick, AddressOf labelClicked
+            AddHandler fName.MouseClick, AddressOf labelClicked
+            AddHandler lName.MouseClick, AddressOf labelClicked
         Next
     End Sub
 
     Private Sub panelClicked(sender As Object, e As EventArgs)
         Dim clicked As Panel = sender
         If clicked.Tag = "sel" Then
-            listAthletes.Add(listSelect(clicked.Name))
-            listSelect.Remove(listAthletes(clicked.Name))
+            Dim ath As athlete = listSelected.Find(Function(x) x.ID = clicked.Name)
+            listAthletes.Add(ath)
+            listSorted.Add(ath)
+            listSelected.Remove(ath)
         Else
-            listSelect.Add(listAthletes(clicked.Name))
-            listAthletes.Remove(listSelect(clicked.Name))
+            Dim ath As athlete = listAthletes.Find(Function(x) x.ID = clicked.Name)
+            listSelected.Add(ath)
+            listSorted.Remove(ath)
+            listAthletes.Remove(ath)
         End If
+        fillPanels(flpAthletes, "", listSorted)
+        fillPanels(flpSelected, "sel", listSelected)
     End Sub
 
     Private Sub labelClicked(sender As Object, e As EventArgs)
@@ -147,22 +113,22 @@ Public Class newTeam
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        If txtTeamName.Text = "" Or cmbAgeGroup.SelectedItem = Nothing Or listSelect.Count <> 0 Then
+        If txtTeamName.Text <> "" Or cmbAgeGroup.SelectedItem <> Nothing Or listSelected.Count <> 0 Then
             If MsgBox("You have unsaved changes. Continue?", MsgBoxStyle.YesNo, "Save Changes?") = MsgBoxResult.Yes Then
                 Me.Close()
             End If
+        Else
+            Me.Close()
         End If
     End Sub
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        'Search in realtime
-    End Sub
-
-    Private Sub txtSearch_GotFocus(sender As Object, e As EventArgs) Handles txtSearch.GotFocus
-        If first = True Then
-            txtSearch.Text = ""
-            first = False
+        If txtSearch.Text = "" Then
+            listSearched = updateSearched(listSearched, listSorted)
+        Else
+            listSearched = searchFilter(txtSearch, listSearched, listSorted)
         End If
+        fillPanels(flpAthletes, "", listSearched)
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -170,16 +136,16 @@ Public Class newTeam
             MsgBox("Please enter a team name.")
         ElseIf cmbAgeGroup.SelectedItem = Nothing Then
             MsgBox("Please select an age group.")
-        ElseIf listSelect.Count = 0 Then
+        ElseIf listSelected.Count = 0 Then
             MsgBox("Please select members to add.")
         Else
-            If MsgBox("You are creating a " + cmbAgeGroup.SelectedItem.ToString + " team with " + listSelect.Count.ToString + " members named " + txtTeamName.Text + ". Is this okay?", MsgBoxStyle.YesNo, "Confirm Team Creation") = MsgBoxResult.Yes Then
+            If MsgBox("You are creating a " + cmbAgeGroup.SelectedItem.ToString + " team with " + listSelected.Count.ToString + " members named " + txtTeamName.Text + ". Is this okay?", MsgBoxStyle.YesNo, "Confirm Team Creation") = MsgBoxResult.Yes Then
                 Using conn As New OleDbConnection(dataPath + "\Athlete.accdb") 'Commits the team
                     conn.Open()
                     Using cmd As New OleDbCommand("INSERT INTO teamDb (Team, AgeGroup, Members) VALUES (@team, @AgeGroup, @Members)", conn) 'Appends the database with a new team
                         'Spool members list
                         Dim Members As String = ";" 'Leading separator character
-                        For Each ath As athlete In listSelect
+                        For Each ath As athlete In listSelected
                             Members += (ath.ID + ";")
                         Next
                         cmd.Parameters.AddWithValue("@Team", txtTeamName.Text)
@@ -191,13 +157,5 @@ Public Class newTeam
                 Me.Close()
             End If
         End If
-    End Sub
-
-    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        sort()
-    End Sub
-
-    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFilter.SelectedIndexChanged
-        sort()
     End Sub
 End Class
