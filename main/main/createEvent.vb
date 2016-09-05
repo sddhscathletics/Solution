@@ -86,7 +86,7 @@ Public Class createEvent
                 conn.Close()
             End Using
             If nameDateMatch = False Then
-                If (attendees.Count > 0 Or rdbTraining.Checked) AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
+                If attendees.Count > 0 AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
                     'create repeating event functionality for 12 of the type
                     If chbRepNA.Checked = False Then
                         For day = 0 To clbDays.CheckedItems.Count - 1
@@ -112,19 +112,15 @@ Public Class createEvent
                                         End If
                                         cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                                         cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                        If rdbMeet.Checked = True Then
-                                            Dim attendingAthletes As String = ""
-                                            For athlete As Integer = 0 To attendees.Count - 1
-                                                If athlete = 0 Then
-                                                    attendingAthletes = attendees(athlete)
-                                                Else
-                                                    attendingAthletes += ";" & attendees(athlete)
-                                                End If
-                                            Next
-                                            cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                        Else
-                                            cmd.Parameters.AddWithValue("@personnel", "")
-                                        End If
+                                        Dim attendingAthletes As String = ""
+                                        For athlete As Integer = 0 To attendees.Count - 1
+                                            If athlete = 0 Then
+                                                attendingAthletes = attendees(athlete)
+                                            Else
+                                                attendingAthletes += ";" & attendees(athlete)
+                                            End If
+                                        Next
+                                        cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
                                         Dim notesNeeded As String = ""
                                         For note As Integer = 0 To notes.Count - 1
                                             If note = 0 Then
@@ -263,19 +259,15 @@ Public Class createEvent
                                 End If
                                 cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                                 cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                If rdbMeet.Checked = True Then
-                                    Dim attendingAthletes As String = ""
-                                    For athlete As Integer = 0 To attendees.Count - 1
-                                        If athlete = 0 Then
-                                            attendingAthletes = attendees(athlete)
-                                        Else
-                                            attendingAthletes += ";" & attendees(athlete)
-                                        End If
-                                    Next
-                                    cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                Else
-                                    cmd.Parameters.AddWithValue("@personnel", "")
-                                End If
+                                Dim attendingAthletes As String = ""
+                                For athlete As Integer = 0 To attendees.Count - 1
+                                    If athlete = 0 Then
+                                        attendingAthletes = attendees(athlete)
+                                    Else
+                                        attendingAthletes += ";" & attendees(athlete)
+                                    End If
+                                Next
+                                cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
                                 Dim notesNeeded As String = ""
                                 For note As Integer = 0 To notes.Count - 1
                                     If note = 0 Then
@@ -404,8 +396,8 @@ Public Class createEvent
                     End If
                     newEdit("evAdd", txtName.Text + " on the " + dtpDate.Text + ".")
                     Me.Close()
-                ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
-                    MessageBox.Show("You must select athletes for the meet.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf attendees.Count = 0 Then
+                    MessageBox.Show("You must select athletes for the event.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
                     MessageBox.Show("You must either set event times or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 ElseIf map.Overlays.Count <> 1 Then
@@ -443,8 +435,7 @@ Public Class createEvent
                                         End If
                                         cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                                         cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                        If rdbMeet.Checked = True Then
-                                            Dim attendingAthletes As String = ""
+                                        Dim attendingAthletes As String = ""
                                             For athlete As Integer = 0 To attendees.Count - 1
                                                 If athlete = 0 Then
                                                     attendingAthletes = attendees(athlete)
@@ -453,10 +444,7 @@ Public Class createEvent
                                                 End If
                                             Next
                                             cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                        Else
-                                            cmd.Parameters.AddWithValue("@personnel", "")
-                                        End If
-                                        Dim notesNeeded As String = ""
+                                            Dim notesNeeded As String = ""
                                         For note As Integer = 0 To notes.Count - 1
                                             If note = 0 Then
                                                 notesNeeded = notes(note)
@@ -528,8 +516,7 @@ Public Class createEvent
                                 End If
                                 cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                                 cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                If rdbMeet.Checked = True Then
-                                    Dim attendingAthletes As String = ""
+                                Dim attendingAthletes As String = ""
                                     For athlete As Integer = 0 To attendees.Count - 1
                                         If athlete = 0 Then
                                             attendingAthletes = attendees(athlete)
@@ -538,10 +525,7 @@ Public Class createEvent
                                         End If
                                     Next
                                     cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                Else
-                                    cmd.Parameters.AddWithValue("@personnel", "")
-                                End If
-                                Dim notesNeeded As String = ""
+                                    Dim notesNeeded As String = ""
                                 For note As Integer = 0 To notes.Count - 1
                                     If note = 0 Then
                                         notesNeeded = notes(note)
@@ -611,7 +595,7 @@ Public Class createEvent
 #Region "Edit"
         ElseIf Me.Tag.Contains("edit") Then
             'since any change should be reflected in all repeats, it is easiest to create a new record and delete all previous records
-            If (attendees.Count > 0 Or rdbTraining.Checked) AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
+            If attendees.Count > 0 AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
                 'create repeating event functionality for 12 of the type
                 If chbRepNA.Checked = False Then
                     For day = 0 To clbDays.CheckedItems.Count - 1
@@ -637,19 +621,15 @@ Public Class createEvent
                                     End If
                                     cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                                     cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                    If rdbMeet.Checked = True Then
-                                        Dim attendingAthletes As String = ""
-                                        For athlete As Integer = 0 To attendees.Count - 1
-                                            If athlete = 0 Then
-                                                attendingAthletes = attendees(athlete)
-                                            Else
-                                                attendingAthletes += ";" & attendees(athlete)
-                                            End If
-                                        Next
-                                        cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                    Else
-                                        cmd.Parameters.AddWithValue("@personnel", "")
-                                    End If
+                                    Dim attendingAthletes As String = ""
+                                    For athlete As Integer = 0 To attendees.Count - 1
+                                        If athlete = 0 Then
+                                            attendingAthletes = attendees(athlete)
+                                        Else
+                                            attendingAthletes += ";" & attendees(athlete)
+                                        End If
+                                    Next
+                                    cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
                                     Dim notesNeeded As String = ""
                                     For note As Integer = 0 To notes.Count - 1
                                         If note = 0 Then
@@ -788,19 +768,15 @@ Public Class createEvent
                             End If
                             cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                             cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                            If rdbMeet.Checked = True Then
-                                Dim attendingAthletes As String = ""
-                                For athlete As Integer = 0 To attendees.Count - 1
-                                    If athlete = 0 Then
-                                        attendingAthletes = attendees(athlete)
-                                    Else
-                                        attendingAthletes += ";" & attendees(athlete)
-                                    End If
-                                Next
-                                cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                            Else
-                                cmd.Parameters.AddWithValue("@personnel", "")
-                            End If
+                            Dim attendingAthletes As String = ""
+                            For athlete As Integer = 0 To attendees.Count - 1
+                                If athlete = 0 Then
+                                    attendingAthletes = attendees(athlete)
+                                Else
+                                    attendingAthletes += ";" & attendees(athlete)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
                             Dim notesNeeded As String = ""
                             For note As Integer = 0 To notes.Count - 1
                                 If note = 0 Then
@@ -1006,8 +982,8 @@ Public Class createEvent
                 End If
                 newEdit("evEdit", txtName.Text + " on " + dtpDate.Text + ".")
                 Me.Close()
-            ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
-                MessageBox.Show("You must select athletes for the meet.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            ElseIf attendees.Count = 0 Then
+                MessageBox.Show("You must select athletes for the event.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
                 MessageBox.Show("You must either set event times or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             ElseIf map.Overlays.Count <> 1 Then
@@ -1045,8 +1021,7 @@ Public Class createEvent
                                     End If
                                     cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                                     cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                    If rdbMeet.Checked = True Then
-                                        Dim attendingAthletes As String = ""
+                                    Dim attendingAthletes As String = ""
                                         For athlete As Integer = 0 To attendees.Count - 1
                                             If athlete = 0 Then
                                                 attendingAthletes = attendees(athlete)
@@ -1055,10 +1030,7 @@ Public Class createEvent
                                             End If
                                         Next
                                         cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                    Else
-                                        cmd.Parameters.AddWithValue("@personnel", "")
-                                    End If
-                                    Dim notesNeeded As String = ""
+                                        Dim notesNeeded As String = ""
                                     For note As Integer = 0 To notes.Count - 1
                                         If note = 0 Then
                                             notesNeeded = notes(note)
@@ -1130,8 +1102,7 @@ Public Class createEvent
                             End If
                             cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                             cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                            If rdbMeet.Checked = True Then
-                                Dim attendingAthletes As String = ""
+                            Dim attendingAthletes As String = ""
                                 For athlete As Integer = 0 To attendees.Count - 1
                                     If athlete = 0 Then
                                         attendingAthletes = attendees(athlete)
@@ -1140,10 +1111,7 @@ Public Class createEvent
                                     End If
                                 Next
                                 cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                            Else
-                                cmd.Parameters.AddWithValue("@personnel", "")
-                            End If
-                            Dim notesNeeded As String = ""
+                                Dim notesNeeded As String = ""
                             For note As Integer = 0 To notes.Count - 1
                                 If note = 0 Then
                                     notesNeeded = notes(note)
@@ -1468,11 +1436,9 @@ Public Class createEvent
     End Sub
     Private Sub rdbTraining_CheckedChanged(sender As Object, e As EventArgs) Handles rdbTraining.CheckedChanged
         If rdbTraining.Checked = True Then
-            gbAthletes.Enabled = False
             rdbMeet.Checked = False
             chbNA.Checked = True
         Else
-            gbAthletes.Enabled = True
             rdbMeet.Checked = True
             chbNA.Checked = False
         End If
@@ -2586,6 +2552,7 @@ Public Class createEvent
     End Sub
     Private Sub chbAllNotes_Click(sender As Object, e As EventArgs) Handles chbAllNotes.Click
         If chbAllNotes.Checked = True Then
+            chbAllAthletes.Checked = True
             For Each panel In flpAthletes.Controls.OfType(Of Panel)()
                 For Each chb In panel.Controls.OfType(Of CheckBox)()
                     If chb.Name = "chbNote" Then
@@ -3043,7 +3010,14 @@ Public Class createEvent
         'AddHandler lblUnexplained.Click, AddressOf athletePanel_Click
         'lblUnexplained.Location = New Point(272, 36)
     End Sub
-    Private Sub chb_Click(sender As Object, e As EventArgs)
+    Private Sub chb_Click(sender As CheckBox, e As EventArgs)
+        If sender.Name = "chbNote" And sender.Checked = True Then
+            For Each chb In sender.Parent.Controls.OfType(Of CheckBox)
+                If chb.Name = "chbAthlete" Then
+                    chb.Checked = True
+                End If
+            Next
+        End If
         checkAllChecked()
     End Sub
     Private Sub athletePanel_Click(sender As Object, e As EventArgs)

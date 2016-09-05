@@ -2,6 +2,8 @@
 Public Class eventResults
     Public Shared notesNotAdded As New List(Of String) From {}
     Public Shared newNotes As New List(Of String) From {} 'any new notes given in the current entry
+    Public Shared absencesNotAdded As New List(Of String) From {}
+    Public Shared newAbsences As New List(Of String) From {} 'any new notes given in the current entry
     Public Shared editMade As Boolean = False
     Dim loadThread As Threading.Thread = New Threading.Thread(Sub() loadVariables())
     Private Sub cmbGroup_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbGroup.SelectedValueChanged
@@ -28,7 +30,18 @@ Public Class eventResults
                                         notesNotAdded.Add(message)
                                     End If
                                 End If
-                                Exit For
+                            ElseIf chb.Name = "chbAthlete" Then
+                                If chb.Checked = True Then 'absent
+                                    If newAbsences.Contains(id) = False Then
+                                        Dim message As String = createEvent.getName(id) + " currently not saved as being absent"
+                                        notesNotAdded.Add(message)
+                                    End If
+                                Else 'present
+                                    If newAbsences.Contains(id) Then
+                                        Dim message As String = createEvent.getName(id) + " currently incorrectly saved as being present"
+                                        notesNotAdded.Add(message)
+                                    End If
+                                End If
                             End If
                         Next
                         Exit For
@@ -45,16 +58,9 @@ Public Class eventResults
             notesNotAdded.Clear()
         End If
         flpAthletes.Controls.Clear()
-        Dim athletes = Nothing
-        Select Case cmbGroup.SelectedItem
-            Case "U13" : athletes = getAgeGroupWithNotes("U13")
-            Case "U14" : athletes = getAgeGroupWithNotes("U14")
-            Case "U15" : athletes = getAgeGroupWithNotes("U15")
-            Case "U16" : athletes = getAgeGroupWithNotes("U16")
-            Case "U17" : athletes = getAgeGroupWithNotes("U17")
-            Case "Opens" : athletes = getAgeGroupWithNotes("Opens")
-        End Select
-        If athletes.Count > 0 Then
+        Dim athletes As New List(Of String) From {getAgeGroupWithAbsences(cmbGroup.SelectedItem)}
+        'since any who needs a note must also be attending
+        If athletes.Count > 0 Then 'which it should always be
             For Each person In athletes
                 createAthletePanel(person)
             Next
@@ -65,15 +71,22 @@ Public Class eventResults
                     tickNotes(athleteID, True)
                 End If
             Next
+            For Each athleteID In newAbsences
+                If athleteID <> newAbsences(newAbsences.Count - 1) Then
+                    tickAthletes(athleteID, False)
+                Else
+                    tickAthletes(athleteID, True)
+                End If
+            Next
             checkAllChecked()
-        Else
-            flpAthletes.Enabled = False
-            chbAllNotes.Enabled = False
-            btnSelect.Enabled = False
-            lblNotes.Visible = True
-            lblNotes.Font = New Font("Microsoft Sans Serif", 15)
-            lblNotes.Enabled = False
-            lblNotes.Location = New Point(25, 150)
+            'Else
+            '    flpAthletes.Enabled = False
+            '    chbAllNotes.Enabled = False
+            '    btnSelect.Enabled = False
+            '    lblNotes.Visible = True
+            '    lblNotes.Font = New Font("Rockwell", 15)
+            '    lblNotes.Enabled = False
+            '    lblNotes.Location = New Point(25, 150)
         End If
         Cursor.Current = Cursors.Default
     End Sub
@@ -98,7 +111,7 @@ Public Class eventResults
         Next
     End Sub
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
-        Dim added As Integer = 0, removed As Integer = 0
+        Dim addedPeople As Integer = 0, removedPeople As Integer = 0, notesAdded As Integer = 0, notesRemoved As Integer = 0
         For Each panel In flpAthletes.Controls.OfType(Of Panel)()
             For Each label In panel.Controls.OfType(Of Label)()
                 If label.Name = "lblId" Then
@@ -108,31 +121,73 @@ Public Class eventResults
                             If chb.Checked = True Then
                                 If newNotes.Contains(id) = False Then
                                     newNotes.Add(id)
-                                    added += 1
+                                    notesAdded += 1
                                 End If
                             Else
                                 If newNotes.Contains(id) = True Then
                                     newNotes.Remove(id)
-                                    removed += 1
+                                    notesRemoved += 1
                                 End If
                             End If
-                            Exit For
+                        ElseIf chb.Name = "chbAthlete" Then
+                            If chb.Checked = True Then 'absent
+                                If newAbsences.Contains(id) = False Then
+                                    newAbsences.Add(id)
+                                    addedPeople += 1
+                                End If
+                            Else 'present
+                                If newAbsences.Contains(id) = True Then
+                                    newAbsences.Remove(id)
+                                    removedPeople += 1
+                                End If
+                            End If
                         End If
                     Next
                     Exit For
                 End If
             Next
         Next
-        If added = 0 And removed = 0 Then
-            MessageBox.Show("No changes were made to the submitted notes.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ElseIf added = 1 And removed <> 1 Then
-            MessageBox.Show(added.ToString() & " note was added and " & removed.ToString() & " were removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ElseIf added <> 1 And removed = 1 Then
-            MessageBox.Show(added.ToString() & " notes were added and " & removed.ToString() & " was removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ElseIf added = 1 And removed = 1 Then
-            MessageBox.Show(added.ToString() & " note was added and " & removed.ToString() & " was removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'If added = 0 And removed = 0 Then
+        '    MessageBox.Show("No changes were made to the submitted notes.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'ElseIf added = 1 And removed <> 1 Then
+        '    MessageBox.Show(added.ToString() & " note was added and " & removed.ToString() & " were removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'ElseIf added <> 1 And removed = 1 Then
+        '    MessageBox.Show(added.ToString() & " notes were added and " & removed.ToString() & " was removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'ElseIf added = 1 And removed = 1 Then
+        '    MessageBox.Show(added.ToString() & " note was added and " & removed.ToString() & " was removed.", "Notes changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'Else
+        '    MessageBox.Show(added.ToString() & " notes were added and " & removed.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'End If
+        If addedPeople = 0 And removedPeople = 0 And notesAdded = 0 And notesRemoved = 0 Then
+            MessageBox.Show("No changes were made to the attendees.", "No changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople = 1 And removedPeople <> 1 And notesAdded <> 1 And notesRemoved <> 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople <> 1 And removedPeople = 1 And notesAdded <> 1 And notesRemoved <> 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople <> 1 And removedPeople <> 1 And notesAdded = 1 And notesRemoved <> 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople <> 1 And removedPeople <> 1 And notesAdded <> 1 And notesRemoved = 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople = 1 And removedPeople = 1 And notesAdded <> 1 And notesRemoved <> 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople = 1 And removedPeople <> 1 And notesAdded = 1 And notesRemoved <> 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople = 1 And removedPeople <> 1 And notesAdded <> 1 And notesRemoved = 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople <> 1 And removedPeople = 1 And notesAdded = 1 And notesRemoved <> 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople <> 1 And removedPeople = 1 And notesAdded <> 1 And notesRemoved = 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople <> 1 And removedPeople <> 1 And notesAdded = 1 And notesRemoved = 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople = 1 And removedPeople = 1 And notesAdded = 1 And notesRemoved <> 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople <> 1 And removedPeople = 1 And notesAdded = 1 And notesRemoved = 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf addedPeople = 1 And removedPeople = 1 And notesAdded = 1 And notesRemoved = 1 Then
+            MessageBox.Show(addedPeople.ToString() & " athlete was added to the attendees and " & removedPeople.ToString() & " was removed." + vbNewLine + notesAdded.ToString() & " note was added and " & notesRemoved.ToString() & " was removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            MessageBox.Show(added.ToString() & " notes were added and " & removed.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show(addedPeople.ToString() & " athletes were added to the attendees and " & removedPeople.ToString() & " were removed." + vbNewLine + notesAdded.ToString() & " notes were added and " & notesRemoved.ToString() & " were removed.", "Attendees changes", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Function getAgeGroupWithNotes(ByVal ageGroup As String)
@@ -255,7 +310,7 @@ Public Class eventResults
         Return age
     End Function
     Private Sub createAthletePanel(info As String)
-        'info is in the form: name; id; rollclass; averages; recents; unexplained
+        'info is in the form: name; id; 
         Dim pnl As New Panel
         With pnl
             .BackColor = Color.Gray
@@ -264,17 +319,30 @@ Public Class eventResults
         End With
         flpAthletes.Controls.Add(pnl)
         AddHandler pnl.Click, AddressOf athletePanel_Click
-        Dim chbNote As New CheckBox
-        With chbNote
-            .Name = "chbNote"
-            .Font = New Font("Microsoft Sans Serif", 12)
-            .Text = "Submitted Note"
+        If newNotes.Contains(info.Split(";")(1)) Then
+            Dim chbNote As New CheckBox
+            With chbNote
+                .Name = "chbNote"
+                .Font = New Font("Microsoft Sans Serif", 10)
+                .Text = "Submitted Note"
+                .AutoSize = True
+                .Location = New Point(210, 12)
+            End With
+            pnl.Controls.Add(chbNote)
+            chbNote.BringToFront()
+            AddHandler chbNote.Click, AddressOf chb_Click
+        End If
+        Dim chbAthlete As New CheckBox
+        With chbAthlete
+            .Name = "chbAthlete"
+            .Font = New Font("Microsoft Sans Serif", 10)
+            .Text = "Absent"
             .AutoSize = True
             .Location = New Point(210, 22)
         End With
-        pnl.Controls.Add(chbNote)
-        chbNote.BringToFront()
-        AddHandler chbNote.Click, AddressOf chbNote_Click
+        pnl.Controls.Add(chbAthlete)
+        chbAthlete.BringToFront()
+        AddHandler chbAthlete.Click, AddressOf chb_Click
         Dim pb As New PictureBox
         With pb
             .Image = My.Resources.transparent_plus
@@ -309,7 +377,7 @@ Public Class eventResults
         pnl.Controls.Add(lblId)
         lblId.Location = New Point(81, 30)
     End Sub
-    Private Sub chbNote_Click(sender As Object, e As EventArgs)
+    Private Sub chb_Click(sender As Object, e As EventArgs)
         checkAllChecked()
     End Sub
     Private Sub athletePanel_Click(sender As Object, e As EventArgs)
@@ -326,27 +394,48 @@ Public Class eventResults
                 Else
                     chb.Checked = True
                 End If
-                Exit For
+            ElseIf chb.Name = "chbAthlete" Then
+                If chb.Checked = True Then
+                    chb.Checked = False
+                Else
+                    chb.Checked = True
+                End If
             End If
         Next
         checkAllChecked()
     End Sub
     Private Sub checkAllChecked()
-        Dim checkedNote As Integer = 0
+        Dim checkedNote As Integer = 0, checkedAthlete As Integer = 0
         For Each panel In flpAthletes.Controls.OfType(Of Panel)()
             For Each chb In panel.Controls.OfType(Of CheckBox)()
                 If chb.Name = "chbNote" Then
                     If chb.Checked = True Then
                         checkedNote += 1
                     End If
-                    Exit For
+                ElseIf chb.Name = "chbAthlete" Then
+                    If chb.Checked = True Then
+                        checkedAthlete += 1
+                    End If
                 End If
             Next
         Next
-        If checkedNote <> createEvent.flpAthletes.Controls.OfType(Of Panel)().Count Then
-            createEvent.chbAllNotes.Checked = False
+        Dim noteBoxes As Integer = 0
+        For Each panel In flpAthletes.Controls.OfType(Of Panel)
+            For Each chb In panel.Controls.OfType(Of CheckBox)
+                If chb.Name = "chbNote" Then
+                    noteBoxes += 1
+                End If
+            Next
+        Next
+        If checkedNote <> noteBoxes Then
+            chbAllNotes.Checked = False
         Else
-            createEvent.chbAllNotes.Checked = True
+            chbAllNotes.Checked = True
+        End If
+        If checkedAthlete <> flpAthletes.Controls.OfType(Of Panel)().Count Then
+            chbAllAbsent.Checked = False
+        Else
+            chbAllAbsent.Checked = True
         End If
     End Sub
     Private Sub chbAllNotes_Click(sender As Object, e As EventArgs) Handles chbAllNotes.Click
@@ -372,6 +461,7 @@ Public Class eventResults
     End Sub
     Private Sub loadVariables()
         newNotes = getAlreadyInNotes()
+        newAbsences = getAlreadyInAbsences()
     End Sub
     Private Sub eventResults_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loadThread.Start()
@@ -472,6 +562,7 @@ Public Class eventResults
             If MessageBox.Show("Are you sure you want to close the form?" + vbNewLine + "If there is information that has not been saved, it will be lost.", "Close Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 notesNotAdded.Clear()
                 newNotes.Clear()
+                newAbsences.Clear()
                 editMade = False
             Else
                 e.Cancel = True
@@ -480,6 +571,7 @@ Public Class eventResults
             btnSaveEvent.Tag = ""
             notesNotAdded.Clear()
             newNotes.Clear()
+            newAbsences.Clear()
             editMade = False
         End If
         calendar.calendar_Load(Nothing, Nothing)
@@ -523,6 +615,58 @@ Public Class eventResults
             End Using
             conn.Close()
         End Using
+        'update attendance information
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("UPDATE Events SET Absences = @absences WHERE EventName = @name AND EventDate = @date", conn)
+                Dim absentPeople As String = ""
+                For person As Integer = 0 To newAbsences.Count - 1
+                    If person = 0 Then
+                        absentPeople = newAbsences(person)
+                    Else
+                        absentPeople += ";" & newAbsences(person)
+                    End If
+                Next
+                cmd.Parameters.AddWithValue("@absences", absentPeople)
+                Dim tagSplit = Me.Tag.split(" ")
+                Dim name As String = ""
+                For part As Integer = 0 To tagSplit.Length - 2
+                    If part <> tagSplit.Length - 2 Then
+                        name += tagSplit(part) + " "
+                    Else
+                        name += tagSplit(part)
+                    End If
+                Next
+                cmd.Parameters.AddWithValue("@name", RTrim(name))
+                cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                cmd.ExecuteNonQuery()
+            End Using
+            conn.Close()
+        End Using
+        Dim allAtendingAthletes As New List(Of String) From {}
+        For Each ageGroup In cmbGroup.Items
+            allAtendingAthletes.AddRange(getAgeGroupWithAbsences(ageGroup))
+        Next
+        For Each athleteID In allAtendingAthletes
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                conn.Open()
+                Dim cmdstr As String = ""
+                If newAbsences.Contains(athleteID) Then 'they were absent
+                    cmdstr = "UPDATE athleteDb SET Absent = Absent + 1,  WHERE FirstName = @fname AND LastName = @lname"
+                Else
+                    cmdstr = "UPDATE athleteDb SET Attended = Attended + 1,  WHERE LastName = @lname AND FirstName = @fname"
+                End If
+                Using cmd As New OleDbCommand(cmdstr, conn)
+                    Dim nameSplit() As String = createEvent.getName(athleteID).split(" ")
+                    cmd.Parameters.AddWithValue("@lname", nameSplit(nameSplit.Length - 1))
+                    Dim nameList As List(Of String) = nameSplit.ToList()
+                    nameList.Remove(nameList.Count - 1)
+                    cmd.Parameters.AddWithValue("@fname", String.Join(" ", nameList))
+                    cmd.ExecuteNonQuery()
+                End Using
+                conn.Close()
+            End Using
+        Next
         Dim resultsAdded As Boolean = False, changes As Integer = 0
         If pbAttach.Tag <> "add" Then
             If MessageBox.Show("If previous results have been entered they will all be deleted and the new results will be entered." + vbNewLine + "Would you like to continue?", "New Results", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
@@ -670,10 +814,123 @@ Public Class eventResults
         End If
         btnSaveEvent.Tag = "saved"
         If changes <> 0 Then
-            MessageBox.Show("Notes handed in were updated and results were saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Athlete attendance and notes were updated and results were saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            MessageBox.Show("Notes handed in were updated.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Athlete attendance and notes were updated.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
         Me.Close()
+    End Sub
+    Private Function getAlreadyInAbsences()
+        Dim absencesIn As String = ""
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT Absences FROM Events WHERE EventName = @name AND EventDate = @date AND NotesGiven ", conn) '*takes the column with correct rows
+                Dim tagSplit = Me.Tag.split(" ")
+                Dim name As String = ""
+                For part As Integer = 0 To tagSplit.Length - 2
+                    If part <> tagSplit.Length - 2 Then
+                        name += tagSplit(part) + " "
+                    Else
+                        name += tagSplit(part)
+                    End If
+                Next
+                cmd.Parameters.AddWithValue("@name", RTrim(name))
+                cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            If dr(0).ToString() <> "" Then
+                                absencesIn = dr(0)
+                            Else
+                                Return New List(Of String) From {}
+                            End If
+                        Loop
+                    Else
+                        Return New List(Of String) From {}
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        End Using
+        Dim eventList = absencesIn.Split(";")
+        Return eventList.ToList()
+    End Function
+    Private Function getAgeGroupWithAbsences(ByVal ageGroup As String)
+        Dim ageAthletes As New List(Of String) From {}
+        Dim eventAbsences = getAthletes()
+        For Each note In eventAbsences
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Athlete.accdb")
+                conn.Open()
+                Using cmd As New OleDbCommand("SELECT * FROM athleteDb WHERE ID = @id AND AgeGroup = @age", conn) '*takes the column with correct rows
+                    cmd.Parameters.Add(New OleDbParameter("@id", note))
+                    cmd.Parameters.AddWithValue("@age", ageGroup)
+                    Using dr = cmd.ExecuteReader()
+                        If dr.HasRows Then
+                            Do While dr.Read()
+                                Dim newPerson As String = dr("FirstName") & " " & dr("LastName") & ";" & dr("ID")
+                                ageAthletes.Add(newPerson)
+                            Loop
+                        End If
+                    End Using
+                End Using
+                conn.Close()
+            End Using
+        Next
+        Return ageAthletes
+    End Function
+    Private Function getAthletes()
+        Dim eventAthletes As String = ""
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT Personnel FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                Dim tagSplit = Me.Tag.split(" ")
+                Dim name As String = ""
+                For part As Integer = 0 To tagSplit.Length - 2
+                    If part <> tagSplit.Length - 2 Then
+                        name += tagSplit(part) + " "
+                    Else
+                        name += tagSplit(part)
+                    End If
+                Next
+                cmd.Parameters.AddWithValue("@name", RTrim(name))
+                cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows Then
+                        Do While dr.Read()
+                            If dr(0).ToString() <> "" Then
+                                eventAthletes = dr(0)
+                            Else
+                                Return New List(Of String) From {}
+                            End If
+                        Loop
+                    Else
+                        Return New List(Of String) From {}
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        End Using
+        Dim eventList = eventAthletes.Split(";")
+        Return eventList.ToList()
+    End Function
+    Private Sub tickAthletes(ByVal idNum, ByVal last)
+        For Each panel In flpAthletes.Controls.OfType(Of Panel)()
+            For Each label In panel.Controls.OfType(Of Label)()
+                If label.Name = "lblId" Then
+                    If label.Text.Contains(idNum) Then
+                        For Each chb In panel.Controls.OfType(Of CheckBox)()
+                            If chb.Name = "chbAthlete" Then
+                                chb.Checked = True
+                                Exit For
+                            End If
+                        Next
+                    End If
+                    Exit For
+                End If
+            Next
+            If last = True Then
+                checkAllChecked()
+            End If
+        Next
     End Sub
 End Class
