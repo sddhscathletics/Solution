@@ -22,11 +22,6 @@ Partial Class checkNotif
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtAlertCount = New System.Windows.Forms.TextBox()
-        Me.btnLoad = New System.Windows.Forms.Button()
-        Me.txtChangeType = New System.Windows.Forms.TextBox()
-        Me.txtEdit = New System.Windows.Forms.TextBox()
-        Me.btnCommit = New System.Windows.Forms.Button()
         Me.dgdNotifs = New System.Windows.Forms.DataGridView()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -34,50 +29,8 @@ Partial Class checkNotif
         Me.username = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.edit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnMarkRead = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.dgdNotifs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'txtAlertCount
-        '
-        Me.txtAlertCount.Location = New System.Drawing.Point(463, 9)
-        Me.txtAlertCount.Name = "txtAlertCount"
-        Me.txtAlertCount.ReadOnly = True
-        Me.txtAlertCount.Size = New System.Drawing.Size(75, 20)
-        Me.txtAlertCount.TabIndex = 0
-        '
-        'btnLoad
-        '
-        Me.btnLoad.Location = New System.Drawing.Point(463, 35)
-        Me.btnLoad.Name = "btnLoad"
-        Me.btnLoad.Size = New System.Drawing.Size(75, 23)
-        Me.btnLoad.TabIndex = 2
-        Me.btnLoad.Text = "Load"
-        Me.btnLoad.UseVisualStyleBackColor = True
-        '
-        'txtChangeType
-        '
-        Me.txtChangeType.Location = New System.Drawing.Point(463, 81)
-        Me.txtChangeType.Name = "txtChangeType"
-        Me.txtChangeType.Size = New System.Drawing.Size(100, 20)
-        Me.txtChangeType.TabIndex = 3
-        '
-        'txtEdit
-        '
-        Me.txtEdit.Location = New System.Drawing.Point(463, 120)
-        Me.txtEdit.Name = "txtEdit"
-        Me.txtEdit.Size = New System.Drawing.Size(100, 20)
-        Me.txtEdit.TabIndex = 5
-        '
-        'btnCommit
-        '
-        Me.btnCommit.Location = New System.Drawing.Point(463, 146)
-        Me.btnCommit.Name = "btnCommit"
-        Me.btnCommit.Size = New System.Drawing.Size(75, 23)
-        Me.btnCommit.TabIndex = 6
-        Me.btnCommit.Text = "Commit"
-        Me.btnCommit.UseVisualStyleBackColor = True
         '
         'dgdNotifs
         '
@@ -126,65 +79,31 @@ Partial Class checkNotif
         '
         'btnMarkRead
         '
-        Me.btnMarkRead.Location = New System.Drawing.Point(463, 175)
+        Me.btnMarkRead.Location = New System.Drawing.Point(12, 315)
         Me.btnMarkRead.Name = "btnMarkRead"
         Me.btnMarkRead.Size = New System.Drawing.Size(75, 23)
         Me.btnMarkRead.TabIndex = 8
         Me.btnMarkRead.Text = "Mark Read"
         Me.btnMarkRead.UseVisualStyleBackColor = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(463, 65)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(52, 13)
-        Me.Label1.TabIndex = 9
-        Me.Label1.Text = "Edit Type"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(460, 104)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(55, 13)
-        Me.Label2.TabIndex = 10
-        Me.Label2.Text = "Edit Made"
-        '
         'checkNotif
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(569, 409)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.ClientSize = New System.Drawing.Size(469, 344)
         Me.Controls.Add(Me.btnMarkRead)
         Me.Controls.Add(Me.dgdNotifs)
-        Me.Controls.Add(Me.btnCommit)
-        Me.Controls.Add(Me.txtEdit)
-        Me.Controls.Add(Me.txtChangeType)
-        Me.Controls.Add(Me.btnLoad)
-        Me.Controls.Add(Me.txtAlertCount)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "checkNotif"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "checkNotif"
+        Me.Text = "Notifications"
         CType(Me.dgdNotifs, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents txtAlertCount As TextBox
-    Friend WithEvents btnLoad As Button
-    Friend WithEvents txtChangeType As TextBox
-    Friend WithEvents txtEdit As TextBox
-    Friend WithEvents btnCommit As Button
     Friend WithEvents dgdNotifs As DataGridView
     Friend WithEvents btnMarkRead As Button
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents ID As DataGridViewTextBoxColumn
     Friend WithEvents lTime As DataGridViewTextBoxColumn
     Friend WithEvents lDate As DataGridViewTextBoxColumn
