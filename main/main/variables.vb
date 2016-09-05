@@ -33,6 +33,12 @@ Module variables
         Property address As String
     End Class
 
+    Public Class team
+        Property name As String
+        Property members As New List(Of athlete)
+        Property ageGroup As String
+    End Class
+
     'eddie
     Public shownNotAdded As Boolean = False
 End Module

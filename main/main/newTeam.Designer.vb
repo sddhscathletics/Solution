@@ -29,10 +29,10 @@ Partial Class newTeam
         Me.lblAddMembers = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.cmbSort = New System.Windows.Forms.ComboBox()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
         Me.lblSelectedMembers = New System.Windows.Forms.Label()
         Me.flpSelected = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtTeamName
@@ -47,7 +47,7 @@ Partial Class newTeam
         '
         Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAgeGroup.FormattingEnabled = True
-        Me.cmbAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
+        Me.cmbAgeGroup.Items.AddRange(New Object() {"All", "U13", "U14", "U15", "U16", "U17", "Opens"})
         Me.cmbAgeGroup.Location = New System.Drawing.Point(177, 49)
         Me.cmbAgeGroup.Name = "cmbAgeGroup"
         Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 23)
@@ -57,10 +57,10 @@ Partial Class newTeam
         'lblTeamName
         '
         Me.lblTeamName.AutoSize = True
-        Me.lblTeamName.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTeamName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTeamName.Location = New System.Drawing.Point(174, 7)
         Me.lblTeamName.Name = "lblTeamName"
-        Me.lblTeamName.Size = New System.Drawing.Size(70, 15)
+        Me.lblTeamName.Size = New System.Drawing.Size(71, 13)
         Me.lblTeamName.TabIndex = 2
         Me.lblTeamName.Text = "TEAM NAME"
         '
@@ -76,10 +76,10 @@ Partial Class newTeam
         'lblAddMembers
         '
         Me.lblAddMembers.AutoSize = True
-        Me.lblAddMembers.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAddMembers.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAddMembers.Location = New System.Drawing.Point(9, 85)
         Me.lblAddMembers.Name = "lblAddMembers"
-        Me.lblAddMembers.Size = New System.Drawing.Size(83, 15)
+        Me.lblAddMembers.Size = New System.Drawing.Size(87, 13)
         Me.lblAddMembers.TabIndex = 85
         Me.lblAddMembers.Text = "ADD MEMBERS"
         '
@@ -90,7 +90,6 @@ Partial Class newTeam
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(303, 21)
         Me.txtSearch.TabIndex = 86
-        Me.txtSearch.Text = "Search"
         '
         'cmbSort
         '
@@ -102,6 +101,25 @@ Partial Class newTeam
         Me.cmbSort.Size = New System.Drawing.Size(150, 23)
         Me.cmbSort.TabIndex = 87
         Me.cmbSort.Text = "Sort By"
+        '
+        'lblSelectedMembers
+        '
+        Me.lblSelectedMembers.AutoSize = True
+        Me.lblSelectedMembers.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSelectedMembers.Location = New System.Drawing.Point(477, 106)
+        Me.lblSelectedMembers.Name = "lblSelectedMembers"
+        Me.lblSelectedMembers.Size = New System.Drawing.Size(120, 13)
+        Me.lblSelectedMembers.TabIndex = 88
+        Me.lblSelectedMembers.Text = "SELECTED MEMBERS"
+        '
+        'flpSelected
+        '
+        Me.flpSelected.AutoScroll = True
+        Me.flpSelected.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flpSelected.Location = New System.Drawing.Point(477, 127)
+        Me.flpSelected.Name = "flpSelected"
+        Me.flpSelected.Size = New System.Drawing.Size(172, 263)
+        Me.flpSelected.TabIndex = 85
         '
         'btnCancel
         '
@@ -129,31 +147,12 @@ Partial Class newTeam
         Me.btnSave.TabIndex = 82
         Me.btnSave.UseVisualStyleBackColor = False
         '
-        'lblSelectedMembers
-        '
-        Me.lblSelectedMembers.AutoSize = True
-        Me.lblSelectedMembers.Font = New System.Drawing.Font("Microsoft MHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSelectedMembers.Location = New System.Drawing.Point(477, 109)
-        Me.lblSelectedMembers.Name = "lblSelectedMembers"
-        Me.lblSelectedMembers.Size = New System.Drawing.Size(110, 15)
-        Me.lblSelectedMembers.TabIndex = 88
-        Me.lblSelectedMembers.Text = "SELECTED MEMBERS"
-        '
-        'flpSelected
-        '
-        Me.flpSelected.AutoScroll = True
-        Me.flpSelected.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.flpSelected.Location = New System.Drawing.Point(477, 127)
-        Me.flpSelected.Name = "flpSelected"
-        Me.flpSelected.Size = New System.Drawing.Size(246, 263)
-        Me.flpSelected.TabIndex = 85
-        '
         'newTeam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(735, 402)
+        Me.ClientSize = New System.Drawing.Size(661, 402)
         Me.Controls.Add(Me.flpSelected)
         Me.Controls.Add(Me.lblSelectedMembers)
         Me.Controls.Add(Me.cmbSort)

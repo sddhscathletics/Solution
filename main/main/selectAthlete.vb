@@ -1,12 +1,11 @@
 ﻿Imports System.Data.OleDb
-'Searching
 'Profile photo
 'Team Manager
-'Optimise parsing
 
 Public Class selectAthlete
     Dim listAthletes As New List(Of athlete)
     Dim listSorted As New List(Of athlete)
+    Dim listSearched As New List(Of athlete)
     Dim listAdd As New List(Of String)
     Dim listRem As New List(Of String)
     Dim controlState As String = "first"
@@ -181,18 +180,21 @@ Public Class selectAthlete
         toggleControls()
         listAthletes = populate(listAthletes)
         listSorted = listAthletes
-        fillPanels(flpAthletes, "", listSorted)
+        listSearched.AddRange(listAthletes)
+        fillPanels(flpAthletes, "", listSearched)
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
         listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
         listSorted = sort(cmbSort, listSorted)
-        fillPanels(flpAthletes, "", listSorted)
+        listSearched = updateSearched(listSearched, listSorted)
+        fillPanels(flpAthletes, "", listSearched)
     End Sub
 
-    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
+    Private Sub cmbSort_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSort.SelectedIndexChanged
         listSorted = sort(cmbSort, listSorted)
-        fillPanels(flpAthletes, "", listSorted)
+        listSearched = updateSearched(listSearched, listSorted)
+        fillPanels(flpAthletes, "", listSearched)
     End Sub
 
     Private Sub fillPanels(flp As FlowLayoutPanel, tag As String, list As List(Of athlete))
@@ -205,7 +207,7 @@ Public Class selectAthlete
                 .Width = 140,
                 .BackColor = panelColor,
                 .Name = ath.ID,
-                .tag = tag
+                .Tag = tag
                 }
             Dim ID As New Label With
                 {
@@ -441,7 +443,7 @@ Public Class selectAthlete
                             End If
                         End Using
                     End Using
-                    Using cmd As New OleDbCommand("UPDATE teamDb SET Members = '" + memberList + "' WHERE Team = '" + team + "'", conn)
+                    Using cmd As New OleDbCommand("UPDATE teamDb SET (Team, Members, AgeGroup)  = '" + memberList + "' WHERE Team = '" + team + "'", conn)
                         cmd.ExecuteNonQuery()
                     End Using
                 Next
@@ -559,5 +561,18 @@ Public Class selectAthlete
     Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
         helpIdentifier = "selectAthlete"
         helpForm.Show()
+    End Sub
+
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        If txtSearch.Text = "" Then
+            listSearched = updateSearched(listSearched, listSorted)
+        Else
+            listSearched = searchFilter(txtSearch, listSearched, listSorted)
+        End If
+        fillPanels(flpAthletes, "", listSearched)
+    End Sub
+
+    Private Sub bigbtngroup_Enter(sender As Object, e As EventArgs) Handles bigbtngroup.Enter
+
     End Sub
 End Class

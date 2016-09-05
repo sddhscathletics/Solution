@@ -324,9 +324,9 @@ Partial Class selectAthlete
         'flpAthletes
         '
         Me.flpAthletes.AutoScroll = True
-        Me.flpAthletes.Location = New System.Drawing.Point(60, 108)
+        Me.flpAthletes.Location = New System.Drawing.Point(6, 108)
         Me.flpAthletes.Name = "flpAthletes"
-        Me.flpAthletes.Size = New System.Drawing.Size(570, 532)
+        Me.flpAthletes.Size = New System.Drawing.Size(624, 532)
         Me.flpAthletes.TabIndex = 69
         '
         'lblAgeGroup
@@ -493,7 +493,7 @@ Partial Class selectAthlete
         '
         Me.cmbAgeGroup.Font = New System.Drawing.Font("Microsoft JhengHei UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAgeGroup.FormattingEnabled = True
-        Me.cmbAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
+        Me.cmbAgeGroup.Items.AddRange(New Object() {"All", "U13", "U14", "U15", "U16", "U17", "Opens"})
         Me.cmbAgeGroup.Location = New System.Drawing.Point(636, 81)
         Me.cmbAgeGroup.Name = "cmbAgeGroup"
         Me.cmbAgeGroup.Size = New System.Drawing.Size(121, 22)
