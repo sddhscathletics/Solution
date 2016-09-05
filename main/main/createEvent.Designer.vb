@@ -45,7 +45,6 @@ Partial Class createEvent
         Me.gbDetails = New System.Windows.Forms.GroupBox()
         Me.flpAttach = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlAttach = New System.Windows.Forms.Panel()
-        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.map = New GMap.NET.WindowsForms.GMapControl()
         Me.txtStreet = New System.Windows.Forms.TextBox()
         Me.lblStreet = New System.Windows.Forms.Label()
@@ -82,10 +81,6 @@ Partial Class createEvent
         Me.gbEvents = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblAlertCount = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.exitBtn = New System.Windows.Forms.Button()
-        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
@@ -99,20 +94,24 @@ Partial Class createEvent
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
         Me.gbRepeats = New System.Windows.Forms.GroupBox()
-        Me.lblRepeat = New System.Windows.Forms.Label()
         Me.chbRepNA = New System.Windows.Forms.CheckBox()
         Me.cmbRepType = New System.Windows.Forms.ComboBox()
         Me.lblRepType = New System.Windows.Forms.Label()
         Me.lblDays = New System.Windows.Forms.Label()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.exitBtn = New System.Windows.Forms.Button()
+        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.pbCmb = New System.Windows.Forms.PictureBox()
         Me.btnSaveEvent = New System.Windows.Forms.Button()
+        Me.pbAttach = New System.Windows.Forms.PictureBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.pbPlus = New System.Windows.Forms.PictureBox()
+        Me.lblRepeat = New System.Windows.Forms.Label()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbLocation.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbAttachments.SuspendLayout()
@@ -123,6 +122,7 @@ Partial Class createEvent
         Me.bigbtngroup.SuspendLayout()
         Me.gbRepeats.SuspendLayout()
         CType(Me.pbCmb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -357,18 +357,6 @@ Partial Class createEvent
         Me.pnlAttach.Name = "pnlAttach"
         Me.pnlAttach.Size = New System.Drawing.Size(319, 56)
         Me.pnlAttach.TabIndex = 43
-        '
-        'pbAttach
-        '
-        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
-        Me.pbAttach.Location = New System.Drawing.Point(114, -1)
-        Me.pbAttach.Name = "pbAttach"
-        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
-        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbAttach.TabIndex = 42
-        Me.pbAttach.TabStop = False
-        Me.pbAttach.Tag = "add"
         '
         'map
         '
@@ -797,60 +785,6 @@ Partial Class createEvent
         Me.lblAlertCount.Text = "0"
         Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button4.Location = New System.Drawing.Point(1157, 11)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(44, 44)
-        Me.Button4.TabIndex = 6
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Button13
-        '
-        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
-        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1201, 11)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(44, 44)
-        Me.Button13.TabIndex = 6
-        Me.Button13.UseVisualStyleBackColor = False
-        '
-        'exitBtn
-        '
-        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
-        Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.exitBtn.FlatAppearance.BorderSize = 0
-        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.exitBtn.Location = New System.Drawing.Point(1245, 11)
-        Me.exitBtn.Name = "exitBtn"
-        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
-        Me.exitBtn.TabIndex = 6
-        Me.exitBtn.UseVisualStyleBackColor = False
-        '
-        'scrollBtn
-        '
-        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
-        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
-        Me.scrollBtn.Name = "scrollBtn"
-        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
-        Me.scrollBtn.TabIndex = 3
-        Me.scrollBtn.UseVisualStyleBackColor = False
-        '
         'Sidebar
         '
         Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
@@ -1032,16 +966,6 @@ Partial Class createEvent
         Me.gbRepeats.TabStop = False
         Me.gbRepeats.Text = "REPEATS"
         '
-        'lblRepeat
-        '
-        Me.lblRepeat.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRepeat.Location = New System.Drawing.Point(14, 89)
-        Me.lblRepeat.Name = "lblRepeat"
-        Me.lblRepeat.Size = New System.Drawing.Size(175, 16)
-        Me.lblRepeat.TabIndex = 56
-        Me.lblRepeat.Text = "could be a repeate event"
-        Me.lblRepeat.Visible = False
-        '
         'chbRepNA
         '
         Me.chbRepNA.AutoSize = True
@@ -1084,6 +1008,60 @@ Partial Class createEvent
         Me.lblDays.TabIndex = 64
         Me.lblDays.Text = "DAYS"
         '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
+        Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Button4.Location = New System.Drawing.Point(1157, 11)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(44, 44)
+        Me.Button4.TabIndex = 6
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Button13
+        '
+        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
+        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
+        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button13.FlatAppearance.BorderSize = 0
+        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Button13.Location = New System.Drawing.Point(1201, 11)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(44, 44)
+        Me.Button13.TabIndex = 6
+        Me.Button13.UseVisualStyleBackColor = False
+        '
+        'exitBtn
+        '
+        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
+        Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.exitBtn.FlatAppearance.BorderSize = 0
+        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.exitBtn.Location = New System.Drawing.Point(1245, 11)
+        Me.exitBtn.Name = "exitBtn"
+        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
+        Me.exitBtn.TabIndex = 6
+        Me.exitBtn.UseVisualStyleBackColor = False
+        '
+        'scrollBtn
+        '
+        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
+        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
+        Me.scrollBtn.Name = "scrollBtn"
+        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
+        Me.scrollBtn.TabIndex = 3
+        Me.scrollBtn.UseVisualStyleBackColor = False
+        '
         'pbCmb
         '
         Me.pbCmb.Image = Global.main.My.Resources.Resources.comboBoxImage
@@ -1107,6 +1085,18 @@ Partial Class createEvent
         Me.btnSaveEvent.Size = New System.Drawing.Size(103, 97)
         Me.btnSaveEvent.TabIndex = 20
         Me.btnSaveEvent.UseVisualStyleBackColor = False
+        '
+        'pbAttach
+        '
+        Me.pbAttach.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbAttach.Image = Global.main.My.Resources.Resources.transparent_plus
+        Me.pbAttach.Location = New System.Drawing.Point(114, -1)
+        Me.pbAttach.Name = "pbAttach"
+        Me.pbAttach.Size = New System.Drawing.Size(74, 56)
+        Me.pbAttach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbAttach.TabIndex = 42
+        Me.pbAttach.TabStop = False
+        Me.pbAttach.Tag = "add"
         '
         'btnCancel
         '
@@ -1141,6 +1131,17 @@ Partial Class createEvent
         Me.pbPlus.TabIndex = 57
         Me.pbPlus.TabStop = False
         '
+        'lblRepeat
+        '
+        Me.lblRepeat.AutoSize = True
+        Me.lblRepeat.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRepeat.Location = New System.Drawing.Point(41, 89)
+        Me.lblRepeat.Name = "lblRepeat"
+        Me.lblRepeat.Size = New System.Drawing.Size(151, 16)
+        Me.lblRepeat.TabIndex = 56
+        Me.lblRepeat.Text = "could be a repeate event"
+        Me.lblRepeat.Visible = False
+        '
         'createEvent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1161,7 +1162,6 @@ Partial Class createEvent
         Me.gbDetails.PerformLayout()
         Me.flpAttach.ResumeLayout(False)
         Me.pnlAttach.ResumeLayout(False)
-        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbLocation.ResumeLayout(False)
         Me.gbLocation.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1177,6 +1177,7 @@ Partial Class createEvent
         Me.gbRepeats.ResumeLayout(False)
         Me.gbRepeats.PerformLayout()
         CType(Me.pbCmb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMinus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbPlus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

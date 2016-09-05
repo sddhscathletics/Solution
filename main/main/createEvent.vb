@@ -63,7 +63,6 @@ Public Class createEvent
 
     Private Sub btnSaveEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveEvent.Click
 #Region "Add"
-        Cursor.Current = Cursors.AppStarting
         If Me.Tag.contains("add") Then
             Dim nameDateMatch As Boolean = False
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -88,532 +87,6 @@ Public Class createEvent
             If nameDateMatch = False Then
                 If (attendees.Count > 0 Or rdbTraining.Checked) AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
                     'create repeating event functionality for 12 of the type
-                    If chbRepNA.Checked = False Then
-                        For day = 0 To clbDays.CheckedItems.Count - 1
-                            For i = 0 To 11
-                                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                    conn.Open()
-                                    Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, AttachNames, Comment, Repeats, IsRepeat) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @fileNames, @comment, @repeats, @isRepeat)", conn)
-                                        cmd.Parameters.AddWithValue("@name", txtName.Text)
-                                        dtpDate.Format = DateTimePickerFormat.Short
-                                        Dim sundayRelativeDate = dtpDate.Value.AddDays(-dtpDate.Value.DayOfWeek) 'gets you to the relative Sunday date
-                                        Dim dateToSave As Date
-                                        Select Case cmbRepType.SelectedItem
-                                            Case "Weekly" : dateToSave = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(clbDays.CheckedItems(day)) + i * 7)
-                                            Case "Monthly" : dateToSave = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(clbDays.CheckedItems(day))).AddMonths(i)
-                                            Case "Yearly" : dateToSave = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(clbDays.CheckedItems(day))).AddYears(i)
-                                        End Select
-                                        cmd.Parameters.AddWithValue("@Date", dateToSave.ToShortDateString())
-                                        dtpDate.Format = DateTimePickerFormat.Long
-                                        If rdbTraining.Checked Then
-                                            cmd.Parameters.AddWithValue("@type", "Training")
-                                        Else
-                                            cmd.Parameters.AddWithValue("@type", "Meet")
-                                        End If
-                                        cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                                        cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                        If rdbMeet.Checked = True Then
-                                            Dim attendingAthletes As String = ""
-                                            For athlete As Integer = 0 To attendees.Count - 1
-                                                If athlete = 0 Then
-                                                    attendingAthletes = attendees(athlete)
-                                                Else
-                                                    attendingAthletes += ";" & attendees(athlete)
-                                                End If
-                                            Next
-                                            cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                        Else
-                                            cmd.Parameters.AddWithValue("@personnel", "")
-                                        End If
-                                        Dim notesNeeded As String = ""
-                                        For note As Integer = 0 To notes.Count - 1
-                                            If note = 0 Then
-                                                notesNeeded = notes(note)
-                                            Else
-                                                notesNeeded += ";" & notes(note)
-                                            End If
-                                        Next
-                                        cmd.Parameters.AddWithValue("@notes", notesNeeded)
-                                        If chbNA.Checked = False Then
-                                            Dim eventTimes As String = ""
-                                            For time As Integer = 0 To times.Count - 1
-                                                If time = 0 Then
-                                                    eventTimes = times(time)
-                                                Else
-                                                    eventTimes += ";" & times(time)
-                                                End If
-                                            Next
-                                            cmd.Parameters.AddWithValue("@times", eventTimes)
-                                        Else
-                                            cmd.Parameters.AddWithValue("@times", "N/A")
-                                        End If
-                                        Dim location As String = ""
-                                        For Each overlay In map.Overlays
-                                            For Each marker In overlay.Markers
-                                                location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
-                                                Exit For 'since there is only one marker
-                                            Next
-                                            Exit For
-                                        Next
-                                        cmd.Parameters.AddWithValue("@location", location)
-                                        Dim fileNames As String = ""
-                                        For Each filePath In filePaths
-                                            If filePath = filePaths(0) Then
-                                                Dim splitPath = filePath.Split("\")
-                                                fileNames = splitPath(splitPath.Count - 1)
-                                            Else
-                                                Dim splitPath = filePath.Split("\")
-                                                fileNames += ";" & splitPath(splitPath.Count - 1)
-                                            End If
-                                        Next
-                                        cmd.Parameters.AddWithValue("@fileNames", fileNames)
-                                        cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                                        Dim reps = ""
-                                        If chbRepNA.Checked = False And i = 0 Then
-                                            For Each item In clbDays.CheckedItems
-                                                If item = clbDays.CheckedItems(0) Then
-                                                    reps += item
-                                                Else
-                                                    reps += ";" + item
-                                                End If
-                                            Next
-                                            reps += ";" + cmbRepType.SelectedItem
-                                        Else
-                                            reps = "N/A"
-                                        End If
-                                        cmd.Parameters.AddWithValue("@repeats", reps)
-                                        If i = 0 Then
-                                            cmd.Parameters.AddWithValue("@isRepeat", False)
-                                        Else
-                                            cmd.Parameters.AddWithValue("@isRepeat", True)
-                                        End If
-                                        cmd.ExecuteNonQuery()
-                                    End Using
-                                    conn.Close()
-                                End Using
-                            Next
-                            For Each filePath In filePaths
-                                If filePath.Contains("\") Then
-                                    'check if the results file exists and then either add or update
-                                    Dim hasMatch As Boolean = False
-                                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                        conn.Open()
-                                        Using cmd As New OleDbCommand("Select FileName FROM Attachments WHERE FileName = @name", conn) 'WHERE NOT EXISTS(SELECT FileName FROM Attachments WHERE FileName = @name)
-                                            Dim splitPath = filePath.Split("\")
-                                            cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                            Using dr = cmd.ExecuteReader()
-                                                If dr.HasRows Then
-                                                    Do While dr.Read()
-                                                        hasMatch = True
-                                                    Loop
-                                                Else
-                                                    hasMatch = False
-                                                End If
-                                            End Using
-                                        End Using
-                                    End Using
-                                    If hasMatch = False Then
-                                        Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
-                                            Dim myData(fs.Length) As Byte
-                                            fs.Read(myData, 0, fs.Length)
-                                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                                conn.Open()
-                                                Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn) 'INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)
-                                                    Dim splitPath = filePath.Split("\")
-                                                    cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                                    cmd.Parameters.Add("@attachments", OleDbType.VarBinary, fs.Length).Value = myData
-                                                    cmd.ExecuteNonQuery()
-                                                End Using
-                                            End Using
-                                        End Using
-                                    Else
-                                        Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
-                                            Dim myData(fs.Length) As Byte
-                                            fs.Read(myData, 0, fs.Length)
-                                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                                conn.Open()
-                                                Using cmd As New OleDbCommand("UPDATE Attachments Set FileInfo = @attachment WHERE FileName = @name", conn)
-                                                    Dim splitPath = filePath.Split("\")
-                                                    cmd.Parameters.Add("@attachment", OleDbType.VarBinary, fs.Length).Value = myData
-                                                    cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                                    cmd.ExecuteNonQuery()
-                                                End Using
-                                            End Using
-                                        End Using
-                                    End If
-                                    'Else
-                                    '    MessageBox.Show("Attachment: '" + filePath.Split("\")(filePath.Split("\").Count - 1) + "' is already in the database.")
-                                    'Else
-                                    '    MessageBox.Show("You are trying to upload '" + filePath + "' which was input from the template.")
-                                End If
-                            Next
-                        Next
-                    Else
-                        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                            conn.Open()
-                            Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, AttachNames, Comment, Repeats, IsRepeat) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @fileNames, @comment, @repeats, @isRepeat)", conn)
-                                cmd.Parameters.AddWithValue("@name", txtName.Text)
-                                dtpDate.Format = DateTimePickerFormat.Short
-                                cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
-                                dtpDate.Format = DateTimePickerFormat.Long
-                                If rdbTraining.Checked Then
-                                    cmd.Parameters.AddWithValue("@type", "Training")
-                                Else
-                                    cmd.Parameters.AddWithValue("@type", "Meet")
-                                End If
-                                cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                                cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                If rdbMeet.Checked = True Then
-                                    Dim attendingAthletes As String = ""
-                                    For athlete As Integer = 0 To attendees.Count - 1
-                                        If athlete = 0 Then
-                                            attendingAthletes = attendees(athlete)
-                                        Else
-                                            attendingAthletes += ";" & attendees(athlete)
-                                        End If
-                                    Next
-                                    cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                Else
-                                    cmd.Parameters.AddWithValue("@personnel", "")
-                                End If
-                                Dim notesNeeded As String = ""
-                                For note As Integer = 0 To notes.Count - 1
-                                    If note = 0 Then
-                                        notesNeeded = notes(note)
-                                    Else
-                                        notesNeeded += ";" & notes(note)
-                                    End If
-                                Next
-                                cmd.Parameters.AddWithValue("@notes", notesNeeded)
-                                If chbNA.Checked = False Then
-                                    Dim eventTimes As String = ""
-                                    For time As Integer = 0 To times.Count - 1
-                                        If time = 0 Then
-                                            eventTimes = times(time)
-                                        Else
-                                            eventTimes += ";" & times(time)
-                                        End If
-                                    Next
-                                    cmd.Parameters.AddWithValue("@times", eventTimes)
-                                Else
-                                    cmd.Parameters.AddWithValue("@times", "N/A")
-                                End If
-                                Dim location As String = ""
-                                For Each overlay In map.Overlays
-                                    For Each marker In overlay.Markers
-                                        location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
-                                        Exit For 'since there is only one marker
-                                    Next
-                                    Exit For
-                                Next
-                                cmd.Parameters.AddWithValue("@location", location)
-                                Dim fileNames As String = ""
-                                For Each filePath In filePaths
-                                    If filePath = filePaths(0) Then
-                                        Dim splitPath = filePath.Split("\")
-                                        fileNames = splitPath(splitPath.Count - 1)
-                                    Else
-                                        Dim splitPath = filePath.Split("\")
-                                        fileNames += ";" & splitPath(splitPath.Count - 1)
-                                    End If
-                                Next
-                                cmd.Parameters.AddWithValue("@fileNames", fileNames)
-                                cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                                Dim reps = ""
-                                If chbRepNA.Checked = False Then
-                                    For Each item In clbDays.CheckedItems
-                                        If item = clbDays.CheckedItems(0) Then
-                                            reps += item
-                                        Else
-                                            reps += ";" + item
-                                        End If
-                                    Next
-                                    reps += ";" + cmbRepType.SelectedItem
-                                Else
-                                    reps = "N/A"
-                                End If
-                                cmd.Parameters.AddWithValue("@repeats", reps)
-                                cmd.Parameters.AddWithValue("@isRepeat", False)
-                                cmd.ExecuteNonQuery()
-                            End Using
-                            conn.Close()
-                        End Using
-                        For Each filePath In filePaths
-                            If filePath.Contains("\") Then
-                                'check if the results file exists and then either add or update
-                                Dim hasMatch As Boolean = False
-                                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                    conn.Open()
-                                    Using cmd As New OleDbCommand("Select FileName FROM Attachments WHERE FileName = @name", conn) 'WHERE NOT EXISTS(SELECT FileName FROM Attachments WHERE FileName = @name)
-                                        Dim splitPath = filePath.Split("\")
-                                        cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                        Using dr = cmd.ExecuteReader()
-                                            If dr.HasRows Then
-                                                Do While dr.Read()
-                                                    hasMatch = True
-                                                Loop
-                                            Else
-                                                hasMatch = False
-                                            End If
-                                        End Using
-                                    End Using
-                                End Using
-                                If hasMatch = False Then
-                                    Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
-                                        Dim myData(fs.Length) As Byte
-                                        fs.Read(myData, 0, fs.Length)
-                                        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                            conn.Open()
-                                            Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn) 'INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)
-                                                Dim splitPath = filePath.Split("\")
-                                                cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                                cmd.Parameters.Add("@attachments", OleDbType.VarBinary, fs.Length).Value = myData
-                                                cmd.ExecuteNonQuery()
-                                            End Using
-                                        End Using
-                                    End Using
-                                Else
-                                    Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
-                                        Dim myData(fs.Length) As Byte
-                                        fs.Read(myData, 0, fs.Length)
-                                        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                            conn.Open()
-                                            Using cmd As New OleDbCommand("UPDATE Attachments Set FileInfo = @attachment WHERE FileName = @name", conn)
-                                                Dim splitPath = filePath.Split("\")
-                                                cmd.Parameters.Add("@attachment", OleDbType.VarBinary, fs.Length).Value = myData
-                                                cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                                cmd.ExecuteNonQuery()
-                                            End Using
-                                        End Using
-                                    End Using
-                                End If
-                                'Else
-                                '    MessageBox.Show("Attachment: '" + filePath.Split("\")(filePath.Split("\").Count - 1) + "' is already in the database.")
-                                'Else
-                                '    MessageBox.Show("You are trying to upload '" + filePath + "' which was input from the template.")
-                            End If
-                        Next
-                    End If
-                    btnSaveEvent.Tag = "saved"
-                    If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
-                        dtpDate.Format = DateTimePickerFormat.Short
-                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
-                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
-                        End If
-                        dtpDate.Format = DateTimePickerFormat.Long
-                    End If
-                    newEdit("evAdd", txtName.Text + " on the " + dtpDate.Text + ".")
-                    Me.Close()
-                ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
-                    MessageBox.Show("You must select athletes for the meet.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
-                    MessageBox.Show("You must either set event times or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                ElseIf map.Overlays.Count <> 1 Then
-                    If map.Overlays.Count < 1 Then
-                        MessageBox.Show("You must select a location. (A marker must be showing on the map)", "No Location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                    Else
-                        MessageBox.Show("Please select only one location.", "Multpiple Locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                    End If
-                ElseIf clbDays.CheckedItems.Count = 0 And chbRepNA.Checked = False Then
-                    MessageBox.Show("You must specify the days to repeat the event or tick N/A to not specify any repeats", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                ElseIf cmbRepType.Text = "" And chbRepNA.Checked = False Then
-                    MessageBox.Show("You must specify the event's repeating style or tick N/A to not specify any repeats", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Else
-                    If chbRepNA.Checked = False Then
-                        For day = 0 To clbDays.CheckedItems.Count - 1
-                            For i = 0 To 11
-                                Using conn As New OleDbConnection("Provider= Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                    conn.Open()
-                                    Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, Comment, Repeats, IsRepeat) VALUES (@name, @Date, @type, @start, @End, @personnel, @notes, @times, @location, @comment, @repeats, @isRepeat)", conn)
-                                        cmd.Parameters.AddWithValue("@name", txtName.Text)
-                                        dtpDate.Format = DateTimePickerFormat.Short
-                                        Dim sundayRelativeDate = dtpDate.Value.AddDays(-dtpDate.Value.DayOfWeek) 'gets you to the relative Sunday date
-                                        Dim dateToSave As Date
-                                        Select Case cmbRepType.SelectedItem
-                                            Case "Weekly" : dateToSave = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(clbDays.CheckedItems(day)) + i * 7)
-                                            Case "Monthly" : dateToSave = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(clbDays.CheckedItems(day))).AddMonths(i)
-                                            Case "Yearly" : dateToSave = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(clbDays.CheckedItems(day))).AddYears(i)
-                                        End Select
-                                        cmd.Parameters.AddWithValue("@Date", dateToSave.ToShortDateString())
-                                        dtpDate.Format = DateTimePickerFormat.Long
-                                        If rdbTraining.Checked Then
-                                            cmd.Parameters.AddWithValue("@type", "Training")
-                                        Else
-                                            cmd.Parameters.AddWithValue("@type", "Meet")
-                                        End If
-                                        cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                                        cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                        If rdbMeet.Checked = True Then
-                                            Dim attendingAthletes As String = ""
-                                            For athlete As Integer = 0 To attendees.Count - 1
-                                                If athlete = 0 Then
-                                                    attendingAthletes = attendees(athlete)
-                                                Else
-                                                    attendingAthletes += ";" & attendees(athlete)
-                                                End If
-                                            Next
-                                            cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                        Else
-                                            cmd.Parameters.AddWithValue("@personnel", "")
-                                        End If
-                                        Dim notesNeeded As String = ""
-                                        For note As Integer = 0 To notes.Count - 1
-                                            If note = 0 Then
-                                                notesNeeded = notes(note)
-                                            Else
-                                                notesNeeded += ";" & notes(note)
-                                            End If
-                                        Next
-                                        cmd.Parameters.AddWithValue("@notes", notesNeeded)
-                                        If chbNA.Checked = False Then
-                                            Dim eventTimes As String = ""
-                                            For time As Integer = 0 To times.Count - 1
-                                                If time = 0 Then
-                                                    eventTimes = times(time)
-                                                Else
-                                                    eventTimes += ";" & times(time)
-                                                End If
-                                            Next
-                                            cmd.Parameters.AddWithValue("@times", eventTimes)
-                                        Else
-                                            cmd.Parameters.AddWithValue("@times", "None")
-                                        End If
-                                        Dim location As String = ""
-                                        For Each overlay In map.Overlays
-                                            For Each marker In overlay.Markers
-                                                location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
-                                                Exit For 'since there is only one marker
-                                            Next
-                                            Exit For
-                                        Next
-                                        cmd.Parameters.AddWithValue("@location", location)
-                                        cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                                        Dim reps = ""
-                                        If chbRepNA.Checked = False And i = 0 Then
-                                            For Each item In clbDays.CheckedItems
-                                                If item = clbDays.CheckedItems(0) Then
-                                                    reps += item
-                                                Else
-                                                    reps += ";" + item
-                                                End If
-                                            Next
-                                            reps += ";" + cmbRepType.SelectedItem
-                                        Else
-                                            reps = "N/A"
-                                        End If
-                                        cmd.Parameters.AddWithValue("@repeats", reps)
-                                        If i = 0 Then
-                                            cmd.Parameters.AddWithValue("@isRepeat", False)
-                                        Else
-                                            cmd.Parameters.AddWithValue("@isRepeat", True)
-                                        End If
-                                        cmd.ExecuteNonQuery()
-                                    End Using
-                                    conn.Close()
-                                End Using
-                            Next
-                        Next
-                    Else
-                        Using conn As New OleDbConnection("Provider= Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                            conn.Open()
-                            Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, Comment, Repeats, IsRepeat) VALUES (@name, @Date, @type, @start, @End, @personnel, @notes, @times, @location, @comment, @repeats, @isRepeat)", conn)
-                                cmd.Parameters.AddWithValue("@name", txtName.Text)
-                                dtpDate.Format = DateTimePickerFormat.Short
-                                cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
-                                dtpDate.Format = DateTimePickerFormat.Long
-                                If rdbTraining.Checked Then
-                                    cmd.Parameters.AddWithValue("@type", "Training")
-                                Else
-                                    cmd.Parameters.AddWithValue("@type", "Meet")
-                                End If
-                                cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                                cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                                If rdbMeet.Checked = True Then
-                                    Dim attendingAthletes As String = ""
-                                    For athlete As Integer = 0 To attendees.Count - 1
-                                        If athlete = 0 Then
-                                            attendingAthletes = attendees(athlete)
-                                        Else
-                                            attendingAthletes += ";" & attendees(athlete)
-                                        End If
-                                    Next
-                                    cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                                Else
-                                    cmd.Parameters.AddWithValue("@personnel", "")
-                                End If
-                                Dim notesNeeded As String = ""
-                                For note As Integer = 0 To notes.Count - 1
-                                    If note = 0 Then
-                                        notesNeeded = notes(note)
-                                    Else
-                                        notesNeeded += ";" & notes(note)
-                                    End If
-                                Next
-                                cmd.Parameters.AddWithValue("@notes", notesNeeded)
-                                If chbNA.Checked = False Then
-                                    Dim eventTimes As String = ""
-                                    For time As Integer = 0 To times.Count - 1
-                                        If time = 0 Then
-                                            eventTimes = times(time)
-                                        Else
-                                            eventTimes += ";" & times(time)
-                                        End If
-                                    Next
-                                    cmd.Parameters.AddWithValue("@times", eventTimes)
-                                Else
-                                    cmd.Parameters.AddWithValue("@times", "None")
-                                End If
-                                Dim location As String = ""
-                                For Each overlay In map.Overlays
-                                    For Each marker In overlay.Markers
-                                        location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
-                                        Exit For 'since there is only one marker
-                                    Next
-                                    Exit For
-                                Next
-                                cmd.Parameters.AddWithValue("@location", location)
-                                cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                                Dim reps = ""
-                                If chbRepNA.Checked = False Then
-                                    For Each item In clbDays.CheckedItems
-                                        If item = clbDays.CheckedItems(0) Then
-                                            reps += item
-                                        Else
-                                            reps += ";" + item
-                                        End If
-                                    Next
-                                    reps += ";" + cmbRepType.SelectedItem
-                                Else
-                                    reps = "N/A"
-                                End If
-                                cmd.Parameters.AddWithValue("@repeats", reps)
-                                cmd.Parameters.AddWithValue("@isRepeat", False)
-                                cmd.ExecuteNonQuery()
-                            End Using
-                            conn.Close()
-                        End Using
-                    End If
-                    btnSaveEvent.Tag = "saved"
-                    If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
-                        dtpDate.Format = DateTimePickerFormat.Short
-                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
-                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
-                        End If
-                        dtpDate.Format = DateTimePickerFormat.Long
-                    End If
-                    newEdit("evAdd", txtName.Text + " on " + dtpDate.Text + ".")
-                    Me.Close()
-                End If
-            Else
-                MessageBox.Show("The name And date of this event match an exisiting event." + vbNewLine + "Please change either Of these And retry.", "Corresponding Event Exists", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
-            End If
-#End Region
-#Region "Edit"
-        ElseIf Me.Tag.Contains("edit") Then
-            'since any change should be reflected in all repeats, it is easiest to create a new record and delete all previous records
-            If (attendees.Count > 0 Or rdbTraining.Checked) AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
-                'create repeating event functionality for 12 of the type
-                If chbRepNA.Checked = False Then
                     For day = 0 To clbDays.CheckedItems.Count - 1
                         For i = 0 To 11
                             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -773,255 +246,31 @@ Public Class createEvent
                             End If
                         Next
                     Next
-                Else
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                        conn.Open()
-                        Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, AttachNames, Comment, Repeats, IsRepeat) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @fileNames, @comment, @repeats, @isRepeat)", conn)
-                            cmd.Parameters.AddWithValue("@name", txtName.Text)
-                            dtpDate.Format = DateTimePickerFormat.Short
-                            cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
-                            dtpDate.Format = DateTimePickerFormat.Long
-                            If rdbTraining.Checked Then
-                                cmd.Parameters.AddWithValue("@type", "Training")
-                            Else
-                                cmd.Parameters.AddWithValue("@type", "Meet")
-                            End If
-                            cmd.Parameters.AddWithValue("@start", dtpStart.Text)
-                            cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
-                            If rdbMeet.Checked = True Then
-                                Dim attendingAthletes As String = ""
-                                For athlete As Integer = 0 To attendees.Count - 1
-                                    If athlete = 0 Then
-                                        attendingAthletes = attendees(athlete)
-                                    Else
-                                        attendingAthletes += ";" & attendees(athlete)
-                                    End If
-                                Next
-                                cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
-                            Else
-                                cmd.Parameters.AddWithValue("@personnel", "")
-                            End If
-                            Dim notesNeeded As String = ""
-                            For note As Integer = 0 To notes.Count - 1
-                                If note = 0 Then
-                                    notesNeeded = notes(note)
-                                Else
-                                    notesNeeded += ";" & notes(note)
-                                End If
-                            Next
-                            cmd.Parameters.AddWithValue("@notes", notesNeeded)
-                            If chbNA.Checked = False Then
-                                Dim eventTimes As String = ""
-                                For time As Integer = 0 To times.Count - 1
-                                    If time = 0 Then
-                                        eventTimes = times(time)
-                                    Else
-                                        eventTimes += ";" & times(time)
-                                    End If
-                                Next
-                                cmd.Parameters.AddWithValue("@times", eventTimes)
-                            Else
-                                cmd.Parameters.AddWithValue("@times", "N/A")
-                            End If
-                            Dim location As String = ""
-                            For Each overlay In map.Overlays
-                                For Each marker In overlay.Markers
-                                    location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
-                                    Exit For 'since there is only one marker
-                                Next
-                                Exit For
-                            Next
-                            cmd.Parameters.AddWithValue("@location", location)
-                            Dim fileNames As String = ""
-                            For Each filePath In filePaths
-                                If filePath = filePaths(0) Then
-                                    Dim splitPath = filePath.Split("\")
-                                    fileNames = splitPath(splitPath.Count - 1)
-                                Else
-                                    Dim splitPath = filePath.Split("\")
-                                    fileNames += ";" & splitPath(splitPath.Count - 1)
-                                End If
-                            Next
-                            cmd.Parameters.AddWithValue("@fileNames", fileNames)
-                            cmd.Parameters.AddWithValue("@comment", txtComment.Text)
-                            Dim reps = ""
-                            If chbRepNA.Checked = False Then
-                                For Each item In clbDays.CheckedItems
-                                    If item = clbDays.CheckedItems(0) Then
-                                        reps += item
-                                    Else
-                                        reps += ";" + item
-                                    End If
-                                Next
-                                reps += ";" + cmbRepType.SelectedItem
-                            Else
-                                reps = "N/A"
-                            End If
-                            cmd.Parameters.AddWithValue("@repeats", reps)
-                            cmd.Parameters.AddWithValue("@isRepeat", False)
-                            cmd.ExecuteNonQuery()
-                        End Using
-                        conn.Close()
-                    End Using
-                    For Each filePath In filePaths
-                        If filePath.Contains("\") Then
-                            'check if the results file exists and then either add or update
-                            Dim hasMatch As Boolean = False
-                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                conn.Open()
-                                Using cmd As New OleDbCommand("Select FileName FROM Attachments WHERE FileName = @name", conn) 'WHERE NOT EXISTS(SELECT FileName FROM Attachments WHERE FileName = @name)
-                                    Dim splitPath = filePath.Split("\")
-                                    cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                    Using dr = cmd.ExecuteReader()
-                                        If dr.HasRows Then
-                                            Do While dr.Read()
-                                                hasMatch = True
-                                            Loop
-                                        Else
-                                            hasMatch = False
-                                        End If
-                                    End Using
-                                End Using
-                            End Using
-                            If hasMatch = False Then
-                                Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
-                                    Dim myData(fs.Length) As Byte
-                                    fs.Read(myData, 0, fs.Length)
-                                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                        conn.Open()
-                                        Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn) 'INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)
-                                            Dim splitPath = filePath.Split("\")
-                                            cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                            cmd.Parameters.Add("@attachments", OleDbType.VarBinary, fs.Length).Value = myData
-                                            cmd.ExecuteNonQuery()
-                                        End Using
-                                    End Using
-                                End Using
-                            Else
-                                Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
-                                    Dim myData(fs.Length) As Byte
-                                    fs.Read(myData, 0, fs.Length)
-                                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                        conn.Open()
-                                        Using cmd As New OleDbCommand("UPDATE Attachments Set FileInfo = @attachment WHERE FileName = @name", conn)
-                                            Dim splitPath = filePath.Split("\")
-                                            cmd.Parameters.Add("@attachment", OleDbType.VarBinary, fs.Length).Value = myData
-                                            cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
-                                            cmd.ExecuteNonQuery()
-                                        End Using
-                                    End Using
-                                End Using
-                            End If
-                            'Else
-                            '    MessageBox.Show("Attachment: '" + filePath.Split("\")(filePath.Split("\").Count - 1) + "' is already in the database.")
-                            'Else
-                            '    MessageBox.Show("You are trying to upload '" + filePath + "' which was input from the template.")
+                    btnSaveEvent.Tag = "saved"
+                    If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                        dtpDate.Format = DateTimePickerFormat.Short
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
                         End If
-                    Next
-                End If
-                If chbRepNA.Enabled Then 'if it's the original event
-                    'delete all repeated versions of the event:
-                    '1) find the repeat conditions
-                    Dim repeatInfo As New List(Of String)
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                        conn.Open()
-                        Using cmd As New OleDbCommand("SELECT Repeats FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
-                            Dim tagSplit = Me.Tag.split(" ")
-                            Dim name As String = ""
-                            For part As Integer = 0 To tagSplit.Length - 1
-                                If part <> 0 And part <> tagSplit.Length - 1 Then
-                                    name += tagSplit(part) + " "
-                                End If
-                            Next
-                            name = RTrim(name)
-                            cmd.Parameters.AddWithValue("@name", name)
-                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
-                            Using dr = cmd.ExecuteReader()
-                                If dr.HasRows() Then
-                                    Dim repeatColumn() As String = dr(0).split(";")
-                                    repeatInfo = repeatColumn.ToList()
-                                End If
-                            End Using
-                        End Using
-                        conn.Close()
-                    End Using
-                    '2) delete all repeating versions
-                    Dim repeatType = repeatInfo(repeatInfo.Count - 1)
-                    repeatInfo.Remove(repeatType)
-                    For day = 0 To repeatInfo.Count - 1
-                        For i = 0 To 11
-                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                conn.Open()
-                                Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
-                                    Dim tagSplit = Me.Tag.split(" ")
-                                    Dim name As String = ""
-                                    For part As Integer = 0 To tagSplit.Length - 1
-                                        If part <> 0 And part <> tagSplit.Length - 1 Then
-                                            name += tagSplit(part) + " "
-                                        End If
-                                    Next
-                                    name = RTrim(name)
-                                    cmd.Parameters.AddWithValue("@name", name)
-                                    Dim sundayRelativeDate = CType(tagSplit(tagSplit.Length - 1), Date).AddDays(-CType(tagSplit(tagSplit.Length - 1), Date).DayOfWeek)
-                                    Dim dateToRemove As Date
-                                    Select Case repeatType
-                                        Case "Weekly" : dateToRemove = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(repeatInfo(day))).AddDays(i * 7)
-                                        Case "Monthly" : dateToRemove = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(repeatInfo(day))).AddMonths(i)
-                                        Case "Yearly" : dateToRemove = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(repeatInfo(day))).AddYears(i)
-                                    End Select
-                                    cmd.Parameters.AddWithValue("@date", dateToRemove.ToShortDateString())
-                                    cmd.ExecuteNonQuery()
-                                End Using
-                                conn.Close()
-                            End Using
-                        Next
-                    Next
-                Else
-                    'delete only the current record
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                        conn.Open()
-                        Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
-                            Dim tagSplit = Me.Tag.split(" ")
-                            Dim name As String = ""
-                            For part As Integer = 0 To tagSplit.Length - 1
-                                If part <> 0 And part <> tagSplit.Length - 1 Then
-                                    name += tagSplit(part) + " "
-                                End If
-                            Next
-                            name = RTrim(name)
-                            cmd.Parameters.AddWithValue("@name", name)
-                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
-                            cmd.ExecuteNonQuery()
-                        End Using
-                        conn.Close()
-                    End Using
-                End If
-                btnSaveEvent.Tag = "saved"
-                If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
-                    dtpDate.Format = DateTimePickerFormat.Short
-                    If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
-                        templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        dtpDate.Format = DateTimePickerFormat.Long
                     End If
-                    dtpDate.Format = DateTimePickerFormat.Long
-                End If
-                newEdit("evEdit", txtName.Text + " on " + dtpDate.Text + ".")
-                Me.Close()
-            ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
-                MessageBox.Show("You must select athletes for the meet.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
-                MessageBox.Show("You must either set event times or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            ElseIf map.Overlays.Count <> 1 Then
-                If map.Overlays.Count < 1 Then
-                    MessageBox.Show("You must select a location. (A marker must be showing on the map)", "No Location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    newEdit("evAdd", txtName.Text + " on the " + dtpDate.Text + ".")
+                    Me.Close()
+                ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
+                    MessageBox.Show("You must select athletes for the meet.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
+                    MessageBox.Show("You must either set event times or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf map.Overlays.Count <> 1 Then
+                    If map.Overlays.Count < 1 Then
+                        MessageBox.Show("You must select a location. (A marker must be showing on the map)", "No Location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Else
+                        MessageBox.Show("Please select only one location.", "Multpiple Locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    End If
+                ElseIf clbDays.CheckedItems.Count = 0 And chbRepNA.Checked = False Then
+                    MessageBox.Show("You must specify the days to repeat the event or tick N/A to not specify any repeats", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf cmbRepType.Text = "" And chbRepNA.Checked = False Then
+                    MessageBox.Show("You must specify the event's repeating style or tick N/A to not specify any repeats", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Else
-                    MessageBox.Show("Please select only one location.", "Multpiple Locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                End If
-            ElseIf clbDays.CheckedItems.Count = 0 And chbRepNA.Checked = False Then
-                MessageBox.Show("You must specify the event's repeating style or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            ElseIf cmbRepType.Text = "" And chbRepNA.Checked = False Then
-                MessageBox.Show("You must specify the event's repeating style or tick N/A to not specify any repeats", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Else
-                If chbRepNA.Checked = False Then
                     For day = 0 To clbDays.CheckedItems.Count - 1
                         For i = 0 To 11
                             Using conn As New OleDbConnection("Provider= Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -1115,10 +364,48 @@ Public Class createEvent
                             End Using
                         Next
                     Next
-                Else
-                    Using conn As New OleDbConnection("Provider= Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    btnSaveEvent.Tag = "saved"
+                        If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                            dtpDate.Format = DateTimePickerFormat.Short
+                            If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                                templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                            End If
+                            dtpDate.Format = DateTimePickerFormat.Long
+                        End If
+                        newEdit("evAdd", txtName.Text + " on " + dtpDate.Text + ".")
+                        Me.Close()
+                End If
+            Else
+                MessageBox.Show("The name And date of this event match an exisiting event." + vbNewLine + "Please change either Of these And retry.", "Corresponding Event Exists", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            End If
+#End Region
+#Region "Edit"
+        ElseIf Me.Tag.Contains("edit") Then
+            Dim nameDateMatch As Boolean = False
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                conn.Open()
+                Using cmd As New OleDbCommand("Select EventName, EventDate FROM Events WHERE EventName = @name And EventDate = @Date", conn) '*takes the column with correct rows
+                    cmd.Parameters.AddWithValue("@name", txtName.Text)
+                    dtpDate.Format = DateTimePickerFormat.Short
+                    cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
+                    dtpDate.Format = DateTimePickerFormat.Long
+                    Using dr = cmd.ExecuteReader()
+                        If dr.HasRows Then
+                            Do While dr.Read()
+                                nameDateMatch = True
+                            Loop
+                        Else
+                            nameDateMatch = False
+                        End If
+                    End Using
+                End Using
+                conn.Close()
+            End Using
+            If nameDateMatch = True Then 'update the relevant record
+                If (attendees.Count > 0 Or rdbTraining.Checked) AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                         conn.Open()
-                        Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, Comment, Repeats, IsRepeat) VALUES (@name, @Date, @type, @start, @End, @personnel, @notes, @times, @location, @comment, @repeats, @isRepeat)", conn)
+                        Using cmd As New OleDbCommand("UPDATE Events Set EventName = @name, EventDate = @Date, Type = @type, StartTime = @start, EndTime = @End, Personnel = @personnel, Notes = @notes, Events = @times, Location = @location, AttachNames = @fileNames, Comment = @comment, Repeats = @repeats WHERE EventName = @name And EventDate = @Date", conn)
                             cmd.Parameters.AddWithValue("@name", txtName.Text)
                             dtpDate.Format = DateTimePickerFormat.Short
                             cmd.Parameters.AddWithValue("@Date", dtpDate.Text)
@@ -1130,6 +417,463 @@ Public Class createEvent
                             End If
                             cmd.Parameters.AddWithValue("@start", dtpStart.Text)
                             cmd.Parameters.AddWithValue("@End", dtpEnd.Text)
+                            If rdbMeet.Checked = True Then
+                                Dim attendingAthletes As String = ""
+                                For athlete As Integer = 0 To attendees.Count - 1
+                                    If athlete = 0 Then
+                                        attendingAthletes = attendees(athlete)
+                                    Else
+                                        attendingAthletes += ";" & attendees(athlete)
+                                    End If
+                                Next
+                                cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                            Else
+                                cmd.Parameters.AddWithValue("@personnel", "")
+                            End If
+                            Dim notesNeeded As String = ""
+                            For note As Integer = 0 To notes.Count - 1
+                                If note = 0 Then
+                                    notesNeeded = notes(note)
+                                Else
+                                    notesNeeded += ";" & notes(note)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@notes", notesNeeded)
+                            If chbNA.Checked = False Then
+                                Dim eventTimes As String = ""
+                                For time As Integer = 0 To times.Count - 1
+                                    If time = 0 Then
+                                        eventTimes = times(time)
+                                    Else
+                                        eventTimes += ";" & times(time)
+                                    End If
+                                Next
+                                cmd.Parameters.AddWithValue("@times", eventTimes)
+                            Else
+                                cmd.Parameters.AddWithValue("@times", "N/A")
+                            End If
+                            Dim location As String = ""
+                            For Each overlay In map.Overlays
+                                For Each marker In overlay.Markers
+                                    location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
+                                    Exit For 'since there is only one marker
+                                Next
+                                Exit For
+                            Next
+                            cmd.Parameters.AddWithValue("@location", location)
+                            Dim fileNames As String = ""
+                            For Each filePath In filePaths
+                                If filePath = filePaths(0) Then
+                                    Dim splitPath = filePath.Split("\")
+                                    fileNames = splitPath(splitPath.Count - 1)
+                                Else
+                                    Dim splitPath = filePath.Split("\")
+                                    fileNames += ";" & splitPath(splitPath.Count - 1)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@fileNames", fileNames)
+                            cmd.Parameters.AddWithValue("@comment", txtComment.Text)
+                            Dim reps = ""
+                            If chbRepNA.Checked = False Then
+                                For Each item In clbDays.CheckedItems
+                                    If item = clbDays.CheckedItems(0) Then
+                                        reps += item
+                                    Else
+                                        reps += ";" + item
+                                    End If
+                                Next
+                                reps += ";" + cmbRepType.SelectedItem
+                            Else
+                                reps = "N/A"
+                            End If
+                            cmd.Parameters.AddWithValue("@repeats", reps)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        conn.Close()
+                    End Using
+                    For Each filePath In filePaths
+                        If filePath.Contains("\") Then
+                            'check if the results file exists and then either add or update
+                            Dim hasMatch As Boolean = False
+                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                                conn.Open()
+                                Using cmd As New OleDbCommand("SELECT FileName FROM Attachments WHERE FileName = @name", conn) 'WHERE NOT EXISTS(SELECT FileName FROM Attachments WHERE FileName = @name)
+                                    Dim splitPath = filePath.Split("\")
+                                    cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                    Using dr = cmd.ExecuteReader()
+                                        If dr.HasRows Then
+                                            Do While dr.Read()
+                                                hasMatch = True
+                                            Loop
+                                        Else
+                                            hasMatch = False
+                                        End If
+                                    End Using
+                                End Using
+                            End Using
+                            If hasMatch = False Then
+                                Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+                                    Dim myData(fs.Length) As Byte
+                                    fs.Read(myData, 0, fs.Length)
+                                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                                        conn.Open()
+                                        Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn) 'INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)
+                                            Dim splitPath = filePath.Split("\")
+                                            cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                            cmd.Parameters.Add("@attachments", OleDbType.VarBinary, fs.Length).Value = myData
+                                            cmd.ExecuteNonQuery()
+                                        End Using
+                                    End Using
+                                End Using
+                            Else
+                                Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+                                    Dim myData(fs.Length) As Byte
+                                    fs.Read(myData, 0, fs.Length)
+                                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                                        conn.Open()
+                                        Using cmd As New OleDbCommand("UPDATE Attachments SET FileInfo = @attachment WHERE FileName = @name", conn)
+                                            Dim splitPath = filePath.Split("\")
+                                            cmd.Parameters.Add("@attachment", OleDbType.VarBinary, fs.Length).Value = myData
+                                            cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                            cmd.ExecuteNonQuery()
+                                        End Using
+                                    End Using
+                                End Using
+                            End If
+                            'Else
+                            '    MessageBox.Show("You are trying to upload '" + filePath + "' which was input from the template.")
+                        End If
+                    Next
+                    btnSaveEvent.Tag = "saved"
+                    If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                        dtpDate.Format = DateTimePickerFormat.Short
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
+                        dtpDate.Format = DateTimePickerFormat.Long
+                    End If
+                    newEdit("evEdit", txtName.Text + " on " + dtpDate.Text + ".")
+                    Me.Close()
+                ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
+                    MessageBox.Show("You must select athletes for the meet.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
+                    MessageBox.Show("You must either set event times or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf map.Overlays.Count <> 1 Then
+                    If map.Overlays.Count < 1 Then
+                        MessageBox.Show("You must select a location. (A marker must be showing on the map)", "No Location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Else
+                        MessageBox.Show("Please select only one location.", "Multpiple Locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    End If
+                ElseIf clbDays.CheckedItems.Count = 0 And chbRepNA.Checked = False Then
+                    MessageBox.Show("You must specify the event's repeating style or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf cmbRepType.Text = "" And chbRepNA.Checked = False Then
+                    MessageBox.Show("You must specify the event's repeating style or tick N/A to not specify any repeats", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Else
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                        conn.Open()
+                        Using cmd As New OleDbCommand("UPDATE Events SET EventName = @name, EventDate = @date, Type = @type, StartTime = @start, EndTime = @end, Personnel = @personnel, Notes = @notes, Events = @times, Location = @location, Comment = @comment, Repeats = @repeats WHERE EventName = @name AND EventDate = @date", conn)
+                            cmd.Parameters.AddWithValue("@name", txtName.Text)
+                            dtpDate.Format = DateTimePickerFormat.Short
+                            cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                            dtpDate.Format = DateTimePickerFormat.Long
+                            If rdbTraining.Checked Then
+                                cmd.Parameters.AddWithValue("@type", "Training")
+                            Else
+                                cmd.Parameters.AddWithValue("@type", "Meet")
+                            End If
+                            cmd.Parameters.AddWithValue("@start", dtpStart.Text)
+                            cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
+                            If rdbMeet.Checked = True Then
+                                Dim attendingAthletes As String = ""
+                                For athlete As Integer = 0 To attendees.Count - 1
+                                    If athlete = 0 Then
+                                        attendingAthletes = attendees(athlete)
+                                    Else
+                                        attendingAthletes += ";" & attendees(athlete)
+                                    End If
+                                Next
+                                cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                            Else
+                                cmd.Parameters.AddWithValue("@personnel", "")
+                            End If
+                            Dim notesNeeded As String = ""
+                            For note As Integer = 0 To notes.Count - 1
+                                If note = 0 Then
+                                    notesNeeded = notes(note)
+                                Else
+                                    notesNeeded += ";" & notes(note)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@notes", notesNeeded)
+
+                            If chbNA.Checked = False Then
+                                Dim eventTimes As String = ""
+                                For time As Integer = 0 To times.Count - 1
+                                    If time = 0 Then
+                                        eventTimes = times(time)
+                                    Else
+                                        eventTimes += ";" & times(time)
+                                    End If
+                                Next
+                                cmd.Parameters.AddWithValue("@times", eventTimes)
+                            Else
+                                cmd.Parameters.AddWithValue("@times", "None")
+                            End If
+                            Dim location As String = ""
+                            For Each overlay In map.Overlays
+                                For Each marker In overlay.Markers
+                                    location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
+                                    Exit For 'since there is only one marker
+                                Next
+                                Exit For
+                            Next
+                            cmd.Parameters.AddWithValue("@location", location)
+                            cmd.Parameters.AddWithValue("@comment", txtComment.Text)
+                            Dim reps = ""
+                            If chbRepNA.Checked = False Then
+                                For Each item In clbDays.CheckedItems
+                                    If item = clbDays.CheckedItems(0) Then
+                                        reps += item
+                                    Else
+                                        reps += ";" + item
+                                    End If
+                                Next
+                                reps += ";" + cmbRepType.SelectedItem
+                            Else
+                                reps = "N/A"
+                            End If
+                            cmd.Parameters.AddWithValue("@repeats", reps)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        conn.Close()
+                    End Using
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                        conn.Open()
+                        Using cmd As New OleDbCommand("UPDATE Events SET AttachNames = '' WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                            Dim tagSplit = Me.Tag.split(" ")
+                            Dim name As String = ""
+                            For part As Integer = 0 To tagSplit.Length - 1
+                                If part <> 0 And part <> tagSplit.Length - 1 Then
+                                    name += tagSplit(part) + " "
+                                End If
+                            Next
+                            name = RTrim(name)
+                            cmd.Parameters.AddWithValue("@name", name)
+                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        conn.Close()
+                    End Using
+                    btnSaveEvent.Tag = "saved"
+                    If MessageBox.Show("Your event has been edited." + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                        dtpDate.Format = DateTimePickerFormat.Short
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
+                        dtpDate.Format = DateTimePickerFormat.Long
+                    End If
+                    newEdit("evEdit", txtName.Text + " on " + dtpDate.Text + ".")
+                    Me.Close()
+                End If
+            Else 'add normally then delete the one that was being edited
+                If (attendees.Count > 0 Or rdbTraining.Checked) AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                        conn.Open()
+                        Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, AttachNames, Comment, Repeats) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @fileNames, @comment, @repeats)", conn)
+                            cmd.Parameters.AddWithValue("@name", txtName.Text)
+                            dtpDate.Format = DateTimePickerFormat.Short
+                            cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                            dtpDate.Format = DateTimePickerFormat.Long
+                            If rdbTraining.Checked Then
+                                cmd.Parameters.AddWithValue("@type", "Training")
+                            Else
+                                cmd.Parameters.AddWithValue("@type", "Meet")
+                            End If
+                            cmd.Parameters.AddWithValue("@start", dtpStart.Text)
+                            cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
+                            If rdbMeet.Checked = True Then
+                                Dim attendingAthletes As String = ""
+                                For athlete As Integer = 0 To attendees.Count - 1
+                                    If athlete = 0 Then
+                                        attendingAthletes = attendees(athlete)
+                                    Else
+                                        attendingAthletes += ";" & attendees(athlete)
+                                    End If
+                                Next
+                                cmd.Parameters.AddWithValue("@personnel", attendingAthletes)
+                            Else
+                                cmd.Parameters.AddWithValue("@personnel", "")
+                            End If
+                            Dim notesNeeded As String = ""
+                            For note As Integer = 0 To notes.Count - 1
+                                If note = 0 Then
+                                    notesNeeded = notes(note)
+                                Else
+                                    notesNeeded += ";" & notes(note)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@notes", notesNeeded)
+                            If chbNA.Checked = False Then
+                                Dim eventTimes As String = ""
+                                For time As Integer = 0 To times.Count - 1
+                                    If time = 0 Then
+                                        eventTimes = times(time)
+                                    Else
+                                        eventTimes += ";" & times(time)
+                                    End If
+                                Next
+                                cmd.Parameters.AddWithValue("@times", eventTimes)
+                            Else
+                                cmd.Parameters.AddWithValue("@times", "N/A")
+                            End If
+                            Dim location As String = ""
+                            For Each overlay In map.Overlays
+                                For Each marker In overlay.Markers
+                                    location = marker.Position.Lat.ToString() + ";" + marker.Position.Lng.ToString()
+                                    Exit For 'since there is only one marker
+                                Next
+                                Exit For
+                            Next
+                            cmd.Parameters.AddWithValue("@location", location)
+                            Dim fileNames As String = ""
+                            For Each filePath In filePaths
+                                If filePath = filePaths(0) Then
+                                    Dim splitPath = filePath.Split("\")
+                                    fileNames = splitPath(splitPath.Count - 1)
+                                Else
+                                    Dim splitPath = filePath.Split("\")
+                                    fileNames += ";" & splitPath(splitPath.Count - 1)
+                                End If
+                            Next
+                            cmd.Parameters.AddWithValue("@fileNames", fileNames)
+                            cmd.Parameters.AddWithValue("@comment", txtComment.Text)
+                            Dim reps = ""
+                            If chbRepNA.Checked = False Then
+                                For Each item In clbDays.CheckedItems
+                                    If item = clbDays.CheckedItems(0) Then
+                                        reps += item
+                                    Else
+                                        reps += ";" + item
+                                    End If
+                                Next
+                                reps += ";" + cmbRepType.SelectedItem
+                            Else
+                                reps = "N/A"
+                            End If
+                            cmd.Parameters.AddWithValue("@repeats", reps)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        conn.Close()
+                    End Using
+                    For Each filePath In filePaths
+                        If filePath.Contains("\") Then
+                            'check if the results file exists and then either add or update
+                            Dim hasMatch As Boolean = False
+                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                                conn.Open()
+                                Using cmd As New OleDbCommand("SELECT FileName FROM Attachments WHERE FileName = @name", conn) 'WHERE NOT EXISTS(SELECT FileName FROM Attachments WHERE FileName = @name)
+                                    Dim splitPath = filePath.Split("\")
+                                    cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                    Using dr = cmd.ExecuteReader()
+                                        If dr.HasRows Then
+                                            Do While dr.Read()
+                                                hasMatch = True
+                                            Loop
+                                        Else
+                                            hasMatch = False
+                                        End If
+                                    End Using
+                                End Using
+                            End Using
+                            If hasMatch = False Then
+                                Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+                                    Dim myData(fs.Length) As Byte
+                                    fs.Read(myData, 0, fs.Length)
+                                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                                        conn.Open()
+                                        Using cmd As New OleDbCommand("INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)", conn) 'INSERT INTO Attachments (FileName, FileInfo) VALUES (@name, @attachment)
+                                            Dim splitPath = filePath.Split("\")
+                                            cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                            cmd.Parameters.Add("@attachments", OleDbType.VarBinary, fs.Length).Value = myData
+                                            cmd.ExecuteNonQuery()
+                                        End Using
+                                    End Using
+                                End Using
+                            Else
+                                Using fs As New System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+                                    Dim myData(fs.Length) As Byte
+                                    fs.Read(myData, 0, fs.Length)
+                                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                                        conn.Open()
+                                        Using cmd As New OleDbCommand("UPDATE Attachments SET FileInfo = @attachment WHERE FileName = @name", conn)
+                                            Dim splitPath = filePath.Split("\")
+                                            cmd.Parameters.Add("@attachment", OleDbType.VarBinary, fs.Length).Value = myData
+                                            cmd.Parameters.AddWithValue("@name", splitPath(splitPath.Count - 1))
+                                            cmd.ExecuteNonQuery()
+                                        End Using
+                                    End Using
+                                End Using
+                            End If
+                            'Else
+                            '    MessageBox.Show("You are trying to upload '" + filePath + "' which was input from the template.")
+                        End If
+                    Next
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                        conn.Open()
+                        Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                            Dim tagSplit = Me.Tag.split(" ")
+                            Dim name As String = ""
+                            For part As Integer = 0 To tagSplit.Length - 1
+                                If part <> 0 And part <> tagSplit.Length - 1 Then
+                                    name += tagSplit(part) + " "
+                                End If
+                            Next
+                            name = RTrim(name)
+                            cmd.Parameters.AddWithValue("@name", name)
+                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        conn.Close()
+                    End Using
+                    btnSaveEvent.Tag = "saved"
+                    If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                        dtpDate.Format = DateTimePickerFormat.Short
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
+                        dtpDate.Format = DateTimePickerFormat.Long
+                    End If
+                    newEdit("evEdit", txtName.Text + " on " + dtpDate.Text + ".")
+                    Me.Close()
+                ElseIf attendees.Count = 0 And rdbTraining.Checked = False Then
+                    MessageBox.Show("You must select athletes for the meet.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf (times.Count = 0 AndAlso chbNA.Checked = False) Then
+                    MessageBox.Show("You must either set event times or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf map.Overlays.Count <> 1 Then
+                    If map.Overlays.Count < 1 Then
+                        MessageBox.Show("You must select a location. (A marker must be showing on the map)", "No Location", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Else
+                        MessageBox.Show("Please select only one location.", "Multpiple Locations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    End If
+                ElseIf clbDays.CheckedItems.Count = 0 And chbRepNA.Checked = False Then
+                    MessageBox.Show("You must specify the event's repeating style or tick N/A", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                ElseIf cmbRepType.Text = "" And chbRepNA.Checked = False Then
+                    MessageBox.Show("You must specify the event's repeating style or tick N/A to not specify any repeats", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Else
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                        conn.Open()
+                        Using cmd As New OleDbCommand("INSERT INTO Events (EventName, EventDate, Type, StartTime, EndTime, Personnel, Notes, Events, Location, Comment, Repeats) VALUES (@name, @date, @type, @start, @end, @personnel, @notes, @times, @location, @comment, @repeats)", conn)
+                            cmd.Parameters.AddWithValue("@name", txtName.Text)
+                            dtpDate.Format = DateTimePickerFormat.Short
+                            cmd.Parameters.AddWithValue("@date", dtpDate.Text)
+                            dtpDate.Format = DateTimePickerFormat.Long
+                            If rdbTraining.Checked Then
+                                cmd.Parameters.AddWithValue("@type", "Training")
+                            Else
+                                cmd.Parameters.AddWithValue("@type", "Meet")
+                            End If
+                            cmd.Parameters.AddWithValue("@start", dtpStart.Text)
+                            cmd.Parameters.AddWithValue("@end", dtpEnd.Text)
                             If rdbMeet.Checked = True Then
                                 Dim attendingAthletes As String = ""
                                 For athlete As Integer = 0 To attendees.Count - 1
@@ -1189,73 +933,10 @@ Public Class createEvent
                                 reps = "N/A"
                             End If
                             cmd.Parameters.AddWithValue("@repeats", reps)
-                            cmd.Parameters.AddWithValue("@isRepeat", False)
                             cmd.ExecuteNonQuery()
                         End Using
                         conn.Close()
                     End Using
-                End If
-                If chbRepNA.Enabled Then 'if it's the original event
-                    'delete all repeated versions of the event:
-                    '1) find the repeat conditions
-                    Dim repeatInfo As New List(Of String)
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                        conn.Open()
-                        Using cmd As New OleDbCommand("SELECT Repeats FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
-                            Dim tagSplit = Me.Tag.split(" ")
-                            Dim name As String = ""
-                            For part As Integer = 0 To tagSplit.Length - 1
-                                If part <> 0 And part <> tagSplit.Length - 1 Then
-                                    name += tagSplit(part) + " "
-                                End If
-                            Next
-                            name = RTrim(name)
-                            cmd.Parameters.AddWithValue("@name", name)
-                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
-                            Using dr = cmd.ExecuteReader()
-                                If dr.HasRows() Then
-                                    Do While dr.Read()
-                                        Dim repeatColumn() As String = dr("Repeats").split(";")
-                                        repeatInfo = repeatColumn.ToList()
-                                    Loop
-                                End If
-                            End Using
-                        End Using
-                        conn.Close()
-                    End Using
-                    '2) delete all repeating versions
-                    Dim repeatType = repeatInfo(repeatInfo.Count - 1)
-                    repeatInfo.Remove(repeatType)
-                    For day = 0 To repeatInfo.Count - 1
-                        For i = 0 To 11
-                            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                                conn.Open()
-                                Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
-                                    Dim tagSplit = Me.Tag.split(" ")
-                                    Dim name As String = ""
-                                    For part As Integer = 0 To tagSplit.Length - 1
-                                        If part <> 0 And part <> tagSplit.Length - 1 Then
-                                            name += tagSplit(part) + " "
-                                        End If
-                                    Next
-                                    name = RTrim(name)
-                                    cmd.Parameters.AddWithValue("@name", name)
-                                    Dim sundayRelativeDate = CType(tagSplit(tagSplit.Length - 1), Date).AddDays(-CType(tagSplit(tagSplit.Length - 1), Date).DayOfWeek)
-                                    Dim dateToRemove As Date
-                                    Select Case repeatType
-                                        Case "Weekly" : dateToRemove = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(repeatInfo(day))).AddDays(i * 7)
-                                        Case "Monthly" : dateToRemove = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(repeatInfo(day))).AddMonths(i)
-                                        Case "Yearly" : dateToRemove = sundayRelativeDate.AddDays(clbDays.Items.IndexOf(repeatInfo(day))).AddYears(i)
-                                    End Select
-                                    cmd.Parameters.AddWithValue("@date", dateToRemove.ToShortDateString())
-                                    cmd.ExecuteNonQuery()
-                                End Using
-                                conn.Close()
-                            End Using
-                        Next
-                    Next
-                Else
-                    'delete only the current record
                     Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                         conn.Open()
                         Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
@@ -1273,20 +954,19 @@ Public Class createEvent
                         End Using
                         conn.Close()
                     End Using
-                End If
-                btnSaveEvent.Tag = "saved"
-                If MessageBox.Show("Your event has been edited." + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
-                    dtpDate.Format = DateTimePickerFormat.Short
-                    If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
-                        templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                    btnSaveEvent.Tag = "saved"
+                    If MessageBox.Show("Your event has been edited." + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                        dtpDate.Format = DateTimePickerFormat.Short
+                        If templateEvents.Contains(txtName.Text + " " + dtpDate.Text) = False Then
+                            templateEvents.Add(txtName.Text + " " + dtpDate.Text)
+                        End If
+                        dtpDate.Format = DateTimePickerFormat.Long
                     End If
-                    dtpDate.Format = DateTimePickerFormat.Long
+                    newEdit("evEdit", txtName.Text + " on " + dtpDate.Text + ".")
+                    Me.Close()
                 End If
-                newEdit("evEdit", txtName.Text + " on " + dtpDate.Text + ".")
-                Me.Close()
             End If
         End If
-        Cursor.Current = Cursors.Default
 #End Region
     End Sub
     'Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
