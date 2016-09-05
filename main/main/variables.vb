@@ -1,6 +1,6 @@
 Module variables
     Public username = "Student"
-    Public access As Integer = 2
+    Public access As Integer = 1
     Public alertCount As Integer = 0
     Public alertList As New List(Of notif)
     Public dataPath As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources"

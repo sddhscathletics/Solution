@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 'Profile photo
-'Team Manager
+'Alerts
 
 Public Class selectAthlete
     Dim listAthletes As New List(Of athlete)
@@ -297,8 +297,12 @@ Public Class selectAthlete
                             lblRoll.Text = "Roll Class: " + dr("RollClass")
                             lblFName.Text = dr("FirstName")
                             lblLName.Text = dr("LastName")
-                            flpTeams.Controls.Clear()
                             loadTeams(flpTeams, "rem")
+                            If flpTeams.Controls.Count = Nothing Then
+                                lblTeams.Text = "No Teams Assigned"
+                            Else
+                                lblTeams.Text = "Teams"
+                            End If
                             lblAgeGroup.Text = "Age Group: " + dr("AgeGroup")
                             lblBestEvent.Text = "Best Event: " + dr("BestEvent")
                         Loop
@@ -459,6 +463,10 @@ Public Class selectAthlete
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         controlState = "editing"
         toggleControls()
+        Dim ageGroup As String = Replace(lblAgeGroup.Text, "Age Group: ", "")
+        cmbAge.SelectedItem = ageGroup
+        Dim bestEvent As String = Replace(lblBestEvent.Text, "Best Event: ", "")
+        txtBestEvent.Text = bestEvent
         loadTeams(flpAttachTeam, "add")
     End Sub
 
@@ -470,6 +478,7 @@ Public Class selectAthlete
                 gpbAddress.Visible = False
                 gpbContact.Visible = False
                 gpbMedical.Visible = False
+                gpbEditing.Visible = False
                 gpbTeamManagement.Visible = False
                 btnEdit.Visible = False
                 btnSave.Visible = False
@@ -478,7 +487,10 @@ Public Class selectAthlete
             Case "show"
                 gpbAthlete.Visible = True
                 gpbStudent.Visible = True
+                lblAgeGroup.Visible = True
+                lblBestEvent.Visible = True
                 gpbTeamManagement.Visible = False
+                gpbEditing.Visible = False
                 btnSave.Visible = False
                 btnCancel.Visible = False
                 btnCommitTeams.Visible = False
@@ -491,9 +503,12 @@ Public Class selectAthlete
                     End If
                 End If
             Case "editing"
+                lblAgeGroup.Visible = False
+                lblBestEvent.Visible = False
                 gpbAddress.Visible = False
                 gpbContact.Visible = False
                 gpbMedical.Visible = False
+                gpbEditing.Visible = True
                 gpbTeamManagement.Visible = True
                 btnEdit.Visible = False
                 btnSave.Visible = True
@@ -503,8 +518,7 @@ Public Class selectAthlete
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        'checkChanges()
-        'saveChanges()
+        savechanges()
         controlState = "show"
         toggleControls()
     End Sub
@@ -515,23 +529,18 @@ Public Class selectAthlete
         refreshTeams()
     End Sub
 
-    Private Sub checkChanges()
-        'Compare textbox contents and labels
-    End Sub
-
     Private Sub saveChanges()
+        'Compare textbox contents and labels
         Using conn As New OleDbConnection(dataPath + "\Athlete.accdb")
             conn.Open()
-            Using cmd As New OleDbCommand("UPDATE teamDb SET [read] = 1 WHERE ID = ", conn) 'Selects unread edits
-                Using dr = cmd.ExecuteReader()
-                    If dr.HasRows Then
-                        Do While dr.Read()
-                            'Save stuff
-                        Loop
-                    End If
-                End Using
+            Using cmd As New OleDbCommand("UPDATE athleteDb SET BestEvent = '" + txtBestEvent.Text + "' WHERE ID = " + lblID.Text, conn)
+                cmd.ExecuteNonQuery()
+            End Using
+            Using cmd As New OleDbCommand("UPDATE athleteDb SET AgeGroup = '" + cmbAge.Text + "' WHERE ID = " + lblID.Text, conn)
+                cmd.ExecuteNonQuery()
             End Using
         End Using
+        displayDetails(lblID.Text)
     End Sub
 
     Private Sub btnNewTeam_Click(sender As Object, e As EventArgs) Handles btnNewTeam.Click
@@ -539,6 +548,7 @@ Public Class selectAthlete
     End Sub
 
     Private Sub cmbTeamAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTeamAgeGroup.SelectedIndexChanged
+        'Sorting unadded teams (Older sort method)
         loadTeams(flpAttachTeam, "add")
     End Sub
 
@@ -570,9 +580,5 @@ Public Class selectAthlete
             listSearched = searchFilter(txtSearch, listSearched, listSorted)
         End If
         fillPanels(flpAthletes, "", listSearched)
-    End Sub
-
-    Private Sub bigbtngroup_Enter(sender As Object, e As EventArgs) Handles bigbtngroup.Enter
-
     End Sub
 End Class

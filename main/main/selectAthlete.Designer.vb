@@ -26,11 +26,9 @@ Partial Class selectAthlete
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(selectAthlete))
         Me.gpbTeamManagement = New System.Windows.Forms.GroupBox()
         Me.cmbTeamAgeGroup = New System.Windows.Forms.ComboBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.lblHeaderTeamManagement = New System.Windows.Forms.Label()
         Me.btnNewTeam = New System.Windows.Forms.Button()
         Me.flpAttachTeam = New System.Windows.Forms.FlowLayoutPanel()
-        Me.lblTeamSearch = New System.Windows.Forms.Label()
         Me.lblID = New System.Windows.Forms.Label()
         Me.lblBestEvent = New System.Windows.Forms.Label()
         Me.lblHeaderContact = New System.Windows.Forms.Label()
@@ -86,6 +84,10 @@ Partial Class selectAthlete
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.gpbEditing = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
         Me.gpbStudent.SuspendLayout()
@@ -96,20 +98,19 @@ Partial Class selectAthlete
         Me.Sidebar.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
         CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gpbEditing.SuspendLayout()
         Me.SuspendLayout()
         '
         'gpbTeamManagement
         '
         Me.gpbTeamManagement.Controls.Add(Me.cmbTeamAgeGroup)
-        Me.gpbTeamManagement.Controls.Add(Me.TextBox1)
         Me.gpbTeamManagement.Controls.Add(Me.lblHeaderTeamManagement)
         Me.gpbTeamManagement.Controls.Add(Me.btnNewTeam)
         Me.gpbTeamManagement.Controls.Add(Me.flpAttachTeam)
-        Me.gpbTeamManagement.Controls.Add(Me.lblTeamSearch)
         Me.gpbTeamManagement.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpbTeamManagement.Location = New System.Drawing.Point(1082, 206)
         Me.gpbTeamManagement.Name = "gpbTeamManagement"
-        Me.gpbTeamManagement.Size = New System.Drawing.Size(184, 333)
+        Me.gpbTeamManagement.Size = New System.Drawing.Size(184, 314)
         Me.gpbTeamManagement.TabIndex = 84
         Me.gpbTeamManagement.TabStop = False
         '
@@ -118,25 +119,17 @@ Partial Class selectAthlete
         Me.cmbTeamAgeGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbTeamAgeGroup.FormattingEnabled = True
         Me.cmbTeamAgeGroup.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "U17", "Opens"})
-        Me.cmbTeamAgeGroup.Location = New System.Drawing.Point(6, 62)
+        Me.cmbTeamAgeGroup.Location = New System.Drawing.Point(6, 29)
         Me.cmbTeamAgeGroup.Name = "cmbTeamAgeGroup"
         Me.cmbTeamAgeGroup.Size = New System.Drawing.Size(170, 24)
         Me.cmbTeamAgeGroup.TabIndex = 90
         Me.cmbTeamAgeGroup.Text = "Age Group"
         '
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(6, 36)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(170, 20)
-        Me.TextBox1.TabIndex = 53
-        '
         'lblHeaderTeamManagement
         '
         Me.lblHeaderTeamManagement.AutoSize = True
         Me.lblHeaderTeamManagement.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeaderTeamManagement.Location = New System.Drawing.Point(6, 0)
+        Me.lblHeaderTeamManagement.Location = New System.Drawing.Point(6, 7)
         Me.lblHeaderTeamManagement.Name = "lblHeaderTeamManagement"
         Me.lblHeaderTeamManagement.Size = New System.Drawing.Size(150, 19)
         Me.lblHeaderTeamManagement.TabIndex = 34
@@ -147,7 +140,7 @@ Partial Class selectAthlete
         Me.btnNewTeam.BackColor = System.Drawing.Color.Gray
         Me.btnNewTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNewTeam.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNewTeam.Location = New System.Drawing.Point(6, 295)
+        Me.btnNewTeam.Location = New System.Drawing.Point(6, 277)
         Me.btnNewTeam.Name = "btnNewTeam"
         Me.btnNewTeam.Size = New System.Drawing.Size(170, 31)
         Me.btnNewTeam.TabIndex = 51
@@ -157,20 +150,10 @@ Partial Class selectAthlete
         'flpAttachTeam
         '
         Me.flpAttachTeam.AutoScroll = True
-        Me.flpAttachTeam.Location = New System.Drawing.Point(6, 89)
+        Me.flpAttachTeam.Location = New System.Drawing.Point(6, 59)
         Me.flpAttachTeam.Name = "flpAttachTeam"
-        Me.flpAttachTeam.Size = New System.Drawing.Size(170, 200)
+        Me.flpAttachTeam.Size = New System.Drawing.Size(170, 212)
         Me.flpAttachTeam.TabIndex = 50
-        '
-        'lblTeamSearch
-        '
-        Me.lblTeamSearch.AutoSize = True
-        Me.lblTeamSearch.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTeamSearch.Location = New System.Drawing.Point(3, 20)
-        Me.lblTeamSearch.Name = "lblTeamSearch"
-        Me.lblTeamSearch.Size = New System.Drawing.Size(58, 17)
-        Me.lblTeamSearch.TabIndex = 51
-        Me.lblTeamSearch.Text = "SEARCH"
         '
         'lblID
         '
@@ -186,7 +169,7 @@ Partial Class selectAthlete
         '
         Me.lblBestEvent.AutoSize = True
         Me.lblBestEvent.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBestEvent.Location = New System.Drawing.Point(12, 39)
+        Me.lblBestEvent.Location = New System.Drawing.Point(10, 39)
         Me.lblBestEvent.Name = "lblBestEvent"
         Me.lblBestEvent.Size = New System.Drawing.Size(71, 17)
         Me.lblBestEvent.TabIndex = 27
@@ -224,24 +207,26 @@ Partial Class selectAthlete
         '
         'txtBestEvent
         '
-        Me.txtBestEvent.Location = New System.Drawing.Point(636, 519)
+        Me.txtBestEvent.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBestEvent.Location = New System.Drawing.Point(4, 89)
         Me.txtBestEvent.Name = "txtBestEvent"
-        Me.txtBestEvent.Size = New System.Drawing.Size(172, 20)
+        Me.txtBestEvent.Size = New System.Drawing.Size(172, 23)
         Me.txtBestEvent.TabIndex = 82
         '
         'cmbAge
         '
+        Me.cmbAge.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAge.FormattingEnabled = True
         Me.cmbAge.Items.AddRange(New Object() {"U13", "U14", "U15", "U16", "Opens"})
-        Me.cmbAge.Location = New System.Drawing.Point(636, 542)
+        Me.cmbAge.Location = New System.Drawing.Point(6, 38)
         Me.cmbAge.Name = "cmbAge"
-        Me.cmbAge.Size = New System.Drawing.Size(74, 21)
+        Me.cmbAge.Size = New System.Drawing.Size(74, 23)
         Me.cmbAge.TabIndex = 83
         '
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Rockwell", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(717, 442)
+        Me.Button1.Location = New System.Drawing.Point(842, 597)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(119, 75)
         Me.Button1.TabIndex = 79
@@ -363,7 +348,7 @@ Partial Class selectAthlete
         '
         Me.lblSb.AutoSize = True
         Me.lblSb.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSb.Location = New System.Drawing.Point(7, 54)
+        Me.lblSb.Location = New System.Drawing.Point(5, 54)
         Me.lblSb.Name = "lblSb"
         Me.lblSb.Size = New System.Drawing.Size(52, 17)
         Me.lblSb.TabIndex = 23
@@ -385,7 +370,7 @@ Partial Class selectAthlete
         '
         Me.lblSt.AutoSize = True
         Me.lblSt.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSt.Location = New System.Drawing.Point(7, 37)
+        Me.lblSt.Location = New System.Drawing.Point(5, 37)
         Me.lblSt.Name = "lblSt"
         Me.lblSt.Size = New System.Drawing.Size(44, 17)
         Me.lblSt.TabIndex = 24
@@ -750,8 +735,10 @@ Partial Class selectAthlete
         '
         'bigbtngroup
         '
+        Me.bigbtngroup.Controls.Add(Me.gpbEditing)
         Me.bigbtngroup.Controls.Add(Me.cmbSort)
         Me.bigbtngroup.Controls.Add(Me.flpAthletes)
+        Me.bigbtngroup.Controls.Add(Me.Button1)
         Me.bigbtngroup.Controls.Add(Me.gpbAddress)
         Me.bigbtngroup.Controls.Add(Me.gpbTeamManagement)
         Me.bigbtngroup.Controls.Add(Me.txtSearch)
@@ -765,9 +752,6 @@ Partial Class selectAthlete
         Me.bigbtngroup.Controls.Add(Me.gpbStudent)
         Me.bigbtngroup.Controls.Add(Me.btnSave)
         Me.bigbtngroup.Controls.Add(Me.gpbMedical)
-        Me.bigbtngroup.Controls.Add(Me.txtBestEvent)
-        Me.bigbtngroup.Controls.Add(Me.Button1)
-        Me.bigbtngroup.Controls.Add(Me.cmbAge)
         Me.bigbtngroup.Location = New System.Drawing.Point(0, 10)
         Me.bigbtngroup.Name = "bigbtngroup"
         Me.bigbtngroup.Size = New System.Drawing.Size(1279, 678)
@@ -820,6 +804,50 @@ Partial Class selectAthlete
         Me.btnSave.TabIndex = 80
         Me.btnSave.UseVisualStyleBackColor = False
         '
+        'gpbEditing
+        '
+        Me.gpbEditing.Controls.Add(Me.Label3)
+        Me.gpbEditing.Controls.Add(Me.Label2)
+        Me.gpbEditing.Controls.Add(Me.Label1)
+        Me.gpbEditing.Controls.Add(Me.txtBestEvent)
+        Me.gpbEditing.Controls.Add(Me.cmbAge)
+        Me.gpbEditing.Font = New System.Drawing.Font("Microsoft JhengHei UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gpbEditing.Location = New System.Drawing.Point(1082, 526)
+        Me.gpbEditing.Name = "gpbEditing"
+        Me.gpbEditing.Size = New System.Drawing.Size(184, 125)
+        Me.gpbEditing.TabIndex = 74
+        Me.gpbEditing.TabStop = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(60, 19)
+        Me.Label1.TabIndex = 32
+        Me.Label1.Text = "Editing"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(6, 19)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(74, 17)
+        Me.Label2.TabIndex = 33
+        Me.Label2.Text = "Age Group"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(7, 69)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(71, 17)
+        Me.Label3.TabIndex = 84
+        Me.Label3.Text = "Best Event"
+        '
         'selectAthlete
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -852,12 +880,13 @@ Partial Class selectAthlete
         Me.bigbtngroup.ResumeLayout(False)
         Me.bigbtngroup.PerformLayout()
         CType(Me.pbPhoto, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gpbEditing.ResumeLayout(False)
+        Me.gpbEditing.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents gpbTeamManagement As GroupBox
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents lblHeaderTeamManagement As Label
     Friend WithEvents btnNewTeam As Button
     Friend WithEvents flpAttachTeam As FlowLayoutPanel
@@ -897,7 +926,6 @@ Partial Class selectAthlete
     Friend WithEvents lblStNo As Label
     Friend WithEvents cmbSort As ComboBox
     Friend WithEvents cmbAgeGroup As ComboBox
-    Friend WithEvents lblTeamSearch As Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents lblAlertCount As System.Windows.Forms.Label
     Friend WithEvents helpBtn As System.Windows.Forms.Button
@@ -918,4 +946,8 @@ Partial Class selectAthlete
     Friend WithEvents sidebartime As System.Windows.Forms.Timer
     Friend WithEvents cmbTeamAgeGroup As System.Windows.Forms.ComboBox
     Friend WithEvents bigbtngroup As System.Windows.Forms.GroupBox
+    Friend WithEvents gpbEditing As GroupBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
 End Class
