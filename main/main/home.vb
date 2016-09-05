@@ -1,4 +1,4 @@
-﻿
+﻿Imports System.Data.OleDb
 Public Class home
 
 #Region "Dim Variables"
@@ -66,6 +66,38 @@ Public Class home
         sideadminBtn.Visible = True
 
         'End If
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+            conn.Open()
+            Using cmd As New OleDbCommand("SELECT EventName, EventDate, Notes, NotesGiven FROM Events WHERE Notes IS NOT NULL AND DateValue(EventDate) > DateValue(@date)", conn)
+                cmd.Parameters.AddWithValue("@date", Today.Date.ToString("dd/MM/yyyy", Globalization.CultureInfo.InvariantCulture))
+                Using dr = cmd.ExecuteReader()
+                    If dr.HasRows() Then
+                        Do While dr.Read()
+                            MessageBox.Show(dr("EventName"))
+                            Dim daysLeft = DateDiff(DateInterval.Day, Today.Date, CType(dr("EventDate"), Date))
+                            Dim noteIds() As String
+                            Dim needNames As New List(Of String) From {}
+                            Dim givenNames As New List(Of String) From {}
+                            If daysLeft = 1 Or daysLeft = 2 Or daysLeft = 3 Or daysLeft = 5 Or daysLeft = 10 Then
+                                noteIds = dr("Notes").split(";")
+                                For Each noteId In noteIds
+                                    needNames.Add(createEvent.getName(noteId))
+                                Next
+                                If dr("NotesGiven") IsNot Nothing Then
+                                    noteIds = dr("NotesGiven").split(";")
+                                    For Each noteId In noteIds
+                                        givenNames.Add(createEvent.getName(noteId))
+                                    Next
+                                End If
+                                Dim peopleWhoHaventSubmitted = needNames.Except(givenNames)
+                                newEdit("misNotes", "from:" + vbNewLine + String.Join(vbNewLine, peopleWhoHaventSubmitted) + vbNewLine + "for " + dr("EventName") + " in " + daysLeft.ToString() + " days.")
+                            End If
+                        Loop
+                    End If
+                End Using
+            End Using
+            conn.close()
+        End Using
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles scrollBtn.Click
@@ -223,8 +255,6 @@ Public Class home
         Me.Close()
     End Sub
 #End Region
-
-
 
 
 End Class
