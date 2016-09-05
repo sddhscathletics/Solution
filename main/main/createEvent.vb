@@ -1494,6 +1494,14 @@ Public Class createEvent
         clbDays.BringToFront()
         clbDays.Visible = True
     End Sub
+    Private Sub pbCmb_EnabledChanged(sender As Object, e As EventArgs) Handles pbCmb.EnabledChanged
+        If pbCmb.Enabled Then
+            pbCmb.Image = My.Resources.comboBoxDisabled
+        Else
+            pbCmb.Image = My.Resources.comboBoxImage
+        End If
+        clbDays.Visible = False
+    End Sub
     Private Sub pbCmb_NotActiveControl()
         pbCmb.Image = My.Resources.comboBoxImage
         clbDays.Visible = False
