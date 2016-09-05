@@ -110,6 +110,7 @@ Partial Class createEvent
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.pbMinus = New System.Windows.Forms.PictureBox()
         Me.pbPlus = New System.Windows.Forms.PictureBox()
+        Me.ttp = New System.Windows.Forms.ToolTip(Me.components)
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
@@ -373,7 +374,7 @@ Partial Class createEvent
         '
         'map
         '
-        Me.map.Bearing = 0.0!
+        Me.map.Bearing = 0!
         Me.map.CanDragMap = True
         Me.map.Cursor = System.Windows.Forms.Cursors.Hand
         Me.map.EmptyTileColor = System.Drawing.Color.Navy
@@ -395,6 +396,7 @@ Partial Class createEvent
         Me.map.ShowTileGridLines = False
         Me.map.Size = New System.Drawing.Size(394, 325)
         Me.map.TabIndex = 46
+        Me.ttp.SetToolTip(Me.map, "Double click to place a marker for a location")
         Me.map.Zoom = 10.0R
         '
         'txtStreet
@@ -814,6 +816,7 @@ Partial Class createEvent
         Me.helpBtn.Name = "helpBtn"
         Me.helpBtn.Size = New System.Drawing.Size(44, 44)
         Me.helpBtn.TabIndex = 6
+        Me.ttp.SetToolTip(Me.helpBtn, "Click to view help section")
         Me.helpBtn.UseVisualStyleBackColor = False
         '
         'notifBtn
@@ -829,6 +832,7 @@ Partial Class createEvent
         Me.notifBtn.Name = "notifBtn"
         Me.notifBtn.Size = New System.Drawing.Size(44, 44)
         Me.notifBtn.TabIndex = 6
+        Me.ttp.SetToolTip(Me.notifBtn, "Click to view notifications")
         Me.notifBtn.UseVisualStyleBackColor = False
         '
         'exitBtn
@@ -1109,6 +1113,7 @@ Partial Class createEvent
         Me.pbCmb.TabIndex = 63
         Me.pbCmb.TabStop = False
         Me.pbCmb.Tag = ""
+        Me.ttp.SetToolTip(Me.pbCmb, "Click to view days to repeat")
         '
         'btnSaveEvent
         '
@@ -1122,6 +1127,7 @@ Partial Class createEvent
         Me.btnSaveEvent.Name = "btnSaveEvent"
         Me.btnSaveEvent.Size = New System.Drawing.Size(103, 97)
         Me.btnSaveEvent.TabIndex = 20
+        Me.ttp.SetToolTip(Me.btnSaveEvent, "Click to save the event")
         Me.btnSaveEvent.UseVisualStyleBackColor = False
         '
         'btnCancel
@@ -1136,6 +1142,7 @@ Partial Class createEvent
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(69, 98)
         Me.btnCancel.TabIndex = 21
+        Me.ttp.SetToolTip(Me.btnCancel, "Click to return to the calendar")
         Me.btnCancel.UseVisualStyleBackColor = False
         '
         'pbMinus
@@ -1286,4 +1293,5 @@ Partial Class createEvent
     Friend WithEvents lblDays As Label
     Friend WithEvents chbRepNA As CheckBox
     Friend WithEvents lblRepeat As Label
+    Friend WithEvents ttp As ToolTip
 End Class

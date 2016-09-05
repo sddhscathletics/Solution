@@ -1,5 +1,5 @@
 ﻿Public Class confirmAddition
-    Private Sub confirmAddition_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'doesnt execute twice????
+    Private Sub confirmAddition_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         rchText.Text = ""
         Select Case Me.Tag
             Case "people"

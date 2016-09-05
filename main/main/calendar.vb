@@ -280,4 +280,9 @@ Public Class calendar
         Me.Close()
     End Sub
 
+    Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
+        helpIdentifier = "calendar"
+        helpForm.Show()
+        helpForm.TopMost = True
+    End Sub
 End Class

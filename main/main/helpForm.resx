@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblEvents.Text" xml:space="preserve">
+    <value>The first thing to be noted is all controls except athletes,
+attachments and events are disabled.
+When using the athletes or events boxes, you can select
+or type your desired age group to veiw in the relevant
+combobox to view the event times scheduled or athletes
+specified as in the attendees of this event.
+When opening attachments, you have the ability to
+save or open. You can only open one Excel and one Word
+file at a time using the application.
+This sums up all you need to know for the events, enjoy!</value>
+  </data>
+  <data name="lblCalendar.Text" xml:space="preserve">
+    <value>The first thing to be noted is that bolded dates indicate 
+that there are one or more events saved on that day.
+Now you can begin operations by right or left clicking 
+on any bolded date from any month or year:
+  If the date selected is bolded, then a menu will appear 
+with the ability to view that event by clicking on the
+menu item.
+  Otherwise if the date selected is not bolded, then you
+cannot do anything with that date.
+This sums up all you need to know for the calendar, enjoy!</value>
+  </data>
   <data name="Label1.Text" xml:space="preserve">
     <value>To create a user, select the create button and fill out the 
 required information.

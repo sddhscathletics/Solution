@@ -33,6 +33,7 @@ Partial Class calendar
         Me.Button13 = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.backBtn = New System.Windows.Forms.Button()
+        Me.helpBtn = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -60,6 +61,7 @@ Partial Class calendar
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
+        Me.GroupBox2.Controls.Add(Me.helpBtn)
         Me.GroupBox2.Controls.Add(Me.lblTitle)
         Me.GroupBox2.Controls.Add(Me.lblAlertCount)
         Me.GroupBox2.Controls.Add(Me.Button4)
@@ -149,6 +151,21 @@ Partial Class calendar
         Me.backBtn.Text = "Back"
         Me.backBtn.UseVisualStyleBackColor = False
         '
+        'helpBtn
+        '
+        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.helpBtn.FlatAppearance.BorderSize = 0
+        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.helpBtn.Location = New System.Drawing.Point(407, 11)
+        Me.helpBtn.Name = "helpBtn"
+        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
+        Me.helpBtn.TabIndex = 93
+        Me.helpBtn.UseVisualStyleBackColor = False
+        '
         'calendar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -179,4 +196,5 @@ Partial Class calendar
     Friend WithEvents Button13 As System.Windows.Forms.Button
     Friend WithEvents exitBtn As System.Windows.Forms.Button
     Friend WithEvents backBtn As System.Windows.Forms.Button
+    Friend WithEvents helpBtn As Button
 End Class
