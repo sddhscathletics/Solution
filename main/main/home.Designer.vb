@@ -34,7 +34,7 @@ Partial Class home
         Me.sideResSub2 = New System.Windows.Forms.Button()
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblAlertCount1 = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.scrollBtn = New System.Windows.Forms.Button()
         Me.lblAlertCount = New System.Windows.Forms.Label()
@@ -141,7 +141,6 @@ Partial Class home
         Me.sideadminBtn.Text = "   MANAGE USERS"
         Me.sideadminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideadminBtn.UseVisualStyleBackColor = False
-        Me.sideadminBtn.Visible = False
         '
         'sideresultBtn
         '
@@ -212,7 +211,7 @@ Partial Class home
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
-        Me.GroupBox2.Controls.Add(Me.Label1)
+        Me.GroupBox2.Controls.Add(Me.lblAlertCount1)
         Me.GroupBox2.Controls.Add(Me.lblTitle)
         Me.GroupBox2.Controls.Add(Me.scrollBtn)
         Me.GroupBox2.Controls.Add(Me.lblAlertCount)
@@ -225,17 +224,17 @@ Partial Class home
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GroupBox2"
         '
-        'Label1
+        'lblAlertCount1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.DarkGray
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(1224, 16)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(15, 16)
-        Me.Label1.TabIndex = 93
-        Me.Label1.Text = "0"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblAlertCount1.AutoSize = True
+        Me.lblAlertCount1.BackColor = System.Drawing.Color.DarkGray
+        Me.lblAlertCount1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAlertCount1.Location = New System.Drawing.Point(1224, 16)
+        Me.lblAlertCount1.Name = "lblAlertCount1"
+        Me.lblAlertCount1.Size = New System.Drawing.Size(15, 16)
+        Me.lblAlertCount1.TabIndex = 93
+        Me.lblAlertCount1.Text = "0"
+        Me.lblAlertCount1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblTitle
         '
@@ -493,7 +492,7 @@ Partial Class home
     Friend WithEvents clocktime As System.Windows.Forms.Timer
     Friend WithEvents dateLbl As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblAlertCount1 As System.Windows.Forms.Label
     Friend WithEvents gallerypic1 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
     Friend WithEvents gallerypic2 As System.Windows.Forms.PictureBox
