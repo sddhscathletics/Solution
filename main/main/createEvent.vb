@@ -901,7 +901,7 @@ Public Class createEvent
                     Dim repeatInfo As New List(Of String)
                     Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                         conn.Open()
-                        Using cmd As New OleDbCommand("SELECT Repeats FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                        Using cmd As New OleDbCommand("SELECT Repeats FROM Events WHERE EventName = @name AND EventDate = @date AND Repeats <> 'N/A'", conn) '*takes the column with correct rows
                             Dim tagSplit = Me.Tag.split(" ")
                             Dim name As String = ""
                             For part As Integer = 0 To tagSplit.Length - 1
@@ -1169,7 +1169,7 @@ Public Class createEvent
                     Dim repeatInfo As New List(Of String)
                     Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
                         conn.Open()
-                        Using cmd As New OleDbCommand("SELECT Repeats FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                        Using cmd As New OleDbCommand("SELECT Repeats FROM Events WHERE EventName = @name AND EventDate = @date AND Repeats <> 'N/A'", conn) '*takes the column with correct rows
                             Dim tagSplit = Me.Tag.split(" ")
                             Dim name As String = ""
                             For part As Integer = 0 To tagSplit.Length - 1
@@ -1316,7 +1316,11 @@ Public Class createEvent
             times.Clear()
             notes.Clear()
         End If
-        calendar.calendar_Load(Nothing, Nothing)
+        If sender.name = "exitBtn" Then
+            home.Show()
+        Else
+            calendar.Show()
+        End If
     End Sub
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         chbNA.Checked = False
@@ -1825,7 +1829,9 @@ Public Class createEvent
                                 chbRepNA.Enabled = False
                                 lblRepeat.Visible = True
                                 lblRepeat.Location = New Point(pbCmb.Location.X, pbCmb.Location.Y + pbCmb.Height + 20)
-                                lblRepeat.Height = 44
+                                lblRepeat.AutoSize = False
+                                lblRepeat.Width = pbCmb.Width - 10
+                                lblRepeat.Height = 80
                                 Dim baseText = "This is a repeating event."
                                 If access = 2 Then
                                     lblRepeat.Text = baseText + vbNewLine + "If you wish to make changes to the repeating style, do so on the original event."
@@ -3198,7 +3204,6 @@ Public Class createEvent
         checkNotif.Show()
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles exitBtn.Click
-        home.Show()
         Me.Close()
     End Sub
 

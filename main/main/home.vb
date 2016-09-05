@@ -64,7 +64,6 @@ Public Class home
                 Using dr = cmd.ExecuteReader()
                     If dr.HasRows() Then
                         Do While dr.Read()
-                            MessageBox.Show(dr("EventName"))
                             Dim daysLeft = DateDiff(DateInterval.Day, Today.Date, CType(dr("EventDate"), Date))
                             Dim noteIds() As String
                             Dim needNames As New List(Of String) From {}

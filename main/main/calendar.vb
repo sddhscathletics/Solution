@@ -196,6 +196,7 @@ Public Class calendar
         Cursor.Current = Cursors.AppStarting
         createEvent.Tag = "add"
         createEvent.Show()
+        Me.Close()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemView_Click(sender As Object, e As EventArgs)
@@ -220,6 +221,7 @@ Public Class calendar
             Next
         Next
         createEvent.Show()
+        Me.Close()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemEdit_Click(sender As Object, e As EventArgs)
@@ -237,12 +239,14 @@ Public Class calendar
         createEvent.cmbGroup.SelectedIndex = 0
         createEvent.cmbTemplate_SelectedIndexChanged(cmbSender, Nothing)
         createEvent.Show()
+        Me.Close()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemResults_Click(sender As Object, e As EventArgs)
         Cursor.Current = Cursors.AppStarting
         eventResults.Tag = sender.OwnerItem.Text + " " + sender.OwnerItem.Tag
         eventResults.Show()
+        Me.Close()
         Cursor.Current = Cursors.Default
     End Sub
     Private Sub menuItemDelete_Click(sender As Object, e As EventArgs)
