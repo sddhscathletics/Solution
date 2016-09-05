@@ -24,21 +24,21 @@ Partial Class helpForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(helpForm))
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.closeBtn = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblAlertCount = New System.Windows.Forms.Label()
         Me.helpBtn = New System.Windows.Forms.Button()
         Me.notifBtn = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.helpTab = New System.Windows.Forms.TabControl()
         Me.calendarTab = New System.Windows.Forms.TabPage()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.resultsTab = New System.Windows.Forms.TabPage()
         Me.selectAthletesTab = New System.Windows.Forms.TabPage()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.addEditTab = New System.Windows.Forms.TabPage()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.closeBtn = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.helpTab.SuspendLayout()
         Me.calendarTab.SuspendLayout()
@@ -62,6 +62,37 @@ Partial Class helpForm
         Me.GroupBox2.TabIndex = 95
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GroupBox2"
+        '
+        'closeBtn
+        '
+        Me.closeBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.closeBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
+        Me.closeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.closeBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.closeBtn.FlatAppearance.BorderSize = 0
+        Me.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.closeBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.closeBtn.Location = New System.Drawing.Point(302, 11)
+        Me.closeBtn.Name = "closeBtn"
+        Me.closeBtn.Size = New System.Drawing.Size(44, 44)
+        Me.closeBtn.TabIndex = 7
+        Me.closeBtn.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
+        Me.Button1.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(12, 15)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(36, 37)
+        Me.Button1.TabIndex = 17
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'lblTitle
         '
@@ -131,22 +162,6 @@ Partial Class helpForm
         Me.exitBtn.TabIndex = 6
         Me.exitBtn.UseVisualStyleBackColor = False
         '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
-        Me.Button1.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(62, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(12, 15)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(36, 37)
-        Me.Button1.TabIndex = 17
-        Me.Button1.UseVisualStyleBackColor = False
-        '
         'helpTab
         '
         Me.helpTab.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
@@ -173,6 +188,16 @@ Partial Class helpForm
         Me.calendarTab.TabIndex = 0
         Me.calendarTab.Text = "Calendar"
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(3, 3)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(92, 16)
+        Me.Label3.TabIndex = 1
+        Me.Label3.Text = "put yo info here"
+        '
         'resultsTab
         '
         Me.resultsTab.BackColor = System.Drawing.Color.LightGray
@@ -193,6 +218,16 @@ Partial Class helpForm
         Me.selectAthletesTab.Size = New System.Drawing.Size(310, 247)
         Me.selectAthletesTab.TabIndex = 2
         Me.selectAthletesTab.Text = "View Athletes"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(3, 3)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(92, 16)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "put yo info here"
         '
         'addEditTab
         '
@@ -215,41 +250,6 @@ Partial Class helpForm
         Me.Label1.TabIndex = 0
         Me.Label1.Text = resources.GetString("Label1.Text")
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(3, 3)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 16)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "put yo info here"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft MHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(3, 3)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(92, 16)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "put yo info here"
-        '
-        'closeBtn
-        '
-        Me.closeBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.closeBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
-        Me.closeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.closeBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.closeBtn.FlatAppearance.BorderSize = 0
-        Me.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.closeBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.closeBtn.Location = New System.Drawing.Point(302, 11)
-        Me.closeBtn.Name = "closeBtn"
-        Me.closeBtn.Size = New System.Drawing.Size(44, 44)
-        Me.closeBtn.TabIndex = 7
-        Me.closeBtn.UseVisualStyleBackColor = False
-        '
         'helpForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -259,6 +259,7 @@ Partial Class helpForm
         Me.Controls.Add(Me.helpTab)
         Me.Controls.Add(Me.GroupBox2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "helpForm"
         Me.Text = "helpForm"
         Me.GroupBox2.ResumeLayout(False)
