@@ -74,7 +74,7 @@ Public Class Logon
                 TextBox1.Focus()
                 If attempts = 0 Then ' 3 Tries used up, locked out
                     okBtn.Enabled = False
-                    MessageBox.Show("Email Kurt at: KURTSCOOLEMAIL@GMAIL.COM", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show("Email Kurt at: Kurt.Rich@gmail.com", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     TextBox1.ReadOnly = True
                     TextBox2.ReadOnly = True
                 End If
@@ -101,7 +101,6 @@ Public Class Logon
                     If dr.HasRows Then
                         If dr.Read() Then
                             Found = True
-                            'accesslevel = ???help
                         Else
                             Found = False
                         End If
@@ -117,7 +116,7 @@ Public Class Logon
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles forgotPwBtn.Click
-        MessageBox.Show("Email Kurt at: KURTSCOOLEMAIL@GMAIL.COM", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+        MessageBox.Show("Email Kurt at: Kurt.Rich@gmail.com", "SBHS ATHLETICS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
 
     End Sub
 #End Region

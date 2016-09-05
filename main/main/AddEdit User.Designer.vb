@@ -23,8 +23,8 @@ Partial Class AddEdit_User
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
@@ -103,6 +103,7 @@ Partial Class AddEdit_User
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -118,6 +119,7 @@ Partial Class AddEdit_User
         'resdrop
         '
         Me.resdrop.BackColor = System.Drawing.Color.Gray
+        Me.resdrop.Cursor = System.Windows.Forms.Cursors.Hand
         Me.resdrop.FlatAppearance.BorderSize = 0
         Me.resdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.resdrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -132,6 +134,7 @@ Partial Class AddEdit_User
         'sideAthletesBtn
         '
         Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAthletesBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
         Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -147,6 +150,7 @@ Partial Class AddEdit_User
         'sideadminBtn
         '
         Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideadminBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideadminBtn.FlatAppearance.BorderSize = 0
         Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -163,6 +167,7 @@ Partial Class AddEdit_User
         'sideresultBtn
         '
         Me.sideresultBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideresultBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideresultBtn.FlatAppearance.BorderSize = 0
         Me.sideresultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideresultBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -178,6 +183,7 @@ Partial Class AddEdit_User
         'sidecalendarBtn
         '
         Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidecalendarBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
         Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -264,6 +270,7 @@ Partial Class AddEdit_User
         Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
         Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.helpBtn.FlatAppearance.BorderSize = 0
         Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -278,6 +285,7 @@ Partial Class AddEdit_User
         Me.notifBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.notifBtn.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
         Me.notifBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.notifBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.notifBtn.FlatAppearance.BorderSize = 0
         Me.notifBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.notifBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -292,6 +300,7 @@ Partial Class AddEdit_User
         Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
         Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.exitBtn.FlatAppearance.BorderSize = 0
         Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -306,6 +315,7 @@ Partial Class AddEdit_User
         Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
         Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
         Me.scrollBtn.Name = "scrollBtn"
@@ -345,14 +355,14 @@ Partial Class AddEdit_User
         Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoGenerateColumns = False
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeight = 30
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.PassDataGridViewTextBoxColumn, Me.AccessLevel})
@@ -365,8 +375,8 @@ Partial Class AddEdit_User
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidth = 150
         Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Size = New System.Drawing.Size(903, 600)
         Me.DataGridView1.TabIndex = 95
         '
@@ -407,6 +417,7 @@ Partial Class AddEdit_User
         'confirmBtn
         '
         Me.confirmBtn.BackColor = System.Drawing.Color.Gray
+        Me.confirmBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.confirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.confirmBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.confirmBtn.Location = New System.Drawing.Point(1010, 559)
@@ -420,6 +431,7 @@ Partial Class AddEdit_User
         'editBtn
         '
         Me.editBtn.BackColor = System.Drawing.Color.Gray
+        Me.editBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.editBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.editBtn.Location = New System.Drawing.Point(1010, 443)
@@ -433,6 +445,7 @@ Partial Class AddEdit_User
         'createBtn
         '
         Me.createBtn.BackColor = System.Drawing.Color.Gray
+        Me.createBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.createBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.createBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.createBtn.Location = New System.Drawing.Point(1010, 397)
@@ -582,6 +595,7 @@ Partial Class AddEdit_User
         'deleteBtn
         '
         Me.deleteBtn.BackColor = System.Drawing.Color.Gray
+        Me.deleteBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.deleteBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.deleteBtn.Location = New System.Drawing.Point(1010, 443)
@@ -595,12 +609,13 @@ Partial Class AddEdit_User
         'access3
         '
         Me.access3.AutoSize = True
+        Me.access3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.access3.Enabled = False
         Me.access3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.access3.Location = New System.Drawing.Point(1029, 306)
         Me.access3.Name = "access3"
         Me.access3.Size = New System.Drawing.Size(30, 17)
-        Me.access3.TabIndex = 3
+        Me.access3.TabIndex = 5
         Me.access3.TabStop = True
         Me.access3.Text = "3"
         Me.access3.UseVisualStyleBackColor = True
@@ -608,12 +623,13 @@ Partial Class AddEdit_User
         'access2
         '
         Me.access2.AutoSize = True
+        Me.access2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.access2.Enabled = False
         Me.access2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.access2.Location = New System.Drawing.Point(1029, 283)
         Me.access2.Name = "access2"
         Me.access2.Size = New System.Drawing.Size(30, 17)
-        Me.access2.TabIndex = 3
+        Me.access2.TabIndex = 4
         Me.access2.TabStop = True
         Me.access2.Text = "2"
         Me.access2.UseVisualStyleBackColor = True
@@ -621,6 +637,7 @@ Partial Class AddEdit_User
         'access1
         '
         Me.access1.AutoSize = True
+        Me.access1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.access1.Enabled = False
         Me.access1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.access1.Location = New System.Drawing.Point(1029, 260)
@@ -658,7 +675,7 @@ Partial Class AddEdit_User
         Me.passText.Name = "passText"
         Me.passText.ReadOnly = True
         Me.passText.Size = New System.Drawing.Size(200, 32)
-        Me.passText.TabIndex = 1
+        Me.passText.TabIndex = 2
         '
         'Label1
         '

@@ -409,6 +409,7 @@ Partial Class selectAthlete
         '
         Me.btnCommitTeams.BackgroundImage = Global.main.My.Resources.Resources.iconSwitch
         Me.btnCommitTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCommitTeams.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCommitTeams.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCommitTeams.Location = New System.Drawing.Point(189, 93)
         Me.btnCommitTeams.Name = "btnCommitTeams"
@@ -502,6 +503,7 @@ Partial Class selectAthlete
         '
         Me.btnEdit.BackgroundImage = Global.main.My.Resources.Resources.iconNotepad
         Me.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEdit.Location = New System.Drawing.Point(636, 442)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(75, 75)
@@ -513,6 +515,7 @@ Partial Class selectAthlete
         Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.close1
         Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnCancel.Location = New System.Drawing.Point(717, 566)
@@ -526,6 +529,7 @@ Partial Class selectAthlete
         Me.btnSave.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnSave.BackgroundImage = Global.main.My.Resources.Resources.savebtn
         Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSave.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSave.Location = New System.Drawing.Point(636, 566)
         Me.btnSave.Name = "btnSave"
@@ -573,7 +577,7 @@ Partial Class selectAthlete
         Me.lblAlertCount.AutoSize = True
         Me.lblAlertCount.BackColor = System.Drawing.Color.DarkGray
         Me.lblAlertCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAlertCount.Location = New System.Drawing.Point(1215, 16)
+        Me.lblAlertCount.Location = New System.Drawing.Point(1224, 17)
         Me.lblAlertCount.Name = "lblAlertCount"
         Me.lblAlertCount.Size = New System.Drawing.Size(15, 16)
         Me.lblAlertCount.TabIndex = 3
@@ -585,6 +589,7 @@ Partial Class selectAthlete
         Me.Button4.BackColor = System.Drawing.SystemColors.GrayText
         Me.Button4.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -599,6 +604,7 @@ Partial Class selectAthlete
         Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
         Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
         Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button13.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button13.FlatAppearance.BorderSize = 0
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -613,6 +619,7 @@ Partial Class selectAthlete
         Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
         Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.exitBtn.FlatAppearance.BorderSize = 0
         Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
@@ -627,6 +634,7 @@ Partial Class selectAthlete
         Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
         Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
         Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
         Me.scrollBtn.Name = "scrollBtn"
@@ -654,6 +662,7 @@ Partial Class selectAthlete
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button2.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -669,6 +678,7 @@ Partial Class selectAthlete
         'resdrop
         '
         Me.resdrop.BackColor = System.Drawing.Color.Gray
+        Me.resdrop.Cursor = System.Windows.Forms.Cursors.Hand
         Me.resdrop.FlatAppearance.BorderSize = 0
         Me.resdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.resdrop.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -683,6 +693,7 @@ Partial Class selectAthlete
         'sideAthletesBtn
         '
         Me.sideAthletesBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAthletesBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideAthletesBtn.FlatAppearance.BorderSize = 0
         Me.sideAthletesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideAthletesBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -698,6 +709,7 @@ Partial Class selectAthlete
         'sideadminBtn
         '
         Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideadminBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideadminBtn.FlatAppearance.BorderSize = 0
         Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -714,6 +726,7 @@ Partial Class selectAthlete
         'sideresultBtn
         '
         Me.sideresultBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideresultBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sideresultBtn.FlatAppearance.BorderSize = 0
         Me.sideresultBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideresultBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
@@ -729,6 +742,7 @@ Partial Class selectAthlete
         'sidecalendarBtn
         '
         Me.sidecalendarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sidecalendarBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sidecalendarBtn.FlatAppearance.BorderSize = 0
         Me.sidecalendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sidecalendarBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)

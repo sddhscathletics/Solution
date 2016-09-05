@@ -108,6 +108,7 @@ Partial Class newTeam
         Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnCancel.BackgroundImage = Global.main.My.Resources.Resources.close1
         Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnCancel.Location = New System.Drawing.Point(93, 7)
         Me.btnCancel.Name = "btnCancel"
@@ -120,6 +121,7 @@ Partial Class newTeam
         Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnSave.BackgroundImage = Global.main.My.Resources.Resources.savebtn
         Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnSave.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSave.Location = New System.Drawing.Point(12, 7)
         Me.btnSave.Name = "btnSave"

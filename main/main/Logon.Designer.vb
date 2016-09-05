@@ -101,6 +101,7 @@ Partial Class Logon
         'okBtn
         '
         Me.okBtn.BackColor = System.Drawing.Color.Gray
+        Me.okBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.okBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.okBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.okBtn.Location = New System.Drawing.Point(156, 423)
@@ -113,6 +114,7 @@ Partial Class Logon
         'exitBtn
         '
         Me.exitBtn.BackColor = System.Drawing.Color.Gray
+        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.exitBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.exitBtn.Location = New System.Drawing.Point(369, 458)
@@ -125,6 +127,7 @@ Partial Class Logon
         'forgotPwBtn
         '
         Me.forgotPwBtn.BackColor = System.Drawing.Color.Gray
+        Me.forgotPwBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.forgotPwBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.forgotPwBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 10.0!)
         Me.forgotPwBtn.Location = New System.Drawing.Point(369, 423)

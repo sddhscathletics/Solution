@@ -140,6 +140,7 @@ Partial Class calendar
         'backBtn
         '
         Me.backBtn.BackColor = System.Drawing.Color.Gray
+        Me.backBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.backBtn.Location = New System.Drawing.Point(355, 198)
         Me.backBtn.Name = "backBtn"

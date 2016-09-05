@@ -425,6 +425,8 @@
     <None Include="Resources\comboBoxImage1.png" />
     <None Include="Resources\comboBoxHover1.png" />
     <None Include="Resources\comboBoxDisabled.png" />
+    <None Include="Resources\gallery1.jpg" />
+    <None Include="Resources\gallery2.jpg" />
     <Content Include="Resources\helpbtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

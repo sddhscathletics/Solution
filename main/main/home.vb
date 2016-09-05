@@ -11,7 +11,9 @@ Public Class home
     Dim atDown As Boolean = False
     Dim adDrop As Boolean = False
     Dim adDown As Boolean = False
-    Dim jun As Integer = 0
+    Dim jun As Integer = 0 'jun is a counter for side bar scrolling
+    Dim pictimer As Integer = 0
+    Dim pic2 As Boolean = True
 #End Region
 
 #Region " Move Form "
@@ -219,5 +221,18 @@ Public Class home
     Private Sub clocktime_Tick(sender As Object, e As EventArgs) Handles clocktime.Tick
         timeLbl.Text = TimeOfDay
         dateLbl.Text = Date.Today
+        If pictimer < 100 Then
+            pictimer += 1
+        End If
+        If pictimer = 100 Then
+            If pic2 = True Then
+                gallerypic2.Visible = False
+                pic2 = False
+            Else
+                gallerypic2.Visible = True
+                pic2 = True
+            End If
+            pictimer = 0
+        End If
     End Sub
 End Class
