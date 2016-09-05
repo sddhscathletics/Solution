@@ -597,6 +597,65 @@ Public Class createEvent
         ElseIf Me.Tag.Contains("edit") Then
             'since any change should be reflected in all repeats, it is easiest to create a new record and delete all previous records
             If attendees.Count > 0 AndAlso ((clbDays.CheckedItems.Count > 0 AndAlso cmbRepType.Text <> "") Or chbRepNA.Checked) AndAlso filePaths.Count > 0 AndAlso (times.Count > 0 Or chbNA.Checked = True) And map.Overlays.Count = 1 Then
+                'delete any of the relevant attachments
+                Dim oldAttachments() As String = {}
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("SELECT AttachNames FROM Events WHERE AttachNames IS NOT NULL AND EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                        Dim tagSplit = Me.Tag.split(" ")
+                        Dim name As String = ""
+                        For part As Integer = 0 To tagSplit.Length - 1
+                            If part <> 0 And part <> tagSplit.Length - 1 Then
+                                name += tagSplit(part) + " "
+                            End If
+                        Next
+                        name = RTrim(name)
+                        cmd.Parameters.AddWithValue("@name", name)
+                        cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                        Using dr = cmd.ExecuteReader()
+                            If dr.HasRows Then
+                                Do While dr.Read()
+                                    oldAttachments = dr(0).split(";")
+                                Loop
+                            End If
+                        End Using
+                    End Using
+                    conn.Close()
+                End Using
+                Dim newfiles As New List(Of String) From {}
+                For Each file In filePaths
+                    newfiles.Add(IO.Path.GetFileNameWithoutExtension(file))
+                Next
+                For Each file In oldAttachments
+                    If newfiles.Contains(file) = False Then 'if the new attachments doesnt have an old attachment then delete
+                        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                            conn.Open()
+                            Using cmd As New OleDbCommand("DELETE FROM Attachments WHERE FileName = @filename", conn)
+                                cmd.Parameters.AddWithValue("@filename", file)
+                                cmd.ExecuteNonQuery()
+                            End Using
+                            conn.Close()
+                        End Using
+                    End If
+                Next
+                'delete the current record
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn)
+                        Dim tagSplit = Me.Tag.split(" ")
+                        Dim name As String = ""
+                        For part As Integer = 0 To tagSplit.Length - 1
+                            If part <> 0 And part <> tagSplit.Length - 1 Then
+                                name += tagSplit(part) + " "
+                            End If
+                        Next
+                        name = RTrim(name)
+                        cmd.Parameters.AddWithValue("@name", name)
+                        cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                        cmd.ExecuteNonQuery()
+                    End Using
+                    conn.Close()
+                End Using
                 'create repeating event functionality for 12 of the type
                 If chbRepNA.Checked = False Then
                     For day = 0 To clbDays.CheckedItems.Count - 1
@@ -915,8 +974,10 @@ Public Class createEvent
                             cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
                             Using dr = cmd.ExecuteReader()
                                 If dr.HasRows() Then
-                                    Dim repeatColumn() As String = dr(0).split(";")
-                                    repeatInfo = repeatColumn.ToList()
+                                    Do While dr.Read()
+                                        Dim repeatColumn() As String = dr("Repeats").split(";")
+                                        repeatInfo = repeatColumn.ToList()
+                                    Loop
                                 End If
                             End Using
                         End Using
@@ -955,25 +1016,6 @@ Public Class createEvent
                             Next
                         Next
                     End If
-                Else
-                    'delete only the current record
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                        conn.Open()
-                        Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
-                            Dim tagSplit = Me.Tag.split(" ")
-                            Dim name As String = ""
-                            For part As Integer = 0 To tagSplit.Length - 1
-                                If part <> 0 And part <> tagSplit.Length - 1 Then
-                                    name += tagSplit(part) + " "
-                                End If
-                            Next
-                            name = RTrim(name)
-                            cmd.Parameters.AddWithValue("@name", name)
-                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
-                            cmd.ExecuteNonQuery()
-                        End Using
-                        conn.Close()
-                    End Using
                 End If
                 btnSaveEvent.Tag = "saved"
                 If MessageBox.Show("Your event has been saved" + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
@@ -1000,6 +1042,59 @@ Public Class createEvent
             ElseIf cmbRepType.Text = "" And chbRepNA.Checked = False Then
                 MessageBox.Show("You must specify the event's repeating style or tick N/A to not specify any repeats", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
+                'delete any of the relevant attachments
+                Dim oldAttachments() As String = {}
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("SELECT AttachNames FROM Events WHERE AttachNames IS NOT NULL AND EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                        Dim tagSplit = Me.Tag.split(" ")
+                        Dim name As String = ""
+                        For part As Integer = 0 To tagSplit.Length - 1
+                            If part <> 0 And part <> tagSplit.Length - 1 Then
+                                name += tagSplit(part) + " "
+                            End If
+                        Next
+                        name = RTrim(name)
+                        cmd.Parameters.AddWithValue("@name", name)
+                        cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                        Using dr = cmd.ExecuteReader()
+                            If dr.HasRows Then
+                                Do While dr.Read()
+                                    oldAttachments = dr(0).split(";")
+                                Loop
+                            End If
+                        End Using
+                    End Using
+                    conn.Close()
+                End Using
+                For Each file In oldAttachments
+                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                        conn.Open()
+                        Using cmd As New OleDbCommand("DELETE FROM Attachments WHERE FileName = @filename", conn)
+                            cmd.Parameters.AddWithValue("@filename", file)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        conn.Close()
+                    End Using
+                Next
+                'delete only the current record
+                Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
+                    conn.Open()
+                    Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
+                        Dim tagSplit = Me.Tag.split(" ")
+                        Dim name As String = ""
+                        For part As Integer = 0 To tagSplit.Length - 1
+                            If part <> 0 And part <> tagSplit.Length - 1 Then
+                                name += tagSplit(part) + " "
+                            End If
+                        Next
+                        name = RTrim(name)
+                        cmd.Parameters.AddWithValue("@name", name)
+                        cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
+                        cmd.ExecuteNonQuery()
+                    End Using
+                    conn.Close()
+                End Using
                 If chbRepNA.Checked = False Then
                     For day = 0 To clbDays.CheckedItems.Count - 1
                         For i = 0 To 11
@@ -1227,25 +1322,6 @@ Public Class createEvent
                             Next
                         Next
                     End If
-                Else
-                    'delete only the current record
-                    Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
-                        conn.Open()
-                        Using cmd As New OleDbCommand("DELETE FROM Events WHERE EventName = @name AND EventDate = @date", conn) '*takes the column with correct rows
-                            Dim tagSplit = Me.Tag.split(" ")
-                            Dim name As String = ""
-                            For part As Integer = 0 To tagSplit.Length - 1
-                                If part <> 0 And part <> tagSplit.Length - 1 Then
-                                    name += tagSplit(part) + " "
-                                End If
-                            Next
-                            name = RTrim(name)
-                            cmd.Parameters.AddWithValue("@name", name)
-                            cmd.Parameters.AddWithValue("@date", tagSplit(tagSplit.Length - 1))
-                            cmd.ExecuteNonQuery()
-                        End Using
-                        conn.Close()
-                    End Using
                 End If
                 btnSaveEvent.Tag = "saved"
                 If MessageBox.Show("Your event has been edited." + vbNewLine + "Would you like to create a template from this event?", "Template Choice", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
@@ -1261,24 +1337,6 @@ Public Class createEvent
         End If
         Cursor.Current = Cursors.Default
 #End Region
-    End Sub
-    'Private Sub ComboBox1_DropDown(sender As Object, e As EventArgs) Handles ComboBox1.DropDown
-    '    waitForDrop = New Thread(Sub() waitForDropDown())
-    '    waitForDrop.Start()
-    'End Sub
-    'Private Sub ComboBox1_Click(sender As Object, e As EventArgs)
-    '    ComboBox1.DroppedDown = True
-    '    Thread.Sleep(50)
-    '    CheckedListBox1.Visible = True
-    '    CheckedListBox1.BringToFront()
-    'End Sub
-    Private Sub ComboBox1_DropDownClose(sender As Object, e As EventArgs)
-        clbDays.Visible = False
-    End Sub
-    Private Sub waitForDropDown()
-        Thread.Sleep(500)
-        clbDays.Visible = True
-        clbDays.BringToFront()
     End Sub
     Private Sub chbNA_CheckedChanged(sender As Object, e As EventArgs) Handles chbNA.CheckedChanged
         If chbNA.CheckState = CheckState.Checked Then
@@ -1321,7 +1379,7 @@ Public Class createEvent
             times.Clear()
             notes.Clear()
         End If
-        calendar.calendar_Load(Nothing, Nothing)
+        calendar.Show()
     End Sub
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         chbNA.Checked = False
@@ -1512,13 +1570,15 @@ Public Class createEvent
                             attendees.Clear()
                             Dim tmpSender As New ComboBox
                             tmpSender.Tag = "template"
-                            If rdbTraining.Checked = False Then
-                                gbAthletes.Enabled = True
+                            gbAthletes.Enabled = True
+                            If dr("Personnel").ToString() <> "" Then
                                 attendees.AddRange(dr("Personnel").Split(";"))
-                                notes.Clear()
-                                If dr("Notes").ToString() <> "" Then
-                                    notes.AddRange(dr("Notes").Split(";"))
-                                End If
+                            End If
+                            notes.Clear()
+                            If dr("Notes").ToString() <> "" Then
+                                notes.AddRange(dr("Notes").Split(";"))
+                            End If
+                            If dr("Personnel").ToString() <> "" Then
                                 cmbGroup_SelectedValueChanged(tmpSender, Nothing)
                             End If
                             Cursor.Current = Cursors.AppStarting
@@ -2912,6 +2972,7 @@ Public Class createEvent
             .Size = New Size(410, 56)
             .Cursor = Cursors.Hand
         End With
+        ttp.SetToolTip(pnl, "Click anywhere on the panel to change whether you want the athlete to participate in the event")
         flpAthletes.Controls.Add(pnl)
         AddHandler pnl.Click, AddressOf athletePanel_Click
         AddHandler pnl.Click, AddressOf clickHandler

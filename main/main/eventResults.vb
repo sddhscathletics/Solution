@@ -324,6 +324,7 @@ Public Class eventResults
             .Cursor = Cursors.Hand
         End With
         flpAthletes.Controls.Add(pnl)
+        ttp.SetToolTip(pnl, "Click anywhere on the panel to change the athlete's attendance")
         AddHandler pnl.Click, AddressOf athletePanel_Click
         If currentAgeGroupNotes.Contains(info) Then
             Dim chbNote As New CheckBox
@@ -598,7 +599,7 @@ Public Class eventResults
             newAbsences.Clear()
             editMade = False
         End If
-        calendar.calendar_Load(Nothing, Nothing)
+        calendar.Show()
     End Sub
     'how are you going to keep the text file there when you open the same thing after save?
     'maybe add into attachments?

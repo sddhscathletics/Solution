@@ -22,6 +22,7 @@ Partial Class eventResults
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.gbNotes = New System.Windows.Forms.GroupBox()
         Me.chbAllAbsent = New System.Windows.Forms.CheckBox()
         Me.chbAllNotes = New System.Windows.Forms.CheckBox()
@@ -38,6 +39,7 @@ Partial Class eventResults
         Me.rchTxt = New System.Windows.Forms.RichTextBox()
         Me.lblEdit = New System.Windows.Forms.Label()
         Me.sfdSave = New System.Windows.Forms.SaveFileDialog()
+        Me.ttp = New System.Windows.Forms.ToolTip(Me.components)
         Me.gbNotes.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
         CType(Me.pbAttach, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,6 +168,7 @@ Partial Class eventResults
         Me.btnCancel.Size = New System.Drawing.Size(86, 34)
         Me.btnCancel.TabIndex = 44
         Me.btnCancel.Text = "CANCEL"
+        Me.ttp.SetToolTip(Me.btnCancel, "Click to return to the calendar")
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnSaveEvent
@@ -175,6 +178,7 @@ Partial Class eventResults
         Me.btnSaveEvent.Size = New System.Drawing.Size(86, 34)
         Me.btnSaveEvent.TabIndex = 43
         Me.btnSaveEvent.Text = "SAVE"
+        Me.ttp.SetToolTip(Me.btnSaveEvent, "Click to save your input")
         Me.btnSaveEvent.UseVisualStyleBackColor = True
         '
         'rchTxt
@@ -186,6 +190,8 @@ Partial Class eventResults
         Me.rchTxt.TabIndex = 63
         Me.rchTxt.Tag = "empty"
         Me.rchTxt.Text = ""
+        Me.ttp.SetToolTip(Me.rchTxt, "Edit text here which you can then save into a file by clicking the attached file " &
+        "above")
         '
         'lblEdit
         '
@@ -242,4 +248,5 @@ Partial Class eventResults
     Friend WithEvents lblEdit As Label
     Friend WithEvents sfdSave As SaveFileDialog
     Friend WithEvents chbAllAbsent As CheckBox
+    Friend WithEvents ttp As ToolTip
 End Class
