@@ -123,4 +123,13 @@ Public Class Logon
         Me.Hide()
         home.Show()
     End Sub
+
+#Region "Data Validation for login/pass"
+    Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress, TextBox2.KeyPress
+        If Not Char.IsLetterOrDigit(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+#End Region
+
 End Class

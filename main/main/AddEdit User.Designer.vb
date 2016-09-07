@@ -23,8 +23,8 @@ Partial Class AddEdit_User
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddEdit_User))
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -43,6 +43,9 @@ Partial Class AddEdit_User
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PassDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -327,6 +330,9 @@ Partial Class AddEdit_User
         'bigbtngroup
         '
         Me.bigbtngroup.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.bigbtngroup.Controls.Add(Me.Label6)
+        Me.bigbtngroup.Controls.Add(Me.Label5)
+        Me.bigbtngroup.Controls.Add(Me.Label4)
         Me.bigbtngroup.Controls.Add(Me.DataGridView1)
         Me.bigbtngroup.Controls.Add(Me.confirmBtn)
         Me.bigbtngroup.Controls.Add(Me.editBtn)
@@ -349,6 +355,36 @@ Partial Class AddEdit_User
         Me.bigbtngroup.TabStop = False
         Me.bigbtngroup.Text = "GroupBox1"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
+        Me.Label6.Location = New System.Drawing.Point(1055, 303)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(107, 16)
+        Me.Label6.TabIndex = 96
+        Me.Label6.Text = "(Administrator)"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
+        Me.Label5.Location = New System.Drawing.Point(1055, 280)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(61, 16)
+        Me.Label5.TabIndex = 96
+        Me.Label5.Text = "(Coach)"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
+        Me.Label4.Location = New System.Drawing.Point(1055, 257)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(73, 16)
+        Me.Label4.TabIndex = 96
+        Me.Label4.Text = "(Student)"
+        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
@@ -356,14 +392,14 @@ Partial Class AddEdit_User
         Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoGenerateColumns = False
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeight = 30
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.PassDataGridViewTextBoxColumn, Me.AccessLevel})
@@ -376,8 +412,8 @@ Partial Class AddEdit_User
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidth = 150
         Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Size = New System.Drawing.Size(903, 600)
         Me.DataGridView1.TabIndex = 95
         '
@@ -601,7 +637,7 @@ Partial Class AddEdit_User
         Me.deleteBtn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.deleteBtn.Location = New System.Drawing.Point(997, 438)
         Me.deleteBtn.Name = "deleteBtn"
-        Me.deleteBtn.Size = New System.Drawing.Size(238, 40)
+        Me.deleteBtn.Size = New System.Drawing.Size(251, 40)
         Me.deleteBtn.TabIndex = 4
         Me.deleteBtn.Text = "DELETE"
         Me.deleteBtn.UseVisualStyleBackColor = False
@@ -616,10 +652,10 @@ Partial Class AddEdit_User
         Me.access3.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.access3.Location = New System.Drawing.Point(1016, 301)
         Me.access3.Name = "access3"
-        Me.access3.Size = New System.Drawing.Size(134, 20)
+        Me.access3.Size = New System.Drawing.Size(33, 20)
         Me.access3.TabIndex = 5
         Me.access3.TabStop = True
-        Me.access3.Text = "2 (Adminstrator)"
+        Me.access3.Text = "2"
         Me.access3.UseVisualStyleBackColor = True
         '
         'access2
@@ -631,10 +667,10 @@ Partial Class AddEdit_User
         Me.access2.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.access2.Location = New System.Drawing.Point(1016, 278)
         Me.access2.Name = "access2"
-        Me.access2.Size = New System.Drawing.Size(91, 20)
+        Me.access2.Size = New System.Drawing.Size(38, 20)
         Me.access2.TabIndex = 4
         Me.access2.TabStop = True
-        Me.access2.Text = "1 (Coach)"
+        Me.access2.Text = "1 "
         Me.access2.UseVisualStyleBackColor = True
         '
         'access1
@@ -646,10 +682,10 @@ Partial Class AddEdit_User
         Me.access1.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!)
         Me.access1.Location = New System.Drawing.Point(1016, 255)
         Me.access1.Name = "access1"
-        Me.access1.Size = New System.Drawing.Size(103, 20)
+        Me.access1.Size = New System.Drawing.Size(33, 20)
         Me.access1.TabIndex = 3
         Me.access1.TabStop = True
-        Me.access1.Text = "0 (Student)"
+        Me.access1.Text = "0"
         Me.access1.UseVisualStyleBackColor = True
         '
         'Label3
@@ -676,6 +712,7 @@ Partial Class AddEdit_User
         '
         Me.passText.Font = New System.Drawing.Font("MS Reference Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.passText.Location = New System.Drawing.Point(1010, 146)
+        Me.passText.MaxLength = 20
         Me.passText.Name = "passText"
         Me.passText.ReadOnly = True
         Me.passText.Size = New System.Drawing.Size(238, 33)
@@ -695,6 +732,7 @@ Partial Class AddEdit_User
         '
         Me.idText.Font = New System.Drawing.Font("MS Reference Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.idText.Location = New System.Drawing.Point(1010, 69)
+        Me.idText.MaxLength = 20
         Me.idText.Name = "idText"
         Me.idText.ReadOnly = True
         Me.idText.Size = New System.Drawing.Size(238, 33)
@@ -793,4 +831,7 @@ Partial Class AddEdit_User
     Friend WithEvents PassDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents IDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 End Class

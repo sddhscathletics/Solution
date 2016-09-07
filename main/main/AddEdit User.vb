@@ -177,6 +177,14 @@ Public Class AddEdit_User
             End Using
         End Using
         Me.UserDbTableAdapter1.Fill(Me.AthleteDataSet.userDb)
+        confirmBtn.Visible = False
+        editBtn.Visible = True
+        deleteBtn.Visible = False
+        idText.ReadOnly = True
+        passText.ReadOnly = True
+        access1.Enabled = False
+        access2.Enabled = False
+        access3.Enabled = False
     End Sub
 
 
@@ -226,7 +234,6 @@ Public Class AddEdit_User
                 If access3.Checked Then
                     cmd.Parameters.Add(New OleDbParameter("@accesslvl", access3.Text))
                 End If
-                'if username already exists provide error
                 cmd.ExecuteNonQuery()
             End Using
         End Using
@@ -294,4 +301,12 @@ Public Class AddEdit_User
     Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
         Me.Close()
     End Sub
+
+#Region "ID/Pass validation"
+    Private Sub idText_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles idText.KeyPress, passText.KeyPress
+        If Not Char.IsLetterOrDigit(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+#End Region
 End Class

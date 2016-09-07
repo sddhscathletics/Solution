@@ -156,6 +156,7 @@ Partial Class makeuser
         'createNewPass
         '
         Me.createNewPass.Location = New System.Drawing.Point(50, 120)
+        Me.createNewPass.MaxLength = 20
         Me.createNewPass.Name = "createNewPass"
         Me.createNewPass.Size = New System.Drawing.Size(216, 20)
         Me.createNewPass.TabIndex = 20
@@ -163,6 +164,7 @@ Partial Class makeuser
         'createNewID
         '
         Me.createNewID.Location = New System.Drawing.Point(50, 72)
+        Me.createNewID.MaxLength = 20
         Me.createNewID.Name = "createNewID"
         Me.createNewID.Size = New System.Drawing.Size(216, 20)
         Me.createNewID.TabIndex = 21
