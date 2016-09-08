@@ -27,7 +27,6 @@ Partial Class manageTeams
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.cmbAgeGroup = New System.Windows.Forms.ComboBox()
-        Me.chbAll = New System.Windows.Forms.CheckBox()
         Me.txtMembers = New System.Windows.Forms.TextBox()
         Me.lblName = New System.Windows.Forms.Label()
         Me.SuspendLayout()
@@ -81,16 +80,6 @@ Partial Class manageTeams
         Me.cmbAgeGroup.TabIndex = 2
         Me.cmbAgeGroup.Text = "Age Group"
         '
-        'chbAll
-        '
-        Me.chbAll.AutoSize = True
-        Me.chbAll.Location = New System.Drawing.Point(329, 16)
-        Me.chbAll.Name = "chbAll"
-        Me.chbAll.Size = New System.Drawing.Size(96, 17)
-        Me.chbAll.TabIndex = 88
-        Me.chbAll.Text = "All Age Groups"
-        Me.chbAll.UseVisualStyleBackColor = True
-        '
         'txtMembers
         '
         Me.txtMembers.Enabled = False
@@ -117,7 +106,6 @@ Partial Class manageTeams
         Me.ClientSize = New System.Drawing.Size(770, 287)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.txtMembers)
-        Me.Controls.Add(Me.chbAll)
         Me.Controls.Add(Me.cmbAgeGroup)
         Me.Controls.Add(Me.flpTeams)
         Me.Controls.Add(Me.btnEdit)
@@ -135,7 +123,6 @@ Partial Class manageTeams
     Friend WithEvents btnEdit As Button
     Friend WithEvents flpTeams As FlowLayoutPanel
     Friend WithEvents cmbAgeGroup As ComboBox
-    Friend WithEvents chbAll As CheckBox
     Friend WithEvents txtMembers As TextBox
     Friend WithEvents lblName As Label
 End Class

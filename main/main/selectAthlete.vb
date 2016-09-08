@@ -24,14 +24,8 @@ Public Class selectAthlete
 #Region "Sidebar"
 
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'access = 1 FOR TEST
-        'If access = 2 Then
-        lblAlertCount.Text = getNotifCount()
-        If lblAlertCount.Text = "0" Then
-            lblAlertCount.Text = ""
-        End If
+        tmrAlert.Start()
         sideadminBtn.Visible = True
-        'End If
     End Sub
 
     Private Sub scrollclick(sender As Object, e As EventArgs) Handles scrollBtn.Click
@@ -173,8 +167,8 @@ Public Class selectAthlete
 
 #End Region
 
-
     Private Sub selectAthlete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        tmrAlert.Start()
         toggleControls()
         listAthletes = populate(listAthletes)
         listSorted = listAthletes
@@ -183,7 +177,11 @@ Public Class selectAthlete
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
+        If cmbAgeGroup.SelectedItem = "All" Then
+            listSorted = listAthletes
+        Else
+            listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
+        End If
         listSorted = sort(cmbSort, listSorted)
         listSearched = updateSearched(listSearched, listSorted)
         fillPanels(flpAthletes, "", listSearched)
@@ -586,5 +584,16 @@ Public Class selectAthlete
             listSearched = searchFilter(txtSearch, listSearched, listSorted)
         End If
         fillPanels(flpAthletes, "", listSearched)
+    End Sub
+
+    Private Sub tmrAlert_Tick(sender As Object, e As EventArgs) Handles tmrAlert.Tick
+        lblAlertCount.Text = getNotifCount()
+        If lblAlertCount.Text = "0" Then
+            lblAlertCount.Text = ""
+        End If
+    End Sub
+
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+        checkNotif.Show()
     End Sub
 End Class

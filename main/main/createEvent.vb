@@ -1382,6 +1382,7 @@ Public Class createEvent
         calendar.Show()
     End Sub
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        tmrAlert.Start()
         chbNA.Checked = False
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
         rdbTraining_CheckedChanged(Nothing, Nothing)
@@ -1536,7 +1537,7 @@ Public Class createEvent
         clbDays.Visible = False
     End Sub
     Public Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
-        #Region "Template Load"
+#Region "Template Load"
         Cursor.Current = Cursors.AppStarting
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -1907,9 +1908,8 @@ Public Class createEvent
             conn.Close()
         End Using
         Cursor.Current = Cursors.Default
-        #End Region
-    End Sub
 #End Region
+    End Sub
 #Region "Attachment Operations"
     Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
         If sender.Tag = "add" Then
@@ -3127,6 +3127,8 @@ Public Class createEvent
         Timer1.Enabled = True
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        lblAlertCount.Text = getNotifCount()
+
         If out = False Then
             bigbtngroup.Left = bigbtngroup.Left + 20
             Sidebar.Left = Sidebar.Left + 20
@@ -3292,5 +3294,12 @@ Public Class createEvent
     Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
         AddEdit_User.Show()
         Me.Close()
+    End Sub
+
+    Private Sub tmrAlert_Tick(sender As Object, e As EventArgs) Handles tmrAlert.Tick
+        lblAlertCount.Text = getNotifCount()
+        If lblAlertCount.Text = "0" Then
+            lblAlertCount.Text = ""
+        End If
     End Sub
 End Class

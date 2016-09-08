@@ -52,6 +52,7 @@ Partial Class selectAthlete
         Me.gpbContact = New System.Windows.Forms.GroupBox()
         Me.lblSt = New System.Windows.Forms.Label()
         Me.gpbAthlete = New System.Windows.Forms.GroupBox()
+        Me.btnCommitTeams = New System.Windows.Forms.Button()
         Me.lblTeams = New System.Windows.Forms.Label()
         Me.flpTeams = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblHeaderAthlete = New System.Windows.Forms.Label()
@@ -63,6 +64,10 @@ Partial Class selectAthlete
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblAlertCount = New System.Windows.Forms.Label()
+        Me.helpBtn = New System.Windows.Forms.Button()
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.exitBtn = New System.Windows.Forms.Button()
+        Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
@@ -76,18 +81,14 @@ Partial Class selectAthlete
         Me.sidebartime = New System.Windows.Forms.Timer(Me.components)
         Me.bigbtngroup = New System.Windows.Forms.GroupBox()
         Me.gpbEditing = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.helpBtn = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.exitBtn = New System.Windows.Forms.Button()
-        Me.scrollBtn = New System.Windows.Forms.Button()
-        Me.btnCommitTeams = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.pbPhoto = New System.Windows.Forms.PictureBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.tmrAlert = New System.Windows.Forms.Timer(Me.components)
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
         Me.gpbStudent.SuspendLayout()
@@ -391,6 +392,18 @@ Partial Class selectAthlete
         Me.gpbAthlete.TabIndex = 76
         Me.gpbAthlete.TabStop = False
         '
+        'btnCommitTeams
+        '
+        Me.btnCommitTeams.BackgroundImage = Global.main.My.Resources.Resources.iconSwitch
+        Me.btnCommitTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCommitTeams.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnCommitTeams.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCommitTeams.Location = New System.Drawing.Point(189, 93)
+        Me.btnCommitTeams.Name = "btnCommitTeams"
+        Me.btnCommitTeams.Size = New System.Drawing.Size(40, 40)
+        Me.btnCommitTeams.TabIndex = 49
+        Me.btnCommitTeams.UseVisualStyleBackColor = True
+        '
         'lblTeams
         '
         Me.lblTeams.AutoSize = True
@@ -511,6 +524,64 @@ Partial Class selectAthlete
         Me.lblAlertCount.TabIndex = 3
         Me.lblAlertCount.Text = "0"
         Me.lblAlertCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'helpBtn
+        '
+        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
+        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.helpBtn.FlatAppearance.BorderSize = 0
+        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.helpBtn.Location = New System.Drawing.Point(1157, 11)
+        Me.helpBtn.Name = "helpBtn"
+        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
+        Me.helpBtn.TabIndex = 6
+        Me.helpBtn.UseVisualStyleBackColor = False
+        '
+        'Button13
+        '
+        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
+        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
+        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button13.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button13.FlatAppearance.BorderSize = 0
+        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.Button13.Location = New System.Drawing.Point(1201, 11)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(44, 44)
+        Me.Button13.TabIndex = 6
+        Me.Button13.UseVisualStyleBackColor = False
+        '
+        'exitBtn
+        '
+        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
+        Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.exitBtn.FlatAppearance.BorderSize = 0
+        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.exitBtn.Location = New System.Drawing.Point(1245, 11)
+        Me.exitBtn.Name = "exitBtn"
+        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
+        Me.exitBtn.TabIndex = 6
+        Me.exitBtn.UseVisualStyleBackColor = False
+        '
+        'scrollBtn
+        '
+        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
+        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
+        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.scrollBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
+        Me.scrollBtn.Name = "scrollBtn"
+        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
+        Me.scrollBtn.TabIndex = 3
+        Me.scrollBtn.UseVisualStyleBackColor = False
         '
         'Sidebar
         '
@@ -702,15 +773,15 @@ Partial Class selectAthlete
         Me.gpbEditing.TabIndex = 74
         Me.gpbEditing.TabStop = False
         '
-        'Label1
+        'Label3
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(60, 19)
-        Me.Label1.TabIndex = 32
-        Me.Label1.Text = "Editing"
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(7, 69)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(71, 17)
+        Me.Label3.TabIndex = 84
+        Me.Label3.Text = "Best Event"
         '
         'Label2
         '
@@ -722,85 +793,15 @@ Partial Class selectAthlete
         Me.Label2.TabIndex = 33
         Me.Label2.Text = "Age Group"
         '
-        'Label3
+        'Label1
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(7, 69)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(71, 17)
-        Me.Label3.TabIndex = 84
-        Me.Label3.Text = "Best Event"
-        '
-        'helpBtn
-        '
-        Me.helpBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.helpBtn.BackgroundImage = Global.main.My.Resources.Resources.helpbtn
-        Me.helpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.helpBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.helpBtn.FlatAppearance.BorderSize = 0
-        Me.helpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.helpBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.helpBtn.Location = New System.Drawing.Point(1157, 11)
-        Me.helpBtn.Name = "helpBtn"
-        Me.helpBtn.Size = New System.Drawing.Size(44, 44)
-        Me.helpBtn.TabIndex = 6
-        Me.helpBtn.UseVisualStyleBackColor = False
-        '
-        'Button13
-        '
-        Me.Button13.BackColor = System.Drawing.SystemColors.GrayText
-        Me.Button13.BackgroundImage = Global.main.My.Resources.Resources.notifbtn
-        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button13.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button13.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.Button13.Location = New System.Drawing.Point(1201, 11)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(44, 44)
-        Me.Button13.TabIndex = 6
-        Me.Button13.UseVisualStyleBackColor = False
-        '
-        'exitBtn
-        '
-        Me.exitBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.exitBtn.BackgroundImage = Global.main.My.Resources.Resources.close1
-        Me.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.exitBtn.FlatAppearance.BorderSize = 0
-        Me.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.exitBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.exitBtn.Location = New System.Drawing.Point(1245, 11)
-        Me.exitBtn.Name = "exitBtn"
-        Me.exitBtn.Size = New System.Drawing.Size(44, 44)
-        Me.exitBtn.TabIndex = 6
-        Me.exitBtn.UseVisualStyleBackColor = False
-        '
-        'scrollBtn
-        '
-        Me.scrollBtn.BackColor = System.Drawing.SystemColors.GrayText
-        Me.scrollBtn.BackgroundImage = Global.main.My.Resources.Resources.scrollbtn
-        Me.scrollBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.scrollBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.scrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.scrollBtn.Location = New System.Drawing.Point(10, 11)
-        Me.scrollBtn.Name = "scrollBtn"
-        Me.scrollBtn.Size = New System.Drawing.Size(44, 44)
-        Me.scrollBtn.TabIndex = 3
-        Me.scrollBtn.UseVisualStyleBackColor = False
-        '
-        'btnCommitTeams
-        '
-        Me.btnCommitTeams.BackgroundImage = Global.main.My.Resources.Resources.iconSwitch
-        Me.btnCommitTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnCommitTeams.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnCommitTeams.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCommitTeams.Location = New System.Drawing.Point(189, 93)
-        Me.btnCommitTeams.Name = "btnCommitTeams"
-        Me.btnCommitTeams.Size = New System.Drawing.Size(40, 40)
-        Me.btnCommitTeams.TabIndex = 49
-        Me.btnCommitTeams.UseVisualStyleBackColor = True
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft JhengHei UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(60, 19)
+        Me.Label1.TabIndex = 32
+        Me.Label1.Text = "Editing"
         '
         'btnEdit
         '
@@ -847,6 +848,9 @@ Partial Class selectAthlete
         Me.btnSave.Size = New System.Drawing.Size(75, 75)
         Me.btnSave.TabIndex = 80
         Me.btnSave.UseVisualStyleBackColor = False
+        '
+        'tmrAlert
+        '
         '
         'selectAthlete
         '
@@ -950,4 +954,5 @@ Partial Class selectAthlete
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents tmrAlert As Timer
 End Class

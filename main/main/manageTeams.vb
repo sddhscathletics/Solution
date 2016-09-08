@@ -157,19 +157,6 @@ Public Class manageTeams
         End If
     End Sub
 
-    Private Sub chbAll_CheckedChanged(sender As Object, e As EventArgs) Handles chbAll.CheckedChanged
-        If chbAll.CheckState = CheckState.Checked Then
-            cmbAgeGroup.Enabled = False
-        Else
-            cmbAgeGroup.Enabled = True
-        End If
-    End Sub
-
-    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        listSorted = listTeams.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
-        fillPanels()
-    End Sub
-
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         If panelSelected = True Then
             newTeam.editor = True
@@ -177,5 +164,14 @@ Public Class manageTeams
         Else
             MsgBox("Please select a team first", MsgBoxStyle.OkOnly, "Error")
         End If
+    End Sub
+
+    Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
+        If cmbAgeGroup.SelectedItem = "All" Then
+            listSorted = listTeams
+        Else
+            listSorted = listTeams.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
+        End If
+        fillPanels()
     End Sub
 End Class

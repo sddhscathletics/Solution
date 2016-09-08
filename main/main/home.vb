@@ -12,7 +12,6 @@ Public Class home
     Dim pictimer As Integer = 0 'counter for pic looping
     Dim pic2 As Boolean = True 'pic visible status
 #End Region
-
 #Region " Move Form "
 
     Public MoveForm As Boolean
@@ -47,16 +46,13 @@ Public Class home
 
 #End Region
 
+
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblAlertCount1.Text = getNotifCount()
-        If lblAlertCount1.Text = "0" Then
-            lblAlertCount1.Text = ""
-        End If
+        tmrAlert.Start()
         If access = 1 Or access = 0 Then 'checking accesslevel of user, if not admin cannot access certain functions
             addEditUserBtn.Visible = False
             sideadminBtn.Visible = False
         End If
-
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
             Using cmd As New OleDbCommand("SELECT EventName, EventDate, Notes, NotesGiven FROM Events WHERE Notes IS NOT NULL AND DateValue(EventDate) > DateValue(@date)", conn)
@@ -219,5 +215,12 @@ Public Class home
 
     Private Sub helpBtn_Click(sender As Object, e As EventArgs) Handles helpBtn.Click
         helpForm.Show()
+    End Sub
+
+    Private Sub tmrAlert_Tick(sender As Object, e As EventArgs) Handles tmrAlert.Tick
+        lblAlertCount1.Text = getNotifCount()
+        If lblAlertCount1.Text = "0" Then
+            lblAlertCount1.Text = ""
+        End If
     End Sub
 End Class

@@ -55,6 +55,7 @@ Partial Class home
         Me.gallerypic1 = New System.Windows.Forms.PictureBox()
         Me.sidebartime2 = New System.Windows.Forms.Timer(Me.components)
         Me.clocktime = New System.Windows.Forms.Timer(Me.components)
+        Me.tmrAlert = New System.Windows.Forms.Timer(Me.components)
         Me.Sidebar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.bigbtngroup.SuspendLayout()
@@ -455,6 +456,9 @@ Partial Class home
         '
         Me.clocktime.Enabled = True
         '
+        'tmrAlert
+        '
+        '
         'home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -516,4 +520,5 @@ Partial Class home
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
     Friend WithEvents gallerypic2 As System.Windows.Forms.PictureBox
     Friend WithEvents helpBtn As System.Windows.Forms.Button
+    Friend WithEvents tmrAlert As Timer
 End Class

@@ -61,7 +61,11 @@ Public Class newTeam
     End Sub
 
     Private Sub cmbAgeGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAgeGroup.SelectedIndexChanged
-        listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
+        If cmbAgeGroup.SelectedItem = "All" Then
+            listSorted = listAthletes
+        Else
+            listSorted = listAthletes.FindAll(Function(x) x.ageGroup = cmbAgeGroup.SelectedItem) 'Filter by age group
+        End If
         listSorted = sort(cmbSort, listSorted)
         listSearched = updateSearched(listSearched, listSorted)
         fillPanels(flpAthletes, "", listSearched)
