@@ -1382,6 +1382,10 @@ Public Class createEvent
         calendar.Show()
     End Sub
     Private Sub createEvent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If access = 0 Or access = 1 Then
+            sideadminBtn.Visible = False
+            sideteamBtn.Visible = False
+        End If
         tmrAlert.Start()
         chbNA.Checked = False
         cmbTemplate.Items.AddRange(templateEvents.ToArray())
@@ -1537,7 +1541,7 @@ Public Class createEvent
         clbDays.Visible = False
     End Sub
     Public Sub cmbTemplate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTemplate.SelectedIndexChanged
-#Region "Template Load"
+        #Region "Template Load"
         Cursor.Current = Cursors.AppStarting
         newAttachBoxLocation = New Point(135 - 62 - 5, 377)
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
@@ -1908,7 +1912,7 @@ Public Class createEvent
             conn.Close()
         End Using
         Cursor.Current = Cursors.Default
-#End Region
+        #End Region
     End Sub
 #Region "Attachment Operations"
     Private Sub pbAttach_Click(sender As Object, e As EventArgs) Handles pbAttach.Click
@@ -3146,45 +3150,21 @@ Public Class createEvent
         End If
     End Sub
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
-        'calendar drop
-        If cDrop = True Then
-            If cDown = True Then
-                sideresultBtn.Top += 10
-                sideAthletesBtn.Top += 10
-                sideadminBtn.Top += 10
-                resdrop.Top += 10
-                sideResSub1.Top += 10
-                sideResSub2.Top += 10
-            End If
-            If cDown = False Then
-                sideresultBtn.Top -= 10
-                sideAthletesBtn.Top -= 10
-                sideadminBtn.Top -= 10
-                resdrop.Top -= 10
-
-                sideResSub1.Top -= 10
-                sideResSub2.Top -= 10
-            End If
-            jun += 1
-            If jun = 9 Then
-                jun = 0
-                cDrop = False
-                sidebartime.Enabled = False
-            End If
-        End If
         ' results drop
         If rDrop = True Then
             If rDown = True Then
                 sideAthletesBtn.Top += 10
-                sideadminBtn.Top += 10
+                sideteamBtn.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
+                sideadminBtn.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
-                sideadminBtn.Top -= 10
+                sideteamBtn.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
+                sideadminBtn.Top -= 10
             End If
             jun += 1
             If jun = 6 Then
@@ -3301,5 +3281,10 @@ Public Class createEvent
         If lblAlertCount.Text = "0" Then
             lblAlertCount.Text = ""
         End If
+    End Sub
+
+    Private Sub sideteamBtn_Click(sender As Object, e As EventArgs) Handles sideteamBtn.Click
+        manageTeams.Show()
+        Me.Close()
     End Sub
 End Class

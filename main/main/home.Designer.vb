@@ -25,7 +25,8 @@ Partial Class home
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(home))
         Me.Sidebar = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.sideteamBtn = New System.Windows.Forms.Button()
+        Me.sideMainBtn = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
         Me.sideAthletesBtn = New System.Windows.Forms.Button()
         Me.sideadminBtn = New System.Windows.Forms.Button()
@@ -68,7 +69,8 @@ Partial Class home
         'Sidebar
         '
         Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.Sidebar.Controls.Add(Me.Button1)
+        Me.Sidebar.Controls.Add(Me.sideteamBtn)
+        Me.Sidebar.Controls.Add(Me.sideMainBtn)
         Me.Sidebar.Controls.Add(Me.resdrop)
         Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
         Me.Sidebar.Controls.Add(Me.sideadminBtn)
@@ -82,21 +84,37 @@ Partial Class home
         Me.Sidebar.TabIndex = 2
         Me.Sidebar.TabStop = False
         '
-        'Button1
+        'sideteamBtn
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button1.Location = New System.Drawing.Point(2, 33)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(196, 50)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "   MAIN"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.sideteamBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideteamBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.sideteamBtn.FlatAppearance.BorderSize = 0
+        Me.sideteamBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideteamBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sideteamBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideteamBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideteamBtn.Name = "sideteamBtn"
+        Me.sideteamBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideteamBtn.TabIndex = 3
+        Me.sideteamBtn.Text = "   MANAGE TEAMS"
+        Me.sideteamBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideteamBtn.UseVisualStyleBackColor = False
+        '
+        'sideMainBtn
+        '
+        Me.sideMainBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideMainBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.sideMainBtn.FlatAppearance.BorderSize = 0
+        Me.sideMainBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideMainBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!)
+        Me.sideMainBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideMainBtn.Location = New System.Drawing.Point(2, 33)
+        Me.sideMainBtn.Name = "sideMainBtn"
+        Me.sideMainBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideMainBtn.TabIndex = 0
+        Me.sideMainBtn.Text = "   MAIN"
+        Me.sideMainBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideMainBtn.UseVisualStyleBackColor = False
         '
         'resdrop
         '
@@ -137,7 +155,7 @@ Partial Class home
         Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sideadminBtn.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideadminBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideadminBtn.Location = New System.Drawing.Point(2, 288)
         Me.sideadminBtn.Name = "sideadminBtn"
         Me.sideadminBtn.Size = New System.Drawing.Size(196, 50)
         Me.sideadminBtn.TabIndex = 0
@@ -494,7 +512,7 @@ Partial Class home
     Friend WithEvents sideresultBtn As Button
     Friend WithEvents sideadminBtn As Button
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents sideMainBtn As Button
     Friend WithEvents bigbtngroup As GroupBox
     Friend WithEvents calendarBtn As Button
     Friend WithEvents selectAthletesBtn As Button
@@ -521,4 +539,5 @@ Partial Class home
     Friend WithEvents gallerypic2 As System.Windows.Forms.PictureBox
     Friend WithEvents helpBtn As System.Windows.Forms.Button
     Friend WithEvents tmrAlert As Timer
+    Friend WithEvents sideteamBtn As System.Windows.Forms.Button
 End Class

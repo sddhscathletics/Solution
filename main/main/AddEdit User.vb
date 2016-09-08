@@ -52,11 +52,15 @@ Public Class AddEdit_User
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'access = 1 FOR TEST
         'If access = 2 Then
+        If access = 0 Or access = 1 Then
+            sideAdminBtn.Visible = False
+            sideteamBtn.Visible = False
+        End If
         lblAlertCount.Text = getNotifCount()
         If lblAlertCount.Text = "0" Then
             lblAlertCount.Text = ""
         End If
-        sideadminBtn.Visible = True
+        sideteamBtn.Visible = True
         'End If
     End Sub
 
@@ -81,45 +85,21 @@ Public Class AddEdit_User
         End If
     End Sub
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
-        'calendar drop
-        If cDrop = True Then
-            If cDown = True Then
-                sideresultBtn.Top += 10
-                sideAthletesBtn.Top += 10
-                sideadminBtn.Top += 10
-                resdrop.Top += 10
-                sideResSub1.Top += 10
-                sideResSub2.Top += 10
-            End If
-            If cDown = False Then
-                sideresultBtn.Top -= 10
-                sideAthletesBtn.Top -= 10
-                sideadminBtn.Top -= 10
-                resdrop.Top -= 10
-
-                sideResSub1.Top -= 10
-                sideResSub2.Top -= 10
-            End If
-            jun += 1
-            If jun = 9 Then
-                jun = 0
-                cDrop = False
-                sidebartime.Enabled = False
-            End If
-        End If
         ' results drop
         If rDrop = True Then
             If rDown = True Then
                 sideAthletesBtn.Top += 10
-                sideadminBtn.Top += 10
+                sideteamBtn.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
+                sideAdminBtn.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
-                sideadminBtn.Top -= 10
+                sideteamBtn.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
+                sideAdminBtn.Top -= 10
             End If
             jun += 1
             If jun = 6 Then
@@ -298,15 +278,17 @@ Public Class AddEdit_User
         Me.Close()
     End Sub
 
-    Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideadminBtn.Click
+    Private Sub sideadminBtn_Click(sender As Object, e As EventArgs) Handles sideteamBtn.Click
+        manageTeams.Show()
         Me.Close()
     End Sub
 
 #Region "ID/Pass validation"
     Private Sub idText_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles idText.KeyPress, passText.KeyPress
-        If Not Char.IsLetterOrDigit(e.KeyChar) Then
-            e.Handled = True
+        If e.KeyChar <> ControlChars.Back Then
+            e.Handled = Not (Char.IsLetterOrDigit(e.KeyChar) Or e.KeyChar = ".")
         End If
     End Sub
 #End Region
+
 End Class

@@ -27,10 +27,11 @@ Partial Class AddEdit_User
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddEdit_User))
         Me.Sidebar = New System.Windows.Forms.GroupBox()
+        Me.sideAdminBtn = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
         Me.sideAthletesBtn = New System.Windows.Forms.Button()
-        Me.sideadminBtn = New System.Windows.Forms.Button()
+        Me.sideteamBtn = New System.Windows.Forms.Button()
         Me.sideresultBtn = New System.Windows.Forms.Button()
         Me.sidecalendarBtn = New System.Windows.Forms.Button()
         Me.sideResSub1 = New System.Windows.Forms.Button()
@@ -90,10 +91,11 @@ Partial Class AddEdit_User
         'Sidebar
         '
         Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.Sidebar.Controls.Add(Me.sideAdminBtn)
         Me.Sidebar.Controls.Add(Me.Button1)
         Me.Sidebar.Controls.Add(Me.resdrop)
         Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
-        Me.Sidebar.Controls.Add(Me.sideadminBtn)
+        Me.Sidebar.Controls.Add(Me.sideteamBtn)
         Me.Sidebar.Controls.Add(Me.sideresultBtn)
         Me.Sidebar.Controls.Add(Me.sidecalendarBtn)
         Me.Sidebar.Controls.Add(Me.sideResSub1)
@@ -103,6 +105,22 @@ Partial Class AddEdit_User
         Me.Sidebar.Size = New System.Drawing.Size(200, 731)
         Me.Sidebar.TabIndex = 93
         Me.Sidebar.TabStop = False
+        '
+        'sideAdminBtn
+        '
+        Me.sideAdminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideAdminBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.sideAdminBtn.FlatAppearance.BorderSize = 0
+        Me.sideAdminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideAdminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sideAdminBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideAdminBtn.Location = New System.Drawing.Point(2, 288)
+        Me.sideAdminBtn.Name = "sideAdminBtn"
+        Me.sideAdminBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideAdminBtn.TabIndex = 3
+        Me.sideAdminBtn.Text = "   MANAGE USERS"
+        Me.sideAdminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideAdminBtn.UseVisualStyleBackColor = False
         '
         'Button1
         '
@@ -151,22 +169,21 @@ Partial Class AddEdit_User
         Me.sideAthletesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideAthletesBtn.UseVisualStyleBackColor = False
         '
-        'sideadminBtn
+        'sideteamBtn
         '
-        Me.sideadminBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.sideadminBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.sideadminBtn.FlatAppearance.BorderSize = 0
-        Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.sideadminBtn.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideadminBtn.Location = New System.Drawing.Point(2, 237)
-        Me.sideadminBtn.Name = "sideadminBtn"
-        Me.sideadminBtn.Size = New System.Drawing.Size(196, 50)
-        Me.sideadminBtn.TabIndex = 0
-        Me.sideadminBtn.Text = "   MANAGE USERS"
-        Me.sideadminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sideadminBtn.UseVisualStyleBackColor = False
-        Me.sideadminBtn.Visible = False
+        Me.sideteamBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideteamBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.sideteamBtn.FlatAppearance.BorderSize = 0
+        Me.sideteamBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideteamBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sideteamBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideteamBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideteamBtn.Name = "sideteamBtn"
+        Me.sideteamBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideteamBtn.TabIndex = 0
+        Me.sideteamBtn.Text = "   MANAGE TEAMS"
+        Me.sideteamBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideteamBtn.UseVisualStyleBackColor = False
         '
         'sideresultBtn
         '
@@ -262,7 +279,7 @@ Partial Class AddEdit_User
         Me.lblAlertCount.AutoSize = True
         Me.lblAlertCount.BackColor = System.Drawing.Color.DarkGray
         Me.lblAlertCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAlertCount.Location = New System.Drawing.Point(1215, 16)
+        Me.lblAlertCount.Location = New System.Drawing.Point(1224, 16)
         Me.lblAlertCount.Name = "lblAlertCount"
         Me.lblAlertCount.Size = New System.Drawing.Size(15, 16)
         Me.lblAlertCount.TabIndex = 3
@@ -816,7 +833,7 @@ Partial Class AddEdit_User
     Friend WithEvents sideResSub1 As Button
     Friend WithEvents sidecalendarBtn As Button
     Friend WithEvents sideresultBtn As Button
-    Friend WithEvents sideadminBtn As Button
+    Friend WithEvents sideteamBtn As Button
     Friend WithEvents sideAthletesBtn As Button
     Friend WithEvents resdrop As Button
     Friend WithEvents Button1 As Button
@@ -834,4 +851,5 @@ Partial Class AddEdit_User
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents sideAdminBtn As System.Windows.Forms.Button
 End Class

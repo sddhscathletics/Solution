@@ -52,6 +52,7 @@ Public Class home
         If access = 1 Or access = 0 Then 'checking accesslevel of user, if not admin cannot access certain functions
             addEditUserBtn.Visible = False
             sideadminBtn.Visible = False
+            sideteamBtn.Visible = False
         End If
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Resources\Calendar.accdb")
             conn.Open()
@@ -113,15 +114,17 @@ Public Class home
         If rDrop = True Then
             If rDown = True Then
                 sideAthletesBtn.Top += 10
-                sideadminBtn.Top += 10
+                sideteamBtn.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
+                sideadminBtn.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
-                sideadminBtn.Top -= 10
+                sideteamBtn.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
+                sideadminBtn.Top -= 10
             End If
             jun += 1
             If jun = 6 Then
@@ -222,5 +225,10 @@ Public Class home
         If lblAlertCount1.Text = "0" Then
             lblAlertCount1.Text = ""
         End If
+    End Sub
+
+    Private Sub sideteamBtn_Click(sender As Object, e As EventArgs) Handles sideteamBtn.Click
+        manageTeams.Show()
+        Me.Close()
     End Sub
 End Class

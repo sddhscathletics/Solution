@@ -25,7 +25,10 @@ Public Class selectAthlete
 
     Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tmrAlert.Start()
-        sideadminBtn.Visible = True
+        If access = 0 Or access = 1 Then
+            sideadminBtn.Visible = False
+            sideteamBtn.Visible = False
+        End If
     End Sub
 
     Private Sub scrollclick(sender As Object, e As EventArgs) Handles scrollBtn.Click
@@ -49,45 +52,21 @@ Public Class selectAthlete
         End If
     End Sub
     Private Sub sidebartime_Tick(sender As Object, e As EventArgs) Handles sidebartime.Tick
-        'calendar drop
-        If cDrop = True Then
-            If cDown = True Then
-                sideresultBtn.Top += 10
-                sideAthletesBtn.Top += 10
-                sideadminBtn.Top += 10
-                resdrop.Top += 10
-                sideResSub1.Top += 10
-                sideResSub2.Top += 10
-            End If
-            If cDown = False Then
-                sideresultBtn.Top -= 10
-                sideAthletesBtn.Top -= 10
-                sideadminBtn.Top -= 10
-                resdrop.Top -= 10
-
-                sideResSub1.Top -= 10
-                sideResSub2.Top -= 10
-            End If
-            jun += 1
-            If jun = 9 Then
-                jun = 0
-                cDrop = False
-                sidebartime.Enabled = False
-            End If
-        End If
         ' results drop
         If rDrop = True Then
             If rDown = True Then
                 sideAthletesBtn.Top += 10
-                sideadminBtn.Top += 10
+                sideteamBtn.Top += 10
                 sideResSub1.Top += 10
                 sideResSub2.Top += 10
+                sideadminBtn.Top += 10
             End If
             If rDown = False Then
                 sideAthletesBtn.Top -= 10
-                sideadminBtn.Top -= 10
+                sideteamBtn.Top -= 10
                 sideResSub1.Top -= 10
                 sideResSub2.Top -= 10
+                sideadminBtn.Top -= 10
             End If
             jun += 1
             If jun = 6 Then
@@ -595,5 +574,10 @@ Public Class selectAthlete
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         checkNotif.Show()
+    End Sub
+
+    Private Sub sideteamBtn_Click(sender As Object, e As EventArgs) Handles sideteamBtn.Click
+        manageTeams.Show()
+        Me.Close()
     End Sub
 End Class

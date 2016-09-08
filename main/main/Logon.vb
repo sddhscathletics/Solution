@@ -126,8 +126,8 @@ Public Class Logon
 
 #Region "Data Validation for login/pass"
     Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress, TextBox2.KeyPress
-        If Not Char.IsLetterOrDigit(e.KeyChar) Then
-            e.Handled = True
+   if e.KeyChar <> ControlChars.Back then
+            e.Handled = Not (Char.IsLetterOrDigit(e.KeyChar) Or e.KeyChar = ".")
         End If
     End Sub
 #End Region

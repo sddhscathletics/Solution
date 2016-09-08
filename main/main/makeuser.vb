@@ -100,8 +100,8 @@ Public Class makeuser
 
 #Region "ID/Pass Validation"
     Private Sub createNewID_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles createNewID.KeyPress, createNewPass.KeyPress
-        If Not Char.IsLetterOrDigit(e.KeyChar) Then
-            e.Handled = True
+        If e.KeyChar <> ControlChars.Back Then
+            e.Handled = Not (Char.IsLetterOrDigit(e.KeyChar) Or e.KeyChar = ".")
         End If
     End Sub
 #End Region

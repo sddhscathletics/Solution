@@ -112,6 +112,7 @@ Partial Class createEvent
         Me.pbPlus = New System.Windows.Forms.PictureBox()
         Me.ttp = New System.Windows.Forms.ToolTip(Me.components)
         Me.tmrAlert = New System.Windows.Forms.Timer(Me.components)
+        Me.sideteamBtn = New System.Windows.Forms.Button()
         Me.gbDetails.SuspendLayout()
         Me.flpAttach.SuspendLayout()
         Me.pnlAttach.SuspendLayout()
@@ -151,20 +152,20 @@ Partial Class createEvent
         'lblStart
         '
         Me.lblStart.AutoSize = True
-        Me.lblStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.lblStart.Location = New System.Drawing.Point(35, 188)
+        Me.lblStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStart.Location = New System.Drawing.Point(36, 188)
         Me.lblStart.Name = "lblStart"
-        Me.lblStart.Size = New System.Drawing.Size(59, 16)
+        Me.lblStart.Size = New System.Drawing.Size(48, 13)
         Me.lblStart.TabIndex = 17
         Me.lblStart.Text = "START"
         '
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lblDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDate.Location = New System.Drawing.Point(44, 155)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(49, 16)
+        Me.lblDate.Size = New System.Drawing.Size(40, 13)
         Me.lblDate.TabIndex = 16
         Me.lblDate.Text = "DATE"
         '
@@ -181,30 +182,30 @@ Partial Class createEvent
         'lblEnd
         '
         Me.lblEnd.AutoSize = True
-        Me.lblEnd.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.lblEnd.Location = New System.Drawing.Point(44, 222)
+        Me.lblEnd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEnd.Location = New System.Drawing.Point(50, 217)
         Me.lblEnd.Name = "lblEnd"
-        Me.lblEnd.Size = New System.Drawing.Size(40, 16)
+        Me.lblEnd.Size = New System.Drawing.Size(33, 13)
         Me.lblEnd.TabIndex = 26
         Me.lblEnd.Text = "END"
         '
         'lblComment
         '
         Me.lblComment.AutoSize = True
-        Me.lblComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.lblComment.Location = New System.Drawing.Point(8, 258)
+        Me.lblComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblComment.Location = New System.Drawing.Point(14, 255)
         Me.lblComment.Name = "lblComment"
-        Me.lblComment.Size = New System.Drawing.Size(84, 16)
+        Me.lblComment.Size = New System.Drawing.Size(69, 13)
         Me.lblComment.TabIndex = 29
         Me.lblComment.Text = "COMMENT"
         '
         'lblType
         '
         Me.lblType.AutoSize = True
-        Me.lblType.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.lblType.Location = New System.Drawing.Point(47, 126)
+        Me.lblType.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblType.Location = New System.Drawing.Point(44, 125)
         Me.lblType.Name = "lblType"
-        Me.lblType.Size = New System.Drawing.Size(48, 16)
+        Me.lblType.Size = New System.Drawing.Size(39, 13)
         Me.lblType.TabIndex = 30
         Me.lblType.Text = "TYPE"
         '
@@ -261,10 +262,10 @@ Partial Class createEvent
         'lblEventName
         '
         Me.lblEventName.AutoSize = True
-        Me.lblEventName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.lblEventName.Location = New System.Drawing.Point(37, 93)
+        Me.lblEventName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEventName.Location = New System.Drawing.Point(44, 91)
         Me.lblEventName.Name = "lblEventName"
-        Me.lblEventName.Size = New System.Drawing.Size(51, 16)
+        Me.lblEventName.Size = New System.Drawing.Size(42, 13)
         Me.lblEventName.TabIndex = 37
         Me.lblEventName.Text = "NAME"
         '
@@ -281,10 +282,10 @@ Partial Class createEvent
         'lblTemplate
         '
         Me.lblTemplate.AutoSize = True
-        Me.lblTemplate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lblTemplate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTemplate.Location = New System.Drawing.Point(15, 51)
         Me.lblTemplate.Name = "lblTemplate"
-        Me.lblTemplate.Size = New System.Drawing.Size(88, 16)
+        Me.lblTemplate.Size = New System.Drawing.Size(72, 13)
         Me.lblTemplate.TabIndex = 40
         Me.lblTemplate.Text = "TEMPLATE"
         '
@@ -375,7 +376,7 @@ Partial Class createEvent
         '
         'map
         '
-        Me.map.Bearing = 0!
+        Me.map.Bearing = 0.0!
         Me.map.CanDragMap = True
         Me.map.Cursor = System.Windows.Forms.Cursors.Hand
         Me.map.EmptyTileColor = System.Drawing.Color.Navy
@@ -412,20 +413,20 @@ Partial Class createEvent
         'lblStreet
         '
         Me.lblStreet.AutoSize = True
-        Me.lblStreet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lblStreet.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStreet.Location = New System.Drawing.Point(22, 75)
         Me.lblStreet.Name = "lblStreet"
-        Me.lblStreet.Size = New System.Drawing.Size(69, 16)
+        Me.lblStreet.Size = New System.Drawing.Size(56, 13)
         Me.lblStreet.TabIndex = 44
         Me.lblStreet.Text = "STREET"
         '
         'lblSuburb
         '
         Me.lblSuburb.AutoSize = True
-        Me.lblSuburb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSuburb.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSuburb.Location = New System.Drawing.Point(18, 99)
         Me.lblSuburb.Name = "lblSuburb"
-        Me.lblSuburb.Size = New System.Drawing.Size(71, 16)
+        Me.lblSuburb.Size = New System.Drawing.Size(58, 13)
         Me.lblSuburb.TabIndex = 48
         Me.lblSuburb.Text = "SUBURB"
         '
@@ -440,10 +441,10 @@ Partial Class createEvent
         'lblState
         '
         Me.lblState.AutoSize = True
-        Me.lblState.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblState.Location = New System.Drawing.Point(29, 126)
         Me.lblState.Name = "lblState"
-        Me.lblState.Size = New System.Drawing.Size(58, 16)
+        Me.lblState.Size = New System.Drawing.Size(47, 13)
         Me.lblState.TabIndex = 50
         Me.lblState.Text = "STATE"
         '
@@ -490,7 +491,7 @@ Partial Class createEvent
         Me.btnSearch.BackColor = System.Drawing.Color.Gray
         Me.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.Location = New System.Drawing.Point(312, 48)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(76, 99)
@@ -527,10 +528,10 @@ Partial Class createEvent
         'chbAllNotes
         '
         Me.chbAllNotes.AutoSize = True
-        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.chbAllNotes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbAllNotes.Location = New System.Drawing.Point(134, 31)
         Me.chbAllNotes.Name = "chbAllNotes"
-        Me.chbAllNotes.Size = New System.Drawing.Size(109, 20)
+        Me.chbAllNotes.Size = New System.Drawing.Size(94, 17)
         Me.chbAllNotes.TabIndex = 62
         Me.chbAllNotes.Text = "ALL NOTES"
         Me.chbAllNotes.UseVisualStyleBackColor = True
@@ -540,7 +541,7 @@ Partial Class createEvent
         Me.btnSelect.BackColor = System.Drawing.Color.Gray
         Me.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSelect.Location = New System.Drawing.Point(365, 28)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(75, 23)
@@ -551,10 +552,10 @@ Partial Class createEvent
         'chbAllAthletes
         '
         Me.chbAllAthletes.AutoSize = True
-        Me.chbAllAthletes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.chbAllAthletes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbAllAthletes.Location = New System.Drawing.Point(6, 31)
         Me.chbAllAthletes.Name = "chbAllAthletes"
-        Me.chbAllAthletes.Size = New System.Drawing.Size(145, 20)
+        Me.chbAllAthletes.Size = New System.Drawing.Size(124, 17)
         Me.chbAllAthletes.TabIndex = 48
         Me.chbAllAthletes.Text = "ALL ATTENDING"
         Me.chbAllAthletes.UseVisualStyleBackColor = True
@@ -594,20 +595,20 @@ Partial Class createEvent
         'lblOpens
         '
         Me.lblOpens.AutoSize = True
-        Me.lblOpens.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lblOpens.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOpens.Location = New System.Drawing.Point(5, 246)
         Me.lblOpens.Name = "lblOpens"
-        Me.lblOpens.Size = New System.Drawing.Size(64, 16)
+        Me.lblOpens.Size = New System.Drawing.Size(53, 13)
         Me.lblOpens.TabIndex = 69
         Me.lblOpens.Text = "OPENS:"
         '
         'lbl14s
         '
         Me.lbl14s.AutoSize = True
-        Me.lbl14s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lbl14s.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl14s.Location = New System.Drawing.Point(26, 106)
         Me.lbl14s.Name = "lbl14s"
-        Me.lbl14s.Size = New System.Drawing.Size(40, 16)
+        Me.lbl14s.Size = New System.Drawing.Size(34, 13)
         Me.lbl14s.TabIndex = 61
         Me.lbl14s.Text = "14's:"
         '
@@ -625,20 +626,20 @@ Partial Class createEvent
         'lbl13s
         '
         Me.lbl13s.AutoSize = True
-        Me.lbl13s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lbl13s.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl13s.Location = New System.Drawing.Point(26, 70)
         Me.lbl13s.Name = "lbl13s"
-        Me.lbl13s.Size = New System.Drawing.Size(40, 16)
+        Me.lbl13s.Size = New System.Drawing.Size(34, 13)
         Me.lbl13s.TabIndex = 60
         Me.lbl13s.Text = "13's:"
         '
         'lbl15s
         '
         Me.lbl15s.AutoSize = True
-        Me.lbl15s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lbl15s.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl15s.Location = New System.Drawing.Point(26, 143)
         Me.lbl15s.Name = "lbl15s"
-        Me.lbl15s.Size = New System.Drawing.Size(40, 16)
+        Me.lbl15s.Size = New System.Drawing.Size(34, 13)
         Me.lbl15s.TabIndex = 62
         Me.lbl15s.Text = "15's:"
         '
@@ -656,20 +657,20 @@ Partial Class createEvent
         'lbl17s
         '
         Me.lbl17s.AutoSize = True
-        Me.lbl17s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lbl17s.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl17s.Location = New System.Drawing.Point(26, 215)
         Me.lbl17s.Name = "lbl17s"
-        Me.lbl17s.Size = New System.Drawing.Size(40, 16)
+        Me.lbl17s.Size = New System.Drawing.Size(34, 13)
         Me.lbl17s.TabIndex = 66
         Me.lbl17s.Text = "17's:"
         '
         'chbNA
         '
         Me.chbNA.AutoSize = True
-        Me.chbNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.chbNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbNA.Location = New System.Drawing.Point(11, 31)
         Me.chbNA.Name = "chbNA"
-        Me.chbNA.Size = New System.Drawing.Size(53, 20)
+        Me.chbNA.Size = New System.Drawing.Size(49, 17)
         Me.chbNA.TabIndex = 33
         Me.chbNA.Text = "N/A"
         Me.chbNA.UseVisualStyleBackColor = True
@@ -699,10 +700,10 @@ Partial Class createEvent
         'lbl16s
         '
         Me.lbl16s.AutoSize = True
-        Me.lbl16s.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lbl16s.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl16s.Location = New System.Drawing.Point(26, 181)
         Me.lbl16s.Name = "lbl16s"
-        Me.lbl16s.Size = New System.Drawing.Size(40, 16)
+        Me.lbl16s.Size = New System.Drawing.Size(34, 13)
         Me.lbl16s.TabIndex = 65
         Me.lbl16s.Text = "16's:"
         '
@@ -743,7 +744,7 @@ Partial Class createEvent
         Me.btnSaveTimes.BackColor = System.Drawing.Color.Gray
         Me.btnSaveTimes.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSaveTimes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnSaveTimes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.btnSaveTimes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSaveTimes.Location = New System.Drawing.Point(204, 29)
         Me.btnSaveTimes.Name = "btnSaveTimes"
         Me.btnSaveTimes.Size = New System.Drawing.Size(51, 23)
@@ -867,6 +868,7 @@ Partial Class createEvent
         'Sidebar
         '
         Me.Sidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(136, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.Sidebar.Controls.Add(Me.sideteamBtn)
         Me.Sidebar.Controls.Add(Me.sideMainBtn)
         Me.Sidebar.Controls.Add(Me.resdrop)
         Me.Sidebar.Controls.Add(Me.sideAthletesBtn)
@@ -936,14 +938,13 @@ Partial Class createEvent
         Me.sideadminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sideadminBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sideadminBtn.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideadminBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideadminBtn.Location = New System.Drawing.Point(2, 288)
         Me.sideadminBtn.Name = "sideadminBtn"
         Me.sideadminBtn.Size = New System.Drawing.Size(196, 50)
         Me.sideadminBtn.TabIndex = 0
         Me.sideadminBtn.Text = "   MANAGE USERS"
         Me.sideadminBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.sideadminBtn.UseVisualStyleBackColor = False
-        Me.sideadminBtn.Visible = False
         '
         'sideresultBtn
         '
@@ -1065,10 +1066,10 @@ Partial Class createEvent
         'chbRepNA
         '
         Me.chbRepNA.AutoSize = True
-        Me.chbRepNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.chbRepNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbRepNA.Location = New System.Drawing.Point(129, 25)
         Me.chbRepNA.Name = "chbRepNA"
-        Me.chbRepNA.Size = New System.Drawing.Size(53, 20)
+        Me.chbRepNA.Size = New System.Drawing.Size(49, 17)
         Me.chbRepNA.TabIndex = 72
         Me.chbRepNA.Text = "N/A"
         Me.chbRepNA.UseVisualStyleBackColor = True
@@ -1097,10 +1098,10 @@ Partial Class createEvent
         'lblDays
         '
         Me.lblDays.AutoSize = True
-        Me.lblDays.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lblDays.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDays.Location = New System.Drawing.Point(7, 29)
         Me.lblDays.Name = "lblDays"
-        Me.lblDays.Size = New System.Drawing.Size(49, 16)
+        Me.lblDays.Size = New System.Drawing.Size(40, 13)
         Me.lblDays.TabIndex = 64
         Me.lblDays.Text = "DAYS"
         '
@@ -1168,6 +1169,22 @@ Partial Class createEvent
         '
         'tmrAlert
         '
+        '
+        'sideteamBtn
+        '
+        Me.sideteamBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideteamBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.sideteamBtn.FlatAppearance.BorderSize = 0
+        Me.sideteamBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideteamBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sideteamBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideteamBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideteamBtn.Name = "sideteamBtn"
+        Me.sideteamBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideteamBtn.TabIndex = 3
+        Me.sideteamBtn.Text = "   MANAGE TEAMS"
+        Me.sideteamBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideteamBtn.UseVisualStyleBackColor = False
         '
         'createEvent
         '
@@ -1299,4 +1316,5 @@ Partial Class createEvent
     Friend WithEvents lblRepeat As Label
     Friend WithEvents ttp As ToolTip
     Friend WithEvents tmrAlert As Timer
+    Friend WithEvents sideteamBtn As System.Windows.Forms.Button
 End Class
