@@ -112,7 +112,7 @@ Partial Class manageTeams
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnDelete)
         Me.Name = "manageTeams"
-        Me.Text = "manageTeams"
+        Me.Text = "Manage Teams"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
