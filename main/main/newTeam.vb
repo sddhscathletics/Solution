@@ -213,4 +213,8 @@ Public Class newTeam
             manageTeams.refreshPanels()
         End If
     End Sub
+
+    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
+        MsgBox("To begin, enter a team name and select an age group. Members can be added on the left and removed on the right. They can also be searched, sorted and filtered.", MsgBoxStyle.OkOnly, "Help")
+    End Sub
 End Class

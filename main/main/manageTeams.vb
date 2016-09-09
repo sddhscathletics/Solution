@@ -174,4 +174,13 @@ Public Class manageTeams
         End If
         fillPanels()
     End Sub
+
+    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+        home.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
+        MsgBox("Teams can be managed from here. Select a team to view a list of its members on the right. To edit, add or delete a team, use the controls on the left. Teams can also be searched, sorted and filtered with the controls at the top.", MsgBoxStyle.OkOnly, "Help")
+    End Sub
 End Class

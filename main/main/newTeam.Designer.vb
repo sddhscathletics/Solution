@@ -33,6 +33,7 @@ Partial Class newTeam
         Me.flpSelected = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnHelp = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtTeamName
@@ -147,12 +148,22 @@ Partial Class newTeam
         Me.btnSave.TabIndex = 82
         Me.btnSave.UseVisualStyleBackColor = False
         '
+        'btnHelp
+        '
+        Me.btnHelp.Location = New System.Drawing.Point(626, 12)
+        Me.btnHelp.Name = "btnHelp"
+        Me.btnHelp.Size = New System.Drawing.Size(23, 23)
+        Me.btnHelp.TabIndex = 93
+        Me.btnHelp.Text = "?"
+        Me.btnHelp.UseVisualStyleBackColor = True
+        '
         'newTeam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(197, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(661, 402)
+        Me.Controls.Add(Me.btnHelp)
         Me.Controls.Add(Me.flpSelected)
         Me.Controls.Add(Me.lblSelectedMembers)
         Me.Controls.Add(Me.cmbSort)
@@ -184,4 +195,5 @@ Partial Class newTeam
     Friend WithEvents cmbSort As ComboBox
     Friend WithEvents lblSelectedMembers As Label
     Friend WithEvents flpSelected As FlowLayoutPanel
+    Friend WithEvents btnHelp As Button
 End Class

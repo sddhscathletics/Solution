@@ -69,6 +69,7 @@ Partial Class selectAthlete
         Me.exitBtn = New System.Windows.Forms.Button()
         Me.scrollBtn = New System.Windows.Forms.Button()
         Me.Sidebar = New System.Windows.Forms.GroupBox()
+        Me.sideteamBtn = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.resdrop = New System.Windows.Forms.Button()
         Me.sideAthletesBtn = New System.Windows.Forms.Button()
@@ -89,7 +90,7 @@ Partial Class selectAthlete
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.tmrAlert = New System.Windows.Forms.Timer(Me.components)
-        Me.sideteamBtn = New System.Windows.Forms.Button()
+        Me.btnHelp = New System.Windows.Forms.Button()
         Me.gpbTeamManagement.SuspendLayout()
         Me.gpbMedical.SuspendLayout()
         Me.gpbStudent.SuspendLayout()
@@ -602,6 +603,22 @@ Partial Class selectAthlete
         Me.Sidebar.TabIndex = 91
         Me.Sidebar.TabStop = False
         '
+        'sideteamBtn
+        '
+        Me.sideteamBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.sideteamBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.sideteamBtn.FlatAppearance.BorderSize = 0
+        Me.sideteamBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.sideteamBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sideteamBtn.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.sideteamBtn.Location = New System.Drawing.Point(2, 237)
+        Me.sideteamBtn.Name = "sideteamBtn"
+        Me.sideteamBtn.Size = New System.Drawing.Size(196, 50)
+        Me.sideteamBtn.TabIndex = 4
+        Me.sideteamBtn.Text = "   MANAGE TEAMS"
+        Me.sideteamBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.sideteamBtn.UseVisualStyleBackColor = False
+        '
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
@@ -737,6 +754,7 @@ Partial Class selectAthlete
         '
         'bigbtngroup
         '
+        Me.bigbtngroup.Controls.Add(Me.btnHelp)
         Me.bigbtngroup.Controls.Add(Me.gpbEditing)
         Me.bigbtngroup.Controls.Add(Me.cmbSort)
         Me.bigbtngroup.Controls.Add(Me.flpAthletes)
@@ -853,21 +871,14 @@ Partial Class selectAthlete
         'tmrAlert
         '
         '
-        'sideteamBtn
+        'btnHelp
         '
-        Me.sideteamBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.sideteamBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.sideteamBtn.FlatAppearance.BorderSize = 0
-        Me.sideteamBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.sideteamBtn.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.sideteamBtn.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.sideteamBtn.Location = New System.Drawing.Point(2, 237)
-        Me.sideteamBtn.Name = "sideteamBtn"
-        Me.sideteamBtn.Size = New System.Drawing.Size(196, 50)
-        Me.sideteamBtn.TabIndex = 4
-        Me.sideteamBtn.Text = "   MANAGE TEAMS"
-        Me.sideteamBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.sideteamBtn.UseVisualStyleBackColor = False
+        Me.btnHelp.Location = New System.Drawing.Point(1245, 43)
+        Me.btnHelp.Name = "btnHelp"
+        Me.btnHelp.Size = New System.Drawing.Size(23, 23)
+        Me.btnHelp.TabIndex = 94
+        Me.btnHelp.Text = "?"
+        Me.btnHelp.UseVisualStyleBackColor = True
         '
         'selectAthlete
         '
@@ -973,4 +984,5 @@ Partial Class selectAthlete
     Friend WithEvents Label1 As Label
     Friend WithEvents tmrAlert As Timer
     Friend WithEvents sideteamBtn As System.Windows.Forms.Button
+    Friend WithEvents btnHelp As Button
 End Class

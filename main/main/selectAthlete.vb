@@ -457,6 +457,7 @@ Public Class selectAthlete
     Private Sub toggleControls()
         Select Case controlState
             Case "first"
+                btnHelp.Visible = False
                 gpbAthlete.Visible = False
                 gpbStudent.Visible = False
                 gpbAddress.Visible = False
@@ -469,6 +470,7 @@ Public Class selectAthlete
                 btnCancel.Visible = False
                 btnCommitTeams.Visible = False
             Case "show"
+                btnHelp.Visible = False
                 gpbAthlete.Visible = True
                 gpbStudent.Visible = True
                 lblAgeGroup.Visible = True
@@ -487,6 +489,7 @@ Public Class selectAthlete
                     End If
                 End If
             Case "editing"
+                btnHelp.Visible = True
                 lblAgeGroup.Visible = False
                 lblBestEvent.Visible = False
                 gpbAddress.Visible = False
@@ -579,5 +582,9 @@ Public Class selectAthlete
     Private Sub sideteamBtn_Click(sender As Object, e As EventArgs) Handles sideteamBtn.Click
         manageTeams.Show()
         Me.Close()
+    End Sub
+
+    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
+        MsgBox("The team management window allows easy assigning/removing of teams with regard to the current selected student. Select teams on either side to add/remove, then click the blue commit button to save changes. The student's best event and age group can also be modified at the bottom.", MsgBoxStyle.OkOnly, "Help")
     End Sub
 End Class

@@ -29,6 +29,8 @@ Partial Class manageTeams
         Me.cmbAgeGroup = New System.Windows.Forms.ComboBox()
         Me.txtMembers = New System.Windows.Forms.TextBox()
         Me.lblName = New System.Windows.Forms.Label()
+        Me.btnBack = New System.Windows.Forms.Button()
+        Me.btnHelp = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'flpTeams
@@ -99,11 +101,31 @@ Partial Class manageTeams
         Me.lblName.TabIndex = 90
         Me.lblName.Text = "Select a team to start"
         '
+        'btnBack
+        '
+        Me.btnBack.Location = New System.Drawing.Point(12, 12)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(75, 23)
+        Me.btnBack.TabIndex = 91
+        Me.btnBack.Text = "Back"
+        Me.btnBack.UseVisualStyleBackColor = True
+        '
+        'btnHelp
+        '
+        Me.btnHelp.Location = New System.Drawing.Point(735, 12)
+        Me.btnHelp.Name = "btnHelp"
+        Me.btnHelp.Size = New System.Drawing.Size(23, 23)
+        Me.btnHelp.TabIndex = 92
+        Me.btnHelp.Text = "?"
+        Me.btnHelp.UseVisualStyleBackColor = True
+        '
         'manageTeams
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(770, 287)
+        Me.Controls.Add(Me.btnHelp)
+        Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.txtMembers)
         Me.Controls.Add(Me.cmbAgeGroup)
@@ -125,4 +147,6 @@ Partial Class manageTeams
     Friend WithEvents cmbAgeGroup As ComboBox
     Friend WithEvents txtMembers As TextBox
     Friend WithEvents lblName As Label
+    Friend WithEvents btnBack As Button
+    Friend WithEvents btnHelp As Button
 End Class
